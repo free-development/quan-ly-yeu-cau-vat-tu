@@ -1,0 +1,17 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#title {
+	text-align: center;
+	font-size: 25px;
+	color: firebrick;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+#wrapper {
+	width: 600px;
+	margin: 0 auto;
+	background-color: floralwhite;
+}
