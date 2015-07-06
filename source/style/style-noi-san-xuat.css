@@ -7,11 +7,31 @@
 	font-size: 25px;
 	color: firebrick;
 	font-weight: bold;
-	margin-top: 20px;
+	padding-top: 20px;
+	margin-bottom: 20px;
 }
 
 #wrapper {
 	width: 600px;
 	margin: 0 auto;
 	background-color: floralwhite;
+}
+
+#content {
+	margin: 0 auto;
+	margin-left: 50px
+}
+
+#view {
+	border: outset cornflowerblue;
+}
+#view tr th {
+	border: 1px solid cornflowerblue;
+	text-align: center;
+	padding: 10px
+}
+#view tr td {
+	border: 1px solid cornflowerblue;
+	padding-left: 10px;
+	padding-right: 10px;
 }

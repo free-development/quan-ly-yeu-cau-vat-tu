@@ -1,0 +1,37 @@
+
+.input {
+	border-spacing: 10px;
+	
+}
+input.text {
+	height: 25px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid;
+	padding-left: 5px;
+	
+}
+label {
+	font-size: 16px;
+}
+button {
+	height: 30px;
+	font-size: 20px;
+	border-radius: 5px;
+	border: solid 0px;
+	background: none;
+	color: blue;
+	padding: 5px;
+}
+.button {
+	background-color: azure;
+}
+input.reset {
+	height: 30px;
+	font-size: 20px;
+	border-radius: 5px;
+	border: solid 0px;
+	background: none;
+	color: blue;
+	padding: 5px;
+}
