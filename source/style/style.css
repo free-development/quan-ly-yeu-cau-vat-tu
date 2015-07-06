@@ -3,7 +3,7 @@
 	border-spacing: 10px;
 	
 }
-input.text {
+/*input.text {
 	height: 25px;
 	font-size: 16px;
 	border-radius: 5px;
@@ -11,6 +11,7 @@ input.text {
 	padding-left: 5px;
 	
 }
+*/
 label {
 	font-size: 16px;
 }
@@ -34,4 +35,98 @@ input.reset {
 	background: none;
 	color: blue;
 	padding: 5px;
+}
+.Input {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 454px;
+  height: 340px;
+  z-index: 23;
+}
+.Un_Active {
+  font-size: 14px;
+  font-family: "Lato";
+  color: rgba( 52, 73, 94, 0.6 );
+  position: absolute;
+  left: 26.937px;
+  top: 40.25px;
+  z-index: 22;
+}
+input.text {
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb( 189, 195, 199 );
+  border-radius: 6px;
+  background-color: rgb( 255, 255, 255 );
+  opacity: 1;
+  left: 12px;
+  top: 25px;
+  width: 212px;
+  height: 41px;
+	font-size: 20px;
+}
+.Disabled {
+  font-size: 14px;
+  font-family: "Lato";
+  color: rgb( 189, 195, 199 );
+  position: absolute;
+  left: 752.937px;
+  top: 40.25px;
+  z-index: 20;
+}
+.Input__Disabled_ {
+  border-radius: 6px;
+  background-color: rgb( 189, 195, 199 );
+  opacity: 0.302;
+  position: absolute;
+  left: 741px;
+  top: 28px;
+  width: 213px;
+  height: 39px;
+  z-index: 19;
+}
+.Alert {
+  font-size: 14px;
+  font-family: "Lato";
+  color: rgb( 231, 76, 60 );
+  position: absolute;
+  left: 511.937px;
+  top: 40.22px;
+  z-index: 18;
+}
+.Input__Error_ {
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb( 231, 76, 60 );
+  border-radius: 6px;
+  background-color: rgb( 255, 255, 255 );
+  position: absolute;
+  left: 497px;
+  top: 25px;
+  width: 212px;
+  height: 41px;
+  z-index: 17;
+}
+.Active {
+  font-size: 14px;
+  font-family: "Lato";
+  color: rgb( 52, 73, 94 );
+  position: absolute;
+  left: 268.937px;
+  top: 40.25px;
+  z-index: 16;
+}
+.Input__Active_ {
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb( 26, 188, 156 );
+  border-radius: 6px;
+  background-color: rgb( 255, 255, 255 );
+  position: absolute;
+  left: 254px;
+  top: 25px;
+  width: 213px;
+  height: 41px;
+  z-index: 15;
 }
