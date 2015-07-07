@@ -7,7 +7,7 @@
 		<link rel = "stylesheet" type="text/css" href="style/style-noi-san-xuat.css" >
 		<link rel = "stylesheet" type="text/css" href="style/style.css" >
 		<link rel = "stylesheet" type="text/css" href="style/font-awesome.css" >
-		<link rel = "stylesheet" type="text/css" href="style/font-awesome.min.css" >
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	</head>
 	
 	<body>
@@ -18,20 +18,20 @@
 			<div id="content">
 				<form>
 					<i class="fa fa-home"></i>
-					<div class="button">
-						<button name="action" value="Thêm" class="Button">Thêm</button>
-						<button name="action" value="Thêm">Sửa</button>
-						<button name="action" value="Thêm">Xóa</button>	
+					<div>
+						<button class="button" name="action" value="Thêm" class="button">Thêm</button>
+						<button name="action" value="Thêm" class="button">Sửa</button>
+						<button name="action" value="Thêm" class="button">Xóa</button>	
 						<input type="reset" value="Nhập lại" class="reset">	
 					</div>
 					<table class="input">
 						<tr>
 							<td><label>Mã NSX: </label></td>
-							<td><input type="text" name = "ma_nsx" required title = "Bạn phải nhập Mã nước sản xuất gồm có 3 ký tự. Không chứa ký tự đặc biệt" size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" autofocus autocomplete="on" class="text"></td>
+							<td><input type="text" name = "ma_nsx" required title = "Bạn phải nhập Mã nước sản xuất gồm có 3 ký tự. Không chứa ký tự đặc biệt" size="3" maxlength="3" pattern="[a-zA-Z0-9]{3}" autofocus autocomplete="on" class="text"></td>
 						</tr>
 						<tr>
 							<td><label>Tên NSX: </label></td>
-							<td><input type="text" name = "ten_nsx" required title = "Tên nước sản xuất không chứa số và ký tự đặc biệt" size="20" maxlength="50" class="text" placeholder="nhap NSX"></td>
+							<td><input type="text" name = "ten_nsx" required title = "Tên nước sản xuất không chứa số và ký tự đặc biệt" size="20" maxlength="50" class="text"></td>
 						</tr>
 					</table>
 					

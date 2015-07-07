@@ -24,109 +24,46 @@ button {
 	color: blue;
 	padding: 5px;
 }
-.button {
-	background-color: azure;
-}
+
 input.reset {
-	height: 30px;
-	font-size: 20px;
-	border-radius: 5px;
-	border: solid 0px;
-	background: none;
-	color: blue;
-	padding: 5px;
+	border-radius: 6px;
+	background-color: rgb( 26, 188, 156 );
+	height: 40px;	
+	border-color: none;
+	color: floralwhite;
+	padding: 10px;
+	text-align: center;
+	border: none;
+
 }
-.Input {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 454px;
-  height: 340px;
-  z-index: 23;
+
+.text {
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgb( 189, 195, 199 );
+	border-radius: 6px;
+	background-color: rgb( 255, 255, 255 );
+	opacity: 1;
+	left: 12px;
+	top: 25px;
+	height: 25px;
+	font-size: 16px;
+	padding-left: 10px;
+	padding-left: 10px;
 }
-.Un_Active {
-  font-size: 14px;
-  font-family: "Lato";
-  color: rgba( 52, 73, 94, 0.6 );
-  position: absolute;
-  left: 26.937px;
-  top: 40.25px;
-  z-index: 22;
+.button {
+	border-radius: 6px;
+	background-color: rgb( 26, 188, 156 );
+	height: 40px;	
+	border-color: none;
+	color: floralwhite;
+	padding: 10px;
+	text-align: center;
 }
-input.text {
-  border-style: solid;
-  border-width: 2px;
-  border-color: rgb( 189, 195, 199 );
-  border-radius: 6px;
-  background-color: rgb( 255, 255, 255 );
-  opacity: 1;
-  left: 12px;
-  top: 25px;
-  width: 212px;
-  height: 41px;
-	font-size: 20px;
+
+.button:hover{
+	background-color: bisque;	
 }
-.Disabled {
-  font-size: 14px;
-  font-family: "Lato";
-  color: rgb( 189, 195, 199 );
-  position: absolute;
-  left: 752.937px;
-  top: 40.25px;
-  z-index: 20;
-}
-.Input__Disabled_ {
-  border-radius: 6px;
-  background-color: rgb( 189, 195, 199 );
-  opacity: 0.302;
-  position: absolute;
-  left: 741px;
-  top: 28px;
-  width: 213px;
-  height: 39px;
-  z-index: 19;
-}
-.Alert {
-  font-size: 14px;
-  font-family: "Lato";
-  color: rgb( 231, 76, 60 );
-  position: absolute;
-  left: 511.937px;
-  top: 40.22px;
-  z-index: 18;
-}
-.Input__Error_ {
-  border-style: solid;
-  border-width: 2px;
-  border-color: rgb( 231, 76, 60 );
-  border-radius: 6px;
-  background-color: rgb( 255, 255, 255 );
-  position: absolute;
-  left: 497px;
-  top: 25px;
-  width: 212px;
-  height: 41px;
-  z-index: 17;
-}
-.Active {
-  font-size: 14px;
-  font-family: "Lato";
-  color: rgb( 52, 73, 94 );
-  position: absolute;
-  left: 268.937px;
-  top: 40.25px;
-  z-index: 16;
-}
-.Input__Active_ {
-  border-style: solid;
-  border-width: 2px;
-  border-color: rgb( 26, 188, 156 );
-  border-radius: 6px;
-  background-color: rgb( 255, 255, 255 );
-  position: absolute;
-  left: 254px;
-  top: 25px;
-  width: 213px;
-  height: 41px;
-  z-index: 15;
+.reset:hover{
+	background-color: bisque;	
 }

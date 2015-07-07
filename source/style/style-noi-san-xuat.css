@@ -28,7 +28,8 @@
 #view tr th {
 	border: 1px solid cornflowerblue;
 	text-align: center;
-	padding: 10px
+	padding: 10px;
+		
 }
 #view tr td {
 	border: 1px solid cornflowerblue;
