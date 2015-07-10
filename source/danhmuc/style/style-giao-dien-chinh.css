@@ -3,17 +3,16 @@ li{
     list-style: none;
 }
 a{
-    text-decoration: none;color: #FFF;font-size: 16px;
+    text-decoration: none;color: #FFF;font-size: 18px;
 }
 .clear{ 
     clear: both;
 }
 .header{
-    background-image: url(../img/nen10.jpg);
+    background-image: url(../img/head.gif);
     margin: 0px auto;
-    height: 250px;
-    z-index:-1;
-    background-position: center;
+    height: 150px;
+    backgroun-position: center;
     background-size: cover;
 }
 .header img{
@@ -37,10 +36,12 @@ a{
 }
 
 .wrapper{
-    width: 960px; height: 500px; background: #F8F8F8; margin: 0px auto;
+    width: 1024px; background: background-color: #dceaf5; margin: 0px auto;
 }
 .main_menu{
-    background: #00A69B; margin-top: 0px;}
+    background: #00A69B;
+/*	font-size: px;*/
+}
 .main_menu>ul>li{ 
     float: left;padding: 11px 27px; position: relative; border-right: 1px dotted #ACACAC;
 }
@@ -48,7 +49,8 @@ a{
     border-right: none;
 }
 .main_menu>ul>li>ul{ 
-    display: none; position: absolute; background: #00A69B;top: 41px;width: 198px; left: 0px;
+    display: none; position: absolute; background: #00A69B;
+	top: 41px;width: 250px; left: 0px;
 }
 .main_menu>ul>li:hover ul{ 
     display: block;
@@ -76,5 +78,69 @@ a{
     -webkit-transition: all .2s linear;
     transition: all .2s linear;
     margin-top: 65px;
-    margin-left: 780px;
+/*    margin-left: 855px;*/
+/*	margin-right: 0px;*/
+}
+
+#title {
+	text-align: center;
+	margin: 0 auto;
+}
+
+#top-title {
+/*	padding-top: 10px;*/
+	color: red;
+	font-size: 40px;
+	text-shadow: 2px 2px aliceblue;
+	font-weight: bold;
+/*	color: aliceblue*/
+}
+
+#bottom-title {
+/*	padding-top: 10px;*/
+	color: red;
+	font-size: 30px;
+	text-shadow: 2px 2px aliceblue;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+.search_form {
+	padding-top:4px;
+/*	float: right;*/
+/*	margin-right: 0px;*/
+	padding-right: 0px;
+	margin-right: 0px;
+	
+}
+
+#nav-bar {
+	
+}
+
+#left-nav {
+	display: table-cell;
+	padding: 5px 10px;
+}
+
+#search_box {
+	
+}
+
+#right-nav {
+/*	display: table-cell;*/
+/*	float: right;*/
+}
+
+#top_title {
+	color: red;
+	font-size: 40px;
+	text-shadow: 2px 2px aliceblue;
+	font-weight: bold;
+	text-align:center;
+/*	padding-top: 20px;*/
+}
+ul:first-child {
+
 }
