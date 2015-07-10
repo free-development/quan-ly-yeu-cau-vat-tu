@@ -145,103 +145,86 @@
             <form id="add-form">
 				<div class="input-table">
 					<table>
-						<div class="form-title">Thêm Phiếu</div>
+						<div class="form-title">Thêm công văn</div>
 						<tr>
-							<th style="text-align: left"><label for="SCT">Số chứng từ</label></th>
+							<th style="text-align: left"><label for="MD">Mục đích</label></th>
 							<td><select>
                                 <option></option>
-                                 <option value="">0615D010436</option>
-                                <option value="">0615D010430</option>
-                                <option value="">0615D010429</option>
+                                 <option value="">Sửa chữa lớn</option>
+                                <option value="">Xây dựng cơ bản</option>
+                                <option value="">Sửa chữa thường xuyên</option>
+                                <option value="">Sản xuất kinh doanh</option>
+                                </select>
+                            </td>
+                            <th style="text-align: left"><label for="NG">Nơi gửi</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value=""></option>
+                                <option value=""></option>
+                                <option value=""></option>
+                                <option value=""></option>
                                 </select>
                             </td>
 						</tr>
-                        <tr>
-                            <th style="text-align: left"><label for="NV">Ngày viết</label></th>
-                           <td><select>
-                                <option></option>
-                                 <option value="">19/06/2015</option>
-                                <option value="">20/06/2015</option>
-                                <option value="">21/06/2015</option>
-                                </select>
-                            </td>
-						</tr>
 						<tr>
-							<th style="text-align: left"><label for="MHT">Ngày hoạch toán</label></th>
+							<th style="text-align: left"><label for="N">Năm</label></th>
 							<td><select>
                                 <option></option>
-                                 <option value="">19/06/2015</option>
-                                <option value="">20/06/2015</option>
-                                <option value="">21/06/2015</option>
+                                 <option>2015</option>
+                                <option>2014</option>
+                                <option>2013</option>
+                                <option>2012</option>
                                 </select>
                             </td>
-						</tr>	
-                        <tr>
-							<th style="text-align: left"><label for="LDX">Lý do xuất</label></th>
+                            <th style="text-align: left"><label for="TN">Từ số</label></th>
 							<td><select>
                                 <option></option>
-                                 <option value="">1852C002 - Phát triển lưới điện...</option>
-                                <option value="">c/t-CT2015H007-DDTA...</option>
-                                <option value="">c/t-CT2014H008-DDĐD...</option>
                                 </select>
                             </td>
-						</tr>	
-                        <tr>
-							<th style="text-align: left"><label for="NNH">Người nhận hàng</label></th>
+                            <th style="text-align: left"><label for="TS">Từ ngày</label></th>
 							<td><select>
                                 <option></option>
-                                 <option value="">Điện lực Bình Thủy</option>
-                                <option value="">Điện lực Thốt Nốt</option>
-                                <option value="">Đội xây dựng điện</option>
                                 </select>
                             </td>
 						</tr>	
-                         <tr>
-                            <th style="text-align: left"><label for="MVT">Mã vật tư</label></th>
+                        <tr>
+							<th style="text-align: left"><label for="KH">Ký hiệu</label></th>
 							<td><select>
                                 <option></option>
-                                 <option value="">31542050</option>
-                                <option value="">31582025</option>
-                                <option value="">32084025</option>
-                                <option value="">32084050</option>
                                 </select>
                             </td>
-						</tr>	
-                        <tr>
-                            <th style="text-align: left"><label for="TVT">Tên vật tư</label></th>
+                            <th style="text-align: left"><label for="HT">Hình thức</label></th>
 							<td><select>
                                 <option></option>
-                                 <option value="">Cáp đòng bọc hạ áp CV 50m...</option>
-                                <option value="">Cáp đồng bọc 24KV CX(CR)...</option>
-                                <option value="">Đầu cosse ép đồng 25cm2</option>
-                                <option value="">Đầu cosse ép đồng 50cm2</option>
-                                <option value="">Nối ép WR 259</option>
                                 </select>
                             </td>
-						</tr>	
-                        <tr>
-                            <th style="text-align: left"><label for="SL">Số lượng</label></th>
-							<td><input name="" size="10px" align=left type="text" class="text" required title="Số lượng không được để trống"></td>
-						</tr>	
-                        <tr>
-                            <th style="text-align: left"><label for="DG">Đơn giá</label></th>
-							<td><input name="" size="30px" align=left type="text" class="text" required title="Đơn giá không được để trống"></td>
-						</tr>	
-                        <tr>
-                            <th style="text-align: left"><label for="TT">Thành tiền</label></th>
-							<td><input name="" size="30px" align=left type="text" class="text" required title="Thành tiền không được để trống"></td>
-						</tr>	
-                        <tr>
-                            <th style="text-align: left"><label for="DVT">Đơn vị tính</label></th>
-                            <td><select>
+                            <th style="text-align: left"><label for="NK">Ngày ký</label></th>
+							<td><select>
                                 <option></option>
-                                 <option value="">m</option>
-                                <option value="">cái</option>
-                                <option value="">cuộn</option>
-                                <option value="">bộ</option>
                                 </select>
                             </td>
+						</tr>		
+                        <tr>
+							<th style="text-align: left"><label for="KH">Lĩnh vực</label></th>
+							<td><select>
+                                <option></option>
+                                </select>
+                            </td>
+                            <th style="text-align: left"><label for="HT">Loại TL</label></th>
+							<td><select>
+                                <option></option>
+                                </select>
+                            
 						</tr>	
+                        <tr>
+							<th style="text-align: left"><label for="KH">Trạng thái</label></th>
+                            <td class="one-column"><input type="checkbox" name=""</td>
+                            <th style="text-align: left"><label for="HT">Chưa giải quyết</label></th>
+							<td class="one-column"><input type="checkbox" name=""</td>
+                            <th style="text-align: left"><label for="HT">Đã giải quyết</label></th>
+                            <td class="one-column"><input type="checkbox" name=""</td>
+                            <th style="text-align: left"><label for="HT">Đang giải quyết</label></th>
+						</tr>		
 					</table>
 				</div>
 				<div class="group-button">
