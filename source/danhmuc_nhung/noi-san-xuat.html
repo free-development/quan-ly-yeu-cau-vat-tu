@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Danh mục nơi sản xuất</title>
     <meta charset="utf-8">
     <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
+    <link href="style/style.css" type="text/css" rel="stylesheet">
     <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link rel="Shortcut Icon" href="./img/logo16.png" type="image/x-icon" />
 	<script type="text/javascript">
 		function showForm(formId, check){
 			if (check)
@@ -24,7 +27,7 @@
 <body>
 	<div id="wrapper">
 		<header id="title">
-		 Danh mục mục đích
+		 Danh mục nơi sản xuất
 		</header>
 		<div id="content">
 			
@@ -32,28 +35,28 @@
 				<div id="view-table">
 					<table>
 						<tr>
-							<th class="left-column">Chọn</th><th class="mid-column"> Mã MD</th>
-							<th class="right-column">Tên mục đích</th>
+							<th class="left-column">Chọn</th><th class="mid-column"> Mã NSX</th>
+							<th class="right-column">Tên nơi sản xuất</th>
 						</tr>
 						<tr>
 							<td class="left-column"><input type="checkbox" name=""</td>
-							<td class="mid-column">001</td>
-							<td class="right-column">Sửa chữa lớn</td>
+							<td class="mid-column">ALB</td>
+							<td class="right-column">Albania</td>
 						</tr>
 						<tr>
 							<td class="left-column"><input type="checkbox" name=""</td>
-							<td class="mid-column">002</td>
-							<td class="right-column">Xây dựng cơ bản</td>
+							<td class="mid-column">ALG</td>
+							<td class="right-column">Algeria</td>
 						</tr>
 						<tr>
 							 <td class="left-column"><input type="checkbox" name=""</td>
-							<td class="mid-column">003</td>
-							<td class="right-column">Đầu tư phát triển</td>
+							<td class="mid-column">ASA</td>
+							<td class="right-column">American Samoa</td>
 						</tr>
 						<tr>
 							 <td class="left-column"><input type="checkbox" name=""</td>
-							<td class="mid-column">004</td>
-							<td class="right-column">Sữa chữa thường xuyên</td>
+							<td class="mid-column">ATA</td>
+							<td class="right-column">Antarctia</td>
 						</tr>
 					</table>		
 				</div>				
@@ -69,14 +72,14 @@
 			<form id="add-form">
 				<div class="input-table">
 					<table>
-						<div class="form-title">Thêm mục đích</div>
+						<div class="form-title">Thêm nơi sản xuất</div>
 						<tr>
-							<th><label for="MMD">Mã mục đích</label></th>
-							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã mục đích chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+							<th><label for="MNSX">Mã NSX</label></th>
+							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
-							<th><label for="MMD">Tên mục đích</label></th>
-							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên mục đích không được để trống"></td>
+							<th class="label"><label for="MNSX">Tên NSX</label></th>
+							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên nơi sản xuất không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
@@ -90,14 +93,14 @@
 <!-- ---------------Update form-------------- -->			<form id="update-form">
 				<div class="input-table">
 					<table>
-						<div class="form-title">Cập nhật mục đích</div>
+						<div class="form-title">Cập nhật nơi sản xuất</div>
 						<tr>
-							<th><label for="MMD">Mã mục đích</label></th>
-							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã mục đích chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MMD" readonly></td>
+							<th><label for="MNSX">Mã NSX</label></th>
+							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MNSX" readonly></td>
 						</tr>
 						<tr>
-							<th><label for="MMD">Tên mục đích</label></th>
-							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên mục đích không được để trống"></td>
+							<th><label for="MNSX">Tên NSX</label></th>
+							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên nơi sản xuất không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
