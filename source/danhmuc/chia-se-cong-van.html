@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chia sẽ</title>
+        <link rel="stylesheet" href="style/style-chia-se.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="Shortcut Icon" href="./img/logo16.png" type="image/x-icon" />  
+        <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
+       <script type="text/javascript">
+		function showForm(formId, check){
+			if (check)
+				document.getElementById(formId).style.display="block";
+			else document.getElementById(formId).style.display="none";
+			var f = document.getElementById('main-form'), s, opacity;
+			s = f.style;
+			opacity = check? '10' : '100';
+			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+			s.filter = 'alpha(opacity='+opacity+')';
+			for(var i=0; i<f.length; i++) f[i].disabled = check;
+		}
+		function confirmDelete(){
+			return confirm('Bạn có chắc xóa');
+		}
+	</script>
+    </head>
+    <body>
+        <div id="wrapper">
+		  <div id="content">
+             <form id="main-form">
+                <header id="title">
+		          Chia sẽ
+		        </header>
+                <div id="input-table">
+					<table>
+						<tr>
+							<th class="a-column">Số công văn:</th>
+                            <td class="b-column">2118-0</td>
+                            <th class="c-column">Ngày đến:</th>
+                            <td class="b-column">23/06/2015</td>
+                            <th class="e-column">Người lập phiếu:</th>
+                            <td class="f-column">NV002</td>
+						</tr>
+					</table>
+				</div>
+                 <br/>
+                <div id="view-table">
+					<table>
+						<tr>
+							<th class="one-column">Mã nhân viên</th>
+                            <th class="two-column">Tên nhân viên</th>
+							<th class="three-column">Mua sắm</th>
+                            <th class="four-column">Lập phiếu</th>
+							<th class="five-column">Cập nhật vật tư</th>
+                            <th class="six-column">...</th>
+                            
+						</tr>
+						<tr>
+							<td class="one-column">NV001</td>
+                            <td class="two-column">Nguyễn Văn A</td>
+							<td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+                            
+						</tr>
+						<tr>
+							<td class="one-column">NV002</td>
+                            <td class="two-column">Trần Thị B</td>
+							<td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+						</tr>
+						<tr>
+							<td class="one-column">NV003</td>
+                            <td class="two-column">Võ Văn C</td>
+							<td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+						</tr>
+                        <tr>
+							<td class="one-column">NV004</td>
+                            <td class="two-column">Lê Thị D</td>
+							<td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+                            <td class="checkbox"><input type="checkbox" name=""</td>
+						</tr>
+					</table>
+                </div>
+                 <div class="group-button">
+						<button class="btn"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+						<button type="reset" class="btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Bỏ qua</button>
+						<button type="button" class="btn" onclick="showForm('main-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+              </form>
+            </div>
+        </div>
+    </body>
+</html>
