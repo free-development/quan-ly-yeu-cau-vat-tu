@@ -22,10 +22,12 @@
     margin: 0px;
     border-spacing: 0px
 	padding-left: 10px;
-	padding-right: 10px;
+/*	padding-right: 10px;*/
 	padding-top: 5px;
 	padding-bottom: 5px;
     background-color: #199e5e;
+/*	text-align: center;*/
+/*	padding-left: 10px;*/
 }
 
 .left-column {
@@ -52,7 +54,7 @@
 }
 .group-button-bo-phan {
 	text-align: center;
-	margin-top: 10px;
+	margin-top: 20px;
 	margin-bottom: 20px;
 }
 .btn-bo-phan {
