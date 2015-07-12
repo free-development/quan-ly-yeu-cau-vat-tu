@@ -4,7 +4,7 @@
 
 <head>
      <meta charset="utf-8">
-     <link href="style\_styles.css" type="text/css" rel="stylesheet">
+     <link href="style\style-menu-tree.css" type="text/css" rel="stylesheet">
       <link href="style\style-cong-van.css" type="text/css" rel="stylesheet">
     <link rel="Shortcut Icon" href="./img/logo16.png" type="image/x-icon" />
     <link href="style\style.css" type="text/css" rel="stylesheet">
@@ -29,10 +29,10 @@
 </head>
 <body>
     <div id="wrapper">
-		<header id="title">
+		<div id="title-content">
 		 Công văn
-		</header>
-        <div id="content">
+		</div>
+        <div id="main-content">
             <form id="main-form">
                 <div class="left-content">
                     <div id="scroll_time">
@@ -374,8 +374,8 @@
                         <button type="button" class="btn" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa</button>
                                      <button class="btn" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="btn" onclick="showForm('update-vat-tu', true)"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Cập nhật vật tư</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
             </div>
-         </div>  
-    </form>
+         
+    </form>  
 <!--                add-form-->
                 <form id="add-form">
                     <div id="wrapper">
@@ -663,6 +663,6 @@
                    </div>
 				</div>	
         </form>
-    
+    </div></div>
 </body>
 </html>

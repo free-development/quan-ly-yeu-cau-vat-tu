@@ -2,10 +2,15 @@
 <html>
     <head>
         <title>Văn phòng điện tử công ty điện lực Cần Thơ</title>
-        <link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
-		<link rel="stylesheet" href="style/style-cong-van.css" type="text/css">
-		<link rel="stylesheet" href="style/menu-tree.css" type="text/css">
-    <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
+        
+		<!--
+		
+		-->
+		<link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
+		<link rel="stylesheet" href="style/style.css" type="text/css">
+		 <link href="style/style-cong-van.css" type="text/css" rel="stylesheet">
+		<link rel="stylesheet" href="style/style-menu-tree.css" type="text/css">
+    <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 	<script type="text/javascript">
 		function showForm(formId, check){
 			if (check)
@@ -60,14 +65,14 @@
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
 							<ul>
-								<li><a href="">Danh mục nơi sản xuất</p></a></li>
-								<li><a href="">Danh mục chất lượng</a></li>
-								<li><a href="">Danh mục vật tư</a></li>
-								<li><a href="">Danh mục bộ phận sử dụng</a></li>
-								<li><a href="">Danh mục mục đích</a></li>
+								<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản xuất</p></a></li>
+								<li><a href="danh-muc-chat-luong.html">Danh mục chất lượng</a></li>
+								<li><a href="danh-muc-vat-tu-new.html">Danh mục vật tư</a></li>
+								<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="danh-muc-muc-dich-hoan-chinh.html">Danh mục mục đích</a></li>
 							</ul>
 						</li>
-						<li><a href="">Công văn</a></li>
+						<li><a href="cong-van.html">Công văn</a></li>
 						<li><a href="">Báo cáo</a></li>
 						<li><a href="">Chia sẽ</a></li>
 					</ul>
@@ -231,8 +236,8 @@
                                         <li class="file"><a href="">Đã giải quyết</a></li>
                         </div>
                         <div>
-                            <select>
-                                <option>--Tìm kiếm--</option>
+                            <select class="select-search" >
+                                <option selected disabled>--Tìm kiếm--</option>
                                 <option>Thời gian</option>
                                 <option>Số CV</option>
                                 <option>Đơn vị</option>
@@ -260,8 +265,7 @@
                         </tr>
                     </table>
                      <div class="scroll_content">
-				<!-- 
-                    <table id="view-table">
+                    <table>
                         <tr>
                             <td class="column-check"><input type="checkbox" name=""</td>
                             <td class="left-column-first">Ngày đến:</td>
@@ -414,7 +418,6 @@
                             <a href="">*Xem chi tiết</a>    
                          </div>
                     </div>
--->
                 </div>
          
             <div class="group-button">			
@@ -422,8 +425,8 @@
                         <button type="button" class="btn" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa</button>
                                      <button class="btn" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="btn" onclick="showForm('update-vat-tu', true)"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Cập nhật vật tư</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
             </div>
-         </div>  
-    </form>
+         
+    		</form>  
 <!--                add-form-->
                 <form id="add-form">
                     <div id="wrapper">
@@ -711,7 +714,9 @@
                    </div>
 				</div>	
         </form>
+    </div>
 				</div>
+				
         </div>
     </body>
 </html>
