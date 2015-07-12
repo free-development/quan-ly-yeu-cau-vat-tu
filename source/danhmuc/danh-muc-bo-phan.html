@@ -130,9 +130,9 @@
 				
 				<div class="group-button-bo-phan">
 					
-					<button type="button" class="btn-bo-phan"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-					<button type="button" class="btn-bo-phan" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-								 <button class="btn-bo-phan" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="btn-bo-phan" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn-bo-phan"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>&nbsp;&nbsp;
+					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>&nbsp;&nbsp;
+								 <button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>Thoát</button>
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->
@@ -141,52 +141,53 @@
 					<table>
 						<div class="form-title">Thêm bộ phận sử dụng</div>
 						<tr>
-							<th class="lable"><label for="MBPSD">Mã BPSD</label></th>
+							<td class="input"><label for="MBPSD" class="input">Mã BPSD</label></td>
 							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
-							<th class="lable"><label for="MBPSD">Tên BPSD</label></th>
+							<td class="input"><label for="MBPSD">Tên BPSD</label></td>
 							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên bộ phận sử dụng không được để trống"></td>
 						</tr>	
                         <tr>
-                            <th class="lable"><label>Địa chỉ</label></th>
+                            <td class="input"><label>Địa chỉ</label></td>
 							<td><input name="" size="30px" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
-                            <th class="lable"><label>Email</label></th>
+                            <td class="input"><label>Email</label></td>
                             <td><input name="" size="30px" align=left type="email" class="text"></td>                         
                         </tr>
                         <tr>
-                        <th class="lable"><label>Tel-Fax</label></th>
+                        <td class="input"><label>Tel-Fax</label></td>
                             <td><input name="" size="30px" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
-                            <th class="lable"><label>Số TK</label></th>
+                            <td class="input"><label>Số TK</label></td>
 							<td><input name="" size="15px" align=left type="text" class="text"></td>                            
                         </tr>
                         <tr>
-                        <th class="lable"><label>Mã số thuế</label></th>
+                        <td class="input"><label>Mã số thuế</label></td>
                             <td><input name="" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
-                            <th class="lable"><label>Loại BP</label></th>
-							<td><select>
-                                    <option></option>
-                                    <option value="">AAAAAAAAAA</option>
+                            <td class="input"><label>Loại BP</label></td>
+							<td><select name = "" required class="select">
+                                    <option class="option" value=""></option>
+                                    <option value="" class="option">AAAAAAAAAA</option>
                                     <option>AAAAAAAAAA</option>
                                 </select>
                             </td>
                         </tr>
 					</table>
 				</div>
-				<div class="group-button">
-						<button class="btn"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-						<button type="reset" class="btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
-						<button type="button" class="btn" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+				<div class="button-group">
+						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
 			</form>
 			
-<!-- ---------------Update form-------------- -->			<form id="update-form">
+<!-- ---------------Update form-------------- -->			
+			<form id="update-form">
 				<div class="input-table">
 					<table>
 						<div class="form-title">Cập nhật bộ phận sử dụng</div>

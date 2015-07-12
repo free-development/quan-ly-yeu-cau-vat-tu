@@ -10,11 +10,14 @@
 */
 label {
 	font-size: 16px;
+	
 }
 
 label.input {
 	font-size: 16px;
-	
+	text-align: left;
+	padding-left: 2px;
+/*	padding-right: 10px;*/
 }
 input.text {
 	border-style: solid;
@@ -22,7 +25,7 @@ input.text {
 	border-color: rgb( 189, 195, 199 );
 	border-radius: 5px;
 	background-color: rgb( 255, 255, 255 );
-	opacity: 0.7;
+/*	opacity: 1;*/
 	left: 12px;
 	top: 25px;
 	height: 25px;
@@ -35,13 +38,18 @@ input.text:focus{
 }
 .button {
 	border-radius: 6px;
-	background-color: rgb( 26, 188, 156 );
-	height: 40px;	
+	background-color: #199e5e;
+	height: 35px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;	
 	border-color: none;
 	color: floralwhite;
-	padding: 10px;
+/*	padding: 10px;*/
 	text-align: center;
 	border: none;
+	cursor: pointer;
 }
 
 .button:hover{
@@ -49,8 +57,12 @@ input.text:focus{
 }
 .input select {
 	border-radius: 5px;
-	background-color: rgb( 26, 188, 156 );
-	height: 40px;	
+	background-color: #199e5e;
+	height: 35px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	border-color: none;
 	color: floralwhite;
 	padding: 10px;
@@ -74,4 +86,55 @@ input.text:focus{
 }
 .input option:hover{
 	background: #0a6114;
+}
+.button-group {
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin: 0 auto;
+}
+td.input {
+	text-align: left;
+	padding-left: 2px;
+	font-weight: bold;
+	padding-right: 5px;
+/*	padding-right: 2px;*/
+}
+.select {
+	border-radius: 5px;
+	background-color: rgb( 255, 255, 255 );
+	height: 30px;	
+	border-color: none;
+/*	color: floralwhite;*/
+	color: black;
+	padding: 5px;
+	text-align: center;
+	border: none;
+	font-size: 16px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.select:focus{
+	background: rgb( 255, 255, 255 );
+}
+.select option {
+	border-radius: 5px;
+	background-color: rgb(252, 252, 252);
+	height: 30px;	
+	border-color: none;
+	color: blueviolet;
+	padding: 10px;
+	text-align: center;
+	border: none;
+	font-size: 16px;
+}
+.select option:hover{
+	background: #0a6114;
+}
+.form-title {
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	color: rgb(0, 0, 255);
+	margin-bottom: 20px;
 }

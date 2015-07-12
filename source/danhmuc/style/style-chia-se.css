@@ -115,6 +115,8 @@
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	margin: 0 auto;
+
 }
 .btn:hover {
   background: #0a6114;
