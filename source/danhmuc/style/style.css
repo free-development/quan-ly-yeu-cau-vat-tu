@@ -32,6 +32,7 @@ input.text {
 	font-size: 16px;
 	padding-left: 10px;
 	padding-right: 10px;
+	margin: 5px;
 }
 input.text:focus{
 	border-width: 2px;
@@ -137,4 +138,9 @@ td.input {
 	font-weight: bold;
 	color: rgb(0, 0, 255);
 	margin-bottom: 20px;
+}
+.check {
+	width: 25px;
+    margin: 20px 100px;
+    position: relative;
 }

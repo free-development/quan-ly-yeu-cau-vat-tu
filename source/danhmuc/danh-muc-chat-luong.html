@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Văn phòng điện tử công ty điện lực Cần Thơ</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
 		<link rel="stylesheet" href="style/style.css" type="text/css">
 		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
@@ -49,7 +50,7 @@
 							</span>
 							<span class="search-button">
 							&nbsp;
-							<button class="btn-search"><i class="fa fa-search" ></i></button>
+							<button class="button-search"><i class="fa fa-search" ></i></button>
 							</span>
 						</form>
 					</div>
@@ -112,9 +113,9 @@
 				
 				<div class="group-button">
 					
-					<button type="button" class="btn"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-					<button type="button" class="btn" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-								 <button class="btn" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="btn" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+								 <button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
 			
@@ -123,19 +124,19 @@
 					<table>
 						<div class="form-title">Thêm chất lượng</div>
 						<tr>
-							<th><label for="MCL">Mã CL</label></th>
+							<td class="input"><label for="MCL">Mã CL</label></td>
 							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
-							<th><label for="MMD">Tên CL</label></th>
+							<th class="input"><label for="MMD">Tên CL</label></td>
 							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên chất lượng không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
-				<div class="group-button">
-						<button class="btn"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-						<button type="reset" class="btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
-						<button type="button" class="btn" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+				<div class="button-group">
+						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
 			</form>
 			
@@ -144,19 +145,19 @@
 					<table>
 						<div class="form-title">Cập nhật chất lượng</div>
 						<tr>
-							<th><label for="MCL">Mã CL</label></th>
+							<td class="input"><label for="MCL">Mã CL</label></td>
 							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MCL" readonly></td>
 						</tr>
 						<tr>
-							<th><label for="MCL">Tên CL</label></th>
+							<td class="input"><label for="MCL">Tên CL</label></td>
 							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên chất lượng không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
 				<div class="group-button">
-						<button class="btn"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
-						<button type="reset" class="btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
-						<button type="button" class="btn" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
 			</form>			
 		</div>
