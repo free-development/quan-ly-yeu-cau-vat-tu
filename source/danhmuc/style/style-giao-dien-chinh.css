@@ -45,6 +45,7 @@ a{
 .main_menu>ul>li{ 
     float: left;padding-left: 40px; padding-top: 10px; padding-bottom: 10px; padding-right: 40px;  position: relative; border-right: 1px dotted #ACACAC;
 	font-size: 20px;
+	 z-index: 20;
 	
 }
 .main_menu>ul>li:last-child{ 
