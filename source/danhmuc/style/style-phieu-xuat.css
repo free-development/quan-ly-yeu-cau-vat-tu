@@ -75,6 +75,7 @@
 .input-table {
 	margin: 0 auto;
 }
+
 .two-column {
 	width: 100px;
 	text-align: left;
@@ -109,7 +110,7 @@
 }
 .d-column {
 	width: 100px;
-    text-align: left;
+    text-align: center;
 }
 .e-column {
 	width: 100px;
@@ -121,7 +122,7 @@
 }
 .g-column {
 	width: 70px;
-    text-align: left;
+    text-align: center;
 }
 
 .btn {

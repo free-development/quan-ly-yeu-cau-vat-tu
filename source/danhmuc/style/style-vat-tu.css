@@ -79,13 +79,13 @@
 }
 .two-column {
 	width: 250px;
-	text-align: center;
+	text-align: left;
 }
 .three-column {
 	width: 150px;
     text-align: center;
 }
-.fonr-column {
+.four-column {
 	width: 100px;
     text-align: center;
 }
@@ -101,7 +101,9 @@
 	width: 20px;
     text-align: center;
 }
-
+.a-column {
+    text-align: center;
+}
 
 .btn {
 	background: #199e5e;
@@ -138,7 +140,7 @@
 }
 #add-form {
 	display: none;
-	width: 700px;
+	width: 600px;
 	position: absolute;
 	left: 483px;
 	///margin: 0 auto;
@@ -151,7 +153,7 @@
 }
 #update-form {
 	display: none;
-	width: 700px;
+	width: 600px;
 	position: absolute;
 	left: 483px;
 	///margin: 0 auto;
