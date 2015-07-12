@@ -41,7 +41,6 @@ a{
 .main_menu{
     background: #00A69B;
 /*	font-size: px;*/
-	display: table-cell;
 }
 .main_menu>ul>li{ 
     float: left;padding-left: 40px; padding-top: 10px; padding-bottom: 10px; padding-right: 40px;  position: relative; border-right: 1px dotted #ACACAC;
@@ -119,10 +118,11 @@ a{
 /*	padding-right: 0px;*/
 /*	margin-right: 0px;*/
 /*	display: table-cell;*/
-	top: 100px;
+	top: 110px;
 /*	float: right;*/
-	right: 200px;
-	position: absolute;
+/*	right: 200px;*/
+	left: 950px;
+	position: fixed;
 	
 	
 }
@@ -159,13 +159,15 @@ ul:first-child {
 #search select {
 	border-radius: 5px;
 	background-color: white;
-	height: 40px;	
+	height: 30px;	
 	border-color: none;
 	color: black;
-	padding: 10px;
-	text-align: center;
+/*	padding: 10px;*/
+	padding-left: 10px;
+	padding-right: 10px; 
+/*	text-align: center;*/
 	border: none;
-	font-size: 16px;
+	font-size: 13px;
 }
 #search select:focus{
 	background-color: azure;
@@ -176,10 +178,10 @@ ul:first-child {
 #search select option {
 	border-radius: 5px;
 	background-color: rgb(252, 252, 252);
-	height: 40px;	
+	height: 30px;	
 	border-color: none;
 	color: blueviolet;
-	padding: 10px;
+/*	padding: 10px;*/
 	text-align: center;
 	border: none;
 	font-size: 16px;
@@ -198,15 +200,17 @@ ul:first-child {
 }
 
 .btn-search {
-	height: 40px;
+	height: 30px;
 	background-color: rgb(252, 252, 252);
-	height: 40px;	
+	height: 30px;	
 	border-color: none;
 	color: red;
-	padding: 10px;
+/*	padding: 10px;*/
+	padding-left: 10px;
+	padding-right: 10px; 
 	text-align: center;
 	border: none;
-	font-size: 16px;
+	font-size: 13px;
 	border-radius: 5px;
 }
 
@@ -215,4 +219,36 @@ ul:first-child {
 }
 .btn-search:hover {
 	cursor: pointer;
+}
+.search{
+	height: 30px;
+	background-color: white;
+/*	padding: 10px 10px 5px 5px;*/
+	padding-left: 10px;
+	padding-right: 10px; 
+	font-size: 13px;
+	color: black;
+	border-radius: 5px;
+	border:none;
+	
+}
+#main-content {
+	margin: 0 auto;
+	width: 1024px;
+}
+#title-content {
+	text-align: center;
+    font-size: 25px;
+    color: firebrick;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#title-content {
+	text-align: center;
+    font-size: 25px;
+    color: firebrick;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }

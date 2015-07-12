@@ -14,8 +14,10 @@
 #wrapper {
 	margin: 0 auto;
 	width: 960px;
+    background-color: #DCEAF5;
+    height: 600px;
 }
-#title {
+#title-content {
     text-align: center;
     font-size: 25px;
     color: firebrick;
@@ -26,13 +28,13 @@
 #title img{
     text-align: right;
 }
-`#content {
+#content {
 	margin: 0 auto;
 	width: 100%;
 }
 #view-table{
 	margin: 0 auto;
-	width: 960px;
+	width: 760px;
 }
 .group-button {
 	text-align: center;
@@ -74,23 +76,23 @@
 	margin: 0 auto;
 }
 .two-column {
-	width: 150px;
+	width: 100px;
 	text-align: left;
 }
 .three-column {
 	width: 100px;
-    text-align: left;
+    text-align: center;
 }
-.fonr-column {
+.four-column {
 	width: 100px;
-   text-align: left;
+   text-align: center;
 }
 .five-column {
 	width: 250px;
     text-align: left;
 }
 .six-column {
-	width: 230px;
+	width: 250px;
    text-align: left;
 }
 .a-column {
@@ -118,7 +120,7 @@
    text-align: left;
 }
 .g-column {
-	width: 60px;
+	width: 70px;
     text-align: left;
 }
 
@@ -148,14 +150,17 @@
 	color: rgb(0, 0, 255);
 	margin-bottom: 20px;
 }
+.lable{
+    text-align: left;
+}
 #add-form {
 	display: none;
 	width: 450px;
 	position: absolute;
 	left: 483px;
-	///margin: 0 auto;
+    margin: 0 auto;
 	top: 140px;
-	background-color: rgb(255, 224, 255);
+	background-color: #DCEAF5;
 	border-radius: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -169,7 +174,7 @@
 	left: 483px;
 	///margin: 0 auto;
 	top: 140px;
-	background-color: rgb(255, 224, 255);
+	background-color: #DCEAF5;
 	border-radius: 10px;
 	padding-left: 10px;
 	padding-right: 10px;

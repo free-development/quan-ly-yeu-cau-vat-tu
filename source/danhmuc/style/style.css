@@ -75,13 +75,3 @@ input.text:focus{
 .input option:hover{
 	background: #0a6114;
 }
-.search{
-	height: 40px;
-	background-color: white;
-	padding: 10px 10px 10px 10px;
-	font-size: 16px;
-	color: black;
-	border-radius: 5px;
-	border:none;
-	
-}
