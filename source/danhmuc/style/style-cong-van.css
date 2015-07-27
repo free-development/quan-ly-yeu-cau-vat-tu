@@ -84,7 +84,7 @@
 overflow:scroll; /*chú ý dòng này*/
 }
 .scroll_content {
-  height: 500px;
+  height: 350px;
   width:  810px; 
   display: auto;
   border: 1px solid #CCCCCC;
@@ -93,7 +93,9 @@ overflow:scroll; /*chú ý dòng này*/
 }
 .chi-tiet{
     text-decoration: none;
-    padding-left: 50px;
+/*    padding-left: 50px;*/
+	width: 100px;
+	color: black;
 }
 .column-check{
      width: 10px;
@@ -223,18 +225,19 @@ overflow:scroll; /*chú ý dòng này*/
 	width: 960px;
 	position: absolute;
 	left: 203 px;
-	margin: 0 auto;
+/*	margin: 0 auto;*/
+	float: left;
 	top: 140px;
 	background-color: #dceaf5;
 	border-radius: 10px;
-    margin: 0 auto;
+/*    margin: 0 auto;*/
 }
 #update-form {
 	display: none;
 	width: 960px;
 	position: absolute;
 	left: 203 px;
-	margin: 0 auto;
+/*	margin: 0 auto;*/
 	top: 140px;
 	background-color: #dceaf5;
 	border-radius: 10px;

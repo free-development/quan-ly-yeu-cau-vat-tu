@@ -5,8 +5,13 @@
         <link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
 		<link rel="stylesheet" href="style/style.css" type="text/css">
 		 <link href="style/style-bo-phan.css" type="text/css" rel="stylesheet">
-    <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
+    	<link href="style\font-awesome-4.3.0/font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
+<!--		<script type="text/javascript" src="js/check.js"></script>-->
+		<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
+
 	<script type="text/javascript">
+		
+		
 		function showForm(formId, check){
 			if (check)
 				document.getElementById(formId).style.display="block";
@@ -21,6 +26,22 @@
 		function confirmDelete(){
 			return confirm('Bạn có chắc xóa');
 		}
+	</script>
+		<script>
+    $(document).ready(function() {
+        $('.checkAll').click(function(event) {  //on click 
+            if(this.checked) { // check select status
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"               
+                });
+            }else{
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+                });         
+            }
+        });
+        
+    });
 	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
@@ -75,7 +96,7 @@
 					<div class="clear"></div>
 				</div>
 	
-				<div id="main-content">
+<!--				<div id="main-content">-->
 					<div id="title-content">
 		 Danh mục bộ phận sử dụng
 		</div>
@@ -85,41 +106,43 @@
 				<div id="view-table-bo-phan">
 					<table >
 						<tr>
-							<th class="left-column">Chọn</th><th class="mid-column"> Mã BPSD</th>
+							<th class="left-column"><input type="checkbox" class="checkAll"></th>
+							<th class="mid-column">Mã BPSD</th>
 							<th class="column-3">Tên bộ phận</th>
-                            <th class="column-4">Mã số thuế</th>
+                            <th class="column-4">Số điện thoại</th>
+							<th class="column-4">Email</th>
                             <th class="mid-column">Địa chỉ</th>
 						</tr>
 						<tr>
-							<td class="left-column"><input type="checkbox" name=""</td>
+							<td class="left-column"><input type="checkbox" name="" class="checkbox"</td>
 							<td class="mid-column">F02F09</td>
 							<td class="column-3">Công ty điện lực TP Cần Thơ</td>
                             <td></td>
                             <td class="column-5">06-Nguyễn Trãi-Q.Ninh Kiều</td>
 						</tr>
 				        <tr>
-							<td class="left-column"><input type="checkbox" name=""</td>
+							<td class="left-column"><input type="checkbox" name=""  class="checkbox"</td>
 							<td class="mid-column">F09A01</td>
 							<td class="column-3">Ban QLDA lưới điện</td>
                             <td></td>
                             <td class="column-5">06-Nguyễn Trãi-Q.Ninh Kiều</td>
 						</tr>
                         <tr>
-							<td class="left-column"><input type="checkbox" name=""</td>
+							<td class="left-column"><input type="checkbox" name=""  class="checkbox"</td>
 							<td class="mid-column">F09D01</td>
 							<td class="column-3">Phòng Tổ chức và nhân sự</td>
                             <td></td>
                             <td class="column-5">06-Nguyễn Trãi-P.An Hội</td>
 						</tr>
                         <tr>
-							<td class="left-column"><input type="checkbox" name=""</td>
+							<td class="left-column"><input type="checkbox" name=""  class="checkbox"</td>
 							<td class="mid-column">F09D18</td>
 							<td class="column-3">Phòng Kế Hoạch[Cty]</td>
                             <td></td>
                             <td class="column-5">06-Nguyễn Trãi-Q.Ninh Kiều</td>
 						</tr>
                         <tr>
-							<td class="left-column"><input type="checkbox" name=""</td>
+							<td class="left-column"><input type="checkbox" name="" class="checkbox"</td>
 							<td class="mid-column">F02F09</td>
 							<td class="column-3">Phòng Thanh tra bảo vệ-Pháp</td>
                             <td></td>

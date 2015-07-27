@@ -5,14 +5,18 @@ li{
 a{
     text-decoration: none;color: #FFF;font-size: 18px;
 }
+body {
+/*	background-image: url(../img/background.jpg)*/
+	background-color: aliceblue;
+}
 .clear{ 
     clear: both;
 }
 .header{
     background-image: url(../img/head.gif);
     margin: 0px auto;
-    height: 150px;
-    backgroun-position: center;
+    height: 120px;
+    background-position: center;
     background-size: cover;
 }
 .header img{
@@ -36,7 +40,7 @@ a{
 }
 
 .wrapper{
-    width: 1024px; background: background-color: #dceaf5; margin: 0px auto;
+    width: 1024px; background: background-color: #dceaf5; margin: 0px auto; background-color: white;
 }
 .main_menu{
     background: #00A69B;
@@ -119,10 +123,10 @@ a{
 /*	padding-right: 0px;*/
 /*	margin-right: 0px;*/
 /*	display: table-cell;*/
-	top: 110px;
+	top: 80px;
 /*	float: right;*/
 /*	right: 200px;*/
-	left: 890px;
+	left: 920px;
 	position: absolute;
 	
 	
@@ -243,18 +247,29 @@ ul:first-child {
     font-size: 25px;
     color: firebrick;
     font-weight: bold;
+/*
     padding-top: 20px;
     padding-bottom: 20px;
+*/
 }
 #title-content {
 	text-align: center;
     font-size: 25px;
     color: firebrick;
     font-weight: bold;
-    padding-top: 20px;
-    padding-bottom: 20px;
+/*    padding-top: 20px;*/
+/*    padding-bottom: 20px;*/
 }
 
 .button-search {
 	
+}
+
+#greeting {
+	margin-left: 10px;
+/*	margin-top: 20px;*/
+	border:none;
+	background-color: azure;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
