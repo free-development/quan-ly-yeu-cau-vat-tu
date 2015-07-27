@@ -35,7 +35,7 @@
 	text-align: center;
 }
 .mid-column {
-	width: 100px;
+	width: 150px;
 	text-align: center;
 }
 .right-column{
@@ -78,7 +78,8 @@
 	border-radius: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
-	padding-top: 20px
+	padding-top: 20px;
+	z-index: 20px;
 }
 #update-form {
 	display: none;
@@ -104,5 +105,9 @@
 }
 
 #title {
+	
+}
+
+#view-table {
 	
 }

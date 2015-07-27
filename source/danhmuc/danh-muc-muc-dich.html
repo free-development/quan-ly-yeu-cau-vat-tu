@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
 		<link rel="stylesheet" href="style/style.css" type="text/css">
 		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
     <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
 	<script type="text/javascript">
 		function showForm(formId, check){
@@ -13,7 +14,7 @@
 			else document.getElementById(formId).style.display="none";
 			var f = document.getElementById('main-form'), s, opacity;
 			s = f.style;
-			opacity = check? '10' : '100';
+			opacity = check? '5' : '100';
 			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
@@ -21,6 +22,22 @@
 		function confirmDelete(){
 			return confirm('Bạn có chắc xóa');
 		}
+	</script>
+		<script>
+    $(document).ready(function() {
+        $('.checkAll').click(function(event) {  //on click 
+            if(this.checked) { // check select status
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"               
+                });
+            }else{
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+                });         
+            }
+        });
+        
+    });
 	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
@@ -90,26 +107,26 @@
 				<div id="view-table">
 					<table>
 						<tr>
-							<th class="left-column">Chọn</th><th class="mid-column"> Mã MD</th>
+							<th class="left-column"><input type="checkbox" name="" class="checkAll"></th><th class="mid-column"> Mã mục đích</th>
 							<th class="right-column">Tên mục đích</th>
 						</tr>
 						<tr>
-							<td class="left-column"><input type="checkbox" name=""</td>
+							<td class="left-column"><input type="checkbox" name="" class="checkbox"></td>
 							<td class="mid-column">001</td>
 							<td class="right-column">Sửa chữa lớn</td>
 						</tr>
 						<tr>
-							<td class="left-column"><input type="checkbox" name=""</td>
+							<td class="left-column"><input type="checkbox" name="" class="checkbox"></td>
 							<td class="mid-column">002</td>
 							<td class="right-column">Xây dựng cơ bản</td>
 						</tr>
 						<tr>
-							 <td class="left-column"><input type="checkbox" name=""</td>
+							 <td class="left-column"><input type="checkbox" name="" class="checkbox"></td>
 							<td class="mid-column">003</td>
 							<td class="right-column">Đầu tư phát triển</td>
 						</tr>
 						<tr>
-							 <td class="left-column"><input type="checkbox" name=""</td>
+							 <td class="left-column"><input type="checkbox" name="" class="checkbox"></td>
 							<td class="mid-column">004</td>
 							<td class="right-column">Sữa chữa thường xuyên</td>
 						</tr>
@@ -120,7 +137,7 @@
 					
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-								 <button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+								 <button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
 			
@@ -151,11 +168,11 @@
 						<div class="form-title">Cập nhật mục đích</div>
 						<tr>
 							<th><label for="MMD">Mã mục đích</label></th>
-							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã mục đích chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MMA" readonly></td>
+							<td><input name="" type="text" class="text" required size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã mục đích chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MMA" readonly></td>
 						</tr>
 						<tr>
 							<th><label for="MMD">Tên mục đích</label></th>
-							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên mục đích không được để trống"></td>
+							<td><input name=""  autofocus size="30px" align=left type="text" class="text" required title="Tên mục đích không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
