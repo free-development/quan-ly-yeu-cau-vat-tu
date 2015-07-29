@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danh mục chất lượng</title>
+    <meta charset="utf-8">
+    <link href="style/style-chat-luong.css" type="text/css" rel="stylesheet">
+    <link href="style/style.css" type="text/css" rel="stylesheet">
+    <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link rel="Shortcut Icon" href="./img/logo16.png" type="image/x-icon" />
+	<script type="text/javascript">
+		function showForm(formId, check){
+			if (check)
+				document.getElementById(formId).style.display="block";
+			else document.getElementById(formId).style.display="none";
+			var f = document.getElementById('main-form'), s, opacity;
+			s = f.style;
+			opacity = check? '10' : '100';
+			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+			s.filter = 'alpha(opacity='+opacity+')';
+			for(var i=0; i<f.length; i++) f[i].disabled = check;
+		}
+		function confirmDelete(){
+			return confirm('Bạn có chắc xóa');
+		}
+	</script>
+    </head>
+<body>
+	<div id="wrapper">
+		<header id="title">
+		 Danh mục chất lượng
+		</header>
+		<div id="content">
+			
+			<form id="main-form">
+				<div id="view-table">
+					<table>
+						<tr>
+							<th class="left-column">Chọn</th><th class="mid-column"> Mã CL</th>
+							<th class="right-column">Tên chất lượng</th>
+						</tr>
+						<tr>
+							<td class="left-column"><input type="checkbox" name=""</td>
+							<td class="mid-column">A80</td>
+							<td class="right-column">Hàng thu hồi có thể sử dụng được</td>
+						</tr>
+						<tr>
+							<td class="left-column"><input type="checkbox" name=""</td>
+							<td class="mid-column">B10</td>
+							<td class="right-column">Hàng thu hồi không thể sử dụng được</td>
+						</tr>
+						<tr>
+							 <td class="left-column"><input type="checkbox" name=""</td>
+							<td class="mid-column">C60</td>
+							<td class="right-column">Hàng thu hồi phục hồi được</td>
+						</tr>
+						<tr>
+							 <td class="left-column"><input type="checkbox" name=""</td>
+							<td class="mid-column">D10</td>
+							<td class="right-column">Hàng đề nghị thanh lý</td>
+						</tr>
+					</table>		
+				</div>				
+				
+				<div class="group-button">
+					
+					<button type="button" class="btn"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+					<button type="button" class="btn" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+								 <button class="btn" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="btn" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+				</div>
+			</form>	
+			
+			<form id="add-form">
+				<div class="input-table">
+					<table>
+						<div class="form-title">Thêm chất lượng</div>
+						<tr>
+							<th><label for="MCL">Mã CL</label></th>
+							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+						</tr>
+						<tr>
+							<th><label for="MMD">Tên CL</label></th>
+							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên chất lượng không được để trống"></td>
+						</tr>	
+					</table>
+				</div>
+				<div class="group-button">
+						<button class="btn"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+						<button type="reset" class="btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+						<button type="button" class="btn" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+				</div>			
+			</form>
+			
+<!-- ---------------Update form-------------- -->			<form id="update-form">
+				<div class="input-table">
+					<table>
+						<div class="form-title">Cập nhật chất lượng</div>
+						<tr>
+							<th><label for="MCL">Mã CL</label></th>
+							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MCL" readonly></td>
+						</tr>
+						<tr>
+							<th><label for="MCL">Tên CL</label></th>
+							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên chất lượng không được để trống"></td>
+						</tr>	
+					</table>
+				</div>
+				<div class="group-button">
+						<button class="btn"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+						<button type="reset" class="btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+						<button type="button" class="btn" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+				</div>			
+			</form>			
+		</div>
+	</div>
+</body>
+</html>

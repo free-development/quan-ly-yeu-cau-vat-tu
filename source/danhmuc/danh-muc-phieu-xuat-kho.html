@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Văn phòng điện tử công ty điện lực Cần Thơ</title>
+        <link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
+		<link rel="stylesheet" href="style/style-phieu-xuat.css" type="text/css">
+		 <link href="style/style.css" type="text/css" rel="stylesheet">
+    <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript">
+		function showForm(formId, check){
+			if (check)
+				document.getElementById(formId).style.display="block";
+			else document.getElementById(formId).style.display="none";
+			var f = document.getElementById('main-form'), s, opacity;
+			s = f.style;
+			opacity = check? '10' : '100';
+			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+			s.filter = 'alpha(opacity='+opacity+')';
+			for(var i=0; i<f.length; i++) f[i].disabled = check;
+		}
+		function confirmDelete(){
+			return confirm('Bạn có chắc xóa');
+		}
+	</script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
+    </head>
+    <body>
+        <div class="wrapper">
+				<div class="header">
+	<!--
+					<img src="img/logo.png" alt="" id="logo" width=80 height=80/><br/>
+					<img src="img/textlogo.png" alt="" id="logo" width=80 height=20/>
+	-->
+					<div id="top_title">Văn phòng điện tử</div>
+					<div id="bottom-title">Công ty điện lực cần thơ</div>
+					<div class="search_form" id="search">
+						<form action="" method="post">
+<!--
+							<span class="search-select">
+								<select name="" ><option disabled selected>--Tùy chọn kiếm kiềm--</option></select>
+								<option value=""></option>
+							</span>
+-->
+							
+							<span class="search-text">
+								&nbsp;
+							<input type="search" class="search" name="search_box" name="search" placeholder="Tìm kiếm" />
+							</span>
+							<span class="search-button">
+							&nbsp;
+							<button class="btn-search"><i class="fa fa-search" ></i></button>
+							</span>
+						</form>
+					</div>
+					
+				</div>
+				<div class="main_menu">
+					<ul>
+						<li><a href="">Trang chủ</a></li>
+						<li><a href="">Danh mục</a>
+							<ul>
+								<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản xuất</p></a></li>
+								<li><a href="danh-muc-chat-luong.html">Danh mục chất lượng</a></li>
+								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
+								<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
+							</ul>
+						</li>
+						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
+						<li><a href="bao-cao.html">Báo cáo</a></li>
+<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
+						<li><a href="bao-cao.html">Quản lý người dùng</a></li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+	
+				<div id="main-content">
+					<div id="main-content">
+            <form id="main-form">
+                <div id="title-content">
+                 Phiếu xuất kho&nbsp;&nbsp;
+                 D01&nbsp;&nbsp;
+		         KHO CÔNG  TY ĐIỆN LỰC TP.CẦN THƠ
+		        </div>
+                <div id="view-table">
+					<table>
+						<tr>
+                            
+                            <th> Số chứng từ</th>
+							<th>Ngày viết</th>
+                            <th>Ngày hoạch toán</th>
+							<th>Lý do xuất</th>
+                            <th>Người nhận hàng</th>
+						</tr>
+						<tr>
+							<td class="two-column">0615D010436</td>
+							<td class="three-column">19/06/2015</td>
+                            <td class="four-column"></td>
+							<td class="five-column">1852C002 - Phát triển lưới điện...</td>
+                            <td class="six-column">Điện lực Bình Thủy</td>
+                            
+						</tr>
+						<tr>
+							<td class="two-column">0615D010435</td>
+							<td class="three-column">19/06/2015</td>
+                            <td class="four-column"></td>
+							<td class="five-column">c/t-CT2015H007-DDCS...</td>
+                            <td class="six-column">Điện lực Thốt Nốt</td>
+						</tr>
+						<tr>
+							<td class="two-column">0615D010434</td>
+							<td class="three-column">19/06/2015</td>
+                            <td class="four-column"></td>
+                            <td class="five-column">c/t-CT2014H008-DDĐD...</td>
+                            <td class="six-column">Điện lực Bình Thủy</td>
+						</tr>
+                        <tr>
+							<td class="two-column">0615D010436</td>
+							<td class="three-column">19/06/2015</td>
+                            <td class="four-column"></td>
+							<td class="five-column">c/t-CT2014H002-DDTA...</td>
+                            <td class="six-column">Điện lực Bình Thủy</td>
+						</tr>
+					</table>
+              <br/>
+					<table>
+						<tr>
+                            <th >Chọn</th>
+							<th >Mã vật tư</th>
+                            <th > Tên vật tư</th>
+							<th >Số lượng</th>
+                            <th >Đơn giá</th>
+							<th >Thành tiền</th>
+                            <th >Đvt</th>
+						</tr>
+						<tr>
+							<td class="a-column"><input type="checkbox" name=""</td>
+							<td class="b-column">315422050</td>
+                            <td class="c-column">Cáp đòng bọc hạ áp CV 50m...</td>
+							<td class="d-column">20</td>
+                            <td class="e-column">87721.775</td>
+							<td class="f-column">1754436</td>
+                            <td class="g-column">m</td>
+						</tr>
+						<tr>
+							<td class="a-column"><input type="checkbox" name=""</td>
+							<td class="b-column">31582025</td>
+                            <td class="c-column">Cáp đồng bọc 24KV CX(CR)...</td>
+							<td class="d-column">5</td>
+                            <td class="e-column">51091.313</td>
+							<td class="f-column">255457</td>
+                            <td class="g-column">m</td>
+						</tr>
+						<tr>
+							<td class="a-column"><input type="checkbox" name=""</td>
+							<td class="b-column">32084025</td>
+                            <td class="c-column">Đầu cosse ép đồng 25cm2</td>
+							<td class="d-column">1</td>
+                            <td class="e-column">19200</td>
+							<td class="f-column">19200</td>
+                            <td class="g-column">cái</td>
+						</tr>
+                        <tr>
+							<td class="a-column"><input type="checkbox" name=""</td>
+							<td class="b-column">32084050</td>
+                            <td class="c-column">Đầu cosse ép đồng 50cm2</td>
+							<td class="d-column">4</td>
+                            <td class="e-column">23500</td>
+							<td class="f-column">23500</td>
+                            <td class="g-column">cái</td>
+						</tr>
+                       <tr>
+							<td class="a-column"><input type="checkbox" name=""</td>
+							<td class="b-column">32005814</td>
+                            <td class="c-column">Nối ép WR 259</td>
+							<td class="d-column">4</td>
+                            <td class="e-column">11200</td>
+							<td class="f-column">44800</td>
+                            <td class="g-column">cái</td>
+						</tr>
+					</table>
+				</div>				
+				
+				<div class="group-button">
+					
+					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm mới</button>
+					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa phiếu</button>
+                    <button class="button" type="button"> <i class="fa fa-eye"></i>&nbsp;&nbsp;Xem phiếu</button>&nbsp;
+                    <button class="button" type="button"><i class="fa fa-print"></i>&nbsp;&nbsp;In phiếu</button>&nbsp;
+                    <button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;
+                    <button type="button" class="button" onclick="showForm('main-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+				</div>
+			</form>	
+            <form id="add-form">
+				<div id="input-table">
+					<table>
+						<div class="form-title">Thêm Phiếu</div>
+						<tr>
+							<th class="lable"><label for="SCT">Số chứng từ</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value="">0615D010436</option>
+                                <option value="">0615D010430</option>
+                                <option value="">0615D010429</option>
+                                </select>
+                            </td>
+						</tr>
+                        <tr>
+                            <th class="lable"><label for="NV">Ngày viết</label></th>
+                           <td><select>
+                                <option></option>
+                                 <option value="">19/06/2015</option>
+                                <option value="">20/06/2015</option>
+                                <option value="">21/06/2015</option>
+                                </select>
+                            </td>
+						</tr>
+						<tr>
+							<th class="lable"><label for="MHT">Ngày hoạch toán</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value="">19/06/2015</option>
+                                <option value="">20/06/2015</option>
+                                <option value="">21/06/2015</option>
+                                </select>
+                            </td>
+						</tr>	
+                        <tr>
+							<th class="lable"><label for="LDX">Lý do xuất</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value="">1852C002 - Phát triển lưới điện...</option>
+                                <option value="">c/t-CT2015H007-DDTA...</option>
+                                <option value="">c/t-CT2014H008-DDĐD...</option>
+                                </select>
+                            </td>
+						</tr>	
+                        <tr>
+							<th class="lable"><label for="NNH">Người nhận hàng</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value="">Điện lực Bình Thủy</option>
+                                <option value="">Điện lực Thốt Nốt</option>
+                                <option value="">Đội xây dựng điện</option>
+                                </select>
+                            </td>
+						</tr>	
+                         <tr>
+                            <th class="lable"><label for="MVT">Mã vật tư</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value="">31542050</option>
+                                <option value="">31582025</option>
+                                <option value="">32084025</option>
+                                <option value="">32084050</option>
+                                </select>
+                            </td>
+						</tr>	
+                        <tr>
+                            <th class="lable"><label for="TVT">Tên vật tư</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value="">Cáp đòng bọc hạ áp CV 50m...</option>
+                                <option value="">Cáp đồng bọc 24KV CX(CR)...</option>
+                                <option value="">Đầu cosse ép đồng 25cm2</option>
+                                <option value="">Đầu cosse ép đồng 50cm2</option>
+                                <option value="">Nối ép WR 259</option>
+                                </select>
+                            </td>
+						</tr>	
+                        <tr>
+                            <th class="lable"><label for="SL">Số lượng</label></th>
+							<td><input name="" size="10px" align=left type="text" class="text" required title="Số lượng không được để trống"></td>
+						</tr>	
+                        <tr>
+                            <th class="lable"><label for="DG">Đơn giá</label></th>
+							<td><input name="" size="30px" align=left type="text" class="text" required title="Đơn giá không được để trống"></td>
+						</tr>	
+                        <tr>
+                            <th class="lable"><label for="TT">Thành tiền</label></th>
+							<td><input name="" size="30px" align=left type="text" class="text" required title="Thành tiền không được để trống"></td>
+						</tr>	
+                        <tr>
+                            <th class="lable"><label for="DVT">Đơn vị tính</label></th>
+                            <td><select>
+                                <option></option>
+                                 <option value="">m</option>
+                                <option value="">cái</option>
+                                <option value="">cuộn</option>
+                                <option value="">bộ</option>
+                                </select>
+                            </td>
+						</tr>	
+					</table>
+				</div>
+				<div class="group-button">
+						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+				</div>			
+			</form>
+            <form id="update-form">
+				<div class="input-table">
+					<table>
+						<div class="form-title">Cập nhật Phiếu</div>
+						<tr>
+							<th class="lable"><label for="SCT">Số chứng từ</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value="">0615D010436</option>
+                                <option value="">0615D010430</option>
+                                <option value="">0615D010429</option>
+                                </select>
+                            </td>
+						</tr>
+                        <tr>
+                            <th class="lable"><label for="NV">Ngày viết</label></th>
+                           <td><select>
+                                <option></option>
+                                 <option value="">19/06/2015</option>
+                                <option value="">20/06/2015</option>
+                                <option value="">21/06/2015</option>
+                                </select>
+                            </td>
+						</tr>
+						<tr>
+							<th class="lable"><label for="MHT">Ngày hoạch toán</label></th>
+							<td><input name="" size="3px" align=right type="text" class="text" required title="Ngày hoạch toán có thể được để trống"></td>
+						</tr>	
+                        <tr>
+							<th class="lable"><label for="LDX">Lý do xuất</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value="">1852C002 - Phát triển lưới điện...</option>
+                                <option value="">c/t-CT2015H007-DDTA...</option>
+                                <option value="">c/t-CT2014H008-DDĐD...</option>
+                                </select>
+                            </td>
+						</tr>	
+                        <tr>
+							<th class="lable"><label for="NNH">Người nhận hàng</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value="">Điện lực Bình Thủy</option>
+                                <option value="">Điện lực Thốt Nốt</option>
+                                <option value="">Đội xây dựng điện</option>
+                                </select>
+                            </td>
+						</tr>	
+                         <tr>
+                            <th class="lable"><label for="MVT">Mã vật tư</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value="">31542050</option>
+                                <option value="">31582025</option>
+                                <option value="">32084025</option>
+                                <option value="">32084050</option>
+                                </select>
+                            </td>
+						</tr>	
+                        <tr>
+                            <th class="lable"><label for="TVT">Tên vật tư</label></th>
+							<td><select>
+                                <option></option>
+                                 <option value="">Cáp đòng bọc hạ áp CV 50m...</option>
+                                <option value="">Cáp đồng bọc 24KV CX(CR)...</option>
+                                <option value="">Đầu cosse ép đồng 25cm2</option>
+                                <option value="">Đầu cosse ép đồng 50cm2</option>
+                                <option value="">Nối ép WR 259</option>
+                                </select>
+                            </td>
+						</tr>	
+                        <tr>
+                            <th class="lable"><label for="SL">Số lượng</label></th>
+							<td><input name="" size="10px" align=left type="text" class="text" required title="Số lượng không được để trống"></td>
+						</tr>	
+                        <tr>
+                            <th class="lable"><label for="DG">Đơn giá</label></th>
+							<td><input name="" size="30px" align=left type="text" class="text" required title="Đơn giá không được để trống"></td>
+						</tr>	
+                        <tr>
+                            <th class="lable"><label for="TT">Thành tiền</label></th>
+							<td><input name="" size="30px" align=left type="text" class="text" required title="Thành tiền không được để trống"></td>
+						</tr>	
+                        <tr>
+                            <th class="lable"><label for="DVT">Đơn vị tính</label></th>
+                            <td><select>
+                                <option></option>
+                                 <option value="">m</option>
+                                <option value="">cái</option>
+                                <option value="">cuộn</option>
+                                <option value="">bộ</option>
+                                </select>
+                            </td>
+						</tr>	
+					</table>
+				</div>
+				<div class="group-button">
+						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+				</div>			
+			</form>		
+            </div>
+				</div>
+				
+        </div>
+    </body>
+</html>

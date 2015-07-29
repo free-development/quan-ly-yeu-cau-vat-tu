@@ -1,0 +1,88 @@
+.text {
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    height: 25px;
+	padding-left: 10px;
+	padding-right: 10px;
+	opacity: 0.9;
+	border-color: dimgray;
+	font-size: 16px;
+}
+#title {
+    text-align: center;
+    font-size: 25px;
+    color: firebrick;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#view-table{
+	margin: 0 auto;
+	width: 540px;
+}
+.group-button {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#view-table table {
+	border-spacing: 0px;
+}
+#view-table table tr td{
+	border-style: dotted;
+	border-width : 1px;
+	margin: 0px;
+	border-spacing: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+#view-table table tr th{
+    border-style: dotted;
+    border-width : 1px;
+    margin: 0px;
+    border-spacing: 0px
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+    background-color: #199e5e;
+}
+.input-table table tr td {
+	padding-left: 0px;
+}
+.input-table table tr th {
+	padding-left: 0px;
+}
+.input-table {
+	margin: 0 auto;
+}
+.btn {
+	background: #199e5e;
+	border-radius: 5px;
+	color: #ffffff;
+	font-size: 13px;
+	padding: 8px 30px 8px 20px;
+	margin-right: 0px;
+	border:none;
+}
+
+.btn:hover {
+  background: #0a6114;
+}
+.font {
+    color:#198724;
+}
+
+.form-title {
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	color: rgb(0, 0, 255);
+	margin-bottom: 20px;
+}
+.label {
+    padding-left: 0px;
+}
