@@ -192,15 +192,6 @@
                         <td class="input"><label>Mã số thuế</label></td>
                             <td><input name="" align=left type="text" class="text"></td>
                         </tr>
-                        <tr>
-                            <td class="input"><label>Loại BP</label></td>
-							<td><select name = "" required class="select">
-                                    <option class="option" value=""></option>
-                                    <option value="" class="option">AAAAAAAAAA</option>
-                                    <option>AAAAAAAAAA</option>
-                                </select>
-                            </td>
-                        </tr>
 					</table>
 				</div>
 				<div class="button-group">
@@ -216,11 +207,11 @@
 					<table>
 						<div class="form-title">Cập nhật bộ phận sử dụng</div>
 						<tr>
-							<th><label for="MBPSD">Mã BPSD</label></th>
+						<td class="input"><label for="MBPSD" class="input">Mã BPSD</label></td>
 							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
-							<td class="input"><label for="MBPSD">Tên bộ phận sử dụng</label></th>
+							<td class="input"><label for="MBPSD">Tên BPSD</label></th>
 							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên bộ phận sử dụng không được để trống"></td>
 						</tr>	
                         <tr>
@@ -232,29 +223,20 @@
                             <td><input name="" size="30px" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
-							<td class="input"><label>Tel-Fax</label></td>
-							<td><input name="" size="30px" align=left type="text" class="text"></td>
+							<td class="input"><label>SĐT</label></td>
+							<td><input name="" size="15px" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
-                            <td><label>Số TK</label></td>
+                            <td class="input"><label>Số TK</label></td>
 							<td><input name="" size="15px" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
                         	<td class="input"><label>Mã số thuế</label></td>
                             <td><input name="" align=left type="text" class="text"></td>
                         </tr>
-                        <tr>
-                            <td class="input"><label>Loại BP</label></td>
-							<td><select class="select">
-                                    <option></option>
-                                    <option value="">AAAAAAAAAA</option>
-                                    <option>AAAAAAAAAA</option>
-                                </select>
-                            </td>
-                        </tr>
 					</table>
 				</div>
-				<div class="group-button">
+				<div class="button-group">
 						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
