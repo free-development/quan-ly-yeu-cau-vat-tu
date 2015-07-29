@@ -22,14 +22,12 @@
 }
 #view-table{
 	margin: 0 auto;
-	width: 600px;
-	max-height: 350px;
+	width: 540px;
 }
 .group-button {
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	padding: 15px;
 }
 #view-table table {
 	border-spacing: 0px;
@@ -49,6 +47,7 @@
     border-width : 1px;
     margin: 0px;
     border-spacing: 0px
+	border-spacing: 0px;
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 5px;
@@ -68,7 +67,7 @@
 	text-align: center;
 }
 .mid-column {
-	width: 100px;
+	width: 70px;
 	text-align: center;
 }
 .right-column {
@@ -104,7 +103,7 @@
 	position: absolute;
 	left: 483px;
 	///margin: 0 auto;
-	top: 180px;
+	top: 140px;
 	background-color: #DCEAF5;
 	border-radius: 10px;
 	padding-left: 10px;
@@ -117,7 +116,7 @@
 	position: absolute;
 	left: 483px;
 	///margin: 0 auto;
-	top: 180px;
+	top: 140px;
 	background-color: #DCEAF5;
 	border-radius: 10px;
 	padding-left: 10px;
@@ -126,9 +125,5 @@
 }
 
 #title {
-	
-}
-
-#view-table {
 	
 }
