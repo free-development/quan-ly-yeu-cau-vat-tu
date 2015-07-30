@@ -54,7 +54,7 @@
 							</span>
 							<span class="search-button">
 							&nbsp;
-							<button class="btn-search"><i class="fa fa-search" ></i></button>
+							<button class="button-search"><i class="fa fa-search" ></i></button>
 							</span>
 						</form>
 					</div>
@@ -233,21 +233,18 @@
                                </li>
                        </ol>
                 </div>
-                        <div>
-                         <label>Văn bản đến</label>
-                             <ol>
-                                    <li class="file"><a href="">Chưa giải quyết</a></li>
-                                        <li class="file"><a href="">Đang giải quyết</a></li>
-                                        <li class="file"><a href="">Đã giải quyết</a></li>
-                        </div>
-                        <div>
-                            <select class="select-search" >
-                                <option selected disabled>--Tìm kiếm--</option>
-                                <option>Thời gian</option>
-                                <option>Số CV</option>
-                                <option>Đơn vị</option>
-                            </select>  
-                        </div>
+                      
+                        <select class="select">
+                                    <option selected disabled>--Văn bản đến--</option>
+                            <option class="file"><a href="">Chưa giải quyết</a></option>
+                            <option class="file"><a href="">Đang giải quyết</a></option>
+                            <option class="file"><a href="">Đã giải quyết</a></option>
+                            </select>
+                    
+                        <br>
+                        <br>
+                             
+                        
             </div>
                 <div class="right-content">
                    <form id="main-form">
@@ -255,7 +252,7 @@
                         <tr>
                             <td>Chỉ tiêu lọc dữ liệu</td>
                             <td>
-                                <select class="select-multi">
+                                <select class="select">
                                     <option selected disabled>-- Lọc dữ liệu --</option>
                                     <option>Ngày đến</option>
                                     <option>Số đến</option>
@@ -267,57 +264,76 @@
 
                                 </select>
                             </td>
-							
+                            <td>&nbsp;&nbsp;</td>
+                            <td>
+                                 <select class="select" >
+                                <option selected disabled>--Tìm kiếm--</option>
+                                <option>Thời gian</option>
+                                <option>Số CV</option>
+                                <option>Đơn vị</option>
+                            </select>
+                            </td>
+							 <td>
+                                <span class="search-text">
+								&nbsp;
+							<input type="search" class="text" name="search_box" name="search" placeholder="Nội dung tìm kiếm" />
+							</span>
+                            </td>
+                            <td>
+                                <span class="search-button">
+							&nbsp;
+							<button class="button-search1"><i class="fa fa-search" ></i></button>
+							</span>
+                            </td>
                         </tr>
                     </table>
                      <div class="scroll_content">
-                    <table>
+                    <table style="font-size: 16px;" class="border-congvan">
                         <tr>
-                            <td class="column-check"><input type="checkbox" name=""</td>
+                            <td class="column-check" rowspan="6"><input type="checkbox" name=""</td>
                             <td class="left-column-first">Ngày đến:</td>
-                            <td class="mid-column"></td>
+                          
                             <td class="column-date">23/06/2015</td>
                             <td class="column-so-den">Số đến</td>
                             <td class="column-so-den">2118-0</td>
-                            <td class="mid-column"></td>
+                            
                             <td class="left-column">Ký hiệu</td>
                             <td  class="column-date">2118/TB-PCCT</td>
-                            <td rowspan="2"><a href="">2118 TB ketluanGD trienkhaithuchiencacQC QLNB</a></td>
-							<td rowspan=6><div class="chi-tiet">
-                        <a href="">*Xem chi tiết</a>    
-                    </div></td>	
+                            <td rowspan="2"><div class="file" style="text-decoration: underline;"><a href="danh-muc-bo-phan.html"><div class="mo-ta">2118 TB ketluanGD trienkhaithuchiencacQC QLNB</div></a></div></td>
+                            
+							
                         </tr>
                         <tr>
-                            <td class="column-check"></td>
+                           
                             <td class="left-column-first">Mục đích</td>
-                            <td class="mid-column"></td>
+                           
                             <td colspan="3">Sửa chữa lớn</td>
-                            <td class="mid-column"></td>
+                            
                             <td class="left-column">Ngày CV:</td>
                             <td class="column-date">20/05/2015</td>
                         </tr>
                          <tr>
-                             <td class="column-check"></td>
-                            <td>Nơi gửi</td>
-                            <td class="mid-column"></td>
-                            <td colspan="4">CTY ĐIỆN LỰC TP CẦN THƠ</td>
+                            
+                            <td class="left-column-first">Nơi gửi</td>
+                            
+                            <td colspan="6">CTY ĐIỆN LỰC TP CẦN THƠ</td>
                         </tr>
                         <tr>
-                            <td class="column-check"></td>
-                            <td>Trích yếu</td>
-                            <td class="mid-column"></td>
-                            <td width=500px colspan="7">Thông báo kết luận Giám Đốc về triển khai thực hiện các Qui chế QLNB</td>
+                           
+                            <td class="left-column-first">Trích yếu</td>
+                            
+                            <td colspan="6">Thông báo kết luận Giám Đốc về triển khai thực hiện các Qui chế QLNB</td>
                         </tr>
                         <tr>
-                            <td class="column-check"></td>
+                            
                             <td class="left-column-first">Bút phê</td>
-                            <td class="mid-column"></td>
+                           
                             <td colspan="6"></td>
                         </tr>
                         <tr>
-                            <td class="column-check"></td>
+                           
                             <td class="left-column-first">Nơi GQ chính</td>
-                            <td class="mid-column"></td>
+                          
                             <td colspan="6">Phòng Kế Hoạch, Phòng Vật Tư</td>
                         </tr>
                     </table>
@@ -428,9 +444,9 @@
                          </div>
                     </div>
 					<div class="group-button">			
-            <button type="button" class="btn"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm mới</button>
-                        <button type="button" class="btn" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa</button>
-                                     <button class="btn" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="btn" onclick="showForm('update-vat-tu', true)"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Cập nhật vật tư</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+            <button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm mới</button>
+                        <button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa</button>
+                                     <button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" onclick="showForm('update-vat-tu', true)"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Cập nhật yêu cầu vật tư</button>&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
             </div>
 					   </form>
                 </div>
@@ -492,11 +508,16 @@
                                 <tr>
                                     <th style="text-align: left"><label for="KH">Ký hiệu</label></th>
                                     <td><input name="" size="10px" align=right type="text" class="text" required title=""></td>
+<!--
                                     <th style="text-align: left;padding-left:20px;"><label for="HT">Hình thức</label></th>
                                     <td><select>
                                         <option></option>
                                         </select>
                                     </td>
+-->
+                                    <th>
+                                    </th>
+                                    <td></td>
                                     <th style="text-align: left;padding-left:20px;"><label for="NK">Ngày ký</label></th>
                                     <td><select>
                                         <option></option>
@@ -504,6 +525,7 @@
                                         </select>
                                     </td>
                                 </tr>		
+<!--
                                 <tr>
                                     <th style="text-align: left"><label for="KH">Lĩnh vực</label></th>
                                     <td><select>
@@ -516,32 +538,38 @@
                                         </select>
 
                                 </tr>	
-                                <tr>
-                                    <th style="text-align: left"><label for="TT">Trạng thái</label></th>
-                                    <td style="text-align: right"><input type="radio" name="add"</td>
-                                    <th style="text-align: left"><label for="CGQ">Chưa giải quyết</label></th>
-                                    <td style="text-align: right"><input type="radio" name="add"</td>
-                                    <th style="text-align: left"><label for="DGQ">Đã giải quyết</label></th>
-                                    <td style="text-align: right"><input type="radio" name="add"</td>
-                                    <th style="text-align: left"><label for="DGQ1">Đang giải quyết</label></th>
-                                </tr>		
+-->
+                               
                             </table>
                             <table>
                                     <th style="text-align: left"><label for="TY">Trích yếu</label></th>
-                                    <td><input name="" size="80px" align=right type="text" class="text" required title=""></td>
+                                    <td><textarea class="txtarea"></textarea></td>
                             </tr>
                             </table>
+<!--
                             <table style="padding: 10px">
                                     <td style="text-align: right"><input type="checkbox" name=""</td>
                                     <th style="text-align: left;padding-right:30px;"><label for="M">Mật</label></th>
                                     <td style="text-align: right"><input type="checkbox" name=""</td>
                                     <th style="text-align: left"><label for="M">Khẩn</label></th>
                              </table>
+-->
+                        <table>
+                             <tr>
+                                    <th style="text-align: left"><label for="TT">Trạng thái</label></th>
+                                    <td style="text-align: right; padding-left: 10px;"><input type="radio" name="add"</td>
+                                    <th style="text-align: left"><label for="CGQ">Chưa giải quyết</label></th>
+                                    <td style="text-align: right;padding-left: 10px;"><input type="radio" name="add"</td>
+                                    <th style="text-align: left"><label for="DGQ">Đã giải quyết</label></th>
+                                    <td style="text-align: right;padding-left: 10px;"><input type="radio" name="add"</td>
+                                    <th style="text-align: left"><label for="DGQ1">Đang giải quyết</label></th>
+                                </tr>		
+                        </table>
                         </div>
                         <div class="group-button">
-                                <button class="btn"onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Lưu lại</button>
-                                <button type="reset" class="btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
-                                <button type="button" class="btn" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+                                <button class="button"onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Lưu lại</button>
+                                <button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+                                <button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
                         </div>
                 </div>
 </form>
@@ -600,11 +628,16 @@
                         <tr>
 							<th style="text-align: left"><label for="KH">Ký hiệu</label></th>
                             <td><input name="" size="10px" align=right type="text" class="text" required title=""></td>
+<!--
                             <th style="text-align: left;padding-left:20px;"><label for="HT">Hình thức</label></th>
 							<td><select>
                                 <option></option>
                                 </select>
                             </td>
+-->
+                            <th>
+                            </th>
+                            <td></td>
                             <th style="text-align: left;padding-left:20px;"><label for="NK">Ngày ký</label></th>
 							<td><select>
                                 <option></option>
@@ -612,6 +645,7 @@
                                 </select>
                             </td>
 						</tr>		
+<!--
                         <tr>
 							<th style="text-align: left"><label for="KH">Lĩnh vực</label></th>
 							<td><select>
@@ -624,57 +658,64 @@
                                 </select>
                             
 						</tr>	
-                        <tr>
-							<th style="text-align: left"><label for="TT">Trạng thái</label></th>
-                            <td style="text-align: right"><input type="radio" name="update"</td>
-                            <th style="text-align: left"><label for="CGQ">Chưa giải quyết</label></th>
-							<td style="text-align: right"><input type="radio" name="update"</td>
-                            <th style="text-align: left"><label for="DGQ">Đã giải quyết</label></th>
-                            <td style="text-align: right"><input type="radio" name="update"</td>
-                            <th style="text-align: left"><label for="DGQ1">Đang giải quyết</label></th>
-						</tr>		
+-->
+                       
 					</table>
                     <table>
 							<th style="text-align: left"><label for="TY">Trích yếu</label></th>
-                            <td><input name="" size="80px" align=right type="text" class="text" required title=""></td>
+<!--                            <td><input name="" size="80px" align=right type="text" class="text" required title=""></td>-->
+                        <td><textarea class="txtarea"></textarea></td>
                     </tr>
                     </table>
+<!--
                     <table style="padding: 10px">
                             <td style="text-align: right"><input type="checkbox" name=""</td>
                             <th style="text-align: left;padding-right:30px;"><label for="M">Mật</label></th>
                             <td style="text-align: right"><input type="checkbox" name=""</td>
                             <th style="text-align: left"><label for="M">Khẩn</label></th>
                      </table>
+-->
+                 <table>
+                    <tr>
+                                    <th style="text-align: left"><label for="TT">Trạng thái</label></th>
+                                    <td style="text-align: right; padding-left: 10px;"><input type="radio" name="add"</td>
+                                    <th style="text-align: left"><label for="CGQ">Chưa giải quyết</label></th>
+                                    <td style="text-align: right;padding-left: 10px;"><input type="radio" name="add"</td>
+                                    <th style="text-align: left"><label for="DGQ">Đã giải quyết</label></th>
+                                    <td style="text-align: right;padding-left: 10px;"><input type="radio" name="add"</td>
+                                    <th style="text-align: left"><label for="DGQ1">Đang giải quyết</label></th>
+                                </tr>	
+                 </table>
 				</div>
 				<div class="group-button">
-						<button class="btn"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
-						<button type="reset" class="btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
-						<button type="button" class="btn" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
 </form>      
 <!--    update-vat-tu    -->
          <form id="update-vat-tu">
-               <div id="wrapper">
-                        <div id="view-table-vt">
+    				<div class="input-table-vt">
                             <table>
-                                <div class="form-title">Cập nhật vật tư</div>
+                                <div class="form-title">Cập nhật yêu cầu vật tư</div>
                         <table>
                             <tr>
                                 <th class="a-column">Chọn</th>
                                 <th class="b-column">Mã vật tư</th>
                                 <th class="c-column"> Tên vật tư</th>
-                                <th class="d-column">Số lượng</th>
-                                <th class="e-column">Đơn giá</th>
-                                <th class="f-column">Thành tiền</th>
+                               
+                                <th class="e-column">Nơi sản xuất</th>
+                                <th class="f-column">Chất lượng</th>
+                                 <th class="d-column">Số lượng</th>
                                 <th class="g-column">Đvt</th>
                             </tr>
                             <tr>
                                 <td class="a-column"><input type="checkbox" name=""</td>
                                 <td class="b-column">315422050</td>
                                 <td class="c-column">Cáp đòng bọc hạ áp CV 50m...</td>
-                                <td class="d-column">20</td>
-                                <td class="e-column">87721.775</td>
-                                <td class="f-column">1754436</td>
+                                <td class="d-column">Viet Nam</td>
+                                <td class="e-column">Hàng thu hồi</td>
+                                <td class="f-column">17</td>
                                 <td class="g-column">m</td>
                             </tr>
                             <tr>
@@ -716,15 +757,126 @@
                         </table>
                     </div>
                 <div class="group-button">
-                           <button type="button" class="btn"  onclick="showForm('add-vat-tu', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm mới</button>
-                        <button type="button" class="btn" onclick="showForm('update-vat-tu', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa</button>
-                                     <button class="btn" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>
-                            <button type="reset" class="btn"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
-                            <button type="button" class="btn" onclick="showForm('update-vat-tu')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+                           <button type="button" class="button"  onclick="showForm('add-form-ycvt', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm mới</button>
+                        <button type="button" class="button" onclick="showForm('update-form-ycvt', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa</button>
+                                     <button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>
+                            <button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+                            <button type="button" class="button" onclick="showForm('update-vat-tu',false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
                     </div>
                    </div>
 				</div>	
         </form>
+    
+    			<form id="add-form-ycvt">
+					<div class="input-table">
+						<table>
+							<div class="form-title"style="padding: 10px">Thêm yêu cầu vật tư</div>
+							<tr>
+								<th style="text-align: left"><label for="TKM">Tìm kiếm mã</label></th>
+								<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã mục đích chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+								<td class="name" style="text-align: right"><input type="checkbox" name=""</td>
+								<th style="text-align: left"><label for="TT">Theo tên</label></th>
+							</tr>
+							<tr>
+								<th style="text-align: left"><label for="MVT">Mã vật tư</label></th>
+								<td><input name="" size="3px" align=right type="text" class="text" required title="Mã vật tư không được để trống"></td>
+							</tr>	
+							<tr>
+								<th style="text-align: left"><label for="MVT">Nơi sản xuất</label></th>
+								<td>
+                                    <select required title="Nơi sản xuất không được để trống">
+                                    <option selected disabled></option>
+                                    <option>aaaaaaaaaaaaaaa</option>
+                                    </select>
+                                </td>
+							</tr>	
+							<tr>
+								<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
+								<td>
+                                    <select required title="Nơi sản xuất không được để trống">
+                                    <option selected disabled></option>
+                                    <option>aaaaa</option>
+                                    </select>
+                                </td>
+								
+							</tr>
+                            <tr>
+                                <th style="text-align: left">Số lượng</th>
+                                <td><input type="text" size="2px"></td>
+                            </tr>
+                            	<tr>
+								<th style="text-align: left"><label for="DVT">Đơn vị tính</label></th>
+								<td>
+                                    <select required title="Nơi sản xuất không được để trống">
+                                    <option selected disabled></option>
+                                    <option>aaaaa</option>
+                                    </select>
+                                </td>
+								
+							</tr>	
+						</table>
+					</div>
+					<div class="group-button">
+							<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+							<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+							<button type="button" class="button" onclick="showForm('add-form-ycvt', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+					</div>			
+				</form>
+				<form id="update-form-ycvt">
+					<div class="input-table">
+						<table>
+							<div class="form-title"style="padding: 10px">Cập nhật yêu cầu vật tư</div>
+							<tr>
+								<th style="text-align: left"><label for="TKM">Tìm kiếm mã</label></th>
+								<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã mục đích chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+								<td class="name" style="text-align: right"><input type="checkbox" name=""</td>
+								<th style="text-align: left"><label for="TT">Theo tên</label></th>
+							</tr>
+							<tr>
+								<th style="text-align: left"><label for="MVT">Mã vật tư</label></th>
+								<td><input name="" size="3px" align=right type="text" class="text" required title="Mã vật tư không được để trống"></td>
+							</tr>	
+							<tr>
+								<th style="text-align: left"><label for="MVT">Nơi sản xuất</label></th>
+								<td>
+                                    <select required title="Nơi sản xuất không được để trống">
+                                    <option selected disabled></option>
+                                    <option>aaaaaaaaaaaaaaa</option>
+                                    </select>
+                                </td>
+							</tr>	
+							<tr>
+								<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
+								<td>
+                                    <select required title="Nơi sản xuất không được để trống">
+                                    <option selected disabled></option>
+                                    <option>aaaaa</option>
+                                    </select>
+                                </td>
+								
+							</tr>
+                            <tr>
+                                <th style="text-align: left">Số lượng</th>
+                                <td><input type="text" size="2px"></td>
+                            </tr>
+                            	<tr>
+								<th style="text-align: left"><label for="DVT">Đơn vị tính</label></th>
+								<td>
+                                    <select required title="Nơi sản xuất không được để trống">
+                                    <option selected disabled></option>
+                                    <option>aaaaa</option>
+                                    </select>
+                                </td>
+								
+							</tr>	
+						</table>
+					</div>
+					<div class="group-button">
+							<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+							<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+							<button type="button" class="button" onclick="showForm('update-form-ycvt',false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+					</div>			
+				</form>		
     </div>
 				</div>
 				

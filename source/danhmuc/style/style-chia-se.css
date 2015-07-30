@@ -20,6 +20,7 @@
 #view-table{
 	margin: 0 auto;
 	width: 700px;
+    background-color: #199e5e;
 }
 #view-table table {
 	border-spacing: 0px;

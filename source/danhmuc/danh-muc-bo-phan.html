@@ -104,49 +104,54 @@
 			
 			<form id="main-form">
 				<div id="view-table-bo-phan">
-					<table >
+					<table class="scroll_bophan">
 						<tr>
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>
 							<th class="mid-column">Mã BPSD</th>
-							<th class="column-3">Tên bộ phận</th>
-                            <th class="column-4">Số điện thoại</th>
-							<th class="column-4">Email</th>
-                            <th class="mid-column">Địa chỉ</th>
+							<th class="column-2">Tên bộ phận</th>
+                            <th class="column-3">Số điện thoại</th>
+							<th class="column-4">Địa chỉ</th>
+                            <th class="column-5">Email</th>
 						</tr>
 						<tr>
 							<td class="left-column"><input type="checkbox" name="" class="checkbox"</td>
-							<td class="mid-column">F02F09</td>
-							<td class="column-3">Công ty điện lực TP Cần Thơ</td>
+							<td class="col">F02F09</td>
+							<td class="col">Công ty điện lực TP Cần Thơ</td>
+                            <td>09638642711</td>
+                            <td class="col">06-Nguyễn Trãi-Q.Ninh Kiều</td>
                             <td></td>
-                            <td class="column-5">06-Nguyễn Trãi-Q.Ninh Kiều</td>
 						</tr>
 				        <tr>
 							<td class="left-column"><input type="checkbox" name=""  class="checkbox"</td>
-							<td class="mid-column">F09A01</td>
-							<td class="column-3">Ban QLDA lưới điện</td>
+							<td class="col">F09A01</td>
+							<td class="col">Ban QLDA lưới điện</td>
                             <td></td>
-                            <td class="column-5">06-Nguyễn Trãi-Q.Ninh Kiều</td>
+                            <td class="col">06-Nguyễn Trãi-Q.Ninh Kiều</td>
+                            <td></td>
 						</tr>
                         <tr>
 							<td class="left-column"><input type="checkbox" name=""  class="checkbox"</td>
-							<td class="mid-column">F09D01</td>
-							<td class="column-3">Phòng Tổ chức và nhân sự</td>
+							<td class="col">F09D01</td>
+							<td class="col">Phòng Tổ chức và nhân sự</td>
                             <td></td>
-                            <td class="column-5">06-Nguyễn Trãi-P.An Hội</td>
+                            <td class="col">06-Nguyễn Trãi-P.An Hội</td>
+                            <td></td>
 						</tr>
                         <tr>
 							<td class="left-column"><input type="checkbox" name=""  class="checkbox"</td>
-							<td class="mid-column">F09D18</td>
-							<td class="column-3">Phòng Kế Hoạch[Cty]</td>
+							<td class="col">F09D18</td>
+							<td class="col">Phòng Kế Hoạch[Cty]</td>
                             <td></td>
-                            <td class="column-5">06-Nguyễn Trãi-Q.Ninh Kiều</td>
+                            <td class="col">06-Nguyễn Trãi-Q.Ninh Kiều</td>
+                            <td></td>
 						</tr>
                         <tr>
 							<td class="left-column"><input type="checkbox" name="" class="checkbox"</td>
-							<td class="mid-column">F02F09</td>
-							<td class="column-3">Phòng Thanh tra bảo vệ-Pháp</td>
+							<td class="col">F02F09</td>
+							<td class="col">Phòng Thanh tra bảo vệ-Pháp</td>
                             <td></td>
-                            <td class="column-5">06-Nguyễn Trãi-Q.Ninh Kiều</td>
+                            <td class="col">06-Nguyễn Trãi-Q.Ninh Kiều</td>
+                            <td></td>
 						</tr>
                         
                     </table>		
@@ -171,7 +176,11 @@
 						<tr>
 							<td class="input"><label for="MBPSD">Tên BPSD</label></td>
 							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên bộ phận sử dụng không được để trống"></td>
-						</tr>	
+						</tr>
+                         <tr>
+                        <td class="input"><label>Số điện thoại</label></td>
+                            <td><input name="" size="15px" align=left type="text" class="text"></td>
+                        </tr>
                         <tr>
                             <td class="input"><label>Địa chỉ</label></td>
 							<td><input name="" size="30px" align=left type="text" class="text"></td>
@@ -180,10 +189,8 @@
                             <td class="input"><label>Email</label></td>
                             <td><input name="" size="30px" align=left type="email" class="text"></td>                         
                         </tr>
-                        <tr>
-                        <td class="input"><label>Tel-Fax</label></td>
-                            <td><input name="" size="30px" align=left type="text" class="text"></td>
-                        </tr>
+                       
+<!--
                         <tr>
                             <td class="input"><label>Số TK</label></td>
 							<td><input name="" size="15px" align=left type="text" class="text"></td>                            
@@ -201,6 +208,7 @@
                                 </select>
                             </td>
                         </tr>
+-->
 					</table>
 				</div>
 				<div class="button-group">
@@ -216,48 +224,51 @@
 					<table>
 						<div class="form-title">Cập nhật bộ phận sử dụng</div>
 						<tr>
-							<th><label for="MBPSD">Mã BPSD</label></th>
+							<td class="input"><label for="MBPSD" class="input">Mã BPSD</label></td>
 							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
-							<td class="input"><label for="MBPSD">Tên bộ phận sử dụng</label></th>
+							<td class="input"><label for="MBPSD">Tên BPSD</label></td>
 							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên bộ phận sử dụng không được để trống"></td>
-						</tr>	
+						</tr>
+                         <tr>
+                        <td class="input"><label>Số điện thoại</label></td>
+                            <td><input name="" size="15px" align=left type="text" class="text"></td>
+                        </tr>
                         <tr>
                             <td class="input"><label>Địa chỉ</label></td>
 							<td><input name="" size="30px" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
                             <td class="input"><label>Email</label></td>
-                            <td><input name="" size="30px" align=left type="text" class="text"></td>
+                            <td><input name="" size="30px" align=left type="email" class="text"></td>                         
+                        </tr>
+                       
+<!--
+                        <tr>
+                            <td class="input"><label>Số TK</label></td>
+							<td><input name="" size="15px" align=left type="text" class="text"></td>                            
                         </tr>
                         <tr>
-							<td class="input"><label>Tel-Fax</label></td>
-							<td><input name="" size="30px" align=left type="text" class="text"></td>
-                        </tr>
-                        <tr>
-                            <td><label>Số TK</label></td>
-							<td><input name="" size="15px" align=left type="text" class="text"></td>
-                        </tr>
-                        <tr>
-                        	<td class="input"><label>Mã số thuế</label></td>
+                        <td class="input"><label>Mã số thuế</label></td>
                             <td><input name="" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
                             <td class="input"><label>Loại BP</label></td>
-							<td><select class="select">
-                                    <option></option>
-                                    <option value="">AAAAAAAAAA</option>
+							<td><select name = "" required class="select">
+                                    <option class="option" value=""></option>
+                                    <option value="" class="option">AAAAAAAAAA</option>
                                     <option>AAAAAAAAAA</option>
                                 </select>
                             </td>
                         </tr>
+-->
 					</table>
 				</div>
-				<div class="group-button">
-						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+				<div class="button-group">
+						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
-						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+						<button type="button" class="button" onclick="showForm('update-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
 			</form>			
 		</div>	

@@ -57,6 +57,7 @@
 .left-column-first{
     width: 150px;
 	text-align: left;
+    font-weight: bold;
 }
 .right-column {
     width: 120px;
@@ -87,6 +88,7 @@ overflow:scroll; /*chú ý dòng này*/
   height: 350px;
   width:  810px; 
   display: auto;
+  font-size: 16px;
   border: 1px solid #CCCCCC;
   margin: 1em 0;
   overflow:scroll; /*chú ý dòng này*/
@@ -302,4 +304,51 @@ overflow:scroll; /*chú ý dòng này*/
 }
 .select option:hover{
 	background: #0a6114;
+}
+.col-final {
+    text-align: left;
+    color: black;
+}
+.file-download a {
+    color: blue;
+    text-decoration: underline;
+}
+.mo-ta {
+    color: blue;
+}
+
+
+.btn-search1 {
+    height: 30px;
+	background-color: #dceaf5;
+	height: 30px;	
+	border-color: none;
+	color: red;
+/*	padding: 10px;*/
+	padding-left: 10px;
+	padding-right: 10px; 
+	text-align: center;
+	border: none;
+	font-size: 13px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.border-congvan {
+    border-style: inset;
+    border-width: 2px;
+}
+
+.txtarea {
+    width: 705px;
+}
+
+.input-table-vt {
+    margin: 0 auto;
+}
+
+.view-vt{
+    border-style: dotted;
+    border-width : 1px;
+    margin: 0 auto;
 }
