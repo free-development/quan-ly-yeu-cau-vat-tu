@@ -103,6 +103,9 @@
 .checkbox{
     text-align: center;
 }
+.stt{
+    text-align: center;
+}
 .btn {
 	background: #199e5e;
 	border-radius: 5px;
@@ -116,8 +119,6 @@
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	margin: 0 auto;
-
 }
 .btn:hover {
   background: #0a6114;
