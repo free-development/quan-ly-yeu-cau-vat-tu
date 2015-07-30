@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
 		<link rel="stylesheet" href="style/style.css" type="text/css">
 		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
+        <link href="style/style-chat-luong.css" type="text/css" rel="stylesheet">
     <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
 	<script type="text/javascript">
 		function showForm(formId, check){
@@ -85,7 +86,7 @@
 			<form id="main-form">
 				<div id="view-table">
 					<table>
-						<tr>
+						<tr style="background-color: #199e5e;">
 							<th class="left-column">Chọn</th><th class="mid-column"> Mã CL</th>
 							<th class="right-column">Tên chất lượng</th>
 						</tr>
@@ -146,12 +147,12 @@
 					<table>
 						<div class="form-title">Cập nhật chất lượng</div>
 						<tr>
-							<td class="input"><label for="MCL">Mã CL</label></td>
-							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MCL" readonly></td>
+							<td class="input"><label for="MCL">Mã chất lượng</label></td>
+							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3"value="A80" pattern="[a-zA-Z0-9]{3}" title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MCL" readonly></td>
 						</tr>
 						<tr>
-							<td class="input"><label for="MCL">Tên CL</label></td>
-							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên chất lượng không được để trống"></td>
+							<td class="input"><label for="MCL">Tên chất lượng</label></td>
+							<td><input name="" size="30px" align=left type="text" class="text" value="Hàng thu hồi có thể sử dụng được" required title="Tên chất lượng không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
