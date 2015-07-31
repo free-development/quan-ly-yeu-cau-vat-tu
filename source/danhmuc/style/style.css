@@ -38,7 +38,7 @@ input.text {
 	padding-left: 20px;
 	
 /*	margin: 5px;*/
-    margin-bottom: 10px;
+/*    margin-bottom: 10px;*/
 }
 input.text:focus{
 	border-width: 2px;
@@ -117,11 +117,10 @@ td.input {
 	color: black;
 /*	padding: 5px;*/
 /*	text-align: center;*/
-	font-size: 13px;
+	font-size: 16px;
 	padding-left: 10px;
 	padding-right: 10px;
-    margin-right: 20px;
-    margin-top: 10px;
+/*    margin-right: 20px;*/
 }
 .select option {
 	background-color: rgb(252, 252, 252);
