@@ -4,7 +4,7 @@
         <title>Văn phòng điện tử công ty điện lực Cần Thơ</title>
         <link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
 		<link rel="stylesheet" href="style/style.css" type="text/css">
-		 <link href="style/style-vat-tu.css" type="text/css" rel="stylesheet">
+		 <link href="style/style-bao-cao-bang-de-nghi.css" type="text/css" rel="stylesheet">
     <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
 	<script type="text/javascript">
 		function showForm(formId, check){
@@ -77,189 +77,99 @@
 			
 				<div id="main-content">
 					<div id="title-content">
-		          Báo cáo 
+		              Bảng đề nghị cấp vật tư
                     </div>
-                
-                <div class="lbltk">
                     <table>
                         <tr>
-                            <td>
-                                Thời gian
-                                <input type="date">
-                            </td>
-                            <td>
-                            <select class="select"style="background-color: #199e5e">
-                                        Đơn vị:
+                            <th>
+                            <label class="lables">Thời gian: </label>
+                            <input class="input" type="date">
+                            </th>
+                            <th>
+                            <label class="lables">Đơn vị: </label>
+                            <select class="select">
                                         <option value="">--Đơn vị--</option>
-                                        <option value="">Công ty điện lực Tp.Cần Thơ</option>
                             </select>
-                            </td>
-                            <td>
-                                    Trạng thái
-                                    <input type="radio" name="add"</td>
-                                    <th style="text-align: left"><label for="CGQ">Chưa giải quyết</label></th>
-                                    <td style="text-align: right"><input type="radio" name="add"</td>
-                                    <th style="text-align: left"><label for="DGQ">Đã giải quyết</label></th>
-                                    <td style="text-align: right"><input type="radio" name="add"</td>
-                                    <th style="text-align: left"><label for="DGQ1">Đang giải quyết</label></th>
-                            </td>
+                            </th>
                         </tr>
                     </table>
-                </div>
+                     <table class="radio">
+                        <th><lable class="lables">Trạng thái:</lable></th>
+                        <td style="text-align: right"><input type="radio" name="add"</td>
+                        <td style="text-align: left"><label class="lable1" for="CGQ">Chưa giải quyết</label></td>
+                        <td style="text-align: right"><input type="radio" name="add"</td>
+                        <td style="text-align: left"><label class="lable1" for="DGQ">Đã giải quyết</label></td>
+                        <td style="text-align: right"><input type="radio" name="add"</td>
+                        <td style="text-align: left"><label class="lable1" for="DGQ1">Đang giải quyết</label></td>
+                        </table>
 					<div id="view-table">
 						<table>
 							<tr>
-								<th class="one-column">Chọn</th>
-                                <th class="a-column"> Mã vật tư</th>
-								<th class="a-column"> Tên vật tư</th>
-								<th class="three-column">Nơi sản xuất</th>
-								<th class="four-column"> Đơn vị tính</th>
-								<th class="five-column">Định mức</th>
-								<th class="six-column">Chất lượng</th>
-								<th class="seven-column">Số lượng tồn</th>
+								<th class="a-column">Số đến</th>
+                                <th class="b-column">Ngày nhận</th>
+                                <th class="c-column"> Mã vật tư</th>
+								<th class="d-column"> Tên vật tư</th>
+								<th class="e-column">Nơi sản xuất</th>
+								<th class="f-column"> Đơn vị tính</th>
+								<th class="g-column">Trạng thái</th>
+								<th class="h-column">Chất lượng</th>
+								<th class="k-column">Số lượng</th>
+							</tr>
+							<tr>
+								<td class="a-column">2118-0</td>
+                                <td class="b-column">23/06/2015</td>
+								<td class="c-column">31542050</td>
+								<td class="d-column">Cáp đồng bọc hạ áp</td>
+								<td class="e-column">Việt Nam</td>
+								<td class="f-column">m</td>
+								<td class="g-column">Chưa giải quyết</td>
+								<td class="h-column">Hàng mới</td>
+                                <td class="k-column">20</td>
 
 							</tr>
 							<tr>
-								<td class="one-column"><input type="checkbox" name=""</td>
-                                <td class="a-column">10101234</td>
-								<td class="two-column">Khung chân sứ đỉnh V 63x63x6-500</td>
-								<td class="three-column">Việt Nam</td>
-								<td class="four-column"> cái</td>
-								<td class="five-column">0</td>
-								<td class="six-column">Hàng mới</td>
-								<td class="seven-column">5</td>
-
+								<td class="a-column">2119-0</td>
+                                <td class="b-column">23/06/2015</td>
+								<td class="c-column">31542051</td>
+								<td class="d-column">Bulong 8x60</td>
+								<td class="e-column">Việt Nam</td>
+								<td class="f-column">m</td>
+								<td class="g-column">Chưa giải quyết</td>
+								<td class="h-column">Hàng mới</td>
+                                <td class="k-column">30</td>
 							</tr>
 							<tr>
-								<td class="one-column"><input type="checkbox" name=""</td>
-                                <td class="a-column"> 11102345</td>
-								<td class="two-column">Giá đỡ đầu cáp ngầm 3x95mm</td>
-								<td class="three-column">Việt Nam</td>
-								<td class="four-column"> cái</td>
-								<td class="five-column">0</td>
-								<td class="six-column">Vật tư nhập mới</td>
-								<td class="seven-column">10</td>
+								<td class="a-column">2118-1</td>
+                                <td class="b-column">23/06/2015</td>
+								<td class="c-column">31542052</td>
+								<td class="d-column">Bulong 16x300</td>
+								<td class="e-column">Việt Nam</td>
+								<td class="f-column">m</td>
+								<td class="g-column">Chưa giải quyết</td>
+								<td class="h-column">Hàng mới</td>
+                                <td class="k-column">15</td>
 							</tr>
 							<tr>
-								<td class="one-column"><input type="checkbox" name=""</td>
-                                <td class="a-column"> 12103456</td>
-								<td class="two-column">Giá giữ đầu cáp V75x75x8</td>
-								<td class="three-column">Việt Nam</td>
-								<td class="four-column"> bộ</td>
-								<td class="five-column">0</td>
-								<td class="six-column">Hàng mới</td>
-								<td class="seven-column">15</td>
-							</tr>
-							<tr>
-								<td class="one-column"><input type="checkbox" name=""</td>
-                                <td class="a-column"> 12104567</td>
-								<td class="two-column">Giá đỡ đầu cáp ngầm 50mm2</td>
-								<td class="three-column">Việt Nam</td>
-								<td class="four-column"> cái</td>
-								<td class="five-column">0</td>
-								<td class="six-column">Vật tư nhập mới</td>
-								<td class="seven-column">20</td>
+								<td class="a-column">2119-1</td>
+                                <td class="b-column">23/06/2015</td>
+								<td class="c-column">31542053</td>
+								<td class="d-column">Bulong 16x350</td>
+								<td class="e-column">Việt Nam</td>
+								<td class="f-column">m</td>
+								<td class="g-column">Chưa giải quyết</td>
+								<td class="h-column">Hàng mới</td>
+                                <td class="k-column">5</td>
 							</tr>
 						</table>		
 					</div>				
 
 					<div class="group-button">
-
-						<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-						<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-						<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;
-						<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;
-						<button class="button" type="button"><i class="fa fa-print"></i>&nbsp;&nbsp;In</button>&nbsp;
-						<button type="button" class="button"onclick="showForm('main-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+                    <button class="button" type="button"><i class="fa fa-print"></i>&nbsp;&nbsp;In</button>&nbsp;
+                    <button class="button" type="button"><i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file</button>&nbsp;
+                    <button type="button" class="button" onclick="showForm('main-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 					</div>
 				</form>	
-				<form id="add-form">
-					<div class="input-table">
-						<table>
-							<div class="form-title"style="padding: 10px">Thêm vật tư</div>
-							<tr>
-								<th style="text-align: left"><label for="MVT">Mã vật tư</label></th>
-								<td><input name="" size="5px" align=right type="text" class="text" required title="Mã vật tư không được để trống"></td>
-							</tr>
-                            <tr>
-								<th style="text-align: left"><label for="MVT">Tên vật tư</label></th>
-								<td><input name="" size="5px" align=right type="text" class="text" required title="Mã vật tư không được để trống"></td>
-							</tr>
-							<tr>
-								<th style="text-align: left"><label for="MVT">Nơi sản xuất</label></th>
-								<td><select class="select">
-                                <option value=""></option>
-                                <option value="">Việt Nam</option>
-                                <option value="">Không xác định</option>
-                                </select>
-                            </td>
-							</tr>	
-							<tr>
-								<th style="text-align: left"><label for="DVT">Đơn vị tính</label></th>
-								<td><select class="select">
-                                    <option value=""></option>
-                                    <option value="">m</option>
-                                    <option value="">cái</option>
-                                    <option value="">cuộn</option>
-                                </select>
-								<th style="text-align:left"><label for="DM">Định mức</label></th>
-								<td><input name="" size="5px" align=right type="text" class="text" required title="Định mức không được để trống"></td>
-							</tr>	
-                            <tr>
-								<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
-								<td><select class="select">
-                                    <option value=""></option>
-                                    <option value="">Hàng mới</option>
-                                    <option value="">Vật tư nhập mới</option>
-                                </select>
-								<th style="text-align: left"><label for="Sl">Số lượng tồn</label></th>
-								<td><input name="" size="5px" align=right type="text" class="text" required title="Số lượng tồn không được để trống"></td>
-							</tr>	
-						</table>
-					</div>
-					<div class="group-button">
-							<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-							<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
-							<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
-					</div>			
-				</form>
-				<form id="update-form">
-					<div class="input-table">
-						<table>
-							<div class="form-title">Cập nhật Vật tư</div>
-							<tr>
-								<th style="text-align: left"><label for="MVT">Mã vật tư</label></th>
-								<td><input name="" size="5px" align=right type="text" class="text" value="10102345"></td>
-							</tr>
-                            <tr>
-								<th style="text-align: left"><label for="MVT">Tên vật tư</label></th>
-								<td><input name="" size="5px" align=right type="text" class="text" value="10102345"></td>
-							</tr>
-                            
-							<tr>
-								<th style="text-align: left"><label for="MVT">Nơi sản xuất</label></th>
-								<td><input name="" size="30px" align=right type="text" class="text" value="Việt Nam"></td>
-							</tr>	
-							<tr>
-								<th style="text-align: left"><label for="DVT">Đơn vị tính</label></th>
-								<td><input name="" size="5px" align=left type="text" class="text" value="m"></td>
-								<th style="text-align: left"><label for="DM">Định mức</label></th>
-								<td><input name="" size="5px" align=right type="text" class="text" value="10"></td>
-							</tr>	
-                            <tr>
-								<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
-								<td><input name="" size="5px" align=left type="text" class="text" value="Hàng mới"></td>
-								<th style="text-align: left"><label for="DM">Số lượng tồn</label></th>
-								<td><input name="" size="5px" align=right type="text" class="text" value="5"></td>
-							</tr>	
-						</table>
-					</div>
-					<div class="group-button">
-							<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
-							<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
-							<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
-					</div>			
-				</form>		
+					
             </div>
 				</div>
 				

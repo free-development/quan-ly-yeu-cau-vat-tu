@@ -10,9 +10,14 @@
 */
 label {
 	font-size: 16px;
-	
+	margin-bottom: 10px;
 }
-
+.lable1{
+    margin-right: 20px;
+}
+.radio{
+    margin-bottom: 20px;
+}
 label.input {
 	font-size: 16px;
 	text-align: left;
@@ -33,6 +38,7 @@ input.text {
 	padding-left: 10px;
 	padding-right: 10px;
 /*	margin: 5px;*/
+    margin-bottom: 10px;
 }
 input.text:focus{
 	border-width: 2px;
@@ -114,6 +120,8 @@ td.input {
 	font-size: 13px;
 	padding-left: 10px;
 	padding-right: 10px;
+    margin-right: 20px;
+    margin-top: 10px;
 }
 .select option {
 	background-color: rgb(252, 252, 252);
