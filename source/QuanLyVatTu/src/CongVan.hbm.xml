@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 1, 2015 4:15:54 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.CongVan" table="CONGVAN" catalog="vattu">
+        <id name="cvId" type="int">
+            <column name="CVID" />
+            <generator class="increment" />
+        </id>
+        <property name="soDen" type="int">
+            <column name="SODEN" />
+        </property>
+        <property name="cvNgayNhan" type="java.sql.Date">
+            <column name="CVNGAYNHAN" />
+        </property>
+        <property name="cvSo" type="java.lang.String">
+            <column name="CVSO" />
+        </property>
+        <property name="cvNgayDi" type="java.sql.Date">
+            <column name="CVNGAYDI" />
+        </property>
+        <property name="trichYeu" type="java.lang.String">
+            <column name="TRICHYEU" />
+        </property>
+        <property name="butPhe" type="java.lang.String">
+            <column name="BUTPHE" />
+        </property>
+        <many-to-one name="mucDich" class="model.MucDich" fetch="select">
+            <column name="MUCDICH" />
+        </many-to-one>
+        <many-to-one name="trangThai" class="model.TrangThai" fetch="select">
+            <column name="TRANGTHAI" />
+        </many-to-one>
+        <many-to-one name="donVi" class="model.DonVi" fetch="select">
+            <column name="DONVI" />
+        </many-to-one>
+        <many-to-one name="file" class="model.File" fetch="select">
+            <column name="FILE" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

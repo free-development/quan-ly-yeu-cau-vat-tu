@@ -72,12 +72,12 @@
 
 #add-form {
 	display: none;
-	width: 400px;
+	width: 30%;
 	position: absolute;
-	left: 483px;
-	margin: 0 auto;
-	top: 140px;
-	background-color: #DCEAF5;
+	left: 35%;
+	right: 35%;
+	top: 25%;
+	background-color: rgb(255, 224, 255);
 	border-radius: 10px;
 	padding-left: 10px;
 	padding-right: 10px;

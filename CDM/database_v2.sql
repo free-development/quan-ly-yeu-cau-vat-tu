@@ -1,10 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     29/07/2015 9:16:20 CH                        */
+/* Created on:     30/07/2015 6:57:20 CH                        */
 /*==============================================================*/
-drop database if exists vattu ;
-create database if not exists vattu ;
-use vattu;
+
 
 drop table if exists CHAT_LUONG;
 
@@ -54,7 +52,7 @@ drop table if exists YEU_CAU;
 create table CHAT_LUONG
 (
    CL_MA                char(3) not null,
-   CL_VATTU             varchar(20),
+   CL_VAT_TU            varchar(20),
    primary key (CL_MA)
 );
 
@@ -63,7 +61,7 @@ create table CHAT_LUONG
 /*==============================================================*/
 create table CHI_TIET_PHIEU_NHAP
 (
-   PHIEUNHAP_ID        int,
+   PHIEUNHAP_ID2        int,
    NSX_MA               char(3),
    CL_MA                char(3),
    VT_MA                char(16),
@@ -98,8 +96,8 @@ create table CHUC_DANH
 /*==============================================================*/
 create table CONG_VAN
 (
-   CV_ID               int not null,
-   FILE_ID             int not null,
+   CV_ID2               int not null,
+   FILE_ID2             int not null,
    DV_MA                varchar(10) not null,
    TT_MA                varchar(10) not null,
    MUC_DICH_MA          char(3) not null,
@@ -109,7 +107,7 @@ create table CONG_VAN
    CV_NGAY_DI           date,
    TRICH_YEU            text,
    BUT_PHE              text,
-   primary key (CV_ID)
+   primary key (CV_ID2)
 );
 
 /*==============================================================*/
@@ -119,8 +117,8 @@ create table DON_VI
 (
    DV_MA                varchar(10) not null,
    DV_TEN               varchar(30),
-   SDT                  VA(12),
-   EMAIL                VA(50),
+   SDT                  varchar(12),
+   EMAIL                varchar(50),
    primary key (DV_MA)
 );
 
@@ -129,10 +127,10 @@ create table DON_VI
 /*==============================================================*/
 create table FILE
 (
-   FILE_ID             int not null,
+   FILE_ID2             int not null,
    FILE_DIA_CHI         varchar(100),
    FILE_MO_TA           text,
-   primary key (FILE_ID)
+   primary key (FILE_ID2)
 );
 
 /*==============================================================*/
@@ -140,10 +138,10 @@ create table FILE
 /*==============================================================*/
 create table LAP_PHIEU_XUAT
 (
-   CV_ID               int not null,
+   CV_ID2               int not null,
    MSNV                 varchar(10) not null,
-   PHIEUXUAT_ID        int not null,
-   primary key (CV_ID, MSNV, PHIEUXUAT_ID)
+   PHIEUXUAT_ID2        int not null,
+   primary key (CV_ID2, MSNV, PHIEUXUAT_ID2)
 );
 
 /*==============================================================*/
@@ -166,8 +164,8 @@ create table NGUOI_DUNG
    MAT_KHAU             varchar(20),
    HO_TEN               varchar(50),
    DIA_CHI              varchar(50),
-   EMAIL                VA(50),
-   SDT                  VA(12),
+   EMAIL                varchar(50),
+   SDT                  varchar(12),
    primary key (MSNV)
 );
 
@@ -176,10 +174,10 @@ create table NGUOI_DUNG
 /*==============================================================*/
 create table NGUOI_LAP_PHIEU_NHAP
 (
-   CV_ID               int not null,
+   CV_ID2               int not null,
    MSNV                 varchar(10) not null,
-   PHIEUNHAP_ID        int not null,
-   primary key (CV_ID, MSNV, PHIEUNHAP_ID)
+   PHIEUNHAP_ID2        int not null,
+   primary key (CV_ID2, MSNV, PHIEUNHAP_ID2)
 );
 
 /*==============================================================*/
@@ -187,9 +185,9 @@ create table NGUOI_LAP_PHIEU_NHAP
 /*==============================================================*/
 create table NGUOI_XU_LY_CV
 (
-   CV_ID               int not null,
+   CV_ID2               int not null,
    MSNV                 varchar(10) not null,
-   primary key (CV_ID, MSNV)
+   primary key (CV_ID2, MSNV)
 );
 
 /*==============================================================*/
@@ -207,9 +205,9 @@ create table NOI_SAN_XUAT
 /*==============================================================*/
 create table PHIEU_NHAP
 (
-   PHIEUNHAP_ID        int not null,
+   PHIEUNHAP_ID2        int not null,
    PN_NGAY              date not null,
-   primary key (PHIEUNHAP_ID)
+   primary key (PHIEUNHAP_ID2)
 );
 
 /*==============================================================*/
@@ -217,9 +215,9 @@ create table PHIEU_NHAP
 /*==============================================================*/
 create table PHIEU_XUAT
 (
-   PHIEUXUAT_ID        int not null,
+   PHIEUXUAT_ID2        int not null,
    PHIEU_XUAT_NGAY      date,
-   primary key (PHIEUXUAT_ID)
+   primary key (PHIEUXUAT_ID2)
 );
 
 /*==============================================================*/
@@ -261,10 +259,10 @@ create table VAT_TU_XUAT
    NSX_MA               char(3) not null,
    CL_MA                char(3) not null,
    VT_MA                char(16) not null,
-   CV_ID               int not null,
-   PHIEUXUAT_ID        int not null,
+   CV_ID2               int not null,
+   PHIEUXUAT_ID2        int not null,
    SO_LUONG             int,
-   primary key (NSX_MA, CL_MA, VT_MA, CV_ID, PHIEUXUAT_ID)
+   primary key (NSX_MA, CL_MA, VT_MA, CV_ID2, PHIEUXUAT_ID2)
 );
 
 /*==============================================================*/
@@ -272,10 +270,10 @@ create table VAT_TU_XUAT
 /*==============================================================*/
 create table XU_LY_CHI_TIET
 (
-   CV_ID               int not null,
+   CV_ID2               int not null,
    MSNV                 varchar(10) not null,
    VAI_TRO_ID           int not null,
-   primary key (CV_ID, MSNV, VAI_TRO_ID)
+   primary key (CV_ID2, MSNV, VAI_TRO_ID)
 );
 
 /*==============================================================*/
@@ -286,75 +284,75 @@ create table YEU_CAU
    NSX_MA               char(3) not null,
    CL_MA                char(3) not null,
    VT_MA                char(16) not null,
-   CV_ID               int not null,
+   CV_ID2               int not null,
    DA_XOA               bool,
    YEU_CAU_SO_LUONG     int,
-   primary key (NSX_MA, CL_MA, VT_MA, CV_ID)
+   primary key (NSX_MA, CL_MA, VT_MA, CV_ID2)
 );
 
 alter table CHI_TIET_PHIEU_NHAP add constraint FK_CHITIET_VATTU_NHAP foreign key (NSX_MA, CL_MA, VT_MA)
-      references CHI_TIET_VAT_TU (NSX_MA, CL_MA, VT_MA) on delete cascade;
+      references CHI_TIET_VAT_TU (NSX_MA, CL_MA, VT_MA) on delete restrict on update restrict;
 
-alter table CHI_TIET_PHIEU_NHAP add constraint FK_VATTU_NHAP2 foreign key (PHIEUNHAP_ID)
-      references PHIEU_NHAP (PHIEUNHAP_ID) on delete cascade;
+alter table CHI_TIET_PHIEU_NHAP add constraint FK_VATTU_NHAP2 foreign key (PHIEUNHAP_ID2)
+      references PHIEU_NHAP (PHIEUNHAP_ID2) on delete restrict on update restrict;
 
 alter table CHI_TIET_VAT_TU add constraint FK_CHATLUONG_YEUCAU2 foreign key (CL_MA)
-      references CHAT_LUONG (CL_MA) on delete cascade;
+      references CHAT_LUONG (CL_MA) on delete restrict on update restrict;
 
 alter table CHI_TIET_VAT_TU add constraint FK_RELATIONSHIP_15 foreign key (VT_MA)
-      references VAT_TU (VT_MA) on delete cascade;
+      references VAT_TU (VT_MA) on delete restrict on update restrict;
 
 alter table CHI_TIET_VAT_TU add constraint FK_SANXUAT2 foreign key (NSX_MA)
-      references NOI_SAN_XUAT (NSX_MA) on delete cascade;
+      references NOI_SAN_XUAT (NSX_MA) on delete restrict on update restrict;
 
 alter table CONG_VAN add constraint FK_DONVI_CONGVAN2 foreign key (DV_MA)
-      references DON_VI (DV_MA) on delete cascade;
+      references DON_VI (DV_MA) on delete restrict on update restrict;
 
-alter table CONG_VAN add constraint FK_FILE_CONGVAN2 foreign key (FILE_ID)
-      references FILE (FILE_ID) on delete cascade;
+alter table CONG_VAN add constraint FK_FILE_CONGVAN2 foreign key (FILE_ID2)
+      references FILE (FILE_ID2) on delete restrict on update restrict;
 
 alter table CONG_VAN add constraint FK_MUCDICH2 foreign key (MUC_DICH_MA)
-      references MUC_DICH (MUC_DICH_MA) on delete cascade;
+      references MUC_DICH (MUC_DICH_MA) on delete restrict on update restrict;
 
 alter table CONG_VAN add constraint FK_RELATIONSHIP_11 foreign key (TT_MA)
-      references TRANG_THAI (TT_MA) on delete cascade;
+      references TRANG_THAI (TT_MA) on delete restrict on update restrict;
 
-alter table LAP_PHIEU_XUAT add constraint FK_PHIEUXUAT_VATTU2 foreign key (PHIEUXUAT_ID)
-      references PHIEU_XUAT (PHIEUXUAT_ID) on delete cascade;
+alter table LAP_PHIEU_XUAT add constraint FK_PHIEUXUAT_VATTU2 foreign key (PHIEUXUAT_ID2)
+      references PHIEU_XUAT (PHIEUXUAT_ID2) on delete restrict on update restrict;
 
-alter table LAP_PHIEU_XUAT add constraint FK_VT_XUAT2 foreign key (CV_ID, MSNV)
-      references NGUOI_XU_LY_CV (CV_ID, MSNV) on delete cascade;
+alter table LAP_PHIEU_XUAT add constraint FK_VT_XUAT2 foreign key (CV_ID2, MSNV)
+      references NGUOI_XU_LY_CV (CV_ID2, MSNV) on delete restrict on update restrict;
 
 alter table NGUOI_DUNG add constraint FK_RELATIONSHIP_2 foreign key (CD_MA)
-      references CHUC_DANH (CD_MA) on delete cascade;
+      references CHUC_DANH (CD_MA) on delete restrict on update restrict;
 
-alter table NGUOI_LAP_PHIEU_NHAP add constraint FK_NGUOILAP_PHIEUNHAP foreign key (CV_ID, MSNV)
-      references NGUOI_XU_LY_CV (CV_ID, MSNV) on delete cascade;
+alter table NGUOI_LAP_PHIEU_NHAP add constraint FK_NGUOILAP_PHIEUNHAP foreign key (CV_ID2, MSNV)
+      references NGUOI_XU_LY_CV (CV_ID2, MSNV) on delete restrict on update restrict;
 
-alter table NGUOI_LAP_PHIEU_NHAP add constraint FK_NHAP_VATTU2 foreign key (PHIEUNHAP_ID)
-      references PHIEU_NHAP (PHIEUNHAP_ID) on delete cascade;
+alter table NGUOI_LAP_PHIEU_NHAP add constraint FK_NHAP_VATTU2 foreign key (PHIEUNHAP_ID2)
+      references PHIEU_NHAP (PHIEUNHAP_ID2) on delete restrict on update restrict;
 
 alter table NGUOI_XU_LY_CV add constraint FK_RELATIONSHIP_14 foreign key (MSNV)
-      references NGUOI_DUNG (MSNV) on delete cascade;
+      references NGUOI_DUNG (MSNV) on delete restrict on update restrict;
 
-alter table NGUOI_XU_LY_CV add constraint FK_XULY2 foreign key (CV_ID)
-      references CONG_VAN (CV_ID) on delete cascade;
+alter table NGUOI_XU_LY_CV add constraint FK_XULY2 foreign key (CV_ID2)
+      references CONG_VAN (CV_ID2) on delete restrict on update restrict;
 
-alter table VAT_TU_XUAT add constraint FK_RELATIONSHIP_21 foreign key (PHIEUXUAT_ID)
-      references PHIEU_XUAT (PHIEUXUAT_ID) on delete cascade;
+alter table VAT_TU_XUAT add constraint FK_RELATIONSHIP_21 foreign key (PHIEUXUAT_ID2)
+      references PHIEU_XUAT (PHIEUXUAT_ID2) on delete restrict on update restrict;
 
-alter table VAT_TU_XUAT add constraint FK_VATTU_DUOCXUAT foreign key (NSX_MA, CL_MA, VT_MA, CV_ID)
-      references YEU_CAU (NSX_MA, CL_MA, VT_MA, CV_ID) on delete cascade;
+alter table VAT_TU_XUAT add constraint FK_VATTU_DUOCXUAT foreign key (NSX_MA, CL_MA, VT_MA, CV_ID2)
+      references YEU_CAU (NSX_MA, CL_MA, VT_MA, CV_ID2) on delete restrict on update restrict;
 
 alter table XU_LY_CHI_TIET add constraint FK_VAITRO_CANXULY foreign key (VAI_TRO_ID)
-      references VAI_TRO (VAI_TRO_ID) on delete cascade;
+      references VAI_TRO (VAI_TRO_ID) on delete restrict on update restrict;
 
-alter table XU_LY_CHI_TIET add constraint FK_XULYCHO foreign key (CV_ID, MSNV)
-      references NGUOI_XU_LY_CV (CV_ID, MSNV) on delete cascade;
+alter table XU_LY_CHI_TIET add constraint FK_XULYCHO foreign key (CV_ID2, MSNV)
+      references NGUOI_XU_LY_CV (CV_ID2, MSNV) on delete restrict on update restrict;
 
-alter table YEU_CAU add constraint FK_RELATIONSHIP_13 foreign key (CV_ID)
-      references CONG_VAN (CV_ID) on delete cascade;
+alter table YEU_CAU add constraint FK_RELATIONSHIP_13 foreign key (CV_ID2)
+      references CONG_VAN (CV_ID2) on delete restrict on update restrict;
 
 alter table YEU_CAU add constraint FK_RELATIONSHIP_7 foreign key (NSX_MA, CL_MA, VT_MA)
-      references CHI_TIET_VAT_TU (NSX_MA, CL_MA, VT_MA) on delete cascade;
+      references CHI_TIET_VAT_TU (NSX_MA, CL_MA, VT_MA) on delete restrict on update restrict;
 
