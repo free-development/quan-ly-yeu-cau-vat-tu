@@ -19,7 +19,6 @@
 	<mapping resource="NguoiDung.hbm.xml"/>
 	<mapping resource="CTNguoiDung.hbm.xml"/>
 	<mapping resource="ChucDanh.hbm.xml"/>
-	<mapping resource="DonVi.hbm.xml"/>
 
   <!-- 
 	<mapping resource=".hbm.xml"/>
