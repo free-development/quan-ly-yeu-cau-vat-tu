@@ -17,12 +17,9 @@ public class ChucDanhDAO {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
-	public ChucDanh getChucDanh(final String clMa) {
+	public ChucDanh getChucDanh(final String cdMa) {
 		session.beginTransaction();
-		
-		ChucDanh chucDanh = (ChucDanh) session.get(ChucDanh.class, clMa);
-//		session.
-		
+		ChucDanh chucDanh = (ChucDanh) session.get(ChucDanh.class, cdMa);
 		session.getTransaction().commit();
 		return chucDanh;
 	}

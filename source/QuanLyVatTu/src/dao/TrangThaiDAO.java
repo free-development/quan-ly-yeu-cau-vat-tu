@@ -2,46 +2,46 @@ package dao;
 
 import java.util.List;
 
-import model.VatTu;
+import model.TrangThai;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import util.HibernateUtil;
 
-public class VatTuDAO {
+public class TrangThaiDAO {
 	
 	private SessionFactory template;  
 	private Session session;
-	public VatTuDAO() {
+	public TrangThaiDAO() {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
-	public VatTu getVatTu(final String vtMa) {
+	public TrangThai getTrangThai(final String ttMa) {
 		session.beginTransaction();
-		VatTu vatTu = (VatTu) session.get(VatTu.class, vtMa);
+		TrangThai trangThai = (TrangThai) session.get(TrangThai.class, ttMa);
 		session.getTransaction().commit();
-		return vatTu;
+		return trangThai;
 	}
-	public List<VatTu> getAllVatTu() {
+	public List<TrangThai> getAllTrangThai() {
 		session.beginTransaction();
-		List<VatTu> vatTuList = (List<VatTu>) session.createCriteria(VatTu.class).list();
+		List<TrangThai> trangThaiList = (List<TrangThai>) session.createCriteria(TrangThai.class).list();
 		session.getTransaction().commit();
-		return vatTuList;
+		return trangThaiList;
 	}
-	public void addVatTu(VatTu vatTu){
+	public void addTrangThai(TrangThai trangThai){
 		session.beginTransaction();
-		session.save(vatTu);
-		session.getTransaction().commit();
-	}
-	public void updateVatTu(VatTu vatTu){
-		session.beginTransaction();
-		session.update(vatTu);
+		session.save(trangThai);
 		session.getTransaction().commit();
 	}
-	public void deleteVatTu(VatTu vatTu){
+	public void updateTrangThai(TrangThai trangThai){
 		session.beginTransaction();
-		session.delete(vatTu);
+		session.update(trangThai);
+		session.getTransaction().commit();
+	}
+	public void deleteTrangThai(TrangThai trangThai){
+		session.beginTransaction();
+		session.delete(trangThai);
 		session.getTransaction().commit();
 	}
 	

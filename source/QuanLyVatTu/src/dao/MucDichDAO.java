@@ -2,46 +2,49 @@ package dao;
 
 import java.util.List;
 
-import model.VatTu;
+import model.MucDich;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import util.HibernateUtil;
 
-public class VatTuDAO {
+public class MucDichDAO {
 	
 	private SessionFactory template;  
 	private Session session;
-	public VatTuDAO() {
+	public MucDichDAO() {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
-	public VatTu getVatTu(final String vtMa) {
+	public MucDich getMucDich(final String mdMa) {
 		session.beginTransaction();
-		VatTu vatTu = (VatTu) session.get(VatTu.class, vtMa);
+		
+		MucDich mucDich = (MucDich) session.get(MucDich.class, mdMa);
+//		session.
+		
 		session.getTransaction().commit();
-		return vatTu;
+		return mucDich;
 	}
-	public List<VatTu> getAllVatTu() {
+	public List<MucDich> getAllMucDich() {
 		session.beginTransaction();
-		List<VatTu> vatTuList = (List<VatTu>) session.createCriteria(VatTu.class).list();
+		List<MucDich> mucDichList = (List<MucDich>) session.createCriteria(MucDich.class).list();
 		session.getTransaction().commit();
-		return vatTuList;
+		return mucDichList;
 	}
-	public void addVatTu(VatTu vatTu){
+	public void addMucDich(MucDich mucDich){
 		session.beginTransaction();
-		session.save(vatTu);
-		session.getTransaction().commit();
-	}
-	public void updateVatTu(VatTu vatTu){
-		session.beginTransaction();
-		session.update(vatTu);
+		session.save(mucDich);
 		session.getTransaction().commit();
 	}
-	public void deleteVatTu(VatTu vatTu){
+	public void updateMucDich(MucDich mucDich){
 		session.beginTransaction();
-		session.delete(vatTu);
+		session.update(mucDich);
+		session.getTransaction().commit();
+	}
+	public void deleteMucDich(MucDich mucDich){
+		session.beginTransaction();
+		session.delete(mucDich);
 		session.getTransaction().commit();
 	}
 	

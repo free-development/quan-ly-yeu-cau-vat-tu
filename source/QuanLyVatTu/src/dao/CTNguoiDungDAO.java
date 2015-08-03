@@ -19,12 +19,9 @@ public class CTNguoiDungDAO {
 		session = template.openSession();
 	}
 	
-	public CTNguoiDung getCTNguoiDung(final String clMa) {
+	public CTNguoiDung getCTNguoiDung(final String msnv) {
 		session.beginTransaction();
-		
-		CTNguoiDung ctNguoiDung = (CTNguoiDung) session.get(CTNguoiDung.class, clMa);
-//		session.
-		
+		CTNguoiDung ctNguoiDung = (CTNguoiDung) session.get(CTNguoiDung.class, msnv);
 		session.getTransaction().commit();
 		return ctNguoiDung;
 	}

@@ -2,46 +2,46 @@ package dao;
 
 import java.util.List;
 
-import model.VatTu;
+import model.CongVan;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import util.HibernateUtil;
 
-public class VatTuDAO {
+public class CongVanDAO {
 	
 	private SessionFactory template;  
 	private Session session;
-	public VatTuDAO() {
+	public CongVanDAO() {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
-	public VatTu getVatTu(final String vtMa) {
+	public CongVan getCongVan(final int cvId) {
 		session.beginTransaction();
-		VatTu vatTu = (VatTu) session.get(VatTu.class, vtMa);
+		CongVan congVan = (CongVan) session.get(CongVan.class, cvId);
 		session.getTransaction().commit();
-		return vatTu;
+		return congVan;
 	}
-	public List<VatTu> getAllVatTu() {
+	public List<CongVan> getAllCongVan() {
 		session.beginTransaction();
-		List<VatTu> vatTuList = (List<VatTu>) session.createCriteria(VatTu.class).list();
+		List<CongVan> congVanList = (List<CongVan>) session.createCriteria(CongVan.class).list();
 		session.getTransaction().commit();
-		return vatTuList;
+		return congVanList;
 	}
-	public void addVatTu(VatTu vatTu){
+	public void addCongVan(CongVan congVan){
 		session.beginTransaction();
-		session.save(vatTu);
-		session.getTransaction().commit();
-	}
-	public void updateVatTu(VatTu vatTu){
-		session.beginTransaction();
-		session.update(vatTu);
+		session.save(congVan);
 		session.getTransaction().commit();
 	}
-	public void deleteVatTu(VatTu vatTu){
+	public void updateCongVan(CongVan congVan){
 		session.beginTransaction();
-		session.delete(vatTu);
+		session.update(congVan);
+		session.getTransaction().commit();
+	}
+	public void deleteCongVan(CongVan congVan){
+		session.beginTransaction();
+		session.delete(congVan);
 		session.getTransaction().commit();
 	}
 	

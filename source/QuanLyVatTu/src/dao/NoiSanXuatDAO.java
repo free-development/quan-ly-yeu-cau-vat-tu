@@ -17,10 +17,10 @@ public class NoiSanXuatDAO {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
-	public NoiSanXuat getNoiSanXuat(final String clMa) {
+	public NoiSanXuat getNoiSanXuat(final String nsxMa) {
 		session.beginTransaction();
 		
-		NoiSanXuat noiSanXuat = (NoiSanXuat) session.get(NoiSanXuat.class, clMa);
+		NoiSanXuat noiSanXuat = (NoiSanXuat) session.get(NoiSanXuat.class, nsxMa);
 //		session.
 		
 		session.getTransaction().commit();

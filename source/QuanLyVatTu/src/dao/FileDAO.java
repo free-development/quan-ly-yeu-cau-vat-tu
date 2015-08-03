@@ -2,46 +2,46 @@ package dao;
 
 import java.util.List;
 
-import model.VatTu;
+import model.File;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import util.HibernateUtil;
 
-public class VatTuDAO {
+public class FileDAO {
 	
 	private SessionFactory template;  
 	private Session session;
-	public VatTuDAO() {
+	public FileDAO() {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
-	public VatTu getVatTu(final String vtMa) {
+	public File getFile(final int fileId) {
 		session.beginTransaction();
-		VatTu vatTu = (VatTu) session.get(VatTu.class, vtMa);
+		File file = (File) session.get(File.class, fileId);
 		session.getTransaction().commit();
-		return vatTu;
+		return file;
 	}
-	public List<VatTu> getAllVatTu() {
+	public List<File> getAllFile() {
 		session.beginTransaction();
-		List<VatTu> vatTuList = (List<VatTu>) session.createCriteria(VatTu.class).list();
+		List<File> fileList = (List<File>) session.createCriteria(File.class).list();
 		session.getTransaction().commit();
-		return vatTuList;
+		return fileList;
 	}
-	public void addVatTu(VatTu vatTu){
+	public void addFile(File file){
 		session.beginTransaction();
-		session.save(vatTu);
-		session.getTransaction().commit();
-	}
-	public void updateVatTu(VatTu vatTu){
-		session.beginTransaction();
-		session.update(vatTu);
+		session.save(file);
 		session.getTransaction().commit();
 	}
-	public void deleteVatTu(VatTu vatTu){
+	public void updateFile(File file){
 		session.beginTransaction();
-		session.delete(vatTu);
+		session.update(file);
+		session.getTransaction().commit();
+	}
+	public void deleteFile(File file){
+		session.beginTransaction();
+		session.delete(file);
 		session.getTransaction().commit();
 	}
 	

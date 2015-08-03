@@ -17,10 +17,10 @@ public class DonViDAO {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
-	public DonVi getDonVi(final String clMa) {
+	public DonVi getDonVi(final String dvMa) {
 		session.beginTransaction();
 		
-		DonVi donVi = (DonVi) session.get(DonVi.class, clMa);
+		DonVi donVi = (DonVi) session.get(DonVi.class, dvMa);
 //		session.
 		
 		session.getTransaction().commit();
