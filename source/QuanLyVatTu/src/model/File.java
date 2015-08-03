@@ -4,34 +4,34 @@ import java.io.Serializable;
 
 public class File implements Serializable {
 	private int fileId;
-	private String fileDiaChi;
-	private String fileMoTa;
+	private String diaChi;
+	private String moTa;
 	
 	public File() {
 		this.fileId = fileId;
-		this.fileDiaChi = fileDiaChi;
-		this.fileMoTa = fileMoTa;
+		this.diaChi = diaChi;
+		this.moTa = moTa;
 	}
 	
 	/**
 	 * @param fileId
-	 * @param fileDiaChi
-	 * @param fileMoTa
+	 * @param diaChi
+	 * @param moTa
 	 */
 	public File(String fileDiaChi, String fileMoTa) {
-		this.fileDiaChi = fileDiaChi;
-		this.fileMoTa = fileMoTa;
+		this.diaChi = fileDiaChi;
+		this.moTa = fileMoTa;
 	}
 	
 	/**
 	 * @param fileId
-	 * @param fileDiaChi
-	 * @param fileMoTa
+	 * @param diaChi
+	 * @param moTa
 	 */
 	public File(int fileId, String fileDiaChi, String fileMoTa) {
 		this.fileId = fileId;
-		this.fileDiaChi = fileDiaChi;
-		this.fileMoTa = fileMoTa;
+		this.diaChi = fileDiaChi;
+		this.moTa = fileMoTa;
 	}
 	/**
 	 * @return the fileId
@@ -46,28 +46,28 @@ public class File implements Serializable {
 		this.fileId = fileId;
 	}
 	/**
-	 * @return the fileDiaChi
+	 * @return the diaChi
 	 */
-	public String getFileDiaChi() {
-		return fileDiaChi;
+	public String getDiaChi() {
+		return diaChi;
 	}
 	/**
-	 * @param fileDiaChi the fileDiaChi to set
+	 * @param diaChi the diaChi to set
 	 */
-	public void setFileDiaChi(String fileDiaChi) {
-		this.fileDiaChi = fileDiaChi;
+	public void setDiaChi(String fileDiaChi) {
+		this.diaChi = fileDiaChi;
 	}
 	/**
-	 * @return the fileMoTa
+	 * @return the moTa
 	 */
-	public String getFileMoTa() {
-		return fileMoTa;
+	public String getMoTa() {
+		return moTa;
 	}
 	/**
-	 * @param fileMoTa the fileMoTa to set
+	 * @param moTa the moTa to set
 	 */
-	public void setFileMoTa(String fileMoTa) {
-		this.fileMoTa = fileMoTa;
+	public void setMoTa(String fileMoTa) {
+		this.moTa = fileMoTa;
 	}
 	
 }
