@@ -19,27 +19,32 @@
 	<mapping resource="NguoiDung.hbm.xml"/>
 	<mapping resource="CTNguoiDung.hbm.xml"/>
 	<mapping resource="ChucDanh.hbm.xml"/>
+	<mapping resource="DonVi.hbm.xml"/>
+	<mapping resource="Congvan.hbm.xml"/>
+	<mapping resource="MucDich.hbm.xml"/>
+	<mapping resource="TrangThai.hbm.xml"/>
+	<mapping resource="File.hbm.xml"/>
 
   <!-- 
 	<mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
-	  <mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
+	<mapping resource=".hbm.xml"/>
 	      	    	
     	
     	

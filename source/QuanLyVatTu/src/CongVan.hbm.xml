@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 1, 2015 4:15:54 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="model.CongVan" table="CONGVAN" catalog="vattu">
         <id name="cvId" type="int">
@@ -27,16 +26,16 @@
             <column name="BUTPHE" />
         </property>
         <many-to-one name="mucDich" class="model.MucDich" fetch="select">
-            <column name="MUCDICH" />
+            <column name="MDMA" />
         </many-to-one>
         <many-to-one name="trangThai" class="model.TrangThai" fetch="select">
-            <column name="TRANGTHAI" />
+            <column name="TTMA" />
         </many-to-one>
         <many-to-one name="donVi" class="model.DonVi" fetch="select">
-            <column name="DONVI" />
+            <column name="DVMA" />
         </many-to-one>
         <many-to-one name="file" class="model.File" fetch="select">
-            <column name="FILE" />
+            <column name="FILEID" />
         </many-to-one>
     </class>
 </hibernate-mapping>
