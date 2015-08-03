@@ -51,7 +51,7 @@ public class BpsdController extends HttpServlet {
 			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
 			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
 		}
-		
+//		if("manageBpsd".equalsIgnoreCase(action))
 		return new ModelAndView("login");
 	}
 
