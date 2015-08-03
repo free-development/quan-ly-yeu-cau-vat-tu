@@ -117,17 +117,17 @@
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->
-			<form id="add-form" method="get" action="/QuanLyVatTu/manageNsx.html">
+			<form id="add-form" method="get" action="/QuanLyVatTu/manageVaiTro.html">
 				<div class = "input-table">
 					<table>
-						<div class = "form-title">Thêm nơi sản xuất</div>
+						<div class = "form-title">Thêm vai trò</div>
 						<tr>
-							<th><label for="MNSX">Mã NSX</label></th>
-							<td><input name="nsxMa" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+							<th><label for="id">ID</label></th>
+							<td><input name="id" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
-							<th class="label"><label for="MNSX">Tên NSX</label></th>
-							<td><input name="nsxTen" size="30px" align=left type="text" class="text" required title="Tên nơi sản xuất không được để trống"></td>
+							<th class="label"><label for="tenvaitro">Tên vai trò</label></th>
+							<td><input name="tenVaiTro" size="30px" align=left type="text" class="text" required title="Tên nơi sản xuất không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
@@ -143,19 +143,19 @@
 			<form id="update-form">
 				<div class="input-table">
 					<table>
-						<div class="form-title">Cập nhật nơi sản xuất</div>
+						<div class="form-title">Cập nhật vai trò</div>
 						<tr>
-							<th><label for="MNSX">Mã NSX</label></th>
-							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MNSX" readonly></td>
+							<th><label for="id">ID</label></th>
+							<td><input name="id" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MNSX" readonly></td>
 						</tr>
 						<tr>
-							<th><label for="MNSX">Tên NSX</label></th>
-							<td><input name="" size="30px" type="text" class="text" required title="Tên nơi sản xuất không được để trống"></td>
+							<th><label for="tenvaitro">Tên vai trò</label></th>
+							<td><input name="tenVaiTro" size="30px" type="text" class="text" required title="Tên vai trò không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
 				<div class="group-button">
-						<input type="hidden" name="action" value = "UpdateNsx"> 
+						<input type="hidden" name="action" value = "UpdateVaiTro"> 
 						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
