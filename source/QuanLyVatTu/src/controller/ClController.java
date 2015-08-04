@@ -10,16 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.ChatLuong;
-import model.DonVi;
-import model.NoiSanXuat;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.ChatLuongDAO;
-import dao.NoiSanXuatDAO;
-
 
 @Controller
 public class ClController extends HttpServlet {
@@ -27,7 +23,6 @@ public class ClController extends HttpServlet {
 	@RequestMapping("/manageCl")
 	public ModelAndView manageNsx(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
-		
 		String action = request.getParameter("action");
 		if("AddCl".equalsIgnoreCase(action)) {
 			String clMa = request.getParameter("clMa");

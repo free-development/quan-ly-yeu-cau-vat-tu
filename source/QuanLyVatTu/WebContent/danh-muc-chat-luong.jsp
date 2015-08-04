@@ -123,11 +123,11 @@
 						<div class="form-title">Thêm chất lượng</div>
 						<tr>
 							<td class="input"><label for="MCL">Mã CL</label></td>
-							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+							<td><input name="clMa" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
 							<th class="input"><label for="MMD">Tên CL</label></td>
-							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên chất lượng không được để trống"></td>
+							<td><input name="clTen" size="30px" align=left type="text" class="text" required title="Tên chất lượng không được để trống"></td>
 						</tr>	
 					</table>
 				</div>

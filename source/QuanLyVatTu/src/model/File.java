@@ -18,8 +18,8 @@ public class File implements Serializable {
 	 * @param diaChi
 	 * @param moTa
 	 */
-	public File(String fileDiaChi, String fileMoTa) {
-		this.diaChi = fileDiaChi;
+	public File(String diaChi, String fileMoTa) {
+		this.diaChi = diaChi;
 		this.moTa = fileMoTa;
 	}
 	
@@ -28,9 +28,9 @@ public class File implements Serializable {
 	 * @param diaChi
 	 * @param moTa
 	 */
-	public File(int fileId, String fileDiaChi, String fileMoTa) {
+	public File(int fileId, String diaChi, String fileMoTa) {
 		this.fileId = fileId;
-		this.diaChi = fileDiaChi;
+		this.diaChi = diaChi;
 		this.moTa = fileMoTa;
 	}
 	/**
@@ -54,8 +54,8 @@ public class File implements Serializable {
 	/**
 	 * @param diaChi the diaChi to set
 	 */
-	public void setDiaChi(String fileDiaChi) {
-		this.diaChi = fileDiaChi;
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
 	}
 	/**
 	 * @return the moTa
