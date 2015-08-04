@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="style/style-noi-san-xuat.css" type="text/css">
         <link rel="stylesheet" href="style/style.css" type="text/css">
 		<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
+		<script src="js/jquery.min.js"></script>
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 	<script type="text/javascript">
 		function showForm(formId, check){
@@ -26,6 +27,41 @@
 		function confirmDelete(){
 			return confirm('Bạn có chắc xóa');
 		}
+
+		 $(document).ready(function() {
+			 	var nsxMa =  $("input[nsxMa]").val();
+// 				var nsxMa =  $("#updateNsx").val();
+		      
+				$("#updateNsx").click(function(event) {
+		    	  
+					$.ajax({
+						url: "/QuanLyVatTu/preEditNsx.html",	
+					  	type: "GET",
+					  	data: { "nsxMa": nsxMa},
+// 					  	beforeSend: function(xhr) {
+// 					  		xhr.setRequestHeader("Accept", "application/json");
+// 					  		xhr.setRequestHeader("Content-Type", "application/json");
+// 					  	},
+					  	
+					  	success: function(smartphone) {
+					  		var respContent = "";
+					  		var rowToDelete = $(event.target).closest("tr");
+					  		
+					  		rowToDelete.remove();
+					  		
+					  		respContent += "<span class='success'>Smartphone was deleted: [";
+					  		respContent += smartphone.producer + " : ";
+					  		respContent += smartphone.model + " : " ;
+					  		respContent += smartphone.price + "]</span>";
+					  		
+					  		$("#addForm").html(respContent);   		
+					  	}
+					});
+		  
+					event.preventDefault();
+				});
+		       
+		}); 
 	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
@@ -113,8 +149,9 @@
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteNsx">
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-								 <button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+<!-- 					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button> -->
+						<button type="button" id="updateNsx" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+					<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->

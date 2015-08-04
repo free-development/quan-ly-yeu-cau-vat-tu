@@ -4,16 +4,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.DonVi;
 import model.NoiSanXuat;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.NoiSanXuatDAO;
@@ -50,5 +52,14 @@ public class NsxController extends HttpServlet {
 		}
 		return new ModelAndView("login");
 	}
-
+	
+	@RequestMapping(value="/preEditNsx", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public NoiSanXuat preEditNsx(@RequestParam("nsxMa") String nsxMa) {
+		System.out.println("****" + nsxMa + "****");
+		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
+		NoiSanXuat nsx = noiSanXuatDAO.getNoiSanXuat(nsxMa);
+		return nsx;
+	}
 }
