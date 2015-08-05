@@ -12,4 +12,7 @@ public class siteMap {
 	
 	public static final String bpsdManage = home +  "manageBpsd.html";
 	public static final String boPhanSuDung = "danh-muc-bo-phan";
+	
+	public static final String mdManage = home +  "manageMd.html";
+	public static final String mucDich = "danh-muc-muc-dich";
 }

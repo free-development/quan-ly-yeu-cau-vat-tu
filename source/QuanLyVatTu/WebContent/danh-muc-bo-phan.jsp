@@ -92,8 +92,8 @@
 								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
 								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
 								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-								<li><a href="<%= "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
-								<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.clManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>

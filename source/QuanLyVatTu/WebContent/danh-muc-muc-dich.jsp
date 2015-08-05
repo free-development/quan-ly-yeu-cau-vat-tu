@@ -1,5 +1,6 @@
 <%@page import="model.MucDich"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="map.siteMap"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -88,11 +89,11 @@
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
 							<ul>
-								<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản xuất</p></a></li>
-								<li><a href="danh-muc-chat-luong.html">Danh mục chất lượng</a></li>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
 								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-								<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử dụng</a></li>
-								<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
@@ -116,7 +117,8 @@
 				<div id="view-table">
 					<table>
 						<tr style="background:#199e5e">
-							<td class="left-column"><input type="checkbox" name="" class="checkAll"></td><th class="mid-column"> Mã mục đích</th>
+							<td class="left-column"><input type="checkbox" name="" class="checkAll"></td>
+							<th class="mid-column"> Mã mục đích</th>
 							<th class="right-column">Tên mục đích</th>
 						</tr>
 						<%
