@@ -1,11 +1,11 @@
-<%@page import="model.VaiTro"%>
+﻿<%@page import="model.VaiTro"%>
 <%@page import="map.siteMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>V�n ph?ng �i?n t? c�ng ty �i?n l?c C?n Th�</title>
+        <title>Văn phòng điện tử công ty điện lực Cần Thơ</title>
         <link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
 		<link rel="stylesheet" href="style/style-noi-san-xuat.css" type="text/css">
         <link rel="stylesheet" href="style/style.css" type="text/css">
@@ -24,7 +24,7 @@
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
 		}
 		function confirmDelete(){
-			return confirm('B?n c� ch?c x�a');
+			return confirm('Bạn có chắc xóa');
 		}
 	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -40,20 +40,20 @@
 					<img src="img/logo.png" alt="" id="logo" width=80 height=80/><br/>
 					<img src="img/textlogo.png" alt="" id="logo" width=80 height=20/>
 	-->
-					<div id="top_title">V�n ph?ng �i?n t?</div>
-					<div id="bottom-title">C�ng ty �i?n l?c c?n th�</div>
+					<div id="top_title">Văn phòng điện tử</div>
+					<div id="bottom-title">Công ty điện lực cần thơ</div>
 					<div class="search_form" id="search">
 						<form action="" method="post">
 <!--
 							<span class="search-select">
-								<select name="" ><option disabled selected>--T�y ch?n ki?m ki?m--</option></select>
+								<select name="" ><option disabled selected>--Tùy chọn kiếm kiềm--</option></select>
 								<option value=""></option>
 							</span>
 -->
 							
 							<span class="search-text">
 								&nbsp;
-							<input type="search" class="search" name="search_box" name="search" placeholder="T?m ki?m" />
+							<input type="search" class="search" name="search_box" name="search" placeholder="Tìm kiếm" />
 							</span>
 							<span class="search-button">
 							&nbsp;
@@ -65,28 +65,28 @@
 				</div>
 				<div class="main_menu">
 					<ul>
-						<li><a href="">Trang ch?</a></li>
-						<li><a href="">Danh m?c</a>
+						<li><a href="">Trang chủ</a></li>
+						<li><a href="">Danh mục</a>
 							<ul>
-								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh m?c n�i s?n xu?t</a></li>
-								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh m?c ch?t l�?ng</a></li>
-								<li><a href="danh-muc-vat-tu.html">Danh m?c v?t t�</a></li>
-								<li><a href="danh-muc-bo-phan.html">Danh m?c b? ph?n s? d?ng</a></li>
-								<li><a href="danh-muc-muc-dich.html">Danh m?c m?c ��ch</a></li>
-								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh m?c vai tr?</a></li>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
+								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
+								<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
 							</ul>
 						</li>
-						<li><a href="danh-muc-cong-van.html">C�ng v�n</a></li>
-						<li><a href="bao-cao.html">B�o c�o</a></li>
-<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia s?</a></li>-->
-						<li><a href="bao-cao.html">Qu?n l? ng�?i d�ng</a></li>
+						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
+						<li><a href="bao-cao.html">Báo cáo</a></li>
+<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
+						<li><a href="bao-cao.html">Quản lý người dùng</a></li>
 					</ul>
 					<div class="clear"></div>
 				</div>
 	
 				<div id="main-content">
 					<div id="title-content">
-		 Danh m?c vai tr?
+		 Danh mục vai trò
 		</div>
 		<div id="main-content">
 			
@@ -96,7 +96,7 @@
 						<tr style="background:#199e5e">
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>
 							<th class="mid-column">ID</th>
-							<th class="right-column">T�n vai tr?</th>
+							<th class="right-column">Tên vai trò</th>
 						</tr>
 						<%
 							if(listVaiTro != null) {
@@ -113,31 +113,31 @@
 				
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteVaiTro">
-					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Th�m</button>
-					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay �?i</button>
-					<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;X�a</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;B? qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Tho�t</button>
+					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+					<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->
 			<form id="add-form" method="get" action="<%=siteMap.vtManage %>">
 				<div class = "input-table">
 					<table>
-						<div class = "form-title">Th�m vai tr?</div>
+						<div class = "form-title">Thêm vai trò</div>
 						<tr>
 							<th><label for="id">ID</label></th>
-							<td><input name="vtId" type="text" class="text" required  title="M? n�i s?n xu?t kh�ng ��?c tr?ng"></td>
+							<td><input name="vtId" type="text" class="text" required  title="Mã nơi sản xuất không được trống"></td>
 						</tr>
 						<tr>
-							<th class="label"><label for="tenvaitro">T�n vai tr?</label></th>
-							<td><input name="vtTen" size="30px" align=left type="text" class="text" required title="T�n vai tr? kh�ng ��?c �? tr?ng"></td>
+							<th class="label"><label for="tenvaitro">Tên vai trò</label></th>
+							<td><input name="vtTen" size="30px" align=left type="text" class="text" required title="Tên vai trò không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
 				<div class="group-button">
 						<input type="hidden" name="action" value = "addVaiTro"> 
-						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Th�m</button>
-						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nh?p l?i</button>
-						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Tho�t</button>
+						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
 			</form>
 			
@@ -145,22 +145,22 @@
 			<form id="update-form">
 				<div class="input-table">
 					<table>
-						<div class="form-title">C?p nh?t vai tr?</div>
+						<div class="form-title">Cập nhật vai trò</div>
 						<tr>
 							<th><label for="id">ID</label></th>
-							<td><input name="vtId" type="text" class="text" required title="M? n�i s?n xu?t kh�ng �? tr?ng" value="MNSX" readonly></td>
+							<td><input name="vtId" type="text" class="text" required title="Mã nơi sản xuất không để trống" value="MNSX" readonly></td>
 						</tr>
 						<tr>
-							<th><label for="tenvaitro">T�n vai tr?</label></th>
-							<td><input name="vtTen" size="30px" type="text" class="text" required title="T�n vai tr? kh�ng ��?c �? tr?ng"></td>
+							<th><label for="tenvaitro">Tên vai trò</label></th>
+							<td><input name="vtTen" size="30px" type="text" class="text" required title="Tên vai trò không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
 				<div class="group-button">
 						<input type="hidden" name="action" value = "updateVaiTro"> 
-						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;L�u l?i</button>
-						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nh?p l?i</button>
-						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Tho�t</button>
+						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
 			</form>			
 		</div>
