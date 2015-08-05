@@ -45,9 +45,8 @@ public class BpsdController extends HttpServlet {
 //				if(s != null) {
 					donViDAO.deleteDonVi(donViDAO.getDonVi(s));
 //				}
-//				System.out.println(s);
 			}
-			
+			// Lấy tất cả đơn vị
 			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
 			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
 		}

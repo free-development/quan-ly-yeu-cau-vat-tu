@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-
+// Lớp đơn vị
 public class DonVi implements Serializable{
 	private String dvMa;
 	private String dvTen;

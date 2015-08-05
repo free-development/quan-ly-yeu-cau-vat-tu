@@ -17,6 +17,7 @@ public class DonViDAO {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
+	// Get Đơn vị từ mã
 	public DonVi getDonVi(final String dvMa) {
 		session.beginTransaction();
 		

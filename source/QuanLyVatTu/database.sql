@@ -3,7 +3,8 @@
 /* Created on:     02/08/2015 8:03:04 CH                        */
 /*==============================================================*/
 drop database if exists vattu;
-create database if not exists vattu;
+create database if not exists vattu DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_unicode_ci;;
 CREATE SCHEMA IF NOT EXISTS vattu DEFAULT CHARACTER SET utf8 ;
 use vattu;
 
@@ -53,7 +54,8 @@ create table CHATLUONG
    CLMA                 char(3) not null,
    CLTEN                varchar(20),
    primary key (CLMA)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: CHUCDANH                                              */
@@ -63,7 +65,8 @@ create table CHUCDANH
    CDMA                 varchar(10) not null,
    CDTEN                varchar(30),
    primary key (CDMA)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: CONGVAN                                               */
@@ -82,7 +85,8 @@ create table CONGVAN
    TRICHYEU             text,
    BUTPHE               text,
    primary key (CVID)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: CTNGUOIDUNG                                           */
@@ -91,7 +95,8 @@ create table CTNGUOIDUNG
 (
    MSNV                 varchar(10),
    MATKHAU              varchar(20)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: CTVATTU                                               */
@@ -104,7 +109,8 @@ create table CTVATTU
    DINHMUC              int,
    SOLUONGTON           int,
    primary key (NSXMA, CLMA, VTMA)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: DONVI                                                 */
@@ -117,7 +123,8 @@ create table DONVI
    EMAIL                varchar(50),
    DIACHI               varchar(100),
    primary key (DVMA)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: FILE                                                  */
@@ -128,7 +135,8 @@ create table FILE
    DIACHI               varchar(100),
    MOTA                 text,
    primary key (FILEID)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: MUCDICH                                               */
@@ -138,7 +146,8 @@ create table MUCDICH
    MDMA                 char(3) not null,
    MDTEN                varchar(50),
    primary key (MDMA)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: NGUOIDUNG                                             */
@@ -152,7 +161,8 @@ create table NGUOIDUNG
    EMAIL                varchar(50),
    SDT                  varchar(12),
    primary key (MSNV)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: NOISANXUAT                                            */
@@ -162,7 +172,8 @@ create table NOISANXUAT
    NSXMA                char(3) not null,
    NSXTEN               varchar(20),
    primary key (NSXMA)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: PHIEUNHAP                                             */
@@ -175,7 +186,8 @@ create table PHIEUNHAP
    VTID                 int not null,
    PNNGAY               date not null,
    primary key (PNID)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: PHIEUXUAT                                             */
@@ -188,7 +200,8 @@ create table PHIEUXUAT
    VTID                 int not null,
    PXNGAY               date,
    primary key (PXID)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: TRANGTHAI                                             */
@@ -198,7 +211,8 @@ create table TRANGTHAI
    TTMA                 varchar(10) not null,
    TTTEN                varchar(20),
    primary key (TTMA)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: VAITRO                                                */
@@ -208,7 +222,8 @@ create table VAITRO
    VTID                 int not null,
    VTTEN                varchar(50),
    primary key (VTID)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: VATTU                                                 */
@@ -219,7 +234,8 @@ create table VATTU
    VTTEN                varchar(50),
    DVT                  varchar(10),
    primary key (VTMA)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: VATTUNHAP                                             */
@@ -232,7 +248,8 @@ create table VATTUNHAP
    PNID                 int not null,
    SOLUONG              int,
    primary key (NSXMA, CLMA, VTMA, PNID)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: VATTUXUAT                                             */
@@ -246,7 +263,8 @@ create table VATTUXUAT
    PXID                 int not null,
    SOLUONG              int,
    primary key (NSXMA, CLMA, VTMA, CVID, PXID)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: VTCONGVAN                                             */
@@ -257,7 +275,8 @@ create table VTCONGVAN
    MSNV                 varchar(10) not null,
    VTID                 int not null,
    primary key (CVID, MSNV, VTID)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 /*==============================================================*/
 /* Table: YEUCAU                                                */
@@ -271,7 +290,8 @@ create table YEUCAU
    DAXOA                bool,
    YCSOLUONG            int,
    primary key (NSXMA, CLMA, VTMA, CVID)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 alter table CONGVAN add constraint FK_DONVI_CONGVAN2 foreign key (DVMA)
       references DONVI (DVMA) on delete restrict on update restrict;
