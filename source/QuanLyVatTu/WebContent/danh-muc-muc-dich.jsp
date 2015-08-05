@@ -126,7 +126,7 @@
 							int count = 0;
 							for(MucDich mucDich : listMucDich) {%>
 						<tr>
-							<td class="left-column"><input type="checkbox" name="clMa" value="<%=mucDich.getMdMa() %>" class="checkbox"></td>
+							<td class="left-column"><input type="checkbox" name="mdMa" value="<%=mucDich.getMdMa() %>" class="checkbox"></td>
 							<td class="col"><%=mucDich.getMdMa() %></td>
 							<td class="col"><%=mucDich.getMdTen() %></td>
 						</tr>
@@ -142,7 +142,7 @@
 				</div>
 			</form>	
 			
-			<form id="add-form" method="get" action="/QuanLyVatTu/manageMd.html">
+			<form id="add-form" method="get" action="<%=siteMap.mdManage + "?action=manageMd" %>">
 				<div class="input-table">
 					<table>
 						<div class="form-title">Thêm mục đích</div>
