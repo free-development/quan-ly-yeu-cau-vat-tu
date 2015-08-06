@@ -19,10 +19,12 @@
 }
 #add-form {
 	display: none;
-	width: 400px;
+	width: 30%;
 	position: absolute;
-	left: 483px;
-	top: 140px;
+	left: 35%;
+	right: 35%;
+	top: 65%;
+	bottom: 65%;
 	background-color: #DCEAF5;
 	border-radius: 10px;
 	padding-left: 10px;
@@ -31,10 +33,12 @@
 }
 #update-form {
 	display: none;
-	width: 400px;
+	width: 30%;
 	position: absolute;
-	left: 483px;
-	top: 140px;
+	left: 35%;
+	right: 35%;
+	top: 65%;
+	bottom: 65%;
 	background-color: #DCEAF5;
 	border-radius: 10px;
 	padding-left: 10px;

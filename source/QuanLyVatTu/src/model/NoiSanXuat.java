@@ -28,9 +28,12 @@ public class NoiSanXuat implements Serializable{
 	 * @param nsxMa
 	 * @param nsxTen
 	 */
-	public NoiSanXuat(String nxsMa, String nsxTen) {
-		this.nsxMa = nxsMa;
+	public NoiSanXuat(String nsxMa, String nsxTen) {
+		this.nsxMa = nsxMa;
 		this.nsxTen = nsxTen;
+	}
+	public NoiSanXuat(String nsxMa) {
+		this.nsxMa = nsxMa;
 	}
 	/**
 	 * @return the nsxMa
