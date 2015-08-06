@@ -32,6 +32,7 @@
     </head>
     <body>
     	<%
+    		String error = (String) request.getAttribute("error");
     		ArrayList<VaiTro> listVaiTro = (ArrayList<VaiTro>) request.getAttribute("vaiTroList");
     	%>
         <div class="wrapper">
@@ -71,8 +72,8 @@
 								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
 								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
 								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-								<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử dụng</a></li>
-								<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
 								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
 							</ul>
 						</li>

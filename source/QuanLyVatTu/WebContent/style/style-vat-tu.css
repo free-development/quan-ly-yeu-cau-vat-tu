@@ -177,4 +177,11 @@
 	padding-top: 20px	
 }
 
-
+.scroll-chi-tiet-vat-tu{
+    height: 100px;
+  width:  810px; 
+  display: auto;
+  border: 1px solid #CCCCCC;
+  margin: 1em 0;
+  overflow:scroll; /*chú ý dòng này*/
+}

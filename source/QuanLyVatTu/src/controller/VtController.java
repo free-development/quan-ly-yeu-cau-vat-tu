@@ -32,10 +32,17 @@ public class VtController extends HttpServlet {
 		if("AddVaiTro".equalsIgnoreCase(action)) {
 			int vtId = Integer.parseInt(request.getParameter("vtId"));
 			String vtTen = request.getParameter("vtTen");
+			if(vaiTroDAO.getVaiTro(vtId) != null){
+				request.setAttribute("error", "Vai trò đã tồn tại");
+//				request.setAttribute("vatTuList", vatTuList);
+				return new ModelAndView("danh-muc-vai-tro");
+			}
+			else{
+				vaiTroDAO.addVaiTro(new VaiTro(vtId,vtTen));
+				ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
+				return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
+			}
 			
-			vaiTroDAO.addVaiTro(new VaiTro(vtId,vtTen));
-			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
-			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
 		}
 		if("deleteVaiTro".equalsIgnoreCase(action)) {
 			String[] vtIdList = request.getParameterValues("vtId");
