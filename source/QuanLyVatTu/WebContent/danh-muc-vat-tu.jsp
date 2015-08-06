@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
 		<link rel="stylesheet" href="style/style.css" type="text/css">
 		 <link href="style/style-vat-tu.css" type="text/css" rel="stylesheet">
-    <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 	<script type="text/javascript">
 		function showForm(formId, check){
 			if (check)
@@ -129,8 +129,8 @@
 <!--
                     
 -->
-					<div id="view-table">
-						<div class="scroll-chi-tiet-vat-tu">
+					<div id="view-table" class="scroll-chi-tiet-vat-tu">
+					
 						<table>
 							<tr style="background:#199e5e">
 								<th class="left-column"><input type="checkbox" class="checkAll"></th>
@@ -161,7 +161,6 @@
 						<%} }%>
 					
 						</table>	
-						</div>	
 					</div>				
 
 					<div class="group-button">
