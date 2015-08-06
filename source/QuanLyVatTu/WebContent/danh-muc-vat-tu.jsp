@@ -130,6 +130,7 @@
                     
 -->
 					<div id="view-table">
+						<div class="scroll-chi-tiet-vat-tu">
 						<table>
 							<tr style="background:#199e5e">
 								<th class="left-column"><input type="checkbox" class="checkAll"></th>
@@ -159,7 +160,8 @@
 						</tr>
 						<%} }%>
 					
-						</table>		
+						</table>	
+						</div>	
 					</div>				
 
 					<div class="group-button">
