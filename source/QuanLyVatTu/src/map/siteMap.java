@@ -18,4 +18,7 @@ public class siteMap {
 	
 	public static final String vtManage = home +  "manageVt.html";
 	public static final String vaiTro = "danh-muc-vai-tro";
+	
+	public static final String ndManage = home +  "ndManage.html";
+	public static final String chucDanh = home +  "them-nguoi-dung";
 }

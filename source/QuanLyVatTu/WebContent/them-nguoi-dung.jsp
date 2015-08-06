@@ -42,6 +42,7 @@
 						alert("Mật khẩu nhập lại chưa chính xác. Vui lòng kiểm tra lại!");
 						return false;
 					}
+					return true;
 				}
 		</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,9 +50,7 @@
     </head>
     <body>
     
-    	<%
-    		ArrayList<NguoiDung> listNguoiDung = (ArrayList<NguoiDung>) request.getAttribute("nguoiDungList");
-    	%>
+    	
     	<%
     		ArrayList<ChucDanh> listChucDanh = (ArrayList<ChucDanh>) request.getAttribute("chucDanhList");
     	%>
@@ -64,7 +63,7 @@
 					<div id="top_title">Văn phòng điện tử</div>
 					<div id="bottom-title">Công ty điện lực cần thơ</div>
 					<div class="search_form" id="search">
-						<form action="" method="post">
+						<form method="post">
 <!--
 							<span class="search-select">
 								<select name="" ><option disabled selected>--Tùy chọn kiếm kiềm--</option></select>
@@ -89,17 +88,17 @@
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
 							<ul>
-								<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản xuất</p></a></li>
-								<li><a href="danh-muc-chat-luong.html">Danh mục chất lượng</a></li>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
 								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-								<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử dụng</a></li>
-								<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.clManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
 						<li><a href="bao-cao.html">Báo cáo</a></li>
 <!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
-						<li><a href="bao-cao.html">Quản lý người dùng</a></li>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
 					</ul>
 					<div class="clear"></div>
 				</div>
@@ -107,7 +106,7 @@
 				<div id="title-content">Tạo tài khoản
 			</div>
 			<div id="main-content">
-				<form action="" method="post" name="taoTaiKhoan" action="/QuanLyVatTu/manageNd.html">
+				<form action="<%=siteMap.ndManage %>?action=AddNd" method="post" name="taoTaiKhoan" action="/QuanLyVatTu/manageNd.html">
 					<table>
 						<tr>
 							<td class="input"><label for="msnv">Mã số NV</label></td>
@@ -123,20 +122,24 @@
 							<td class="input"><label for="re-matkhau">Nhập lại mật khẩu</label></td>
 							<td><input type="password" required size="20" maxlength="20" title="Mật khẩu phải hơn 7 ký tự và nhỏ hơn 21" pattern=".{8,20}" class="text" id="nlmatkhau" name="re-matkhau"></td>
 						</tr>
-						<%
-							if(listChucDanh != null) {
-							int count = 0;
-							for(ChucDanh chucDanh : listChucDanh) {%>
+						
 						<tr>
 							<td class="input"><label for="chucdanh">Chức danh</label></td>
-							<td><select required title="Chức danh phải được chọn"  class="select" id="chucdanh" name="chucdanh">
+							<td>
+							<select required title="Chức danh phải được chọn"  class="select" id="chucdanh" name="chucdanh">
 								<option disabled selected value="">-- Chọn chức danh --</option>
-								<option value=<%=chucDanh.getCdMa()%>><%=chucDanh.getCdTen()%></option>
-								</select></td>
+								<%
+							
+									int count = 0;
+									for(ChucDanh chucDanh : listChucDanh)
+									{%>
+										<option value=<%=chucDanh.getCdMa()%>><%=chucDanh.getCdTen()%></option>
+									<%}
+								%>
+							</select>
+							</td>
 						</tr>
-						<%} }%>
 						
-
 						<tr>
 							<td class="input"><label for="hoten">Họ tên</label></td>
 							<td><input type="text" required size="20" maxlength="50" title="Họ tên không được chứa chữ số và ký tự đặc biệt" pattern="[a-zA-Z]*" class="text" id="hoten" name="hoten"></td>
@@ -161,14 +164,11 @@
 						<input type="hidden" name="action" value = "AddNd"> 
 						<button class="button" type="submit" onclick="return checkPassword();"><i class="fa fa-plus-circle"></i>&nbsp;Tạo mới</button> &nbsp;
 						<button class="button" type="reset"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button> &nbsp;
-						<button class="button" type="button"><i class="fa fa-sign-out"></i>&nbsp;Thoát</button>
+						<button class="button" type="button"><i class="fa fa-sign-out"></i>&nbsp;Thoát</button>;
 					</div>
 				</form>
 			</div>
 		</div>
-			
-				
-				
         </div>
     </body>
 </html>
