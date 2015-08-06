@@ -14,6 +14,8 @@ import model.ChucDanh;
 import model.DonVi;
 import model.NguoiDung;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.CTNguoiDungDAO;
@@ -24,31 +26,30 @@ import dao.NguoiDungDAO;
 /**
  * Servlet implementation class NdController
  */
-@WebServlet("/NdController")
+@Controller
 public class NdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	@RequestMapping("/ndManage")
 	public ModelAndView manageNd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
 		ChucDanhDAO chucDanhDAO = new ChucDanhDAO();
 		CTNguoiDungDAO ctNguoiDungDAO = new CTNguoiDungDAO();
 		String action = request.getParameter("action");
+		if ("manageNd".equalsIgnoreCase(action)) {
+			ArrayList<ChucDanh> chucDanhList = (ArrayList<ChucDanh>) new ChucDanhDAO().getAllChucDanh();
+			return new ModelAndView("them-nguoi-dung","chucDanhList", chucDanhList);
+		}
 		if("AddNd".equalsIgnoreCase(action)) {
 			String msnv = request.getParameter("msnv");
-			ChucDanh chucdanh = chucDanhDAO.getChucDanh("chucdanh");
+			String chucdanh = request.getParameter("chucdanh");
 			String matkhau = request.getParameter("matkhau");
 			String hoten = request.getParameter("hoten");
 			String sdt = request.getParameter("sdt");
 			String email = request.getParameter("email");
 			String diachi = request.getParameter("diachi");
-			nguoiDungDAO.addNguoiDung(new NguoiDung(msnv, hoten, email, diachi, sdt, chucdanh));
+			nguoiDungDAO.addNguoiDung(new NguoiDung(msnv, hoten, diachi, email, sdt, new ChucDanh(chucdanh)));
 			ctNguoiDungDAO.addCTNguoiDung(new CTNguoiDung(msnv,matkhau));
 			
-			ArrayList<NguoiDung> nguoiDungList =  (ArrayList<NguoiDung>) nguoiDungDAO.getAllNguoiDung();
-			ArrayList<ChucDanh> chucDanhList =  (ArrayList<ChucDanh>) chucDanhDAO.getAllChucDanh();
-			ArrayList<CTNguoiDung> ctNguoiDungList =  (ArrayList<CTNguoiDung>) ctNguoiDungDAO.getAllCTNguoiDung();
-			//return new ModelAndView("quan-ly-nguoi-dung", "nguoiDungList", nguoiDungList);
-			//return new ModelAndView("quan-ly-nguoi-dung", "ctNguoiDungList", ctNguoiDungList);
-			return new ModelAndView("quan-ly-nguoi-dung", "chucDanhList", chucDanhList);
 		}
 		return new ModelAndView("login");
 	}

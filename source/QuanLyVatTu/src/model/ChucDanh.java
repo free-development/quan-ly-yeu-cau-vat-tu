@@ -25,6 +25,9 @@ public class ChucDanh implements Serializable{
 	 * @param cdMa
 	 * @param cdTen
 	 */
+	public ChucDanh(String cdMa) {
+		this.cdMa = cdMa;
+	}
 	public ChucDanh(String cdMa, String cdTen) {
 		this.cdMa = cdMa;
 		this.cdTen = cdTen;
