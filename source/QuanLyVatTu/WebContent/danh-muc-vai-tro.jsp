@@ -1,4 +1,5 @@
-<%@page import="model.NoiSanXuat"%>
+﻿<%@page import="model.VaiTro"%>
+<%@page import="map.siteMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
@@ -31,7 +32,8 @@
     </head>
     <body>
     	<%
-    		ArrayList<NoiSanXuat> listNoiSanXuat = (ArrayList<NoiSanXuat>) request.getAttribute("noiSanXuatList");
+    		String error = (String) request.getAttribute("error");
+    		ArrayList<VaiTro> listVaiTro = (ArrayList<VaiTro>) request.getAttribute("vaiTroList");
     	%>
         <div class="wrapper">
 				<div class="header">
@@ -67,11 +69,12 @@
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
 							<ul>
-								<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản xuất</a></li>
-								<li><a href="danh-muc-chat-luong.html">Danh mục chất lượng</a></li>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
 								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-								<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử dụng</a></li>
-								<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
@@ -84,7 +87,7 @@
 	
 				<div id="main-content">
 					<div id="title-content">
-		 Danh mục nơi sản xuất
+		 Danh mục vai trò
 		</div>
 		<div id="main-content">
 			
@@ -93,46 +96,46 @@
 					<table>
 						<tr style="background:#199e5e">
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>
-							<th class="mid-column"> Mã NSX</th>
-							<th class="right-column">Tên nơi sản xuất</th>
+							<th class="mid-column">ID</th>
+							<th class="right-column">Tên vai trò</th>
 						</tr>
 						<%
-							if(listNoiSanXuat != null) {
+							if(listVaiTro != null) {
 							int count = 0;
-							for(NoiSanXuat noiSanXuat : listNoiSanXuat) {%>
+							for(VaiTro VaiTro : listVaiTro) {%>
 						<tr>
-							<td class="left-column"><input type="checkbox" name="nsxMa" value="<%=noiSanXuat.getNsxMa() %>" class="checkbox"></td>
-							<td class="col"><%=noiSanXuat.getNsxMa() %></td>
-							<td class="col"><%=noiSanXuat.getNsxTen() %></td>
+							<td class="left-column"><input type="checkbox" name="vtId" value="<%=VaiTro.getVtId() %>" class="checkbox"></td>
+							<td class="col"><%=VaiTro.getVtId() %></td>
+							<td class="col"><%=VaiTro.getVtTen() %></td>
 						</tr>
 						<%} }%>
 					</table>		
 				</div>				
 				
 				<div class="group-button">
-					<input type="hidden" name="action" value="deleteNsx">
+					<input type="hidden" name="action" value="deleteVaiTro">
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-								 <button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+					<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->
-			<form id="add-form" method="get" action="/QuanLyVatTu/manageVaiTro.html">
+			<form id="add-form" method="get" action="<%=siteMap.vtManage %>">
 				<div class = "input-table">
 					<table>
 						<div class = "form-title">Thêm vai trò</div>
 						<tr>
 							<th><label for="id">ID</label></th>
-							<td><input name="id" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+							<td><input name="vtId" type="text" class="text" required  title="Mã nơi sản xuất không được trống"></td>
 						</tr>
 						<tr>
 							<th class="label"><label for="tenvaitro">Tên vai trò</label></th>
-							<td><input name="tenVaiTro" size="30px" align=left type="text" class="text" required title="Tên nơi sản xuất không được để trống"></td>
+							<td><input name="vtTen" size="30px" align=left type="text" class="text" required title="Tên vai trò không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
 				<div class="group-button">
-						<input type="hidden" name="action" value = "AddNsx"> 
+						<input type="hidden" name="action" value = "addVaiTro"> 
 						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
@@ -146,16 +149,16 @@
 						<div class="form-title">Cập nhật vai trò</div>
 						<tr>
 							<th><label for="id">ID</label></th>
-							<td><input name="id" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MNSX" readonly></td>
+							<td><input name="vtId" type="text" class="text" required title="Mã nơi sản xuất không để trống" value="MNSX" readonly></td>
 						</tr>
 						<tr>
 							<th><label for="tenvaitro">Tên vai trò</label></th>
-							<td><input name="tenVaiTro" size="30px" type="text" class="text" required title="Tên vai trò không được để trống"></td>
+							<td><input name="vtTen" size="30px" type="text" class="text" required title="Tên vai trò không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
 				<div class="group-button">
-						<input type="hidden" name="action" value = "UpdateVaiTro"> 
+						<input type="hidden" name="action" value = "updateVaiTro"> 
 						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>

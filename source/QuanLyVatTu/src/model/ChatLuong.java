@@ -34,6 +34,9 @@ public class ChatLuong implements Serializable {
 		this.clMa = clMa;
 		this.clTen = clTen;
 	}
+	public ChatLuong(String clMa) {
+		this.clMa = clMa;
+	}
 	/**
 	 * @return the clMa
 	 */

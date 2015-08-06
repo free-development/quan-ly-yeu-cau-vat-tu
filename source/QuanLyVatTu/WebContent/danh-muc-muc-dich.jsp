@@ -1,5 +1,6 @@
 <%@page import="model.MucDich"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="map.siteMap"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -88,17 +89,17 @@
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
 							<ul>
-								<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản xuất</p></a></li>
-								<li><a href="danh-muc-chat-luong.html">Danh mục chất lượng</a></li>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
 								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-								<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử dụng</a></li>
-								<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
 						<li><a href="bao-cao.html">Báo cáo</a></li>
 <!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
-						<li><a href="bao-cao.html">Quản lý người dùng</a></li>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
 					</ul>
 					<div class="clear"></div>
 				</div>
@@ -116,7 +117,8 @@
 				<div id="view-table">
 					<table>
 						<tr style="background:#199e5e">
-							<td class="left-column"><input type="checkbox" name="" class="checkAll"></td><th class="mid-column"> Mã mục đích</th>
+							<td class="left-column"><input type="checkbox" name="" class="checkAll"></td>
+							<th class="mid-column"> Mã mục đích</th>
 							<th class="right-column">Tên mục đích</th>
 						</tr>
 						<%
@@ -124,7 +126,7 @@
 							int count = 0;
 							for(MucDich mucDich : listMucDich) {%>
 						<tr>
-							<td class="left-column"><input type="checkbox" name="clMa" value="<%=mucDich.getMdMa() %>" class="checkbox"></td>
+							<td class="left-column"><input type="checkbox" name="mdMa" value="<%=mucDich.getMdMa() %>" class="checkbox"></td>
 							<td class="col"><%=mucDich.getMdMa() %></td>
 							<td class="col"><%=mucDich.getMdTen() %></td>
 						</tr>
@@ -140,7 +142,7 @@
 				</div>
 			</form>	
 			
-			<form id="add-form" method="get" action="/QuanLyVatTu/manageMd.html">
+			<form id="add-form" method="get" action="<%=siteMap.mdManage + "?action=manageMd" %>">
 				<div class="input-table">
 					<table>
 						<div class="form-title">Thêm mục đích</div>

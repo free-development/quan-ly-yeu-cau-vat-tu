@@ -26,6 +26,7 @@
 	<mapping resource="MucDich.hbm.xml"/>
 	<mapping resource="TrangThai.hbm.xml"/>
 	<mapping resource="File.hbm.xml"/>
+	<mapping resource="VaiTro.hbm.xml"/>
 
   <!-- 
 	<mapping resource=".hbm.xml"/>
