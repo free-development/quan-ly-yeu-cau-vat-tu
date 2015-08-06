@@ -118,7 +118,7 @@
 				</div>
 			</form>	
 			
-			<form id="add-form"method="get" action="/QuanLyVatTu/manageCl.html">
+			<form id="add-form" method="get" action="<%=siteMap.clManage%>">
 				<div class="input-table">
 					<table>
 						<div class="form-title">Thêm chất lượng</div>

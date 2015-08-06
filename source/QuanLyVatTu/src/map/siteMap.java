@@ -21,4 +21,7 @@ public class siteMap {
 	
 	public static final String ndManage = home +  "ndManage.html";
 	public static final String chucDanh = home +  "them-nguoi-dung";
+	
+	public static final String cdManage = home +  "manageCl.html";
+	public static final String ChucDanh = "danh-muc-chuc-danh";
 }
