@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="style/style.css" type="text/css">
 		<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/vaitro.js"></script>
 	<script type="text/javascript">
 		function showForm(formId, check){
@@ -24,9 +25,46 @@
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
 		}
-		function confirmDelete(){
-			return confirm('Bạn có chắc xóa');
+		function update(formId, check){
+			vtId = $('input:checkbox[name=vtId]:checked').val();
+				$.ajax({
+					url: "/QuanLyVatTu/preEditVt.html",
+					type: "GET",
+					dataType: "JSON",
+					data: {"vtId": vtId},
+					contentType: "application/json",
+					mimeType: "application/json",
+					
+					success: function(vt){
+						
+						$('input:text[name=vtIdUpdate]').val(vt.vtId);
+					  	$('input:text[name=vtTenUpdate]').val(vt.vtTen);
+					  	
+					  	showForm(formId, check);
+					}
+				});
 		}
+		function confirmDelete(){
+			nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
+			if (confirm('Bạn có chắc xóa' + nsxMa))
+				deleteNsx(nsxMa);
+		}
+ 		
+	 	 function deleteNsx(nsxMa) {
+			 
+			$.ajax({
+				url: "/QuanLyVatTu/deleteNsx.html",	
+			  	type: "GET",
+			  	dateType: "JSON",
+			  	data: { "nsxMa": nsxMa},
+			  	contentType: 'application/json',
+			    mimeType: 'application/json',
+			  	success: function() {
+				  	alert(nsxMa + "da bi xoa");
+							$('table tr').has('input[name="nsxMa"]:checked').remove();
+			    } 
+			});  
+		} 
 	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
@@ -72,7 +110,7 @@
 							<ul>
 								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
 								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
-								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh mục vật tư</a></li>
 								<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
 								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
 								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
@@ -93,7 +131,7 @@
 		<div id="main-content">
 			
 			<form id="main-form">
-				<div id="view-table">
+				<div id="view-table" class="scroll-vai-tro">
 					<table>
 						<tr style="background:#199e5e">
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>
@@ -116,7 +154,7 @@
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteVaiTro">
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+					<button type="button" class="button" onclick="update('update-form', true);"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
 					<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
@@ -150,11 +188,11 @@
 						<div class="form-title">Cập nhật vai trò</div>
 						<tr>
 							<th><label for="id">ID</label></th>
-							<td><input name="vtId" type="text" class="text" required title="Mã nơi sản xuất không để trống" value="MNSX" readonly></td>
+							<td><input name="vtIdUpdate" type="text" class="text" required title="ID vai trò không để trống" readonly></td>
 						</tr>
 						<tr>
 							<th><label for="tenvaitro">Tên vai trò</label></th>
-							<td><input name="vtTen" size="30px" type="text" class="text" required title="Tên vai trò không được để trống"></td>
+							<td><input name="vtTenUpdate" size="30px" type="text" class="text" required title="Tên vai trò không được để trống"></td>
 						</tr>	
 					</table>
 				</div>

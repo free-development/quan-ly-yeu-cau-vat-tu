@@ -61,12 +61,16 @@ public class VtController extends HttpServlet {
 			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
 			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
 		}
+		if("manageVt".equalsIgnoreCase(action)) {
+			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
+			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
+		}
 		return new ModelAndView("login");
 	}
 	@RequestMapping(value="/preEditVt", method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String preEditNsx(@RequestParam("vtId") String vtId) {
-//			System.out.println("****" + nsxMa + "****");
+	 public @ResponseBody String preEditVt(@RequestParam("vtId") String vtId) {
+			System.out.println("****" + vtId + "****");
 			VaiTroDAO vaiTroDAO = new VaiTroDAO();
 			VaiTro vt = vaiTroDAO.getVaiTro(Integer.parseInt(vtId));
 			return JSonUtil.toJson(vt);

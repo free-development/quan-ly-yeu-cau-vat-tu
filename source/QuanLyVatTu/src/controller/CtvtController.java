@@ -60,12 +60,15 @@ public class CtvtController extends HttpServlet {
 			for(String s : vtIdList) {
 				
 					ctVatTuDAO.deleteCTVatTu(ctVatTuDAO.getCTVatTu(s));
-					//vatTuDAO.deleteVatTu(s);
 			}
 			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.getAllVatTu();
 			return new ModelAndView("danh-muc-vat-tu", "vatTuList", vatTuList);
 		}
-		
+		if("manageCtvt".equalsIgnoreCase(action)) {
+			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
+			ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) new CTVatTuDAO().getAllCTVatTu();
+			return new ModelAndView("danh-muc-vat-tu", "ctVatTuList", ctVatTuList);
+		}
 		return new ModelAndView("login");
 	}
 

@@ -27,8 +27,45 @@
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
 		}
+		function update(formId, check){
+			vtId = $('input:checkbox[name=vtId]:checked').val();
+				$.ajax({
+					url: "/QuanLyVatTu/preEditVt.html",
+					type: "GET",
+					dataType: "JSON",
+					data: {"vtId": vtId},
+					contentType: "application/json",
+					mimeType: "application/json",
+					
+					success: function(vt){
+						
+						$('input:text[name=vtIdUpdate]').val(vt.vtId);
+					  	$('input:text[name=vtTenUpdate]').val(vt.vtTen);
+					  	
+					  	showForm(formId, check);
+					}
+				});
+		}
 		function confirmDelete(){
-			return confirm('Bạn có chắc xóa');
+			nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
+			if (confirm('Bạn có chắc xóa' + nsxMa))
+				deleteNsx(nsxMa);
+		}
+ 		
+	 	 function deleteNsx(nsxMa) {
+			 
+			$.ajax({
+				url: "/QuanLyVatTu/deleteNsx.html",	
+			  	type: "GET",
+			  	dateType: "JSON",
+			  	data: { "nsxMa": nsxMa},
+			  	contentType: 'application/json',
+			    mimeType: 'application/json',
+			  	success: function() {
+				  	alert(nsxMa + "da bi xoa");
+							$('table tr').has('input[name="nsxMa"]:checked').remove();
+			    } 
+			});  
 		}
 	</script>
 		<script>
@@ -91,9 +128,10 @@
 							<ul>
 								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
 								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
-								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh mục vật tư</a></li>
+								<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
 								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>

@@ -19,31 +19,29 @@
 }
 #add-form {
 	display: none;
-	width: 30%;
+	width: 400px;
 	position: absolute;
-	left: 35%;
-	right: 35%;
-	top: 65%;
-	bottom: 65%;
+	left: 483px;
+	margin-top: 30px;
+	top: 140px;
 	background-color: #DCEAF5;
 	border-radius: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
-	padding-top: 20px
+	padding-top: 20px;
 }
 #update-form {
 	display: none;
-	width: 30%;
+	width: 400px;
 	position: absolute;
-	left: 35%;
-	right: 35%;
-	top: 65%;
-	bottom: 65%;
+	left: 483px;
+	margin-top: 30px;
+	top: 140px;
 	background-color: #DCEAF5;
 	border-radius: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
-	padding-top: 20px
+	padding-top: 20px;
 }
 
 #title-content {
@@ -53,4 +51,13 @@
     font-weight: bold;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+.scroll-vai-tro{
+  max-height: 420px;
+  /*height: 300px;*/
+  width:  860px; 
+  display: auto;
+  border: 1px solid #CCCCCC;
+  margin: 1em 0;
+  overflow: scroll;
 }

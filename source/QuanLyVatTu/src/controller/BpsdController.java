@@ -42,15 +42,18 @@ public class BpsdController extends HttpServlet {
 		if("deleteBpsd".equalsIgnoreCase(action)) {
 			String[] idList = request.getParameterValues("dvMa");
 			for(String s : idList) {
-//				if(s != null) {
+				if(s != null) {
 					donViDAO.deleteDonVi(donViDAO.getDonVi(s));
-//				}
+				}
 			}
-			// Lấy tất cả đơn vị
 			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
 			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
 		}
-//		if("manageBpsd".equalsIgnoreCase(action))
+		
+		if("manageBpsd".equalsIgnoreCase(action)) {
+			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
+			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
+		}
 		return new ModelAndView("login");
 	}
 
