@@ -12,76 +12,65 @@
 		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
         <link href="style/style-chat-luong.css" type="text/css" rel="stylesheet">
     <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="js/chatluong.js"></script>
+    <script src="js/jquery.min.js"></script>
 	<script type="text/javascript">
-		function showForm(formId, check){
-			if (check)
-				document.getElementById(formId).style.display="block";
-			else document.getElementById(formId).style.display="none";
-			var f = document.getElementById('main-form'), s, opacity;
-			s = f.style;
-			opacity = check? '10' : '100';
-			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-			s.filter = 'alpha(opacity='+opacity+')';
-			for(var i=0; i<f.length; i++) f[i].disabled = check;
-		}
-		function confirmDelete(){
-			return confirm('Bạn có chắc xóa');
-		}
-		 $(document).ready(function() {
-			 	var clMa =  $("input[clMa]").val();
-//				var clMa =  $("#updateCl").val();
-		      
-				$("#updateCl").click(function(event) {
-		    	  
-					$.ajax({
-						url: "/QuanLyVatTu/preEditCl.html",	
-					  	type: "GET",
-					  	data: { "clMa": clMa},
-//					  	beforeSend: function(xhr) {
-//					  		xhr.setRequestHeader("Accept", "application/json");
-//					  		xhr.setRequestHeader("Content-Type", "application/json");
-//					  	},
-					  	
-					  	success: function(smartphone) {
-					  		var respContent = "";
-					  		var rowToDelete = $(event.target).closest("tr");
-					  		
-					  		rowToDelete.remove();
-					  		
-					  		respContent += "<span class='success'>Smartphone was deleted: [";
-					  		respContent += smartphone.producer + " : ";
-					  		respContent += smartphone.model + " : " ;
-					  		respContent += smartphone.price + "]</span>";
-					  		
-					  		$("#addForm").html(respContent);   		
-					  	}
-					});
-		  
-					event.preventDefault();
-				});
-		       
-		}); 
-	</script>
-	<script>
-    $(document).ready(function() {
-        $('.checkAll').click(function(event) {  //on click 
-            if(this.checked) { // check select status
-                $('.checkbox').each(function() { //loop through each checkbox
-                    this.checked = true;  //select all checkboxes with class "checkbox1"               
-                });
-            }else{
-                $('.checkbox').each(function() { //loop through each checkbox
-                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
-                });         
-            }
-        });
-    });
+	function showForm(formId, check){
+		if (check)
+			document.getElementById(formId).style.display="block";
+		else document.getElementById(formId).style.display="none";
+		var f = document.getElementById('main-form'), s, opacity;
+		s = f.style;
+		opacity = check? '10' : '100';
+		s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+		s.filter = 'alpha(opacity='+opacity+')';
+		for(var i=0; i<f.length; i++) f[i].disabled = check;
+	}
+	function update(formId, check) {
+		clMa = $('input:checkbox[name=clMa]:checked').val();
+		$.ajax({
+			url: "/QuanLyVatTu/preEditCl.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "clMa": clMa},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	
+		  	success: function(cl) {
+			  	$('input:text[name=clMaUpdate]').val(cl.clMa);
+			  	$('input:text[name=clTenUpdate]').val(cl.clTen);
+		  		showForm(formId, check);	
+		  		
+		  	}
+		});
+	}
+	function confirmDelete(){
+		clMa = $('input:checkbox[name=clMa]:checked').val();
+		if (confirm('Bạn có chắc xóa' + clMa))
+			deleteCl(clMa);
+	}
+		
+ 	 function deleteCl(clMa) {
+		 
+		$.ajax({
+			url: "/QuanLyVatTu/deleteCl.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "clMa": clMa},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	success: function() {
+			  	alert(clMa + "da bi xoa");
+						$('table tr').has('input[name="clMa"]:checked').remove();
+		    } 
+		});  
+	}  
 	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
     <body>
-    <%
+    	<%
     		ArrayList<ChatLuong> listChatLuong = (ArrayList<ChatLuong>) request.getAttribute("chatLuongList");
     	%>
         <div class="wrapper">
@@ -162,10 +151,14 @@
 				</div>				
 				
 				<div class="group-button">
-					<input type="hidden" name="action" value="deleteCl">
-					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-								 <button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+					<input type="hidden" name="action" value="deleteNsx">
+					<button type="button" class="button"  onclick="showForm('add-form', true);"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+<!-- 					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button> -->
+						<!-- onclick="showForm('update-form', true)"-->
+						<button type="button" onclick="update('update-form', true)" class="button"  ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+					<!-- onclick="return confirmDelete()" -->
+					<button class="button" type="button" onclick="confirmDelete();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;
+					<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
 			
@@ -191,7 +184,8 @@
 				</div>			
 			</form>
 			
-<!-- ---------------Update form-------------- -->			<form id="update-form">
+<!-- ---------------Update form-------------- -->			
+<form id="update-form">
 				<div class="input-table">
 					<table>
 						<div class="form-title">Cập nhật chất lượng</div>

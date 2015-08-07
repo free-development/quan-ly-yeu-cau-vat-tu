@@ -1,4 +1,6 @@
-
+/**
+ * 
+ */
 function showForm(formId, check){
 			if (check)
 				document.getElementById(formId).style.display="block";
@@ -23,16 +25,15 @@ function showForm(formId, check){
 			  	success: function(cl) {
 				  	$('input:text[name=clMaUpdate]').val(cl.clMa);
 				  	$('input:text[name=clTenUpdate]').val(cl.clTen);
-// 				  	alert(clList[2].clMa);
-/*
+		  	alert(clList[2].clMa);
 				               for (i = 0; i < clList.length; i++) {                          
 				                   $('<option>').val(clList[i].clMa).text(clList[i].clTen).appendTo($('#select'));    
-				            		}
-*/			        
+				            		}	        
 			  		showForm(formId, check);	
 			  		
 			  	}
 			});
+			
 // 			event.preventDefault();
 		}
 		function confirmDelete(){
