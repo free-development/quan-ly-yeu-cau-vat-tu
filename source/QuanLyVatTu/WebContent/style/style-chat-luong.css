@@ -54,3 +54,16 @@
 	padding-right: 10px;
 	padding-top: 20px	
 }
+.scroll{
+  max-height: 420px;
+  /*height: 300px;*/
+  width:  960px; 
+  display: auto;
+  border: 1px solid #CCCCCC;
+  margin: 1em 0;
+  overflow:scroll;
+}
+#main-content {
+	height: 610px;
+	background-color: while;
+}

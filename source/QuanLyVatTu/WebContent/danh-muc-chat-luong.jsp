@@ -91,11 +91,13 @@
 		<div id="main-content">
 			
 			<form id="main-form">
-				<div id="view-table">
+				<div id="view-table" class="scroll">
 					<table>
 						<tr style="background-color: #199e5e;">
-							<th class="left-column">Chọn</th><th class="mid-column"> Mã CL</th>
+							<td class="left-column"><input type="checkbox" name="" class="checkAll"></td>
+							<th class="mid-column"> Mã CL</th>
 							<th class="right-column">Tên chất lượng</th>
+						
 						</tr>
 						<%
 							if(listChatLuong != null) {
@@ -118,7 +120,7 @@
 				</div>
 			</form>	
 			
-			<form id="add-form" method="get" action="<%=siteMap.clManage%>">
+			<form id="add-form" method="get" action="<%=siteMap.clManage + "?action=manageCl" %>" >
 				<div class="input-table">
 					<table>
 						<div class="form-title">Thêm chất lượng</div>

@@ -141,13 +141,17 @@
 								<th class="four-column"> Đơn vị tính</th>
 								<th class="five-column">Định mức</th>	
 								<th class="seven-column">Số lượng tồn</th>
-
 							</tr>
 							<%
 							if(listCTVatTu != null) {
 							int count = 0;
 							for(CTVatTu ctVatTu : listCTVatTu) {%>
-						<tr>
+						<tr <%
+							if(count%2==1) {
+								style="background:#DCEAF5";
+							}
+							{%>>
+							
 							<td class="left-column"><input type="checkbox" name="vtMa" value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtMa() %></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtTen() %></td>
