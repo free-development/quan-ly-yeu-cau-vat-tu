@@ -12,110 +12,7 @@
 		<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
 		<script src="js/jquery.min.js"></script>
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-	<script type="text/javascript">
-		function showForm(formId, check){
-			if (check)
-				document.getElementById(formId).style.display="block";
-			else document.getElementById(formId).style.display="none";
-			var f = document.getElementById('main-form'), s, opacity;
-			s = f.style;
-			opacity = check? '10' : '100';
-			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-			s.filter = 'alpha(opacity='+opacity+')';
-			for(var i=0; i<f.length; i++) f[i].disabled = check;
-		}
-// 		function update(formId, check) {
-// 			nsxMa = $('input:checkbox[name=nsxMa]').val();
-// 			$.ajax({
-// 				url: "/QuanLyVatTu/preEditNsx.html",	
-// 			  	type: "GET",
-// 			  	dateType: "JSON",
-// 			  	data: { "nsxMa": nsxMa},
-// 			  	contentType: 'application/json',
-// 			    mimeType: 'application/json',
-			  	
-// 			  	success: function(nsxList) {
-// 				  	alert(nsxList[2].nsxMa);
-// /*
-// 				               for (i = 0; i < nsxList.length; i++) {                          
-// 				                   $('<option>').val(nsxList[i].nsxMa).text(nsxList[i].nsxTen).appendTo($('#select'));    
-// 				            		}
-// */			        
-
-// 			  		showForm(formId, check);	
-			  		
-// 			  	}
-// 			});
-// // 			event.preventDefault();
-// 		}
-		function confirmDelete(){
-			return confirm('Bạn có chắc xóa');
-		}
-		function delete(formId, check) {
-			nsxMa = $('input:checkbox[name=nsxMa]').val();
-			$.ajax({
-				url: "/QuanLyVatTu/deleteNsx.html",	
-			  	type: "GET",
-			  	dateType: "JSON",
-			  	data: { "nsxMa": nsxMa},
-			  	contentType: 'application/json',
-			    mimeType: 'application/json',
-			  	
-			  	success: function() {
-				  	alert(nsxMa + "da bi xoa");
-				  	jQuery('#view-table input:checkbox').each(function(){
-			            if(this.checked){
-			                $this.parents("tr").remove();
-			            }
-			        });
-/*
-				               for (i = 0; i < nsxList.length; i++) {                          
-				                   $('<option>').val(nsxList[i].nsxMa).text(nsxList[i].nsxTen).appendTo($('#select'));    
-				            		}
-*/			        
-
-// $('#nsxMa').remove();
-// 			  		showForm(formId, check);	
-			  	}
-			});
-		}
-		
-/* 
-		 $(document).ready(function() {
-// 			 	var nsxMa =  $("input[nsxMa]").val();
-// 				var nsxMa =  $("#updateNsx").val();
-		      	var nsxMa = $('input:checkbox[name=nsxMa]').val();
-				$("#updateNsx").click(function(event) {
-		    	  
-					$.ajax({
-						url: "/QuanLyVatTu/preEditNsx.html",	
-					  	type: "GET",
-					  	data: { "nsxMa": nsxMa},
-					  	beforeSend: function(xhr) {
-					  		xhr.setRequestHeader("Accept", "application/json");
-					  		xhr.setRequestHeader("Content-Type", "application/json");
-					  	},
-					  	
-					  	success: function(smartphone) {
-					  		var respContent = "";
-					  		var rowToDelete = $(event.target).closest("tr");
-					  		
-					  		rowToDelete.remove();
-					  		
-					  		respContent += "<span class='success'>Smartphone was deleted: [";
-					  		respContent += smartphone.producer + " : ";
-					  		respContent += smartphone.model + " : " ;
-					  		respContent += smartphone.price + "]</span>";
-					  		
-					  		$("#addForm").html(respContent);   		
-					  	}
-					});
-		  
-					event.preventDefault();
-				});
-		       
-		});*/ 
-	</script>
+	<script type="text/javascript" src="js/main.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
@@ -190,7 +87,7 @@
 							if(listNoiSanXuat != null) {
 							int count = 0;
 							for(NoiSanXuat noiSanXuat : listNoiSanXuat) {%>
-						<tr id="<%=noiSanXuat.getNsxMa() %>">
+						<tr id="<%=noiSanXuat.getNsxMa()%>">
 							<td class="left-column"><input type="checkbox" name="nsxMa" value="<%=noiSanXuat.getNsxMa() %>" class="checkbox"></td>
 							<td class="col"><%=noiSanXuat.getNsxMa() %></td>
 							<td class="col"><%=noiSanXuat.getNsxTen() %></td>
@@ -201,12 +98,13 @@
 				
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteNsx">
-					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+					<button type="button" class="button"  onclick="showForm('add-form', true);"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 <!-- 					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button> -->
 						<!-- onclick="showForm('update-form', true)"-->
 						<button type="button" onclick="update('update-form', true)" class="button"  ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
 					<!-- onclick="return confirmDelete()" -->
-					<button class="button" type="button"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+					<button class="button" type="button" onclick="confirmDelete();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;
+					<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->

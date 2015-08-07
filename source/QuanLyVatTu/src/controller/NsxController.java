@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.NoiSanXuat;
+import util.JSonUtil;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -61,15 +62,15 @@ public class NsxController extends HttpServlet {
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String preEditNsx(@RequestParam("nsxMa") String nsxMa) {
 //		System.out.println("****" + nsxMa + "****");
-//		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
-//		NoiSanXuat nsx = noiSanXuatDAO.getNoiSanXuat(nsxMa);
-//		return toJson(nsx);
-		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
-		return toJson(nsxList);
+		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
+		NoiSanXuat nsx = noiSanXuatDAO.getNoiSanXuat(nsxMa);
+		return JSonUtil.toJson(nsx);
+		/*ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
+		return toJson(nsxList);*/
 	}
 	@RequestMapping(value="/deleteNsx", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody void deleteNsx(@RequestParam("nsxMa") String nsxMa) {
+	 public @ResponseBody String deleteNsx(@RequestParam("nsxMa") String nsxMa) {
 //		System.out.println("****" + nsxMa + "****");
 //		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
 //		NoiSanXuat nsx = noiSanXuatDAO.getNoiSanXuat(nsxMa);
@@ -77,7 +78,17 @@ public class NsxController extends HttpServlet {
 //		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
 		new NoiSanXuatDAO().deleteNoiSanXuat(new NoiSanXuatDAO().getNoiSanXuat(nsxMa));
 //		return toJson(nsxList);
-		return;
+		return JSonUtil.toJson(nsxMa);
+	}
+	/*private String toJson(String nsxMa) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			String value = mapper.writeValueAsString(nsxMa);
+			return value;
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	private String toJson(NoiSanXuat nsx) {
 		ObjectMapper mapper = new ObjectMapper();
@@ -98,6 +109,6 @@ public class NsxController extends HttpServlet {
 			e.printStackTrace();
 			return null;
 		}
-	}
+	}*/
 	
 }
