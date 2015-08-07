@@ -67,4 +67,25 @@ function showForm(formId, check){
 // 			        })
 			    } 
 			});  
-		}  
+		} 
+	 	
+	 	/*function addNsx() {
+			nsxMa = $('#add-form input:text[name=nsxMa]').val();
+			nsxTen = $('#add-form input:text[name=nsxTen]').val();
+			$.ajax({
+				url: "/QuanLyVatTu/addNsx.html",	
+			  	type: "GET",
+			  	dateType: "JSON",
+			  	data: { "nsxMa": nsxMa, "nsxTen": nsxTen},
+			  	contentType: 'application/json',
+			    mimeType: 'application/json',
+			  	
+			  	success: function(nsx) {
+				  	$('input:text[name=nsxMa]').val(nsx.nsxMa);
+				  	$('input:text[name=nsxTen]').val(nsx.nsxTen);
+			  		<td class="left-column"><input type="checkbox" name="nsxMa" value="<%=noiSanXuat.getNsxMa() %>" class="checkbox"></td>
+			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsx.nsxMa + '\"</td><td class=\"col\">\"+ nsxMa +\"</tr><tr>\" + nsxTen+\"</tr>');
+			  		showForm("add-form", false);	
+			  	}
+			});*/
+		//}
