@@ -24,10 +24,47 @@
 			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
-		}
-		function confirmDelete(){
-			return confirm('Bạn có chắc xóa');
-		}
+		}	
+// 		function update(formId, check){
+// 			vtMa = $('input:checkbox[name=vtMa]:checked').val();
+// 			$.ajax({
+// 				url: "/QuanLyVatTu/preEditBp.html",
+// 				type: "GET",
+// 				dataType: "JSON",
+// 				data: {"dvMa": dvMa},
+// 				contentType: "application/json",
+// 				mimeType: "application/json",
+				
+// 				success: function(bp){
+					
+// 					$('input:text[name=dvMaUpdate]').val(bp.dvMa);
+// 				  	$('input:text[name=dvTenUpdate]').val(bp.dvTen);
+				  	
+// 				  	showForm(formId, check);
+// 				}
+// 			});
+// 	}
+// 	function confirmDelete(){
+// 		dvMa = $('input:checkbox[name=dvMa]:checked').val();
+// 		if (confirm('Bạn có chắc xóa' + dvMa))
+// 			deleteBpsd(dvMa);
+// 	}
+		
+//  	 function deleteBpsd(dvMa) {
+		 
+// 		$.ajax({
+// 			url: "/QuanLyVatTu/deleteBpsd.html",	
+// 		  	type: "GET",
+// 		  	dateType: "JSON",
+// 		  	data: { "dvMa": dvMa},
+// 		  	contentType: 'application/json',
+// 		    mimeType: 'application/json',
+// 		  	success: function() {
+// 			  	alert(dvMa + "da bi xoa");
+// 						$('table tr').has('input[name="dvMa"]:checked').remove();
+// 		    } 
+// 		});  
+// 	}
 	</script>
 	<script>
     $(document).ready(function() {
@@ -43,7 +80,7 @@
             }
         });
         
-    });
+    }); 
 	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  

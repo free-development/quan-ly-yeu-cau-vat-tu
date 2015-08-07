@@ -12,7 +12,7 @@
     	<link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 <!--		<script type="text/javascript" src="js/check.js"></script>-->
 		<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
-
+ 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript">
 		
 		
@@ -28,42 +28,44 @@
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
 		}
 		function update(formId, check){
-			vtId = $('input:checkbox[name=vtId]:checked').val();
+			dvMa = $('input:checkbox[name=dvMa]:checked').val();
 				$.ajax({
-					url: "/QuanLyVatTu/preEditVt.html",
+					url: "/QuanLyVatTu/preEditBp.html",
 					type: "GET",
 					dataType: "JSON",
-					data: {"vtId": vtId},
+					data: {"dvMa": dvMa},
 					contentType: "application/json",
 					mimeType: "application/json",
 					
-					success: function(vt){
+					success: function(bp){
 						
-						$('input:text[name=vtIdUpdate]').val(vt.vtId);
-					  	$('input:text[name=vtTenUpdate]').val(vt.vtTen);
-					  	
+						$('input:text[name=dvMaUpdate]').val(bp.dvMa);
+					  	$('input:text[name=dvTenUpdate]').val(bp.dvTen);
+					  	$('input:text[name=sdt]').val(bp.sdt);
+					  	$('input:text[name=diaChi]').val(bp.diaChi);
+					  	$('input:text[name=email]').val(bp.email);
 					  	showForm(formId, check);
 					}
 				});
 		}
 		function confirmDelete(){
-			nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
-			if (confirm('Bạn có chắc xóa' + nsxMa))
-				deleteNsx(nsxMa);
+			dvMa = $('input:checkbox[name=dvMa]:checked').val();
+			if (confirm('Bạn có chắc xóa' + dvMa))
+				deleteBpsd(dvMa);
 		}
  		
-	 	 function deleteNsx(nsxMa) {
+	 	 function deleteBpsd(dvMa) {
 			 
 			$.ajax({
-				url: "/QuanLyVatTu/deleteNsx.html",	
+				url: "/QuanLyVatTu/deleteBpsd.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
-			  	data: { "nsxMa": nsxMa},
+			  	data: { "dvMa": dvMa},
 			  	contentType: 'application/json',
 			    mimeType: 'application/json',
 			  	success: function() {
-				  	alert(nsxMa + "da bi xoa");
-							$('table tr').has('input[name="nsxMa"]:checked').remove();
+				  	alert(dvMa + "da bi xoa");
+							$('table tr').has('input[name="dvMa"]:checked').remove();
 			    } 
 			});  
 		}
@@ -155,7 +157,7 @@
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>
 							<th class="mid-column">Mã BPSD</th>
 							<th class="column-2">Tên bộ phận</th>
-                            <th class="column-3">Số điện thoại</th>
+                            <th class="mid-column">Số điện thoại</th>
 							<th class="column-4">Địa chỉ</th>
                             <th class="column-5">Email</th>
 						</tr>
@@ -167,7 +169,7 @@
 							<td class="left-column"><input type="checkbox" name="dvMa" value="<%=donVi.getDvMa() %>" class="checkbox"></td>
 							<td class="col"><%=donVi.getDvMa() %></td>
 							<td class="col"><%=donVi.getDvTen()%></td>
-                            <td><%=donVi.getSdt()%></td>
+                            <td class="col"><%=donVi.getSdt()%></td>
                             <td class="col"><%=donVi.getDiaChi()%></td>
                             <td class="col"><%=donVi.getEmail()%></td>
 						</tr>
@@ -178,7 +180,7 @@
 				<div class="group-button-bo-phan">
 					<input type="hidden" name="action" value="deleteBpsd">
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>&nbsp;&nbsp;
-					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>&nbsp;&nbsp;
+					<button type="button" class="button" onclick="update('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>&nbsp;&nbsp;
 					<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>Thoát</button>
 				</div>
 			</form>	
@@ -244,23 +246,23 @@
 						<div class="form-title">Cập nhật bộ phận sử dụng</div>
 						<tr>
 							<td class="input"><label for="MBPSD" class="input">Mã BPSD</label></td>
-							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+							<td><input name="dvMaUpdate" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
 							<td class="input"><label for="MBPSD">Tên BPSD</label></td>
-							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên bộ phận sử dụng không được để trống"></td>
+							<td><input name="dvTenUpdate" size="30px" align=left type="text" class="text" required title="Tên bộ phận sử dụng không được để trống"></td>
 						</tr>
                          <tr>
                         <td class="input"><label>Số điện thoại</label></td>
-                            <td><input name="" size="15px" align=left type="text" class="text"></td>
+                            <td><input name="sdt" size="15px" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
                             <td class="input"><label>Địa chỉ</label></td>
-							<td><input name="" size="30px" align=left type="text" class="text"></td>
+							<td><input name="diaChi" size="30px" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
                             <td class="input"><label>Email</label></td>
-                            <td><input name="" size="30px" align=left type="email" class="text"></td>                         
+                            <td><input name="email" size="30px" align=left type="email" class="text"></td>                         
                         </tr>
                        
 <!--
