@@ -160,3 +160,8 @@ td.input {
 .checkAll {
 	text-align: center;
 }
+#main-content {
+	height: 610px;
+	background-color: while;
+}
+
