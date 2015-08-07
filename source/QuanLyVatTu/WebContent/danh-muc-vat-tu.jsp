@@ -163,8 +163,8 @@
 							<%
 							if(listCTVatTu != null) {
 							int count = 0;
-							for(CTVatTu ctVatTu : listCTVatTu) {%>
-						<tr>
+							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
+						<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="vtMa" value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtMa() %></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtTen() %></td>
@@ -206,7 +206,7 @@
 								<th style="text-align: left"><label for="MVT">Nơi sản xuất</label></th>
 								<td><select  class="select" name="nsxMa">
 								 <option disabled selected>--Chọn--</option>
-								 <option value="VN">VN</option>
+								 <option value="VN">Việt Nam</option>
 								</select>
 								</td>
 							</tr>	
