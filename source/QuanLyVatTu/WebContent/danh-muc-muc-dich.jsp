@@ -114,7 +114,7 @@
 		<div id="main-content">
 			
 			<form id="main-form">
-				<div id="view-table">
+				<div id="view-table" class="scroll">
 					<table>
 						<tr style="background:#199e5e">
 							<td class="left-column"><input type="checkbox" name="" class="checkAll"></td>
@@ -124,12 +124,13 @@
 						<%
 							if(listMucDich != null) {
 							int count = 0;
-							for(MucDich mucDich : listMucDich) {%>
-						<tr>
-							<td class="left-column"><input type="checkbox" name="mdMa" value="<%=mucDich.getMdMa() %>" class="checkbox"></td>
-							<td class="col"><%=mucDich.getMdMa() %></td>
-							<td class="col"><%=mucDich.getMdTen() %></td>
-						</tr>
+							for(MucDich mucDich : listMucDich) 
+							{%>
+								<tr>
+									<td class="left-column"><input type="checkbox" name="mdMa" value="<%=mucDich.getMdMa() %>" class="checkbox"></td>
+									<td class="col"><%=mucDich.getMdMa() %></td>
+									<td class="col"><%=mucDich.getMdTen() %></td>
+								</tr>
 						<%} }%>
 					</table>		
 				</div>				

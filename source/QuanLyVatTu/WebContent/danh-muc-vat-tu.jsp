@@ -29,6 +29,22 @@
 			return confirm('Bạn có chắc xóa');
 		}
 	</script>
+	<script>
+    $(document).ready(function() {
+        $('.checkAll').click(function(event) {  //on click 
+            if(this.checked) { // check select status
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"               
+                });
+            }else{
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+                });         
+            }
+        });
+        
+    });
+	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
@@ -129,7 +145,7 @@
 <!--
                     
 -->
-					<div id="view-table" class="scroll-chi-tiet-vat-tu">
+					<div id="view-table"  class="scroll-chi-tiet-vat-tu">
 					
 						<table>
 							<tr style="background:#199e5e">
@@ -141,13 +157,23 @@
 								<th class="four-column"> Đơn vị tính</th>
 								<th class="five-column">Định mức</th>	
 								<th class="seven-column">Số lượng tồn</th>
-
 							</tr>
+						
 							<%
 							if(listCTVatTu != null) {
 							int count = 0;
+<<<<<<< HEAD
 							for(CTVatTu ctVatTu : listCTVatTu) {%>
-						<tr>
+						<tr <%
+							if(count%2==1) {
+								style="background:#DCEAF5";
+							}
+							{%>>
+							
+=======
+							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
+						<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+>>>>>>> origin/master
 							<td class="left-column"><input type="checkbox" name="vtMa" value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtMa() %></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtTen() %></td>
@@ -159,7 +185,7 @@
 							
 						</tr>
 						<%} }%>
-					
+						
 						</table>	
 					</div>				
 
@@ -189,7 +215,7 @@
 								<th style="text-align: left"><label for="MVT">Nơi sản xuất</label></th>
 								<td><select  class="select" name="nsxMa">
 								 <option disabled selected>--Chọn--</option>
-								 <option value="VN">VN</option>
+								 <option value="VN">Việt Nam</option>
 								</select>
 								</td>
 							</tr>	
