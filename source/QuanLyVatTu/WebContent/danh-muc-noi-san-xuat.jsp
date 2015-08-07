@@ -12,7 +12,7 @@
 		<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
 		<script src="js/jquery.min.js"></script>
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-<<<<<<< HEAD
+
 	<script type="text/javascript">
 		function showForm(formId, check){
 			if (check)

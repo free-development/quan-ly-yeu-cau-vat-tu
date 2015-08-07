@@ -13,10 +13,15 @@ import model.DonVi;
 import model.NoiSanXuat;
 import model.VaiTro;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import util.JSonUtil;
 import dao.NoiSanXuatDAO;
 import dao.VaiTroDAO;
 
@@ -52,7 +57,26 @@ public class VtController extends HttpServlet {
 			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
 			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
 		}
+		if("manageVt".equalsIgnoreCase(action)) {
+			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
+			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
+		}
 		return new ModelAndView("login");
 	}
-
+	@RequestMapping(value="/preEditVt", method=RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String preEditNsx(@RequestParam("vtId") String vtId) {
+//			System.out.println("****" + nsxMa + "****");
+			VaiTroDAO vaiTroDAO = new VaiTroDAO();
+			VaiTro vt = vaiTroDAO.getVaiTro(Integer.parseInt(vtId));
+			return JSonUtil.toJson(vt);
+			/*ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
+			return toJson(nsxList);*/
+		}
+	@RequestMapping(value="/deleteVt", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String deleteVt(@RequestParam("vtId") String vtId) {
+		new VaiTroDAO().deleteVaiTro(new VaiTroDAO().getVaiTro(Integer.parseInt(vtId)));
+		return JSonUtil.toJson(vtId);
+	}
 }

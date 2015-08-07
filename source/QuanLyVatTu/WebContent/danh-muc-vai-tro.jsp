@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="style/style.css" type="text/css">
 		<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="js/vaitro.js"></script>
 	<script type="text/javascript">
 		function showForm(formId, check){
 			if (check)
