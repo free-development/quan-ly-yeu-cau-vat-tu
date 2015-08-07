@@ -63,6 +63,22 @@
 		       
 		}); 
 	</script>
+	<script>
+    $(document).ready(function() {
+        $('.checkAll').click(function(event) {  //on click 
+            if(this.checked) { // check select status
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"               
+                });
+            }else{
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+                });         
+            }
+        });
+        
+    });
+	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
@@ -126,7 +142,7 @@
 		<div id="main-content">
 			
 			<form id="main-form">
-				<div id="view-table">
+				<div id="view-table" class="scroll-nsx">
 					<table>
 						<tr style="background:#199e5e">
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>

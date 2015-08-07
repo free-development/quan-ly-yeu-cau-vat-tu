@@ -54,3 +54,12 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
+.scroll-nsx{
+  max-height: 420px;
+  /*height: 300px;*/
+ 
+  display: auto;
+  border: 1px solid #CCCCCC;
+  margin: 1em 0;
+  overflow:scroll;
+}
