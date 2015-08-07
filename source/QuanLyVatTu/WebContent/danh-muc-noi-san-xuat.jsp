@@ -12,7 +12,7 @@
 		<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
 		<script src="js/jquery.min.js"></script>
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-<<<<<<< HEAD
+
 	<script type="text/javascript">
 		function showForm(formId, check){
 			if (check)
@@ -191,7 +191,7 @@
 				</div>
 				<div class="group-button">
 						<input type="hidden" name="action" value = "AddNsx"> 
-						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+						<button class="button" type="button" onclick="addNsx();"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			

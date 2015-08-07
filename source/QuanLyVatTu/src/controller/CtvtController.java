@@ -42,7 +42,7 @@ public class CtvtController extends HttpServlet {
 			int soLuongTon = Integer.parseInt(request.getParameter("soLuongTon"));
 			
 			if(vatTuDAO.getVatTu(vtMa) != null){
-				request.setAttribute("error", "Vai trò đã tồn tại");
+				request.setAttribute("error", "Vật tư đã tồn tại");
 
 				return new ModelAndView("danh-muc-vat-tu");
 			}
