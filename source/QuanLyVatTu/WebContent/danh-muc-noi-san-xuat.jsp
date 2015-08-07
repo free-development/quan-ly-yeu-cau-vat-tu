@@ -1,7 +1,7 @@
 <%@page import="map.siteMap"%>
 <%@page import="model.NoiSanXuat"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +12,7 @@
 		<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
 		<script src="js/jquery.min.js"></script>
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<<<<<<< HEAD
 	<script type="text/javascript">
 		function showForm(formId, check){
 			if (check)
@@ -79,6 +80,9 @@
         
     });
 	</script>
+=======
+	<script type="text/javascript" src="js/main.js"></script>
+>>>>>>> 1fbe3a4370c7da5c12a64272a2319c41818097b7
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
@@ -153,7 +157,7 @@
 							if(listNoiSanXuat != null) {
 							int count = 0;
 							for(NoiSanXuat noiSanXuat : listNoiSanXuat) {%>
-						<tr>
+						<tr id="<%=noiSanXuat.getNsxMa()%>">
 							<td class="left-column"><input type="checkbox" name="nsxMa" value="<%=noiSanXuat.getNsxMa() %>" class="checkbox"></td>
 							<td class="col"><%=noiSanXuat.getNsxMa() %></td>
 							<td class="col"><%=noiSanXuat.getNsxTen() %></td>
@@ -164,10 +168,13 @@
 				
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteNsx">
-					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+					<button type="button" class="button"  onclick="showForm('add-form', true);"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 <!-- 					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button> -->
-						<button type="button" id="updateNsx" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-					<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+						<!-- onclick="showForm('update-form', true)"-->
+						<button type="button" onclick="update('update-form', true)" class="button"  ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+					<!-- onclick="return confirmDelete()" -->
+					<button class="button" type="button" onclick="confirmDelete();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;
+					<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->
@@ -200,11 +207,14 @@
 						<div class="form-title">Cập nhật nơi sản xuất</div>
 						<tr>
 							<th><label for="MNSX">Mã NSX</label></th>
-							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MNSX" readonly></td>
+							<td><input name="nsxMaUpdate" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MNSX" readonly></td>
+							<td><select id="select" name="nsxMa">
+								<option>Chon nsx</option>
+							</select></td>
 						</tr>
 						<tr>
 							<th><label for="MNSX">Tên NSX</label></th>
-							<td><input name="" size="30px" type="text" class="text" required title="Tên nơi sản xuất không được để trống"></td>
+							<td><input name="nsxTenUpdate" size="30px" type="text" class="text" required title="Tên nơi sản xuất không được để trống"></td>
 						</tr>	
 					</table>
 				</div>

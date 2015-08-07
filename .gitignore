@@ -1,2 +1,7 @@
+<<<<<<< HEAD
+*.class
+=======
 *.class
 source/QuanLyVatTu/build/classes/controller/VtController.class
+>>>>>>> refs/remotes/origin/master
+*.classpath

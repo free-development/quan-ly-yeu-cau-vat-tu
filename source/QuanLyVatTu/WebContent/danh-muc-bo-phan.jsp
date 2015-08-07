@@ -92,7 +92,7 @@
 								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
 								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
 								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-								<li><a href="<%=siteMap.clManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
 								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
 							</ul>
 						</li>
@@ -145,7 +145,7 @@
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->
-			<form id="add-form" method="get" action="/QuanLyVatTu/manageBpsd.html">
+			<form id="add-form" method="get" action="<%=siteMap.bpsdManage%>">
 				<div class="input-table-bo-phan">
 					<table>
 						<div class="form-title">Thêm bộ phận sử dụng</div>

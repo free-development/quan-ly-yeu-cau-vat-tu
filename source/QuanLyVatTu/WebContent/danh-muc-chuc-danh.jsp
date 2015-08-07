@@ -145,7 +145,7 @@
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->
-			<form id="add-form" method="get" action="/QuanLyVatTu/manageBpsd.html">
+			<form id="add-form" method="get" action="<%=siteMap.cdManage + "?action=manageCd" %>">
 				<div class="input-table-bo-phan">
 					<table>
 						<div class="form-title">Thêm bộ phận sử dụng</div>
