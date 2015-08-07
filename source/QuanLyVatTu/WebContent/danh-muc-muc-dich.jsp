@@ -126,7 +126,7 @@
 							int count = 0;
 							for(MucDich mucDich : listMucDich) 
 							{%>
-								<tr>
+								<tr<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 									<td class="left-column"><input type="checkbox" name="mdMa" value="<%=mucDich.getMdMa() %>" class="checkbox"></td>
 									<td class="col"><%=mucDich.getMdMa() %></td>
 									<td class="col"><%=mucDich.getMdTen() %></td>

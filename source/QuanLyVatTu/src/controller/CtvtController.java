@@ -49,8 +49,8 @@ public class CtvtController extends HttpServlet {
 			else{
 				vatTuDAO.addVatTu(new VatTu(vtMa,vtTen,dvt));
 				ctVatTuDAO.addCTVatTu(new CTVatTu(new VatTu(vtMa,vtTen,dvt), new NoiSanXuat(nsxMa), new ChatLuong(clMa), dinhMuc, soLuongTon));
-				ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.getAllVatTu();
-				ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) ctVatTuDAO.getAllCTVatTu();
+				ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
+				ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) new CTVatTuDAO().getAllCTVatTu();
 				return new ModelAndView("danh-muc-vat-tu", "ctVatTuList", ctVatTuList);
 			}
 			

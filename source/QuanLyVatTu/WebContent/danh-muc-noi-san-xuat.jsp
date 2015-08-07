@@ -77,12 +77,9 @@
                 });         
             }
         });
-        
     });
 	</script>
-=======
 	<script type="text/javascript" src="js/main.js"></script>
->>>>>>> 1fbe3a4370c7da5c12a64272a2319c41818097b7
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import util.JSonUtil;
 import dao.ChatLuongDAO;
 import dao.NoiSanXuatDAO;
 
@@ -50,4 +51,17 @@ public class ClController extends HttpServlet {
 		return new ModelAndView("login");
 	}
 
+	@RequestMapping(value="/preEditCl", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String preEditCl(@RequestParam("clMa") String clMa) {
+		ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
+		ChatLuong cl = chatLuongDAO.getChatLuong(clMa);
+		return JSonUtil.toJson(cl);
+	}
+	@RequestMapping(value="/deleteCl", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String deleteCl(@RequestParam("clMa") String clMa) {
+		new ChatLuongDAO().deleteChatLuong(new ChatLuongDAO().getChatLuong(clMa));
+		return JSonUtil.toJson(clMa);
+	}
 }

@@ -27,6 +27,55 @@
 		function confirmDelete(){
 			return confirm('Bạn có chắc xóa');
 		}
+		 $(document).ready(function() {
+			 	var clMa =  $("input[clMa]").val();
+//				var clMa =  $("#updateCl").val();
+		      
+				$("#updateCl").click(function(event) {
+		    	  
+					$.ajax({
+						url: "/QuanLyVatTu/preEditCl.html",	
+					  	type: "GET",
+					  	data: { "clMa": clMa},
+//					  	beforeSend: function(xhr) {
+//					  		xhr.setRequestHeader("Accept", "application/json");
+//					  		xhr.setRequestHeader("Content-Type", "application/json");
+//					  	},
+					  	
+					  	success: function(smartphone) {
+					  		var respContent = "";
+					  		var rowToDelete = $(event.target).closest("tr");
+					  		
+					  		rowToDelete.remove();
+					  		
+					  		respContent += "<span class='success'>Smartphone was deleted: [";
+					  		respContent += smartphone.producer + " : ";
+					  		respContent += smartphone.model + " : " ;
+					  		respContent += smartphone.price + "]</span>";
+					  		
+					  		$("#addForm").html(respContent);   		
+					  	}
+					});
+		  
+					event.preventDefault();
+				});
+		       
+		}); 
+	</script>
+	<script>
+    $(document).ready(function() {
+        $('.checkAll').click(function(event) {  //on click 
+            if(this.checked) { // check select status
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"               
+                });
+            }else{
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+                });         
+            }
+        });
+    });
 	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
@@ -103,7 +152,7 @@
 							if(listChatLuong != null) {
 							int count = 0;
 							for(ChatLuong chatLuong : listChatLuong) {%>
-						<tr>
+						<tr<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="clMa" value="<%=chatLuong.getClMa() %>" class="checkbox"></td>
 							<td class="col"><%=chatLuong.getClMa() %></td>
 							<td class="col"><%=chatLuong.getClTen() %></td>
@@ -148,15 +197,16 @@
 						<div class="form-title">Cập nhật chất lượng</div>
 						<tr>
 							<td class="input"><label for="MCL">Mã chất lượng</label></td>
-							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3"value="A80" pattern="[a-zA-Z0-9]{3}" title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MCL" readonly></td>
+							<td><input name="clMaUpdate" type="text" class="text" required autofocus size="2" maxlength="3"value="A80" pattern="[a-zA-Z0-9]{3}" title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MCL" readonly></td>
 						</tr>
 						<tr>
 							<td class="input"><label for="MCL">Tên chất lượng</label></td>
-							<td><input name="" size="30px" align=left type="text" class="text" value="Hàng thu hồi có thể sử dụng được" required title="Tên chất lượng không được để trống"></td>
+							<td><input name="clTenUpdate" size="30px" align=left type="text" class="text" value="Hàng thu hồi có thể sử dụng được" required title="Tên chất lượng không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
 				<div class="group-button">
+						<input type="hidden" name="action" value = "UpdateCl"> 
 						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
