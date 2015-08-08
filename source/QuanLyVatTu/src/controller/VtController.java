@@ -77,6 +77,16 @@ public class VtController extends HttpServlet {
 			/*ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
 			return toJson(nsxList);*/
 		}
+//	@RequestMapping(value="/addVt", method=RequestMethod.GET, 
+//			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//	 public @ResponseBody String addVt(@RequestParam("vtId") int vtId, @RequestParam("vtTen") String vtTen) {
+////		System.out.println("****" + vtId + "****");
+//
+//		VaiTro vt = new VaiTro(vtId, vtTen);
+//		new VaiTroDAO().addVaiTro(vt);
+//		return JSonUtil.toJson(vt);
+//		
+//	}
 	@RequestMapping(value="/deleteVt", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteVt(@RequestParam("vtId") String vtId) {

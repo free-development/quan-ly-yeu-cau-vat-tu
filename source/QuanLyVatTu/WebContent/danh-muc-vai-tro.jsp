@@ -25,6 +25,7 @@
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
 		}
+
 		function update(formId, check){
 			vtId = $('input:checkbox[name=vtId]:checked').val();
 				$.ajax({
@@ -42,29 +43,50 @@
 					  	
 					  	showForm(formId, check);
 					}
+					
 				});
 		}
 		function confirmDelete(){
-			nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
-			if (confirm('Bạn có chắc xóa' + nsxMa))
-				deleteNsx(nsxMa);
+			vtId = $('input:checkbox[name=vtId]:checked').val();
+			if (confirm('Bạn có chắc xóa' + vtId))
+				deleteVt(vtId);
 		}
  		
-	 	 function deleteNsx(nsxMa) {
+	 	 function deleteVt(vtId) {
 			 
 			$.ajax({
-				url: "/QuanLyVatTu/deleteNsx.html",	
+				url: "/QuanLyVatTu/deleteVt.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
-			  	data: { "nsxMa": nsxMa},
+			  	data: { "vtId": vtId},
 			  	contentType: 'application/json',
 			    mimeType: 'application/json',
 			  	success: function() {
-				  	alert(nsxMa + "da bi xoa");
-							$('table tr').has('input[name="nsxMa"]:checked').remove();
+				  	alert(vtId + "da bi xoa");
+							$('table tr').has('input[name="vtId"]:checked').remove();
 			    } 
 			});  
 		} 
+// 	 	function addVt() {
+// 			vtId = $('#add-form input:text[name=vtId]').val();
+// 			vtTen = $('#add-form input:text[name=vtTen]').val();
+// 			$.ajax({
+// 				url: "/QuanLyVatTu/addVt.html",	
+// 			  	type: "GET",
+// 			  	dateType: "JSON",
+// 			  	data: { "vtId": vtId, "vtTen": vtTen},
+// 			  	contentType: 'application/json',
+// 			    mimeType: 'application/json',
+			  	
+// 			  	success: function(vt) {
+// 				  	$('input:text[name=vtId]').val(vt.vtId);
+// 				  	$('input:text[name=vtTen]').val(vt.vtTen);
+<%-- 			  		<td class="left-column"><input type="checkbox" name="vtId" value="<%=vt.getvtId() %>" class="checkbox"></td> --%>
+// 			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtId\" value=\"' +vt.vtId + '\"</td><td class=\"col\">\"+ vtId +\"</tr><tr>\" + vtTen+\"</tr>');
+// 			  		showForm("add-form", false);	
+// 			  	}
+// 			});
+// 		}
 	</script>
 	<script>
     $(document).ready(function() {
@@ -108,7 +130,7 @@
 -->
 							
 							<span class="search-text">
-								&nbsp;
+							&nbsp;
 							<input type="search" class="search" name="search_box" name="search" placeholder="Tìm kiếm" />
 							</span>
 							<span class="search-button">
@@ -169,7 +191,7 @@
 				
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteVaiTro">
-					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+					<button type="button" class="button"  onclick="showForm('add-form',true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 					<button type="button" class="button" onclick="update('update-form', true);"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
 					<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
