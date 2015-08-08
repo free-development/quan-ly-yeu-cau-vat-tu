@@ -14,8 +14,6 @@
 		<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
  	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript">
-		
-		
 		function showForm(formId, check){
 			if (check)
 				document.getElementById(formId).style.display="block";

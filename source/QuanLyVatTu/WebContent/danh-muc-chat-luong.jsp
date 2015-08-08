@@ -109,13 +109,13 @@
 							<ul>
 								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
 								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
-								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtc"%>">Danh mục vật tư</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh mục vật tư</a></li>
 								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
 								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-						<li><a href="bao-cao.html">Báo cáo</a></li>
+						<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a></li>
 						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>
 						<li><a "<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
 					</ul>
@@ -141,7 +141,7 @@
 							if(listChatLuong != null) {
 							int count = 0;
 							for(ChatLuong chatLuong : listChatLuong) {%>
-						<tr<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+						<tr<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="clMa" value="<%=chatLuong.getClMa() %>" class="checkbox"></td>
 							<td class="col"><%=chatLuong.getClMa() %></td>
 							<td class="col"><%=chatLuong.getClTen() %></td>

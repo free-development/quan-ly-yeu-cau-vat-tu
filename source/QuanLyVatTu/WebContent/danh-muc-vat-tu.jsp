@@ -195,14 +195,9 @@
 								<th class="five-column">Định mức</th>	
 								<th class="seven-column">Số lượng tồn</th>
 							</tr>
-						
 							<%
 							if(listCTVatTu != null) {
 							int count = 0;
-							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
-						<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
-
-							int count = 0;							
 							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
 						<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="vtMa" value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
