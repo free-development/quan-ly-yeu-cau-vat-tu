@@ -14,6 +14,7 @@ import model.ChucDanh;
 import model.DonVi;
 import model.MucDich;
 import model.NguoiDung;
+import util.StringUtil;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +50,7 @@ public class NdController extends HttpServlet {
 			String email = request.getParameter("email");
 			String diachi = request.getParameter("diachi");
 			nguoiDungDAO.addNguoiDung(new NguoiDung(msnv, hoten, diachi, email, sdt, new ChucDanh(chucdanh)));
-			ctNguoiDungDAO.addCTNguoiDung(new CTNguoiDung(msnv,matkhau));
+			ctNguoiDungDAO.addCTNguoiDung(new CTNguoiDung(msnv, StringUtil.encryptMD5(matkhau)));
 			
 		}
 		if("manageNd".equalsIgnoreCase(action)) {
