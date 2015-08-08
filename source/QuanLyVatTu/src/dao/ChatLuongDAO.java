@@ -4,8 +4,11 @@ import java.util.List;
 
 import model.ChatLuong;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
 
@@ -47,5 +50,15 @@ public class ChatLuongDAO {
 		session.delete(chatLuong);
 		session.getTransaction().commit();
 	}
-	
+	public int getChatLuong1(final String clMa)
+	{
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(ChatLuong.class);
+		Criterion expClMa=Restrictions.eq("clMa", clMa);
+		cr.add(expClMa);
+		int l = cr.list().size();
+		session.getTransaction().commit();
+		return l;
+		
+	}
 }

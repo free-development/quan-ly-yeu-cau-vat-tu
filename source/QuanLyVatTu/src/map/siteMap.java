@@ -22,9 +22,15 @@ public class siteMap {
 	public static final String ctvtManage = home +  "manageCtvt.html";
 	public static final String vatTu = "danh-muc-vat-tu";
 	
-	public static final String ndManage = home +  "ndManage.html";
-	public static final String chucDanh = home +  "them-nguoi-dung";
+	public static final String ndManage = home +  "ManageNd.html";
+	public static final String nguoiDung = "them-nguoi-dung";
 	
 	public static final String cdManage = home +  "manageCl.html";
-	public static final String ChucDanh = "danh-muc-chuc-danh";
+	public static final String chucDanh = "danh-muc-chuc-danh";
+	
+	public static final String bcManage = home +  "manageBc.html";
+	public static final String baoCao = "bao-cao";
+	
+	public static final String cscvManage = home +  "manageCscv.html";
+	public static final String chiaSe = "chia-se-cong-van";
 }

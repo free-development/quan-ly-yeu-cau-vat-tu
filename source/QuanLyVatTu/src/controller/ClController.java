@@ -35,10 +35,17 @@ public class ClController extends HttpServlet {
 		if("AddCl".equalsIgnoreCase(action)) {
 			String clMa = request.getParameter("clMa");
 			String clTen = request.getParameter("clTen");
-			
+			if(new ChatLuongDAO().getChatLuong1(clMa)!=0)
+			{
+				request.setAttribute("error","Chất lượng đã tồn tại");
+				System.out.println("Chất lượng đã tồn tại");
+				return new ModelAndView("danh-muc-chat-luong");
+			}
+			else{
 			chatLuongDAO.addChatLuong(new ChatLuong(clMa,clTen));
 			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.getAllChatLuong();
 			return new ModelAndView("danh-muc-chat-luong", "chatLuongList", chatLuongList);
+			}
 		}
 		if("deleteCl".equalsIgnoreCase(action)) {
 			String[] idList = request.getParameterValues("clMa");
@@ -56,12 +63,11 @@ public class ClController extends HttpServlet {
 		return new ModelAndView("login");
 	}
 
-	@RequestMapping(value="/preEditCl", method=RequestMethod.GET, 
+	@RequestMapping(value="/preUpdateCl", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String preEditCl(@RequestParam("clMa") String clMa) {
+	 public @ResponseBody String preUpdateCl(@RequestParam("clMa") String clMa) {
 		ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
 		ChatLuong cl = chatLuongDAO.getChatLuong(clMa);
-		//System.out.println("****" + clMa + "****");
 		return JSonUtil.toJson(cl);
 	}
 	@RequestMapping(value="/deleteCl", method=RequestMethod.GET, 
@@ -69,5 +75,21 @@ public class ClController extends HttpServlet {
 	 public @ResponseBody String deleteCl(@RequestParam("clMa") String clMa) {
 		new ChatLuongDAO().deleteChatLuong(new ChatLuongDAO().getChatLuong(clMa));
 		return JSonUtil.toJson(clMa);
+	}
+	@RequestMapping(value="/addCl", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String addCl(@RequestParam("clMa") String clMa, @RequestParam("clTen") String clTen) {
+		ChatLuong cl = new ChatLuong(clMa,clTen);
+		new ChatLuongDAO().addChatLuong(cl);
+		return JSonUtil.toJson(cl);
+	}
+	
+	@RequestMapping(value="/updateCl", method=RequestMethod.GET, 
+	produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String updateCl(@RequestParam("clMaUpdate") String clMaUpdate,@RequestParam("clTenUpdate") String clTenUpdate) {
+		//ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
+		ChatLuong cl = new ChatLuong(clMaUpdate,clTenUpdate);
+		new ChatLuongDAO().updateChatLuong(cl);
+		return JSonUtil.toJson(cl);
 	}
 }
