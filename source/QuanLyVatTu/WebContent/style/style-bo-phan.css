@@ -35,7 +35,7 @@
 	text-align: center;
 }
 .mid-column {
-	width: 150px;
+	width: 200px;
 	text-align: center;
 }
 .right-column{
@@ -109,14 +109,14 @@
     padding-bottom: 20px;
 }
 
-.scroll_bp {
- text-align: center;
-  height: 350px;
-  width:  950px; 
+.scroll-bp {
+   max-height: 420px;
+  /*height: 300px;*/
+ 
   display: auto;
   border: 1px solid #CCCCCC;
   margin: 1em 0;
-  overflow:scroll; /*chú ý dòng này*/
+  overflow:scroll;
 }
 .col-diachi {
     text-align: left;
