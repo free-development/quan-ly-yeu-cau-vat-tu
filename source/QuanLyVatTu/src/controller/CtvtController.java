@@ -40,10 +40,12 @@ public class CtvtController extends HttpServlet {
 			String clMa = request.getParameter("clMa");
 			int dinhMuc = Integer.parseInt(request.getParameter("dinhMuc"));
 			int soLuongTon = Integer.parseInt(request.getParameter("soLuongTon"));
-			
-			if(vatTuDAO.getVatTu(vtMa) != null){
+//			if (new CTVatTuDAO().getCTVatTu(vtMa, nsxMa, clMa) != null)
+//				System.out.println("Vat tu da ton tai");
+			if(new CTVatTuDAO().getCTVatTu(vtMa, nsxMa, clMa) != 0){
+//			if(false){
 				request.setAttribute("error", "Vật tư đã tồn tại");
-
+				System.out.println("Vat tu da ton tai");
 				return new ModelAndView("danh-muc-vat-tu");
 			}
 			else{

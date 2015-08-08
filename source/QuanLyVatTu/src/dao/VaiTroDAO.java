@@ -3,10 +3,14 @@ package dao;
 
 import java.util.List;
 
+import model.CTVatTu;
 import model.VaiTro;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
 
@@ -49,5 +53,13 @@ public class VaiTroDAO {
 		session.delete(vaiTro);
 		session.getTransaction().commit();
 	}
-	
+	public int getVaiTroDAO(final int vtId) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(VaiTro.class);
+		Criterion expVtId = Restrictions.eq("vtId", vtId);
+		cr.add(expVtId);
+		int l =  cr.list().size();
+		session.getTransaction().commit();
+		return l;
+	}
 }

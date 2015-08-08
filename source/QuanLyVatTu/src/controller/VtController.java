@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import util.JSonUtil;
+import dao.CTVatTuDAO;
 import dao.NoiSanXuatDAO;
 import dao.VaiTroDAO;
 
@@ -37,9 +38,11 @@ public class VtController extends HttpServlet {
 		if("AddVaiTro".equalsIgnoreCase(action)) {
 			int vtId = Integer.parseInt(request.getParameter("vtId"));
 			String vtTen = request.getParameter("vtTen");
-			if(vaiTroDAO.getVaiTro(vtId) != null){
+			//if(vaiTroDAO.getVaiTro(vtId) != null)
+			if(new VaiTroDAO().getVaiTroDAO(vtId) != 0){
+				
 				request.setAttribute("error", "Vai trò đã tồn tại");
-//				request.setAttribute("vatTuList", vatTuList);
+
 				return new ModelAndView("danh-muc-vai-tro");
 			}
 			else{
