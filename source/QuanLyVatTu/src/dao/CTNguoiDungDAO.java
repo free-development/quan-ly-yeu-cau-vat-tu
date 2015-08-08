@@ -25,6 +25,14 @@ public class CTNguoiDungDAO {
 		session.getTransaction().commit();
 		return ctNguoiDung;
 	}
+	public boolean login(final String msnv, final String matkhau) {
+		session.beginTransaction();
+		CTNguoiDung ctNguoiDung = (CTNguoiDung) session.get(CTNguoiDung.class, msnv);
+		session.getTransaction().commit();
+		if (ctNguoiDung == null || !matkhau.equals(ctNguoiDung.getMatKhau()))
+			return false;
+		return true;
+	}
 	public List<CTNguoiDung> getAllCTNguoiDung() {
 		session.beginTransaction();
 		List<CTNguoiDung> ctNguoiDungList = (List<CTNguoiDung>) session.createCriteria(CTNguoiDung.class).list();

@@ -12,10 +12,6 @@
 		<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery.min.js"></script>
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-<<<<<<< HEAD
-	
-=======
-
 	<script type="text/javascript">
 		function showForm(formId, check){
 			if (check)
@@ -82,7 +78,6 @@
         });
     });
 	</script>
->>>>>>> 6f8e93687dd3d1486041fac2566b64a751a857a9
 	<script type="text/javascript" src="js/main.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
