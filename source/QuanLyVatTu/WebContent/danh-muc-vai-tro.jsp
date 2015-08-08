@@ -7,26 +7,29 @@
     <head>
         <title>Văn phòng điện tử công ty điện lực Cần Thơ</title>
         <link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
+		<link rel="stylesheet" href="style/style-noi-vai-tro.css" type="text/css">
 		<link rel="stylesheet" href="style/style-noi-san-xuat.css" type="text/css">
         <link rel="stylesheet" href="style/style.css" type="text/css">
 		<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/vaitro.js"></script>
 	<script type="text/javascript">
-		function showForm(formId, check){
-			if (check)
-				document.getElementById(formId).style.display="block";
-			else document.getElementById(formId).style.display="none";
-			var f = document.getElementById('main-form'), s, opacity;
-			s = f.style;
-			opacity = check? '10' : '100';
-			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-			s.filter = 'alpha(opacity='+opacity+')';
-			for(var i=0; i<f.length; i++) f[i].disabled = check;
-		}
+	function showForm(formId, check){
+		if (check)
+			document.getElementById(formId).style.display="block";
+		else document.getElementById(formId).style.display="none";
+		var f = document.getElementById('main-form'), s, opacity;
+		s = f.style;
+		opacity = check? '10' : '100';
+		s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+		s.filter = 'alpha(opacity='+opacity+')';
+		for(var i=0; i<f.length; i++) f[i].disabled = check;
+	}
+	function confirmDelete(){
+		return confirm('Bạn có chắc xóa');
+	}
 
-		function preUpdate(formId, check){
+		function preUpdateVt(formId, check){
 			vtId = $('input:checkbox[name=vtId]:checked').val();
 				$.ajax({
 					url: "/QuanLyVatTu/preEditVt.html",
@@ -195,8 +198,8 @@
 		</div>
 		<div id="main-content">
 			
-			<form>
-				<div id="view-table" class="scroll-vai-tro">
+			<form id="main-form">
+				<div id="view-table" class="scroll-nsx">
 					<table>
 						<tr style="background:#199e5e">
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>
@@ -206,11 +209,11 @@
 						<%
 							if(listVaiTro != null) {
 							int count = 0;
-							for(VaiTro VaiTro : listVaiTro) {%>
-						<tr>
-							<td class="left-column"><input type="checkbox" name="vtId" value="<%=VaiTro.getVtId() %>" class="checkbox"></td>
-							<td class="col"><%=VaiTro.getVtId() %></td>
-							<td class="col"><%=VaiTro.getVtTen() %></td>
+							for(VaiTro vaiTro : listVaiTro) {count++ ;%>
+						<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+							<td class="left-column"><input type="checkbox" name="vtId" value="<%=vaiTro.getVtId() %>" class="checkbox"></td>
+							<td class="col"><%=vaiTro.getVtId() %></td>
+							<td class="col"><%=vaiTro.getVtTen() %></td>
 						</tr>
 						<%} }%>
 					</table>		
@@ -219,12 +222,12 @@
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteVaiTro">
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-					<button type="button" class="button" onclick="preUpdate('update-form', true);"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-					<button type="button" class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+					<button type="button" class="button" onclick="preUpdateVt('update-form', true);"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+					<button type="button" class="button" onclick="confirmDelete();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->
-			<form id="add-form" method="get" action="<%=siteMap.vtManage %>">
+			<form id="add-form" method="get" action="<%=siteMap.vtManage + "?action=manageVt"%>">
 				<div class = "input-table">
 					<table>
 						<div class = "form-title">Thêm vai trò</div>
@@ -239,8 +242,8 @@
 					</table>
 				</div>
 				<div class="group-button">
-<!-- 						<input type="hidden" name="action" value = "addVaiTro">  -->
-						<button type="button" class="button" onclick="addVt()"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+						<input type="hidden" name="action" value = "addVaiTro">
+						<button type="button" class="button" onclick="addVt();"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
@@ -262,8 +265,8 @@
 					</table>
 				</div>
 				<div class="group-button">
-<!-- 					<input type="hidden" name="action" value = "updateVaiTro">  -->
-						<button type="button" class="button" onclick="return confirmUpdate()"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+						<input type="hidden" name="action" value = "updateVaiTro">
+						<button type="button" class="button" onclick="confirmUpdateVt()"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form',false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			

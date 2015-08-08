@@ -151,8 +151,8 @@
 		<div id="main-content">
 			
 			<form id="main-form">
-				<div id="view-table-bo-phan">
-					<table class="scroll_bophan">
+				<div id="view-table-bo-phan" class="scroll_bp">
+					<table>
 						<tr>
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>
 							<th class="mid-column">Mã BPSD</th>
@@ -164,8 +164,8 @@
 						<%
 							if(listDonVi != null) {
 							int count = 0;
-							for(DonVi donVi : listDonVi) {%>
-						<tr>
+							for(DonVi donVi : listDonVi) {count++ ;%>
+						<tr<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="dvMa" value="<%=donVi.getDvMa() %>" class="checkbox"></td>
 							<td class="col"><%=donVi.getDvMa() %></td>
 							<td class="col"><%=donVi.getDvTen()%></td>

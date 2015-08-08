@@ -35,7 +35,7 @@
 	text-align: center;
 }
 .mid-column {
-	width: 100px;
+	width: 150px;
 	text-align: center;
 }
 .right-column{
@@ -108,9 +108,8 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
-<<<<<<< HEAD
 
-.scroll_bophan {
+.scroll_bp {
  text-align: center;
   height: 350px;
   width:  950px; 
