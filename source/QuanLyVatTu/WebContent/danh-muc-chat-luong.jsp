@@ -26,10 +26,10 @@
 		s.filter = 'alpha(opacity='+opacity+')';
 		for(var i=0; i<f.length; i++) f[i].disabled = check;
 	}
-	function update(formId, check) {
-		clMa = $('input:checkbox[name=clMa]:checked').val();
+	function preUpdateCl(formId, check) {
+		var clMa = $('input:checkbox[name=clMa]:checked').val();
 		$.ajax({
-			url: "/QuanLyVatTu/preEditCl.html",	
+			url: "/QuanLyVatTu/preUpdateCl.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
 		  	data: { "clMa": clMa},
@@ -44,14 +44,13 @@
 		  	}
 		});
 	}
-	function confirmDelete(){
-		clMa = $('input:checkbox[name=clMa]:checked').val();
+	function confirmDeleteCl(){
+		var clMa = $('input:checkbox[name=clMa]:checked').val();
 		if (confirm('Bạn có chắc xóa' + clMa))
 			deleteCl(clMa);
 	}
 		
  	 function deleteCl(clMa) {
-		 
 		$.ajax({
 			url: "/QuanLyVatTu/deleteCl.html",	
 		  	type: "GET",
@@ -64,10 +63,72 @@
 						$('table tr').has('input[name="clMa"]:checked').remove();
 		    } 
 		});  
-	}  
+	} 
+ 	function addCl() {
+		var clMa = $('#add-form input:text[name=clMa]').val();
+		var clTen = $('#add-form input:text[name=clTen]').val();
+		$.ajax({
+			url: "/QuanLyVatTu/addCl.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "clMa": clMa, "clTen": clTen},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	
+		  	success: function(cl) {
+			  	$('input:text[name=clMa]').val(cl.clMa);
+			  	$('input:text[name=clTen]').val(cl.clTen);
+		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +cl.clMa + '\"</td><td class=\"col\">'+ clMa +'</td><td class=\"col\">' + clTen+'</td></tr>');
+		  		$('#add-form input:text[name=clMa]').val('');
+				$('#add-form input:text[name=clTen]').val('');
+		  		showForm("add-form", false);	
+		  	}
+		});
+	}
+ 	function confirmUpdateCl(){
+		var clMaUpdate = $('input:text[name=clMaUpdate]').val();
+		var clTenUpdate = $('input:text[name=clTenUpdate]').val();
+		if (confirm('Bạn có chắc thay doi noi san xuat co ma ' + clMaUpdate))
+			updatecl(clMaUpdate, clTenUpdate);
+	}
+ 	function updateCl(clMaUpdate, clTenUpdate) {
+
+		$.ajax({
+			url: "/QuanLyVatTu/updateCl.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "clMaUpdate": clMaUpdate, "clTenUpdate": clTenUpdate},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	
+		  	success: function(cl) {
+		  		$('table tr').has('input[name="clMa"]:checked').remove();
+		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +clMaUpdate + '\"</td><td class=\"col\">'+ clMaUpdate +'</td><td class=\"col\">' + clTenUpdate+'</td></tr>');
+		  		$('input:text[name=clMaUpdate]').val('');
+				clTenUpdate = $('input:text[name=clTenUpdate]').val('');
+		  		showForm("update-form", false);	
+		  	}
+		});
+	}
+	</script>
+	<script>
+    $(document).ready(function() {
+        $('.checkAll').click(function(event) {  //on click 
+            if(this.checked) { // check select status
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"               
+                });
+            }else{
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+                });         
+            }
+        });
+        
+    });
 	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
+        <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon"/>  
     </head>
     <body>
     	<%
@@ -83,12 +144,6 @@
 					<div id="bottom-title">Công ty điện lực cần thơ</div>
 					<div class="search_form" id="search">
 						<form action="" method="post">
-<!--
-							<span class="search-select">
-								<select name="" ><option disabled selected>--Tùy chọn kiếm kiềm--</option></select>
-								<option value=""></option>
-							</span>
--->
 							
 							<span class="search-text">
 								&nbsp;
@@ -104,10 +159,11 @@
 				</div>
 				<div class="main_menu">
 					<ul>
+					
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
 							<ul>
-								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=managecl"%>">Danh mục nơi sản xuất</a></li>
 								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
 								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh mục vật tư</a></li>
 								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
@@ -117,7 +173,7 @@
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
 						<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a></li>
 						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>
-						<li><a "<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
+						<li><a href"<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
 					</ul>
 					<div class="clear"></div>
 				</div>
@@ -140,8 +196,8 @@
 						<%
 							if(listChatLuong != null) {
 							int count = 0;
-							for(ChatLuong chatLuong : listChatLuong) {%>
-						<tr<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+							for(ChatLuong chatLuong : listChatLuong) { count++;%>
+						<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="clMa" value="<%=chatLuong.getClMa() %>" class="checkbox"></td>
 							<td class="col"><%=chatLuong.getClMa() %></td>
 							<td class="col"><%=chatLuong.getClTen() %></td>
@@ -151,13 +207,10 @@
 				</div>				
 				
 				<div class="group-button">
-					<input type="hidden" name="action" value="deleteNsx">
-					<button type="button" class="button"  onclick="showForm('add-form', true);"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-<!-- 					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button> -->
-						<!-- onclick="showForm('update-form', true)"-->
-						<button type="button" onclick="update('update-form', true)" class="button"  ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-					<!-- onclick="return confirmDelete()" -->
-					<button class="button" type="button" onclick="confirmDelete();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;
+					<input type="hidden" name="action" value="deleteCl">
+					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+					<button type="button" onclick="preUpdateCl('update-form', true)" class="button"  ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+					<button class="button" type="button" onclick="confirmDeleteCl();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;
 					<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
@@ -177,8 +230,8 @@
 					</table>
 				</div>
 				<div class="button-group">
-				<input type="hidden" name="action" value = "AddCl"> 
-						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+<!-- 				<input type="hidden" name="action" value = "addCl">  -->
+						<button class="button" onclick="addCl()" type="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
@@ -201,7 +254,7 @@
 				</div>
 				<div class="group-button">
 						<input type="hidden" name="action" value = "UpdateCl"> 
-						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+						<button class="button" onclick="confirmUpdateCl()" type="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			

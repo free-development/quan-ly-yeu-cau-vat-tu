@@ -49,8 +49,7 @@
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
     <body>
-    
-    	
+
     	<%
     		ArrayList<ChucDanh> listChucDanh = (ArrayList<ChucDanh>) request.getAttribute("chucDanhList");
     	%>

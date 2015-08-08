@@ -137,7 +137,7 @@
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
 						<li><a href="bao-cao.html">Báo cáo</a></li>
 <!--					<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
-						<li><a href="bao-cao.html">Quản lý người dùng</a></li>
+						<li><a href"<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
 					</ul>
 					<div class="clear"></div>
 				</div>
@@ -199,7 +199,7 @@
 							if(listCTVatTu != null) {
 							int count = 0;
 							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
-						<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+						<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="vtMa" value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtMa() %></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtTen() %></td>

@@ -64,6 +64,22 @@
 		});  
 	}  
 	</script>
+	<script>
+    $(document).ready(function() {
+        $('.checkAll').click(function(event) {  //on click 
+            if(this.checked) { // check select status
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"               
+                });
+            }else{
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+                });         
+            }
+        });
+        
+    });
+	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
@@ -144,13 +160,12 @@
 						<%
 							if(listMucDich != null) {
 							int count = 0;
-							for(MucDich mucDich : listMucDich) 
-							{%>
-								<tr<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+							for(MucDich mucDich : listMucDich) { count++;%>
+						<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 									<td class="left-column"><input type="checkbox" name="mdMa" value="<%=mucDich.getMdMa() %>" class="checkbox"></td>
 									<td class="col"><%=mucDich.getMdMa() %></td>
 									<td class="col"><%=mucDich.getMdTen() %></td>
-								</tr>
+							</tr>
 						<%} }%>
 					</table>		
 				</div>				
