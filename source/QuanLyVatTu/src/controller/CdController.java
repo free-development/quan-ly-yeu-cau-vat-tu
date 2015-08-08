@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ChatLuong;
 import model.ChucDanh;
+import model.NoiSanXuat;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +43,11 @@ public class CdController extends HttpServlet {
 			ArrayList<ChucDanh> chucDanhList =  (ArrayList<ChucDanh>) chucDanhDAO.getAllChucDanh();
 			return new ModelAndView("danh-muc-chuc-danh", "chucDanhList", chucDanhList);
 		}
+		if("manageCd".equalsIgnoreCase(action)) {
+			ArrayList<ChucDanh> chucDanhList =  (ArrayList<ChucDanh>) chucDanhDAO.getAllChucDanh();
+			return new ModelAndView("danh-muc-chuc-danh", "chucDanhList", chucDanhList);
+		}
 		return new ModelAndView("login");
 	}
-
+	
 }

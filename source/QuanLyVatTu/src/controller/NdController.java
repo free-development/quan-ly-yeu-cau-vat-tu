@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.CTNguoiDung;
 import model.ChucDanh;
 import model.DonVi;
+import model.MucDich;
 import model.NguoiDung;
 
 import org.springframework.stereotype.Controller;
@@ -50,6 +51,10 @@ public class NdController extends HttpServlet {
 			nguoiDungDAO.addNguoiDung(new NguoiDung(msnv, hoten, diachi, email, sdt, new ChucDanh(chucdanh)));
 			ctNguoiDungDAO.addCTNguoiDung(new CTNguoiDung(msnv,matkhau));
 			
+		}
+		if("manageNd".equalsIgnoreCase(action)) {
+			ArrayList<NguoiDung> nguoiDungList =  (ArrayList<NguoiDung>) nguoiDungDAO.getAllNguoiDung();
+			return new ModelAndView("them-nguoi-dung", "nguoiDungList", nguoiDungList);
 		}
 		return new ModelAndView("login");
 	}
