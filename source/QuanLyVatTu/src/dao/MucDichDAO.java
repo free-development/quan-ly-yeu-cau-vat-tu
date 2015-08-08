@@ -2,10 +2,14 @@ package dao;
 
 import java.util.List;
 
+import model.ChatLuong;
 import model.MucDich;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
 
@@ -47,5 +51,15 @@ public class MucDichDAO {
 		session.delete(mucDich);
 		session.getTransaction().commit();
 	}
-	
+	public int getMucDich1(final String mdMa)
+	{
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(MucDich.class);
+		Criterion expMdMa=Restrictions.eq("mdMa", mdMa);
+		cr.add(expMdMa);
+		int l = cr.list().size();
+		session.getTransaction().commit();
+		return l;
+		
+	}
 }

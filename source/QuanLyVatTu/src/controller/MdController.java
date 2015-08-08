@@ -35,10 +35,18 @@ public class MdController extends HttpServlet {
 		if("AddMd".equalsIgnoreCase(action)) {
 			String mdMa = request.getParameter("mdMa");
 			String mdTen = request.getParameter("mdTen");
-			
+			if(new MucDichDAO().getMucDich1(mdMa)!=0)
+			{
+				request.setAttribute("error","Mục đích đã tồn tại");
+				System.out.println("Mục đích đã tồn tại");
+				return new ModelAndView("danh-muc-muc-dich");
+			}
+			else
+			{
 			mucDichDAO.addMucDich(new MucDich(mdMa,mdTen));
 			ArrayList<MucDich> mucDichList =  (ArrayList<MucDich>) mucDichDAO.getAllMucDich();
 			return new ModelAndView("danh-muc-muc-dich", "mucDichList", mucDichList);
+			}
 		}
 		if("deleteMd".equalsIgnoreCase(action)) {
 			String[] idList = request.getParameterValues("mdMa");

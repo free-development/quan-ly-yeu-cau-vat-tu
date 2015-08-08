@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 function showForm(formId, check){
 			if (check)
 				document.getElementById(formId).style.display="block";
@@ -36,12 +34,6 @@ function showForm(formId, check){
 			
 // 			event.preventDefault();
 		}
-		function confirmDelete(){
-			clMa = $('input:checkbox[name=clMa]:checked').val();
-			if (confirm('Bạn có chắc xóa' + clMa))
-				deleteCl(clMa);
-		}
- 		
 	 	 function deleteCl(clMa) {
 			 
 			$.ajax({
