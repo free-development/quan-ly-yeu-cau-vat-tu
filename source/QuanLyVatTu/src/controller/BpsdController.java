@@ -10,14 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.DonVi;
+import model.VaiTro;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import util.JSonUtil;
 
 import com.sun.org.apache.xerces.internal.impl.dv.DVFactoryException;
 
 import dao.DonViDAO;
+import dao.VaiTroDAO;
 
 @Controller
 public class BpsdController extends HttpServlet {
@@ -42,16 +50,32 @@ public class BpsdController extends HttpServlet {
 		if("deleteBpsd".equalsIgnoreCase(action)) {
 			String[] idList = request.getParameterValues("dvMa");
 			for(String s : idList) {
-//				if(s != null) {
+				if(s != null) {
 					donViDAO.deleteDonVi(donViDAO.getDonVi(s));
-//				}
+				}
 			}
-			// Lấy tất cả đơn vị
 			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
 			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
 		}
-//		if("manageBpsd".equalsIgnoreCase(action))
+		
+		if("manageBpsd".equalsIgnoreCase(action)) {
+			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
+			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
+		}
 		return new ModelAndView("login");
 	}
-
+	@RequestMapping(value="/preEditBp", method=RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String preEditBp(@RequestParam("dvMa") String dvMa) {
+	//		System.out.println("****" + vtId + "****");
+			DonViDAO donViDAO = new DonViDAO();
+			DonVi bp = donViDAO.getDonVi(dvMa);
+			return JSonUtil.toJson(bp);
+		}
+	@RequestMapping(value="/deleteBp", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String deleteBp(@RequestParam("dvMa") String dvMa) {
+		new DonViDAO().deleteDonVi(new DonViDAO().getDonVi(dvMa));
+		return JSonUtil.toJson(dvMa);
+	}
 }

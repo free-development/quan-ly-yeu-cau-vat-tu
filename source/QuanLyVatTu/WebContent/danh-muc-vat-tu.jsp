@@ -24,10 +24,47 @@
 			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
-		}
-		function confirmDelete(){
-			return confirm('Bạn có chắc xóa');
-		}
+		}	
+// 		function update(formId, check){
+// 			vtMa = $('input:checkbox[name=vtMa]:checked').val();
+// 			$.ajax({
+// 				url: "/QuanLyVatTu/preEditBp.html",
+// 				type: "GET",
+// 				dataType: "JSON",
+// 				data: {"dvMa": dvMa},
+// 				contentType: "application/json",
+// 				mimeType: "application/json",
+				
+// 				success: function(bp){
+					
+// 					$('input:text[name=dvMaUpdate]').val(bp.dvMa);
+// 				  	$('input:text[name=dvTenUpdate]').val(bp.dvTen);
+				  	
+// 				  	showForm(formId, check);
+// 				}
+// 			});
+// 	}
+// 	function confirmDelete(){
+// 		dvMa = $('input:checkbox[name=dvMa]:checked').val();
+// 		if (confirm('Bạn có chắc xóa' + dvMa))
+// 			deleteBpsd(dvMa);
+// 	}
+		
+//  	 function deleteBpsd(dvMa) {
+		 
+// 		$.ajax({
+// 			url: "/QuanLyVatTu/deleteBpsd.html",	
+// 		  	type: "GET",
+// 		  	dateType: "JSON",
+// 		  	data: { "dvMa": dvMa},
+// 		  	contentType: 'application/json',
+// 		    mimeType: 'application/json',
+// 		  	success: function() {
+// 			  	alert(dvMa + "da bi xoa");
+// 						$('table tr').has('input[name="dvMa"]:checked').remove();
+// 		    } 
+// 		});  
+// 	}
 	</script>
 	<script>
     $(document).ready(function() {
@@ -43,7 +80,7 @@
             }
         });
         
-    });
+    }); 
 	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
@@ -99,7 +136,7 @@
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
 						<li><a href="bao-cao.html">Báo cáo</a></li>
-<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
+<!--					<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
 						<li><a href="bao-cao.html">Quản lý người dùng</a></li>
 					</ul>
 					<div class="clear"></div>
@@ -162,9 +199,16 @@
 							<%
 							if(listCTVatTu != null) {
 							int count = 0;
+<<<<<<< HEAD
 							for(CTVatTu ctVatTu : listCTVatTu) {%>
 						<tr>
 							
+=======
+							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
+						<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+
+							int count = 0;							
+>>>>>>> 6f8e93687dd3d1486041fac2566b64a751a857a9
 							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
 						<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="vtMa" value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>

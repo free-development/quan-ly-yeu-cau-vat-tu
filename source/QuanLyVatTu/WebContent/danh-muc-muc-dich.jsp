@@ -11,37 +11,58 @@
 		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
     <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
+	 <script src="js/jquery.min.js"></script>
 	<script type="text/javascript">
-		function showForm(formId, check){
-			if (check)
-				document.getElementById(formId).style.display="block";
-			else document.getElementById(formId).style.display="none";
-			var f = document.getElementById('main-form'), s, opacity;
-			s = f.style;
-			opacity = check? '5' : '100';
-			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-			s.filter = 'alpha(opacity='+opacity+')';
-			for(var i=0; i<f.length; i++) f[i].disabled = check;
-		}
-		function confirmDelete(){
-			return confirm('Bạn có chắc xóa');
-		}
-	</script>
-		<script>
-    $(document).ready(function() {
-        $('.checkAll').click(function(event) {  //on click 
-            if(this.checked) { // check select status
-                $('.checkbox').each(function() { //loop through each checkbox
-                    this.checked = true;  //select all checkboxes with class "checkbox1"               
-                });
-            }else{
-                $('.checkbox').each(function() { //loop through each checkbox
-                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
-                });         
-            }
-        });
-        
-    });
+	function showForm(formId, check){
+		if (check)
+			document.getElementById(formId).style.display="block";
+		else document.getElementById(formId).style.display="none";
+		var f = document.getElementById('main-form'), s, opacity;
+		s = f.style;
+		opacity = check? '10' : '100';
+		s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+		s.filter = 'alpha(opacity='+opacity+')';
+		for(var i=0; i<f.length; i++) f[i].disabled = check;
+	}
+	function update(formId, check) {
+		mdMa = $('input:checkbox[name=mdMa]:checked').val();
+		$.ajax({
+			url: "/QuanLyVatTu/preEditMd.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "mdMa": mdMa},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	
+		  	success: function(md) {
+			  	$('input:text[name=mdMaUpdate]').val(md.mdMa);
+			  	$('input:text[name=mdTenUpdate]').val(md.mdTen);
+		  		showForm(formId, check);	
+		  		
+		  	}
+		});
+	}
+	function confirmDelete(){
+		mdMa = $('input:checkbox[name=mdMa]:checked').val();
+		if (confirm('Bạn có chắc xóa' + mdMa))
+			deleteMd(mdMa);
+	}
+		
+ 	 function deleteMd(mdMa) {
+		 
+		$.ajax({
+			url: "/QuanLyVatTu/deleteMd.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "mdMa": mdMa},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	success: function() {
+			  	alert(mdMa + "da bi xoa");
+						$('table tr').has('input[name="mdMa"]:checked').remove();
+		    } 
+		});  
+	}  
 	</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
@@ -98,7 +119,6 @@
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
 						<li><a href="bao-cao.html">Báo cáo</a></li>
-<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
 						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
 					</ul>
 					<div class="clear"></div>
@@ -126,7 +146,7 @@
 							int count = 0;
 							for(MucDich mucDich : listMucDich) 
 							{%>
-								<tr>
+								<tr<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 									<td class="left-column"><input type="checkbox" name="mdMa" value="<%=mucDich.getMdMa() %>" class="checkbox"></td>
 									<td class="col"><%=mucDich.getMdMa() %></td>
 									<td class="col"><%=mucDich.getMdTen() %></td>
@@ -138,8 +158,8 @@
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteMd">		
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-								 <button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+					<button type="button" class="button" onclick="update('update-form', true)" ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+								 <button class="button" onclick="confirmDelete();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
 			
@@ -171,15 +191,16 @@
 						<div class="form-title">Cập nhật mục đích</div>
 						<tr>
 							<th><label for="MMD">Mã mục đích</label></th>
-							<td><input name="" type="text" class="text" required size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã mục đích chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MMA" readonly></td>
+							<td><input name="mdMaUpdate" type="text" class="text" required size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã mục đích chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MMA" readonly></td>
 						</tr>
 						<tr>
 							<th><label for="MMD">Tên mục đích</label></th>
-							<td><input name=""  autofocus size="30px" align=left type="text" class="text" required title="Tên mục đích không được để trống"></td>
+							<td><input name="mdTenUpdate"  autofocus size="30px" align=left type="text" class="text" required title="Tên mục đích không được để trống"></td>
 						</tr>	
 					</table>
 				</div>
 				<div class="group-button">
+						<input type="hidden" name="action" value = "UpdateMd"> 
 						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>

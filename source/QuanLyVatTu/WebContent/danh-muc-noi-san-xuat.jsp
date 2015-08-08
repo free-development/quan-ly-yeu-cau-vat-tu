@@ -12,7 +12,77 @@
 		<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery.min.js"></script>
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<<<<<<< HEAD
 	
+=======
+
+	<script type="text/javascript">
+		function showForm(formId, check){
+			if (check)
+				document.getElementById(formId).style.display="block";
+			else document.getElementById(formId).style.display="none";
+			var f = document.getElementById('main-form'), s, opacity;
+			s = f.style;
+			opacity = check? '10' : '100';
+			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+			s.filter = 'alpha(opacity='+opacity+')';
+			for(var i=0; i<f.length; i++) f[i].disabled = check;
+		}
+		function confirmDelete(){
+			return confirm('Bạn có chắc xóa');
+		}
+
+		 $(document).ready(function() {
+			 	var nsxMa =  $("input[nsxMa]").val();
+// 				var nsxMa =  $("#updateNsx").val();
+		      
+				$("#updateNsx").click(function(event) {
+		    	  
+					$.ajax({
+						url: "/QuanLyVatTu/preEditNsx.html",	
+					  	type: "GET",
+					  	data: { "nsxMa": nsxMa},
+// 					  	beforeSend: function(xhr) {
+// 					  		xhr.setRequestHeader("Accept", "application/json");
+// 					  		xhr.setRequestHeader("Content-Type", "application/json");
+// 					  	},
+					  	
+					  	success: function(smartphone) {
+					  		var respContent = "";
+					  		var rowToDelete = $(event.target).closest("tr");
+					  		
+					  		rowToDelete.remove();
+					  		
+					  		respContent += "<span class='success'>Smartphone was deleted: [";
+					  		respContent += smartphone.producer + " : ";
+					  		respContent += smartphone.model + " : " ;
+					  		respContent += smartphone.price + "]</span>";
+					  		
+					  		$("#addForm").html(respContent);   		
+					  	}
+					});
+		  
+					event.preventDefault();
+				});
+		       
+		}); 
+	</script>
+	<script>
+    $(document).ready(function() {
+        $('.checkAll').click(function(event) {  //on click 
+            if(this.checked) { // check select status
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"               
+                });
+            }else{
+                $('.checkbox').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+                });         
+            }
+        });
+    });
+	</script>
+>>>>>>> 6f8e93687dd3d1486041fac2566b64a751a857a9
 	<script type="text/javascript" src="js/main.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
@@ -57,9 +127,10 @@
 							<ul>
 								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
 								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
-								<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh mục vật tư</a></li>
+								<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
 								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>

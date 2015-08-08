@@ -42,15 +42,15 @@ public class CtvtController extends HttpServlet {
 			int soLuongTon = Integer.parseInt(request.getParameter("soLuongTon"));
 			
 			if(vatTuDAO.getVatTu(vtMa) != null){
-				request.setAttribute("error", "Vai trò đã tồn tại");
+				request.setAttribute("error", "Vật tư đã tồn tại");
 
 				return new ModelAndView("danh-muc-vat-tu");
 			}
 			else{
 				vatTuDAO.addVatTu(new VatTu(vtMa,vtTen,dvt));
 				ctVatTuDAO.addCTVatTu(new CTVatTu(new VatTu(vtMa,vtTen,dvt), new NoiSanXuat(nsxMa), new ChatLuong(clMa), dinhMuc, soLuongTon));
-				ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.getAllVatTu();
-				ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) ctVatTuDAO.getAllCTVatTu();
+				ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
+				ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) new CTVatTuDAO().getAllCTVatTu();
 				return new ModelAndView("danh-muc-vat-tu", "ctVatTuList", ctVatTuList);
 			}
 			
@@ -60,12 +60,15 @@ public class CtvtController extends HttpServlet {
 			for(String s : vtIdList) {
 				
 					ctVatTuDAO.deleteCTVatTu(ctVatTuDAO.getCTVatTu(s));
-					//vatTuDAO.deleteVatTu(s);
 			}
 			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.getAllVatTu();
 			return new ModelAndView("danh-muc-vat-tu", "vatTuList", vatTuList);
 		}
-		
+		if("manageCtvt".equalsIgnoreCase(action)) {
+			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
+			ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) new CTVatTuDAO().getAllCTVatTu();
+			return new ModelAndView("danh-muc-vat-tu", "ctVatTuList", ctVatTuList);
+		}
 		return new ModelAndView("login");
 	}
 

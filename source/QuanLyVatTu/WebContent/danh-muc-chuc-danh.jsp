@@ -1,4 +1,4 @@
-﻿<%@page import="model.DonVi"%>
+﻿<%@page import="model.ChucDanh"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="map.siteMap"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
@@ -53,7 +53,7 @@
     <body>
     
     	<%
-    		ArrayList<DonVi> listDonVi = (ArrayList<DonVi>) request.getAttribute("donViList");
+    		ArrayList<ChucDanh> listChucDanh = (ArrayList<ChucDanh>) request.getAttribute("chucDanhList");
     	%>
         <div class="wrapper">
 				<div class="header">
@@ -106,7 +106,7 @@
 	
 <!--				<div id="main-content">-->
 					<div id="title-content">
-		 Danh mục bộ phận sử dụng
+		 Danh mục chức danh
 		</div>
 		<div id="main-content">
 			
@@ -115,32 +115,27 @@
 					<table class="scroll_bophan">
 						<tr>
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>
-							<th class="mid-column">Mã BPSD</th>
-							<th class="column-2">Tên bộ phận</th>
-                            <th class="column-3">Số điện thoại</th>
-							<th class="column-4">Địa chỉ</th>
-                            <th class="column-5">Email</th>
+							<th class="mid-column">Mã chức danh</th>
+							<th class="column-2">Tên chức danh</th>
 						</tr>
 						<%
-							if(listDonVi != null) {
+							if(listChucDanh != null) {
 							int count = 0;
-							for(DonVi donVi : listDonVi) {%>
+							for(ChucDanh chucDanh : listChucDanh) {%>
 						<tr>
-							<td class="left-column"><input type="checkbox" name="dvMa" value="<%=donVi.getDvMa() %>" class="checkbox"></td>
-							<td class="col"><%=donVi.getDvMa() %></td>
-							<td class="col"><%=donVi.getDvTen()%></td>
-                            <td><%=donVi.getSdt()%></td>
-                            <td class="col"><%=donVi.getDiaChi()%></td>
-                            <td class="col"><%=donVi.getEmail()%></td>
+							<td class="left-column"><input type="checkbox" name="cdMa" value="<%=chucDanh.getCdMa() %>" class="checkbox"></td>
+							<td class="col"><%=chucDanh.getCdMa() %></td>
+							<td class="col"><%=chucDanh.getCdTen()%></td>
+        
 						</tr>
 						<%} }%>
                     </table>		
 				</div>				
 				
 				<div class="group-button-bo-phan">
-					<input type="hidden" name="action" value="deleteBpsd">
+					<input type="hidden" name="action" value="deleteCd">
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>&nbsp;&nbsp;
-					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>&nbsp;&nbsp;
+					<button type="button" class="button" onclick="update('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>&nbsp;&nbsp;
 					<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>Thoát</button>
 				</div>
 			</form>	
@@ -148,51 +143,19 @@
 			<form id="add-form" method="get" action="<%=siteMap.cdManage + "?action=manageCd" %>">
 				<div class="input-table-bo-phan">
 					<table>
-						<div class="form-title">Thêm bộ phận sử dụng</div>
+						<div class="form-title">Thêm Chức danh</div>
 						<tr>
-							<td class="input"><label for="MBPSD" class="input">Mã BPSD</label></td>
-							<td><input name="maBpsd" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+							<td class="input"><label for="MCD" class="input">Mã chức danh</label></td>
+							<td><input name="cdMa" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã chức danh sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
-							<td class="input"><label for="MBPSD">Tên BPSD</label></td>
-							<td><input name="tenBpsd" size="30px" align=left type="text" class="text" required title="Tên bộ phận sử dụng không được để trống"></td>
+							<td class="input"><label for="TCD">Tên chức danh</label></td>
+							<td><input name="cdTen" size="30px" align=left type="text" class="text" required title="Tên chức danh sử dụng không được để trống"></td>
 						</tr>
-                         <tr>
-                        <td class="input"><label>Số điện thoại</label></td>
-                            <td><input name="sdt" size="15px" align=left type="text" class="text"></td>
-                        </tr>
-                        <tr>
-                            <td class="input"><label>Địa chỉ</label></td>
-							<td><input name="diaChi" size="30px" align=left type="text" class="text"></td>
-                        </tr>
-                        <tr>
-                            <td class="input"><label>Email</label></td>
-                            <td><input name="email" size="30px" align=left type="email" class="text"></td>                         
-                        </tr>
-                       
-<!--
-                        <tr>
-                            <td class="input"><label>Số TK</label></td>
-							<td><input name="" size="15px" align=left type="text" class="text"></td>                            
-                        </tr>
-                        <tr>
-                        <td class="input"><label>Mã số thuế</label></td>
-                            <td><input name="" align=left type="text" class="text"></td>
-                        </tr>
-                        <tr>
-                            <td class="input"><label>Loại BP</label></td>
-							<td><select name = "" required class="select">
-                                    <option class="option" value=""></option>
-                                    <option value="" class="option">AAAAAAAAAA</option>
-                                    <option>AAAAAAAAAA</option>
-                                </select>
-                            </td>
-                        </tr>
--->
 					</table>
 				</div>
 				<div class="button-group">
-						<input type="hidden" name="action" value = "AddBpsd"> 
+						<input type="hidden" name="action" value = "AddCd"> 
 						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
@@ -203,50 +166,19 @@
 			<form id="update-form">
 				<div class="input-table">
 					<table>
-						<div class="form-title">Cập nhật bộ phận sử dụng</div>
+						<div class="form-title">Cập nhật chức danh</div>
 						<tr>
-							<td class="input"><label for="MBPSD" class="input">Mã BPSD</label></td>
-							<td><input name="" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+							<td class="input"><label for="MCD" class="input">Mã chức danh</label></td>
+							<td><input name="cdMaUpdate" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã chức danh chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
-							<td class="input"><label for="MBPSD">Tên BPSD</label></td>
-							<td><input name="" size="30px" align=left type="text" class="text" required title="Tên bộ phận sử dụng không được để trống"></td>
+							<td class="input"><label for="TCD">Tên chức danh</label></td>
+							<td><input name="cdTenUpdate" size="30px" align=left type="text" class="text" required title="Tên chức danh sử dụng không được để trống"></td>
 						</tr>
-                         <tr>
-                        <td class="input"><label>Số điện thoại</label></td>
-                            <td><input name="" size="15px" align=left type="text" class="text"></td>
-                        </tr>
-                        <tr>
-                            <td class="input"><label>Địa chỉ</label></td>
-							<td><input name="" size="30px" align=left type="text" class="text"></td>
-                        </tr>
-                        <tr>
-                            <td class="input"><label>Email</label></td>
-                            <td><input name="" size="30px" align=left type="email" class="text"></td>                         
-                        </tr>
-                       
-<!--
-                        <tr>
-                            <td class="input"><label>Số TK</label></td>
-							<td><input name="" size="15px" align=left type="text" class="text"></td>                            
-                        </tr>
-                        <tr>
-                        <td class="input"><label>Mã số thuế</label></td>
-                            <td><input name="" align=left type="text" class="text"></td>
-                        </tr>
-                        <tr>
-                            <td class="input"><label>Loại BP</label></td>
-							<td><select name = "" required class="select">
-                                    <option class="option" value=""></option>
-                                    <option value="" class="option">AAAAAAAAAA</option>
-                                    <option>AAAAAAAAAA</option>
-                                </select>
-                            </td>
-                        </tr>
--->
 					</table>
 				</div>
 				<div class="button-group">
+						<input type="hidden" name="action" value = "UpdateCd"> 
 						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
