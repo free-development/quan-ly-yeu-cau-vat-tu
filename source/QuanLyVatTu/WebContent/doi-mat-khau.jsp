@@ -1,3 +1,4 @@
+<%@page import="map.siteMap"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,35 +13,8 @@
 <!--		<script type="text/javascript" src="js/check.js"></script>-->
 		<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
 
-		<script type="text/javascript">
-
-
-			function showForm(formId, check){
-				if (check)
-					document.getElementById(formId).style.display="block";
-				else document.getElementById(formId).style.display="none";
-				var f = document.getElementById('main-form'), s, opacity;
-				s = f.style;
-				opacity = check? '10' : '100';
-				s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-				s.filter = 'alpha(opacity='+opacity+')';
-				for(var i=0; i<f.length; i++) f[i].disabled = check;
-			}
-			function confirmDelete(){
-				return confirm('Bạn có chắc xóa');
-			}
-			function checkPassword()
-				{
-					var password = document.forms["taoTaiKhoan"]["matkhau"].value;
-					var confirmPassword = document.forms["taoTaiKhoan"]["re-matkhau"].value;
-					if(password != confirmPassword)
-					{
-						alert("Mật khẩu nhập lại chưa chính xác. Vui lòng kiểm tra lại!");
-						return false;
-					}
-				}
-		</script>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="js/doi-mat-khau.js"></script>
+<!--         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
     <body>
@@ -53,7 +27,7 @@
 					<div id="top_title">Văn phòng điện tử</div>
 					<div id="bottom-title">Công ty điện lực cần thơ</div>
 					<div class="search_form" id="search">
-						<form action="" method="post">
+						<form action="<%=siteMap.changePass%>" --> method="post">
 <!--
 							<span class="search-select">
 								<select name="" ><option disabled selected>--Tùy chọn kiếm kiềm--</option></select>
@@ -104,29 +78,26 @@
 						</tr>
                         <tr>
 							<td class="input"><label for="matkhau">Mật khẩu cũ</label></td>
-							<td><input type="password" required size="20" maxlength="20" title="Mật khẩu phải hơn 7 ký tự và nhỏ hơn 21" pattern=".{8,20}" class="text" id="matkhau" name="matkhau"></td>
+							<td><input type="password" required size="20" maxlength="20" title="Mật khẩu phải hơn 7 ký tự và nhỏ hơn 21" pattern=".{8,20}" class="text" id="matkhau" name="passOld"></td>
 						</tr>
 						<tr>
 							<td class="input"><label for="matkhau">Mật khẩu mới</label></td>
-							<td><input type="password" required size="20" maxlength="20" title="Mật khẩu phải hơn 7 ký tự và nhỏ hơn 21" pattern=".{8,20}" class="text" id="matkhau" name="matkhau"></td>
+							<td><input type="password" required size="20" maxlength="20" title="Mật khẩu phải hơn 7 ký tự và nhỏ hơn 21" pattern=".{8,20}" class="text" id="matkhau" name="passNew"></td>
 						</tr>
 
 						<tr>
 							<td class="input"><label for="re-matkhau">Nhập lại mật khẩu mới</label></td>
-							<td><input type="password" required size="20" maxlength="20" title="Mật khẩu phải hơn 7 ký tự và nhỏ hơn 21" pattern=".{8,20}" class="text" id="re-matkhau" name="re-matkhau"></td>
+							<td><input type="password" required size="20" maxlength="20" title="Mật khẩu phải hơn 7 ký tự và nhỏ hơn 21" pattern=".{8,20}" class="text" id="rePassNew" name="rePassNew"></td>
 						</tr>
 					</table>
 					<div class="button-group">
-						<button class="button" type="submit" onclick="return checkPassword();"><i class="fa fa-plus-circle"></i>&nbsp;Lưu lại</button> &nbsp;
+						<button class="button" type="button" onclick="checkPassword();"><i class="fa fa-plus-circle"></i>&nbsp;Lưu lại</button> &nbsp;
 						<button class="button" type="reset"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button> &nbsp;
 						<button class="button" type="button"><i class="fa fa-sign-out"></i>&nbsp;Thoát</button>
 					</div>
 				</form>
 			</div>
 		</div>
-			
-				
-				
         </div>
     </body>
 </html>
