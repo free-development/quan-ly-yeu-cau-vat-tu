@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import util.JSonUtil;
+import dao.CTVatTuDAO;
 import dao.NoiSanXuatDAO;
 import dao.VaiTroDAO;
 
@@ -37,9 +38,11 @@ public class VtController extends HttpServlet {
 		if("AddVaiTro".equalsIgnoreCase(action)) {
 			int vtId = Integer.parseInt(request.getParameter("vtId"));
 			String vtTen = request.getParameter("vtTen");
-			if(vaiTroDAO.getVaiTro(vtId) != null){
+			//if(vaiTroDAO.getVaiTro(vtId) != null)
+			if(new VaiTroDAO().getVaiTroDAO(vtId) != 0){
+				
 				request.setAttribute("error", "Vai trò đã tồn tại");
-//				request.setAttribute("vatTuList", vatTuList);
+
 				return new ModelAndView("danh-muc-vai-tro");
 			}
 			else{
@@ -77,10 +80,28 @@ public class VtController extends HttpServlet {
 			/*ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
 			return toJson(nsxList);*/
 		}
+	@RequestMapping(value="/addVt", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String addVt(@RequestParam("vtId") int vtId, @RequestParam("vtTen") String vtTen) {
+		System.out.println("****" + vtId + "****");
+
+		VaiTro vt = new VaiTro(vtId, vtTen);
+		new VaiTroDAO().addVaiTro(vt);
+		return JSonUtil.toJson(vt);	
+	}
+	@RequestMapping(value="/updateVt", method=RequestMethod.GET, 
+		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String updateVt(@RequestParam("vtIdUpdate") String vtIdUpdate, @RequestParam("vtTenUpdate") String vtTenUpdate) {
+
+		VaiTro vt = new VaiTro(Integer.parseInt(vtIdUpdate), vtTenUpdate);
+		new VaiTroDAO().updateVaiTro(vt);
+		return JSonUtil.toJson(vt);
+	}
 	@RequestMapping(value="/deleteVt", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteVt(@RequestParam("vtId") String vtId) {
-		new VaiTroDAO().deleteVaiTro(new VaiTroDAO().getVaiTro(Integer.parseInt(vtId)));
+		VaiTro vt = new VaiTro(Integer.parseInt(vtId));
+		new VaiTroDAO().deleteVaiTro(vt);
 		return JSonUtil.toJson(vtId);
 	}
 }

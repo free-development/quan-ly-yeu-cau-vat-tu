@@ -197,9 +197,15 @@
 							</tr>
 							<%
 							if(listCTVatTu != null) {
+<<<<<<< HEAD
 							int count = 0;
 							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
 						<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+=======
+							int count = 0;						
+							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
+						<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+>>>>>>> origin/master
 							<td class="left-column"><input type="checkbox" name="vtMa" value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtMa() %></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtTen() %></td>

@@ -7,8 +7,12 @@ import java.util.List;
 
 import model.CTVatTu;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
 
@@ -24,14 +28,14 @@ public class CTVatTuDAO {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
-	public CTVatTu getCTVatTu(final String clMa) {
+	public CTVatTu getCTVatTu(final String vtMa) {
 		session.beginTransaction();
 		
-		CTVatTu chatLuong = (CTVatTu) session.get(CTVatTu.class, clMa);
+		CTVatTu ctvt = (CTVatTu) session.get(CTVatTu.class, vtMa);
 //		session.
 		
 		session.getTransaction().commit();
-		return chatLuong;
+		return ctvt;
 	}
 	public List<CTVatTu> getAllCTVatTu() {
 		session.beginTransaction();
@@ -54,5 +58,18 @@ public class CTVatTuDAO {
 		session.delete(ctVatTu);
 		session.getTransaction().commit();
 	}
-	
+	public int getCTVatTu(final String vtMa, final String nsxMa, final String clMa) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(CTVatTu.class);
+		Criterion expVtMa = Restrictions.eq("vtMa", vtMa);
+		Criterion expNsxMa = Restrictions.eq("nsxMa", nsxMa);
+		Criterion expClMa = Restrictions.eq("clMa", clMa);
+	//	LogicalExpression andExp = Restrictions.and (expVtMa, expNsxma);
+//		andExp = Restrictions.and(andExp, expClMa);
+//		CTVatTu ctVatTu = null;
+		cr.add(expVtMa);
+		int l =  cr.list().size();
+		session.getTransaction().commit();
+		return l;
+	}
 }

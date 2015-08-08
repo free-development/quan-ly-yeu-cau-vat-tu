@@ -43,7 +43,7 @@ function update(formId, check){
 					url: "/QuanLyVatTu/deleteVt.html",	
 				  	type: "GET",
 				  	dateType: "JSON",
-				  	data: { "nsxMa": vtId},
+				  	data: { "vtId": vtId},
 				  	contentType: 'application/json',
 				    mimeType: 'application/json',
 				  	success: function() {
@@ -52,3 +52,23 @@ function update(formId, check){
 				    } 
 				});
 		 }
+		 	function updateVt(vtIdUpdate, vtTenUpdate) {
+
+				$.ajax({
+					url: "/QuanLyVatTu/updateVt.html",	
+				  	type: "GET",
+				  	dateType: "JSON",
+				  	data: { "vtIdUpdate": vtIdUpdate, "vtTenUpdate": vtTenUpdate},
+				  	contentType: 'application/json',
+				    mimeType: 'application/json',
+				  	
+				  	success: function(vt) {
+				  		$('table tr').has('input[name="vtId"]:checked').remove();
+				  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtId\" value=\"' +vtIdUpdate + '\"</td><td class=\"col\">'+ vtIdUpdate +'</td><td class=\"col\">' + vtTenUpdate+'</td></tr>');
+				  		$('input:text[name=vtIdUpdate]').val('');
+						vtTenUpdate = $('input:text[name=vtTenUpdate]').val('');
+				  		showForm("update-form", false);	
+				  	}
+				});
+			}
+	 		

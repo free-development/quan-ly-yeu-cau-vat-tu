@@ -22,6 +22,9 @@ public class VaiTro implements Serializable{
 	 * @param vtId
 	 * @param vtTen
 	 */
+	public VaiTro(int vtId) {
+		this.vtId = vtId;
+	}
 	public VaiTro(int vtId, String vtTen) {
 		this.vtId = vtId;
 		this.vtTen = vtTen;
