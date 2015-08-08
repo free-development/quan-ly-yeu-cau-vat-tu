@@ -79,6 +79,19 @@ public class NsxController extends HttpServlet {
 		/*ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
 		return toJson(nsxList);*/
 	}
+	@RequestMapping(value="/updateNsx", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String updateNsx(@RequestParam("nsxMaUpdate") String nsxMaUpdate, @RequestParam("nsxTenUpdate") String nsxTenUpdate) {
+//		System.out.println("****" + nsxMa + "****");
+//		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
+		System.out.println(nsxMaUpdate);
+		System.out.println(nsxTenUpdate);
+		NoiSanXuat nsx = new NoiSanXuat(nsxMaUpdate, nsxTenUpdate);
+		new NoiSanXuatDAO().updateNoiSanXuat(nsx);
+		return JSonUtil.toJson(nsx);
+		/*ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
+		return toJson(nsxList);*/
+	}
 	@RequestMapping(value="/deleteNsx", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteNsx(@RequestParam("nsxMa") String nsxMa) {
