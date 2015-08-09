@@ -1,7 +1,7 @@
 <%@page import="model.ChatLuong"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="map.siteMap"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset= UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,11 +11,10 @@
 		<link rel="stylesheet" href="style/style.css" type="text/css">
 		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
         <link href="style/style-chat-luong.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
     <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="js/chatluong.js"></script>
-    <script src="js/jquery.min.js"></script>
-	<script type="text/javascript">
-	function showForm(formId, check){
+    <script type="text/javascript">
+    function showForm(formId, check){
 		if (check)
 			document.getElementById(formId).style.display="block";
 		else document.getElementById(formId).style.display="none";
@@ -46,7 +45,7 @@
 	}
 	function confirmDeleteCl(){
 		var clMa = $('input:checkbox[name=clMa]:checked').val();
-		if (confirm('Bạn có chắc xóa' + clMa))
+		if (confirm('Bạn có chắc xóa ' + clMa))
 			deleteCl(clMa);
 	}
 		
@@ -64,32 +63,42 @@
 		    } 
 		});  
 	} 
+ 	
  	function addCl() {
 		var clMa = $('#add-form input:text[name=clMa]').val();
 		var clTen = $('#add-form input:text[name=clTen]').val();
-		$.ajax({
-			url: "/QuanLyVatTu/addCl.html",	
-		  	type: "GET",
-		  	dateType: "JSON",
-		  	data: { "clMa": clMa, "clTen": clTen},
-		  	contentType: 'application/json',
-		    mimeType: 'application/json',
-		  	
-		  	success: function(cl) {
-			  	$('input:text[name=clMa]').val(cl.clMa);
-			  	$('input:text[name=clTen]').val(cl.clTen);
-		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +cl.clMa + '\"</td><td class=\"col\">'+ clMa +'</td><td class=\"col\">' + clTen+'</td></tr>');
-		  		$('#add-form input:text[name=clMa]').val('');
-				$('#add-form input:text[name=clTen]').val('');
-		  		showForm("add-form", false);	
-		  	}
-		});
+		if(clMa==chatLuong.getClMa())
+			{
+				alert(clMa + " đã tồn tại ");
+				showForm("add-form", true);
+			}
+		else
+		{
+			$.ajax({
+				url: "/QuanLyVatTu/addCl.html",	
+			  	type: "GET",
+			  	dateType: "JSON",
+			  	data: { "clMa": clMa, "clTen": clTen},
+			  	contentType: 'application/json',
+			    mimeType: 'application/json',
+			  	success: function(cl) {
+				  	$('input:text[name=clMa]').val(cl.clMa);
+				  	$('input:text[name=clTen]').val(cl.clTen);
+			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +cl.clMa + '\"</td><td class=\"col\">'+ clMa +'</td><td class=\"col\">' + clTen+'</td></tr>');
+			  		$('#add-form input:text[name=clMa]').val('');
+					$('#add-form input:text[name=clTen]').val('');
+					alert(clMa + " đã được thêm ");
+			  		showForm("add-form", false);	
+			  	}
+			});
+		}
 	}
+ 	
  	function confirmUpdateCl(){
 		var clMaUpdate = $('input:text[name=clMaUpdate]').val();
 		var clTenUpdate = $('input:text[name=clTenUpdate]').val();
 		if (confirm('Bạn có chắc thay doi noi san xuat co ma ' + clMaUpdate))
-			updatecl(clMaUpdate, clTenUpdate);
+			updateCl(clMaUpdate, clTenUpdate);
 	}
  	function updateCl(clMaUpdate, clTenUpdate) {
 
@@ -110,7 +119,7 @@
 		  	}
 		});
 	}
-	</script>
+	</script>	
 	<script>
     $(document).ready(function() {
         $('.checkAll').click(function(event) {  //on click 
@@ -127,6 +136,7 @@
         
     });
 	</script>
+		<script type="text/javascript" src="js/chatluong.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon"/>  
     </head>
@@ -168,11 +178,17 @@
 								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh mục vật tư</a></li>
 								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
 								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh mục chức danh</a></li>
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-						<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a></li>
-						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>
+						<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
+							<ul>
+								<li><a href="">Báo cáo bảng đề nghị cấp vật tư</a></li>
+								<li><a href="">Báo cáo vật tư thiếu</a></li>
+							</ul>
+						</li>
+<!-- 						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li> -->
 						<li><a href"<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
 					</ul>
 					<div class="clear"></div>
@@ -209,7 +225,7 @@
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteCl">
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-					<button type="button" onclick="preUpdateCl('update-form', true)" class="button"  ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+					<button type="button" onclick="preUpdateCl('update-form', true)" class="button" title="Chọn 1 chất lượng để thay đổi" ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
 					<button class="button" type="button" onclick="confirmDeleteCl();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;
 					<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
@@ -230,7 +246,7 @@
 					</table>
 				</div>
 				<div class="button-group">
-<!-- 				<input type="hidden" name="action" value = "addCl">  -->
+				<input type="hidden" name="action" value = "AddCl">  
 						<button class="button" onclick="addCl()" type="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>

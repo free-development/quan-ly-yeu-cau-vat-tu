@@ -81,7 +81,7 @@
 			
 				<div id="main-content">
 					<div id="title-content">
-		              Bảng đề nghị cấp vật tư
+		              Báo cáo bảng đề nghị cấp vật tư
                     </div>
                     <table>
                         <tr>

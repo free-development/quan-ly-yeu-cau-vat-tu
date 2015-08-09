@@ -32,6 +32,10 @@ public class NsxController extends HttpServlet {
 	@RequestMapping("/manageNsx")
 	public ModelAndView manageNsx(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
+		request.getCharacterEncoding();
+    	response.getCharacterEncoding();
+    	request.setCharacterEncoding("UTF-8");
+    	response.setCharacterEncoding("UTF-8");
 		
 		String action = request.getParameter("action");
 		if("AddNsx".equalsIgnoreCase(action)) {

@@ -28,6 +28,7 @@ public class siteMap {
 	public static final String vatTu = "danh-muc-vat-tu";
 	
 
+
 	public static final String ndManage = home +  "ManageNd.html";
 	public static final String nguoiDung = "them-nguoi-dung";
 
@@ -36,14 +37,37 @@ public class siteMap {
 	public static final String changePass = home +  "changePass.html";
 	public static final String chucDanh = home +  "them-nguoi-dung";
 
+	//public static final String ndManage = home +  "ManageNd.html";
+	//public static final String nguoiDung = "them-nguoi-dung";
+	
+	// map manage nguoi dung
+	public static final String ndManage = home +  "ndManage.html";
+	public static final String changePass = home +  "changePass.html";
+
+	public static final String nguoiDung = home +  "them-nguoi-dung";
+
+	//public static final String nguoiDung = "them-nguoi-dung";
+
+
 	
 	// map danh muc chuc danh
-	public static final String cdManage = home +  "manageCl.html";
+	public static final String cdManage = home +  "manageCd.html";
 	public static final String chucDanh = "danh-muc-chuc-danh";
 	
+	// map manage bao cao
 	public static final String bcManage = home +  "manageBc.html";
 	public static final String baoCao = "bao-cao";
 	
+	// map chia se cong van
 	public static final String cscvManage = home +  "manageCscv.html";
 	public static final String chiaSe = "chia-se-cong-van";
+	
+	// map cong van
+	public static final String cvManage = home +  "cvManage.html";
+	public static final String addCv = home +  "addCv.html";
+	public static final String updateCv = home +  "updateCv.html";
+	public static final String deleteCv = home +  "deleteCv.html";
+	public static final String congVan =  "cong-van";
+	
+	public static final String ycvtManage = home +  "cvManage.html";
 }

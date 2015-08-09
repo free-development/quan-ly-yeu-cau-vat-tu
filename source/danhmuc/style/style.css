@@ -17,6 +17,7 @@ label {
 }
 .radio{
     margin-bottom: 20px;
+    text-align: center;
 }
 label.input {
 	font-size: 16px;
@@ -159,4 +160,18 @@ td.input {
 }
 .checkAll {
 	text-align: center;
+}
+
+.search-form {
+    background-color: red;
+    border-radius: 5px;
+    border-color: red;
+    border-width: medium;
+    position: absolute;
+    height: 50px;
+    z-index: 60;
+}
+
+#test {
+    border: none;
 }
