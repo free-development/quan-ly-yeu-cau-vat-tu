@@ -85,7 +85,7 @@
 overflow:scroll; /*chú ý dòng này*/
 }
 .scroll_content {
-  height: 350px;
+  height: 330px;
   width:  810px; 
   display: auto;
   font-size: 16px;
@@ -220,47 +220,91 @@ overflow:scroll; /*chú ý dòng này*/
 	font-size: 25px;
 	font-weight: bold;
 	color: rgb(0, 0, 255);
-	margin-bottom: 20px;
+/*	margin-bottom: 20px;*/
 }
 #add-form {
 	display: none;
-	width: 960px;
+	width: 66%;
+/*    height: 36%*/
 	position: absolute;
-	left: 203 px;
+	left: 17%;
+    right: 17%
 /*	margin: 0 auto;*/
 	float: left;
-	top: 140px;
+	top: 32%;
+/*    bottom: 32%;*/
 	background-color: #dceaf5;
 	border-radius: 10px;
+    padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px	
 /*    margin: 0 auto;*/
 }
 #update-form {
 	display: none;
-	width: 960px;
+	width: 66%;
+/*    height: 36%*/
 	position: absolute;
-	left: 203 px;
+	left: 17%;
+    right: 17%;
+    top: 32%;
+/*    bottom: 32%;*/
 /*	margin: 0 auto;*/
-	top: 140px;
 	background-color: #dceaf5;
 	border-radius: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
-	padding-top: 20px	
+	padding-top: 20px;
+    padding-bottom: 10px;
 }
 
-#update-vat-tu {
+#update-yc-vat-tu {
 	display: none;
-	width: 800px;
+    width: 58%;
 	position: absolute;
-	left:  400 px;
-	margin: 0 auto;
-	top: 140px;
+	left:  20%;
+    right: 20%;
+	top: 35%;
 	background-color: #dceaf5;
 	border-radius: 10px;
-	padding-left: 0px;
-	padding-right: 0px;
-	padding-top: 20px	
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+    padding-bottom: 10px;
 }
+#add-form-ycvt, #update-form-ycvt {
+    display: none;
+    width: 30%;
+	position: absolute;
+	left:  20%;
+    right: 20%;
+	margin: 0 auto;
+	top: 35%;
+	background-color: #dceaf5;
+	border-radius: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+/*
+#update-form-ycvt {
+    display: none;
+    width: 30%;
+	position: absolute;
+	left:  20%;
+    right: 20%;
+	margin: 0 auto;
+	top: 35%;
+	background-color: #dceaf5;
+	border-radius: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+    padding-bottom: 20px;
+}
+*/
 .scroll-vat-tu{
     height: 100px;
   width:  810px; 
@@ -340,7 +384,13 @@ overflow:scroll; /*chú ý dòng này*/
 }
 
 .txtarea {
-    width: 705px;
+    width: 730px;
+    height: 50px;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .input-table-vt {
@@ -351,4 +401,19 @@ overflow:scroll; /*chú ý dòng này*/
     border-style: dotted;
     border-width : 1px;
     margin: 0 auto;
+    
+}
+
+
+
+#main-form {
+    
+}
+
+#main-content {
+    height: 66%;
+}
+
+.a {
+    float: right;
 }

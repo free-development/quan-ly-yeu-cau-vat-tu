@@ -164,4 +164,12 @@ td.input {
 	height: 610px;
 	background-color: while;
 }
-
+.search-form {
+    background-color: red;
+    border-radius: 5px;
+    border-color: red;
+    border-width: medium;
+    position: absolute;
+    height: 50px;
+    z-index: 60;
+}

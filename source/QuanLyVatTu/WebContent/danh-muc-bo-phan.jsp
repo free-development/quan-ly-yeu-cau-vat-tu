@@ -7,8 +7,9 @@
     <head>
         <title>Văn phòng điện tử công ty điện lực Cần Thơ</title>
         <link rel="stylesheet" href="style/style-giao-dien-chinh.css" type="text/css">
-		<link rel="stylesheet" href="style/style.css	" type="text/css">
+		<link rel="stylesheet" href="style/style.css" type="text/css">
 		 <link href="style/style-bo-phan.css" type="text/css" rel="stylesheet">
+		 <link rel="stylesheet" href="style/style-noi-san-xuat.css" type="text/css">
     	<link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 <!--		<script type="text/javascript" src="js/check.js"></script>-->
 		<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
@@ -142,15 +143,15 @@
 					<div class="clear"></div>
 				</div>
 	
-<!--				<div id="main-content">-->
+				<div id="main-content">
 					<div id="title-content">
 		 Danh mục bộ phận sử dụng
 		</div>
 		<div id="main-content">
 			
 			<form id="main-form">
-				<div id="view-table-bo-phan">
-					<table class="scroll_bophan">
+				<div id="view-table-bo-phan" class="scroll-nsx">
+					<table>
 						<tr>
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>
 							<th class="mid-column">Mã BPSD</th>
@@ -162,8 +163,8 @@
 						<%
 							if(listDonVi != null) {
 							int count = 0;
-							for(DonVi donVi : listDonVi) {%>
-						<tr>
+							for(DonVi donVi : listDonVi) {count++ ;%>
+						<tr<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="dvMa" value="<%=donVi.getDvMa() %>" class="checkbox"></td>
 							<td class="col"><%=donVi.getDvMa() %></td>
 							<td class="col"><%=donVi.getDvTen()%></td>
