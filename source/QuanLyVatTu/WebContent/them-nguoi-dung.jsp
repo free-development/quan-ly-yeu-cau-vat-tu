@@ -95,7 +95,7 @@
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
 						<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a></li>
 						<li><a href="<%=siteMap.cscvManage +  "?action=manageCscv"%>">Chia sẽ</a></li>
-						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
+						<li><a href="<%=siteMap.ndManage + "?action=ndmanage"%>">Quản lý người dùng</a></li>
 					</ul>
 					<div class="clear"></div>
 				</div>

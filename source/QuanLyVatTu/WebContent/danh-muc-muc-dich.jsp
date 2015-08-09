@@ -10,10 +10,10 @@
 		<link rel="stylesheet" href="style/style.css" type="text/css">
 		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
     <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
-	 <script src="js/jquery.min.js"></script>
 	<script type="text/javascript">
-	function showForm(formId, check){
+    function showForm(formId, check){
 		if (check)
 			document.getElementById(formId).style.display="block";
 		else document.getElementById(formId).style.display="none";
@@ -24,10 +24,10 @@
 		s.filter = 'alpha(opacity='+opacity+')';
 		for(var i=0; i<f.length; i++) f[i].disabled = check;
 	}
-	function update(formId, check) {
-		mdMa = $('input:checkbox[name=mdMa]:checked').val();
+	function preUpdateMd(formId, check) {
+		var mdMa = $('input:checkbox[name=mdMa]:checked').val();
 		$.ajax({
-			url: "/QuanLyVatTu/preEditMd.html",	
+			url: "/QuanLyVatTu/preUpdateMd.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
 		  	data: { "mdMa": mdMa},
@@ -42,14 +42,13 @@
 		  	}
 		});
 	}
-	function confirmDelete(){
-		mdMa = $('input:checkbox[name=mdMa]:checked').val();
-		if (confirm('Bạn có chắc xóa' + mdMa))
+	function confirmDeleteMd(){
+		var mdMa = $('input:checkbox[name=mdMa]:checked').val();
+		if (confirm('Bạn có chắc xóa ' + mdMa))
 			deleteMd(mdMa);
 	}
 		
  	 function deleteMd(mdMa) {
-		 
 		$.ajax({
 			url: "/QuanLyVatTu/deleteMd.html",	
 		  	type: "GET",
@@ -58,11 +57,59 @@
 		  	contentType: 'application/json',
 		    mimeType: 'application/json',
 		  	success: function() {
-			  	alert(mdMa + "da bi xoa");
+			  	alert(mdMa + " da bi xoa.");
 						$('table tr').has('input[name="mdMa"]:checked').remove();
 		    } 
 		});  
-	}  
+	} 
+ 	
+ 	function addMd() {
+		var mdMa = $('#add-form input:text[name= mdMa]').val();
+		var mdTen = $('#add-form input:text[name=mdTen]').val();
+		$.ajax({
+			url: "/QuanLyVatTu/addMd.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "mdMa": mdMa, "mdTen": mdTen},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	
+		  	success: function(md) {
+			  	$('input:text[name=mdMa]').val(md.mdMa);
+			  	$('input:text[name=mdTen]').val(md.mdTen);
+		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"mdMa\" value=\"' +md.mdMa + '\"</td><td class=\"col\">'+ mdMa +'</td><td class=\"col\">' + mdTen+'</td></tr>');
+		  		$('#add-form input:text[name=mdMa]').val('');
+				$('#add-form input:text[name=mdTen]').val('');
+		  		showForm("add-form", false);	
+		  	}
+		});
+	}
+ 	
+ 	function confirmUpdateMd(){
+		var mdMaUpdate = $('input:text[name=mdMaUpdate]').val();
+		var mdTenUpdate = $('input:text[name=mdTenUpdate]').val();
+		if (confirm('Bạn có chắc thay doi noi san xuat co ma ' + mdMaUpdate))
+			updateMd(mdMaUpdate, mdTenUpdate);
+	}
+ 	function updateMd(mdMaUpdate, mdTenUpdate) {
+
+		$.ajax({
+			url: "/QuanLyVatTu/updateMd.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "mdMaUpdate": mdMaUpdate, "mdTenUpdate": mdTenUpdate},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	
+		  	success: function(md) {
+		  		$('table tr').has('input[name="mdMa"]:checked').remove();
+		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"mdMa\" value=\"' +mdMaUpdate + '\"</td><td class=\"col\">'+ mdMaUpdate +'</td><td class=\"col\">' + mdTenUpdate+'</td></tr>');
+		  		$('input:text[name=mdMaUpdate]').val('');
+				mdTenUpdate = $('input:text[name=mdTenUpdate]').val('');
+		  		showForm("update-form", false);	
+		  	}
+		});
+	}
 	</script>
 	<script>
     $(document).ready(function() {
@@ -131,6 +178,7 @@
 								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh mục vật tư</a></li>
 								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
 								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh mục chức danh</a></li>
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
@@ -173,8 +221,8 @@
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteMd">		
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-					<button type="button" class="button" onclick="update('update-form', true)" ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
-								 <button class="button" onclick="confirmDelete();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+					<button type="button" class="button" onclick="preUpdateMd('update-form', true)" ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+								 <button class="button" onclick="confirmDeleteMsd()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>	
 			
@@ -193,20 +241,21 @@
 					</table>
 				</div>
 				<div class="group-button">
-						<input type="hidden" name="action" value = "AddMd"> 
-						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+<!-- 						<input type="hidden" name="action" value = "AddMd">  -->
+						<button class="button"type="button" onclick="addMd()"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
 			</form>
 			
-<!-- ---------------Update form-------------- -->			<form id="update-form">
+<!-- ---------------Update form-------------- -->			
+<form id="update-form">
 				<div class="input-table">
 					<table>
 						<div class="form-title">Cập nhật mục đích</div>
 						<tr>
 							<th><label for="MMD">Mã mục đích</label></th>
-							<td><input name="mdMaUpdate" type="text" class="text" required size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã mục đích chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" value="MMA" readonly></td>
+							<td><input name="mdMaUpdate" type="text" class="text" required size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã mục đích chỉ gồm 3 ký tự, không chứa khoảng trắng và ký tự đặc biệt" value="MMA" readonly></td>
 						</tr>
 						<tr>
 							<th><label for="MMD">Tên mục đích</label></th>
@@ -216,7 +265,7 @@
 				</div>
 				<div class="group-button">
 						<input type="hidden" name="action" value = "UpdateMd"> 
-						<button class="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+						<button class="button" type="button" onclick="confirmUpdateMd()"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
