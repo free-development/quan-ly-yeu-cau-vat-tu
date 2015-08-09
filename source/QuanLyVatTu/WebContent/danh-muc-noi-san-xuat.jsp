@@ -1,7 +1,7 @@
 <%@page import="map.siteMap"%>
 <%@page import="model.NoiSanXuat"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset= UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,11 +14,16 @@
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 	
 	<script type="text/javascript" src="js/noi-san-xuat.js"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
     <body>
     	<%
+    	request.getCharacterEncoding();
+    	response.getCharacterEncoding();
+    	request.setCharacterEncoding("UTF-8");
+    	response.setCharacterEncoding("UTF-8");
+    	
     		ArrayList<NoiSanXuat> listNoiSanXuat = (ArrayList<NoiSanXuat>) request.getAttribute("noiSanXuatList");
     	%>
         <div class="wrapper">
@@ -63,7 +68,7 @@
 								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
 							</ul>
 						</li>
-						<li><a href="<%=siteMap.cvManage %>>Công văn</a></li>
+						<li><a href="<%=siteMap.cvManage+"?action=manageCv"%>>Công văn</a></li>
 						<li><a href="bao-cao.html">Báo cáo</a></li>
 <!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
 						<li><a href="bao-cao.html">Quản lý người dùng</a></li>

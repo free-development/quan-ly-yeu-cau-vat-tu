@@ -10,7 +10,7 @@
 <!-- 	   		<key-many-to-one name="account" class="model.User" column="ACCOUNT"></key-many-to-one>  -->
 	   		<key-many-to-one name="vatTu" class="model.VatTu" column="VTMA">
         	</key-many-to-one>
-	        <key-many-to-one name="noiSanXuat" class="model.NoiSanXuat" column="NSXMA">
+	        <key-many-to-one name="noiSanXuat" class="model.NoiSanXuat" column="NSXMA" >
 	        </key-many-to-one>
 	        <key-many-to-one name="chatLuong" class="model.ChatLuong" column="CLMA">
 	        </key-many-to-one>

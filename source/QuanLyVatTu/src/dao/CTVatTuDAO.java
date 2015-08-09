@@ -5,15 +5,11 @@ package dao;
 
 import java.util.List;
 
-import model.CTVatTu;
-
-import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.LogicalExpression;
-import org.hibernate.criterion.Restrictions;
 
+import model.CTVatTu;
 import util.HibernateUtil;
 
 /**
@@ -58,18 +54,29 @@ public class CTVatTuDAO {
 		session.delete(ctVatTu);
 		session.getTransaction().commit();
 	}
-	public int getCTVatTu(final String vtMa, final String nsxMa, final String clMa) {
+	public CTVatTu getCTVatTu(final String vtMa, final String nsxMa, final String clMa) {
 		session.beginTransaction();
+		/*
 		Criteria cr = session.createCriteria(CTVatTu.class);
-		Criterion expVtMa = Restrictions.eq("vtMa", vtMa);
-		Criterion expNsxMa = Restrictions.eq("nsxMa", nsxMa);
-		Criterion expClMa = Restrictions.eq("clMa", clMa);
-	//	LogicalExpression andExp = Restrictions.and (expVtMa, expNsxma);
+		cr.createAlias("model.NoiSanXuat", "nsx");
+		cr.createAlias("model.ChatLuong", "cl");
+		cr.createAlias("model.VatTu", "vt");
+//		Criterion expVtMa = Restrictions.eq("vtMa", vtMa);
+		Criterion expNsxMa = Restrictions.eq("nsx.nsxMa", nsxMa);
+		Criterion expClMa = Restrictions.eq("cl.clMa", clMa);
+		LogicalExpression andExp = Restrictions.and (expClMa, expNsxMa);
 //		andExp = Restrictions.and(andExp, expClMa);
 //		CTVatTu ctVatTu = null;
-		cr.add(expVtMa);
-		int l =  cr.list().size();
+//		cr.add(expVtMa);
+		cr.add(andExp);
+		CTVatTu ctVatTu =  (CTVatTu) cr.list().get(0);*/
+		String sql = "from ctvattu"
+				+ " where clma = '"+ clMa +"' and "
+				+ "vtma = '" + vtMa +"' and "
+				+ "nsxma = '" + nsxMa +"'";
+		Query query = session.createQuery(sql);
+		CTVatTu ctVatTu =  (CTVatTu) query.list().get(0);
 		session.getTransaction().commit();
-		return l;
+		return ctVatTu;
 	}
 }
