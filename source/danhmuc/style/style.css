@@ -17,6 +17,7 @@ label {
 }
 .radio{
     margin-bottom: 20px;
+    text-align: center;
 }
 label.input {
 	font-size: 16px;
