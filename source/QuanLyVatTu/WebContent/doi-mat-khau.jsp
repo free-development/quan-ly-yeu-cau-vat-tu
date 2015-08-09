@@ -16,6 +16,34 @@
 		<script type="text/javascript" src="js/doi-mat-khau.js"></script>
 <!--         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
+        <style type="text/css">
+.demo {
+  position:relative;
+  margin:20px auto;
+  width:620px;
+  height:28px;
+  background-color:#121212;
+  border-radius:12px;
+  overflow:hidden;
+  border:solid 4px #121212;
+}
+
+.circle {
+  width:20px;
+  height:20px;
+  background-color:#86cc01;
+  position:absolute;
+  border-radius:50%;
+  display:inline-block;
+  left:-20px;
+  top:4px;
+}</style>
+<script type="text/javascript">
+var tl = new TimelineMax();
+
+tl.staggerTo(".circle", 1.5, {x:650, repeat:-1, repeatDelay:0.5, force3D:true, ease:SlowMo.ease.config(0.2, 0.5)}, 0.15)
+</script>
+
     </head>
     <body>
         <div class="wrapper">
@@ -99,5 +127,42 @@
 			</div>
 		</div>
         </div>
+        <div id='loadhalaman'>
+<div class='loadball'></div>
+<div class='loadball-2'></div>
+</div>
+<!-- <style> -->
+/* #abt-page-loader { */
+/*         position: fixed!important; */
+/*         top: 0; */
+/*         right: 0; */
+/*         bottom: 0; */
+/*         left: 0; */
+/*         z-index: 9999; */
+/*         background:#000 url("img/loading.gif") no-repeat 50% 30%; */
+/*         color: #FFF; */
+/*         display: none; */
+/*         font: 0/0 a; */
+/*         text-shadow: none; */
+/*         padding: 1em 1.2em; */
+/* } */
+<!-- </style> -->
+<!-- <script type='text/javascript'> -->
+// //<![CDATA[
+// $(document.body).append('<div id="abt-page-loader">Loading...</div>');
+// $(window).on("beforeunload", function() {
+//     // ... Show the Animation `.fadeIn()`
+//     $('#abt-page-loader').fadeIn(1000).delay(6000).fadeOut(1000);
+// });
+// //]]>
+//</script>
+    <div class="demo">
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+</div>
     </body>
+
 </html>
