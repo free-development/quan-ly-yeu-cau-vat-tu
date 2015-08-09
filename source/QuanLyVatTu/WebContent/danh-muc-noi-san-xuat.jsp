@@ -63,7 +63,7 @@
 								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
 							</ul>
 						</li>
-						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
+						<li><a href="<%=siteMap.cvManage %>>Công văn</a></li>
 						<li><a href="bao-cao.html">Báo cáo</a></li>
 <!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
 						<li><a href="bao-cao.html">Quản lý người dùng</a></li>
