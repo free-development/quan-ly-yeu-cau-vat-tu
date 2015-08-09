@@ -384,7 +384,13 @@ overflow:scroll; /*chú ý dòng này*/
 }
 
 .txtarea {
-    width: 705px;
+    width: 730px;
+    height: 50px;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .input-table-vt {
@@ -395,6 +401,7 @@ overflow:scroll; /*chú ý dòng này*/
     border-style: dotted;
     border-width : 1px;
     margin: 0 auto;
+    
 }
 
 
