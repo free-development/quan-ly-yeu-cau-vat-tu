@@ -11,11 +11,10 @@
 		<link rel="stylesheet" href="style/style.css" type="text/css">
 		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
         <link href="style/style-chat-luong.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
     <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="js/chatluong.js"></script>
-    <script src="js/jquery.min.js"></script>
-	<script type="text/javascript">
-	function showForm(formId, check){
+    <script type="text/javascript">
+    function showForm(formId, check){
 		if (check)
 			document.getElementById(formId).style.display="block";
 		else document.getElementById(formId).style.display="none";
@@ -46,7 +45,7 @@
 	}
 	function confirmDeleteCl(){
 		var clMa = $('input:checkbox[name=clMa]:checked').val();
-		if (confirm('Bạn có chắc xóa' + clMa))
+		if (confirm('Bạn có chắc xóa ' + clMa))
 			deleteCl(clMa);
 	}
 		
@@ -64,6 +63,7 @@
 		    } 
 		});  
 	} 
+ 	
  	function addCl() {
 		var clMa = $('#add-form input:text[name=clMa]').val();
 		var clTen = $('#add-form input:text[name=clTen]').val();
@@ -85,11 +85,12 @@
 		  	}
 		});
 	}
+ 	
  	function confirmUpdateCl(){
 		var clMaUpdate = $('input:text[name=clMaUpdate]').val();
 		var clTenUpdate = $('input:text[name=clTenUpdate]').val();
 		if (confirm('Bạn có chắc thay doi noi san xuat co ma ' + clMaUpdate))
-			updatecl(clMaUpdate, clTenUpdate);
+			updateCl(clMaUpdate, clTenUpdate);
 	}
  	function updateCl(clMaUpdate, clTenUpdate) {
 
@@ -110,7 +111,7 @@
 		  	}
 		});
 	}
-	</script>
+	</script>	
 	<script>
     $(document).ready(function() {
         $('.checkAll').click(function(event) {  //on click 
@@ -127,6 +128,7 @@
         
     });
 	</script>
+		<script type="text/javascript" src="js/chatluong.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon"/>  
     </head>
@@ -168,6 +170,7 @@
 								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh mục vật tư</a></li>
 								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
 								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh mục chức danh</a></li>
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
@@ -230,7 +233,7 @@
 					</table>
 				</div>
 				<div class="button-group">
-<!-- 				<input type="hidden" name="action" value = "addCl">  -->
+				<input type="hidden" name="action" value = "AddCl">  
 						<button class="button" onclick="addCl()" type="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>

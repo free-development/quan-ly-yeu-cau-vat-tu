@@ -63,9 +63,9 @@ public class MdController extends HttpServlet {
 		}
 		return new ModelAndView("login");
 	}
-	@RequestMapping(value="/preEditMd", method=RequestMethod.GET, 
+	@RequestMapping(value="/preUpdateMd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String preEditMd(@RequestParam("mdMa") String mdMa) {
+	 public @ResponseBody String preUpdateMd(@RequestParam("mdMa") String mdMa) {
 		MucDichDAO mucDichDAO = new MucDichDAO();
 		MucDich md = mucDichDAO.getMucDich(mdMa);
 		//System.out.println("****" + clMa + "****");
@@ -76,5 +76,22 @@ public class MdController extends HttpServlet {
 	 public @ResponseBody String deleteMd(@RequestParam("mdMa") String mdMa) {
 		new MucDichDAO().deleteMucDich(new MucDichDAO().getMucDich(mdMa));
 		return JSonUtil.toJson(mdMa);
+	}
+	@RequestMapping(value="/addMd", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String addMd(@RequestParam("mdMa") String mdMa, @RequestParam("mdTen") String mdTen) {
+		MucDich md = new MucDich(mdMa,mdTen);
+		new MucDichDAO().addMucDich(md);
+		return JSonUtil.toJson(md);
+	}
+	
+	@RequestMapping(value="/updateMd", method=RequestMethod.GET, 
+	produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String updateMd(@RequestParam("mdMaUpdate") String mdMaUpdate, @RequestParam("mdTenUpdate") String mdTenUpdate) {
+		System.out.println(mdMaUpdate);
+		System.out.println(mdTenUpdate);
+		MucDich md = new MucDich(mdMaUpdate, mdTenUpdate);
+		new MucDichDAO().updateMucDich(md);
+		return JSonUtil.toJson(md);
 	}
 }
