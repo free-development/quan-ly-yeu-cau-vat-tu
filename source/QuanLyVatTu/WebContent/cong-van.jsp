@@ -436,8 +436,8 @@
                          </div>
                     </div>
 					<div class="group-button">			
-            <button type="button" class="button"  onclick="showForm('main-form', 'add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm mới</button>
-                        <button type="button" class="button" onclick="showForm('main-form','update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa</button>
+            <button type="button" class="button"  onclick="loadDataCv();"><i class="fa fa-plus-circle"></i>&nbsp;Thêm mới</button>
+                        <button type="button" class="button" onclick="preUpdateCv('main-form','update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa</button>
                                      <button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;<button class="button" onclick="showForm('main-form','update-yc-vat-tu', true)"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Cập nhật yêu cầu vật tư</button>&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
             </div>
 					   </form>
@@ -456,7 +456,7 @@
                                 <tr>
                                     <th style="text-align: left"><label for="MD">Mục đích</label></th>
                                     <td><select class="select">
-                                        <option></option>
+                                        <option disabled selected value="">Chọn mục đích</option>
                                          <option value="">Sửa chữa lớn</option>
                                         <option value="">Xây dựng cơ bản</option>
                                         <option value="">Sửa chữa thường xuyên</option>
