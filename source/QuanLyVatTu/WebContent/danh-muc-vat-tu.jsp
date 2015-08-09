@@ -200,19 +200,22 @@
 							int count = 0;
 							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
 						<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
-=======
 							int count = 0;						
 							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
-<<<<<<< HEAD
+
 						<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
-=======
+
 						<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+<<<<<<< HEAD
+
+=======
 <<<<<<< HEAD
 
 =======
 >>>>>>> origin/master
 >>>>>>> origin/master
 >>>>>>> origin/master
+>>>>>>> e40103f52c1db35cac834221d11eb8e6246b2c7f
 							<td class="left-column"><input type="checkbox" name="vtMa" value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtMa() %></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtTen() %></td>

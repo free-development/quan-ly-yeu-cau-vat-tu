@@ -74,7 +74,7 @@ DEFAULT CHARACTER SET = utf8;
 create table CONGVAN
 (
    CVID                 int not null,
-   FILEID               int not null,
+--   FILEID               int not null,
    DVMA                 varchar(10) not null,
    TTMA                 varchar(10) not null,
    MDMA                 char(3) not null,
@@ -131,10 +131,11 @@ DEFAULT CHARACTER SET = utf8;
 /*==============================================================*/
 create table FILE
 (
-   FILEID               int not null,
+   FILEID               int auto_incremnt primary key,
+   CVID			int not null,
    DIACHI               varchar(100),
-   MOTA                 text,
-   primary key (FILEID)
+   MOTA                 text
+--   primary key (FILEID)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -296,8 +297,10 @@ DEFAULT CHARACTER SET = utf8;
 alter table CONGVAN add constraint FK_DONVI_CONGVAN2 foreign key (DVMA)
       references DONVI (DVMA) on delete restrict on update restrict;
 
-alter table CONGVAN add constraint FK_FILE_CONGVAN2 foreign key (FILEID)
-      references FILE (FILEID) on delete restrict on update restrict;
+--alter table CONGVAN add constraint FK_FILE_CONGVAN2 foreign key (FILEID)
+--      references FILE (FILEID) on delete restrict on update restrict;
+alter table FILE add constraint FK_FILE_CONGVAN2 foreign key (CVID)
+      references CONGVAN (CVID) on delete restrict on update restrict;
 
 alter table CONGVAN add constraint FK_MUCDICH2 foreign key (MDMA)
       references MUCDICH (MDMA) on delete restrict on update restrict;

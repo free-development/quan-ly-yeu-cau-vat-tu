@@ -43,9 +43,20 @@ public class siteMap {
 	public static final String cdManage = home +  "manageCd.html";
 	public static final String chucDanh = "danh-muc-chuc-danh";
 	
+	// map manage bao cao
 	public static final String bcManage = home +  "manageBc.html";
 	public static final String baoCao = "bao-cao";
 	
+	// map chia se cong van
 	public static final String cscvManage = home +  "manageCscv.html";
 	public static final String chiaSe = "chia-se-cong-van";
+	
+	// map cong van
+	public static final String cvManage = home +  "cvManage.html";
+	public static final String addCv = home +  "addCv.html";
+	public static final String updateCv = home +  "updateCv.html";
+	public static final String deleteCv = home +  "deleteCv.html";
+	public static final String congVan =  "cong-van";
+	
+	public static final String ycvtManage = home +  "cvManage.html";
 }
