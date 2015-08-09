@@ -26,7 +26,11 @@
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
 		}
-		function update(formId, check){
+		function confirmDelete(){
+			return confirm('Bạn có chắc xóa');
+		}
+	
+		function preUpdateBp(formId, check){
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
 				$.ajax({
 					url: "/QuanLyVatTu/preEditBp.html",
@@ -46,6 +50,58 @@
 					  	showForm(formId, check);
 					}
 				});
+		}
+		function addBp() {
+ 			dvMa = $('#add-form input:text[name=dvMa]').val();
+ 			dvTen = $('#add-form input:text[name=dvTen]').val();
+ 			sdt = $('#add-form input:text[name=sdt]').val();
+ 			diaChi = $('#add-form input:text[name=diaChi]').val();
+ 			email = $('#add-form input:text[name=email]').val();
+ 			$.ajax({
+ 				url: "/QuanLyVatTu/addBp.html",	
+			  	type: "GET",
+ 			  	dateType: "JSON",
+ 			  	data: { "dvMa": dvMa, "dvTen": dvTen},
+ 			  	contentType: 'application/json',
+ 			    mimeType: 'application/json',
+			  	
+ 			  	success: function(dv) {
+//  				  	$('input:text[name=vtId]').val(vt.vtId);
+//  				  	$('input:text[name=vtTen]').val(vt.vtTen);
+					$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtId\" value=\"' +vt.vtId + '\"</td><td class=\"col\">'+ vtId +'</td><td class=\"col\">' + vtTen+'</td></tr>');
+					$('#add-form input:text[name=dvMa]').val('');
+		 			$('#add-form input:text[name=dvTen]').val('');
+		 			$('#add-form input:text[name=sdt]').val('');
+		 			$('#add-form input:text[name=diaChi]').val('');
+		 			$('#add-form input:text[name=email]').val('');
+			  		showForm("add-form", false);	
+ 			  	}
+ 			});
+ 		}
+ 	 	function confirmUpdateVt(){
+			var vtIdUpdate = $('input:text[name=vtIdUpdate]').val();
+			var vtTenUpdate = $('input:text[name=vtTenUpdate]').val();
+			if (confirm('Bạn có chắc thay đổi vai trò có mã ' + vtIdUpdate))
+				updateVt(vtIdUpdate, vtTenUpdate);
+		}
+ 	 	function updateVt(vtIdUpdate, vtTenUpdate) {
+
+			$.ajax({
+				url: "/QuanLyVatTu/updateVt.html",	
+			  	type: "GET",
+			  	dateType: "JSON",
+			  	data: { "vtIdUpdate": vtIdUpdate, "vtTenUpdate": vtTenUpdate},
+			  	contentType: 'application/json',
+			    mimeType: 'application/json',
+			  	
+			  	success: function(vt) {
+			  		$('table tr').has('input[name="vtId"]:checked').remove();
+			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtId\" value=\"' +vtIdUpdate + '\"</td><td class=\"col\">'+ vtIdUpdate +'</td><td class=\"col\">' + vtTenUpdate+'</td></tr>');
+			  		$('input:text[name=vtIdUpdate]').val('');
+					vtTenUpdate = $('input:text[name=vtTenUpdate]').val('');
+			  		showForm("update-form", false);	
+			  	}
+			});
 		}
 		function confirmDelete(){
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
@@ -179,18 +235,18 @@
 				<div class="group-button-bo-phan">
 					<input type="hidden" name="action" value="deleteBpsd">
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>&nbsp;&nbsp;
-					<button type="button" class="button" onclick="update('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>&nbsp;&nbsp;
-					<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>Thoát</button>
+					<button type="button" class="button" onclick="preUpdateBp('update-form', true);"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>&nbsp;&nbsp;
+					<button class="button" onclick="confirmDelete();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>Thoát</button>
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->
-			<form id="add-form" method="get" action="<%=siteMap.bpsdManage%>">
+			<form id="add-form" method="get" action="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">
 				<div class="input-table-bo-phan">
 					<table>
 						<div class="form-title">Thêm bộ phận sử dụng</div>
 						<tr>
 							<td class="input"><label for="MBPSD" class="input">Mã BPSD</label></td>
-							<td><input name="maBpsd" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+							<td><input name="maBpsd" type="text" class="text" required autofocus size="3" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
 							<td class="input"><label for="MBPSD">Tên BPSD</label></td>
@@ -232,7 +288,7 @@
 				</div>
 				<div class="button-group">
 						<input type="hidden" name="action" value = "AddBpsd"> 
-						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+						<button type="button" class="button" onclick="addBp();"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
@@ -286,7 +342,7 @@
 					</table>
 				</div>
 				<div class="button-group">
-						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+						<button type="button" class="button" onclick="confupdateBp();"><i class="fa fa-plus-circle"></i>&nbsp;Lưu lại</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			

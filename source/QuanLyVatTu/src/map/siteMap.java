@@ -27,15 +27,15 @@ public class siteMap {
 	public static final String ctvtManage = home +  "manageCtvt.html";
 	public static final String vatTu = "danh-muc-vat-tu";
 	
-<<<<<<< HEAD
+
 	public static final String ndManage = home +  "ManageNd.html";
 	public static final String nguoiDung = "them-nguoi-dung";
-=======
+
 	// map manage nguoi dung
 	public static final String ndManage = home +  "ndManage.html";
 	public static final String changePass = home +  "changePass.html";
 	public static final String chucDanh = home +  "them-nguoi-dung";
->>>>>>> origin/master
+
 	
 	// map danh muc chuc danh
 	public static final String cdManage = home +  "manageCl.html";

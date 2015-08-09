@@ -64,7 +64,7 @@ public class BpsdController extends HttpServlet {
 		}
 		return new ModelAndView("login");
 	}
-	@RequestMapping(value="/preEditBp", method=RequestMethod.GET,
+	@RequestMapping(value="/preUpdateBp", method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String preEditBp(@RequestParam("dvMa") String dvMa) {
 	//		System.out.println("****" + vtId + "****");
@@ -72,6 +72,23 @@ public class BpsdController extends HttpServlet {
 			DonVi bp = donViDAO.getDonVi(dvMa);
 			return JSonUtil.toJson(bp);
 		}
+	@RequestMapping(value="/addBp", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String addBp(@RequestParam("dvMaUpdate") String dvMaUpdate, @RequestParam("dvTenUpdate") String dvTenUpdate, 
+			 @RequestParam("sdt") String sdt, @RequestParam("diaChi") String diaChi, @RequestParam("email") String email ) {
+		DonVi dv = new DonVi(dvMaUpdate, dvTenUpdate,sdt, diaChi, email);
+		new DonViDAO().updateDonVi(dv);
+		return JSonUtil.toJson(dv);
+	}
+	@RequestMapping(value="/updateBp", method=RequestMethod.GET, 
+		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String updateBp(@RequestParam("dvMaUpdate") String dvMaUpdate, @RequestParam("dvTenUpdate") String dvTenUpdate, 
+			 @RequestParam("sdt") String sdt, @RequestParam("diaChi") String diaChi, @RequestParam("email") String email ) {
+
+		DonVi dv = new DonVi(dvMaUpdate, dvTenUpdate,sdt, diaChi, email);
+		new DonViDAO().updateDonVi(dv);
+		return JSonUtil.toJson(dv);
+	}
 	@RequestMapping(value="/deleteBp", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteBp(@RequestParam("dvMa") String dvMa) {

@@ -197,19 +197,9 @@
 							</tr>
 							<%
 							if(listCTVatTu != null) {
-<<<<<<< HEAD
 							int count = 0;
 							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
 						<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
-=======
-							int count = 0;						
-							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
-<<<<<<< HEAD
-						<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
-=======
-						<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
->>>>>>> origin/master
->>>>>>> origin/master
 							<td class="left-column"><input type="checkbox" name="vtMa" value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtMa() %></td>
 							<td class="col"><%=ctVatTu.getVatTu().getVtTen() %></td>
@@ -241,7 +231,7 @@
 							<div class="form-title"style="padding: 10px">Thêm vật tư</div>
 							<tr>
 								<th style="text-align: left"><label for="MVT">Mã vật tư</label></th>
-								<td><input name="vtMa" size="5px" align=right type="text" class="text" required title="Mã vật tư không được để trống"></td>
+								<td><input name="vtMa" size="5px" align=right type="text" class="text" required autofocus size="8" maxlength="8" title="Mã vật tư không được để trống"></td>
 							</tr>
                             <tr>
 								<th style="text-align: left"><label for="MVT">Tên vật tư</label></th>
