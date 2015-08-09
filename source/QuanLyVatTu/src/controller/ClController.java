@@ -85,10 +85,11 @@ public class ClController extends HttpServlet {
 	}
 	
 	@RequestMapping(value="/updateCl", method=RequestMethod.GET, 
-	produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String updateCl(@RequestParam("clMaUpdate") String clMaUpdate,@RequestParam("clTenUpdate") String clTenUpdate) {
-		//ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
-		ChatLuong cl = new ChatLuong(clMaUpdate,clTenUpdate);
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String updateCl(@RequestParam("clMaUpdate") String clMaUpdate, @RequestParam("clTenUpdate") String clTenUpdate) {
+		System.out.println(clMaUpdate);
+		System.out.println(clTenUpdate);
+		ChatLuong cl = new ChatLuong(clMaUpdate, clTenUpdate);
 		new ChatLuongDAO().updateChatLuong(cl);
 		return JSonUtil.toJson(cl);
 	}
