@@ -12,73 +12,8 @@
 		<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery.min.js"></script>
     <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-	<script type="text/javascript">
-		function showForm(formId, check){
-			if (check)
-				document.getElementById(formId).style.display="block";
-			else document.getElementById(formId).style.display="none";
-			var f = document.getElementById('main-form'), s, opacity;
-			s = f.style;
-			opacity = check? '10' : '100';
-			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-			s.filter = 'alpha(opacity='+opacity+')';
-			for(var i=0; i<f.length; i++) f[i].disabled = check;
-		}
-		function confirmDelete(){
-			return confirm('Bạn có chắc xóa');
-		}
-
-		 $(document).ready(function() {
-			 	var nsxMa =  $("input[nsxMa]").val();
-// 				var nsxMa =  $("#updateNsx").val();
-		      
-				$("#updateNsx").click(function(event) {
-		    	  
-					$.ajax({
-						url: "/QuanLyVatTu/preEditNsx.html",	
-					  	type: "GET",
-					  	data: { "nsxMa": nsxMa},
-// 					  	beforeSend: function(xhr) {
-// 					  		xhr.setRequestHeader("Accept", "application/json");
-// 					  		xhr.setRequestHeader("Content-Type", "application/json");
-// 					  	},
-					  	
-					  	success: function(smartphone) {
-					  		var respContent = "";
-					  		var rowToDelete = $(event.target).closest("tr");
-					  		
-					  		rowToDelete.remove();
-					  		
-					  		respContent += "<span class='success'>Smartphone was deleted: [";
-					  		respContent += smartphone.producer + " : ";
-					  		respContent += smartphone.model + " : " ;
-					  		respContent += smartphone.price + "]</span>";
-					  		
-					  		$("#addForm").html(respContent);   		
-					  	}
-					});
-		  
-					event.preventDefault();
-				});
-		       
-		}); 
-	</script>
-	<script>
-    $(document).ready(function() {
-        $('.checkAll').click(function(event) {  //on click 
-            if(this.checked) { // check select status
-                $('.checkbox').each(function() { //loop through each checkbox
-                    this.checked = true;  //select all checkboxes with class "checkbox1"               
-                });
-            }else{
-                $('.checkbox').each(function() { //loop through each checkbox
-                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
-                });         
-            }
-        });
-    });
-	</script>
-	<script type="text/javascript" src="js/main.js"></script>
+	
+	<script type="text/javascript" src="js/noi-san-xuat.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
