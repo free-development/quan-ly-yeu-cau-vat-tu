@@ -57,7 +57,7 @@ body {
 }
 .main_menu>ul>li>ul{ 
     display: none; position: absolute; background: #00A69B;
-	top: 41px;width: 250px; left: 0px;
+	top: 41px;width: 280px; left: 0px;
 }
 .main_menu>ul>li:hover ul{ 
     display: block;

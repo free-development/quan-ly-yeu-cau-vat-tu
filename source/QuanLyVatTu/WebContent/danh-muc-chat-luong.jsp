@@ -67,23 +67,31 @@
  	function addCl() {
 		var clMa = $('#add-form input:text[name=clMa]').val();
 		var clTen = $('#add-form input:text[name=clTen]').val();
-		$.ajax({
-			url: "/QuanLyVatTu/addCl.html",	
-		  	type: "GET",
-		  	dateType: "JSON",
-		  	data: { "clMa": clMa, "clTen": clTen},
-		  	contentType: 'application/json',
-		    mimeType: 'application/json',
-		  	
-		  	success: function(cl) {
-			  	$('input:text[name=clMa]').val(cl.clMa);
-			  	$('input:text[name=clTen]').val(cl.clTen);
-		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +cl.clMa + '\"</td><td class=\"col\">'+ clMa +'</td><td class=\"col\">' + clTen+'</td></tr>');
-		  		$('#add-form input:text[name=clMa]').val('');
-				$('#add-form input:text[name=clTen]').val('');
-		  		showForm("add-form", false);	
-		  	}
-		});
+		if(clMa==chatLuong.getClMa())
+			{
+				alert(clMa + " đã tồn tại ");
+				showForm("add-form", true);
+			}
+		else
+		{
+			$.ajax({
+				url: "/QuanLyVatTu/addCl.html",	
+			  	type: "GET",
+			  	dateType: "JSON",
+			  	data: { "clMa": clMa, "clTen": clTen},
+			  	contentType: 'application/json',
+			    mimeType: 'application/json',
+			  	success: function(cl) {
+				  	$('input:text[name=clMa]').val(cl.clMa);
+				  	$('input:text[name=clTen]').val(cl.clTen);
+			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +cl.clMa + '\"</td><td class=\"col\">'+ clMa +'</td><td class=\"col\">' + clTen+'</td></tr>');
+			  		$('#add-form input:text[name=clMa]').val('');
+					$('#add-form input:text[name=clTen]').val('');
+					alert(clMa + " đã được thêm ");
+			  		showForm("add-form", false);	
+			  	}
+			});
+		}
 	}
  	
  	function confirmUpdateCl(){
@@ -174,8 +182,13 @@
 							</ul>
 						</li>
 						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-						<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a></li>
-						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>
+						<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
+							<ul>
+								<li><a href="">Báo cáo bảng đề nghị cấp vật tư</a></li>
+								<li><a href="">Báo cáo vật tư thiếu</a></li>
+							</ul>
+						</li>
+<!-- 						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li> -->
 						<li><a href"<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
 					</ul>
 					<div class="clear"></div>
@@ -212,7 +225,7 @@
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteCl">
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-					<button type="button" onclick="preUpdateCl('update-form', true)" class="button"  ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
+					<button type="button" onclick="preUpdateCl('update-form', true)" class="button" title="Chọn 1 chất lượng để thay đổi" ><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>
 					<button class="button" type="button" onclick="confirmDeleteCl();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;
 					<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;<button type="button" class="btn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
