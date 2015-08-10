@@ -11,11 +11,11 @@
 <body>
 	<%
 // 	nơi sản xuất
-		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
-		System.out.println(nsxList.get(0).getNsxTen());
-		for (NoiSanXuat nsx : nsxList) {
-			out.println(nsx.getNsxTen());
-		}
+// 		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
+// 		System.out.println(nsxList.get(0).getNsxTen());
+// 		for (NoiSanXuat nsx : nsxList) {
+// 			out.println(nsx.getNsxTen());
+// 		}
 	%>
 </body>
 </html>
