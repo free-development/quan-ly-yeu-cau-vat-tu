@@ -202,36 +202,39 @@
                            
                             <td class="left-column-first">Mục đích</td>
                            
-                            <td colspan="3">Sửa chữa lớn</td>
+                            <td colspan="3"><%=congVan.getMucDich() %></td>
                             
-                            <td class="left-column">Ngày CV:</td>
-                            <td class="column-date">20/05/2015</td>
+                            <td class="left-column">Ngày CV đi:</td>
+                            <td class="column-date"><%=congVan.getCvNgayDi()%></td>
                         </tr>
                          <tr>
                             
                             <td class="left-column-first">Nơi gửi</td>
                             
-                            <td colspan="6">CTY ĐIỆN LỰC TP CẦN THƠ</td>
+                            <td colspan="6"><%= congVan.getDonVi()%></td>
                         </tr>
                         <tr>
                            
                             <td class="left-column-first">Trích yếu</td>
                             
-                            <td colspan="6">Thông báo kết luận Giám Đốc về triển khai thực hiện các Qui chế QLNB</td>
+                            <td colspan="6"><%= congVan.getTrichYeu()%></td>
                         </tr>
                         <tr>
                             
                             <td class="left-column-first">Bút phê</td>
                            
-                            <td colspan="6"></td>
+                            <td colspan="6"><%= congVan.getButPhe()%></td>
                         </tr>
                         <tr>
                            
                             <td class="left-column-first">Nơi GQ chính</td>
                           
-                            <td colspan="6">Phòng Kế Hoạch, Phòng Vật Tư</td>
+                            <td colspan="6"><%=congVan.getDonVi() %></td>
                         </tr>
                     </table>
+                    <div class="chi-tiet">
+                            <a href="<%=siteMap.ycvtManage + "action=manageYcvt&congVan="+congVan.getCvId()%>">*Xem chi tiết</a>    
+                         </div>
                     <%} %>
 <!--
                     <div class="chi-tiet">
@@ -335,9 +338,7 @@
                         </tr>
                     </table>
 -->
-                         <div class="chi-tiet">
-                            <a href="">*Xem chi tiết</a>    
-                         </div>
+                         
                     </div>
 					<div class="group-button">			
             <button type="button" class="button"  onclick="loadDataCv();"><i class="fa fa-plus-circle"></i>&nbsp;Thêm mới</button>
