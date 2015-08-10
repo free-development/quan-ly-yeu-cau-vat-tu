@@ -36,8 +36,8 @@ public class BpsdController extends HttpServlet {
 		
 		String action = request.getParameter("action");
 		if("AddBpsd".equalsIgnoreCase(action)) {
-			String dvMa = request.getParameter("maBpsd");
-			String dvTen = request.getParameter("tenBpsd");
+			String dvMa = request.getParameter("dvMa");
+			String dvTen = request.getParameter("dvTen");
 			String sdt = request.getParameter("sdt");
 			String diaChi = request.getParameter("diaChi");
 			String email = request.getParameter("email");
@@ -69,9 +69,26 @@ public class BpsdController extends HttpServlet {
 	 public @ResponseBody String preEditBp(@RequestParam("dvMa") String dvMa) {
 	//		System.out.println("****" + vtId + "****");
 			DonViDAO donViDAO = new DonViDAO();
-			DonVi bp = donViDAO.getDonVi(dvMa);
-			return JSonUtil.toJson(bp);
+			DonVi dv = donViDAO.getDonVi(dvMa);
+			return JSonUtil.toJson(dv);
 		}
+	@RequestMapping(value="/addBp", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String addBp(@RequestParam("dvMa") String dvMa, @RequestParam("dvTen") String dvTen, 
+			 @RequestParam("sdt") String sdt, @RequestParam("diaChi") String diaChi, @RequestParam("email") String email ) {
+		DonVi dv = new DonVi(dvMa, dvTen,sdt, diaChi, email);
+		new DonViDAO().addDonVi(dv);
+		return JSonUtil.toJson(dv);
+	}
+	@RequestMapping(value="/updateBp", method=RequestMethod.GET, 
+		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String updateBp(@RequestParam("dvMaUpdate") String dvMaUpdate, @RequestParam("dvTenUpdate") String dvTenUpdate, 
+			 @RequestParam("sdtUpdate") String sdtUpdate, @RequestParam("diaChiUpdate") String diaChiUpdate, @RequestParam("emailUpdate") String emailUpdate ) {
+
+		DonVi dv = new DonVi(dvMaUpdate, dvTenUpdate,sdtUpdate, diaChiUpdate, emailUpdate);
+		new DonViDAO().updateDonVi(dv);
+		return JSonUtil.toJson(dv);
+	}
 	@RequestMapping(value="/deleteBp", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteBp(@RequestParam("dvMa") String dvMa) {

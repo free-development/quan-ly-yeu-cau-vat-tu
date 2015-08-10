@@ -233,7 +233,7 @@
 						<div class = "form-title">Thêm vai trò</div>
 						<tr>
 							<th><label for="id">ID</label></th>
-							<td><input name="vtId" type="text" class="text" required  title="Mã nơi sản xuất không được trống"></td>
+							<td><input name="vtId" type="text" class="text" required autofocus size="3" maxlength="3"  title="Mã nơi sản xuất không được trống"></td>
 						</tr>
 						<tr>
 							<th class="label"><label for="tenvaitro">Tên vai trò</label></th>

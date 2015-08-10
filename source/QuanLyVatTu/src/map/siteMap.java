@@ -28,11 +28,20 @@ public class siteMap {
 	public static final String ctvtManage = home +  "manageCtvt.html";
 	public static final String vatTu = "danh-muc-vat-tu";
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 9f1b65321c2a37cc5c31abc789d71a445434875d
 	// map manage nguoi dung
 	public static final String ndManage = home +  "ndManage.html";
+	public static final String nguoiDung = "them-nguoi-dung";	
 	public static final String changePass = home +  "changePass.html";
+<<<<<<< HEAD
 	public static final String nguoiDung = "them-nguoi-dung";
 	
+=======
+
+>>>>>>> 9f1b65321c2a37cc5c31abc789d71a445434875d
 	// map danh muc chuc danh
 	public static final String cdManage = home +  "manageCd.html";
 	public static final String chucDanh = "danh-muc-chuc-danh";

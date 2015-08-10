@@ -14,9 +14,6 @@
 {
     padding-top: 20px;
 }
-#content{
-	text-align: center;
-}
 #wrapper {
 	margin: 0 auto;
 	width: 1024px;
@@ -154,4 +151,21 @@
     text-align: right;
 }
 
-
+.scroll{
+  max-height: 420px;
+  /*height: 300px;*/
+  /*width:  960px; */
+  display: auto;
+  border: 1px solid #CCCCCC;
+  margin: 1em 0;
+  overflow:scroll;
+}
+#main-content {
+	height: 610px;
+	background-color: while;
+    text-align: center;
+}
+#radio{
+    text-align: center;
+    margin-left: 250px;
+}

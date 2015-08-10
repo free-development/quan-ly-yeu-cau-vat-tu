@@ -216,7 +216,7 @@
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteCd">
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>&nbsp;&nbsp;
-					<button type="button" class="button" onclick="preUpdateCd('update-form', true)" title="Chỉ chọn 1 chức danh để thay đổi"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>&nbsp;&nbsp;
+					<button type="button" class="button" onclick="preUpdateCd('update-form', true)" title="Chọn 1 chức danh để thay đổi"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>&nbsp;&nbsp;
 					<button class="button" type="button" onclick="confirmDeleteCd()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>Thoát</button>
 				</div>
 			</form>	
