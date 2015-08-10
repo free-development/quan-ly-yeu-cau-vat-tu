@@ -2,44 +2,46 @@
 	margin: 0 auto;
 	width: 700px;
 }
+
 #content {
 	margin: 0 auto;
 	width: 100%;
 }
+
 .left-column {
 	width: 40px;
 	text-align: center;
 }
+
 .mid-column {
 	width: 70px;
 	text-align: center;
 }
+
 .right-column {
 	width: 430px;
 }
+
 #add-form {
-	display: none;
-<<<<<<< HEAD
-	width: 30%;;
+	display: none; <<<<<<<
+	HEAD width: 30%;;
 	left: 35%;
-	right:35%;
-	top:65%;
-	bottom:65%;
-	position: absolute;
-=======
+	right: 35%;
+	top: 65%;
+	bottom: 65%;
+	position: absolute; =======
 	width: 30%;
 	position: absolute;
 	left: 35%;
 	right: 35%;
 	top: 65%;
-	bottom: 65%;
->>>>>>> origin/master
-	background-color: #DCEAF5;
+	bottom: 65%; >>>>>>> origin /master background-color : #DCEAF5;
 	border-radius: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 20px
 }
+
 #update-form {
 	display: none;
 	width: 30%;
@@ -52,23 +54,23 @@
 	border-radius: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
-	padding-top: 20px	
+	padding-top: 20px
 }
 
 #title-content {
 	text-align: center;
-    font-size: 25px;
-    color: firebrick;
-    font-weight: bold;
-    padding-top: 20px;
-    padding-bottom: 20px;
+	font-size: 25px;
+	color: firebrick;
+	font-weight: bold;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
-.scroll-nsx{
-  max-height: 420px;
-  /*height: 300px;*/
- 
-  display: auto;
-  border: 1px solid #CCCCCC;
-  margin: 1em 0;
-  overflow:scroll;
+
+.scroll-nsx {
+	max-height: 420px;
+	/*height: 300px;*/
+	display: auto;
+	border: 1px solid #CCCCCC;
+	margin: 1em 0;
+	overflow: scroll;
 }

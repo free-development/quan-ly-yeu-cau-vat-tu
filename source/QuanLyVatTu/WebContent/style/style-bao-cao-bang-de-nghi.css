@@ -1,67 +1,76 @@
-
 .text {
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 1px;
-    height: 25px;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	height: 25px;
 	padding-left: 10px;
 	padding-right: 10px;
 	opacity: 0.9;
 	border-color: dimgray;
 	font-size: 16px;
 }
-#title-content
-{
-    padding-top: 20px;
+
+#title-content {
+	padding-top: 20px;
 }
-#content{
+
+#content {
 	text-align: center;
 }
+
 #wrapper {
 	margin: 0 auto;
 	width: 1024px;
-    background-color: #DCEAF5;
-    height: 330px;
+	background-color: #DCEAF5;
+	height: 330px;
 }
+
 #title {
-    text-align: center;
-    font-size: 25px;
-    color: firebrick;
-    font-weight: bold;
-    padding-top: 20px;
-    padding-bottom: 20px;
+	text-align: center;
+	font-size: 25px;
+	color: firebrick;
+	font-weight: bold;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
-.lables{
-    margin-right: 10px;
-    margin-left: 50px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+
+.lables {
+	margin-right: 10px;
+	margin-left: 50px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
-.input{
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+
+.input {
+	border-radius: 5px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
+
 #content {
 	margin: 0 auto;
 	width: 100%;
 }
-#view-table{
+
+#view-table {
 	margin: 0 auto;
 	width: 960px;
 }
+
 .group-button {
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
+
 #view-table table {
 	border-spacing: 0px;
-    margin: 0 auto;
+	margin: 0 auto;
 }
-#view-table table tr td{
+
+#view-table table tr td {
 	border-style: dotted;
-	border-width : 1px;
+	border-width: 1px;
 	margin: 0px;
 	border-spacing: 0px;
 	padding-left: 10px;
@@ -69,55 +78,66 @@
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
-#view-table table tr th{
-    border-style: dotted;
-    border-width : 1px;
-    margin: 0px;
-    border-spacing: 0px
-	border-spacing: 0px;
+
+#view-table table tr th {
+	border-style: dotted;
+	border-width: 1px;
+	margin: 0px;
+	border-spacing: 0px border-spacing: 0px;
 	padding-left: 10px;
 	padding-right: 10px;
-    background-color: #199e5e;
+	background-color: #199e5e;
 }
+
 #input-table table tr td {
 	padding-left: 0px;
 }
+
 #input-table table tr th {
 	padding-left: 0px;
 }
+
 #input-table {
 	margin: 0 auto;
 }
+
 .one-column {
 	width: 20px;
 	text-align: center;
 }
+
 .two-column {
 	width: 250px;
 	text-align: left;
 }
+
 .three-column {
 	width: 150px;
-    text-align: center;
+	text-align: center;
 }
+
 .four-column {
 	width: 100px;
-    text-align: center;
+	text-align: center;
 }
+
 .five-column {
 	width: 100px;
-    text-align: center;
+	text-align: center;
 }
+
 .six-column {
 	width: 150px;
-    text-align: center;
+	text-align: center;
 }
+
 .seven-column {
 	width: 100px;
-    text-align: center;
+	text-align: center;
 }
+
 .a-column {
-    text-align: center;
+	text-align: center;
 }
 
 .btn {
@@ -127,31 +147,34 @@
 	font-size: 13px;
 	padding: 8px 30px 8px 20px;
 	margin-right: 0px;
-	border:none;
+	border: none;
 }
 
 .btn:hover {
-  background: #0a6114;
+	background: #0a6114;
 }
+
 .font {
-    color:#198724;
+	color: #198724;
 }
-#hide{
+
+#hide {
 	visibility: hidden
 }
+
 .form-title {
 	text-align: center;
 	font-size: 25px;
 	font-weight: bold;
 	color: #199e5e;
 	margin-bottom: 20px;
-    padding: 10px;
-}
-.lable{
-    text-align: left;
-}
-.checkbox{
-    text-align: right;
+	padding: 10px;
 }
 
+.lable {
+	text-align: left;
+}
 
+.checkbox {
+	text-align: right;
+}
