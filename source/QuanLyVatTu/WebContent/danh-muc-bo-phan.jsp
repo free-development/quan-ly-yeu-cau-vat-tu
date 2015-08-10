@@ -11,7 +11,6 @@
 		 <link href="style/style-bo-phan.css" type="text/css" rel="stylesheet">
 		 <link rel="stylesheet" href="style/style-noi-san-xuat.css" type="text/css">
     	<link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-<!--		<script type="text/javascript" src="js/check.js"></script>-->
 		<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
  	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -26,7 +25,11 @@
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
 		}
-		function update(formId, check){
+		function confirmDelete(){
+			return confirm('Bạn có chắc xóa');
+		}
+	
+		function preUpdateBp(formId, check){
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
 				$.ajax({
 					url: "/QuanLyVatTu/preEditBp.html",
@@ -36,27 +39,95 @@
 					contentType: "application/json",
 					mimeType: "application/json",
 					
-					success: function(bp){
+					success: function(dv){
 						
-						$('input:text[name=dvMaUpdate]').val(bp.dvMa);
-					  	$('input:text[name=dvTenUpdate]').val(bp.dvTen);
-					  	$('input:text[name=sdt]').val(bp.sdt);
-					  	$('input:text[name=diaChi]').val(bp.diaChi);
-					  	$('input:text[name=email]').val(bp.email);
+						$('input:text[name=dvMaUpdate]').val(dv.dvMa);
+					  	$('input:text[name=dvTenUpdate]').val(dv.dvTen);
+					  	$('input:text[name=sdtUpdate]').val(dv.sdt);
+					  	$('input:text[name=diaChiUpdate]').val(dv.diaChi);
+					  	$('input:email[name=emailUpdate]').val(dv.email);
 					  	showForm(formId, check);
 					}
 				});
 		}
+		function addBp() {
+ 			dvMa = $('#add-form input:text[name=dvMa]').val();
+ 			dvTen = $('#add-form input:text[name=dvTen]').val();
+ 			sdt = $('#add-form input:text[name=sdt]').val();
+ 			diaChi = $('#add-form input:text[name=diaChi]').val();
+ 			email = $('#add-form input:email[name=email]').val();
+ 			$.ajax({
+ 				url: "/QuanLyVatTu/addBp.html",	
+			  	type: "GET",
+ 			  	dateType: "JSON",
+ 			  	data: { "dvMa": dvMa, "dvTen": dvTen, "sdt": sdt, "diaChi": diaChi, "email": email},
+ 			  	contentType: 'application/json',
+ 			    mimeType: 'application/json',
+			  	
+ 			  	success: function(dv) {
+//  				  	$('input:text[name=vtId]').val(vt.vtId);
+//  				  	$('input:text[name=vtTen]').val(vt.vtTen);
+					$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"'+dv.dvMa + '\"</td><td class=\"col\">'
+							 + dvMa +'</td><td class=\"col\">' 
+							 + dvTen+'</td><td class=\"col\">' 
+							 + sdt+'</td><td class=\"col\">' 
+							 + diaChi+'</td><td class=\"col\">' 
+							 + email+'</td></tr>');
+					$('#add-form input:text[name=dvMa]').val('');
+		 			$('#add-form input:text[name=dvTen]').val('');
+		 			$('#add-form input:text[name=sdt]').val('');
+		 			$('#add-form input:text[name=diaChi]').val('');
+		 			$('#add-form input:email[name=email]').val('');
+			  		showForm("add-form", false);	
+ 			  	}
+ 			});
+ 		}
+ 	 	function confirmUpdateBp(){
+			var dvMaUpdate = $('input:text[name=dvMaUpdate]').val();
+			var dvTenUpdate = $('input:text[name=dvTenUpdate]').val();
+			var sdtUpdate = $('input:text[name=sdtUpdate]').val('');
+ 			var diaChiUpdate = $('input:text[name=diaChiUpdate]').val('');
+ 			var emailUpdate = $('input:email[name=emailUpdate]').val('');
+			if (confirm('Bạn có chắc thay đổi đơn vị có mã ' + dvMaUpdate))
+				updateBp(dvMaUpdate, dvTenUpdate, sdtUpdate, diaChiUpdate, emailUpdate);
+		}
+ 	 	function updateBp(dvMaUpdate, dvTenUpdate, sdtUpdate, diaChiUpdate, emailUpdate) {
+
+			$.ajax({
+				url: "/QuanLyVatTu/updateBp.html",	
+			  	type: "GET",
+			  	dateType: "JSON",
+			  	data: { "dvMaUpdate": dvMaUpdate, "dvTenUpdate": dvTenUpdate, "sdtUpdate": sdtUpdate, "diaChiUpdate": diaChiUpdate, "emailUpdate": emailUpdate},
+			  	contentType: 'application/json',
+			    mimeType: 'application/json',
+			  	
+			  	success: function(dv) {
+			  		$('table tr').has('input[name="dvMa"]:checked').remove();
+					$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"'+dvMaUpdate + '\"</td><td class=\"col\">'
+							 + dvMaUpdate +'</td><td class=\"col\">' 
+							 + dvTenUpdate +'</td><td class=\"col\">' 
+							 + sdtUpdate +'</td><td class=\"col\">' 
+							 + diaChiUpdate +'</td><td class=\"col\">' 
+							 + emailUpdate +'</td></tr>');
+			  		$('input:text[name=dvMaUpdate]').val('');
+					dvTenUpdate = $('input:text[name=dvTenUpdate]').val('');
+					sdtUpdate = $('input:text[name=sdtUpdate]').val('');
+					diaChiUpdate = $('input:text[name=diaChiUpdate]').val('');
+					emailUpdate = $('input:email[name=emailUpdate]').val('');
+			  		showForm("update-form", false);	
+			  	}
+			});
+		}
 		function confirmDelete(){
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
 			if (confirm('Bạn có chắc xóa' + dvMa))
-				deleteBpsd(dvMa);
+				deleteBp(dvMa);
 		}
  		
-	 	 function deleteBpsd(dvMa) {
+	 	 function deleteBp(dvMa) {
 			 
 			$.ajax({
-				url: "/QuanLyVatTu/deleteBpsd.html",	
+				url: "/QuanLyVatTu/deleteBp.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
 			  	data: { "dvMa": dvMa},
@@ -179,26 +250,26 @@
 				<div class="group-button-bo-phan">
 					<input type="hidden" name="action" value="deleteBpsd">
 					<button type="button" class="button"  onclick="showForm('add-form', true)"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>&nbsp;&nbsp;
-					<button type="button" class="button" onclick="update('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>&nbsp;&nbsp;
-					<button class="button" onclick="return confirmDelete()"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>Thoát</button>
+					<button type="button" class="button" onclick="preUpdateBp('update-form', true);"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button>&nbsp;&nbsp;
+					<button class="button" onclick="confirmDelete();"> <i class="fa fa-trash-o" ></i>&nbsp;&nbsp;Xóa</button>&nbsp;&nbsp;<button class="button" type="reset"><i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua</button>&nbsp;&nbsp;<button type="button" class="button"><i class="fa fa-sign-out"></i>Thoát</button>
 				</div>
 			</form>	
 <!-------------- --add-form-------------- -->
-			<form id="add-form" method="get" action="<%=siteMap.bpsdManage%>">
+			<form id="add-form" method="get" action="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">
 				<div class="input-table-bo-phan">
 					<table>
 						<div class="form-title">Thêm bộ phận sử dụng</div>
 						<tr>
 							<td class="input"><label for="MBPSD" class="input">Mã BPSD</label></td>
-							<td><input name="maBpsd" type="text" class="text" required autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+							<td><input name="dvMa" type="text" class="text" required autofocus size="3" maxlength="3" pattern="[a-zA-Z0-9]{3}" title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 						</tr>
 						<tr>
 							<td class="input"><label for="MBPSD">Tên BPSD</label></td>
-							<td><input name="tenBpsd" size="30px" align=left type="text" class="text" required title="Tên bộ phận sử dụng không được để trống"></td>
+							<td><input name="dvTen" size="30px" align=left type="text" class="text" required title="Tên bộ phận sử dụng không được để trống"></td>
 						</tr>
                          <tr>
                         <td class="input"><label>Số điện thoại</label></td>
-                            <td><input name="sdt" size="15px" align=left type="text" class="text"></td>
+                            <td><input name="sdt" size="15px" maxlength="11" type="text" class="text"></td>
                         </tr>
                         <tr>
                             <td class="input"><label>Địa chỉ</label></td>
@@ -232,7 +303,7 @@
 				</div>
 				<div class="button-group">
 						<input type="hidden" name="action" value = "AddBpsd"> 
-						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+						<button type="button" class="button" onclick="addBp();"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
@@ -253,15 +324,15 @@
 						</tr>
                          <tr>
                         <td class="input"><label>Số điện thoại</label></td>
-                            <td><input name="sdt" size="15px" align=left type="text" class="text"></td>
+                            <td><input name="sdtUpdate" size="15px" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
                             <td class="input"><label>Địa chỉ</label></td>
-							<td><input name="diaChi" size="30px" align=left type="text" class="text"></td>
+							<td><input name="diaChiUpdate" size="30px" align=left type="text" class="text"></td>
                         </tr>
                         <tr>
                             <td class="input"><label>Email</label></td>
-                            <td><input name="email" size="30px" align=left type="email" class="text"></td>                         
+                            <td><input name="emailUpdate" size="30px" align=left type="email" class="text"></td>                         
                         </tr>
                        
 <!--
@@ -286,7 +357,7 @@
 					</table>
 				</div>
 				<div class="button-group">
-						<button class="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+						<button type="button" class="button" onclick="confirmUpdateBp();"><i class="fa fa-plus-circle"></i>&nbsp;Lưu lại</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
