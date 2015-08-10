@@ -44,8 +44,8 @@
 						$('input:text[name=dvMaUpdate]').val(dv.dvMa);
 					  	$('input:text[name=dvTenUpdate]').val(dv.dvTen);
 					  	$('input:text[name=sdtUpdate]').val(dv.sdt);
+					  	$('input:text[name=emailUpdate]').val(dv.email);
 					  	$('input:text[name=diaChiUpdate]').val(dv.diaChi);
-					  	$('input:email[name=emailUpdate]').val(dv.email);
 					  	showForm(formId, check);
 					}
 				});
@@ -55,30 +55,31 @@
  			dvTen = $('#add-form input:text[name=dvTen]').val();
  			sdt = $('#add-form input:text[name=sdt]').val();
  			diaChi = $('#add-form input:text[name=diaChi]').val();
- 			email = $('#add-form input:email[name=email]').val();
+ 			email = $('#add-form input:text[name=email]').val();
+ 			alert(dvMa+"*"+dvTen+"*"+sdt+"*"+diaChi+"*"+email);
  			$.ajax({
  				url: "/QuanLyVatTu/addBp.html",	
 			  	type: "GET",
  			  	dateType: "JSON",
- 			  	data: { "dvMa": dvMa, "dvTen": dvTen, "sdt": sdt, "diaChi": diaChi, "email": email},
+ 			  	data: { "dvMa": dvMa, "dvTen": dvTen, "sdt": sdt, "email": email, "diaChi": diaChi},
  			  	contentType: 'application/json',
  			    mimeType: 'application/json',
 			  	
  			  	success: function(dv) {
-//  				  	$('input:text[name=vtId]').val(vt.vtId);
-//  				  	$('input:text[name=vtTen]').val(vt.vtTen);
-					$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"'+dv.dvMa + '\"</td><td class=\"col\">'
-							 + dvMa +'</td><td class=\"col\">' 
-							 + dvTen+'</td><td class=\"col\">' 
-							 + sdt+'</td><td class=\"col\">' 
-							 + diaChi+'</td><td class=\"col\">' 
-							 + email+'</td></tr>');
-					$('#add-form input:text[name=dvMa]').val('');
-		 			$('#add-form input:text[name=dvTen]').val('');
-		 			$('#add-form input:text[name=sdt]').val('');
-		 			$('#add-form input:text[name=diaChi]').val('');
-		 			$('#add-form input:email[name=email]').val('');
-			  		showForm("add-form", false);	
+
+ 					$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"'+dv.dvMa + '\"</td><td class=\"col\">'
+ 							 + dvMa +'</td><td class=\"col\">' 
+ 							 + dvTen+'</td><td class=\"col\">' 
+ 							 + sdt+'</td><td class=\"col\">' 
+ 							 + email+'</td><td class=\"col\">' 
+ 							 + diaChi+'</td></tr>');
+ 					$('#add-form input:text[name=dvMa]').val('');
+ 		 			$('#add-form input:text[name=dvTen]').val('');
+ 		 			$('#add-form input:text[name=sdt]').val('');
+ 		 			$('#add-form input:text[name=email]').val('');
+ 		 			$('#add-form input:text[name=diaChi]').val('');
+ 		 			
+ 			  		showForm("add-form", false);	
  			  	}
  			});
  		}
@@ -86,12 +87,12 @@
 			var dvMaUpdate = $('input:text[name=dvMaUpdate]').val();
 			var dvTenUpdate = $('input:text[name=dvTenUpdate]').val();
 			var sdtUpdate = $('input:text[name=sdtUpdate]').val('');
+			var emailUpdate = $('input:text[name=emailUpdate]').val('');
  			var diaChiUpdate = $('input:text[name=diaChiUpdate]').val('');
- 			var emailUpdate = $('input:email[name=emailUpdate]').val('');
 			if (confirm('Bạn có chắc thay đổi đơn vị có mã ' + dvMaUpdate))
-				updateBp(dvMaUpdate, dvTenUpdate, sdtUpdate, diaChiUpdate, emailUpdate);
+				updateBp(dvMaUpdate, dvTenUpdate, sdtUpdate, emailUpdate,diaChiUpdate);
 		}
- 	 	function updateBp(dvMaUpdate, dvTenUpdate, sdtUpdate, diaChiUpdate, emailUpdate) {
+ 	 	function updateBp(dvMaUpdate, dvTenUpdate, sdtUpdate, emailUpdate, diaChiUpdate) {
 
 			$.ajax({
 				url: "/QuanLyVatTu/updateBp.html",	
@@ -100,21 +101,21 @@
 			  	data: { "dvMaUpdate": dvMaUpdate, "dvTenUpdate": dvTenUpdate, "sdtUpdate": sdtUpdate, "diaChiUpdate": diaChiUpdate, "emailUpdate": emailUpdate},
 			  	contentType: 'application/json',
 			    mimeType: 'application/json',
-			  	
+			  
 			  	success: function(dv) {
-			  		$('table tr').has('input[name="dvMa"]:checked').remove();
+			  		$('table tr').has('input:[name="dvMa"]:checked').remove();
 					$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"'+dvMaUpdate + '\"</td><td class=\"col\">'
 							 + dvMaUpdate +'</td><td class=\"col\">' 
 							 + dvTenUpdate +'</td><td class=\"col\">' 
 							 + sdtUpdate +'</td><td class=\"col\">' 
-							 + diaChiUpdate +'</td><td class=\"col\">' 
-							 + emailUpdate +'</td></tr>');
+							 + emailUpdate +'</td><td class=\"col\">' 
+							 + diaChiUpdate +'</td></tr>');
 			  		$('input:text[name=dvMaUpdate]').val('');
 					dvTenUpdate = $('input:text[name=dvTenUpdate]').val('');
 					sdtUpdate = $('input:text[name=sdtUpdate]').val('');
-					diaChiUpdate = $('input:text[name=diaChiUpdate]').val('');
 					emailUpdate = $('input:email[name=emailUpdate]').val('');
-			  		showForm("update-form", false);	
+					diaChiUpdate = $('input:text[name=diaChiUpdate]').val('');
+			  		showForm("update-form", false);
 			  	}
 			});
 		}
@@ -196,7 +197,7 @@
 				<div class="main_menu">
 					<ul>
 						<li><a href="">Trang chủ</a></li>
-						<li><a href="">Danh mục</a>
+						<li>Danh mục
 							<ul>
 								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
 								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
@@ -228,8 +229,8 @@
 							<th class="mid-column">Mã BPSD</th>
 							<th class="column-2">Tên bộ phận</th>
                             <th class="mid-column">Số điện thoại</th>
-							<th class="column-4">Địa chỉ</th>
                             <th class="column-5">Email</th>
+                            <th class="column-4">Địa chỉ</th>
 						</tr>
 						<%
 							if(listDonVi != null) {
@@ -239,9 +240,9 @@
 							<td class="left-column"><input type="checkbox" name="dvMa" value="<%=donVi.getDvMa() %>" class="checkbox"></td>
 							<td class="col"><%=donVi.getDvMa() %></td>
 							<td class="col"><%=donVi.getDvTen()%></td>
-                            <td class="col"><%=donVi.getSdt()%></td>
-                            <td class="col"><%=donVi.getDiaChi()%></td>
+                            <td class="col"><%=donVi.getSdt()%></td>                         
                             <td class="col"><%=donVi.getEmail()%></td>
+                            <td class="col"><%=donVi.getDiaChi()%></td>
 						</tr>
 						<%} }%>
                     </table>		
@@ -272,12 +273,12 @@
                             <td><input name="sdt" size="15px" maxlength="11" type="text" class="text"></td>
                         </tr>
                         <tr>
-                            <td class="input"><label>Địa chỉ</label></td>
-							<td><input name="diaChi" size="30px" align=left type="text" class="text"></td>
+                            <td class="input"><label>Email</label></td>
+                            <td><input name="email" size="30px" align=left type="text" class="text"></td> 
                         </tr>
                         <tr>
-                            <td class="input"><label>Email</label></td>
-                            <td><input name="email" size="30px" align=left type="email" class="text"></td>                         
+                        	<td class="input"><label>Địa chỉ</label></td>
+							<td><input name="diaChi" size="30px" align=left type="text" class="text"></td>                        
                         </tr>
                        
 <!--
@@ -332,7 +333,7 @@
                         </tr>
                         <tr>
                             <td class="input"><label>Email</label></td>
-                            <td><input name="emailUpdate" size="30px" align=left type="email" class="text"></td>                         
+                            <td><input name="emailUpdate" size="30px" align=left type="text" class="text"></td>                         
                         </tr>
                        
 <!--
