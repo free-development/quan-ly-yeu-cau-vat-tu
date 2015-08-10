@@ -80,9 +80,22 @@ public class MdController extends HttpServlet {
 	@RequestMapping(value="/addMd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String addMd(@RequestParam("mdMa") String mdMa, @RequestParam("mdTen") String mdTen) {
-		MucDich md = new MucDich(mdMa,mdTen);
-		new MucDichDAO().addMucDich(md);
-		return JSonUtil.toJson(md);
+		String result = "";
+		System.out.println("MA: "+mdMa);
+		if(new MucDichDAO().getMucDich(mdMa)==null)
+		{
+			new MucDichDAO().addMucDich(new MucDich(mdMa,mdTen));
+			System.out.println("success");
+			result = "success";
+			
+			
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+			return JSonUtil.toJson(result);
 	}
 	
 	@RequestMapping(value="/updateMd", method=RequestMethod.GET, 

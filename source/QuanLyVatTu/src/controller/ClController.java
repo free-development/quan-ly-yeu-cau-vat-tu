@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.ChatLuong;
 import model.MucDich;
 import model.NoiSanXuat;
+import model.VaiTro;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import util.JSonUtil;
 import dao.ChatLuongDAO;
+import dao.MucDichDAO;
 import dao.NoiSanXuatDAO;
+import dao.VaiTroDAO;
 
 @Controller
 public class ClController extends HttpServlet {
@@ -72,16 +75,31 @@ public class ClController extends HttpServlet {
 	}
 	@RequestMapping(value="/deleteCl", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String deleteCl(@RequestParam("clMa") String clMa) {
+	 public @ResponseBody String deleteCd(@RequestParam("clMa") String clMa) {
 		new ChatLuongDAO().deleteChatLuong(new ChatLuongDAO().getChatLuong(clMa));
 		return JSonUtil.toJson(clMa);
 	}
+
 	@RequestMapping(value="/addCl", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String addCl(@RequestParam("clMa") String clMa, @RequestParam("clTen") String clTen) {
-		ChatLuong cl = new ChatLuong(clMa,clTen);
-		new ChatLuongDAO().addChatLuong(cl);
-		return JSonUtil.toJson(cl);
+		String result = "";
+		System.out.println("MA: "+clMa);
+		if(new ChatLuongDAO().getChatLuong(clMa)==null)
+		{
+			new ChatLuongDAO().addChatLuong(new ChatLuong(clMa,clTen));
+			System.out.println("success");
+			result = "success";
+			
+			
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+			return JSonUtil.toJson(result);
+			
 	}
 	
 	@RequestMapping(value="/updateCl", method=RequestMethod.GET, 
