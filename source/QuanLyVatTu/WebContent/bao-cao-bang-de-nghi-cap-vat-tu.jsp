@@ -1,4 +1,4 @@
-﻿
+﻿<%@page import="model.DonVi"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="map.siteMap"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
@@ -30,23 +30,15 @@
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
     <body>
+    	<%
+    		ArrayList<DonVi> listDonVi = (ArrayList<DonVi>) request.getAttribute("donViList");
+    	%>
         <div class="wrapper">
 				<div class="header">
-	<!--
-					<img src="img/logo.png" alt="" id="logo" width=80 height=80/><br/>
-					<img src="img/textlogo.png" alt="" id="logo" width=80 height=20/>
-	-->
 					<div id="top_title">Văn phòng điện tử</div>
 					<div id="bottom-title">Công ty điện lực cần thơ</div>
 					<div class="search_form" id="search">
 						<form action="" method="post">
-<!--
-							<span class="search-select">
-								<select name="" ><option disabled selected>--Tùy chọn kiếm kiềm--</option></select>
-								<option value=""></option>
-							</span>
--->
-							
 							<span class="search-text">
 								&nbsp;
 							<input type="search" class="search" name="search_box" name="search" placeholder="Tìm kiếm" />
@@ -83,7 +75,8 @@
 					<div id="title-content">
 		              Báo cáo bảng đề nghị cấp vật tư
                     </div>
-                    <table>
+                    <div id="content">
+                    <table style="margin-left: 200px">
                         <tr>
                             <th>
                             <label class="lables">Thời gian: </label>
@@ -91,21 +84,32 @@
                             </th>
                             <th>
                             <label class="lables">Đơn vị: </label>
-                            <select class="select">
-                                        <option value="">--Đơn vị--</option>
-                            </select>
+                            <select required title=""  class="select" id="donvi" name="donvi">
+								<option disabled selected value="">-- Chọn đơn vị --</option>
+								<%
+							
+									int count = 0;
+									for(DonVi donVi : listDonVi)
+									{%>
+										<option value=<%=donVi.getDvMa()%>><%=donVi.getDvTen()%></option>
+									<%}
+								%>
+							</select>
                             </th>
                         </tr>
                     </table>
-                     <table class="radio">
+                     <table class="radio" style="margin-left: 200px">
                         <th><lable class="lables">Trạng thái:</lable></th>
-                        <td style="text-align: right"><input type="radio" name="add"></td>
+                        <td style="text-align: right"><input type="radio" name="chuagq"></td>
                         <td style="text-align: left"><label class="lable1" for="CGQ">Chưa giải quyết</label></td>
-                        <td style="text-align: right"><input type="radio" name="add"></td>
+                        <td style="text-align: right"><input type="radio" name="dagq"></td>
                         <td style="text-align: left"><label class="lable1" for="DGQ">Đã giải quyết</label></td>
-                        <td style="text-align: right"><input type="radio" name="add"></td>
+                        <td style="text-align: right"><input type="radio" name="danggq"></td>
                         <td style="text-align: left"><label class="lable1" for="DGQ1">Đang giải quyết</label></td>
-                        </table>
+                       </table>
+                       <button class="button" type="button"><i class="fa fa-eye"></i>&nbsp;&nbsp;Hiển thị</button>
+                     <br><br>
+                     </div>
 					<div id="view-table">
 						<table>
 							<tr>
