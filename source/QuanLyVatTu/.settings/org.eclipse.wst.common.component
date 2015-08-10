@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
 	<wb-module deploy-name="QuanLyVatTu">
 		<wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
 		<property name="java-output-path" value="/QuanLyVatTu/build/classes"/>
+=======
+    <wb-module deploy-name="QuanLyVatTu">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+>>>>>>> d02bacf70fe3b383eae9e4deb2805805e6ad408d
         <property name="context-root" value="QuanLyVatTu"/>
 	</wb-module>
 </project-modules>
