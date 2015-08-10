@@ -12,114 +12,7 @@
 		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
         <link href="style/style-chat-luong.css" type="text/css" rel="stylesheet">
         <script type="text/javascript" src="js/jquery.min.js"></script>
-    <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript">
-    function showForm(formId, check){
-		if (check)
-			document.getElementById(formId).style.display="block";
-		else document.getElementById(formId).style.display="none";
-		var f = document.getElementById('main-form'), s, opacity;
-		s = f.style;
-		opacity = check? '10' : '100';
-		s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-		s.filter = 'alpha(opacity='+opacity+')';
-		for(var i=0; i<f.length; i++) f[i].disabled = check;
-	}
-	function preUpdateCl(formId, check) {
-		var clMa = $('input:checkbox[name=clMa]:checked').val();
-		$.ajax({
-			url: "/QuanLyVatTu/preUpdateCl.html",	
-		  	type: "GET",
-		  	dateType: "JSON",
-		  	data: { "clMa": clMa},
-		  	contentType: 'application/json',
-		    mimeType: 'application/json',
-		  	
-		  	success: function(cl) {
-			  	$('input:text[name=clMaUpdate]').val(cl.clMa);
-			  	$('input:text[name=clTenUpdate]').val(cl.clTen);
-		  		showForm(formId, check);	
-		  		
-		  	}
-		});
-	}
-	function confirmDeleteCl(){
-		var clMa = $('input:checkbox[name=clMa]:checked').val();
-		if (confirm('Bạn có chắc xóa ' + clMa))
-			deleteCl(clMa);
-	}
-		
- 	 function deleteCl(clMa) {
-		$.ajax({
-			url: "/QuanLyVatTu/deleteCl.html",	
-		  	type: "GET",
-		  	dateType: "JSON",
-		  	data: { "clMa": clMa},
-		  	contentType: 'application/json',
-		    mimeType: 'application/json',
-		  	success: function() {
-			  	alert(clMa + "da bi xoa");
-						$('table tr').has('input[name="clMa"]:checked').remove();
-		    } 
-		});  
-	} 
- 	
- 	function addCl() {
-		var clMa = $('#add-form input:text[name=clMa]').val();
-		var clTen = $('#add-form input:text[name=clTen]').val();
-		if(clMa==chatLuong.getClMa())
-			{
-				alert(clMa + " đã tồn tại ");
-				showForm("add-form", true);
-			}
-		else
-		{
-			$.ajax({
-				url: "/QuanLyVatTu/addCl.html",	
-			  	type: "GET",
-			  	dateType: "JSON",
-			  	data: { "clMa": clMa, "clTen": clTen},
-			  	contentType: 'application/json',
-			    mimeType: 'application/json',
-			  	success: function(cl) {
-				  	$('input:text[name=clMa]').val(cl.clMa);
-				  	$('input:text[name=clTen]').val(cl.clTen);
-			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +cl.clMa + '\"</td><td class=\"col\">'+ clMa +'</td><td class=\"col\">' + clTen+'</td></tr>');
-			  		$('#add-form input:text[name=clMa]').val('');
-					$('#add-form input:text[name=clTen]').val('');
-					alert(clMa + " đã được thêm ");
-			  		showForm("add-form", false);	
-			  	}
-			});
-		}
-	}
- 	
- 	function confirmUpdateCl(){
-		var clMaUpdate = $('input:text[name=clMaUpdate]').val();
-		var clTenUpdate = $('input:text[name=clTenUpdate]').val();
-		if (confirm('Bạn có chắc thay doi noi san xuat co ma ' + clMaUpdate))
-			updateCl(clMaUpdate, clTenUpdate);
-	}
- 	function updateCl(clMaUpdate, clTenUpdate) {
-
-		$.ajax({
-			url: "/QuanLyVatTu/updateCl.html",	
-		  	type: "GET",
-		  	dateType: "JSON",
-		  	data: { "clMaUpdate": clMaUpdate, "clTenUpdate": clTenUpdate},
-		  	contentType: 'application/json',
-		    mimeType: 'application/json',
-		  	
-		  	success: function(cl) {
-		  		$('table tr').has('input[name="clMa"]:checked').remove();
-		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +clMaUpdate + '\"</td><td class=\"col\">'+ clMaUpdate +'</td><td class=\"col\">' + clTenUpdate+'</td></tr>');
-		  		$('input:text[name=clMaUpdate]').val('');
-				clTenUpdate = $('input:text[name=clTenUpdate]').val('');
-		  		showForm("update-form", false);	
-		  	}
-		});
-	}
-	</script>	
+    <link href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css" type="text/css" rel="stylesheet">	
 	<script>
     $(document).ready(function() {
         $('.checkAll').click(function(event) {  //on click 
@@ -246,7 +139,7 @@
 					</table>
 				</div>
 				<div class="button-group">
-				<input type="hidden" name="action" value = "AddCl">  
+<!-- 				<input type="hidden" name="action" value = "AddCl">   -->
 						<button class="button" onclick="addCl()" type="button"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
@@ -270,7 +163,7 @@
 				</div>
 				<div class="group-button">
 						<input type="hidden" name="action" value = "UpdateCl"> 
-						<button class="button" onclick="confirmUpdateCl()" type="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
+						<button class="button" onclick="confirmDeleteCl()" type="button"><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button>
 						<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 						<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>			
