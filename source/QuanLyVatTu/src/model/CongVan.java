@@ -67,8 +67,6 @@ public class CongVan implements Serializable{
 
 	private DonVi donVi;
 
-	private File file;
-
 	public CongVan() {
 		this.cvId = 0;
 		this.soDen = 0;
@@ -80,7 +78,6 @@ public class CongVan implements Serializable{
 		this.mucDich = new MucDich();
 		this.trangThai = new TrangThai();
 		this.donVi = new DonVi();
-		this.file = new File();
 	}
 	
 	/**
@@ -98,7 +95,7 @@ public class CongVan implements Serializable{
 	 */
 	public CongVan(int soDen, Date cvNgayNhan, String cvSo,
 			Date cvNgayDi, String trichYeu, String butPhe, MucDich mucDich,
-			TrangThai trangThai, DonVi donVi, File file) {
+			TrangThai trangThai, DonVi donVi) {
 		this.soDen = soDen;
 		this.cvNgayNhan = cvNgayNhan;
 		this.cvSo = cvSo;
@@ -108,7 +105,6 @@ public class CongVan implements Serializable{
 		this.mucDich = mucDich;
 		this.trangThai = trangThai;
 		this.donVi = donVi;
-		this.file = file;
 	}
 	
 	/**
@@ -126,7 +122,7 @@ public class CongVan implements Serializable{
 	 */
 	public CongVan(int cvId, int soDen, Date cvNgayNhan, String cvSo,
 			Date cvNgayDi, String trichYeu, String butPhe, MucDich mucDich,
-			TrangThai trangThai, DonVi donVi, File file) {
+			TrangThai trangThai, DonVi donVi) {
 		this.cvId = cvId;
 		this.soDen = soDen;
 		this.cvNgayNhan = cvNgayNhan;
@@ -137,7 +133,6 @@ public class CongVan implements Serializable{
 		this.mucDich = mucDich;
 		this.trangThai = trangThai;
 		this.donVi = donVi;
-		this.file = file;
 	}
 
 	/**
@@ -278,20 +273,6 @@ public class CongVan implements Serializable{
 	 */
 	public void setDonVi(DonVi donVi) {
 		this.donVi = donVi;
-	}
-
-	/**
-	 * @return the file
-	 */
-	public File getFile() {
-		return file;
-	}
-
-	/**
-	 * @param file the file to set
-	 */
-	public void setFile(File file) {
-		this.file = file;
 	}
 
 }

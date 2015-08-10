@@ -34,8 +34,8 @@
         <many-to-one name="donVi" class="model.DonVi" fetch="select">
             <column name="DVMA" />
         </many-to-one>
-        <many-to-one name="file" class="model.File" fetch="select">
-            <column name="FILEID" />
-        </many-to-one>
+<!--         <many-to-one name="file" class="model.File" fetch="select"> -->
+<!--             <column name="FILEID" /> -->
+<!--         </many-to-one> -->
     </class>
 </hibernate-mapping>

@@ -1,3 +1,8 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="model.CongVan"%>
+<%@page import="model.File"%>
+<%@page import="map.siteMap"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +19,10 @@
         <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />  
     </head>
     <body>
+    <%
+    	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
+    	HashMap<Integer, File> fileHash = (HashMap<Integer, File>) request.getAttribute("fileHash");
+    %>
         <div class="wrapper">
 				<div class="header">
 	<!--
@@ -97,124 +106,7 @@
                                         <li class="file"><a href="">Ngày 21</a></li>
                                      </ol>
                               </li>
-                              <li>
-                            <label for="folder2">Tháng 07</label> <input type="checkbox" id="folder2" /> 
-                             <ol>
-                                    <li class="file"><a href="">Ngày 31</a></li>
-                                        <li class="file"><a href="">Ngày 30</a></li>
-                                        <li class="file"><a href="">Ngày 29</a></li>
-                                        <li class="file"><a href="">Ngày 28</a></li>
-                                        <li class="file"><a href="">Ngày 27</a></li>
-                                        <li class="file"><a href="">Ngày 26</a></li>
-                                        <li class="file"><a href="">Ngày 25</a></li>
-                                        <li class="file"><a href="">Ngày 24</a></li>
-                                        <li class="file"><a href="">Ngày 23</a></li>
-                                        <li class="file"><a href="">Ngày 22</a></li>
-                                        <li class="file"><a href="">Ngày 21</a></li>
-                            </ol>
-                        </li>
-                        <li>
-                                    <label for="subfolder1">Tháng 06</label> <input type="checkbox" id="subfolder1" /> 
-                                    <ol>
-
-                                        <li class="file"><a href="">Ngày 31</a></li>
-                                        <li class="file"><a href="">Ngày 30</a></li>
-                                        <li class="file"><a href="">Ngày 29</a></li>
-                                        <li class="file"><a href="">Ngày 28</a></li>
-                                        <li class="file"><a href="">Ngày 27</a></li>
-                                        <li class="file"><a href="">Ngày 26</a></li>
-                                        <li class="file"><a href="">Ngày 25</a></li>
-                                        <li class="file"><a href="">Ngày 24</a></li>
-                                        <li class="file"><a href="">Ngày 23</a></li>
-                                        <li class="file"><a href="">Ngày 22</a></li>
-                                        <li class="file"><a href="">Ngày 21</a></li>
-                            </ol>
-                        </li>
-                        <li>
-                                    <label for="subfolder1">Tháng 05</label> <input type="checkbox" id="subfolder1" /> 
-                                    <ol>
-
-                                        <li class="file"><a href="">Ngày 31</a></li>
-                                        <li class="file"><a href="">Ngày 30</a></li>
-                                        <li class="file"><a href="">Ngày 29</a></li>
-                                        <li class="file"><a href="">Ngày 28</a></li>
-                                        <li class="file"><a href="">Ngày 27</a></li>
-                                        <li class="file"><a href="">Ngày 26</a></li>
-                                        <li class="file"><a href="">Ngày 25</a></li>
-                                        <li class="file"><a href="">Ngày 24</a></li>
-                                        <li class="file"><a href="">Ngày 23</a></li>
-                                        <li class="file"><a href="">Ngày 22</a></li>
-                                        <li class="file"><a href="">Ngày 21</a></li>
-                            </ol>
-                        </li>
-                        <li>
-                                    <label for="subfolder1">Tháng 04</label> <input type="checkbox" id="subfolder1" /> 
-                                    <ol>
-
-                                        <li class="file"><a href="">Ngày 31</a></li>
-                                        <li class="file"><a href="">Ngày 30</a></li>
-                                        <li class="file"><a href="">Ngày 29</a></li>
-                                        <li class="file"><a href="">Ngày 28</a></li>
-                                        <li class="file"><a href="">Ngày 27</a></li>
-                                        <li class="file"><a href="">Ngày 26</a></li>
-                                        <li class="file"><a href="">Ngày 25</a></li>
-                                        <li class="file"><a href="">Ngày 24</a></li>
-                                        <li class="file"><a href="">Ngày 23</a></li>
-                                        <li class="file"><a href="">Ngày 22</a></li>
-                                        <li class="file"><a href="">Ngày 21</a></li>
-                            </ol>
-                        </li>
-                                <li>
-                                    <label for="subfolder1">Tháng 03</label> <input type="checkbox" id="subfolder1" /> 
-                                    <ol>
-
-                                        <li class="file"><a href="">Ngày 31</a></li>
-                                        <li class="file"><a href="">Ngày 30</a></li>
-                                        <li class="file"><a href="">Ngày 29</a></li>
-                                        <li class="file"><a href="">Ngày 28</a></li>
-                                        <li class="file"><a href="">Ngày 27</a></li>
-                                        <li class="file"><a href="">Ngày 26</a></li>
-                                        <li class="file"><a href="">Ngày 25</a></li>
-                                        <li class="file"><a href="">Ngày 24</a></li>
-                                        <li class="file"><a href="">Ngày 23</a></li>
-                                        <li class="file"><a href="">Ngày 22</a></li>
-                                        <li class="file"><a href="">Ngày 21</a></li>
-                            </ol>
-                        </li>
-                                <li>
-                                    <label for="subfolder1">Tháng 02</label> <input type="checkbox" id="subfolder1" /> 
-                                    <ol>
-
-                                        <li class="file"><a href="">Ngày 31</a></li>
-                                        <li class="file"><a href="">Ngày 30</a></li>
-                                        <li class="file"><a href="">Ngày 29</a></li>
-                                        <li class="file"><a href="">Ngày 28</a></li>
-                                        <li class="file"><a href="">Ngày 27</a></li>
-                                        <li class="file"><a href="">Ngày 26</a></li>
-                                        <li class="file"><a href="">Ngày 25</a></li>
-                                        <li class="file"><a href="">Ngày 24</a></li>
-                                        <li class="file"><a href="">Ngày 23</a></li>
-                                        <li class="file"><a href="">Ngày 22</a></li>
-                                        <li class="file"><a href="">Ngày 21</a></li>
-                            </ol>
-                        </li>
-                                <li>
-                                    <label for="subfolder1">Tháng 01</label> <input type="checkbox" id="subfolder1" /> 
-                                    <ol>
-
-                                        <li class="file"><a href="">Ngày 31</a></li>
-                                        <li class="file"><a href="">Ngày 30</a></li>
-                                        <li class="file"><a href="">Ngày 29</a></li>
-                                        <li class="file"><a href="">Ngày 28</a></li>
-                                        <li class="file"><a href="">Ngày 27</a></li>
-                                        <li class="file"><a href="">Ngày 26</a></li>
-                                        <li class="file"><a href="">Ngày 25</a></li>
-                                        <li class="file"><a href="">Ngày 24</a></li>
-                                        <li class="file"><a href="">Ngày 23</a></li>
-                                        <li class="file"><a href="">Ngày 22</a></li>
-                                        <li class="file"><a href="">Ngày 21</a></li>
-                            </ol>
-                               </li>
+                             
                        </ol>
                 </div>
                       
@@ -280,18 +172,29 @@
                         </tr>
                     </table>
                      <div class="scroll_content">
+                     <%
+                     	int count = 0;
+                     	for(CongVan congVan : congVanList) {
+                     		count ++;
+                     %>
                     <table style="font-size: 16px;" class="border-congvan">
                         <tr>
-                            <td class="column-check" rowspan="6"><input type="checkbox" name=""</td>
+                            <td class="column-check" rowspan="6"><input type="checkbox" name="congVanId"></td>
                             <td class="left-column-first">Ngày đến:</td>
                           
-                            <td class="column-date">23/06/2015</td>
+                            <td class="column-date"><%=congVan.getCvNgayNhan() %></td>
                             <td class="column-so-den">Số đến</td>
-                            <td class="column-so-den">2118-0</td>
+                            <td class="column-so-den"><%=congVan.getCvSo() %></td>
                             
                             <td class="left-column">Ký hiệu</td>
                             <td  class="column-date">2118/TB-PCCT</td>
-                            <td rowspan="2"><div class="file" style="text-decoration: underline;"><a href="danh-muc-bo-phan.html"><div class="mo-ta">2118 TB ketluanGD trienkhaithuchiencacQC QLNB</div></a></div></td>
+                            <td rowspan="2">
+                            	<div class="file" style="text-decoration: underline;">
+	                            	<a href="<%=siteMap.cvManage + "?action=download&file=" + congVan.getCvId()%>">
+	                            		<div class="mo-ta"><%=fileHash.get(congVan.getCvId()).getMoTa() %></div>
+	                            	</a>
+                            	</div>
+                            </td>
                             
 							
                         </tr>
@@ -329,6 +232,7 @@
                             <td colspan="6">Phòng Kế Hoạch, Phòng Vật Tư</td>
                         </tr>
                     </table>
+                    <%} %>
 <!--
                     <div class="chi-tiet">
                         <a href="">*Xem chi tiết</a>    

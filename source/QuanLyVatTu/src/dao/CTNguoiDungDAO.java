@@ -26,9 +26,7 @@ public class CTNguoiDungDAO {
 		return ctNguoiDung;
 	}
 	public boolean login(final String msnv, final String matkhau) {
-		session.beginTransaction();
-		CTNguoiDung ctNguoiDung = (CTNguoiDung) session.get(CTNguoiDung.class, msnv);
-		session.getTransaction().commit();
+		CTNguoiDung ctNguoiDung = getCTNguoiDung(msnv);
 		if (ctNguoiDung == null || !matkhau.equals(ctNguoiDung.getMatKhau()))
 			return false;
 		return true;

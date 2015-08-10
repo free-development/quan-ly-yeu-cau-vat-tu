@@ -13,5 +13,8 @@
         <property name="moTa" type="java.lang.String"  >
             <column name="MOTA" />
         </property>
+        <property name="cvId" type="int"  >
+            <column name="CVID" />
+        </property>
     </class>
 </hibernate-mapping>

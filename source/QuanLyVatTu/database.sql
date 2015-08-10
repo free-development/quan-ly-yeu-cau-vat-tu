@@ -94,7 +94,7 @@ DEFAULT CHARACTER SET = utf8;
 create table CTNGUOIDUNG
 (
    MSNV                 varchar(10),
-   MATKHAU              varchar(20)
+   MATKHAU              varchar(40)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -131,11 +131,11 @@ DEFAULT CHARACTER SET = utf8;
 /*==============================================================*/
 create table FILE
 (
-   FILEID               int auto_incremnt primary key,
-   CVID			int not null,
+   FILEID               int ,
+   CVID	int not null,
    DIACHI               varchar(100),
-   MOTA                 text
---   primary key (FILEID)
+   MOTA                 text,
+   primary key (FILEID)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

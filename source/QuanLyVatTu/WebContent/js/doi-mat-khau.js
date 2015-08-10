@@ -43,8 +43,8 @@ function showForm(formId, check){
 				    mimeType: 'application/json',
 				  	
 				  	success: function(result) {
-				  		alert(result);
-				  		if(result == "success")
+//				  		alert(result);
+				  		if(result === "success")
 				  			window.location.assign("home");
 				  		else 
 				  			alert('Tai khoan hoac mat khau chua dung');

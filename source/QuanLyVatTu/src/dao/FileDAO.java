@@ -6,6 +6,7 @@ import model.File;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
 
@@ -20,6 +21,12 @@ public class FileDAO {
 	public File getFile(final int fileId) {
 		session.beginTransaction();
 		File file = (File) session.get(File.class, fileId);
+		session.getTransaction().commit();
+		return file;
+	}
+	public File getByCongVanId(final int cvId) {
+		session.beginTransaction();
+		File file = (File) session.createCriteria(File.class).add(Restrictions.eq("cvId", cvId)).list().get(0);
 		session.getTransaction().commit();
 		return file;
 	}

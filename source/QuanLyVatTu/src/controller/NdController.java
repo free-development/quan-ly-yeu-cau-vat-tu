@@ -77,6 +77,10 @@ public class NdController extends HttpServlet {
 		String result = "";
 //		CTNguoiDungDAO ctNguoiDungDAO = new CTNguoiDungDAO();
 //		if (new CTNguoiDungDAO().getCTNguoiDung(msnv).getMatKhau().equals(StringUtil.encryptMD5(passOld))) {
+		System.out.println("********************************************************************************");
+		System.out.println(msnv + "**********" + StringUtil.encryptMD5(passOld));
+		System.out.println(msnv + "**********" + passOld);
+		System.out.println("********************************************************************************");
 		if (new CTNguoiDungDAO().login(msnv, StringUtil.encryptMD5(passOld))) {
 			new CTNguoiDungDAO().updateCTNguoiDung(new CTNguoiDung(msnv, StringUtil.encryptMD5(passNew)));
 			result = "success";

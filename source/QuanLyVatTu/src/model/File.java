@@ -6,11 +6,13 @@ public class File implements Serializable {
 	private int fileId;
 	private String diaChi;
 	private String moTa;
+	private int cvId;
 	
 	public File() {
-		this.fileId = fileId;
-		this.diaChi = diaChi;
-		this.moTa = moTa;
+		this.fileId = 0;
+		this.diaChi = "";
+		this.moTa = "";
+		this.cvId = 0;
 	}
 	
 	/**
@@ -18,9 +20,10 @@ public class File implements Serializable {
 	 * @param diaChi
 	 * @param moTa
 	 */
-	public File(String diaChi, String fileMoTa) {
+	public File(final String diaChi, final String fileMoTa, final int cvId) {
 		this.diaChi = diaChi;
 		this.moTa = fileMoTa;
+		this.cvId = cvId;
 	}
 	
 	/**
@@ -28,11 +31,20 @@ public class File implements Serializable {
 	 * @param diaChi
 	 * @param moTa
 	 */
-	public File(int fileId, String diaChi, String fileMoTa) {
+	public File(int fileId, String diaChi, String fileMoTa, final int cvId) {
 		this.fileId = fileId;
 		this.diaChi = diaChi;
 		this.moTa = fileMoTa;
+		this.cvId = cvId;
 	}
+	public int getCvId() {
+		return cvId;
+	}
+
+	public void setCvId(int cvId) {
+		this.cvId = cvId;
+	}
+
 	/**
 	 * @return the fileId
 	 */
