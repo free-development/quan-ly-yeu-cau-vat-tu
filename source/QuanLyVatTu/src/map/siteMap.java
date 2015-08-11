@@ -23,9 +23,14 @@ public class siteMap {
 	public static final String vtManage = home +  "manageVt.html";
 	public static final String vaiTro = "danh-muc-vai-tro";
 	
+
+	// map manage chi tiet vat tu 
+	public static final String vtuManage = home +  "manageVtu.html";
+	public static final String VatTu = "danh-muc-vat-tu";
+	
 	// map manage chi tiet vat tu 
 	public static final String ctvtManage = home +  "manageCtvt.html";
-	public static final String vatTu = "danh-muc-vat-tu";
+	public static final String ctVatTu = "danh-muc-chi-tiet-vat-tu";
 	
 	//public static final String ndManage = home +  "ManageNd.html";
 	//public static final String nguoiDung = "them-nguoi-dung";
