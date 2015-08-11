@@ -15,7 +15,7 @@
 <link href="style/style-chat-luong.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <link
-	href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css"
+	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
 <script>
     $(document).ready(function() {
