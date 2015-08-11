@@ -28,12 +28,13 @@ public class CvController extends HttpServlet {
 	public ModelAndView manageCV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		DonViDAO donViDAO = new DonViDAO();
     	FileDAO fileDAO = new FileDAO();
-		
+    	System.out.println("OK");
 		String action = request.getParameter("action");
-		if("manageCv".equals(action)) {
+		if("manageCv".equalsIgnoreCase(action)) {
 			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) new CongVanDAO().getAllCongVan();
 			HashMap<Integer, File> fileHash = new HashMap<Integer, File>();
 			for(CongVan congVan : congVanList) {
+				System.out.println(congVan.getCvId());
 				int cvId = congVan.getCvId();
 				fileHash.put(cvId, fileDAO.getByCongVanId(cvId));
 			}
