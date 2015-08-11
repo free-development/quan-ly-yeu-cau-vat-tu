@@ -170,7 +170,7 @@
 				</div>
 				<div class="button-group">
 					<!-- 				<input type="hidden" name="action" value = "AddCl">   -->
-					<button class="button" onclick="addCl()" type="button">
+					<button class="button" onclick="addCl();" type="button">
 						<i class="fa fa-plus-circle"></i>&nbsp;Thêm
 					</button>
 					<button type="reset" class="button">
