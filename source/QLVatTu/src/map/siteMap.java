@@ -2,7 +2,7 @@ package map;
 
 public class siteMap {
 	// map home page
-	public static final String home = "/QLYeuCauVatTu/";
+	public static final String home = "/QLVatTu/";
 	// map manage danh muc noi san xuat
 	
 	public static final String nsxManage = home +  "manageNsx.html";
