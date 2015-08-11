@@ -129,6 +129,60 @@
 				<li><a href="">Trang chủ</a></li>
 				<li><a href="">Danh mục</a>
 					<ul>
+<<<<<<< HEAD:source/QuanLyVatTu/WebContent/danh-muc-chi-tiet-vat-tu.jsp
+						<li><a href="">Trang chủ</a></li>
+						<li><a href="">Danh mục</a>
+							<ul>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh mục vật tư</a></li>
+								<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+							</ul>
+						</li>
+						<li><a href="danh-muc-cong-van.html">Công văn</a></li>
+						<li><a href="bao-cao.html">Báo cáo</a></li>
+<!--					<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
+						<li><a href"<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			
+				<div id="main-content">
+					<div id="title-content">
+		          Danh mục vật tư 
+                    </div>
+                
+                <div class="lbltk">
+                    <table>
+                        <tr>
+                            <td>
+                            <div class="search_form1" id="search">
+                                <form action="" method="post">
+                                    <span class="search-text">
+                                        &nbsp;
+                                    <input type="search" class="text" name="search_box" name="search" placeholder="Tìm kiếm mã" />
+                                    </span>
+                                    <span class="search-button">
+                                    &nbsp;
+                                    <button class="btn-search"><i class="fa fa-search" ></i></button>
+                                    </span>
+                                </form>
+                            </div>
+                            </td>
+                            <td>
+                            	<input type="checkbox" name="" value=""> 	
+                            </td>
+                            <td>
+                    		Theo tên
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+		        
+<!--
+=======
 						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
 								mục nơi sản xuất</a></li>
 						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
@@ -183,6 +237,7 @@
 			</div>
 
 			<!--
+>>>>>>> origin/master:source/QuanLyVatTu/WebContent/danh-muc-vat-tu.jsp
                     
 -->
 			<div id="view-table" class="scroll-chi-tiet-vat-tu">

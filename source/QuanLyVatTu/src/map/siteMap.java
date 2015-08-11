@@ -24,12 +24,22 @@ public class siteMap {
 	public static final String vtManage = home +  "manageVt.html";
 	public static final String vaiTro = "danh-muc-vai-tro";
 	
+
+	// map manage chi tiet vat tu 
+	public static final String vtuManage = home +  "manageVtu.html";
+	public static final String VatTu = "danh-muc-vat-tu";
+	
 	// map manage chi tiet vat tu 
 	public static final String ctvtManage = home +  "manageCtvt.html";
-	public static final String vatTu = "danh-muc-vat-tu";
+	public static final String ctVatTu = "danh-muc-chi-tiet-vat-tu";
 	
 <<<<<<< HEAD
+	//public static final String ndManage = home +  "ManageNd.html";
+	//public static final String nguoiDung = "them-nguoi-dung";
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
 	
 >>>>>>> 9f1b65321c2a37cc5c31abc789d71a445434875d
 	// map manage nguoi dung
@@ -37,6 +47,9 @@ public class siteMap {
 	public static final String nguoiDung = "them-nguoi-dung";	
 	public static final String changePass = home +  "changePass.html";
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 	public static final String nguoiDung = "them-nguoi-dung";
 	
 =======
@@ -63,7 +76,11 @@ public class siteMap {
 	
 	// map yeu cau vat tu
 	public static final String ycvtManage = home +  "cvManage.html";
+<<<<<<< HEAD
+}
+=======
 	
 	// map file download file
 	public static final String  fileDownload = "download-file";
 }
+>>>>>>> origin/master
