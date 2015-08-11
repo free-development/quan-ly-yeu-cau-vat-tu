@@ -35,7 +35,7 @@ function showForm(formId, check){
 //					updateNsx(nsxMaUpdate, nsxTenUpdate);
 //				alert(passOld + "**" + passNew);
 				$.ajax({
-					url: "/QuanLyVatTu/changePass.html",	
+					url: "/QLVatTuYeuCau/changePass.html",	
 				  	type: "GET",
 				  	dateType: "JSON",
 				  	data: { "msnv": msnv, "passOld": passOld, "passNew": passNew},
