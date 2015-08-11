@@ -111,6 +111,7 @@
 						<th class="a-column">Mã vật tư</th>
 						<th class="b-column">Tên vật tư</th>
 						<th class="c-column">Nơi sản xuất</th>
+						<th class="c-column">Chất lượng</th>
 						<th class="d-column">Đơn vị tính</th>
 						<th class="e-column">Số lượng thiếu</th>
 					</tr>
