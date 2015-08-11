@@ -41,7 +41,7 @@ public class BpsdController extends HttpServlet {
 			String sdt = request.getParameter("sdt");
 			String diaChi = request.getParameter("diaChi");
 			String email = request.getParameter("email");
-			donViDAO.addDonVi(new DonVi(dvMa,dvTen,sdt,email,diaChi));
+			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, email, diaChi));
 			
 			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
 			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
@@ -76,7 +76,7 @@ public class BpsdController extends HttpServlet {
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String addBp(@RequestParam("dvMa") String dvMa, @RequestParam("dvTen") String dvTen, 
 			 @RequestParam("sdt") String sdt, @RequestParam("diaChi") String diaChi, @RequestParam("email") String email ) {
-		DonVi dv = new DonVi(dvMa, dvTen, sdt, email, diaChi);
+		DonVi dv = new DonVi(dvMa, dvTen,sdt, diaChi, email);
 		new DonViDAO().addDonVi(dv);
 		return JSonUtil.toJson(dv);
 	}
@@ -85,7 +85,7 @@ public class BpsdController extends HttpServlet {
 	 public @ResponseBody String updateBp(@RequestParam("dvMaUpdate") String dvMaUpdate, @RequestParam("dvTenUpdate") String dvTenUpdate, 
 			 @RequestParam("sdtUpdate") String sdtUpdate, @RequestParam("diaChiUpdate") String diaChiUpdate, @RequestParam("emailUpdate") String emailUpdate ) {
 
-		DonVi dv = new DonVi(dvMaUpdate, dvTenUpdate,sdtUpdate, emailUpdate, diaChiUpdate);
+		DonVi dv = new DonVi(dvMaUpdate, dvTenUpdate,sdtUpdate, diaChiUpdate, emailUpdate);
 		new DonViDAO().updateDonVi(dv);
 		return JSonUtil.toJson(dv);
 	}
