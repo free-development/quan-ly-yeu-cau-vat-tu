@@ -107,7 +107,7 @@
 							for(NoiSanXuat noiSanXuat : listNoiSanXuat) {%>
 						<tr id="<%=noiSanXuat.getNsxMa()%>">
 							<td class="left-column"><input type="checkbox" name="nsxMa" value="<%=noiSanXuat.getNsxMa() %>" class="checkbox"></td>
-							<td class="col" name=><%=noiSanXuat.getNsxMa() %></td>
+							<td class="col"><%=noiSanXuat.getNsxMa() %></td>
 							<td class="col"><%=noiSanXuat.getNsxTen() %></td>
 						</tr>
 						<%} }%>

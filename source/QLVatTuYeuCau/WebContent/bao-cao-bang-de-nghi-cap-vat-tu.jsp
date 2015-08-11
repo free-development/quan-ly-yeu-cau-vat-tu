@@ -96,7 +96,7 @@
 									int count = 0;
 									for(DonVi donVi : listDonVi)
 									{%>
-								<option value=<%=donVi.getDvMa()%>><%=donVi.getDvTen()%></option>
+								<option value="<%=donVi.getDvMa()%>"><%=donVi.getDvTen()%></option>
 								<%}
 								%>
 						</select></th>
