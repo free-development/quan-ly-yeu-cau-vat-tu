@@ -4,12 +4,14 @@ import java.io.Serializable;
 
 public class CTVatTu implements Serializable{
 
+	private int ctvtId;
 	/**
 	 * NOT NULL false
 	 * DomainName 
 	 * DatatypeName INT
 	 * DataTypeLength/Precision 10
 	 */
+	
 	private int dinhMuc;
 
 	/**
@@ -27,6 +29,7 @@ public class CTVatTu implements Serializable{
 	private ChatLuong chatLuong;
 	
 	public CTVatTu() {
+		this.ctvtId = 0;
 		this.dinhMuc = 0;
 		this.soLuongTon = 0;
 		this.vatTu = new VatTu();
@@ -34,7 +37,6 @@ public class CTVatTu implements Serializable{
 		this.chatLuong = new ChatLuong();
 	}
 
-	
 	/**
 	 * @param dinhMuc
 	 * @param soLuongTon
@@ -44,6 +46,31 @@ public class CTVatTu implements Serializable{
 	 */
 	public CTVatTu(VatTu vatTu,
 			NoiSanXuat noiSanXuat, ChatLuong chatLuong, int dinhMuc, int soLuongTon) {
+		this.dinhMuc = dinhMuc;
+		this.soLuongTon = soLuongTon;
+		this.vatTu = vatTu;
+		this.noiSanXuat = noiSanXuat;
+		this.chatLuong = chatLuong;
+	}
+	
+	public int getCtvtId() {
+		return ctvtId;
+	}
+
+	public void setCtvtId(int ctvtId) {
+		this.ctvtId = ctvtId;
+	}
+
+	/**
+	 * @param dinhMuc
+	 * @param soLuongTon
+	 * @param vatTu
+	 * @param noiSanXuat
+	 * @param chaLluong
+	 */
+	public CTVatTu(int ctvtId, VatTu vatTu,
+			NoiSanXuat noiSanXuat, ChatLuong chatLuong, int dinhMuc, int soLuongTon) {
+		this.ctvtId =  ctvtId;
 		this.dinhMuc = dinhMuc;
 		this.soLuongTon = soLuongTon;
 		this.vatTu = vatTu;

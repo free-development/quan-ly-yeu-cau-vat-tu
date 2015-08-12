@@ -24,10 +24,10 @@ public class CTVatTuDAO {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
-	public CTVatTu getCTVatTu(final String vtMa) {
+	public CTVatTu getCTVatTu(final String ctVatTu) {
 		session.beginTransaction();
 		
-		CTVatTu ctvt = (CTVatTu) session.get(CTVatTu.class, vtMa);
+		CTVatTu ctvt = (CTVatTu) session.get(CTVatTu.class, ctVatTu);
 //		session.
 		
 		session.getTransaction().commit();
@@ -61,18 +61,18 @@ public class CTVatTuDAO {
 		cr.createAlias("model.NoiSanXuat", "nsx");
 		cr.createAlias("model.ChatLuong", "cl");
 		cr.createAlias("model.VatTu", "vt");
-//		Criterion expVtMa = Restrictions.eq("vtMa", vtMa);
+//		Criterion expctVatTu = Restrictions.eq("ctVatTu", ctVatTu);
 		Criterion expNsxMa = Restrictions.eq("nsx.nsxMa", nsxMa);
 		Criterion expClMa = Restrictions.eq("cl.clMa", clMa);
 		LogicalExpression andExp = Restrictions.and (expClMa, expNsxMa);
 //		andExp = Restrictions.and(andExp, expClMa);
 //		CTVatTu ctVatTu = null;
-//		cr.add(expVtMa);
+//		cr.add(expctVatTu);
 		cr.add(andExp);
 		CTVatTu ctVatTu =  (CTVatTu) cr.list().get(0);*/
 		String sql = "from ctvattu"
 				+ " where clma = '"+ clMa +"' and "
-				+ "vtma = '" + vtMa +"' and "
+				+ "ctVatTu = '" + vtMa +"' and "
 				+ "nsxma = '" + nsxMa +"'";
 		Query query = session.createQuery(sql);
 		CTVatTu ctVatTu =  (CTVatTu) query.list().get(0);
