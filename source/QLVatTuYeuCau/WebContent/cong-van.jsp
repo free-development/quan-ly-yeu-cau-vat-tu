@@ -1,7 +1,7 @@
-<%@page import="java.util.HashMap"%>
 <%@page import="model.CongVan"%>
 <%@page import="model.File"%>
 <%@page import="map.siteMap"%>
+<%@page import="java.util.HashMap"%> 
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
@@ -211,7 +211,7 @@
 
 									<td class="left-column-first">Nơi gửi</td>
 
-									<td colspan="6"><%= congVan.getDonVi()%></td>
+									<td colspan="6"><%= congVan.getDonVi().getDvTen()%></td>
 								</tr>
 								<tr>
 
@@ -229,7 +229,7 @@
 
 									<td class="left-column-first">Nơi GQ chính</td>
 
-									<td colspan="6"><%=congVan.getDonVi() %></td>
+									<td colspan="6"><%=congVan.getDonVi().getDvTen() %></td>
 								</tr>
 							</table>
 							<div class="chi-tiet">

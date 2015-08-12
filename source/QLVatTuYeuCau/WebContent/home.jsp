@@ -1,4 +1,4 @@
-<%@page import="map.siteMap"%>
+f<%@page import="map.siteMap"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -78,9 +78,9 @@
 							</ul>
 						</li>
 						<li><a href="<%=siteMap.cvManage + "?action=manageCv"%>">Công văn</a></li>
-						<li><a href="bao-cao.html">Báo cáo</a></li>
+						<li><a href="<%=siteMap.bcManage + "?action=manageBc"%>">Báo cáo</a></li>
 <!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
-						<li><a href="bao-cao.html">Quản lý người dùng</a></li>
+						<li><a href="<%=siteMap.ndManage + "?action=manageTk"%>">Quản lý người dùng</a></li>
 					</ul>
 					<div class="clear"></div>
 				</div>

@@ -19,6 +19,7 @@ import dao.FileDAO;
 import map.siteMap;
 import model.CongVan;
 import model.File;
+import util.FileUtil;
 
 
 @Controller
@@ -26,21 +27,29 @@ public class CvController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     @RequestMapping("/cvManage")
 	public ModelAndView manageCV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		DonViDAO donViDAO = new DonViDAO();
     	FileDAO fileDAO = new FileDAO();
-    	System.out.println("OK");
 		String action = request.getParameter("action");
 		if("manageCv".equalsIgnoreCase(action)) {
 			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) new CongVanDAO().getAllCongVan();
 			HashMap<Integer, File> fileHash = new HashMap<Integer, File>();
 			for(CongVan congVan : congVanList) {
-				System.out.println(congVan.getCvId());
 				int cvId = congVan.getCvId();
 				fileHash.put(cvId, fileDAO.getByCongVanId(cvId));
 			}
-			request.setAttribute("congvanList", congVanList);
+			request.setAttribute("congVanList", congVanList);
 			request.setAttribute("fileHash", fileHash);
 			return new ModelAndView(siteMap.congVan);
+		}
+		if("download".equals(action)) {
+			try {
+				int cvId = Integer.parseInt(request.getParameter("file"));
+				model.File f = fileDAO.getByCongVanId(cvId);
+				java.io.File file = new java.io.File(f.getDiaChi());
+				return new ModelAndView(siteMap.fileDownload, "file", file);
+				
+			} catch (NumberFormatException e){
+				System.out.println("Cannot convert to int");
+			}
 		}
 		return new ModelAndView("login");
 	}
