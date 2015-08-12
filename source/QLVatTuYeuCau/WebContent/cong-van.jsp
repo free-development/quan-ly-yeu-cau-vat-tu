@@ -376,15 +376,15 @@
 					<div class="form-title">Thêm công văn</div>
 					<div class="input-table">
 						<table>
-							<tr>
-								<th colspan="1"><label for="soDen" class="input" style="text-align: left">Số đến</label></th>
-								<td colspan="3"><input type = "text" class="text" readonly value="123" style="background: #D1D1E0;" sise="5">
+							<tr style="margin-bottom: 20px;">
+								<th colspan="1" style="text-align: left"><label for="soDen" style="text-align: left">Số đến</label></th>
+								<td colspan="3"><input type = "text" class="text" readonly value="123" style="background: #D1D1E0;" sise="5"></td>
 							</tr>
-							<tr>
-								<th style="text-align: left" colspan="1"> <label for="cvSo" class="input">Số công văn: </label></th>
+							<tr style="margin-bottom: 20px;">
+								<th style="text-align: left" colspan="1"> <label for="soDen" style="text-align: left">Số công văn: </label></th>
 								<td colspan="3"><input type="text" class="text" name="cvSo" id="cvSo"></td>
 							</tr>	
-							<tr>
+							<tr style="margin-bottom: 20px;">
 								<th style="text-align: left"><label for="ngayGoi" class="input">Ngày gởi: </label></th>
 								<td><input type="date" class="text" name="ngayGoi" id="ngayGoi" value=<%=DateUtil.convertToSqlDate(new java.util.Date()) %>></td>
 								<th style="text-align: left"><label for="ngayNhan" class="input">Ngày nhận: </label></th>
@@ -401,7 +401,7 @@
 										<option value="">Sửa chữa thường xuyên</option>
 										<option value="">Sản xuất kinh doanh</option>
 								</select></td>
-								<th style="text-align: left;padding-left: 20px;"><label
+								<th style="text-align: left;"><label
 									for="noiGoi" class="input">Nơi gửi</label></th>
 								<td><select class="select" name="noiGoi" id="noiGoi">
 										<option selected disabled value=""></option>
@@ -410,11 +410,15 @@
 										<option value="">Phòng tổ chức và nhân sự</option>
 										<option value="">Phòng kế hoạch</option>
 								</select></td>
-							</tr>
 							<tr>
-								<th style="text-aligin: left" colspan="1"><label id="trichYeu" class="input">Trích yếu</label>
+								<th style="text-align: left;" colspan="1"><label id="trichYeu" class="input">Trích yếu</label>
 								<td colspan="3"><textarea class="txtarea"></textarea></td>
-							</tr>	
+							</tr>
+							</tr>
+							<th  style="text-align: left;"><label
+									for="file" class="input">Tep dinh kem: </label></th>
+							<td><input type="file" id="file">
+							<tr>	
 						</table>
 					</div>
 					<div class="group-button">
