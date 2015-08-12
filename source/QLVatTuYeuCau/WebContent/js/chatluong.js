@@ -12,7 +12,7 @@
 	function preUpdateCl(formId, check) {
 		var clMa = $('input:checkbox[name=clMa]:checked').val();
 		$.ajax({
-			url: "/QuanLyVatTu/preUpdateCl.html",	
+			url: "/QLVatTuYeuCau/preUpdateCl.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
 		  	data: { "clMa": clMa},
@@ -35,7 +35,7 @@
 		
  	 function deleteCl(clMa) {
 		$.ajax({
-			url: "/QuanLyVatTu/deleteCl.html",	
+			url: "/QLVatTuYeuCau/deleteCl.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
 		  	data: { "clMa": clMa},
@@ -51,7 +51,7 @@
 		var clMa = $('#add-form input:text[name=clMa]').val();
 		var clTen = $('#add-form input:text[name=clTen]').val();
 			$.ajax({
-				url: "/QuanLyVatTu/addCl.html",	
+				url: "/QLVatTuYeuCau/addCl.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
 			  	data: { "clMa": clMa, "clTen": clTen},
@@ -85,7 +85,7 @@
  	function updateCl(clMaUpdate, clTenUpdate) {
 
 		$.ajax({
-			url: "/QuanLyVatTu/updateCl.html",	
+			url: "/QLVatTuYeuCau/updateCl.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
 		  	data: { "clMaUpdate": clMaUpdate, "clTenUpdate": clTenUpdate},

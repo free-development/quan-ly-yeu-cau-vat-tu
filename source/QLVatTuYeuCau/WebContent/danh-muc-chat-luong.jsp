@@ -15,7 +15,7 @@
 <link href="style/style-chat-luong.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <link
-	href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css"
+	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
 <script>
     $(document).ready(function() {
@@ -170,7 +170,7 @@
 				</div>
 				<div class="button-group">
 					<!-- 				<input type="hidden" name="action" value = "AddCl">   -->
-					<button class="button" onclick="addCl()" type="button">
+					<button class="button" onclick="addCl();" type="button">
 						<i class="fa fa-plus-circle"></i>&nbsp;Thêm
 					</button>
 					<button type="reset" class="button">

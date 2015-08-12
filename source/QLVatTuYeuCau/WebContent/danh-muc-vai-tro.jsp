@@ -37,7 +37,7 @@
 		function preUpdateVt(formId, check){
 			vtId = $('input:checkbox[name=vtId]:checked').val();
 				$.ajax({
-					url: "/QuanLyVatTu/preEditVt.html",
+					url: "/QLVatTuYeuCau/preEditVt.html",
 					type: "GET",
 					dataType: "JSON",
 					data: {"vtId": vtId},
@@ -63,7 +63,7 @@
 	 	 function deleteVt(vtId) {
 			 
 			$.ajax({
-				url: "/QuanLyVatTu/deleteVt.html",	
+				url: "/QLVatTuYeuCau/deleteVt.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
 			  	data: { "vtId": vtId},
@@ -79,7 +79,7 @@
  			vtId = $('#add-form input:text[name=vtId]').val();
  			vtTen = $('#add-form input:text[name=vtTen]').val();
  			$.ajax({
- 				url: "/QuanLyVatTu/addVt.html",	
+ 				url: "/QLVatTuYeuCau/addVt.html",	
 			  	type: "GET",
  			  	dateType: "JSON",
  			  	data: { "vtId": vtId, "vtTen": vtTen},
@@ -105,7 +105,7 @@
  	 	function updateVt(vtIdUpdate, vtTenUpdate) {
 
 			$.ajax({
-				url: "/QuanLyVatTu/updateVt.html",	
+				url: "/QLVatTuYeuCau/updateVt.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
 			  	data: { "vtIdUpdate": vtIdUpdate, "vtTenUpdate": vtTenUpdate},

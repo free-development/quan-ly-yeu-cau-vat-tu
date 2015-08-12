@@ -20,7 +20,7 @@ function addCongVan() {
 	var nsxMa = $('#add-form input:text[name=nsxMa]').val();
 	var nsxTen = $('#add-form input:text[name=nsxTen]').val();
 	$.ajax({
-		url: "/QuanLyVatTu/addNsx.html",	
+		url: "/QLVatTuYeuCau/addNsx.html",	
 	  	type: "GET",
 	  	dateType: "JSON",
 	  	data: { "nsxMa": nsxMa, "nsxTen": nsxTen},

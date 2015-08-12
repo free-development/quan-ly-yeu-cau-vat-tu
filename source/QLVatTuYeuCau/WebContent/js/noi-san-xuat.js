@@ -15,7 +15,7 @@ function showForm(formId, check){
 		function preUpdateNsx(formId, check) {
 			var nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
 			$.ajax({
-				url: "/QuanLyVatTu/preEditNsx.html",	
+				url: "/QLVatTuYeuCau/preEditNsx.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
 			  	data: { "nsxMa": nsxMa},
@@ -38,7 +38,7 @@ function showForm(formId, check){
  		
 	 	 function deleteNsx(nsxMa) {
 			$.ajax({
-				url: "/QuanLyVatTu/deleteNsx.html",	
+				url: "/QLVatTuYeuCau/deleteNsx.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
 			  	data: { "nsxMa": nsxMa},
@@ -55,7 +55,7 @@ function showForm(formId, check){
 			var nsxMa = $('#add-form input:text[name=nsxMa]').val();
 			var nsxTen = $('#add-form input:text[name=nsxTen]').val();
 			$.ajax({
-				url: "/QuanLyVatTu/addNsx.html",	
+				url: "/QLVatTuYeuCau/addNsx.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
 			  	data: { "nsxMa": nsxMa, "nsxTen": nsxTen},
@@ -82,7 +82,7 @@ function showForm(formId, check){
 	 	function updateNsx(nsxMaUpdate, nsxTenUpdate) {
 
 			$.ajax({
-				url: "/QuanLyVatTu/updateNsx.html",	
+				url: "/QLVatTuYeuCau/updateNsx.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
 			  	data: { "nsxMaUpdate": nsxMaUpdate, "nsxTenUpdate": nsxTenUpdate},

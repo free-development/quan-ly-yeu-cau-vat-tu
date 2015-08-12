@@ -12,7 +12,7 @@ function showForm(formId, check){
 	function preUpdateMd(formId, check) {
 		var mdMa = $('input:checkbox[name=mdMa]:checked').val();
 		$.ajax({
-			url: "/QuanLyVatTu/preUpdateMd.html",	
+			url: "/QLVatTuYeuCau/preUpdateMd.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
 		  	data: { "mdMa": mdMa},
@@ -35,7 +35,7 @@ function showForm(formId, check){
 		
  	 function deleteMd(mdMa) {
 		$.ajax({
-			url: "/QuanLyVatTu/deleteMd.html",	
+			url: "/QLVatTuYeuCau/deleteMd.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
 		  	data: { "mdMa": mdMa},
@@ -52,7 +52,7 @@ function showForm(formId, check){
 		var mdMa = $('#add-form input:text[name= mdMa]').val();
 		var mdTen = $('#add-form input:text[name=mdTen]').val();
 		$.ajax({
-			url: "/QuanLyVatTu/addMd.html",	
+			url: "/QLVatTuYeuCau/addMd.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
 		  	data: { "mdMa": mdMa, "mdTen": mdTen},
@@ -86,7 +86,7 @@ function showForm(formId, check){
  	function updateMd(mdMaUpdate, mdTenUpdate) {
 
 		$.ajax({
-			url: "/QuanLyVatTu/updateMd.html",	
+			url: "/QLVatTuYeuCau/updateMd.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
 		  	data: { "mdMaUpdate": mdMaUpdate, "mdTenUpdate": mdTenUpdate},

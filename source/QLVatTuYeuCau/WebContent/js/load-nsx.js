@@ -15,7 +15,7 @@ function showForm(formId, check){
 		function update(formId, check) {
 			var nsxMa = $('input:checkbox[name=nsxMa]').val();
 			$.ajax({
-				url: "/QuanLyVatTu/preEditNsx.html",	
+				url: "/QLVatTuYeuCau/preEditNsx.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
 			  	data: { "nsxMa": nsxMa},
@@ -52,7 +52,7 @@ function showForm(formId, check){
 				$("#updateNsx").click(function(event) {
 		    	  
 					$.ajax({
-						url: "/QuanLyVatTu/preEditNsx.html",	
+						url: "/QLVatTuYeuCau/preEditNsx.html",	
 					  	type: "GET",
 					  	data: { "nsxMa": nsxMa},
 					  	beforeSend: function(xhr) {
