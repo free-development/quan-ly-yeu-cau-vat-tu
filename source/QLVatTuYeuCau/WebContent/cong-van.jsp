@@ -1,3 +1,4 @@
+<%@page import="util.DateUtil"%>
 <%@page import="model.CongVan"%>
 <%@page import="model.File"%>
 <%@page import="map.siteMap"%>
@@ -375,21 +376,35 @@
 					<div class="form-title">Thêm công văn</div>
 					<div class="input-table">
 						<table>
-
 							<tr>
-								<th style="text-align: left"><label for="MD">Mục
+								<th colspan="1"><label for="soDen" class="input" style="text-align: left">Số đến</label></th>
+								<td colspan="3"><input type = "text" class="text" readonly value="123" style="background: #D1D1E0;" sise="5">
+							</tr>
+							<tr>
+								<th style="text-align: left" colspan="1"> <label for="cvSo" class="input">Số công văn: </label></th>
+								<td colspan="3"><input type="text" class="text" name="cvSo" id="cvSo"></td>
+							</tr>	
+							<tr>
+								<th style="text-align: left"><label for="ngayGoi" class="input">Ngày gởi: </label></th>
+								<td><input type="date" class="text" name="ngayGoi" id="ngayGoi" value=<%=DateUtil.convertToSqlDate(new java.util.Date()) %>></td>
+								<th style="text-align: left"><label for="ngayNhan" class="input">Ngày nhận: </label></th>
+								<td><input type="date" class="text" name="ngayNhan" id="ngayNhan" value=<%=DateUtil.convertToSqlDate(new java.util.Date()) %>>
+								</td>
+							</tr>
+							<tr>
+								<th style="text-align: left"><label for="mucDich" class="input">Mục
 										đích</label></th>
-								<td><select class="select">
+								<td><select class="select" name="mucDich" id="mucDich">
 										<option disabled selected value="">Chọn mục đích</option>
 										<option value="">Sửa chữa lớn</option>
 										<option value="">Xây dựng cơ bản</option>
 										<option value="">Sửa chữa thường xuyên</option>
 										<option value="">Sản xuất kinh doanh</option>
 								</select></td>
-								<th style="text-align: left; padding-left: 20px;"><label
-									for="NG">Nơi gửi</label></th>
-								<td><select class="select">
-										<option></option>
+								<th style="text-align: left;padding-left: 20px;"><label
+									for="noiGoi" class="input">Nơi gửi</label></th>
+								<td><select class="select" name="noiGoi" id="noiGoi">
+										<option selected disabled value=""></option>
 										<option value="">Công ty Điện lực TP.Cần Thơ</option>
 										<option value="">Ban QLDA lưới điện</option>
 										<option value="">Phòng tổ chức và nhân sự</option>
@@ -397,97 +412,9 @@
 								</select></td>
 							</tr>
 							<tr>
-								<th style="text-align: left"><label for="N">Năm</label></th>
-								<td><select class="select">
-										<option></option>
-										<option>2015</option>
-										<option>2014</option>
-										<option>2013</option>
-										<option>2012</option>
-								</select></td>
-								<th style="text-align: left; padding-left: 20px;"><label
-									for="TN">Từ số</label></th>
-								<td><select class="select">
-										<option></option>
-										<option>2118-0</option>
-										<option>2119-0</option>
-										<option>2120-0</option>
-								</select></td>
-								<th style="text-align: left; padding-left: 20px;"><label
-									for="TS">Từ ngày</label></th>
-								<td><select class="select">
-										<option></option>
-										<option>23/06/2015</option>
-								</select></td>
-							</tr>
-							<tr>
-								<th style="text-align: left"><label for="KH">Ký
-										hiệu</label></th>
-								<td><input name="" size="10px" align=right type="text"
-									class="text" required title=""></td>
-								<!--
-                                    <th style="text-align: left;padding-left:20px;"><label for="HT">Hình thức</label></th>
-                                    <td><select class="select">
-                                        <option></option>
-                                        </select>
-                                    </td>
--->
-								<th></th>
-								<td></td>
-								<th style="text-align: left; padding-left: 20px;"><label
-									for="NK">Ngày ký</label></th>
-								<td><select class="select">
-										<option></option>
-										<option>23/06/2015</option>
-								</select></td>
-							</tr>
-							<!--
-                                <tr>
-                                    <th style="text-align: left"><label for="KH">Lĩnh vực</label></th>
-                                    <td><select class="select">
-                                        <option></option>
-                                        </select>
-                                    </td>
-                                    <th style="text-align: left;padding-left:20px;";><label for="HT">Loại TL</label></th>
-                                    <td><select class="select">
-                                        <option></option>
-                                        </select>
-
-                                </tr>	
--->
-
-						</table>
-						<table>
-							<th style="text-align: left"><label for="TY">Trích
-									yếu</label></th>
-							<td><textarea class="txtarea"></textarea></td>
-							</tr>
-						</table>
-						<!--
-                            <table style="padding: 10px">
-                                    <td style="text-align: right"><input type="checkbox" name=""</td>
-                                    <th style="text-align: left;padding-right:30px;"><label for="M">Mật</label></th>
-                                    <td style="text-align: right"><input type="checkbox" name=""</td>
-                                    <th style="text-align: left"><label for="M">Khẩn</label></th>
-                             </table>
--->
-						<table>
-							<tr>
-								<th style="text-align: left"><label for="TT">Trạng
-										thái</label></th>
-<!-- 								<td style="text-align: right; padding-left: 10px;"><input -->
-<!-- 									type="radio" name="add"></td> -->
-<!-- 								<th style="text-align: left"><label for="CGQ">Chưa -->
-<!-- 										giải quyết</label></th> -->
-<!-- 								<td style="text-align: right; padding-left: 10px;"><input -->
-<!-- 									type="radio" name="add"></td> -->
-<!-- 								<th style="text-align: left"><label for="DGQ">Đã -->
-<!-- 										giải quyết</label></th> -->
-<!-- 								<td style="text-align: right; padding-left: 10px;"><input -->
-<!-- 									type="radio" name="add"></td> -->
-<!-- 								<th style="text-align: left"><label for="DGQ1">Đang -->
-<!-- 										giải quyết</label></th> -->
-							</tr>
+								<th style="text-aligin: left" colspan="1"><label id="trichYeu" class="input">Trích yếu</label>
+								<td colspan="3"><textarea class="txtarea"></textarea></td>
+							</tr>	
 						</table>
 					</div>
 					<div class="group-button">
