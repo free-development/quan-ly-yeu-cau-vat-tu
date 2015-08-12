@@ -4,29 +4,25 @@
 <hibernate-mapping>
 	<class name="model.CTVatTu" table="CTVATTU" catalog="vattu">
 
-		<composite-id>
-			<!-- <key-many-to-one name="account" class="model.User" column="ACCOUNT"></key-many-to-one> -->
-			<!-- <key-many-to-one name="account" class="model.User" column="ACCOUNT"></key-many-to-one> -->
-			<!-- <key-many-to-one name="account" class="model.User" column="ACCOUNT"></key-many-to-one> -->
-			<key-many-to-one name="vatTu" class="model.VatTu"
-				column="VTMA">
-			</key-many-to-one>
-			<key-many-to-one name="noiSanXuat" class="model.NoiSanXuat"
-				column="NSXMA">
-			</key-many-to-one>
-			<key-many-to-one name="chatLuong" class="model.ChatLuong"
-				column="CLMA">
-			</key-many-to-one>
-		</composite-id>
-		<!-- <composite-id> <key-many-to-one name="account" class="model.User" 
-			column="ACCOUNT"y> </key-many-to-one> more <key-property name="dependent" 
-			column="" type=""/> </composite-id> -->
+
+		<id name="ctvtId" type="int" >
+			<column name="CTVTID" />
+			<generator class="increment" />
+		</id>	
 		<property name="soLuongTon" type="int">
 			<column name="SOLUONGTON" />
 		</property>
 		<property name="dinhMuc" type="int">
 			<column name="DINHMUC" />
 		</property>
-
+		<many-to-one name="chatLuong" class="model.ChatLuong">
+			<column name="CLMA" />
+		</many-to-one>
+		<many-to-one name="noiSanXuat" class="model.NoiSanXuat">
+			<column name="NSXMA" />
+		</many-to-one>
+		<many-to-one  name="vatTu" class="model.VatTu">
+			<column name="VTMA" />
+		</many-to-one>
 	</class>
 </hibernate-mapping>

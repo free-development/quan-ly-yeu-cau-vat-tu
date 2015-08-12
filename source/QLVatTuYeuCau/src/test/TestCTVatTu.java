@@ -21,7 +21,7 @@ public class TestCTVatTu {
 		ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
 		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
 		VatTuDAO vatTuDAO = new VatTuDAO();
-
+//
 		ChatLuong chatLuong = new ChatLuong("G1", "Tot");
 		NoiSanXuat nsx = new NoiSanXuat("TL", "Thai Lan");
 		VatTu vatTu = new VatTu("VT1", "Tru dien", "cai");
