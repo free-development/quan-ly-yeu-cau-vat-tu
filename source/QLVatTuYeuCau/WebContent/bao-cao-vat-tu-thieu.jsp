@@ -1,7 +1,9 @@
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="map.siteMap"%>
 <%@page import="model.CTVatTu"%>
+<%@page import="model.VatTu"%>
+<%@page import="model.NoiSanXuat"%>
+<%@page import="model.ChatLuong"%>
 <%@page import="model.CongVan"%>
 <%@page import="model.CongVan"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
@@ -102,7 +104,7 @@
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="">Báo cáo</a></li>
 					<ul>
-						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>">Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
 					</ul>
 										<li><a href="danh-muc-chia-se-cong-van.html">Chia sẻ</a></li>
 				<li><a href="bao-cao.html">Quản lý người dùng</a></li>
@@ -134,6 +136,9 @@
                             <input type="date" class="text">
                             &nbsp;&nbsp;&nbsp;&nbsp; đến&nbsp;
                             <input type="date" class="text"></td>
+                        </tr>
+                        <tr>
+                        	<td><input type="button" class="button" value="Xem"></td>
                         </tr>
 <!--
                         <tr>
