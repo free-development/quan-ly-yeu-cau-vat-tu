@@ -41,13 +41,13 @@ function preUpdateCv() {
 	
 	showForm('main-form','update-form', true);
 }
-function preUpdateNsx(formId, check) {
-	var nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
+function preUpdatecV(formId, check) {
+	var cvId = $('input:checkbox[name=cvId]:checked').val();
 	$.ajax({
 		url: "/QLVatTuYeuCau/preEditCongVan.html",	
 	  	type: "GET",
 	  	dateType: "JSON",
-	  	data: { "cvMa": cvMa},
+	  	data: { "cvId": cvId},
 	  	contentType: 'application/json',
 	    mimeType: 'application/json',
 	  	
@@ -58,6 +58,7 @@ function preUpdateNsx(formId, check) {
 	  		
 	  	}
 	});
+	showForm('main-form','update-form', true);
 }
 function addCongvan() {
 	$(document).ready(function() {

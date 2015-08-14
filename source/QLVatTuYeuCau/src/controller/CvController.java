@@ -11,17 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oreilly.servlet.MultipartRequest;
 
+import dao.CTNguoiDungDAO;
 import dao.CongVanDAO;
 import dao.DonViDAO;
 import dao.FileDAO;
 import dao.MucDichDAO;
 import map.siteMap;
+import model.CTNguoiDung;
 import model.CongVan;
 import model.DonVi;
 import model.File;
@@ -29,6 +35,7 @@ import model.MucDich;
 import model.TrangThai;
 import util.DateUtil;
 import util.FileUtil;
+import util.StringUtil;
 
 
 @Controller
@@ -131,4 +138,18 @@ public class CvController extends HttpServlet {
     	return getCongvan(congVanDAO, mucDichDAO, fileDAO, donViDAO, request);
 //    	return new ModelAndView("login");
     }
+    @RequestMapping(value="/preEditCongVan", method=RequestMethod.POST, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String changePass(@RequestParam("cvId") String cvId) {
+
+		System.out.println("OK");
+		String result = "";
+		if (new CTNguoiDungDAO().login(msnv, StringUtil.encryptMD5(passOld))) {
+			new CTNguoiDungDAO().updateCTNguoiDung(new CTNguoiDung(msnv, StringUtil.encryptMD5(passNew)));
+			result = "success";
+		}
+		else 
+			result = "fail";
+		return result;
+	}
 }

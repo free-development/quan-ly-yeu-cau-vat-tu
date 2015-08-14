@@ -76,8 +76,15 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return ctVatTu;
 	}
+	public int getLastInsert() {
+		session.beginTransaction();
+		Query query = session.createQuery("select LAST_INSERT_ID() from model.CTVatTu");
+		int ctVatTu =  (Integer) query.list().get(0);
+		session.getTransaction().commit();
+		return ctVatTu;
+	}
 	public static void main(String[] args) {
-		CTVatTu ct = new CTVatTuDAO().getCTVatTu(new VatTu("666"), new NoiSanXuat("666"), new ChatLuong("666"));
-		System.out.println(ct.getDinhMuc());
+//		CTVatTu ct = new CTVatTuDAO().getCTVatTu(new VatTu("666"), new NoiSanXuat("666"), new ChatLuong("666"));
+		System.out.println(new CTVatTuDAO().getLastInsert());
 	}
 }

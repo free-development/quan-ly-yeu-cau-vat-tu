@@ -183,7 +183,7 @@
 							<table style="font-size: 16px;" class="border-congvan">
 								<tr>
 									<td class="column-check" rowspan="6"><input
-										type="checkbox" name="congVanId" name="cvMa" value="<%=congVan.getCvId()%>"></td>
+										type="checkbox"  name="cvId" value="<%=congVan.getCvId()%>"></td>
 									<td class="left-column-first">Ngày đến:</td>
 
 									<td class="column-date"><%=congVan.getCvNgayNhan() %></td>
