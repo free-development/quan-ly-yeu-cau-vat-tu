@@ -107,7 +107,7 @@
 					<tr>
 						<th style="text-align: left;margin-top: 10px;padding-right:10px;">Đơn vị:</th>
 						<td style="text-align: left">
-						<select required
+						<select 
 							title="" class="select" id="donvi" name="donvi" style="margin-top: 10px;">
 								<option disabled selected value="">-- Chọn đơn vị --</option>
 								<%						  
