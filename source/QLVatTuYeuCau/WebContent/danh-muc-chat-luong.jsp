@@ -84,12 +84,12 @@
 								mục chức danh</a></li>
 					</ul></li>
 				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo
-						cáo</a>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
 					<ul>
-						<li><a href="">Báo cáo bảng đề nghị cấp vật tư</a></li>
-						<li><a href="">Báo cáo vật tư thiếu</a></li>
-					</ul></li>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
 				<!-- 						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li> -->
 				<li><ahref"<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
 			</ul>
