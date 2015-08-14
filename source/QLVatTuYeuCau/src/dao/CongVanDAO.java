@@ -53,22 +53,38 @@ public class CongVanDAO {
 		session.delete(congVan);
 		session.getTransaction().commit();
 	}
-	public ArrayList<CongVan> getTrangThai(Date ngaybd, Date ngaykt,String dvMa, String ttMa){
+	public ArrayList<CongVan> getTrangThai(String ngaybd, String ngaykt,String dvMa, String ttMa){
 		session.beginTransaction();
 		Date ngayht = DateUtil.convertToSqlDate(new java.util.Date());
 		Criteria cr = session.createCriteria(CongVan.class);
 //		Criterion crdv,crtt,ngay;
+//		LogicalExpression exp;
 //		LogicalExpression andNgay;
-		Criterion crdv =  Restrictions.eq("donVi",new DonVi(dvMa));
-		Criterion crtt = Restrictions.eq("trangThai",new TrangThai(ttMa));
-		Criterion ngay = Restrictions.between("cvNgayNhan", ngaybd, ngaykt);
+		if (ttMa != null && !"all".equalsIgnoreCase(ttMa)) {
+			Criterion crtt = Restrictions.eq("trangThai",new TrangThai(ttMa));
+			cr.add(crtt);
+		}
+		if (dvMa != null) {
+			Criterion crdv =  Restrictions.eq("donVi",new DonVi(dvMa));
+			cr.add(crdv);
+		}
+////		Criterion ngay;
+////		Criterion crdv =  Restrictions.eq("donVi",new DonVi(dvMa));
+////		Criterion crtt = Restrictions.eq("trangThai",new TrangThai(ttMa));
+//		
+		System.out.println(ngaybd);
+		System.out.println(ngaykt);
+		if (ngaybd == null && ngaykt == null) ;
+		else
+		{
+			if (ngaybd == null) ngaybd = ngaykt;
+			if (ngaykt == null) ngaykt = ngaybd;
+			Criterion ngay = Restrictions.between("cvNgayNhan", DateUtil.parseDate(ngaybd), DateUtil.parseDate(ngaykt));
 			
-		LogicalExpression andNgay = Restrictions.and(crdv, ngay);
-		if (!"all".equalsIgnoreCase(ttMa))
-		andNgay = Restrictions.and(andNgay,crtt);
-		cr.add(andNgay);
+		cr.add(ngay);
+		}
 		ArrayList<CongVan> congVanList = (ArrayList<CongVan>) cr.list();
 		session.getTransaction().commit();
 		return congVanList;
-	}
+	} 	 	
 }
