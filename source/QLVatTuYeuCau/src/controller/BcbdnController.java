@@ -57,7 +57,7 @@ public class BcbdnController extends HttpServlet {
     		System.out.println(ngaykt);
     		System.out.println(donvi);
     		System.out.println(trangthai);
-    			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) new CongVanDAO().getTrangThai(DateUtil.parseDate(ngaybd), DateUtil.parseDate(ngaykt),donvi,trangthai);
+    			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) new CongVanDAO().getTrangThai(ngaybd, ngaykt,donvi,trangthai);
         		HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = new HashMap<Integer, ArrayList<YeuCau>>();
         			for(CongVan congVan: congVanList){
         				int cvId = congVan.getCvId();
