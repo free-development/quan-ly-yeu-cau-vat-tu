@@ -41,3 +41,51 @@ function preUpdateCv() {
 	
 	showForm('main-form','update-form', true);
 }
+function preUpdateNsx(formId, check) {
+	var nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
+	$.ajax({
+		url: "/QLVatTuYeuCau/preEditCongVan.html",	
+	  	type: "GET",
+	  	dateType: "JSON",
+	  	data: { "cvMa": cvMa},
+	  	contentType: 'application/json',
+	    mimeType: 'application/json',
+	  	
+	  	success: function(congVan) {
+		  	$('input:text[name=nsxMaUpdate]').val(nsx.nsxMa);
+		  	$('input:text[name=nsxTenUpdate]').val(nsx.nsxTen);
+	  		showForm(formId, check);	
+	  		
+	  	}
+	});
+}
+function addCongvan() {
+	$(document).ready(function() {
+		  $("#upload-file-input").on("change", uploadFile);
+		});
+
+		/**
+		 * Upload the file sending it via Ajax at the Spring Boot server.
+		 */
+		function uploadFile() {
+//			var msnv = $('input:text[name=msnv]').val();
+//			var passOld = $('input:password[name=passOld]').val();
+		  $.ajax({
+		    url: "/QLVatTuYeuCau/cvManage.html",
+		    type: "POST",
+		    data: new FormData($("#add-form")[0]),
+		    enctype: 'multipart/form-data',
+		    processData: false,
+		    contentType: false,
+		    cache: false,
+		    success: function () {
+		      // Handle upload success
+		      // ...
+		    },
+		    error: function () {
+		      // Handle upload error
+		      // ...
+		    }
+		  });
+		} // function uploadFile
+}

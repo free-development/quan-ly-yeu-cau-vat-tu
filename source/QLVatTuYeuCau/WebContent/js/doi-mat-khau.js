@@ -36,7 +36,7 @@ function showForm(formId, check){
 //				alert(passOld + "**" + passNew);
 				$.ajax({
 					url: "/QLVatTuYeuCau/changePass.html",	
-				  	type: "GET",
+				  	type: "POST",
 				  	dateType: "JSON",
 				  	data: { "msnv": msnv, "passOld": passOld, "passNew": passNew},
 				  	contentType: 'application/json',

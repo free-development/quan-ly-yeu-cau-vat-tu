@@ -1,3 +1,5 @@
+<%@page import="model.MucDich"%>
+<%@page import="model.DonVi"%>
 <%@page import="util.DateUtil"%>
 <%@page import="model.CongVan"%>
 <%@page import="model.File"%>
@@ -27,6 +29,8 @@
 	<%
     	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
     	HashMap<Integer, File> fileHash = (HashMap<Integer, File>) request.getAttribute("fileHash");
+    	ArrayList<DonVi> donViList = (ArrayList<DonVi>) request.getAttribute("donViList");
+    	ArrayList<MucDich> mucDichList = (ArrayList<MucDich>) request.getAttribute("mucDichList");
     %>
 	<div class="wrapper">
 		<div class="header">
@@ -179,7 +183,7 @@
 							<table style="font-size: 16px;" class="border-congvan">
 								<tr>
 									<td class="column-check" rowspan="6"><input
-										type="checkbox" name="congVanId"></td>
+										type="checkbox" name="congVanId" name="cvMa" value="<%=congVan.getCvId()%>"></td>
 									<td class="left-column-first">Ngày đến:</td>
 
 									<td class="column-date"><%=congVan.getCvNgayNhan() %></td>
@@ -239,108 +243,6 @@
 									chi tiết</a>
 							</div>
 							<%} %>
-							<!--
-                    <div class="chi-tiet">
-                        <a href="">*Xem chi tiết</a>    
-                    </div>
-                        <br>
-                    <table>
-                        <tr>
-                            <td class="column-check"><input type="checkbox" name=""</td>
-                            <td class="left-column-first">Ngày đến:</td>
-                            <td class="mid-column"></td>
-                            <td class="column-date">23/06/2015</td>
-                            <td class="column-so-den">Số đến</td>
-                            <td class="column-so-den">2118-0</td>
-                            <td class="mid-column"></td>
-                            <td class="left-column">Ký hiệu</td>
-                            <td  class="column-date">2118/TB-PCCT</td>
-                            <td rowspan="2"><a href="">2118 TB ketluanGD trienkhaithuchiencacQC QLNB</a></td>
-                        </tr>
-                        <tr>
-                            <td class="column-check"></td>
-                            <td class="left-column-first">Mục đích</td>
-                            <td class="mid-column"></td>
-                            <td colspan="3">Sửa chữa lớn</td>
-                            <td class="mid-column"></td>
-                            <td class="left-column">Ngày CV:</td>
-                            <td class="column-date">20/05/2015</td>
-                        </tr>
-                         <tr>
-                             <td class="column-check"></td>
-                            <td>Nơi gửi</td>
-                            <td class="mid-column"></td>
-                            <td colspan="4">CTY ĐIỆN LỰC TP CẦN THƠ</td>
-                        </tr>
-                        <tr>
-                            <td class="column-check"></td>
-                            <td>Trích yếu</td>
-                            <td class="mid-column"></td>
-                            <td width=500px colspan="7">Thông báo kết luận Giám Đốc về triển khai thực hiện các Qui chế QLNB</td>
-                        </tr>
-                        <tr>
-                            <td class="column-check"></td>
-                            <td class="left-column-first">Bút phê</td>
-                            <td class="mid-column"></td>
-                            <td colspan="6"></td>
-                        </tr>
-                        <tr>
-                            <td class="column-check"></td>
-                            <td class="left-column-first">Nơi GQ chính</td>
-                            <td class="mid-column"></td>
-                            <td colspan="6">Phòng Kế Hoạch, Phòng Vật Tư</td>
-                        </tr>
-                    </table>
-                    
-                        <br>
-                   <table>
-                        <tr>
-                            <td class="column-check"><input type="checkbox" name=""</td>
-                            <td class="left-column-first">Ngày đến:</td>
-                            <td class="mid-column"></td>
-                            <td class="column-date">23/06/2015</td>
-                            <td class="column-so-den">Số đến</td>
-                            <td class="column-so-den">2118-0</td>
-                            <td class="mid-column"></td>
-                            <td class="left-column">Ký hiệu</td>
-                            <td  class="column-date">2118/TB-PCCT</td>
-                            <td rowspan="2"><a href="">2118 TB ketluanGD trienkhaithuchiencacQC QLNB</a></td>
-                        </tr>
-                        <tr>
-                            <td class="column-check"></td>
-                            <td class="left-column-first">Mục đích</td>
-                            <td class="mid-column"></td>
-                            <td colspan="3">Sửa chữa lớn</td>
-                            <td class="mid-column"></td>
-                            <td class="left-column">Ngày CV:</td>
-                            <td class="column-date">20/05/2015</td>
-                        </tr>
-                         <tr>
-                             <td class="column-check"></td>
-                            <td>Nơi gửi</td>
-                            <td class="mid-column"></td>
-                            <td colspan="4">CTY ĐIỆN LỰC TP CẦN THƠ</td>
-                        </tr>
-                        <tr>
-                            <td class="column-check"></td>
-                            <td>Trích yếu</td>
-                            <td class="mid-column"></td>
-                            <td width=500px colspan="7">Thông báo kết luận Giám Đốc về triển khai thực hiện các Qui chế QLNB</td>
-                        </tr>
-                        <tr>
-                            <td class="column-check"></td>
-                            <td class="left-column-first">Bút phê</td>
-                            <td class="mid-column"></td>
-                            <td colspan="6"></td>
-                        </tr>
-                        <tr>
-                            <td class="column-check"></td>
-                            <td class="left-column-first">Nơi GQ chính</td>
-                            <td class="mid-column"></td>
-                            <td colspan="6">Phòng Kế Hoạch, Phòng Vật Tư</td>
-                        </tr>
-                    </table>
--->
 
 						</div>
 						<div class="group-button">
@@ -371,20 +273,20 @@
 
 				<!--    		</form>  -->
 				<!--                add-form-->
-				<form id="add-form">
+				<form id="add-form" name="add-form" action="/QLVatTuYeuCau/addCongVan.html" enctype="multipart/form-data" method="post">
 
 					<div class="form-title">Thêm công văn</div>
 					<div class="input-table">
 						<table>
 							<tr style="margin-bottom: 20px;">
 								<th colspan="1" style="text-align: left"><label for="soDen" style="text-align: left">Số đến</label></th>
-								<td colspan="3"><input type = "text" class="text" readonly value="123" style="background: #D1D1E0;" sise="5"></td>
+								<td colspan="3"><input type = "text" class="text" readonly value="123" style="background: #D1D1E0;" sise="5" name="soDen"></td>
 							</tr>
 							<tr style="margin-bottom: 20px;">
 								<th style="text-align: left" colspan="1"> <label for="soDen" style="text-align: left">Số công văn: </label></th>
 								<td colspan="3"><input type="text" class="text" name="cvSo" id="cvSo"></td>
 							</tr>	
-							<tr style="margin-bottom: 20px;">
+							<tr style="margin-bottom: 20px;">	
 								<th style="text-align: left"><label for="ngayGoi" class="input">Ngày gởi: </label></th>
 								<td><input type="date" class="text" name="ngayGoi" id="ngayGoi" value=<%=DateUtil.convertToSqlDate(new java.util.Date()) %>></td>
 								<th style="text-align: left"><label for="ngayNhan" class="input">Ngày nhận: </label></th>
@@ -396,32 +298,35 @@
 										đích</label></th>
 								<td><select class="select" name="mucDich" id="mucDich">
 										<option disabled selected value="">Chọn mục đích</option>
-										<option value="">Sửa chữa lớn</option>
-										<option value="">Xây dựng cơ bản</option>
-										<option value="">Sửa chữa thường xuyên</option>
-										<option value="">Sản xuất kinh doanh</option>
+										<%for(MucDich mucDich : mucDichList) {%>
+										<option value="<%=mucDich.getMdMa()%>" name="mucDich"><%=mucDich.getMdTen()%></option>
+										<%} %>
 								</select></td>
 								<th style="text-align: left;"><label
 									for="noiGoi" class="input">Nơi gửi</label></th>
-								<td><select class="select" name="noiGoi" id="noiGoi">
-										<option selected disabled value=""></option>
-										<option value="">Công ty Điện lực TP.Cần Thơ</option>
-										<option value="">Ban QLDA lưới điện</option>
-										<option value="">Phòng tổ chức và nhân sự</option>
-										<option value="">Phòng kế hoạch</option>
+								<td><select class="select" name="donVi" id="noiGoi">
+										<option selected disabled value="">Chon noi gui</option>
+										<%for(DonVi donVi : donViList) {%>
+										<option value="<%=donVi.getDvMa()%>" ><%=donVi.getDvTen() %></option>
+										<%} %>
 								</select></td>
 							<tr>
 								<th style="text-align: left;" colspan="1"><label id="trichYeu" class="input">Trích yếu</label>
-								<td colspan="3"><textarea class="txtarea"></textarea></td>
+								<td colspan="3"><textarea class="txtarea" name="trichYeu"></textarea></td>
+							</tr>
+							<tr>
+								<th style="text-align: left;" colspan="1"><label id="butPhe" class="input">But phe</label>
+								<td colspan="3"><textarea class="txtarea" name="butPhe"></textarea></td>
 							</tr>
 							</tr>
 							<th  style="text-align: left;"><label
-									for="file" class="input">Tep dinh kem: </label></th>
-							<td><input type="file" id="file">
+									for="file" class="input" name="file">Tep dinh kem: </label></th>
+							<td><input type="file" id="file" name="file">
 							<tr>	
 						</table>
 					</div>
 					<div class="group-button">
+						<input type="hidden" name="action" value="addCongVan">
 						<button class="button"
 							onclick="showForm('main-form', 'add-form', true)">
 							<i class="fa fa-plus-circle"></i>&nbsp;Lưu lại
