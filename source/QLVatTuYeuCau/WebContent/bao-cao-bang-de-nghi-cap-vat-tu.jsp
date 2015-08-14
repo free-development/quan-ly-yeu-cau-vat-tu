@@ -1,6 +1,7 @@
 ﻿<%@page import="model.DonVi"%>
 <%@page import="model.CongVan"%>
 <%@page import="model.YeuCau"%>
+<%@page import="model.TrangThai"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="map.siteMap"%>
 <%@page import="java.util.HashMap"%>
@@ -39,6 +40,7 @@
 <body>
 	<%
 	ArrayList<DonVi> listDonVi = (ArrayList<DonVi>) request.getAttribute("donViList");
+	ArrayList<TrangThai> listTrangThai = (ArrayList<TrangThai>) request.getAttribute("trangThaiList");
 	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
 	HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) request.getAttribute("yeuCau");
     %>
@@ -121,22 +123,15 @@
 				</table>
 				<table class="radio" style="margin-top: 10px;margin-left: 200px;">
 					<th style="text-align: left;padding-right:10px;">Trạng thái:</th>
-					
-					<td style="text-align: right;"><input type="radio"
-						name="trangthai"></td>
-					<td style="text-align: left;"><label class="lable1" for="CGQ">Chưa
-							giải quyết</label></td>
-					<td style="text-align: right;"><input type="radio" name="trangthai"></td>
-					<td style="text-align: left;"><label class="lable1" for="DAGQ">Đã
-							giải quyết</label></td>
-					<td style="text-align: right;"><input type="radio"
-						name="trangthai"></td>
-					<td style="text-align: left"><label class="lable1" for="DANGGQ">Đang
-							giải quyết</label></td>
-					
-					<td style="text-align: right;"><input type="radio"
-						name="trangthai"></td>
-					<td style="text-align: left;"><label class="lable1" for="CGQ">Tất cả</label></td>
+					<%						  
+ 								for (TrangThai trangThai : listTrangThai)
+ 								{%>  
+ 								<td style="text-align: right;"><input type="radio" name="trangthai" value="<%=trangThai.getTtMa()%>"></td>
+								<td style="text-align: left;"><label class="lable1" for="CGQ"><%=trangThai.getTtTen()%></label></td>
+ 								<%}  
+  					%>  
+  					<td style="text-align: right;"><input type="radio"name="trangthai" value="all"></td>
+								<td style="text-align: left;"><label class="lable1" for="CGQ">Tất cả</label></td>
 				</table>
 				<input type="hidden" name="action" value="baocaobdn">
 				<input class="button" type="submit" value="Xem">
