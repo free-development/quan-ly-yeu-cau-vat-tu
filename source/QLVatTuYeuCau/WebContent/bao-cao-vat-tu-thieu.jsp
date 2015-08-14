@@ -105,6 +105,7 @@
 				<li><a href="">Báo cáo</a></li>
 					<ul>
 						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
 										<li><a href="danh-muc-chia-se-cong-van.html">Chia sẻ</a></li>
 				<li><a href="bao-cao.html">Quản lý người dùng</a></li>

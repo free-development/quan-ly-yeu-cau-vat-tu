@@ -35,8 +35,8 @@
 </head>
 <body>
 	<%
-    		ArrayList<DonVi> listDonVi = (ArrayList<DonVi>) request.getAttribute("donViList");
-    	%>
+	ArrayList<DonVi> listDonVi = (ArrayList<DonVi>) request.getAttribute("donViList");
+    %>
 	<div class="wrapper">
 		<div class="header">
 			<div id="top_title">Văn phòng điện tử</div>
@@ -72,8 +72,12 @@
 								mục mục đích</a></li>
 					</ul></li>
 				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo
-						cáo</a></li>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
+					<ul>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
 				<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>
 				<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản
 						lý người dùng</a></li>
@@ -86,24 +90,31 @@
 			<div id="content">
 				<table style="margin-left: 200px">
 					<tr>
-						<th><label class="lables">Thời gian: </label> <input
-							class="input" type="date"></th>
-						<th><label class="lables">Đơn vị: </label> <select required
+                            <th style="text-align: left" >Thời gian:</th>
+                            <td style="text-align: left" colspan="2" >Từ ngày &nbsp;
+                            <input type="date" class="text">
+                            &nbsp;&nbsp;&nbsp;&nbsp; đến&nbsp;
+                            <input type="date" class="text"></td>
+                    </tr>
+					<tr>
+						<th style="text-align: left">Đơn vị:</th>
+						<td style="text-align: left">
+						<select required
 							title="" class="select" id="donvi" name="donvi">
 								<option disabled selected value="">-- Chọn đơn vị --</option>
-								<%
-							
-									int count = 0;
-									for(DonVi donVi : listDonVi)
-									{%>
-								<option value="<%=donVi.getDvMa()%>"><%=donVi.getDvTen()%></option>
-								<%}
-								%>
-						</select></th>
+								<%						  
+ 								int count = 0;
+ 								for (DonVi donVi : listDonVi)
+ 								{%>  
+ 								<option value=<%=donVi.getDvMa()%>><%=donVi.getDvTen()%></option> 
+ 								<%}  
+  								%>  
+						</select>
+						</td>
 					</tr>
 				</table>
 				<table class="radio" style="margin-left: 200px">
-					<th><lable class="lables">Trạng thái:</lable></th>
+					<th style="text-align: left">Trạng thái:</th>
 					<td style="text-align: right"><input type="radio"
 						name="chuagq"></td>
 					<td style="text-align: left"><label class="lable1" for="CGQ">Chưa
@@ -117,7 +128,7 @@
 							giải quyết</label></td>
 				</table>
 				<button class="button" type="button">
-					<i class="fa fa-eye"></i>&nbsp;&nbsp;Hiển thị
+					<i class="fa fa-eye"></i>&nbsp;&nbsp;Xem
 				</button>
 				<br>
 				<br>

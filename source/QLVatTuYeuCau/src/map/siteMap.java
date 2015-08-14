@@ -43,6 +43,9 @@ public class siteMap {
 	//map manage bao cao vat tu thieu
 	public static final String bcvttManage = home + "manageBcvtt.html";
 	public static final String baoCaoVatTuThieu = "bao-cao-vat-tu-thieu";
+	//map manage bao cao bang de nghi cap vat tu
+	public static final String bcbdnManage = home + "manageBcbdn.html";
+	public static final String baoCaoBangDeNghi = "bao-cao-bang-de-nghi-cap-vat-tu";
 	
 	// map chia se cong van
 	public static final String cscvManage = home +  "manageCscv.html";
