@@ -59,12 +59,12 @@
 	margin-bottom: 20px;
 }
 
-#view-table table {
+#view-table-bao-cao table {
 	border-spacing: 0px;
 	margin: 0 auto;
 }
 
-#view-table table tr td {
+#view-table-bao-cao table tr td {
 	border-style: dotted;
 	border-width: 1px;
 	margin: 0px;
@@ -75,14 +75,18 @@
 	padding-bottom: 5px;
 }
 
-#view-table table tr th {
+#view-table-bao-cao table tr th {
 	border-style: dotted;
+	width: 900px;
+	height: 40px;
+	color: white;
 	border-width: 1px;
 	margin: 0px;
 	border-spacing: 0px border-spacing: 0px;
 	padding-left: 10px;
 	padding-right: 10px;
 	background-color: #199e5e;
+	
 }
 
 #input-table table tr td {
@@ -98,7 +102,7 @@
 }
 
 .one-column {
-	width: 20px;
+	width: 100px;
 	text-align: center;
 }
 
@@ -123,7 +127,7 @@
 }
 
 .six-column {
-	width: 150px;
+	width: 200px;
 	text-align: center;
 }
 
@@ -178,7 +182,7 @@
 .scroll {
 	max-height: 420px;
 	/*height: 300px;*/
-	width: 960px;
+	width: 1024px;
 	display: auto;
 	border: 1px solid #CCCCCC;
 	margin: 1em 0;

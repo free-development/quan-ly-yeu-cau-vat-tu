@@ -34,7 +34,8 @@ public class CvController extends HttpServlet {
 			HashMap<Integer, File> fileHash = new HashMap<Integer, File>();
 			for(CongVan congVan : congVanList) {
 				int cvId = congVan.getCvId();
-				fileHash.put(cvId, fileDAO.getByCongVanId(cvId));
+				File file = fileDAO.getByCongVanId(cvId);
+				fileHash.put(cvId, file);
 			}
 			request.setAttribute("congVanList", congVanList);
 			request.setAttribute("fileHash", fileHash);

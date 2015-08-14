@@ -1,3 +1,5 @@
+<%@page import="model.YeuCau"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="map.siteMap"%>
 <%@page import="model.CTVatTu"%>
@@ -13,7 +15,7 @@
 <title>Văn phòng điện tử công ty điện lực Cần Thơ</title>
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
-<link rel="stylesheet" href="style/style.css" type="text/css">
+ <link rel="stylesheet" href="style/style.css" type="text/css">
 <link href="style/style-bao-cao-vat-tu-thieu.css" type="text/css"
 	rel="stylesheet">
 <link
@@ -40,10 +42,8 @@
 </head>
 <body>
 <%
-    	ArrayList<VatTu> listVatTu = (ArrayList<VatTu>) request.getAttribute("vatTuList");
-    	ArrayList<CTVatTu> listCTVatTu = (ArrayList<CTVatTu>) request.getAttribute("ctVatTuList");
-   		ArrayList<NoiSanXuat> listNoiSanXuat = (ArrayList<NoiSanXuat>) request.getAttribute("noiSanXuatList");
-   		ArrayList<ChatLuong> listChatLuong = (ArrayList<ChatLuong>) request.getAttribute("chatLuongList");
+		ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
+   		HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) request.getAttribute("yeuCau");
     %>
 	<div class="wrapper">
 		<div class="header">
@@ -102,11 +102,12 @@
 								mục vai trò</a></li>
 					</ul></li>
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
-				<li><a href="">Báo cáo</a></li>
+				<li><a href="">Báo cáo</a>
 					<ul>
-						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>">Báo cáo vật tư thiếu</a></li>
 					</ul>
-										<li><a href="danh-muc-chia-se-cong-van.html">Chia sẻ</a></li>
+				</li>
+<!-- 				<li><a href="danh-muc-chia-se-cong-van.html">Chia sẻ</a></li> -->
 				<li><a href="bao-cao.html">Quản lý người dùng</a></li>
 			</ul>
 			<div class="clear"></div>
@@ -121,10 +122,11 @@
 					<table style="margin: 0 auto; padding-bottom: 20px;">
                         <tr>
 						<th style="text-align: left; padding-right: 10px;"><lable>Chế độ báo cáo:</lable></th>
-						<td><input type="radio" name="cdBc" value="bcChiTiet" id="bcChiTiet"> 
-						<label class="input" for="bcChiTiet">Chi tiết</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="cdBc" value="bcTongHop" class="input" id="bcTongHop">&nbsp;<label class="lable1" for="bcTongHop">Tổng
-								hợp</label> </td>
-<!--						<td style="text-align: right"><input type="radio" name="cdBc" value="bcTongHop" class="input" id="bcTongHop"></td>-->
+						<td><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>" style="color: blue;text-decoration: underline;">Chi tiết</a></td>
+						<td><a herf="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>" style="color: blue;text-decoration: underline;cursor: pointer;">Tổnghợp</a></td>
+						<tr><br></tr>
+<!--						
+<td style="text-align: right"><input type="radio" name="cdBc" value="bcTongHop" class="input" id="bcTongHop"></td>-->
 <!--
 						<td style="text-align: left"><label class="lable1" for="bcTongHop">Tổng
 								hợp&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
@@ -133,12 +135,9 @@
                         <tr>
                             <th style="text-align: left">Thời gian:</th>
                             <td style="text-align: left; " colspan="2" >Từ ngày &nbsp;
-                            <input type="date" class="text">
+                            <input type="date" class="text" name="ngaybd">
                             &nbsp;&nbsp;&nbsp;&nbsp; đến&nbsp;
-                            <input type="date" class="text"></td>
-                        </tr>
-                        <tr>
-                        	<td><input type="button" class="button" value="Xem"></td>
+                            <input type="date" class="text" name="ngaykt"></td>
                         </tr>
 <!--
                         <tr>
@@ -156,35 +155,41 @@
 				</fieldset>
 			</form>
 			<br>
-			<div id="view-table" class="scroll">
+			<div id="view-table-bao-cao" class="scroll">
 				<table>
 					<tr>
-						<th class="a-column">Mã vật tư</th>
-						<th class="b-column">Tên vật tư</th>
-						<th class="c-column">Nơi sản xuất</th>
-						<th class="c-column">Chất lượng</th>
-						<th class="d-column">Đơn vị tính</th>
-						<th class="e-column">Số lượng thiếu</th>
+						<th class="one-column">Số đến</th>
+						<th class="three-column">Ngày nhận</th>
+						<th class="two-column">Mã vật tư</th>
+						<th class="three-column">Tên vật tư</th>
+						<th class="three-column">Nơi sản xuất</th>
+						<th class="three-column">Chất lượng</th>
+						<th class="six-column">Đơn vị tính</th>
+						<th class="one-column">Số lượng thiếu</th>
+						
 					</tr>
 								<%
-							if(listCTVatTu != null) {
+							if(yeuCauHash != null) {
 							int count = 0;
-							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
-
+							for(CongVan congVan  : congVanList) { count++;
+							ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
+							for (YeuCau yeuCau : yeuCauList) {
+							%>
+									
 					<tr
 						<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
-						<td class="left-column"><input type="checkbox" name="vtMa"
-							value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
-						<td class="a-column"><%=ctVatTu.getVatTu().getVtMa() %></td>
-						<td class="b-column"><%=ctVatTu.getVatTu().getVtTen() %></td>
-						<td class="c-column"><%=ctVatTu.getNoiSanXuat().getNsxTen() %></td>
-						<td class="d-column"><%=ctVatTu.getChatLuong().getClTen() %></td>
-						<td class="e-column"><%=ctVatTu.getVatTu().getDvt() %></td>
-						<td class="e-column"><%=ctVatTu.getDinhMuc() %></td>
-						<td class="e-column"><%=ctVatTu.getSoLuongTon() %></td>
+						<td class="a-column"><%=congVan.getSoDen() %></td>
+						<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
+						<td class="a-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
+						<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
+						<td class="c-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
+						<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
+						<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
+						<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
+<%-- 						<td class="e-column"><%=ctVatTu.getSoLuongTon() %></td> --%>
 
 					</tr>
-					<%} }%>
+					<%} }}%>
 				</table>
 			</div>
 
@@ -208,4 +213,4 @@
 
 	</div>
 </body>
-</html> �
+</html>
