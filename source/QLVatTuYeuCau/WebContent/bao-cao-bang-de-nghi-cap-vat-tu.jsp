@@ -91,14 +91,14 @@
 						<th><label class="lables">Đơn vị: </label> <select required
 							title="" class="select" id="donvi" name="donvi">
 								<option disabled selected value="">-- Chọn đơn vị --</option>
-								<%
+<%-- 								<% --%>
 							
-									int count = 0;
-									for(DonVi donVi : listDonVi)
-									{%>
-								<option value="<%=donVi.getDvMa()%>"><%=donVi.getDvTen()%></option>
-								<%}
-								%>
+// 									int count = 0;
+// 									for (DonVi donVi : listDonVi)
+<%-- 									{%> --%>
+<%-- 								<option value=<%=donVi.getDvMa()%>><%=donVi.getDvTen()%></option> --%>
+<%-- 								<%} --%>
+<%-- 								%> --%>
 						</select></th>
 					</tr>
 				</table>
