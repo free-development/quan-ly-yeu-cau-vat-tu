@@ -3,6 +3,8 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.Query;
+
 import model.YeuCau;
 
 import org.hibernate.Criteria;
@@ -75,6 +77,15 @@ public ArrayList<YeuCau> getByCvId(int cvId) {
 		session.getTransaction().commit();
 		return yeuCauList;
 	}
+public ArrayList<YeuCau> getVTThieu() {
+	session.beginTransaction();
+	Criteria cr = session.createCriteria(YeuCau.class);
+	Criterion xoaYc = Restrictions.eq("daXoa", 0);
+	cr.add(xoaYc);
+	ArrayList<YeuCau> yeuCauList = (ArrayList<YeuCau>) cr.list(); 
+	session.getTransaction().commit();
+	return yeuCauList;
+}
 public ArrayList<YeuCau> getByDaXoa() {
 	session.beginTransaction();
 	Criteria cr = session.createCriteria(YeuCau.class);

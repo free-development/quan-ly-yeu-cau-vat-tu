@@ -3,6 +3,8 @@
  */
 package dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -78,5 +80,13 @@ public class CTVatTuDAO {
 		CTVatTu ctVatTu =  (CTVatTu) query.list().get(0);
 		session.getTransaction().commit();
 		return ctVatTu;
+	}
+	public HashMap<Integer, CTVatTu> getHashMap() {
+		HashMap<Integer, CTVatTu> ctvtHash = new HashMap<Integer, CTVatTu>();
+		ArrayList<CTVatTu> ctvtList = (ArrayList<CTVatTu>) getAllCTVatTu();
+		for (CTVatTu ctvt : ctvtList) {
+			ctvtHash.put(ctvt.getCtvtId(), ctvt);
+		}
+		return ctvtHash;
 	}
 }

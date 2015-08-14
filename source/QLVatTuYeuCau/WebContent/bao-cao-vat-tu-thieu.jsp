@@ -41,11 +41,9 @@
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
 <body>
-<%
-		ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
-		String loaiBc = request.getAttribute("loaiBc");
-   		HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) request.getAttribute("yeuCau");
-    %>
+		<%
+			String loaiBc = (String) request.getAttribute("action");
+		%>
 	<div class="wrapper">
 		<div class="header">
 			<!--
@@ -80,27 +78,16 @@
 				<li><a href="">Trang chủ</a></li>
 				<li><a href="">Danh mục</a>
 					<ul>
-						<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản
-								xuất
-								</p>
-						</a></li>
-						<li><a href="danh-muc-chat-luong.html">Danh mục chất
-								lượng</a></li>
+						<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản xuất</a></li>
+						<li><a href="danh-muc-chat-luong.html">Danh mục chấtlượng</a></li>
 						<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-						<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử
-								dụng</a></li>
-						<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li><li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
-								mục nơi sản xuất</a></li>
-						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
-								mục chất lượng</a></li>
-						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
-								mục vật tư</a></li>
-						<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh
-								mục bộ phận sử dụng</a></li>
-						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
-								mục mục đích</a></li>
-						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh
-								mục vai trò</a></li>
+						<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử dụng</a></li>
+						<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li><li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
+						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
+						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh mục vật tư</a></li>
+						<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
+						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
+						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
 					</ul></li>
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="">Báo cáo</a>
@@ -120,24 +107,8 @@
 			<form id="option-form"  method="get" action="<%=siteMap.bcvttManage%>">
 				<fieldset>
 					<legend style="margin: 0 auto;">Tùy chọn báo cáo</legend>
-					<table style="margin: 0 auto; padding-bottom: 20px;">
-                        <tr>
-						<th style="text-align: left; padding-right: 10px;"><lable>Chế độ báo cáo:</lable></th>
-						<td><input type="hidden" name="action" value="chitiet">
-				<input class="button" type="submit" value="Chi tiết"/>
-<!--  					<i class="fa fa-plus-circle"></i>&nbsp; -->
-				</td>
-						<td><input type="hidden" name="action" value="tonghop">
-				<input class="button" type="submit" value="Tổng hợp"/>
-<!--  					<i class="fa fa-plus-circle"></i>&nbsp; -->
-				</td>
-<!--						
-<td style="text-align: right"><input type="radio" name="cdBc" value="bcTongHop" class="input" id="bcTongHop"></td>-->
-<!--
-						<td style="text-align: left"><label class="lable1" for="bcTongHop">Tổng
-								hợp&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
--->
-                            </tr>
+					<table style="margin: 0 auto; padding-bottom: 20px; cellspading: 30px">
+
                         <tr>
                             <th style="text-align: left">Thời gian:</th>
                             <td style="text-align: left; " colspan="2" >Từ ngày &nbsp;
@@ -145,81 +116,113 @@
                             &nbsp;&nbsp;&nbsp;&nbsp; đến&nbsp;
                             <input type="date" class="text" name="ngaykt"></td>
                         </tr>
-<!--
+                        
                         <tr>
-                            <th style="text-align: left">Don vi: </th>
-                            <td style="text-align: left; " colspan="2" >Tu ngay &nbsp;
-                            <input type="date" class="text">
-                            &nbsp;&nbsp;&nbsp;&nbsp; den&nbsp;
-                            <input type="date" class="text"></td>
-                        </tr>
--->
-<!-- 						<td><button class="button" type="button"> -->
-<!-- 								<i class="fa fa-eye"></i>&nbsp;&nbsp;Hiển thị -->
-<!-- 							</button></td> -->
+							<th style="text-align: left; padding-right: 10px;">Chế độ báo cáo:</th>
+							<td style="font-size: 20px"><input name="action" type="radio" value="chitiet"/>&nbsp;&nbsp;Chi tiết</td>
+						<td style="font-size: 20px"><input name="action" type="radio" value="tonghop"/>&nbsp;&nbsp;Tổng hợp</td>
+	                    </tr>
+	                    <tr>
+	                    	<td><input type="submit" value="Xem" class="button"/></td>
+	                    </tr>
 					</table>
 				</fieldset>
+				
 			</form>
-			<br>
+			<% if("chitiet".equalsIgnoreCase(loaiBc)){
+			
+				ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
+			
+		   		HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) request.getAttribute("yeuCau");
+		   		HashMap<Integer, ArrayList<YeuCau>> ctvtList = (HashMap<Integer, ArrayList<YeuCau>>) request.getAttribute("ctvtList");
+		   		
+		    %>
+			
+				<div id="view-table-bao-cao" class="scroll">
+					<table>
+						<tr>
+							<th class="one-column">Số đến</th>
+							<th class="three-column">Ngày nhận</th>
+							<th class="two-column">Mã vật tư</th>
+							<th class="three-column">Tên vật tư</th>
+							<th class="three-column">Nơi sản xuất</th>
+							<th class="three-column">Chất lượng</th>
+							<th class="six-column">Đơn vị tính</th>
+							<th class="one-column">Số lượng thiếu</th>
+							
+						</tr>
+									<% 								
+									if((yeuCauHash != null) && "chitiet".equalsIgnoreCase(loaiBc)){
+								int count = 0;
+								for(CongVan congVan  : congVanList) { count++;
+								ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
+								for (YeuCau yeuCau : yeuCauList) {
+								%>
+										
+						<tr
+							<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+							<td class="a-column"><%=congVan.getSoDen() %></td>
+							<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
+							<td class="a-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
+							<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
+							<td class="c-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
+							<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
+							<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
+							<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
+						</tr>
+						<%} %>
+					</table>
+				</div>
+	
+				<div class="group-button">
+					<button class="button" type="button">
+						<i class="fa fa-print"></i>&nbsp;&nbsp;In
+					</button>
+					&nbsp;
+					<button class="button" type="button">
+						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
+					</button>
+					&nbsp;
+					<button type="button" class="button" onclick="showForm('main-form')">
+						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
+					</button>
+				</div>
+			
+					<% }}}%>
+					
+				<% if("tonghop".equalsIgnoreCase(loaiBc)){
+			
+	   		HashMap<Integer, CTVatTu> ctvtHash = (HashMap<Integer, CTVatTu>) request.getAttribute("ctvtHash");
+	   		HashMap<Integer, Integer> yeuCauHash = (HashMap<Integer, Integer>) request.getAttribute("yeuCau"); %>
 			<div id="view-table-bao-cao" class="scroll">
-				<table <% if(loaiBc.equalsIgnoreCase("chitiet")) ;%>>
+				<table>
 					<tr>
-						<th class="one-column">Số đến</th>
-						<th class="three-column">Ngày nhận</th>
 						<th class="two-column">Mã vật tư</th>
 						<th class="three-column">Tên vật tư</th>
 						<th class="three-column">Nơi sản xuất</th>
 						<th class="three-column">Chất lượng</th>
 						<th class="six-column">Đơn vị tính</th>
-						<th class="one-column">Số lượng thiếu</th>
+						<th class="one-column">Tổng số lượng thiếu</th>
 						
 					</tr>
 								<%
 							if(yeuCauHash != null){
 							int count = 0;
-							for(CongVan congVan  : congVanList) { count++;
-							ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
-							for (YeuCau yeuCau : yeuCauList) {
+							for(Integer key  : yeuCauHash.keySet()) { count++;
+							CTVatTu ctvt = ctvtHash.get(key);
+// 							for (YeuCau yeuCau : yeuCauList) {
 							%>
 									
 					<tr
 						<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
-						<td class="a-column"><%=congVan.getSoDen() %></td>
-						<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
-						<td class="a-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
-						<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
-						<td class="c-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
-						<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
-						<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
-						<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
-<%-- 						<td class="e-column"><%=ctVatTu.getSoLuongTon() %></td> --%>
-
+						<td class="a-column"><%=ctvt.getVatTu().getVtMa() %></td>
+						<td class="b-column"><%=ctvt.getVatTu().getVtTen() %></td>
+						<td class="c-column"><%=ctvt.getNoiSanXuat().getNsxTen() %></td>
+						<td class="d-column"><%=ctvt.getChatLuong().getClTen() %></td>
+						<td class="e-column"><%=ctvt.getVatTu().getDvt() %></td>
+						<td class="e-column"><%=yeuCauHash.get(key) %></td>
 					</tr>
-					
-							
-					</tr>
-								<%
-							if((yeuCauHash != null) && loaiBc.equalsIgnoreCase("tonghop")){
-							int count = 0;
-							for(CongVan congVan  : congVanList) { count++;
-							ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
-							for (YeuCau yeuCau : yeuCauList) {
-							%>
-									
-					<tr
-						<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
-						<td class="a-column"><%=congVan.getSoDen() %></td>
-						<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
-						<td class="a-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
-						<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
-						<td class="c-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
-						<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
-						<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
-						<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
-<%-- 						<td class="e-column"><%=ctVatTu.getSoLuongTon() %></td> --%>
-
-					</tr>
-					<%} }}%>
+					<%} %>
 				</table>
 			</div>
 
@@ -236,11 +239,7 @@
 					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 				</button>
 			</div>
-			</form>
-
-		</div>
-	</div>
-
-	</div>
+				<%}}%>
+</div>
 </body>
 </html>
