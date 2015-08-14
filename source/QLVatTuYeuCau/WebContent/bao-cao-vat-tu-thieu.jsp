@@ -43,6 +43,7 @@
 <body>
 <%
 		ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
+		String loaiBc = request.getAttribute("loaiBc");
    		HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) request.getAttribute("yeuCau");
     %>
 	<div class="wrapper">
@@ -126,7 +127,7 @@
 				<input class="button" type="submit" value="Chi tiết"/>
 <!--  					<i class="fa fa-plus-circle"></i>&nbsp; -->
 				</td>
-						<td><input type="hidden" name="action" value="chitiet">
+						<td><input type="hidden" name="action" value="tonghop">
 				<input class="button" type="submit" value="Tổng hợp"/>
 <!--  					<i class="fa fa-plus-circle"></i>&nbsp; -->
 				</td>
@@ -161,7 +162,7 @@
 			</form>
 			<br>
 			<div id="view-table-bao-cao" class="scroll">
-				<table>
+				<table <% if(loaiBc.equalsIgnoreCase("chitiet")) ;%>>
 					<tr>
 						<th class="one-column">Số đến</th>
 						<th class="three-column">Ngày nhận</th>
@@ -174,7 +175,31 @@
 						
 					</tr>
 								<%
-							if(yeuCauHash != null) {
+							if(yeuCauHash != null){
+							int count = 0;
+							for(CongVan congVan  : congVanList) { count++;
+							ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
+							for (YeuCau yeuCau : yeuCauList) {
+							%>
+									
+					<tr
+						<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+						<td class="a-column"><%=congVan.getSoDen() %></td>
+						<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
+						<td class="a-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
+						<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
+						<td class="c-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
+						<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
+						<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
+						<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
+<%-- 						<td class="e-column"><%=ctVatTu.getSoLuongTon() %></td> --%>
+
+					</tr>
+					
+							
+					</tr>
+								<%
+							if((yeuCauHash != null) && loaiBc.equalsIgnoreCase("tonghop")){
 							int count = 0;
 							for(CongVan congVan  : congVanList) { count++;
 							ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());

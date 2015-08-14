@@ -34,6 +34,7 @@ public class BcvttController extends HttpServlet {
     	
     	String action = request.getParameter("action");
     	if("chitiet".equalsIgnoreCase(action)){
+    		String loaiBc = new String("chitiet");
     		String ngaybd = request.getParameter("ngaybd");
     		String ngaykt = request.getParameter("ngaykt");
     		System.out.println(ngaybd);
@@ -45,11 +46,29 @@ public class BcvttController extends HttpServlet {
         				ArrayList<YeuCau> yeuCau = (ArrayList<YeuCau>) yeuCauDAO.getByCvId(cvId);
         				yeuCauHash.put(cvId,yeuCau);
         			}
+        			request.setAttribute("loaiBc", loaiBc);
         			request.setAttribute("congVanList", congVanList);
         			request.setAttribute("yeuCau", yeuCauHash);
         			return new ModelAndView(siteMap.baoCaoVatTuThieu);
     		}
-    		
+    	if("tonghop".equalsIgnoreCase(action)){
+    		String loaiBc = new String("tonghop");
+    		String ngaybd = request.getParameter("ngaybd");
+    		String ngaykt = request.getParameter("ngaykt");
+    		System.out.println(ngaybd);
+    		System.out.println(ngaykt);
+    			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) new CongVanDAO().getTrangThai(DateUtil.parseDate(ngaybd), DateUtil.parseDate(ngaykt));
+        		HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = new HashMap<Integer, ArrayList<YeuCau>>();
+        			for(CongVan congVan: congVanList){
+        				int cvId = congVan.getCvId();
+        				ArrayList<YeuCau> yeuCau = (ArrayList<YeuCau>) yeuCauDAO.getByCvId(cvId);
+        				yeuCauHash.put(cvId,yeuCau);
+        			}
+        			request.setAttribute("loaiBc", loaiBc);
+        			request.setAttribute("congVanList", congVanList);
+        			request.setAttribute("yeuCau", yeuCauHash);
+        			return new ModelAndView(siteMap.baoCaoVatTuThieu);
+    	}
     	  return new ModelAndView("login");
 	}
 
