@@ -116,15 +116,20 @@
 		<div id="main-content">
 			<div id="title-content">Báo cáo vật tư thiếu</div>
 			<br>
-			<form id="option-form">
+			<form id="option-form"  method="get" action="<%=siteMap.bcvttManage%>">
 				<fieldset>
 					<legend style="margin: 0 auto;">Tùy chọn báo cáo</legend>
 					<table style="margin: 0 auto; padding-bottom: 20px;">
                         <tr>
 						<th style="text-align: left; padding-right: 10px;"><lable>Chế độ báo cáo:</lable></th>
-						<td><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>" style="color: blue;text-decoration: underline;">Chi tiết</a></td>
-						<td><a herf="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>" style="color: blue;text-decoration: underline;cursor: pointer;">Tổnghợp</a></td>
-						<tr><br></tr>
+						<td><input type="hidden" name="action" value="chitiet">
+				<input class="button" type="submit" value="Chi tiết"/>
+<!--  					<i class="fa fa-plus-circle"></i>&nbsp; -->
+				</td>
+						<td><input type="hidden" name="action" value="chitiet">
+				<input class="button" type="submit" value="Tổng hợp"/>
+<!--  					<i class="fa fa-plus-circle"></i>&nbsp; -->
+				</td>
 <!--						
 <td style="text-align: right"><input type="radio" name="cdBc" value="bcTongHop" class="input" id="bcTongHop"></td>-->
 <!--
@@ -135,7 +140,7 @@
                         <tr>
                             <th style="text-align: left">Thời gian:</th>
                             <td style="text-align: left; " colspan="2" >Từ ngày &nbsp;
-                            <input type="date" class="text" name="ngaybd">
+                            <input type="date" class="text" name="ngaybd" >
                             &nbsp;&nbsp;&nbsp;&nbsp; đến&nbsp;
                             <input type="date" class="text" name="ngaykt"></td>
                         </tr>

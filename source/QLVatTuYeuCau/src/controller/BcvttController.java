@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,9 +18,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import util.DateUtil;
 import dao.CTVatTuDAO;
 import dao.CongVanDAO;
 import dao.YeuCauDAO;
+import util.DateUtil;
 
 @Controller
 public class BcvttController extends HttpServlet {
@@ -30,11 +33,12 @@ public class BcvttController extends HttpServlet {
     	CTVatTuDAO ctVatTu = new CTVatTuDAO();
     	
     	String action = request.getParameter("action");
-    	if("manageBcvtt".equalsIgnoreCase(action)){
+    	if("chitiet".equalsIgnoreCase(action)){
     		String ngaybd = request.getParameter("ngaybd");
     		String ngaykt = request.getParameter("ngaykt");
-    		
-    			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) new CongVanDAO().getAllCongVan();
+    		System.out.println(ngaybd);
+    		System.out.println(ngaykt);
+    			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) new CongVanDAO().getTrangThai(DateUtil.parseDate(ngaybd), DateUtil.parseDate(ngaykt));
         		HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = new HashMap<Integer, ArrayList<YeuCau>>();
         			for(CongVan congVan: congVanList){
         				int cvId = congVan.getCvId();

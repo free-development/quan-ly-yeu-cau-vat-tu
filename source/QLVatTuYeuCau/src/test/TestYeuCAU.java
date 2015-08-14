@@ -3,6 +3,8 @@
  */
 package test;
 
+import java.sql.Date;
+
 import model.CTVatTu;
 import model.ChatLuong;
 import model.CongVan;
@@ -52,7 +54,9 @@ public class TestYeuCAU {
 		DonVi donVi = new DonVi("SX7", "Don vi 1", "0737874271", "quoi@gmail.com", "Can Tho");
 		MucDich mucDich = new MucDich("SC7", "Sua chua lon");
 		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
-		CongVan congVan = new CongVan(1, DateUtil.convertToSqlDate(new java.util.Date()), "123", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("DGQ", "Dang giai quyet"), donVi);
+		CongVan congVan = new CongVan(1, DateUtil.convertToSqlDate(new java.util.Date()), "123", 
+				DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co but phe", mucDich, 
+				new TrangThai("DGQ", "Dang giai quyet"), donVi);
 		new MucDichDAO().addMucDich(mucDich);
 		new DonViDAO().addDonVi(donVi);
 		new CongVanDAO().addCongVan(congVan);
