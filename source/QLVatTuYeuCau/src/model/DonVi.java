@@ -19,6 +19,13 @@ public class DonVi implements Serializable{
 	
 	/**
 	 * @param dvMa
+	 */
+	public DonVi(String dvMa) {
+		this.dvMa = dvMa;
+	}
+	
+	/**
+	 * @param dvMa
 	 * @param dvTen
 	 * @param sdt
 	 * @param email

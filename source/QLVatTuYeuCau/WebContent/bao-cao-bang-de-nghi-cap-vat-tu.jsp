@@ -1,6 +1,10 @@
 ﻿<%@page import="model.DonVi"%>
+<%@page import="model.CongVan"%>
+<%@page import="model.YeuCau"%>
+<%@page import="model.TrangThai"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="map.siteMap"%>
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,8 +39,11 @@
 </head>
 <body>
 	<%
-    		ArrayList<DonVi> listDonVi = (ArrayList<DonVi>) request.getAttribute("donViList");
-    	%>
+	ArrayList<DonVi> listDonVi = (ArrayList<DonVi>) request.getAttribute("donViList");
+	ArrayList<TrangThai> listTrangThai = (ArrayList<TrangThai>) request.getAttribute("trangThaiList");
+	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
+	HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) request.getAttribute("yeuCau");
+    %>
 	<div class="wrapper">
 		<div class="header">
 			<div id="top_title">Văn phòng điện tử</div>
@@ -72,8 +79,12 @@
 								mục mục đích</a></li>
 					</ul></li>
 				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo
-						cáo</a></li>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
+					<ul>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
 				<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>
 				<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản
 						lý người dùng</a></li>
@@ -84,43 +95,50 @@
 		<div id="main-content">
 			<div id="title-content">Báo cáo bảng đề nghị cấp vật tư</div>
 			<div id="content">
-				<table style="margin-left: 200px">
+			<form id="option-form" method="get" action ="<%=siteMap.bcbdnManage %>">
+				<table style="margin-left: 200px;margin-top: 10px;">
 					<tr>
-						<th><label class="lables">Thời gian: </label> <input
-							class="input" type="date"></th>
-						<th><label class="lables">Đơn vị: </label> <select required
-							title="" class="select" id="donvi" name="donvi">
+                            <th style="text-align: left;margin-top: 10px;padding-right:10px;" >Thời gian:</th>
+                            <td style="text-align: left;margin-top: 10px;" colspan="2" >Từ ngày &nbsp;
+                            <input type="date" class="text"name="ngaybd">
+                            &nbsp;&nbsp;&nbsp;&nbsp; đến&nbsp;
+                            <input type="date" class="text"name="ngaykt"></td>
+                    </tr>
+					<tr>
+						<th style="text-align: left;margin-top: 10px;padding-right:10px;">Đơn vị:</th>
+						<td style="text-align: left">
+						<select 
+							title="" class="select" id="donvi" name="donvi" style="margin-top: 10px;">
 								<option disabled selected value="">-- Chọn đơn vị --</option>
-<%-- 								<% --%>
-							
-// 									int count = 0;
-// 									for (DonVi donVi : listDonVi)
-<%-- 									{%> --%>
-<%-- 								<option value=<%=donVi.getDvMa()%>><%=donVi.getDvTen()%></option> --%>
-<%-- 								<%} --%>
-<%-- 								%> --%>
-						</select></th>
+								<%						  
+ 								int count = 0;
+ 								for (DonVi donVi : listDonVi)
+ 								{%>  
+ 								<option value=<%=donVi.getDvMa()%>><%=donVi.getDvTen()%></option> 
+ 								<%}  
+  								%>  
+						</select>
+						</td>
 					</tr>
 				</table>
-				<table class="radio" style="margin-left: 200px">
-					<th><lable class="lables">Trạng thái:</lable></th>
-					<td style="text-align: right"><input type="radio"
-						name="chuagq"></td>
-					<td style="text-align: left"><label class="lable1" for="CGQ">Chưa
-							giải quyết</label></td>
-					<td style="text-align: right"><input type="radio" name="dagq"></td>
-					<td style="text-align: left"><label class="lable1" for="DGQ">Đã
-							giải quyết</label></td>
-					<td style="text-align: right"><input type="radio"
-						name="danggq"></td>
-					<td style="text-align: left"><label class="lable1" for="DGQ1">Đang
-							giải quyết</label></td>
+				<table class="radio" style="margin-top: 10px;margin-left: 200px;">
+					<th style="text-align: left;padding-right:10px;">Trạng thái:</th>
+					<%						  
+ 								for (TrangThai trangThai : listTrangThai)
+ 								{%>  
+ 								<td style="text-align: right;"><input type="radio" name="trangthai" value="<%=trangThai.getTtMa()%>"></td>
+								<td style="text-align: left;"><label class="lable1" for="CGQ"><%=trangThai.getTtTen()%></label></td>
+ 								<%}  
+  					%>  
+  					<td style="text-align: right;"><input type="radio"name="trangthai" value="all"></td>
+								<td style="text-align: left;"><label class="lable1" for="CGQ">Tất cả</label></td>
 				</table>
-				<button class="button" type="button">
-					<i class="fa fa-eye"></i>&nbsp;&nbsp;Hiển thị
-				</button>
+				<input type="hidden" name="action" value="baocaobdn">
+				<input class="button" type="submit" value="Xem">
+<!-- 					<i class="fa fa-eye"></i>&nbsp;&nbsp;</> -->
 				<br>
 				<br>
+				</form>
 			</div>
 			<div id="view-table">
 				<table>
@@ -134,52 +152,31 @@
 						<th class="g-column">Trạng thái</th>
 						<th class="h-column">Chất lượng</th>
 						<th class="k-column">Số lượng</th>
+						<th class="k-column">Đơn vị</th>
 					</tr>
-					<tr>
-						<td class="a-column">2118-0</td>
-						<td class="b-column">23/06/2015</td>
-						<td class="c-column">31542050</td>
-						<td class="d-column">Cáp đồng bọc hạ áp</td>
-						<td class="e-column">Việt Nam</td>
-						<td class="f-column">m</td>
-						<td class="g-column">Chưa giải quyết</td>
-						<td class="h-column">Hàng mới</td>
-						<td class="k-column">20</td>
+							<%
+							if(yeuCauHash != null) {
+							 int cnt = 0;
+							for(CongVan congVan  : congVanList) { cnt++;
+							ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
+							for (YeuCau yeuCau : yeuCauList) {
+							%>
+									
+					<tr
+						<%if (cnt % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+						<td class="a-column"><%=congVan.getSoDen() %></td>
+						<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
+						<td class="a-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
+						<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
+						<td class="c-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
+						<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
+						<td class="e-column"><%=congVan.getTrangThai() %></td>
+						<td class="e-column"><%=congVan.getDonVi()%></td>
+						<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
+						<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
 
 					</tr>
-					<tr>
-						<td class="a-column">2119-0</td>
-						<td class="b-column">23/06/2015</td>
-						<td class="c-column">31542051</td>
-						<td class="d-column">Bulong 8x60</td>
-						<td class="e-column">Việt Nam</td>
-						<td class="f-column">m</td>
-						<td class="g-column">Chưa giải quyết</td>
-						<td class="h-column">Hàng mới</td>
-						<td class="k-column">30</td>
-					</tr>
-					<tr>
-						<td class="a-column">2118-1</td>
-						<td class="b-column">23/06/2015</td>
-						<td class="c-column">31542052</td>
-						<td class="d-column">Bulong 16x300</td>
-						<td class="e-column">Việt Nam</td>
-						<td class="f-column">m</td>
-						<td class="g-column">Chưa giải quyết</td>
-						<td class="h-column">Hàng mới</td>
-						<td class="k-column">15</td>
-					</tr>
-					<tr>
-						<td class="a-column">2119-1</td>
-						<td class="b-column">23/06/2015</td>
-						<td class="c-column">31542053</td>
-						<td class="d-column">Bulong 16x350</td>
-						<td class="e-column">Việt Nam</td>
-						<td class="f-column">m</td>
-						<td class="g-column">Chưa giải quyết</td>
-						<td class="h-column">Hàng mới</td>
-						<td class="k-column">5</td>
-					</tr>
+					<%} }}%>
 				</table>
 			</div>
 

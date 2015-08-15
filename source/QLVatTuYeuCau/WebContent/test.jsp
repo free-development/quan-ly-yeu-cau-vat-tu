@@ -33,7 +33,7 @@
 // 			out.println(nsx.getNsxTen());
 // 		}
 
-CTVatTuDAO ctVatTuDAO = new CTVatTuDAO();
+/* CTVatTuDAO ctVatTuDAO = new CTVatTuDAO();
 		ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
 		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
 		VatTuDAO vatTuDAO = new VatTuDAO();
@@ -53,10 +53,16 @@ CTVatTuDAO ctVatTuDAO = new CTVatTuDAO();
 		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
 		CongVan congVan = new CongVan(1, DateUtil.convertToSqlDate(new java.util.Date()), "123", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("DGQ", "Dang giai quyet"), donVi);
 		new CongVanDAO().addCongVan(congVan);
-		
+		 */
 // 		YeuCau yeuCau = new YeuCau(1, ctVatTu, 50, 0);
 // 		new YeuCauDAO().addYeuCau(yeuCau);
+		out.println(request.getContextPath() + "<br>");
 		
+		out.println(request.getPathInfo() + "<br>");
+		out.println(request.getRealPath("/") + "<br>");
+		out.println(request.getServletPath() + "<br>");
+		out.println(request.getRequestURI() + "<br>");
+// 		System.out.println(request.get);
 	%>
 </body>
 </html>

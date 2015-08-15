@@ -7,11 +7,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Restrictions;
 
 import model.CTVatTu;
+import model.ChatLuong;
+import model.NoiSanXuat;
+import model.VatTu;
 import util.HibernateUtil;
 
 /**
@@ -56,31 +63,29 @@ public class CTVatTuDAO {
 		session.delete(ctVatTu);
 		session.getTransaction().commit();
 	}
-	public CTVatTu getCTVatTu(final String vtMa, final String nsxMa, final String clMa) {
+	public CTVatTu getCTVatTu(final VatTu vatTu, final NoiSanXuat noiSanXuat, final ChatLuong chatLuong) {
 		session.beginTransaction();
-		/*
+		
 		Criteria cr = session.createCriteria(CTVatTu.class);
-		cr.createAlias("model.NoiSanXuat", "nsx");
-		cr.createAlias("model.ChatLuong", "cl");
-		cr.createAlias("model.VatTu", "vt");
-//		Criterion expctVatTu = Restrictions.eq("ctVatTu", ctVatTu);
-		Criterion expNsxMa = Restrictions.eq("nsx.nsxMa", nsxMa);
-		Criterion expClMa = Restrictions.eq("cl.clMa", clMa);
-		LogicalExpression andExp = Restrictions.and (expClMa, expNsxMa);
-//		andExp = Restrictions.and(andExp, expClMa);
-//		CTVatTu ctVatTu = null;
-//		cr.add(expctVatTu);
+		Criterion expNoiSanXuat = Restrictions.eq("noiSanXuat", noiSanXuat);
+		Criterion expChatLuong = Restrictions.eq("chatLuong", chatLuong);
+		Criterion expVatTu = Restrictions.eq("vatTu", vatTu);
+		LogicalExpression andExp = Restrictions.and (expChatLuong, expNoiSanXuat);
+		andExp = Restrictions.and(andExp, expChatLuong);
+		andExp = Restrictions.and(andExp, expVatTu);
 		cr.add(andExp);
-		CTVatTu ctVatTu =  (CTVatTu) cr.list().get(0);*/
-		String sql = "from ctvattu"
-				+ " where clma = '"+ clMa +"' and "
-				+ "ctVatTu = '" + vtMa +"' and "
-				+ "nsxma = '" + nsxMa +"'";
-		Query query = session.createQuery(sql);
-		CTVatTu ctVatTu =  (CTVatTu) query.list().get(0);
+		CTVatTu ctVatTu =  (CTVatTu) cr.list().get(0);
 		session.getTransaction().commit();
 		return ctVatTu;
 	}
+	public int getLastInsert() {
+		session.beginTransaction();
+		Query query = session.createQuery("select LAST_INSERT_ID() from model.CTVatTu");
+		int ctVatTu =  (Integer) query.list().get(0);
+		session.getTransaction().commit();
+		return ctVatTu;
+	}
+<<<<<<< HEAD
 	public HashMap<Integer, CTVatTu> getHashMap() {
 		HashMap<Integer, CTVatTu> ctvtHash = new HashMap<Integer, CTVatTu>();
 		ArrayList<CTVatTu> ctvtList = (ArrayList<CTVatTu>) getAllCTVatTu();
@@ -88,5 +93,10 @@ public class CTVatTuDAO {
 			ctvtHash.put(ctvt.getCtvtId(), ctvt);
 		}
 		return ctvtHash;
+=======
+	public static void main(String[] args) {
+//		CTVatTu ct = new CTVatTuDAO().getCTVatTu(new VatTu("666"), new NoiSanXuat("666"), new ChatLuong("666"));
+		System.out.println(new CTVatTuDAO().getLastInsert());
+>>>>>>> 41d3b75f081bea9816ca6aa3bbf97c3c69957a7a
 	}
 }

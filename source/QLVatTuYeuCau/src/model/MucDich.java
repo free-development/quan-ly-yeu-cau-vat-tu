@@ -22,6 +22,14 @@ public class MucDich implements Serializable{
 	 * @param mdMa
 	 * @param mdTen
 	 */
+	public MucDich(String mdMa) {
+		this.mdMa = mdMa;
+	}
+	
+	/**
+	 * @param mdMa
+	 * @param mdTen
+	 */
 	public MucDich(String mdMa, String mdTen) {
 		this.mdMa = mdMa;
 		this.mdTen = mdTen;

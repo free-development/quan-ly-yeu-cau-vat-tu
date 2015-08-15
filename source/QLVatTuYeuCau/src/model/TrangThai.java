@@ -15,6 +15,9 @@ public class TrangThai implements Serializable{
 	 * @param ttMa
 	 * @param ttTen
 	 */
+	public TrangThai(String ttMa) {
+		this.ttMa = ttMa;
+	}
 	public TrangThai(String ttMa, String ttTen) {
 		this.ttMa = ttMa;
 		this.ttTen = ttTen;
