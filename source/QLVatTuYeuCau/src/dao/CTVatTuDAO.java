@@ -3,6 +3,8 @@
  */
 package dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -92,8 +94,18 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return id;
 	}
+<<<<<<< HEAD
+	public HashMap<Integer, CTVatTu> getHashMap() {
+		HashMap<Integer, CTVatTu> ctvtHash = new HashMap<Integer, CTVatTu>();
+		ArrayList<CTVatTu> ctvtList = (ArrayList<CTVatTu>) getAllCTVatTu();
+		for (CTVatTu ctvt : ctvtList) {
+			ctvtHash.put(ctvt.getCtvtId(), ctvt);
+		}
+		return ctvtHash;
+=======
 	public static void main(String[] args) {
 //		CTVatTu ct = new CTVatTuDAO().getCTVatTu(new VatTu("666"), new NoiSanXuat("666"), new ChatLuong("666"));
 		System.out.println(new CTVatTuDAO().getLastInsert());
+>>>>>>> 41d3b75f081bea9816ca6aa3bbf97c3c69957a7a
 	}
 }

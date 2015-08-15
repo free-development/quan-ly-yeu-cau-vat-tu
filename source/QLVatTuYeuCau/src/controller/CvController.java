@@ -80,7 +80,8 @@ public class CvController extends HttpServlet {
 			ArrayList<MucDich> mucDichList = (ArrayList<MucDich>) mucDichDAO.getAllMucDich();
 			for(CongVan congVan : congVanList) {
 				int cvId = congVan.getCvId();
-				fileHash.put(cvId, fileDAO.getByCongVanId(cvId));
+				File file = fileDAO.getByCongVanId(cvId);
+				fileHash.put(cvId, file);
 			}
 //			request.setAttribute("congVanList", congVanList);
 //			request.setAttribute("fileHash", fileHash);
