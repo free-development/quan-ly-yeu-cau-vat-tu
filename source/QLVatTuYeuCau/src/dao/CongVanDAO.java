@@ -64,25 +64,23 @@ public class CongVanDAO {
 			Criterion crtt = Restrictions.eq("trangThai",new TrangThai(ttMa));
 			cr.add(crtt);
 		}
-		if (dvMa != null) {
-			Criterion crdv =  Restrictions.eq("donVi",new DonVi(dvMa));
-			cr.add(crdv);
-		}
-////		Criterion ngay;
-////		Criterion crdv =  Restrictions.eq("donVi",new DonVi(dvMa));
-////		Criterion crtt = Restrictions.eq("trangThai",new TrangThai(ttMa));
-//		
-		System.out.println(ngaybd);
-		System.out.println(ngaykt);
-		if (ngaybd == null && ngaykt == null) ;
-		else
-		{
-			if (ngaybd == null) ngaybd = ngaykt;
-			if (ngaykt == null) ngaykt = ngaybd;
-			Criterion ngay = Restrictions.between("cvNgayNhan", DateUtil.parseDate(ngaybd), DateUtil.parseDate(ngaykt));
-			
-		cr.add(ngay);
-		}
+//		if (dvMa != null) {
+//			Criterion crdv =  Restrictions.eq("donVi",new DonVi(dvMa));
+//			cr.add(crdv);
+//		}
+//////		Criterion ngay;
+//////		Criterion crdv =  Restrictions.eq("donVi",new DonVi(dvMa));
+//////		Criterion crtt = Restrictions.eq("trangThai",new TrangThai(ttMa));
+////		
+//		System.out.println(ngaybd);
+//		System.out.println(ngaykt);
+//		if (ngaybd != null || ngaykt != null) ;
+//		{
+//			if (ngaybd == null) ngaybd = ngaykt;
+//			if (ngaykt == null) ngaykt = ngaybd;
+//			Criterion ngay = Restrictions.between("cvNgayNhan", DateUtil.parseDate(ngaybd), DateUtil.parseDate(ngaykt));
+//		cr.add(ngay);
+//		}
 		ArrayList<CongVan> congVanList = (ArrayList<CongVan>) cr.list();
 		session.getTransaction().commit();
 		return congVanList;
