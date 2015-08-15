@@ -42,7 +42,12 @@
 </head>
 <body>
 		<%
-			String loaiBc = (String) request.getAttribute("action");
+			String loaiBc = (String) session.getAttribute("action"); 
+// 	        String exportToExcel = request.getParameter("exportToExel");
+// 	        if (exportToExcel != null && exportToExcel.toString().equalsIgnoreCase("YES")) {
+// 	            response.setContentType("application/vnd.ms-excel");
+// 	            response.setHeader("Content-Disposition", "inline; filename=" + "excel.xls");
+// 	        }
 		%>
 	<div class="wrapper">
 		<div class="header">
@@ -119,7 +124,7 @@
                         
                         <tr>
 							<th style="text-align: left; padding-right: 10px;">Chế độ báo cáo:</th>
-							<td style="font-size: 20px"><input name="action" type="radio" value="chitiet"/>&nbsp;&nbsp;Chi tiết</td>
+							<td style="font-size: 20px"><input name="action" type="radio" value="chitiet" required title="Bạn phải chọn chế độ báo cáo"/>&nbsp;&nbsp;Chi tiết</td>
 						<td style="font-size: 20px"><input name="action" type="radio" value="tonghop"/>&nbsp;&nbsp;Tổng hợp</td>
 	                    </tr>
 	                    <tr>
@@ -131,46 +136,46 @@
 			</form>
 			<% if("chitiet".equalsIgnoreCase(loaiBc)){
 			
-				ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
-			
-		   		HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) request.getAttribute("yeuCau");
-		   		HashMap<Integer, ArrayList<YeuCau>> ctvtList = (HashMap<Integer, ArrayList<YeuCau>>) request.getAttribute("ctvtList");
+				ArrayList<CongVan> congVanList = (ArrayList<CongVan>) session.getAttribute("congVanList");			
+		   		HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) session.getAttribute("yeuCau");
+		   		HashMap<Integer, ArrayList<YeuCau>> ctvtList = (HashMap<Integer, ArrayList<YeuCau>>) session.getAttribute("ctvtList");
 		   		
 		    %>
 			
 				<div id="view-table-bao-cao" class="scroll">
 					<table>
-						<tr>
-							<th class="one-column">Số đến</th>
-							<th class="three-column">Ngày nhận</th>
-							<th class="two-column">Mã vật tư</th>
-							<th class="three-column">Tên vật tư</th>
-							<th class="three-column">Nơi sản xuất</th>
-							<th class="three-column">Chất lượng</th>
-							<th class="six-column">Đơn vị tính</th>
-							<th class="one-column">Số lượng thiếu</th>
-							
-						</tr>
+							<tr bgcolor="lightgreen">
+								<th class="one-column">Số đến</th>
+								<th class="three-column">Ngày nhận</th>
+								<th class="two-column">Mã vật tư</th>
+								<th class="three-column">Tên vật tư</th>
+								<th class="three-column">Nơi sản xuất</th>
+								<th class="three-column">Chất lượng</th>
+								<th class="six-column">Đơn vị tính</th>
+								<th class="one-column">Số lượng thiếu</th>
+								
+							</tr>
+						
 									<% 								
-									if((yeuCauHash != null) && "chitiet".equalsIgnoreCase(loaiBc)){
-								int count = 0;
-								for(CongVan congVan  : congVanList) { count++;
-								ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
-								for (YeuCau yeuCau : yeuCauList) {
-								%>
-										
-						<tr
-							<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
-							<td class="a-column"><%=congVan.getSoDen() %></td>
-							<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
-							<td class="a-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
-							<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
-							<td class="c-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
-							<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
-							<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
-							<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
-						</tr>
-						<%} %>
+										if(yeuCauHash != null){
+										int count = 0;	
+										for(CongVan congVan  : congVanList) { 
+										ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
+										for (YeuCau yeuCau : yeuCauList) { count++;
+									%>
+												
+									<tr
+										<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+										<td class="a-column"><%=congVan.getSoDen() %></td>
+										<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
+										<td class="a-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
+										<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
+										<td class="c-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
+										<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
+										<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
+										<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
+									</tr>	
+								<%}} }%>			
 					</table>
 				</div>
 	
@@ -178,8 +183,8 @@
 					<button class="button" type="button">
 						<i class="fa fa-print"></i>&nbsp;&nbsp;In
 					</button>
-					&nbsp;
-					<button class="button" type="button">
+					&nbsp;					 
+					<button class="button" type="button" onclick="location.href='<%=siteMap.xuatFile+ ".jsp"%>'">
 						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
 					</button>
 					&nbsp;
@@ -188,15 +193,15 @@
 					</button>
 				</div>
 			
-					<% }}}%>
+					<% }%>
 					
 				<% if("tonghop".equalsIgnoreCase(loaiBc)){
 			
-	   		HashMap<Integer, CTVatTu> ctvtHash = (HashMap<Integer, CTVatTu>) request.getAttribute("ctvtHash");
-	   		HashMap<Integer, Integer> yeuCauHash = (HashMap<Integer, Integer>) request.getAttribute("yeuCau"); %>
+	   		HashMap<Integer, CTVatTu> ctvtHash = (HashMap<Integer, CTVatTu>) session.getAttribute("ctvtHash");
+	   		HashMap<Integer, Integer> yeuCauHash = (HashMap<Integer, Integer>) session.getAttribute("yeuCau"); %>
 			<div id="view-table-bao-cao" class="scroll">
 				<table>
-					<tr>
+					<tr bgcolor="lightgreen">
 						<th class="two-column">Mã vật tư</th>
 						<th class="three-column">Tên vật tư</th>
 						<th class="three-column">Nơi sản xuất</th>
@@ -231,15 +236,18 @@
 					<i class="fa fa-print"></i>&nbsp;&nbsp;In
 				</button>
 				&nbsp;
-				<button class="button" type="button">
+<!--     <a href="excel.jsp?exportToExcel=YES">Export to Excel</a> -->
+
+				<button class="button" type="button" onclick="location.href='<%=siteMap.xuatFile+ ".jsp"%>'">
 					<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
 				</button>
 				&nbsp;
-				<button type="button" class="button" onclick="showForm('main-form')">
+				<button type="button" class="button" onclick="location.href='<%=siteMap.home+ ".jsp"%>'">
 					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 				</button>
 			</div>
 				<%}}%>
-</div>
+	</div>
+	</div>
 </body>
 </html>

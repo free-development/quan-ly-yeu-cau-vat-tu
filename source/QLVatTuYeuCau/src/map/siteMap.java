@@ -60,4 +60,6 @@ public class siteMap {
 	
 	// map file download file
 	public static final String  fileDownload = "download-file";
+	// map xuat file bcvtt
+		public static final String  xuatFile = "xuatFile";
 }

@@ -277,7 +277,7 @@
 							<i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua
 						</button>
 						&nbsp;&nbsp;
-						<button type="button" class="button">
+						<button type="button" class="button" onclick="location.href='<%=siteMap.home+ ".jsp"%>'">
 							<i class="fa fa-sign-out"></i>Thoát
 						</button>
 					</div>
