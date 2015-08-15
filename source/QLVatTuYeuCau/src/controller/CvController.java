@@ -26,6 +26,8 @@ import dao.CongVanDAO;
 import dao.DonViDAO;
 import dao.FileDAO;
 import dao.MucDichDAO;
+import dao.NoiSanXuatDAO;
+import dao.TrangThaiDAO;
 import map.siteMap;
 import model.CTNguoiDung;
 import model.CongVan;
@@ -35,6 +37,7 @@ import model.MucDich;
 import model.TrangThai;
 import util.DateUtil;
 import util.FileUtil;
+import util.JSonUtil;
 import util.StringUtil;
 
 
@@ -44,11 +47,12 @@ public class CvController extends HttpServlet {
 	private final String tempPath = "/home/quoioln/study/java/FileUpload/Temp/"; 
     private final String pathFile = "/home/quoioln/study/java/FileUpload/File/";
     
-    public ModelAndView getCongvan(CongVanDAO congVanDAO, MucDichDAO mucDichDAO, FileDAO fileDAO, DonViDAO donViDAO, HttpServletRequest request) {
+    public ModelAndView getCongvan(TrangThaiDAO trangThaiDAO, CongVanDAO congVanDAO, MucDichDAO mucDichDAO, FileDAO fileDAO, DonViDAO donViDAO, HttpServletRequest request) {
     	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) congVanDAO.getAllCongVan();
 		HashMap<Integer, File> fileHash = new HashMap<Integer, File>();
 		ArrayList<DonVi> donViList = (ArrayList<DonVi>) donViDAO.getAllDonVi();
 		ArrayList<MucDich> mucDichList = (ArrayList<MucDich>) mucDichDAO.getAllMucDich();
+		ArrayList<TrangThai> trangThaiList = (ArrayList<TrangThai>) trangThaiDAO.getAllTrangThai();
 		for(CongVan congVan : congVanList) {
 			int cvId = congVan.getCvId();
 			fileHash.put(cvId, fileDAO.getByCongVanId(cvId));
@@ -57,6 +61,7 @@ public class CvController extends HttpServlet {
 		request.setAttribute("fileHash", fileHash);
 		request.setAttribute("mucDichList", mucDichList);
 		request.setAttribute("donViList", donViList);
+		request.setAttribute("trangThaiList", trangThaiList);
 		return new ModelAndView(siteMap.congVan);
     }
     
@@ -66,6 +71,7 @@ public class CvController extends HttpServlet {
     	CongVanDAO congVanDAO = new CongVanDAO();
     	MucDichDAO mucDichDAO =  new MucDichDAO();
     	DonViDAO donViDAO =  new DonViDAO();
+    	TrangThaiDAO trangThaiDAO =  new TrangThaiDAO();
 		String action = request.getParameter("action");
 		if("manageCv".equalsIgnoreCase(action)) {
 			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) congVanDAO.getAllCongVan();
@@ -81,7 +87,7 @@ public class CvController extends HttpServlet {
 //			request.setAttribute("mucDichList", mucDichList);
 //			request.setAttribute("donViList", donViList);
 //			return new ModelAndView(siteMap.congVan);
-			return getCongvan(congVanDAO, mucDichDAO, fileDAO, donViDAO, request);
+			return getCongvan(trangThaiDAO, congVanDAO, mucDichDAO, fileDAO, donViDAO, request);
 		}
 		if("download".equals(action)) {
 			try {
@@ -101,9 +107,12 @@ public class CvController extends HttpServlet {
     public ModelAndView addCV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //    	request.ge
     	CongVanDAO congVanDAO = new CongVanDAO();
+    	FileDAO fileDAO = new FileDAO();
+    	int cvId = congVanDAO.getLastInsert();
+    	int fileId = fileDAO.getLastInsert();
     	MultipartRequest multipartRequest = new MultipartRequest(request, tempPath);
 		String action = multipartRequest.getParameter("action");
-		int soDen = Integer.parseInt(multipartRequest.getParameter("soDen"));
+//		int soDen = Integer.parseInt(multipartRequest.getParameter("soDen"));
 		String cvSo = multipartRequest.getParameter("cvSo");
 		Date cvNgayGoi = DateUtil.parseDate(multipartRequest.getParameter("ngayGoi"));
 		Date cvNgayNhan = DateUtil.parseDate(multipartRequest.getParameter("ngayNhan"));
@@ -111,14 +120,19 @@ public class CvController extends HttpServlet {
 		String dvMa = multipartRequest.getParameter("donVi");
 		String trichYeu = multipartRequest.getParameter("trichYeu");
 		String butPhe = multipartRequest.getParameter("butPhe");
-		
+		String moTa = multipartRequest.getParameter("moTa");
+		int soDen = congVanDAO.getSoDenMax();
+		if (cvNgayNhan.getDate() == 1)
+			soDen = 1;
 		// upload file
+		String fileFullName = "";
 		Enumeration<String> listFileName = multipartRequest.getFileNames();		
+		String fileName = "";
 		while(listFileName.hasMoreElements()) {
-			String fileFullName = multipartRequest.getFilesystemName(listFileName.nextElement().toString());
+			fileFullName = multipartRequest.getFilesystemName(listFileName.nextElement().toString());
 			//int i = fileName.lastIndexOf("."); 
 			java.io.File file = new java.io.File(tempPath + fileFullName);
-			String fileName = FileUtil.getNameFile(file);
+			fileName = FileUtil.getNameFile(file);
 			String fileExtension = FileUtil.getExtension(file);
 			if(fileExtension.length() > 0) {
 				 fileName = fileName + "-" + soDen + "." + fileExtension;
@@ -131,25 +145,30 @@ public class CvController extends HttpServlet {
 		}
 //		new CongVan(cvId, soDen, cvNgayNhan, cvSo, cvNgayDi, trichYeu, butPhe, mucDich, trangThai, donVi)
 		System.out.println(dvMa);
-		congVanDAO.addCongVan(new CongVan(1, cvNgayNhan, cvSo, cvNgayGoi, trichYeu, butPhe, new MucDich(mdMa), new TrangThai("DGQ",""), new DonVi(dvMa)));
-		FileDAO fileDAO = new FileDAO();
+//		java.util.Date.
+		congVanDAO.addCongVan(new CongVan (cvId, soDen, cvSo, cvNgayNhan, cvNgayGoi, trichYeu, butPhe, new MucDich(mdMa), new TrangThai("DGQ",""), new DonVi(dvMa),0));
+		fileDAO.addFile(new File(pathFile + fileName, moTa, cvId));
     	MucDichDAO mucDichDAO =  new MucDichDAO();
     	DonViDAO donViDAO =  new DonViDAO();
-    	return getCongvan(congVanDAO, mucDichDAO, fileDAO, donViDAO, request);
+    	TrangThaiDAO trangThaiDAO =  new TrangThaiDAO();
+    	return getCongvan(trangThaiDAO, congVanDAO, mucDichDAO, fileDAO, donViDAO, request);
 //    	return new ModelAndView("login");
     }
     @RequestMapping(value="/preEditCongVan", method=RequestMethod.POST, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String changePass(@RequestParam("cvId") String cvId) {
-
+	public @ResponseBody String changePass(@RequestParam("cvId") int cvId) {
+    	CongVanDAO congVanDAO = new CongVanDAO();
 		System.out.println("OK");
-		String result = "";
-		if (new CTNguoiDungDAO().login(msnv, StringUtil.encryptMD5(passOld))) {
-			new CTNguoiDungDAO().updateCTNguoiDung(new CTNguoiDung(msnv, StringUtil.encryptMD5(passNew)));
-			result = "success";
-		}
-		else 
-			result = "fail";
-		return result;
+		CongVan congVan = congVanDAO.getCongVan(cvId);
+		return JSonUtil.toJson(congVan);
+	}
+    
+	@RequestMapping(value="/deleteCv", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String deleteNsx(@RequestParam("cvId") String cvId) {
+		int id = Integer.parseInt(cvId);
+		new CongVanDAO().deleteCongVan(id);
+	//	return toJson(nsxList);
+		return JSonUtil.toJson(cvId);
 	}
 }

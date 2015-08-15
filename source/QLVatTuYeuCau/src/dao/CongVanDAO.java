@@ -2,11 +2,15 @@ package dao;
 
 import java.util.List;
 
-import model.CongVan;
-
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
+import model.CongVan;
+import model.File;
 import util.HibernateUtil;
 
 public class CongVanDAO {
@@ -25,7 +29,9 @@ public class CongVanDAO {
 	}
 	public List<CongVan> getAllCongVan() {
 		session.beginTransaction();
-		List<CongVan> congVanList = (List<CongVan>) session.createCriteria(CongVan.class).list();
+		Criteria cr = session.createCriteria(CongVan.class);
+		cr.add(Restrictions.eq("daXoa", 0));
+		List<CongVan> congVanList = (List<CongVan>) cr.list();
 		session.getTransaction().commit();
 		return congVanList;
 	}
@@ -39,10 +45,40 @@ public class CongVanDAO {
 		session.update(congVan);
 		session.getTransaction().commit();
 	}
-	public void deleteCongVan(CongVan congVan){
+	public void deleteCongVan(int cvId){
 		session.beginTransaction();
-		session.delete(congVan);
+//		session.delete(congVan);
+		String hql = "UPDATE CongVan set daXoa = 1 "  + 
+	             "WHERE cvId = :cvId";
+		Query query = session.createQuery(hql);
+		query.setParameter("cvId", cvId);
+		int result = query.executeUpdate();
 		session.getTransaction().commit();
 	}
-	
+	public int getLastInsert() {
+		session.beginTransaction();
+		Criteria cr =  session.createCriteria(File.class).setProjection(Projections.max("cvId"));// max("ctvtId"));
+		Integer idOld =  (Integer) cr.list().get(0);
+		int id = 0;
+		if (idOld != null)
+			id += idOld + 1;
+		else
+			id++;
+		
+		session.getTransaction().commit();
+		return id;
+	}
+	public int getSoDenMax() {
+		session.beginTransaction();
+		Criteria cr =  session.createCriteria(CongVan.class).setProjection(Projections.max("soDen"));// max("ctvtId"));
+		Integer idOld =  (Integer) cr.list().get(0);
+		int soDen = 0;
+		if (idOld != null)
+			soDen += idOld + 1;
+		else
+			soDen++;
+		
+		session.getTransaction().commit();
+		return soDen;
+	}
 }

@@ -66,6 +66,7 @@ public class CongVan implements Serializable{
 	private TrangThai trangThai;
 
 	private DonVi donVi;
+	private int daXoa; 
 
 	public CongVan() {
 		this.cvId = 0;
@@ -78,6 +79,7 @@ public class CongVan implements Serializable{
 		this.mucDich = new MucDich();
 		this.trangThai = new TrangThai();
 		this.donVi = new DonVi();
+		this.daXoa = 0;
 	}
 	
 	/**
@@ -95,7 +97,7 @@ public class CongVan implements Serializable{
 	 */
 	public CongVan(int soDen, Date cvNgayNhan, String cvSo,
 			Date cvNgayDi, String trichYeu, String butPhe, MucDich mucDich,
-			TrangThai trangThai, DonVi donVi) {
+			TrangThai trangThai, DonVi donVi, int daXoa) {
 		this.soDen = soDen;
 		this.cvNgayNhan = cvNgayNhan;
 		this.cvSo = cvSo;
@@ -105,6 +107,7 @@ public class CongVan implements Serializable{
 		this.mucDich = mucDich;
 		this.trangThai = trangThai;
 		this.donVi = donVi;
+		this.daXoa = daXoa;
 	}
 	
 	/**
@@ -120,9 +123,9 @@ public class CongVan implements Serializable{
 	 * @param donVi
 	 * @param file
 	 */
-	public CongVan(int cvId, int soDen, Date cvNgayNhan, String cvSo,
-			Date cvNgayDi, String trichYeu, String butPhe, MucDich mucDich,
-			TrangThai trangThai, DonVi donVi) {
+	public CongVan(int cvId, int soDen, String cvSo, Date cvNgayNhan,Date cvNgayDi, 
+			 String trichYeu, String butPhe, MucDich mucDich,
+			TrangThai trangThai, DonVi donVi, int daXoa) {
 		this.cvId = cvId;
 		this.soDen = soDen;
 		this.cvNgayNhan = cvNgayNhan;
@@ -133,6 +136,15 @@ public class CongVan implements Serializable{
 		this.mucDich = mucDich;
 		this.trangThai = trangThai;
 		this.donVi = donVi;
+		this.daXoa = daXoa;
+	}
+
+	public int getDaXoa() {
+		return daXoa;
+	}
+
+	public void setDaXoa(int daXoa) {
+		this.daXoa = daXoa;
 	}
 
 	/**
