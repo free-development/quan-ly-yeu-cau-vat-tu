@@ -44,6 +44,17 @@
 	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
 	HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) request.getAttribute("yeuCau");
     %>
+    
+     <%
+        String exportToExcel = request.getParameter("XuatFile");
+        if (exportToExcel != null
+                && exportToExcel.toString().equalsIgnoreCase("YES")) {
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-Disposition", "inline; filename="
+                    + "excel.xls");
+ 
+        }
+    %>
 	<div class="wrapper">
 		<div class="header">
 			<div id="top_title">Văn phòng điện tử</div>
@@ -150,9 +161,10 @@
 						<th class="e-column">Nơi sản xuất</th>
 						<th class="f-column">Đơn vị tính</th>
 						<th class="g-column">Trạng thái</th>
+						<th class="k-column">Đơn vị</th>
 						<th class="h-column">Chất lượng</th>
 						<th class="k-column">Số lượng</th>
-						<th class="k-column">Đơn vị</th>
+						
 					</tr>
 							<%
 							if(yeuCauHash != null) {
@@ -178,26 +190,26 @@
 					</tr>
 					<%} }}%>
 				</table>
-			</div>
-
-			<div class="group-button">
-				<button class="button" type="button">
-					<i class="fa fa-print"></i>&nbsp;&nbsp;In
-				</button>
-				&nbsp;
-				<button class="button" type="button">
-					<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
-				</button>
-				&nbsp;
-				<button type="button" class="button" onclick="showForm('main-form')">
-					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
-				</button>
-			</div>
-			</form>
-
+				</div>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<%
+				    if (exportToExcel == null) {
+					%>
+					<a href="excel.jsp?exportToExcel=YES">XuatFile</a>
+					<%
+					    }
+				%>
+				<div class="group-button">
+					<button class="button" type="button">
+						<i class="fa fa-print"></i>&nbsp;&nbsp;In
+					</button>
+					<button type="button" class="button" onclick="showForm('main-form')">
+						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
+					</button>
+				</div>
 		</div>
-	</div>
-
-	</div>
+		</div>
+	
 </body>
 </html>
