@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import map.siteMap;
 import model.CTVatTu;
@@ -29,9 +30,10 @@ import util.DateUtil;
 public class BcvttController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     @RequestMapping("/manageBcvtt")
-	protected ModelAndView manageBcvtt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView manageBcvtt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	YeuCauDAO yeuCauDAO = new YeuCauDAO();
     	CTVatTuDAO ctVatTu = new CTVatTuDAO();
+    	HttpSession session = request.getSession(false);
     	
     	String action = request.getParameter("action");
     	if("chitiet".equalsIgnoreCase(action)){
@@ -45,9 +47,9 @@ public class BcvttController extends HttpServlet {
         				ArrayList<YeuCau> yeuCau = (ArrayList<YeuCau>) yeuCauDAO.getByCvId(cvId);
         				yeuCauHash.put(cvId,yeuCau);
         			}
-        			request.setAttribute("action", action);
-        			request.setAttribute("congVanList", congVanList);
-        			request.setAttribute("yeuCau", yeuCauHash);
+        			session.setAttribute("action", action);
+        			session.setAttribute("congVanList", congVanList);
+        			session.setAttribute("yeuCau", yeuCauHash);
         			return new ModelAndView(siteMap.baoCaoVatTuThieu);
     		}
     	else if ("tonghop".equalsIgnoreCase(action)){
@@ -70,9 +72,9 @@ public class BcvttController extends HttpServlet {
     				
     				yeuCauHash.put(ctVtId,soluong);
     			}
-        			request.setAttribute("ctvtHash", ctvtHash);
-        			request.setAttribute("action", action);
-        			request.setAttribute("yeuCau", yeuCauHash);
+        			session.setAttribute("ctvtHash", ctvtHash);
+        			session.setAttribute("action", action);
+        			session.setAttribute("yeuCau", yeuCauHash);
         			return new ModelAndView(siteMap.baoCaoVatTuThieu);
     	}
     	else
