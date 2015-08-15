@@ -60,27 +60,29 @@ public class CongVanDAO {
 //		Criterion crdv,crtt,ngay;
 //		LogicalExpression exp;
 //		LogicalExpression andNgay;
-		if (ttMa != null && !"all".equalsIgnoreCase(ttMa)) {
-			Criterion crtt = Restrictions.eq("trangThai",new TrangThai(ttMa));
-			cr.add(crtt);
-		}
-//		if (dvMa != null) {
-//			Criterion crdv =  Restrictions.eq("donVi",new DonVi(dvMa));
-//			cr.add(crdv);
-//		}
-//////		Criterion ngay;
-//////		Criterion crdv =  Restrictions.eq("donVi",new DonVi(dvMa));
-//////		Criterion crtt = Restrictions.eq("trangThai",new TrangThai(ttMa));
-////		
-//		System.out.println(ngaybd);
-//		System.out.println(ngaykt);
-//		if (ngaybd != null || ngaykt != null) ;
+//		if (ngaybd == null) 
 //		{
-//			if (ngaybd == null) ngaybd = ngaykt;
-//			if (ngaykt == null) ngaykt = ngaybd;
+//		ngaybd = ngaykt;
+//		}
+//		if (ngaykt == null)
+//		{
+//		ngaykt = ngaybd;
+//		}
+//		if (ngaybd != null || ngaykt != null) 
+//		{
 //			Criterion ngay = Restrictions.between("cvNgayNhan", DateUtil.parseDate(ngaybd), DateUtil.parseDate(ngaykt));
 //		cr.add(ngay);
 //		}
+	
+			if (ttMa != null && !"all".equalsIgnoreCase(ttMa)) {
+				Criterion crtt = Restrictions.eq("trangThai",new TrangThai(ttMa));
+				cr.add(crtt);
+			}
+			if (dvMa != null) {
+				Criterion crdv =  Restrictions.eq("donVi",new DonVi(dvMa));
+				cr.add(crdv);
+			}
+		
 		ArrayList<CongVan> congVanList = (ArrayList<CongVan>) cr.list();
 		session.getTransaction().commit();
 		return congVanList;
