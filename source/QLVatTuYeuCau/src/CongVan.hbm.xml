@@ -19,6 +19,9 @@
 		<property name="cvNgayDi" type="java.sql.Date">
 			<column name="CVNGAYDI" />
 		</property>
+		<property name="daXoa" type="int">
+			<column name="DAXOA" />
+		</property>
 		<property name="trichYeu" type="java.lang.String">
 			<column name="TRICHYEU" />
 		</property>

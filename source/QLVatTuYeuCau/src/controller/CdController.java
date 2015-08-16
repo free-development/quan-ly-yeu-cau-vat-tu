@@ -1,5 +1,6 @@
 package controller;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import util.JSonUtil;
+import dao.ChatLuongDAO;
 import dao.ChucDanhDAO;
 import dao.MucDichDAO;
 
@@ -46,7 +48,6 @@ public class CdController extends HttpServlet {
 			for(String s : idList) {
 					chucDanhDAO.deleteChucDanh(chucDanhDAO.getChucDanh(s));
 			}
-			
 			ArrayList<ChucDanh> chucDanhList =  (ArrayList<ChucDanh>) chucDanhDAO.getAllChucDanh();
 			return new ModelAndView("danh-muc-chuc-danh", "chucDanhList", chucDanhList);
 		}
@@ -56,6 +57,7 @@ public class CdController extends HttpServlet {
 		}
 		return new ModelAndView("login");
 	}
+	
 	@RequestMapping(value="/preUpdateCd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String preUpdateCd(@RequestParam("cdMa") String cdMa) {
@@ -63,6 +65,7 @@ public class CdController extends HttpServlet {
 		ChucDanh cd = chucDanhDAO.getChucDanh(cdMa);
 		return JSonUtil.toJson(cd);
 	}
+	
 	@RequestMapping(value="/deleteCd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteCd(@RequestParam("cdMa") String cdMa) {
@@ -72,9 +75,22 @@ public class CdController extends HttpServlet {
 	@RequestMapping(value="/addCd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String addCd(@RequestParam("cdMa") String cdMa, @RequestParam("cdTen") String cdTen) {
-		ChucDanh cd = new ChucDanh(cdMa,cdTen);
-		new ChucDanhDAO().addChucDanh(cd);
-		return JSonUtil.toJson(cd);
+		String result = "";
+		System.out.println("MA: "+cdMa);
+		if(new ChucDanhDAO().getChucDanh(cdMa)==null)
+		{
+			new ChucDanhDAO().addChucDanh(new ChucDanh(cdMa,cdTen));
+			System.out.println("success");
+			result = "success";
+			
+			
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+			return JSonUtil.toJson(result);
 	}
 	
 	@RequestMapping(value="/updateCd", method=RequestMethod.GET, 

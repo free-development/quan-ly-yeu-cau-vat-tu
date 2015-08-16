@@ -2,10 +2,13 @@ package dao;
 
 import java.util.List;
 
+import model.CTVatTu;
 import model.File;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
@@ -50,6 +53,19 @@ public class FileDAO {
 		session.beginTransaction();
 		session.delete(file);
 		session.getTransaction().commit();
+	}
+	public int getLastInsert() {
+		session.beginTransaction();
+		Criteria cr =  session.createCriteria(File.class).setProjection(Projections.max("fileId"));// max("ctvtId"));
+		Integer idOld =  (Integer) cr.list().get(0);
+		int id = 0;
+		if (idOld != null)
+			id += idOld + 1;
+		else
+			id++;
+		
+		session.getTransaction().commit();
+		return id;
 	}
 	
 }
