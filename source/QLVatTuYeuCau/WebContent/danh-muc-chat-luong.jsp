@@ -207,7 +207,7 @@
 				</div>
 				<div class="group-button">
 					<input type="hidden" name="action" value="UpdateCl">
-					<button class="button" onclick="confirmDeleteCl()" type="button">
+					<button class="button" onclick="confirmUpdateCl()" type="button">
 						<i class="fa fa-floppy-o"></i>&nbsp;Lưu lại
 					</button>
 					<button type="reset" class="button">

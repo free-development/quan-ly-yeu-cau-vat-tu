@@ -46,15 +46,15 @@
     %>
     
      <%
-        String exportToExcel = request.getParameter("XuatFile");
-        if (exportToExcel != null
-                && exportToExcel.toString().equalsIgnoreCase("YES")) {
-            response.setContentType("application/vnd.ms-excel");
-            response.setHeader("Content-Disposition", "inline; filename="
-                    + "excel.xls");
- 
-        }
-    %>
+	        String exportToExcel = request.getParameter("exportToExel");
+	        response.setCharacterEncoding("UTF-8");
+	        request.setCharacterEncoding("UTF-8");
+	        if (exportToExcel != null && exportToExcel.toString().equalsIgnoreCase("YES")) {
+	            response.setContentType("application/vnd.ms-excel");
+	            response.setHeader("Content-Disposition", "inline; filename=" + "excel.xls");
+	            
+	        }
+		%>
 	<div class="wrapper">
 		<div class="header">
 			<div id="top_title">Văn phòng điện tử</div>
@@ -191,19 +191,20 @@
 					<%} }}%>
 				</table>
 				</div>
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<%
-				    if (exportToExcel == null) {
-					%>
-					<a href="excel.jsp?exportToExcel=YES">XuatFile</a>
-					<%
-					    }
-				%>
+				
 				<div class="group-button">
 					<button class="button" type="button">
 						<i class="fa fa-print"></i>&nbsp;&nbsp;In
 					</button>
+					&nbsp;&nbsp;
+					<%
+        				if (exportToExcel == null) {
+   				 	 %>
+					<button class="button" type="button" onclick="location.href='<%=siteMap.xuatFile+".jsp"+ "?exportToExel=YES" %>'">
+						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
+					</button>
+					<% } %>
+					&nbsp;&nbsp;
 					<button type="button" class="button" onclick="showForm('main-form')">
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 					</button>

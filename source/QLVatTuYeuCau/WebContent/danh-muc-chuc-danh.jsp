@@ -14,106 +14,7 @@
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
-<script type="text/javascript">
-    function showForm(formId, check){
-		if (check)
-			document.getElementById(formId).style.display="block";
-		else document.getElementById(formId).style.display="none";
-		var f = document.getElementById('main-form'), s, opacity;
-		s = f.style;
-		opacity = check? '10' : '100';
-		s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-		s.filter = 'alpha(opacity='+opacity+')';
-		for(var i=0; i<f.length; i++) f[i].disabled = check;
-	}
-	function preUpdateCd(formId, check) {
-		var cdMa = $('input:checkbox[name=cdMa]:checked').val();
-		$.ajax({
-			url: "/QuanLyVatTu/preUpdateCd.html",	
-		  	type: "GET",
-		  	dateType: "JSON",
-		  	data: { "cdMa": cdMa},
-		  	contentType: 'application/json',
-		    mimeType: 'application/json',
-		  	
-		  	success: function(cd) {
-			  	$('input:text[name=cdMaUpdate]').val(cd.cdMa);
-			  	$('input:text[name=cdTenUpdate]').val(cd.cdTen);
-		  		showForm(formId, check);	
-		  		
-		  	}
-		});
-	}
-	function confirmDeleteCd(){
-		var cdMa = $('input:checkbox[name=cdMa]:checked').val();
-		if (confirm('Bạn có chắc xóa ' + cdMa))
-			deleteCd(cdMa);
-	}
-		
- 	 function deleteCd(cdMa) {
-		$.ajax({
-			url: "/QuanLyVatTu/deleteCd.html",	
-		  	type: "GET",
-		  	dateType: "JSON",
-		  	data: { "cdMa": cdMa},
-		  	contentType: 'application/json',
-		    mimeType: 'application/json',
-		  	success: function() {
-			  	alert(cdMa + " da bi xoa.");
-						$('table tr').has('input[name="cdMa"]:checked').remove();
-		    } 
-		});  
-	} 
- 	
- 	function addCd() {
-		var cdMa = $('#add-form input:text[name= cdMa]').val();
-		var cdTen = $('#add-form input:text[name=cdTen]').val();
-		$.ajax({
-			url: "/QuanLyVatTu/addCd.html",	
-		  	type: "GET",
-		  	dateType: "JSON",
-		  	data: { "cdMa": cdMa, "cdTen": cdTen},
-		  	contentType: 'application/json',
-		    mimeType: 'application/json',
-		  	
-		  	success: function(cd) {
-			  	$('input:text[name=cdMa]').val(cd.cdMa);
-			  	$('input:text[name=cdTen]').val(cd.cdTen);
-		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"cdMa\" value=\"' +cd.cdMa + '\"</td><td class=\"col\">'+ cdMa +'</td><td class=\"col\">' + cdTen+'</td></tr>');
-		  		$('#add-form input:text[name=cdMa]').val('');
-				$('#add-form input:text[name=cdTen]').val('');
-		  		showForm("add-form", false);	
-		  	}
-		});
-	}
- 	
- 	function confirmUpdateCd(){
-		var cdMaUpdate = $('input:text[name=cdMaUpdate]').val();
-		var cdTenUpdate = $('input:text[name=cdTenUpdate]').val();
-		if (confirm('Bạn có chắc thay doi noi san xuat co ma ' + cdMaUpdate))
-			updateCd(cdMaUpdate, cdTenUpdate);
-	}
- 	function updateCd(cdMaUpdate, cdTenUpdate) {
-
-		$.ajax({
-			url: "/QuanLyVatTu/updateCd.html",	
-		  	type: "GET",
-		  	dateType: "JSON",
-		  	data: { "cdMaUpdate": cdMaUpdate, "cdTenUpdate": cdTenUpdate},
-		  	contentType: 'application/json',
-		    mimeType: 'application/json',
-		  	
-		  	success: function(cd) {
-		  		$('table tr').has('input[name="cdMa"]:checked').remove();
-		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"cdMa\" value=\"' +cdMaUpdate + '\"</td><td class=\"col\">'+ cdMaUpdate +'</td><td class=\"col\">' + cdTenUpdate+'</td></tr>');
-		  		$('input:text[name=cdMaUpdate]').val('');
-				cdTenUpdate = $('input:text[name=cdTenUpdate]').val('');
-		  		showForm("update-form", false);	
-		  	}
-		});
-	}
-	</script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.checkAll').click(function(event) {  //on click 
@@ -130,6 +31,7 @@
         
     });
 	</script>
+<script type="text/javascript" src="js/chucdanh.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
@@ -185,7 +87,12 @@
 								mục chức danh</a></li>
 					</ul></li>
 				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="bao-cao.html">Báo cáo</a></li>
+				<li><a href="bao-cao.html">Báo cáo</a>
+					<ul>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
 				<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
 				<li><a href="bao-cao.html">Quản lý người dùng</a></li>
 			</ul>
@@ -208,8 +115,9 @@
 						<%
 							if(listChucDanh != null) {
 							int count = 0;
-							for(ChucDanh chucDanh : listChucDanh) {%>
+							for(ChucDanh chucDanh : listChucDanh) {count++;%>
 						<tr>
+						<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>
 							<td class="left-column"><input type="checkbox" name="cdMa"
 								value="<%=chucDanh.getCdMa() %>" class="checkbox"></td>
 							<td class="col"><%=chucDanh.getCdMa() %></td>
@@ -221,7 +129,7 @@
 				</div>
 
 				<div class="group-button">
-					<input type="hidden" name="action" value="deleteCd">
+<!-- 					<input type="hidden" name="action" value="deleteCd"> -->
 					<button type="button" class="button"
 						onclick="showForm('add-form', true)">
 						<i class="fa fa-plus-circle"></i>&nbsp;Thêm
@@ -268,7 +176,7 @@
 					</table>
 				</div>
 				<div class="button-group">
-					<input type="hidden" name="action" value="AddCd">
+<!-- 					<input type="hidden" name="action" value="AddCd"> -->
 					<button class="button" type="button" onclick="addCd()">
 						<i class="fa fa-plus-circle"></i>&nbsp;Thêm
 					</button>
@@ -304,9 +212,9 @@
 					</table>
 				</div>
 				<div class="button-group">
-					<input type="hidden" name="action" value="UpdateCd">
+<!-- 					<input type="hidden" name="action" value="UpdateCd"> -->
 					<button class="button" type="button" onclick="confirmUpdateCd()">
-						<i class="fa fa-plus-circle"></i>&nbsp;Thêm
+						<i class="fa fa-plus-circle"></i>&nbsp;Lưu lại
 					</button>
 					<button type="reset" class="button">
 						<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại

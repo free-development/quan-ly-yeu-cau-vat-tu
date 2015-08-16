@@ -93,7 +93,12 @@
 					</ul></li>
 				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo
-						cáo</a></li>
+						cáo</a>
+						<ul>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
 				<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản
 						lý người dùng</a></li>
 			</ul>

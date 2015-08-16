@@ -5,10 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.CongVan;
-<<<<<<< HEAD
-=======
 import model.DonVi;
->>>>>>> 41d3b75f081bea9816ca6aa3bbf97c3c69957a7a
 import model.TrangThai;
 
 import org.hibernate.Criteria;
@@ -56,7 +53,6 @@ public class CongVanDAO {
 		session.delete(congVan);
 		session.getTransaction().commit();
 	}
-<<<<<<< HEAD
 	public ArrayList<CongVan> getByDate(Date ngaybd, Date ngaykt){
 		session.beginTransaction();
 		Criteria cr = session.createCriteria(CongVan.class);
@@ -78,7 +74,6 @@ public class CongVanDAO {
 		session.getTransaction().commit();
 		return congVanList;
 	}
-=======
 	public ArrayList<CongVan> getTrangThai(String ngaybd, String ngaykt,String dvMa, String ttMa){
 		session.beginTransaction();
 		Date ngayht = DateUtil.convertToSqlDate(new java.util.Date());
@@ -113,5 +108,4 @@ public class CongVanDAO {
 		session.getTransaction().commit();
 		return congVanList;
 	} 	 	
->>>>>>> 41d3b75f081bea9816ca6aa3bbf97c3c69957a7a
 }
