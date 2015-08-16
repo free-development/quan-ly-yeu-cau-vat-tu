@@ -178,7 +178,7 @@
 							</tr>
 						</table>
 					</form>	
-                     <form name="main-form" >
+                     <form name="main-form" method="get" action="<%=siteMap.ycvtManage%>">
                      <div class="scroll_content">
 							<%
                      	int count = 0;
@@ -253,6 +253,7 @@
 
 						</div>
 						<div class="group-button">
+							<input type="hidden" name="action" value="update-yeu-cau">
 							<button type="button" class="button" onclick="loadDataCv();">
 								<i class="fa fa-plus-circle"></i>&nbsp;Thêm mới
 							</button>
@@ -267,8 +268,7 @@
 <!-- 								<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa -->
 <!-- 							</button> -->
 							&nbsp;
-							<button class="button"
-								onclick="showForm('main-form','update-yc-vat-tu', true)">
+							<button class="button" onclick="return checkCongVan();">
 								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Cập nhật yêu cầu vật tư
 							</button>
 							&nbsp;

@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,12 +13,8 @@ import org.hibernate.criterion.Restrictions;
 
 import model.CongVan;
 import model.File;
-=======
 import model.CongVan;
-<<<<<<< HEAD
-=======
 import model.DonVi;
->>>>>>> 41d3b75f081bea9816ca6aa3bbf97c3c69957a7a
 import model.TrangThai;
 
 import org.hibernate.Criteria;
@@ -30,7 +25,6 @@ import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
 
 import util.DateUtil;
->>>>>>> 6761f32b228d6250a93fed52d7462ad52ab21967
 import util.HibernateUtil;
 
 public class CongVanDAO {
@@ -75,7 +69,6 @@ public class CongVanDAO {
 		int result = query.executeUpdate();
 		session.getTransaction().commit();
 	}
-<<<<<<< HEAD
 	public int getLastInsert() {
 		session.beginTransaction();
 		Criteria cr =  session.createCriteria(File.class).setProjection(Projections.max("cvId"));// max("ctvtId"));
@@ -102,8 +95,6 @@ public class CongVanDAO {
 		session.getTransaction().commit();
 		return soDen;
 	}
-=======
-<<<<<<< HEAD
 	public ArrayList<CongVan> getByDate(Date ngaybd, Date ngaykt){
 		session.beginTransaction();
 		Criteria cr = session.createCriteria(CongVan.class);
@@ -125,7 +116,6 @@ public class CongVanDAO {
 		session.getTransaction().commit();
 		return congVanList;
 	}
-=======
 	public ArrayList<CongVan> getTrangThai(String ngaybd, String ngaykt,String dvMa, String ttMa){
 		session.beginTransaction();
 		Date ngayht = DateUtil.convertToSqlDate(new java.util.Date());
@@ -160,6 +150,4 @@ public class CongVanDAO {
 		session.getTransaction().commit();
 		return congVanList;
 	} 	 	
->>>>>>> 41d3b75f081bea9816ca6aa3bbf97c3c69957a7a
->>>>>>> 6761f32b228d6250a93fed52d7462ad52ab21967
 }

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oreilly.servlet.MultipartRequest;
 
 import dao.CTNguoiDungDAO;
+import dao.CTVatTuDAO;
 import dao.CongVanDAO;
 import dao.DonViDAO;
 import dao.FileDAO;
@@ -30,6 +31,7 @@ import dao.NoiSanXuatDAO;
 import dao.TrangThaiDAO;
 import map.siteMap;
 import model.CTNguoiDung;
+import model.CTVatTu;
 import model.CongVan;
 import model.DonVi;
 import model.File;
@@ -104,6 +106,7 @@ public class CvController extends HttpServlet {
 //		if("addCv".equalsIgnoreCase(action))
 		return new ModelAndView("login");
 	}
+   
     @RequestMapping("addCongVan")
     public ModelAndView addCV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //    	request.ge
@@ -172,4 +175,5 @@ public class CvController extends HttpServlet {
 	//	return toJson(nsxList);
 		return JSonUtil.toJson(cvId);
 	}
+	
 }

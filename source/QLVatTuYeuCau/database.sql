@@ -292,12 +292,18 @@ create table YEUCAU
 --   NSXMA                char(3) not null,
 --   CLMA                 char(3) not null,
 --   VTMA                 char(16) not null,
+	YCID int primary key auto_increment,
 	CTVTID int not null,
    CVID                 int not null,
    DAXOA                int,
    YCSOLUONG            int,
+   CAPSOLUONG int,
+   CONSTRAINT UNIQUE NONCLUSTERED
+(
+	CVID, CTVTID
+)
 
-   primary key (CTVTID, CVID)
+--   primary key (CTVTID, CVID)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

@@ -97,12 +97,9 @@
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="">Báo cáo</a>
 					<ul>
-<<<<<<< HEAD
 						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>">Báo cáo vật tư thiếu</a></li>
-=======
 						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
->>>>>>> 41d3b75f081bea9816ca6aa3bbf97c3c69957a7a
 					</ul>
 				</li>
 <!-- 				<li><a href="danh-muc-chia-se-cong-van.html">Chia sẻ</a></li> -->
