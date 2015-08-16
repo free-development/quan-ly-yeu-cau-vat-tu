@@ -17,7 +17,7 @@
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
-
+<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
 <script type="text/javascript" src="js/noi-san-xuat.js"></script>
 <meta charset="UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
@@ -104,8 +104,9 @@
 						<%
 							if(listNoiSanXuat != null) {
 							int count = 0;
-							for(NoiSanXuat noiSanXuat : listNoiSanXuat) {%>
-						<tr id="<%=noiSanXuat.getNsxMa()%>">
+							for(NoiSanXuat noiSanXuat : listNoiSanXuat) { count++ ;%>
+						<tr
+							<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="nsxMa" value="<%=noiSanXuat.getNsxMa() %>" class="checkbox"></td>
 							<td class="col"><%=noiSanXuat.getNsxMa() %></td>
 							<td class="col"><%=noiSanXuat.getNsxTen() %></td>
@@ -117,12 +118,10 @@
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteNsx">
 					<button type="button" class="button"  onclick="showForm('add-form', true);"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-<!-- 					<button type="button" class="button" onclick="showForm('update-form', true)"><i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi</button> -->
-						<!-- onclick="showForm('update-form', true)"-->
-						<button type="button" onclick="preUpdateNsx('update-form', true)"
+					<button type="button" onclick="preUpdateNsx('update-form', true)"
 							class="button">
 							<i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi
-						</button> <!-- onclick="return confirmDelete()" -->
+					</button> <!-- onclick="return confirmDelete()" -->
 						<button class="button" type="button" onclick="confirmDelete();">
 							<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa
 						</button>&nbsp;
@@ -135,7 +134,7 @@
 		</div>
 		</form>
 		<!-------------- --add-form-------------- -->
-		<form id="add-form" method="get" action="<%=siteMap.nsxManage%>">
+		<form id="add-form" method="get" action="<%=siteMap.nsxManage + "?action=manageNsx"%>">
 			<div class="input-table">
 				<table>
 					<div class="form-title">Thêm nơi sản xuất</div>
@@ -154,7 +153,7 @@
 				</table>
 			</div>
 			<div class="group-button">
-				<input type="hidden" name="action" value="AddNsx">
+<!-- 				<input type="hidden" name="action" value="AddNsx"> -->
 				<button class="button" type="button" onclick="addNsx();">
 					<i class="fa fa-plus-circle"></i>&nbsp;Thêm
 				</button>
@@ -176,7 +175,7 @@
 					<tr>
 						<th><label for="MNSX">Mã NSX</label></th>
 						<td><input name="nsxMaUpdate" type="text" class="text"
-							required autofocus size="2" maxlength="3"
+							required autofocus size="2" maxlength="3" style="color: #D1D1E0"
 							pattern="[a-zA-Z0-9]{3}"
 							title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"
 							value="MNSX" readonly></td>

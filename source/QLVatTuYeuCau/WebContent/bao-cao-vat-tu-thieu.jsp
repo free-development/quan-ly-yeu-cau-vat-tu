@@ -213,7 +213,6 @@
 						<th class="three-column">Chất lượng</th>
 						<th class="six-column">Đơn vị tính</th>
 						<th class="one-column">Tổng số lượng thiếu</th>
-						
 					</tr>
 								<%
 							if(yeuCauHash != null){

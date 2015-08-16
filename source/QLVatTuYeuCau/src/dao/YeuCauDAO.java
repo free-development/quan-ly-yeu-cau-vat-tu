@@ -54,15 +54,6 @@ public class YeuCauDAO {
 		session.delete(yeuCau);
 		session.getTransaction().commit();
 	}
-	public ArrayList<YeuCau> getByCvId(int cvId) {
-		session.beginTransaction();
-		Criteria cr = session.createCriteria(YeuCau.class);
-		Criterion expCv = Restrictions.eq("cvId", cvId);
-		cr.add(expCv);
-		ArrayList<YeuCau> yeuCauList = (ArrayList<YeuCau>) cr.list(); 
-		session.getTransaction().commit();
-		return yeuCauList;
-	}
 //	public int getYeuCau1(final String clMa)
 //	{
 //		session.beginTransaction();

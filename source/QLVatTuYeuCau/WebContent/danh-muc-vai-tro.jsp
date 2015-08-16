@@ -14,115 +14,13 @@
 	type="text/css">
 <link rel="stylesheet" href="style/style.css" type="text/css">
 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery.min.js"></script>
+
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
-<script type="text/javascript">
-	function showForm(formId, check){
-		if (check)
-			document.getElementById(formId).style.display="block";
-		else document.getElementById(formId).style.display="none";
-		var f = document.getElementById('main-form'), s, opacity;
-		s = f.style;
-		opacity = check? '10' : '100';
-		s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-		s.filter = 'alpha(opacity='+opacity+')';
-		for(var i=0; i<f.length; i++) f[i].disabled = check;
-	}
-	function confirmDelete(){
-		return confirm('Bạn có chắc xóa');
-	}
-
-		function preUpdateVt(formId, check){
-			vtId = $('input:checkbox[name=vtId]:checked').val();
-				$.ajax({
-					url: "/QLVatTuYeuCau/preEditVt.html",
-					type: "GET",
-					dataType: "JSON",
-					data: {"vtId": vtId},
-					contentType: "application/json",
-					mimeType: "application/json",
-					
-					success: function(vt){
-						
-						$('input:text[name=vtIdUpdate]').val(vt.vtId);
-					  	$('input:text[name=vtTenUpdate]').val(vt.vtTen);
-					  	
-					  	showForm(formId, check);
-					}
-					
-				});
-		}
-		function confirmDelete(){
-			vtId = $('input:checkbox[name=vtId]:checked').val();
-			if (confirm('Bạn có chắc xóa' + vtId))
-				deleteVt(vtId);
-		}
- 		
-	 	 function deleteVt(vtId) {
-			 
-			$.ajax({
-				url: "/QLVatTuYeuCau/deleteVt.html",	
-			  	type: "GET",
-			  	dateType: "JSON",
-			  	data: { "vtId": vtId},
-			  	contentType: 'application/json',
-			    mimeType: 'application/json',
-			  	success: function() {
-				  	alert(vtId + "da bi xoa");
-							$('table tr').has('input[name="vtId"]:checked').remove();
-			    } 
-			});  
-		} 
- 	 	function addVt() {
- 			vtId = $('#add-form input:text[name=vtId]').val();
- 			vtTen = $('#add-form input:text[name=vtTen]').val();
- 			$.ajax({
- 				url: "/QLVatTuYeuCau/addVt.html",	
-			  	type: "GET",
- 			  	dateType: "JSON",
- 			  	data: { "vtId": vtId, "vtTen": vtTen},
- 			  	contentType: 'application/json',
- 			    mimeType: 'application/json',
-			  	
- 			  	success: function(vt) {
-//  				  	$('input:text[name=vtId]').val(vt.vtId);
-//  				  	$('input:text[name=vtTen]').val(vt.vtTen);
-					$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtId\" value=\"' +vt.vtId + '\"</td><td class=\"col\">'+ vtId +'</td><td class=\"col\">' + vtTen+'</td></tr>');
-			  		$('#add-form input:text[name=vtId]').val('');
-					$('#add-form input:text[name=vtTen]').val('');
-			  		showForm("add-form", false);	
- 			  	}
- 			});
- 		}
- 	 	function confirmUpdateVt(){
-			var vtIdUpdate = $('input:text[name=vtIdUpdate]').val();
-			var vtTenUpdate = $('input:text[name=vtTenUpdate]').val();
-			if (confirm('Bạn có chắc thay đổi vai trò có mã ' + vtIdUpdate))
-				updateVt(vtIdUpdate, vtTenUpdate);
-		}
- 	 	function updateVt(vtIdUpdate, vtTenUpdate) {
-
-			$.ajax({
-				url: "/QLVatTuYeuCau/updateVt.html",	
-			  	type: "GET",
-			  	dateType: "JSON",
-			  	data: { "vtIdUpdate": vtIdUpdate, "vtTenUpdate": vtTenUpdate},
-			  	contentType: 'application/json',
-			    mimeType: 'application/json',
-			  	
-			  	success: function(vt) {
-			  		$('table tr').has('input[name="vtId"]:checked').remove();
-			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtId\" value=\"' +vtIdUpdate + '\"</td><td class=\"col\">'+ vtIdUpdate +'</td><td class=\"col\">' + vtTenUpdate+'</td></tr>');
-			  		$('input:text[name=vtIdUpdate]').val('');
-					vtTenUpdate = $('input:text[name=vtTenUpdate]').val('');
-			  		showForm("update-form", false);	
-			  	}
-			});
-		}
- 		
-	</script>
+<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/vaitro.js"></script>
 <script>
     $(document).ready(function() {
         $('.checkAll').click(function(event) {  //on click 
@@ -143,8 +41,8 @@
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
 <body>
+
 	<%
-    		String error = (String) request.getAttribute("error");
     		ArrayList<VaiTro> listVaiTro = (ArrayList<VaiTro>) request.getAttribute("vaiTroList");
     	%>
 	<div class="wrapper">
@@ -254,10 +152,9 @@
 					</div>
 				</form>
 				<!-------------- --add-form-------------- -->
-				<form id="add-form" method="get"
-					action="<%=siteMap.vtManage + "?action=manageVt"%>">
+				<form id="add-form" method="get" action="<%=siteMap.vtManage + "?action=manageVt"%>">
 					<div class="input-table">
-						<table>
+						<table >
 							<div class="form-title">Thêm vai trò</div>
 							<tr>
 								<th><label for="id">ID</label></th>
@@ -266,9 +163,8 @@
 									title="Mã nơi sản xuất không được trống"></td>
 							</tr>
 							<tr>
-								<th class="label"><label for="tenvaitro">Tên vai
-										trò</label></th>
-								<td><input name="vtTen" size="30px" align=left type="text"
+								<th class="label"><label for="tenvaitro">Tên vai trò</label></th>
+								<td><input name="vtTen" size="30px" type="text"
 									class="text" required title="Tên vai trò không được để trống"></td>
 							</tr>
 						</table>
@@ -295,7 +191,7 @@
 							<div class="form-title">Cập nhật vai trò</div>
 							<tr>
 								<th><label for="id">ID</label></th>
-								<td><input name="vtIdUpdate" type="text" class="text"
+								<td><input name="vtIdUpdate" type="text" class="text" style="color: #D1D1E0"
 									required title="ID vai trò không để trống" readonly></td>
 							</tr>
 							<tr>
@@ -321,7 +217,6 @@
 				</form>
 			</div>
 		</div>
-
 	</div>
 </body>
 </html>

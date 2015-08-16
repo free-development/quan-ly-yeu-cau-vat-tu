@@ -81,11 +81,12 @@
 
 #add-form {
 	display: none;
-	width: 30%;;
+	width: 26%;;
 	left: 35%;
-	right: 35%;
-	top: 65%;
-	bottom: 65%;
+	/*right: 35%;*/
+	/*top: 20%;*/
+/*	bottom: 40%;*/
+	height: 35%;
 	position: absolute;
 	background-color: #DCEAF5;
 	border-radius: 10px;
@@ -97,7 +98,8 @@
 
 #update-form {
 	display: none;
-	width: 30%;;
+	width: 30%;
+	height: 40%;
 	left: 35%;
 	right: 35%;
 	top: 65%;

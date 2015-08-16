@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.DonVi;
 import model.NoiSanXuat;
 import util.JSonUtil;
 
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import dao.DonViDAO;
 import dao.NoiSanXuatDAO;
 
 
@@ -75,26 +77,30 @@ public class NsxController extends HttpServlet {
 	@RequestMapping(value="/addNsx", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String addNsx(@RequestParam("nsxMa") String nsxMa, @RequestParam("nsxTen") String nsxTen) {
-//		System.out.println("****" + nsxMa + "****");
-//		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
-		NoiSanXuat nsx = new NoiSanXuat(nsxMa, nsxTen);
-		new NoiSanXuatDAO().addNoiSanXuat(nsx);
-		return JSonUtil.toJson(nsx);
-		/*ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
-		return toJson(nsxList);*/
+		String result = "";
+		System.out.println("MA: "+nsxMa);
+		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
+		{
+			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen));
+			System.out.println("success");
+			result = "success";	
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+			return result;
 	}
 	@RequestMapping(value="/updateNsx", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String updateNsx(@RequestParam("nsxMaUpdate") String nsxMaUpdate, @RequestParam("nsxTenUpdate") String nsxTenUpdate) {
-//		System.out.println("****" + nsxMa + "****");
-//		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
+
 		System.out.println(nsxMaUpdate);
 		System.out.println(nsxTenUpdate);
 		NoiSanXuat nsx = new NoiSanXuat(nsxMaUpdate, nsxTenUpdate);
 		new NoiSanXuatDAO().updateNoiSanXuat(nsx);
 		return JSonUtil.toJson(nsx);
-		/*ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
-		return toJson(nsxList);*/
 	}
 	@RequestMapping(value="/deleteNsx", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
