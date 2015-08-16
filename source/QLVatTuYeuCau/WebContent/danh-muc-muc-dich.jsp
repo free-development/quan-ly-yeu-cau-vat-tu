@@ -144,7 +144,7 @@
 								onclick="preUpdateMd('update-form', true)">
 								<i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi
 							</button>
-							<button class="button" onclick="confirmDeleteMsd()">
+							<button class="button" onclick="confirmDeleteMd()">
 								<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa
 							</button>
 							&nbsp;

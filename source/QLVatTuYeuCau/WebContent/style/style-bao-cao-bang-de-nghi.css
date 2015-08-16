@@ -48,16 +48,15 @@
 	margin-bottom: 20px;
 }
 
-#content {
-	margin: 0 auto;
-	width: 100%;
-}
-
 #view-table {
 	margin: 0 auto;
 	width: 960px;
 }
-
+#view-table-baocao {
+	margin: 0 auto;
+	text-align: center;
+	width: 1300px;
+}
 .group-button {
 	text-align: center;
 	margin-top: 20px;
@@ -103,45 +102,53 @@
 	margin: 0 auto;
 }
 
-.one-column {
-	width: 20px;
+.a-column {
+	width: 30px;
 	text-align: center;
 }
 
-.two-column {
-	width: 250px;
+.b-column {
+	width: 100px;
 	text-align: left;
 }
 
-.three-column {
-	width: 150px;
-	text-align: center;
-}
-
-.four-column {
+.c-column {
 	width: 100px;
 	text-align: center;
 }
 
-.five-column {
+.d-column {
+	width: 50px;
+	text-align: center;
+}
+
+.e-column {
+	width: 50px;
+	text-align: center;
+}
+
+.f-column {
 	width: 100px;
 	text-align: center;
 }
 
-.six-column {
-	width: 150px;
+.g-column {
+	width: 200px;
 	text-align: center;
 }
 
-.seven-column {
-	width: 100px;
+.h-column {
+	width: 200px;
 	text-align: center;
 }
-
-.a-column {
+.k-column {
+	width: 50px;
 	text-align: center;
 }
-
+.m-column {
+	width: 50px;
+	text-align: center;
+}
 .btn {
 	background: #199e5e;
 	border-radius: 5px;
@@ -179,4 +186,17 @@
 
 .checkbox {
 	text-align: right;
+}
+#scroll {
+	max-height: 420px;
+	/*height: 300px;*/
+	width: 1024px;
+	display: auto;
+	border: 1px solid #CCCCCC;
+	margin: 1em 0;
+	overflow: scroll;
+}
+#main-content {
+	height: 610px;
+	background-color: while;
 }

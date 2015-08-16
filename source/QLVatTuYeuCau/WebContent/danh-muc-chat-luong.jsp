@@ -17,7 +17,7 @@
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
-<script>
+<script >
     $(document).ready(function() {
         $('.checkAll').click(function(event) {  //on click 
             if(this.checked) { // check select status

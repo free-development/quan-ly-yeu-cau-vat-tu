@@ -39,22 +39,12 @@
 </head>
 <body>
 	<%
-	ArrayList<DonVi> listDonVi = (ArrayList<DonVi>) request.getAttribute("donViList");
-	ArrayList<TrangThai> listTrangThai = (ArrayList<TrangThai>) request.getAttribute("trangThaiList");
-	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
-	HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) request.getAttribute("yeuCau");
+	ArrayList<DonVi> listDonVi = (ArrayList<DonVi>) session.getAttribute("donViList");
+	ArrayList<TrangThai> listTrangThai = (ArrayList<TrangThai>) session.getAttribute("trangThaiList");
+	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) session.getAttribute("congVanList");
+	HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) session.getAttribute("yeuCau");
     %>
-    
-     <%
-	        String exportToExcel = request.getParameter("exportToExel");
-	        response.setCharacterEncoding("UTF-8");
-	        request.setCharacterEncoding("UTF-8");
-	        if (exportToExcel != null && exportToExcel.toString().equalsIgnoreCase("YES")) {
-	            response.setContentType("application/vnd.ms-excel");
-	            response.setHeader("Content-Disposition", "inline; filename=" + "excel.xls");
-	            
-	        }
-		%>
+  
 	<div class="wrapper">
 		<div class="header">
 			<div id="top_title">Văn phòng điện tử</div>
@@ -151,9 +141,10 @@
 				<br>
 				</form>
 			</div>
-			<div id="view-table">
+			<form action="">
+			<div id="view-table" style="max-height: 420px;width: 1024px;display: auto;border: 1px solid #CCCCCC;margin: 1em 0;overflow: scroll;">
 				<table>
-					<tr>
+					<tr bgcolor="lightgreen">
 						<th class="a-column">Số đến</th>
 						<th class="b-column">Ngày nhận</th>
 						<th class="c-column">Mã vật tư</th>
@@ -163,29 +154,29 @@
 						<th class="g-column">Trạng thái</th>
 						<th class="k-column">Đơn vị</th>
 						<th class="h-column">Chất lượng</th>
-						<th class="k-column">Số lượng</th>
+						<th class="m-column">Số lượng</th>
 						
 					</tr>
 							<%
 							if(yeuCauHash != null) {
 							 int cnt = 0;
-							for(CongVan congVan  : congVanList) { cnt++;
+							for(CongVan congVan  : congVanList) { 
 							ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
-							for (YeuCau yeuCau : yeuCauList) {
+							for (YeuCau yeuCau : yeuCauList) {cnt++;
 							%>
 									
 					<tr
-						<%if (cnt % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+						<%if (cnt % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 						<td class="a-column"><%=congVan.getSoDen() %></td>
 						<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
-						<td class="a-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
-						<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
-						<td class="c-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
-						<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
-						<td class="e-column"><%=congVan.getTrangThai() %></td>
-						<td class="e-column"><%=congVan.getDonVi()%></td>
-						<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
-						<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
+						<td class="c-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
+						<td class="d-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
+						<td class="e-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
+						<td class="f-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
+						<td class="g-column"><%=congVan.getTrangThai() %></td>
+						<td class="h-column"><%=congVan.getDonVi()%></td>
+						<td class="k-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
+						<td class="m-column"><%=yeuCau.getYcSoLuong() %></td>
 
 					</tr>
 					<%} }}%>
@@ -197,18 +188,15 @@
 						<i class="fa fa-print"></i>&nbsp;&nbsp;In
 					</button>
 					&nbsp;&nbsp;
-					<%
-        				if (exportToExcel == null) {
-   				 	 %>
-					<button class="button" type="button" onclick="location.href='<%=siteMap.xuatFile+".jsp"+ "?exportToExel=YES" %>'">
+					<button class="button" type="button" onclick="location.href='<%=siteMap.xuatBangDeNghi+".jsp"%>'">
 						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
 					</button>
-					<% } %>
 					&nbsp;&nbsp;
-					<button type="button" class="button" onclick="showForm('main-form')">
+					<button type="button" class="button" onclick=onclick="location.href='<%=siteMap.home+ ".jsp"%>'">
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 					</button>
 				</div>
+				</form>
 		</div>
 		</div>
 	
