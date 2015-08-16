@@ -40,17 +40,43 @@ public class TestYeuCAU {
 		ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
 		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
 		VatTuDAO vatTuDAO = new VatTuDAO();
+		MucDichDAO mucDichDAO = new MucDichDAO();
+		DonViDAO donViDAO = new DonViDAO();
+		FileDAO fileDAO = new FileDAO();
+		int id = ctVatTuDAO.getLastInsert(); 
 //
+<<<<<<< HEAD
+		ChatLuong chatLuong = new ChatLuong("CL4", "Tot");
+		NoiSanXuat nsx = new NoiSanXuat("Vn4", "Viet Nam");
+		VatTu vatTu = new VatTu("VT4", "Tru dien", "cai");
+		CTVatTu ctVatTu = new CTVatTu(1,vatTu, nsx, chatLuong, 0, 0);
+=======
 		ChatLuong chatLuong = new ChatLuong("CL7", "Tot");
 		NoiSanXuat nsx = new NoiSanXuat("Vn7", "Viet Nam");
 		VatTu vatTu = new VatTu("VT7", "Tru dien", "cai");
 		CTVatTu ctVatTu = new CTVatTu(1, vatTu, nsx, chatLuong, 0, 0);
+>>>>>>> 6761f32b228d6250a93fed52d7462ad52ab21967
 		
 		chatLuongDAO.addChatLuong(chatLuong);
 		noiSanXuatDAO.addNoiSanXuat(nsx);
 		vatTuDAO.addVatTu(vatTu);
-		ctVatTuDAO.addCTVatTu(new CTVatTu(vatTu, nsx, chatLuong, 0, 0));
+		ctVatTuDAO.addCTVatTu(ctVatTu);
 		
+<<<<<<< HEAD
+		DonVi donVi = new DonVi("SX4", "Don vi 1", "0736864271", "quoi@gmail.com", "Can Tho");
+		MucDich mucDich = new MucDich("SC4", "Sua chua lon");
+		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
+		CongVan congVan = new CongVan(id, DateUtil.convertToSqlDate(new java.util.Date()), "123", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("DGQ", "Dang giai quyet"), donVi,0);
+		
+		donViDAO.addDonVi(donVi);
+		mucDichDAO.addMucDich(mucDich);
+		
+		
+		new CongVanDAO().addCongVan(congVan);
+		fileDAO.addFile(file);
+		
+		YeuCau yeuCau = new YeuCau(id, ctVatTu, 50, 0);
+=======
 		DonVi donVi = new DonVi("SX7", "Don vi 1", "0737874271", "quoi@gmail.com", "Can Tho");
 		MucDich mucDich = new MucDich("SC7", "Sua chua lon");
 		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
@@ -67,6 +93,7 @@ public class TestYeuCAU {
 		new FileDAO().addFile(file);
 		
 		YeuCau yeuCau = new YeuCau(1, ctVatTu, 70, 0);
+>>>>>>> 6761f32b228d6250a93fed52d7462ad52ab21967
 		new YeuCauDAO().addYeuCau(yeuCau);
 		
 		

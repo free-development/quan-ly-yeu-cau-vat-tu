@@ -13,6 +13,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import model.CTVatTu;
@@ -74,16 +76,23 @@ public class CTVatTuDAO {
 		andExp = Restrictions.and(andExp, expChatLuong);
 		andExp = Restrictions.and(andExp, expVatTu);
 		cr.add(andExp);
+		
 		CTVatTu ctVatTu =  (CTVatTu) cr.list().get(0);
 		session.getTransaction().commit();
 		return ctVatTu;
 	}
 	public int getLastInsert() {
 		session.beginTransaction();
-		Query query = session.createQuery("select LAST_INSERT_ID() from model.CTVatTu");
-		int ctVatTu =  (Integer) query.list().get(0);
+		Criteria cr =  session.createCriteria(CTVatTu.class).setProjection(Projections.max("ctvtId"));// max("ctvtId"));
+		Integer idOld =  (Integer) cr.list().get(0);
+		int id = 0;
+		if (idOld != null)
+			id += idOld + 1;
+		else
+			id++;
+		
 		session.getTransaction().commit();
-		return ctVatTu;
+		return id;
 	}
 <<<<<<< HEAD
 	public HashMap<Integer, CTVatTu> getHashMap() {

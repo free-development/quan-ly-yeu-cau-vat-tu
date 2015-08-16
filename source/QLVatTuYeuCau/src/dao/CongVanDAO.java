@@ -4,6 +4,17 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+
+import model.CongVan;
+import model.File;
+=======
 import model.CongVan;
 import model.DonVi;
 import model.TrangThai;
@@ -16,6 +27,7 @@ import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
 
 import util.DateUtil;
+>>>>>>> 6761f32b228d6250a93fed52d7462ad52ab21967
 import util.HibernateUtil;
 
 public class CongVanDAO {
@@ -34,7 +46,9 @@ public class CongVanDAO {
 	}
 	public List<CongVan> getAllCongVan() {
 		session.beginTransaction();
-		List<CongVan> congVanList = (List<CongVan>) session.createCriteria(CongVan.class).list();
+		Criteria cr = session.createCriteria(CongVan.class);
+		cr.add(Restrictions.eq("daXoa", 0));
+		List<CongVan> congVanList = (List<CongVan>) cr.list();
 		session.getTransaction().commit();
 		return congVanList;
 	}
@@ -48,11 +62,48 @@ public class CongVanDAO {
 		session.update(congVan);
 		session.getTransaction().commit();
 	}
-	public void deleteCongVan(CongVan congVan){
+	public void deleteCongVan(int cvId){
 		session.beginTransaction();
-		session.delete(congVan);
+//		session.delete(congVan);
+		String hql = "UPDATE CongVan set daXoa = 1 "  + 
+	             "WHERE cvId = :cvId";
+		Query query = session.createQuery(hql);
+		query.setParameter("cvId", cvId);
+		int result = query.executeUpdate();
 		session.getTransaction().commit();
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	public int getLastInsert() {
+		session.beginTransaction();
+		Criteria cr =  session.createCriteria(File.class).setProjection(Projections.max("cvId"));// max("ctvtId"));
+		Integer idOld =  (Integer) cr.list().get(0);
+		int id = 0;
+		if (idOld != null)
+			id += idOld + 1;
+		else
+			id++;
+		
+		session.getTransaction().commit();
+		return id;
+	}
+	public int getSoDenMax() {
+		session.beginTransaction();
+		Criteria cr =  session.createCriteria(CongVan.class).setProjection(Projections.max("soDen"));// max("ctvtId"));
+		Integer idOld =  (Integer) cr.list().get(0);
+		int soDen = 0;
+		if (idOld != null)
+			soDen += idOld + 1;
+		else
+			soDen++;
+		
+		session.getTransaction().commit();
+		return soDen;
+	}
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 	public ArrayList<CongVan> getByDate(Date ngaybd, Date ngaykt){
 		session.beginTransaction();
 		Criteria cr = session.createCriteria(CongVan.class);
@@ -108,4 +159,9 @@ public class CongVanDAO {
 		session.getTransaction().commit();
 		return congVanList;
 	} 	 	
+<<<<<<< HEAD
+=======
+>>>>>>> 41d3b75f081bea9816ca6aa3bbf97c3c69957a7a
+>>>>>>> 6761f32b228d6250a93fed52d7462ad52ab21967
+>>>>>>> origin/master
 }

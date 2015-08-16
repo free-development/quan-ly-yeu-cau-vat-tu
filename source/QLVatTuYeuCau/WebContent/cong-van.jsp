@@ -1,3 +1,4 @@
+<%@page import="model.TrangThai"%>
 <%@page import="model.MucDich"%>
 <%@page import="model.DonVi"%>
 <%@page import="util.DateUtil"%>
@@ -22,6 +23,7 @@
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/cong-van.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
@@ -31,6 +33,7 @@
     	HashMap<Integer, File> fileHash = (HashMap<Integer, File>) request.getAttribute("fileHash");
     	ArrayList<DonVi> donViList = (ArrayList<DonVi>) request.getAttribute("donViList");
     	ArrayList<MucDich> mucDichList = (ArrayList<MucDich>) request.getAttribute("mucDichList");
+    	ArrayList<TrangThai> trangThaiList = (ArrayList<TrangThai>) request.getAttribute("trangThaiList");
     %>
 	<div class="wrapper">
 		<div class="header">
@@ -128,7 +131,7 @@
 
 				</div>
 				<div class="right-content">
-					<form id="main-form">
+					<form id="search-form">
 						<div class="a"></div>
 						<table>
 							<tr>
@@ -174,7 +177,9 @@
 -->
 							</tr>
 						</table>
-						<div class="scroll_content">
+					</form>	
+                     <form name="main-form" >
+                     <div class="scroll_content">
 							<%
                      	int count = 0;
                      	for(CongVan congVan : congVanList) {
@@ -182,16 +187,19 @@
                      %>
 							<table style="font-size: 16px;" class="border-congvan">
 								<tr>
-									<td class="column-check" rowspan="6"><input
-										type="checkbox"  name="cvId" value="<%=congVan.getCvId()%>"></td>
-									<td class="left-column-first">Ngày đến:</td>
+									<td class="column-check" rowspan="6">
+										<input type="checkbox" name="cvId" value="<%=congVan.getCvId()%>">
+									</td>
+									<td class="column-so-den">Số đến: &nbsp;&nbsp;</td>
+									<td class="column-so-den" style="text-align: left" colspan=2><%=congVan.getSoDen() %></td>
 
-									<td class="column-date"><%=congVan.getCvNgayNhan() %></td>
-									<td class="column-so-den">Số đến</td>
-									<td class="column-so-den"><%=congVan.getCvSo() %></td>
+									<td class="left-column">So cong van: &nbsp;&nbsp;</td>
+									<td class="column-date" style="text-align: left"><%=congVan.getCvSo() %></td>
+									
+									<td class="left-column-first" >Ngày đến: &nbsp;&nbsp;</td>
 
-									<td class="left-column">Ký hiệu</td>
-									<td class="column-date">2118/TB-PCCT</td>
+									<td class="column-date" style="text-align: left"><%=congVan.getCvNgayNhan() %></td>
+
 									<td rowspan="2">
 										<div class="file" style="text-decoration: underline;">
 											<a
@@ -205,28 +213,27 @@
 								</tr>
 								<tr>
 
-									<td class="left-column-first">Mục đích</td>
+									<td class="left-column-first">Mục đích: &nbsp;&nbsp;</td>
 
-									<td colspan="3"><%=congVan.getMucDich() %></td>
+									<td colspan="3" style="text-align: left"><%=congVan.getMucDich() %></td>
 
-									<td class="left-column">Ngày CV đi:</td>
-									<td class="column-date"><%=congVan.getCvNgayDi()%></td>
+									<td class="left-column">Ngày CV đi:&nbsp;&nbsp;</td>
+									<td class="column-date" style="text-align: left"><%=congVan.getCvNgayDi()%></td>
 								</tr>
 								<tr>
 
-									<td class="left-column-first">Nơi gửi</td>
+									<td class="left-column-first">Nơi gửi: &nbsp;&nbsp;</td>
 
-									<td colspan="6"><%= congVan.getDonVi().getDvTen()%></td>
+									<td colspan="6" style="text-align: left"><%= congVan.getDonVi().getDvTen()%></td>
 								</tr>
 								<tr>
 
-									<td class="left-column-first">Trích yếu</td>
-
-									<td colspan="6"><%= congVan.getTrichYeu()%></td>
+									<td class="left-column-first">Trích yếu: &nbsp;&nbsp;</td>
+									<td colspan="6" style="text-align: left"><%= congVan.getTrichYeu()%></td>
 								</tr>
 								<tr>
 
-									<td class="left-column-first">Bút phê</td>
+									<td class="left-column-first">Bút phê: &nbsp;&nbsp;</td>
 
 									<td colspan="6"><%= congVan.getButPhe()%></td>
 								</tr>
@@ -253,9 +260,12 @@
 								onclick="preUpdateCv('main-form','update-form', true)">
 								<i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa
 							</button>
-							<button class="button" onclick="return confirmDelete()">
+							<button class="button" type="button" onclick="confirmDelete();">
 								<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa
 							</button>
+<!-- 							<button class="button" "> -->
+<!-- 								<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa -->
+<!-- 							</button> -->
 							&nbsp;
 							<button class="button"
 								onclick="showForm('main-form','update-yc-vat-tu', true)">
@@ -278,10 +288,10 @@
 					<div class="form-title">Thêm công văn</div>
 					<div class="input-table">
 						<table>
-							<tr style="margin-bottom: 20px;">
-								<th colspan="1" style="text-align: left"><label for="soDen" style="text-align: left">Số đến</label></th>
-								<td colspan="3"><input type = "text" class="text" readonly value="123" style="background: #D1D1E0;" sise="5" name="soDen"></td>
-							</tr>
+<!-- 							<tr style="margin-bottom: 20px;"> -->
+<!-- 								<th colspan="1" style="text-align: left"><label for="soDen" style="text-align: left">Số đến</label></th> -->
+<!-- 								<td colspan="3"><input type = "text" class="text" readonly value="123" style="background: #D1D1E0;" sise="5" name="soDen"></td> -->
+<!-- 							</tr> -->
 							<tr style="margin-bottom: 20px;">
 								<th style="text-align: left" colspan="1"> <label for="soDen" style="text-align: left">Số công văn: </label></th>
 								<td colspan="3"><input type="text" class="text" name="cvSo" id="cvSo"></td>
@@ -319,10 +329,15 @@
 								<td colspan="3"><textarea class="txtarea" name="butPhe"></textarea></td>
 							</tr>
 							</tr>
-							<th  style="text-align: left;"><label
-									for="file" class="input" name="file">Tep dinh kem: </label></th>
-							<td><input type="file" id="file" name="file">
+								<th  style="text-align: left;"><label
+										for="file" class="input" name="file">Dinh kem cong van: </label></th>
+								<td colspan="3"><input type="file" id="file" name="file">
 							<tr>	
+							</tr>
+								<th  style="text-align: left;"><label
+										for="moTa" class="input" >Mo ta file: </label></th>
+								<td colspan="3"><textarea class="txtarea" name="moTa"></textarea></td>
+							<tr>
 						</table>
 					</div>
 					<div class="group-button">
@@ -344,124 +359,67 @@
 				<!--            update-form-->
 				<form id="update-form">
 					<div class="input-table">
+						<div class="input-table">
 						<table>
-							<div class="form-title">Sửa công văn</div>
+							<tr style="margin-bottom: 20px;">
+								<th colspan="1" style="text-align: left"><label for="soDen" style="text-align: left">Số đến</label></th>
+								<td colspan="3"><input type = "text" class="text" value="123" readonly style="background: #D1D1E0;" sise="5" name="soDen"></td>
+							</tr>
+							<tr style="margin-bottom: 20px;">
+								<th style="text-align: left" colspan="1"> <label for="cvSo" style="text-align: left">Số công văn: </label></th>
+								<td colspan="3"><input type="text" class="text" name="cvSo" id="cvSo" readonly style="background: #D1D1E0;"></td>
+							</tr>	
+							<tr style="margin-bottom: 20px;">	
+								<th style="text-align: left"><label for="ngayGoi" class="input">Ngày gởi: </label></th>
+								<td><input type="date" class="text" name="ngayGoiUpdate" id="ngayGoi" value=<%=DateUtil.convertToSqlDate(new java.util.Date()) %>></td>
+								<th style="text-align: left"><label for="ngayNhan" class="input">Ngày nhận: </label></th>
+								<td><input type="date" class="text" name="ngayNhanUpdate" id="ngayNhan" value=<%=DateUtil.convertToSqlDate(new java.util.Date()) %>>
+								</td>
+							</tr>
 							<tr>
-								<th style="text-align: left"><label for="MD">Mục
+								<th style="text-align: left"><label for="mucDich" class="input">Mục
 										đích</label></th>
-								<td><select class="select">
-										<option></option>
-										<option value="">Sửa chữa lớn</option>
-										<option value="">Xây dựng cơ bản</option>
-										<option value="">Sửa chữa thường xuyên</option>
-										<option value="">Sản xuất kinh doanh</option>
+								<td><select class="select" name="mucDichUpdate" id="mucDich">
+										<option disabled selected value="">Chọn mục đích</option>
+										<%for(MucDich mucDich : mucDichList) {%>
+										<option value="<%=mucDich.getMdMa()%>" name="mucDich"><%=mucDich.getMdTen()%></option>
+										<%} %>
 								</select></td>
-								<th style="text-align: left; padding-left: 20px;"><label
-									for="NG">Nơi gửi</label></th>
-								<td><select class="select">
-										<option></option>
-										<option>EVN</option>
-										<option>UBND Thành phố Cần Thơ</option>
-										<option value="">Công ty Điện lực TP.Cần Thơ</option>
-										<option value="">Ban QLDA lưới điện</option>
-										<option value="">Phòng tổ chức và nhân sự</option>
-										<option value="">Phòng kế hoạch</option>
+								<th style="text-align: left;"><label
+									for="noiGoi" class="input">Nơi gửi</label></th>
+								<td><select class="select" name="donViUpdate" id="noiGoi">
+										<option selected disabled value="">Chon noi gui</option>
+										<%for(DonVi donVi : donViList) {%>
+										<option value="<%=donVi.getDvMa()%>" ><%=donVi.getDvTen() %></option>
+										<%} %>
 								</select></td>
+							<tr>
+								<th style="text-align: left;" colspan="1"><label id="trichYeu" class="input">Trích yếu</label>
+								<td colspan="3"><textarea class="txtarea" name="trichYeuUpdate"></textarea></td>
 							</tr>
 							<tr>
-								<th style="text-align: left"><label for="N">Năm</label></th>
-								<td><select class="select">
-										<option></option>
-										<option>2015</option>
-										<option>2014</option>
-										<option>2013</option>
-										<option>2012</option>
-								</select></td>
-								<th style="text-align: left; padding-left: 20px;"><label
-									for="TN">Từ số</label></th>
-								<td><select class="select">
-										<option></option>
-										<option>2118-0</option>
-										<option>2119-0</option>
-										<option>2120-0</option>
-								</select></td>
-								<th style="text-align: left; padding-left: 20px;"><label
-									for="TS">Từ ngày</label></th>
-								<td><select class="select">
-										<option></option>
-										<option>23/06/2015</option>
-								</select></td>
+								<th style="text-align: left;" colspan="1"><label id="butPhe" class="input">But phe</label>
+								<td colspan="3"><textarea class="txtarea" name="butPheUpdate"></textarea></td>
 							</tr>
 							<tr>
-								<th style="text-align: left"><label for="KH">Ký
-										hiệu</label></th>
-								<td><input name="" size="10px" align=right type="text"
-									class="text" required title=""></td>
-								<!--
-                            <th style="text-align: left;padding-left:20px;"><label for="HT">Hình thức</label></th>
-							<td><select class="select">
-                                <option></option>
-                                </select>
-                            </td>
--->
-								<th></th>
-								<td></td>
-								<th style="text-align: left; padding-left: 20px;"><label
-									for="NK">Ngày ký</label></th>
-								<td><select class="select">
-										<option></option>
-										<option>23/06/2015</option>
-								</select></td>
+								<th style="text-align: left;"><label
+									for="file" class="input" name="file">Tep dinh kem: </label></th>
+								<td><input type="file" id="file" name="file">
 							</tr>
-							<!--
-                        <tr>
-							<th style="text-align: left"><label for="KH">Lĩnh vực</label></th>
-							<td><select class="select">
-                                <option></option>
-                                </select>
-                            </td>
-                            <th style="text-align: left;padding-left:20px;";><label for="HT">Loại TL</label></th>
-							<td><select class="select">
-                                <option></option>
-                                </select>
-                            
-						</tr>	
--->
-
-						</table>
-						<table>
-							<th style="text-align: left"><label for="TY">Trích
-									yếu</label></th>
-							<!--                            <td><input name="" size="80px" align=right type="text" class="text" required title=""></td>-->
-							<td><textarea class="txtarea"></textarea></td>
-							</tr>
-						</table>
-						<!--
-                    <table style="padding: 10px">
-                            <td style="text-align: right"><input type="checkbox" name=""</td>
-                            <th style="text-align: left;padding-right:30px;"><label for="M">Mật</label></th>
-                            <td style="text-align: right"><input type="checkbox" name=""</td>
-                            <th style="text-align: left"><label for="M">Khẩn</label></th>
-                     </table>
--->
-						<table>
 							<tr>
 								<th style="text-align: left"><label for="TT">Trạng
 										thái</label></th>
-								<td style="text-align: right; padding-left: 10px;"><input
-									type="radio" name="add"></td>
-								<th style="text-align: left"><label for="CGQ">Chưa
-										giải quyết</label></th>
-								<td style="text-align: right; padding-left: 10px;"><input
-									type="radio" name="add"></td>
-								<th style="text-align: left"><label for="DGQ">Đã
-										giải quyết</label></th>
-								<td style="text-align: right; padding-left: 10px;"><input
-									type="radio" name="add"></td>
-								<th style="text-align: left"><label for="DGQ1">Đang
-										giải quyết</label></th>
-							</tr>
+								<td style="text-align: right; padding-left: 10px;">
+									<% for (TrangThai trangThai : trangThaiList) {%>
+									<input type="radio" name="ttMaUpdate" value="<%=trangThai.getTtMa()%>" id="<%=trangThai.getTtMa()%>"> 
+									<label for="<%=trangThai.getTtMa()%>"><%=trangThai.getTtTen()%></label>&nbsp;&nbsp;&nbsp;
+									<%}%>
+								</td>
+							</tr>	
 						</table>
+						
+					</div>
+						
 					</div>
 					<div class="group-button">
 						<button class="button">
