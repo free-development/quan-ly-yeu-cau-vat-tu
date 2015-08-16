@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
  <link rel="stylesheet" href="style/style.css" type="text/css">
-<link href="style/style-bao-cao-vat-tu-thieu.css" type="text/css"
+<link href="style/style-bao-cao-vdat-tu-thieu.css" type="text/css"
 	rel="stylesheet">
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
@@ -210,7 +210,6 @@
 						<th class="three-column">Chất lượng</th>
 						<th class="six-column">Đơn vị tính</th>
 						<th class="one-column">Tổng số lượng thiếu</th>
-						
 					</tr>
 								<%
 							if(yeuCauHash != null){

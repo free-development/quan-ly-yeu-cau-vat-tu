@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import map.siteMap;
 import model.ChucDanh;
@@ -35,15 +36,17 @@ public class BcbdnController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     @RequestMapping("/manageBcbdn")
 	protected ModelAndView manageBcbdn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
+    	HttpSession session = request.getSession(false);
     	DonViDAO donVi = new DonViDAO();
     	TrangThaiDAO trangThai = new TrangThaiDAO();
     	YeuCauDAO yeuCauDAO = new YeuCauDAO();
     	String action = request.getParameter("action");
+    	
 		if ("manageBcbdn".equalsIgnoreCase(action)) {
 			ArrayList<DonVi> donViList = (ArrayList<DonVi>) new DonViDAO().getAllDonVi();
 			ArrayList<TrangThai> trangThaiList = (ArrayList<TrangThai>) new TrangThaiDAO().getAllTrangThai();
-			request.setAttribute("trangThaiList", trangThaiList);
+			session.setAttribute("trangThaiList", trangThaiList);
+			session.setAttribute("donViList", donViList);
 			return new ModelAndView("bao-cao-bang-de-nghi-cap-vat-tu","donViList", donViList);	
 		}
     	if("baocaobdn".equalsIgnoreCase(action)){
@@ -64,10 +67,11 @@ public class BcbdnController extends HttpServlet {
         				ArrayList<YeuCau> yeuCau = (ArrayList<YeuCau>) yeuCauDAO.getByCvId(cvId);
         				yeuCauHash.put(cvId,yeuCau);
         			}
-        			request.setAttribute("donViList", donViList);
-        			request.setAttribute("trangThaiList", trangThaiList);
-        			request.setAttribute("congVanList", congVanList);
-        			request.setAttribute("yeuCau", yeuCauHash);
+        			
+        			session.setAttribute("donViList", donViList);
+        			session.setAttribute("trangThaiList", trangThaiList);
+        			session.setAttribute("congVanList", congVanList);
+        			session.setAttribute("yeuCau", yeuCauHash);
     		return new ModelAndView(siteMap.baoCaoBangDeNghi);
     	}
     	  return new ModelAndView("login");

@@ -63,13 +63,13 @@ public class CTVatTuDAO {
 		session.delete(ctVatTu);
 		session.getTransaction().commit();
 	}
-	public CTVatTu getCTVatTu(final VatTu vatTu, final NoiSanXuat noiSanXuat, final ChatLuong chatLuong) {
+	public CTVatTu getCTVatTu(final String vtMa, final String nsxMa, final String clMa) {
 		session.beginTransaction();
 		
 		Criteria cr = session.createCriteria(CTVatTu.class);
-		Criterion expNoiSanXuat = Restrictions.eq("noiSanXuat", noiSanXuat);
-		Criterion expChatLuong = Restrictions.eq("chatLuong", chatLuong);
-		Criterion expVatTu = Restrictions.eq("vatTu", vatTu);
+		Criterion expNoiSanXuat = Restrictions.eq("noiSanXuat", new NoiSanXuat(nsxMa));
+		Criterion expChatLuong = Restrictions.eq("chatLuong", new ChatLuong(clMa));
+		Criterion expVatTu = Restrictions.eq("vatTu", new VatTu(vtMa));
 		LogicalExpression andExp = Restrictions.and (expChatLuong, expNoiSanXuat);
 		andExp = Restrictions.and(andExp, expChatLuong);
 		andExp = Restrictions.and(andExp, expVatTu);

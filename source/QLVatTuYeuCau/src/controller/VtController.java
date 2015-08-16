@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import util.JSonUtil;
 import dao.CTVatTuDAO;
+import dao.DonViDAO;
 import dao.NoiSanXuatDAO;
 import dao.VaiTroDAO;
 
@@ -38,20 +39,12 @@ public class VtController extends HttpServlet {
 		if("AddVaiTro".equalsIgnoreCase(action)) {
 			int vtId = Integer.parseInt(request.getParameter("vtId"));
 			String vtTen = request.getParameter("vtTen");
-			//if(vaiTroDAO.getVaiTro(vtId) != null)
-			if(new VaiTroDAO().getVaiTroDAO(vtId) != 0){
-				
-				request.setAttribute("error", "Vai trò đã tồn tại");
-
-				return new ModelAndView("danh-muc-vai-tro");
-			}
-			else{
-				vaiTroDAO.addVaiTro(new VaiTro(vtId,vtTen));
-				ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
-				return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
-			}
+			vaiTroDAO.addVaiTro(new VaiTro(vtId, vtTen));
 			
+			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
+			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
 		}
+		
 		if("deleteVaiTro".equalsIgnoreCase(action)) {
 			String[] vtIdList = request.getParameterValues("vtId");
 			for(String s : vtIdList) {
@@ -83,11 +76,27 @@ public class VtController extends HttpServlet {
 	@RequestMapping(value="/addVt", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String addVt(@RequestParam("vtId") int vtId, @RequestParam("vtTen") String vtTen) {
-		System.out.println("****" + vtId + "****");
-
-		VaiTro vt = new VaiTro(vtId, vtTen);
-		new VaiTroDAO().addVaiTro(vt);
-		return JSonUtil.toJson(vt);	
+		String result = "";
+		System.out.println("MA: "+vtId);
+		if(new VaiTroDAO().getVaiTro(vtId)==null)
+		{
+			new VaiTroDAO().addVaiTro(new VaiTro(vtId, vtTen));;
+			System.out.println("success");
+			result = "success";
+			
+			
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+			return JSonUtil.toJson(result);
+//		System.out.println("****" + vtId + "****");
+//
+//		VaiTro vt = new VaiTro(vtId, vtTen);
+//		new VaiTroDAO().addVaiTro(vt);
+//		return JSonUtil.toJson(vt);	
 	}
 	@RequestMapping(value="/updateVt", method=RequestMethod.GET, 
 		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

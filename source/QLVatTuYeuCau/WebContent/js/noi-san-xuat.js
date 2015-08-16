@@ -45,7 +45,7 @@ function showForm(formId, check){
 			  	contentType: 'application/json',
 			    mimeType: 'application/json',
 			  	success: function() {
-				  	alert(nsxMa + "da bi xoa");
+				  	alert(nsxMa + " da bi xoa");
 							$('table tr').has('input[name="nsxMa"]:checked').remove();
 			    } 
 			});  
@@ -62,14 +62,20 @@ function showForm(formId, check){
 			  	contentType: 'application/json',
 			    mimeType: 'application/json',
 			  	
-			  	success: function(nsx) {
-				  	$('input:text[name=nsxMa]').val(nsx.nsxMa);
-				  	$('input:text[name=nsxTen]').val(nsx.nsxTen);
-			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsx.nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
+			  	success: function(result) {
+			  		if (result == "success")
+			  	{
+			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
 			  		$('#add-form input:text[name=nsxMa]').val('');
 					$('#add-form input:text[name=nsxTen]').val('');
 			  		showForm("add-form", false);	
-			  	}
+			  		alert("Vai trò "+ vtId + " đã được thêm ");	
+				}
+		  		else{
+		  			alert("Vai trò "+vtId + " đã tồn tại ");
+		  		}
+			  	
+ 			  	}
 			});
 		}
 	 	

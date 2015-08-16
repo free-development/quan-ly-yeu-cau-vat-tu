@@ -42,7 +42,7 @@
 		    %>
 			
 				<div id="view-table-bao-cao" >
-					<table>
+					<table style="bgcolor: none; color: black;">
 						<thead>
 							<tr bgcolor="lightgreen">
 								<th class="one-column">Số đến</th>
@@ -110,9 +110,9 @@
 			
 	   		HashMap<Integer, CTVatTu> ctvtHash = (HashMap<Integer, CTVatTu>) session.getAttribute("ctvtHash");
 	   		HashMap<Integer, Integer> yeuCauHash = (HashMap<Integer, Integer>) session.getAttribute("yeuCau"); %>
-			<div id="view-table-bao-cao">
-				<table>
-					<tr bgcolor="lightgreen">
+			<div id="view-table-bao-cao" >
+				<table >
+					<tr style="bgcolor: none; color: black; border-width: 1px;" >
 						<th class="two-column">Mã vật tư</th>
 						<th class="three-column">Tên vật tư</th>
 						<th class="three-column">Nơi sản xuất</th>
@@ -123,14 +123,12 @@
 					</tr>
 								<%
 							if(yeuCauHash != null){
-							int count = 0;
-							for(Integer key  : yeuCauHash.keySet()) { count++;
+							for(Integer key  : yeuCauHash.keySet()) { ;
 							CTVatTu ctvt = ctvtHash.get(key);
 // 							for (YeuCau yeuCau : yeuCauList) {
 							%>
 									
-					<tr
-						<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+					<tr>
 						<td class="a-column"><%=ctvt.getVatTu().getVtMa() %></td>
 						<td class="b-column"><%=ctvt.getVatTu().getVtTen() %></td>
 						<td class="c-column"><%=ctvt.getNoiSanXuat().getNsxTen() %></td>
@@ -142,14 +140,15 @@
 				</table>
 			</div>
 
-			<div class="group-button">
+			
+				 <%
+        			if (exportToExcel == null) {
+   				 %>
+   				 <div class="group-button">
 				<button class="button" type="button">
 					<i class="fa fa-print"></i>&nbsp;&nbsp;In
 				</button>
 				&nbsp;
-				 <%
-        			if (exportToExcel == null) {
-   				 %>
 <!--     <a href="excel.jsp?exportToExcel=YES">Export to Excel</a> -->
 
 				<button class="button" type="button" onclick="location.href='<%=siteMap.xuatFile+".jsp"+ "?exportToExel=YES" %>'">
@@ -157,7 +156,7 @@
 				</button>
 				    
 				&nbsp;
-				<button type="button" class="button" onclick="location.href='<%=siteMap.baoCaoVatTuThieu+"jsp" %>'">
+				<button type="button" class="button" onclick="location.href='<%=siteMap.baoCaoVatTuThieu+".jsp" %>'">
 					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 				</button>
 			</div>

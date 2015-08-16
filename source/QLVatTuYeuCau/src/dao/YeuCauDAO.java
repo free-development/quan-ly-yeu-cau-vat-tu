@@ -54,7 +54,10 @@ public class YeuCauDAO {
 		session.delete(yeuCau);
 		session.getTransaction().commit();
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0b9431d5bf5d4f7e65aee0512507e4f7e01bd00c
 //	public int getYeuCau1(final String clMa)
 //	{
 //		session.beginTransaction();

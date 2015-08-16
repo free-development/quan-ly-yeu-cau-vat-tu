@@ -31,8 +31,7 @@ public class DonVi implements Serializable{
 	 * @param email
 	 * @param diaChi
 	 */
-	public DonVi(String dvMa, String dvTen, String sdt, String email,
-			String diaChi) {
+	public DonVi(String dvMa, String dvTen, String sdt, String diaChi, String email) {
 		this.dvMa = dvMa;
 		this.dvTen = dvTen;
 		this.sdt = sdt;

@@ -17,7 +17,7 @@
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
-<script>
+<script >
     $(document).ready(function() {
         $('.checkAll').click(function(event) {  //on click 
             if(this.checked) { // check select status
@@ -207,7 +207,7 @@
 				</div>
 				<div class="group-button">
 					<input type="hidden" name="action" value="UpdateCl">
-					<button class="button" onclick="confirmDeleteCl()" type="button">
+					<button class="button" onclick="confirmUpdateCl()" type="button">
 						<i class="fa fa-floppy-o"></i>&nbsp;Lưu lại
 					</button>
 					<button type="reset" class="button">
