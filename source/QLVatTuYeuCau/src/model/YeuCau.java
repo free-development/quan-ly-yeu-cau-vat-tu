@@ -3,9 +3,10 @@ package model;
 import java.io.Serializable;
 
 public class YeuCau implements Serializable{
-
-	private int cvId;
 	
+	private int ycId;
+	
+	private int cvId;
 	private CTVatTu ctVatTu;
 	
 
@@ -30,6 +31,7 @@ public class YeuCau implements Serializable{
 		this.ctVatTu = new CTVatTu();
 		this.ycSoLuong = 0;
 		this.daXoa = 0;
+		this.ycId = 0;
 	}
 
 	/**
@@ -38,10 +40,11 @@ public class YeuCau implements Serializable{
 	 * @param ycSoLuong
 	 * @param daXoa
 	 */
-	public YeuCau(int cvId, CTVatTu ctVatTu, int ycSoLuong) {
+	public YeuCau(int cvId, CTVatTu ctVatTu, int ycSoLuong, int daXoa) {
 		this.cvId = cvId;
 		this.ctVatTu = ctVatTu;
 		this.ycSoLuong = ycSoLuong;
+		this.daXoa = daXoa;
 	}
 	
 	/**
@@ -50,7 +53,8 @@ public class YeuCau implements Serializable{
 	 * @param ycSoLuong
 	 * @param daXoa
 	 */
-	public YeuCau(int cvId, CTVatTu ctVatTu, int ycSoLuong, int daXoa) {
+	public YeuCau(int ycId, int cvId, CTVatTu ctVatTu, int ycSoLuong, int daXoa) {
+		this.ycId = ycId;
 		this.cvId = cvId;
 		this.ctVatTu = ctVatTu;
 		this.ycSoLuong = ycSoLuong;
@@ -69,6 +73,18 @@ public class YeuCau implements Serializable{
 	 */
 	public final void setCvId(int cvId) {
 		this.cvId = cvId;
+	}
+
+	public int getYcId() {
+		return ycId;
+	}
+
+	public void setYcId(int ycId) {
+		this.ycId = ycId;
+	}
+
+	public int getDaXoa() {
+		return daXoa;
 	}
 
 	/**
@@ -99,13 +115,7 @@ public class YeuCau implements Serializable{
 		this.ycSoLuong = ycSoLuong;
 	}
 
-	/**
-	 * @return the daXoa
-	 */
-	public final int isDaXoa() {
-		return daXoa;
-	}
-
+	
 	/**
 	 * @param daXoa the daXoa to set
 	 */

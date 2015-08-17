@@ -32,6 +32,7 @@ import dao.ChucDanhDAO;
 import dao.DonViDAO;
 import dao.NguoiDungDAO;
 import dao.NoiSanXuatDAO;
+import map.siteMap;
 
 /**
  * Servlet implementation class NdController
@@ -65,7 +66,7 @@ public class NdController extends HttpServlet {
 			ArrayList<NguoiDung> nguoiDungList =  (ArrayList<NguoiDung>) nguoiDungDAO.getAllNguoiDung();
 			return new ModelAndView("them-nguoi-dung", "nguoiDungList", nguoiDungList);
 		}
-		return new ModelAndView("login");
+		return new ModelAndView(siteMap.login);
 	}
 	
 	@RequestMapping(value="/changePass", method=RequestMethod.POST, 

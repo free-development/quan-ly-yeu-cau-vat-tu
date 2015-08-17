@@ -39,8 +39,6 @@ public class CTVatTuDAO {
 		session.beginTransaction();
 		
 		CTVatTu ctvt = (CTVatTu) session.get(CTVatTu.class, ctVatTu);
-//		session.
-		
 		session.getTransaction().commit();
 		return ctvt;
 	}

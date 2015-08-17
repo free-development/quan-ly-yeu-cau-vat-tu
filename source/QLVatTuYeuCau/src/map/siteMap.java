@@ -59,12 +59,19 @@ public class siteMap {
 	public static final String congVan =  "cong-van";
 	
 	// map yeu cau vat tu
-	public static final String ycvtManage = home +  "cvManage.html";
+	public static final String ycvtManage = home +  "ycvtManage.html";
+	public static final String updateYeuCau = home + "updateYeuCau.html"; 
+	public static final String ycVatTu = "yeu-cau-vat-tu";
 	
 	// map file download file
 	public static final String  fileDownload = "download-file";
 	// map xuat file bcvtt
 		public static final String  xuatFile = "xuatFile";
 		
+<<<<<<< HEAD
+	// map login page
+	public static final String  login = "login";
+=======
 		public static final String  xuatBangDeNghi = "xuatBangDeNghi";
+>>>>>>> 0b9431d5bf5d4f7e65aee0512507e4f7e01bd00c
 }
