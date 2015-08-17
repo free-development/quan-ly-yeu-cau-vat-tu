@@ -97,8 +97,67 @@
 
 		<div id="main-content">
 			<div class="form-title">Cập nhật yêu cầu vật tư</div>
-			<form id="yc-vat-tu">
-					<div class="input-table-vt">
+			<form id="add-yeu-cau-form">
+			<fieldset style="width: 70%;">
+				<legend style="padding-left: 20px; ">Tim kiem</legend>
+				<table style="width: 40%; margin: 0 auto;">
+					<tr>
+						<td><label for="vtMa">Ma vat tu: </label></td>
+						<td><input type="text" maxlength="3" size="3px" name="vtMa" id="vtMa" class="text"></td>
+						<td><label for="vtTen">Ten vat tu: </label></td>
+						<td><input type="text" maxlength="3" size="3px" name="vtTen" id="vtMa" class="text"></td>
+					</tr>
+					<tr>
+						<td><label for="nsx">Noi san xuat: </label></td>
+						<td>
+							<select name="nsx" id="nsx" class="select">
+							<option selected disabled value="" style="text-decoration: none;">-- Chon noi san xuat --</option>
+							<% for(NoiSanXuat nsx : nsxList) {%>
+								<option value=<%=nsx.getNsxMa() %>><%=nsx.getNsxTen() %></option>
+							<%} %>
+							</select>
+						</td>
+						<td><label for="chatLuong">Chat luong: </label></td>
+						<td>
+							<select name="chatLuong" id="chatLuong" class="select">
+							<option selected disabled value="" style="text-decoration: none;">-- Chon chat luong --</option>
+							<% for(ChatLuong chatLuong : chatLuongList) {%>
+								<option value=<%=chatLuong.getClMa() %>><%=chatLuong.getClTen()  %></option>
+							<%} %>
+							</select>
+						</td>
+					</tr>
+					
+				</table>
+				<div class="group-button">
+					<button class="button" type="button" onclick="searchCtvt();">Tim kiem</button>
+				</div>
+			</fieldset>
+			<div id="view-search">
+				<table>
+					<tr><th >Ma vat tu</th><th >Ten vat tu</th><th >Noi san xuat</th><th >Chat luong</th><th >Don vi tinh</th><th ></th></tr>
+					<%
+						int countCtvt = 0;
+						for(CTVatTu ctVatTu : ctVatTuList) { 
+							countCtvt++;
+							VatTu vatTu = ctVatTu.getVatTu();
+							NoiSanXuat nsx = ctVatTu.getNoiSanXuat();
+							ChatLuong chatLuong = ctVatTu.getChatLuong();
+						%>
+						<tr <%if (countCtvt % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+							<td><%=vatTu.getVtMa() %></td>
+							<td><%=vatTu.getVtTen() %></td>
+							<td><%=nsx.getNsxTen() %></td>
+							<td><%=chatLuong.getClTen() %></td>
+							<td><%=vatTu.getDvt() %></td>
+							<td><input class="radio"  type="radio" name="ctvtId" value="<%=ctVatTu.getCtvtId() %>" onchange="addSoLuong();"> </td>
+						</tr>
+					<%}%>
+				</table>	
+				</div>	
+			</form>
+			<form id="main-form">
+					<div id="view-table" class="scroll-yeu-cau">
 <!-- 							<div class="form-title">Cập nhật yêu cầu vật tư</div> -->
 							<table>
 								<tr>
@@ -151,61 +210,8 @@
 						</div>
 				</div>
 			</form>
-			<form id="add-yeu-cau-form">
-			<fieldset>
-				<legend style="padding-left: 20px;">Tim kiem</legend>
-				<table>
-					<tr>
-						<td><label for="vtMa">Ma vat tu: </label></td>
-						<td><input type="text" maxlength="3" size="3px" name="vtMa" id="vtMa" class="text"></td>
-						<td><label for="vtTen">Ten vat tu: </label></td>
-						<td><input type="text" maxlength="3" size="3px" name="vtTen" id="vtMa" class="text"></td>
-					</tr>
-					<tr>
-						<td><label for="nsx">Noi san xuat: </label></td>
-						<td>
-							<select name="nsx" id="nsx" class="select">
-							<option selected disabled value="" style="text-decoration: none;">-- Chon noi san xuat --</option>
-							<% for(NoiSanXuat nsx : nsxList) {%>
-								<option value=<%=nsx.getNsxMa() %>><%=nsx.getNsxTen() %></option>
-							<%} %>
-							</select>
-						</td>
-						<td><label for="chatLuong">Chat luong: </label></td>
-						<td>
-							<select name="chatLuong" id="chatLuong" class="select">
-							<option selected disabled value="" style="text-decoration: none;">-- Chon chat luong --</option>
-							<% for(NoiSanXuat nsx : nsxList) {%>
-								<option value=<%=nsx.getNsxMa() %>><%=nsx.getNsxTen() %></option>
-							<%} %>
-							</select>
-						</td>
-					</tr>
-				</table>
-			</fieldset>
 			
-				<table id="view-table">
-					<tr><th >Ma vat tu</th><th >Ten vat tu</th><th >Noi san xuat</th><th >Chat luong</th><th >Don vi tinh</th><th ></th></tr>
-					<%
-						int countCtvt = 0;
-						for(CTVatTu ctVatTu : ctVatTuList) { 
-							countCtvt++;
-							VatTu vatTu = ctVatTu.getVatTu();
-							NoiSanXuat nsx = ctVatTu.getNoiSanXuat();
-							ChatLuong chatLuong = ctVatTu.getChatLuong();
-						%>
-						<tr <%if (countCtvt % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
-							<td><%=vatTu.getVtMa() %></td>
-							<td><%=vatTu.getVtTen() %></td>
-							<td><%=nsx.getNsxTen() %></td>
-							<td><%=chatLuong.getClTen() %></td>
-							<td><%=vatTu.getDvt() %></td>
-							<td><input class="radio"  type="radio" name="<%=ctVatTu.getCtvtId() %>"> </td>
-						</tr>
-					<%}%>
-				</table>		
-			</form>
-			<form id="add-so-luong">
+			<form id="add-so-luong-form">
 			<table>
 				<tr><th >Ma vat tu</th><th >Ten vat tu</th><th >Noi san xuat</th><th >Chat luong</th><th >Don vi tinh</th><th >So luong</th></tr>
 				<tr>
