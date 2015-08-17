@@ -55,7 +55,22 @@ public class TestYeuCAU {
 //		VatTu vatTu = new VatTu("VT4", "Tru dien", "cai");
 //		CTVatTu ctVatTu = new CTVatTu(1,vatTu, nsx, chatLuong, 0, 0);
 		
+<<<<<<< HEAD
 		
+=======
+<<<<<<< HEAD
+		ChatLuong chatLuong = new ChatLuong("CL8", "Tot TotS");
+		NoiSanXuat nsx = new NoiSanXuat("Vn9", "Viet Nam");
+		VatTu vatTu = new VatTu("VT9", "Tru dien", "cai");
+		CTVatTu ctVatTu = new CTVatTu(id, vatTu, nsx, chatLuong, 0, 0);
+=======
+		ChatLuong chatLuong = new ChatLuong("CL0", "Tot TotS");
+		NoiSanXuat nsx = new NoiSanXuat("Vn0", "Viet Nam");
+		VatTu vatTu = new VatTu("VT0", "Tru dien", "cai");
+		CTVatTu ctVatTu = new CTVatTu(3, vatTu, nsx, chatLuong, 0, 0);
+>>>>>>> 0b9431d5bf5d4f7e65aee0512507e4f7e01bd00c
+>>>>>>> 0c89422302303aaf1aa8f0c9bbff7d2e13f3f146
+>>>>>>> 9c14c1ecbc0635c71541f69c19f8eec131b598d1
 		
 		chatLuongDAO.addChatLuong(chatLuong);
 		noiSanXuatDAO.addNoiSanXuat(nsx);
@@ -86,6 +101,7 @@ public class TestYeuCAU {
 		
 		
 		//YeuCau yeuCau = new YeuCau(id, ctVatTu, 50, 0);
+<<<<<<< HEAD
 //		DonVi donVi = new DonVi("SX0", "Don vi 3", "0977874271", "tien@gmail.com", "Can Tho");
 //		MucDich mucDich = new MucDich("SC0", "Sua chua lon");
 //		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
@@ -93,6 +109,27 @@ public class TestYeuCAU {
 //				DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co but phe", mucDich, 
 //				new TrangThai("DGQ", "Dang giai quyet"), donVi);
 //		CongVan congVan = new CongVan(4, DateUtil.convertToSqlDate(new java.util.Date()), "123", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("CGQ", "Chua giai quyet"), donVi,0);
+=======
+		DonVi donVi = new DonVi("SX9", "Don vi 3", "0977874271", "tien@gmail.com", "Can Tho");
+		MucDich mucDich = new MucDich("SC7", "Sua chua lon");
+		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
+<<<<<<< HEAD
+
+//		CongVan congVan = new CongVan(1, DateUtil.convertToSqlDate(new java.util.Date()), "123", 
+//				DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co but phe", mucDich, 
+//				new TrangThai("DGQ", "Dang giai quyet"), donVi);
+
+		CongVan congVan = new CongVan(7, DateUtil.convertToSqlDate(new java.util.Date()), "123", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("DGQ", "Dang giai quyet"), donVi,0);
+=======
+<<<<<<< HEAD
+		CongVan congVan = new CongVan(1, DateUtil.convertToSqlDate(new java.util.Date()), "123", 
+				DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co but phe", mucDich, 
+				new TrangThai("DGQ", "Dang giai quyet"), donVi);
+=======
+		CongVan congVan = new CongVan(4, DateUtil.convertToSqlDate(new java.util.Date()), "123", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("CGQ", "Chua giai quyet"), donVi,0);
+>>>>>>> 0b9431d5bf5d4f7e65aee0512507e4f7e01bd00c
+>>>>>>> 0c89422302303aaf1aa8f0c9bbff7d2e13f3f146
+>>>>>>> 9c14c1ecbc0635c71541f69c19f8eec131b598d1
 //		CongVan congVan = new CongVan(1, DateUtil.convertToSqlDate(new java.util.Date()), "123", 
 //				DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co but phe", mucDich, 
 //				new TrangThai("DGQ", "Dang giai quyet"), donVi);
@@ -110,12 +147,20 @@ public class TestYeuCAU {
 //		new CongVanDAO().addCongVan(congVan);
 //		fileDAO.addFile(file);
 		
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9c14c1ecbc0635c71541f69c19f8eec131b598d1
 		new MucDichDAO().addMucDich(mucDich);
 		new DonViDAO().addDonVi(donVi);
 		new CongVanDAO().addCongVan(congVan);
 		new FileDAO().addFile(file);
 		
+<<<<<<< HEAD
 //		YeuCau yeuCau = new YeuCau(3, ctVatTu, 90, 0);
+=======
+		YeuCau yeuCau = new YeuCau(id, ctVatTu, 90, 0);
+>>>>>>> 9c14c1ecbc0635c71541f69c19f8eec131b598d1
 
 		new YeuCauDAO().addYeuCau(yeuCau);
 		

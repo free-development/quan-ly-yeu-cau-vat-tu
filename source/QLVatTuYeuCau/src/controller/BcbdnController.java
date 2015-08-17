@@ -43,11 +43,21 @@ public class BcbdnController extends HttpServlet {
     	String action = request.getParameter("action");
     	
 		if ("manageBcbdn".equalsIgnoreCase(action)) {
-			ArrayList<DonVi> donViList = (ArrayList<DonVi>) new DonViDAO().getAllDonVi();
 			ArrayList<TrangThai> trangThaiList = (ArrayList<TrangThai>) new TrangThaiDAO().getAllTrangThai();
-			session.setAttribute("trangThaiList", trangThaiList);
-			session.setAttribute("donViList", donViList);
-			return new ModelAndView("bao-cao-bang-de-nghi-cap-vat-tu","donViList", donViList);	
+    		ArrayList<DonVi> donViList = (ArrayList<DonVi>) new DonViDAO().getAllDonVi();
+			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) new CongVanDAO().getAllCongVan();
+    		HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = new HashMap<Integer, ArrayList<YeuCau>>();
+    			for(CongVan congVan: congVanList){
+    				int cvId = congVan.getCvId();
+    				ArrayList<YeuCau> yeuCau = (ArrayList<YeuCau>) yeuCauDAO.getByCvId(cvId);
+    				yeuCauHash.put(cvId,yeuCau);
+    			}
+    			
+    			session.setAttribute("donViList", donViList);
+    			session.setAttribute("trangThaiList", trangThaiList);
+    			session.setAttribute("congVanList", congVanList);
+    			session.setAttribute("yeuCau", yeuCauHash);
+		return new ModelAndView(siteMap.baoCaoBangDeNghi);
 		}
     	if("baocaobdn".equalsIgnoreCase(action)){
     		ArrayList<TrangThai> trangThaiList = (ArrayList<TrangThai>) new TrangThaiDAO().getAllTrangThai();
