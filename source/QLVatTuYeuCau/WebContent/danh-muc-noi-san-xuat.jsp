@@ -17,7 +17,7 @@
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/noi-san-xuat.js"></script>
 <meta charset="UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
@@ -175,10 +175,9 @@
 					<tr>
 						<th><label for="MNSX">Mã NSX</label></th>
 						<td><input name="nsxMaUpdate" type="text" class="text"
-							required autofocus size="2" maxlength="3" style="color: #D1D1E0"
+							required  size="2" maxlength="3" style="color: #D1D1E0"
 							pattern="[a-zA-Z0-9]{3}"
-							title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"
-							value="MNSX" readonly></td>
+							title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" readonly></td>
 						<!-- 							<td><select id="select" name="nsxMa"> -->
 						<!-- 								<option>Chon nsx</option> -->
 						<!-- 							</select></td> -->
@@ -186,7 +185,7 @@
 					<tr>
 						<th><label for="MNSX">Tên NSX</label></th>
 						<td><input name="nsxTenUpdate" size="30px" type="text"
-							class="text" required
+							class="text" required autofocus
 							title="Tên nơi sản xuất không được để trống"></td>
 					</tr>
 				</table>
