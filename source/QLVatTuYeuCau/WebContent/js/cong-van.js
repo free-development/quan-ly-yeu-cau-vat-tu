@@ -12,7 +12,7 @@ function showForm(formId1, formId2, check){
 }
 function checkCongVan() {
 	var cvId = $('input:checkbox[name=cvId]:checked').val();
-	if(cvId == null)
+	if(cvId == '')
 		return false;
 }
 function confirmDelete(){

@@ -106,7 +106,7 @@ $.ajax({
 //	  	document.getElementById('personlist').getElementsByTagName('option')[11].selected = 'selected';
 //	  	$('input:text[name=cvSoUpdate]').val(congVan.cvSo);
 //  		showForm(formId, check);	
-  		$('#view-search table tr').remove();
+  		$('#view-search table #row').remove();
 //  		alert(ctVatTuList.length);
   		for(i = 0; i < ctVatTuList.length; i++){
 //  			i++;
@@ -116,9 +116,9 @@ $.ajax({
 //  			else str += '<tr>' + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtTen + '</td>'  + '<td>' + ctVatTuList[i].noiSanXuat.nsxTen + '</td>'  + '<td>' + ctVatTuList[i].chatLuong.clTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.dvt + '</td><td><input type=\"radio\" name=\"ctvtId\" value=\"' + ctVatTuList[i].ctvtId + '\"></td>' + '</tr>'; 
 //  			str += '>' + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>' + '</tr>' 
   			if (i % 2 ==0 )
-  				$('#view-search table tr:first').after('<tr style=\"background : #CCFFFF;\">' + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtTen + '</td>'  + '<td>' + ctVatTuList[i].noiSanXuat.nsxTen + '</td>'  + '<td>' + ctVatTuList[i].chatLuong.clTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.dvt + '</td><td><input type=\"radio\" name=\"ctvtId\" value=\"' + ctVatTuList[i].vatTu.dvt + '\"></td>' + '</tr>');
+  				$('#view-search table tr:first').after('<tr id="row" style=\"background : #CCFFFF;\">' + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtTen + '</td>'  + '<td>' + ctVatTuList[i].noiSanXuat.nsxTen + '</td>'  + '<td>' + ctVatTuList[i].chatLuong.clTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.dvt + '</td><td><input type=\"radio\" name=\"ctvtId\" value=\"' + ctVatTuList[i].vatTu.dvt + '\"></td>' + '</tr>');
   			else
-  				$('#view-search table tr:first').after('<tr>' + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.noiSanXuat.nsxTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.chatLuong.clTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.dvt + '</td><td><input type=\"radio\" name=\"ctvtId\" value=\"' + ctVatTuList[i].vatTu.dvt + '\"></td>' + '</tr>');
+  				$('#view-search table tr:first').after('<tr id="row">' + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.noiSanXuat.nsxTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.chatLuong.clTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.dvt + '</td><td><input type=\"radio\" name=\"ctvtId\" value=\"' + ctVatTuList[i].vatTu.dvt + '\"></td>' + '</tr>');
 //  			$('#view-search table tr:last').after(str);
 //  			alert( ctVatTuList[i].vatTu.vtMa);
 //  			alert('ok');
@@ -129,10 +129,9 @@ $.ajax({
 }
 function preAddSoLuong(){
 	ctvtId = $('input:radio[name=ctvtId]').val();
-	alert(ctvtId);
-	
+	alert(5);
 	$.ajax({
-		url: "/QuanLyVatTu/preAddSoLuong.html",	
+		url: "/QLVatTuYeuCau/preAddSoLuong.html",	
 	  	type: "GET",
 	  	dateType: "JSON",
 	  	data: { "ctvtId": ctvtId},
@@ -140,12 +139,31 @@ function preAddSoLuong(){
 	    mimeType: 'application/json',
 	  	
 	  	success: function(ctvt) {
-		  	$('input:text[name=nsxMa]').val(nsx.nsxMa);
-		  	$('input:text[name=nsxTen]').val(nsx.nsxTen);
-	  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsx.nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
-	  		$('#add-form input:text[name=nsxMa]').val('');
-			$('#add-form input:text[name=nsxTen]').val('');
-	  		showForm("add-form", false);	
+	  		$('#vtMaAdd').html(ctvt.vatTu.vtMa);
+//	  		alert('OK');
+	  		$('#vtTenAdd').html(ctvt.vatTu.vtTen);
+	  		$('#nsxTenAdd').html(ctvt.noiSanXuat.nsxTen);
+	  		$('#clTenAdd').html(ctvt.chatLuong.clTen);
+	  		$('#dvtAdd').html(ctvt.vatTu.dvt);
+	  	}
+	});
+		
+	showForm('search-form','add-so-luong-form',true);
+}
+function addSoLuong(){
+	soLuong = $('input:number[name=soLuongAdd]').val();
+	alert(5);
+	$.ajax({
+		url: "/QLVatTuYeuCau/addSoLuong.html",	
+	  	type: "GET",
+	  	dateType: "JSON",
+	  	data: { "soLuong": soLuong},
+	  	contentType: 'application/json',
+	    mimeType: 'application/json',
+	  	
+	  	success: function(result) {
+	  		if(result == "success")
+	  			alert('them so luong thanh cong');
 	  	}
 	});
 		

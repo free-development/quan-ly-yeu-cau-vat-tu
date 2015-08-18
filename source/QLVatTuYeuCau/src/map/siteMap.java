@@ -68,10 +68,7 @@ public class siteMap {
 	// map xuat file bcvtt
 		public static final String  xuatFile = "xuatFile";
 		
-<<<<<<< HEAD
 	// map login page
 	public static final String  login = "login";
-=======
 		public static final String  xuatBangDeNghi = "xuatBangDeNghi";
->>>>>>> 0b9431d5bf5d4f7e65aee0512507e4f7e01bd00c
 }

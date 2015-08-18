@@ -61,6 +61,14 @@ public class CTVatTuDAO {
 		session.delete(ctVatTu);
 		session.getTransaction().commit();
 	}
+	public CTVatTu getCTVatTuById(final int ctvtId) {
+		session.beginTransaction();
+		
+		
+		CTVatTu ctVatTu =  (CTVatTu) session.get(CTVatTu.class, ctvtId);
+		session.getTransaction().commit();
+		return ctVatTu;
+	}
 	public CTVatTu getCTVatTu(final String vtMa, final String nsxMa, final String clMa) {
 		session.beginTransaction();
 		

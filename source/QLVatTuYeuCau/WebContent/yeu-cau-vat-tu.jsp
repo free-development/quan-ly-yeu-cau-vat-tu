@@ -136,6 +136,7 @@
 			<div id="view-search">
 				<table>
 					<tr><th >Ma vat tu</th><th >Ten vat tu</th><th >Noi san xuat</th><th >Chat luong</th><th >Don vi tinh</th><th ></th></tr>
+					<tr></tr>
 					<%
 						int countCtvt = 0;
 						for(CTVatTu ctVatTu : ctVatTuList) { 
@@ -144,7 +145,7 @@
 							NoiSanXuat nsx = ctVatTu.getNoiSanXuat();
 							ChatLuong chatLuong = ctVatTu.getChatLuong();
 						%>
-						<tr <%if (countCtvt % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+						<tr id="row" <%if (countCtvt % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td><%=vatTu.getVtMa() %></td>
 							<td><%=vatTu.getVtTen() %></td>
 							<td><%=nsx.getNsxTen() %></td>
@@ -220,7 +221,7 @@
 					<td><div id="clTenAdd"></div></td>
 					<td><div id="nsxTenAdd"></div></td>
 					<td><div id="dvtAdd"></div></td>
-					<td><div id="vtMaAdd"></div></td>
+<!-- 					<td><div id="vtMaAdd"></div></td> -->
 
 					<td><input type="number" min=0 autofocus  name="soLuongAdd" title="So luong phai la so!!!"  class="text" style="width: 80px;"></td>
 					<td><button class="button" type="button" onclick="addSoLuong();">Them</button></td>
