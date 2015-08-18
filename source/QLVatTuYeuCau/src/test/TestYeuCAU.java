@@ -54,18 +54,18 @@ public class TestYeuCAU {
 //		VatTu vatTu = new VatTu("VT4", "Tru dien", "cai");
 //		CTVatTu ctVatTu = new CTVatTu(1,vatTu, nsx, chatLuong, 0, 0);
 		
-		ChatLuong chatLuong = new ChatLuong("CL9", "Tot");
-		NoiSanXuat nsx = new NoiSanXuat("Vn9", "Viet Nam");
-		VatTu vatTu = new VatTu("VT9", "Tru dien", "cai");
-		CTVatTu ctVatTu = new CTVatTu(9, vatTu, nsx, chatLuong, 0, 0);
+		ChatLuong chatLuong = new ChatLuong("CL5", "Tot");
+		NoiSanXuat nsx = new NoiSanXuat("Vn5", "Viet Nam");
+		VatTu vatTu = new VatTu("VT5", "Tru dien", "cai");
+		CTVatTu ctVatTu = new CTVatTu(5, vatTu, nsx, chatLuong, 0, 0);
 		
 		chatLuongDAO.addChatLuong(chatLuong);
 		noiSanXuatDAO.addNoiSanXuat(nsx);
 		vatTuDAO.addVatTu(vatTu);
 		ctVatTuDAO.addCTVatTu(ctVatTu);
 		
-		DonVi donVi = new DonVi("SX9", "Don vi 1", "0999894991", "tien@gmail.com", "Can Tho");
-		MucDich mucDich = new MucDich("SC9", "Sua chua lon");
+		DonVi donVi = new DonVi("SX5", "Don vi 1", "0999894991", "tien@gmail.com", "Can Tho");
+		MucDich mucDich = new MucDich("SC5", "Sua chua lon");
 		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
 		CongVan congVan = new CongVan(9, DateUtil.convertToSqlDate(new java.util.Date()), "193", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("CGQ", "Chua giai quyet"), donVi,0);
 		
@@ -77,7 +77,7 @@ public class TestYeuCAU {
 		fileDAO.addFile(file);
 		
 		
-		YeuCau yeuCau = new YeuCau(id, ctVatTu, 70, 0);
+		YeuCau yeuCau = new YeuCau(id, ctVatTu, 80, 0);
 
 		new YeuCauDAO().addYeuCau(yeuCau);
 		
