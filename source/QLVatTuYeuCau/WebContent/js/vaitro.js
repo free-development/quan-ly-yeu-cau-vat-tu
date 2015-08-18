@@ -9,9 +9,6 @@ function showForm(formId, check){
 		s.filter = 'alpha(opacity='+opacity+')';
 		for(var i=0; i<f.length; i++) f[i].disabled = check;
 	}
-	function confirmDelete(){
-		return confirm('Bạn có chắc xóa');
-	}
 
 		function preUpdateVt(formId, check){
 			vtId = $('input:checkbox[name=vtId]:checked').val();
@@ -35,7 +32,7 @@ function showForm(formId, check){
 		}
 		function confirmDelete(){
 			vtId = $('input:checkbox[name=vtId]:checked').val();
-			if (confirm('Bạn có chắc xóa' + vtId))
+			if (confirm('Bạn có chắc xóa ' + vtId))
 				deleteVt(vtId);
 		}
  		
@@ -49,8 +46,9 @@ function showForm(formId, check){
 			  	contentType: 'application/json',
 			    mimeType: 'application/json',
 			  	success: function() {
-				  	alert(vtId + "da bi xoa");
-							$('table tr').has('input[name="vtId"]:checked').remove();
+			  		$('table tr').has('input[name="vtId"]:checked').remove();
+				  	alert(vtId + " da bi xoa");
+							
 			    } 
 			});  
 		} 
@@ -106,4 +104,6 @@ function showForm(formId, check){
 			  	}
 			});
 		}
- 	 	
+ 	function changeVtMa(){
+ 		
+ 	} 	

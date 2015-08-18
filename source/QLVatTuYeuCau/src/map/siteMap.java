@@ -26,6 +26,9 @@ public class siteMap {
 	
 	// map manage chi tiet vat tu 
 	public static final String ctvtManage = home +  "manageCtvt.html";
+	
+	//map manage vat tu
+	public static final String vattuManage = home + "manageVattu.html";
 	public static final String vatTu = "danh-muc-vat-tu";
 
 	// map manage nguoi dung
@@ -68,10 +71,7 @@ public class siteMap {
 	// map xuat file bcvtt
 		public static final String  xuatFile = "xuatFile";
 		
-<<<<<<< HEAD
 	// map login page
 	public static final String  login = "login";
-=======
 		public static final String  xuatBangDeNghi = "xuatBangDeNghi";
->>>>>>> 0b9431d5bf5d4f7e65aee0512507e4f7e01bd00c
 }

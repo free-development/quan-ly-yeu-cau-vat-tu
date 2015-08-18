@@ -14,10 +14,15 @@ import model.ChatLuong;
 import model.NoiSanXuat;
 import model.VatTu;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import util.JSonUtil;
 import dao.VatTuDAO;
 import dao.CTVatTuDAO;
 
@@ -44,7 +49,7 @@ public class CtvtController extends HttpServlet {
 //				System.out.println("Vat tu da ton tai");
 			if(new CTVatTuDAO().getCTVatTu(vtMa, nsxMa, clMa) != null){
 //			if(false){
-				request.setAttribute("error", "Vật tư đã tồn tại");
+				request.setAttribute("error", "Váº­t tÆ° Ä‘Ã£ tá»“n táº¡i");
 				System.out.println("Vat tu da ton tai");
 				return new ModelAndView("danh-muc-vat-tu");
 			}
@@ -73,5 +78,14 @@ public class CtvtController extends HttpServlet {
 		}
 		return new ModelAndView("login");
 	}
+   @RequestMapping(value="/showCTVatTu", method=RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String showCTVatTu(@RequestParam("vtMa")  String vtMa) {
+			
+			CTVatTuDAO ctVatTuDAO = new CTVatTuDAO();
+			ArrayList<CTVatTu> listCTVatTu = (ArrayList<CTVatTu>) ctVatTuDAO.getCTVTu(vtMa);
+			System.out.println(listCTVatTu.get(0).getVatTu().getVtTen());
+			return JSonUtil.toJson(listCTVatTu);
+		}
 
 }

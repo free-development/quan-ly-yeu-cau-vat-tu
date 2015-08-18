@@ -68,7 +68,7 @@
 								mục nơi sản xuất</a></li>
 						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
 								mục chất lượng</a></li>
-						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+						<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
 								mục vật tư</a></li>
 						<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh
 								mục bộ phận sử dụng</a></li>

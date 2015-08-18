@@ -65,16 +65,17 @@ function showForm(formId, check){
 			    mimeType: 'application/json',
 			  	
 			  	success: function(result) {
+//			  		alert(result);
 			  		if (result == "success")
 			  	{
 			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
 			  		$('#add-form input:text[name=nsxMa]').val('');
 					$('#add-form input:text[name=nsxTen]').val('');
 			  		showForm("add-form", false);	
-			  		alert("Vai trò "+ vtId + " đã được thêm ");	
+			  		alert("Vai trò "+ nsxMa + " đã được thêm ");	
 				}
 		  		else{
-		  			alert("Vai trò "+vtId + " đã tồn tại ");
+		  			alert("Vai trò "+nsxMa + " đã tồn tại ");
 		  		}
 			  	
  			  	}

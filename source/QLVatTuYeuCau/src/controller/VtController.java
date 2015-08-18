@@ -57,10 +57,6 @@ public class VtController extends HttpServlet {
 			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
 			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
 		}
-		if("manageVt".equalsIgnoreCase(action)) {
-			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
-			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
-		}
 		return new ModelAndView("login");
 	}
 	@RequestMapping(value="/preEditVt", method=RequestMethod.GET,

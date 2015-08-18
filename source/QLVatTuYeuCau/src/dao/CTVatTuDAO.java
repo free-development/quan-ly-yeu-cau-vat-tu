@@ -79,6 +79,19 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return ctVatTu;
 	}
+	public ArrayList<CTVatTu> getCTVTu(final String vtMa) {
+		session.beginTransaction();
+		
+		Criteria cr = session.createCriteria(CTVatTu.class);
+		
+		Criterion expVatTu = Restrictions.eq("vatTu", new VatTu(vtMa));
+		
+		cr.add(expVatTu);
+		
+		ArrayList<CTVatTu> ctVatTu =  (ArrayList<CTVatTu>) cr.list();
+		session.getTransaction().commit();
+		return ctVatTu;
+	}
 	public int getLastInsert() {
 		session.beginTransaction();
 		Criteria cr =  session.createCriteria(CTVatTu.class).setProjection(Projections.max("ctvtId"));// max("ctvtId"));
