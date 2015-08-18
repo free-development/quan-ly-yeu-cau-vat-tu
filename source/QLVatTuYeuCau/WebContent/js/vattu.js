@@ -136,19 +136,19 @@
 			
 			success: function(listCTVatTu){
 				alert("ok");
+				$('#view-table-chi-tiet table .rowContent').remove();
+				for(i = 0;i < listCTVatTu.length; i++ ) { 
 
-//				for(i = 0;i < listCTVatTu.length; i++ ) { 
-//
-//				$('#view-table table tr:first').after("<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\""
-//						+ listCTVatTu[i].VatTu.vtMa + "\" class=\"checkbox\"></td>"
-//				+"<td class=\"col\">" +listCTVatTu[i].vatTu.vtMa+ "</td>"
-//				+"<td class=\"col\">" +listCTVatTu[i].vatTu.vtTen+ "</td>"
-//				+"<td class=\"col\">" +listCTVatTu[i].noiSanXuat.nsxTen+ "</td>"
-//				+"<td class=\"col\">" +listCTVatTu[i].chatLuong.clTen+ "</td>"
-//				+"<td class=\"col\">" +listCTVatTu[i].vatTu.dvt+ "</td>"
-//				+"<td class=\"col\">" +listCTVatTu[i].dinhMuc+ "</td>"
-//				+"<td class=\"col\">" +listCTVatTu[i].soLuongTon+ "</td></tr>");
-//				}
+				$('#view-table-chi-tiet table tr:first').after("<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\""
+						+ listCTVatTu[i].vatTu.vtMa + "\" id=\"checkbox\"></td>"
+						+"<td class=\"col\">" +listCTVatTu[i].vatTu.vtMa+ "</td>"
+						+"<td class=\"col\">" +listCTVatTu[i].vatTu.vtTen+ "</td>"
+						+"<td class=\"col\">" +listCTVatTu[i].noiSanXuat.nsxTen+ "</td>"
+						+"<td class=\"col\">" +listCTVatTu[i].chatLuong.clTen+ "</td>"
+						+"<td class=\"col\">" +listCTVatTu[i].vatTu.dvt+ "</td>"
+						+"<td class=\"col\">" +listCTVatTu[i].dinhMuc+ "</td>"
+						+"<td class=\"col\">" +listCTVatTu[i].soLuongTon+ "</td></tr>");
+				}
 			  	showForm(formId, check);
 			}
   		});
