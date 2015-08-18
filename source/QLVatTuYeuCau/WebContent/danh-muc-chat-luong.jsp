@@ -90,8 +90,13 @@
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
 				</li>
-				<!-- 						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li> -->
-				<li><ahref"<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
+				<li><a href="">Quảnlý người dùng</a>
+					<ul>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
+						<li><a href=""/>Khôi phục mật khẩu</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
@@ -221,7 +226,6 @@
 			</form>
 		</div>
 	</div>
-
-	</div>
+	
 </body>
 </html>

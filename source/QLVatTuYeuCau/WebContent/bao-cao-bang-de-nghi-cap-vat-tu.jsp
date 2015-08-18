@@ -78,17 +78,26 @@
 								mục bộ phận sử dụng</a></li>
 						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
 								mục mục đích</a></li>
-					</ul></li>
-				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
+						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+								mục chức danh</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
 					<ul>
 						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
 				</li>
-				<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>
-				<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản
-						lý người dùng</a></li>
+				<li><a href="">Quảnlý người dùng</a>
+					<ul>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
+						<li><a href=""/>Khôi phục mật khẩu</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
@@ -123,14 +132,15 @@
 					</tr>
 				</table>
 				<table class="radio" style="margin-top: 10px;margin-left: 200px;">
-					<th style="text-align: left;padding-right:10px;">Trạng thái:</th>
-					<%						  
- 								for (TrangThai trangThai : listTrangThai)
- 								{%>  
- 								<td style="text-align: right;"><input type="radio" name="trangthai" value="<%=trangThai.getTtMa()%>"></td>
-								<td style="text-align: left;"><label class="lable1" for="CGQ"><%=trangThai.getTtTen()%></label></td>
- 								<%}  
-  					%>  
+					<th style="text-align: left;padding-right:10px;">Trạng thái:</th>				  
+ 								
+ 								<td style="text-align: right;"><input type="radio" name="trangthai" value="CGQ"></td>
+								<td style="text-align: left;"><label class="lable1" for="CGQ">Chưa giải quyết</label></td>
+								<td style="text-align: right;"><input type="radio" name="trangthai" value="DGQ"></td>
+								<td style="text-align: left;"><label class="lable1" for="CGQ">Đang giải quyết</label></td>
+								<td style="text-align: right;"><input type="radio" name="trangthai" value="DaGQ"></td>
+								<td style="text-align: left;"><label class="lable1" for="CGQ">Đã giải quyết</label></td>
+ 						
   					<td style="text-align: right;"><input type="radio"name="trangthai" value="all"></td>
 								<td style="text-align: left;"><label class="lable1" for="CGQ">Tất cả</label></td>
 				</table>
@@ -141,7 +151,6 @@
 				<br>
 				</form>
 			</div>
-			<form action="">
 			<div id="view-table" style="max-height: 420px;width: 1024px;display: auto;border: 1px solid #CCCCCC;margin: 1em 0;overflow: scroll;">
 				<table>
 					<tr bgcolor="lightgreen">
@@ -184,9 +193,6 @@
 				</div>
 				
 				<div class="group-button">
-					<button class="button" type="button">
-						<i class="fa fa-print"></i>&nbsp;&nbsp;In
-					</button>
 					&nbsp;&nbsp;
 					<button class="button" type="button" onclick="location.href='<%=siteMap.xuatBangDeNghi+".jsp"%>'">
 						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
@@ -196,7 +202,6 @@
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 					</button>
 				</div>
-				</form>
 		</div>
 		</div>
 	

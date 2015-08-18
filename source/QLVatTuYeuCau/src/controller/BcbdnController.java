@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +57,6 @@ public class BcbdnController extends HttpServlet {
     		String ngaykt = request.getParameter("ngaykt");
     		String donvi = request.getParameter("donvi");
     		String trangthai = request.getParameter("trangthai");
-    		System.out.println(ngaybd);
     		System.out.println(ngaykt);
     		System.out.println(donvi);
     		System.out.println(trangthai);
@@ -67,7 +67,8 @@ public class BcbdnController extends HttpServlet {
         				ArrayList<YeuCau> yeuCau = (ArrayList<YeuCau>) yeuCauDAO.getByCvId(cvId);
         				yeuCauHash.put(cvId,yeuCau);
         			}
-        			
+        			session.setAttribute("ngaybd", DateUtil.parseDate(ngaybd));
+        			session.setAttribute("ngaykt", DateUtil.parseDate(ngaykt));
         			session.setAttribute("donViList", donViList);
         			session.setAttribute("trangThaiList", trangThaiList);
         			session.setAttribute("congVanList", congVanList);

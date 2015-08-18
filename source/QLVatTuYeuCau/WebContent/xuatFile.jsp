@@ -1,3 +1,5 @@
+<%@page import="util.DateUtil"%>
+<%@page import="java.util.Date"%>
 <%@page import="model.YeuCau"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
@@ -23,6 +25,8 @@
 </head>
 <body>
 		<%
+		java.sql.Date ngaybd = (java.sql.Date)session.getAttribute("ngaybd");
+		java.sql.Date ngaykt = (java.sql.Date)session.getAttribute("ngaykt");
 			String loaiBc = (String) session.getAttribute("action"); 
 	        String exportToExcel = request.getParameter("exportToExel");
 	        response.setCharacterEncoding("UTF-8");
@@ -40,7 +44,9 @@
 		   		HashMap<Integer, ArrayList<YeuCau>> ctvtList = (HashMap<Integer, ArrayList<YeuCau>>) session.getAttribute("ctvtList");
 		   		
 		    %>
-			
+			<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;">Báo cáo chi tiết vật tư thiếu</div>
+		<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
+		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 				<div id="view-table-bao-cao" >
 					<table style="bgcolor: none; color: black;">
 						<thead>
@@ -87,13 +93,14 @@
 				</div>
 	
 				<div class="group-button">
-					<button class="button" type="button">
-						<i class="fa fa-print"></i>&nbsp;&nbsp;In
-					</button>
-					&nbsp;
+					
 					 <%
         				if (exportToExcel == null) {
    				 	 %>
+   				 	 <button class="button" type="button" onclick="window.print();">
+						<i class="fa fa-print"></i>&nbsp;&nbsp;In
+					</button>
+					&nbsp;
 					<button class="button" type="button" onclick="location.href='<%=siteMap.xuatFile+".jsp"+ "?exportToExel=YES" %>'">
 						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
 					</button>
@@ -110,6 +117,9 @@
 			
 	   		HashMap<Integer, CTVatTu> ctvtHash = (HashMap<Integer, CTVatTu>) session.getAttribute("ctvtHash");
 	   		HashMap<Integer, Integer> yeuCauHash = (HashMap<Integer, Integer>) session.getAttribute("yeuCau"); %>
+	   		<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;">Báo cáo tổng hợp vật tư thiếu</div>
+		<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
+		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 			<div id="view-table-bao-cao" >
 				<table >
 					<tr style="bgcolor: none; color: black; border-width: 1px;" >
@@ -145,14 +155,14 @@
         			if (exportToExcel == null) {
    				 %>
    				 <div class="group-button">
-				<button class="button" type="button">
+				<button class="button" type="button"onclick="window.print();">
 					<i class="fa fa-print"></i>&nbsp;&nbsp;In
 				</button>
 				&nbsp;
 <!--     <a href="excel.jsp?exportToExcel=YES">Export to Excel</a> -->
 
 				<button class="button" type="button" onclick="location.href='<%=siteMap.xuatFile+".jsp"+ "?exportToExel=YES" %>'">
-					<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
+					<i class="fa fa-print"></i>&nbsp;&nbsp;Tải file
 				</button>
 				    
 				&nbsp;

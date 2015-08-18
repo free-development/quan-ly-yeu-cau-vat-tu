@@ -88,19 +88,26 @@
 								mục bộ phận sử dụng</a></li>
 						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
 								mục mục đích</a></li>
+						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
 						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
 								mục chức danh</a></li>
-					</ul></li>
-				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo
-						cáo</a>
-						<ul>
+						
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
+					<ul>
 						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
 				</li>
-				<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản
-						lý người dùng</a></li>
+				<li><a href="">Quảnlý người dùng</a>
+					<ul>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
+						<li><a href=""/>Khôi phục mật khẩu</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>

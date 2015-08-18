@@ -32,6 +32,8 @@ public class siteMap {
 	public static final String ndManage = home +  "ndManage.html";
 	public static final String nguoiDung = "them-nguoi-dung";	
 	public static final String changePass = home +  "changePass.html";
+	public static final String loGin = home +  "loGin.html";
+	public static final String deleteNd = home +  "deleteNd.html";
 	
 	// map danh muc chuc danh
 	public static final String cdManage = home +  "manageCd.html";
@@ -67,11 +69,7 @@ public class siteMap {
 	public static final String  fileDownload = "download-file";
 	// map xuat file bcvtt
 		public static final String  xuatFile = "xuatFile";
-		
-<<<<<<< HEAD
 	// map login page
 	public static final String  login = "login";
-=======
 		public static final String  xuatBangDeNghi = "xuatBangDeNghi";
->>>>>>> 0b9431d5bf5d4f7e65aee0512507e4f7e01bd00c
 }
