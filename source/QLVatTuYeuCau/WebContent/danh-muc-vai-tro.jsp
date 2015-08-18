@@ -93,7 +93,12 @@
 								mục vai trò</a></li>
 					</ul></li>
 				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="bao-cao.html">Báo cáo</a></li>
+				<li><a href="bao-cao.html">Báo cáo</a>
+					<ul>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
 				<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
 				<li><a href="bao-cao.html">Quản lý người dùng</a></li>
 			</ul>

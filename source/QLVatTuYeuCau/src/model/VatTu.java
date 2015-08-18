@@ -40,6 +40,17 @@ public class VatTu implements Serializable{
 	public VatTu(String vtMa) {
 		this.vtMa = vtMa;
 	}
+	
+	
+	/**
+	 * @param vtMa
+	 * @param vtTen
+	 */
+	public VatTu(String vtMa, String vtTen) {
+		this.vtMa = vtMa;
+		this.vtTen = vtTen;
+	}
+	
 	/**
 	 * @param vtMa
 	 * @param vtTen

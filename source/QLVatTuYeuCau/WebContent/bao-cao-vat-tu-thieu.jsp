@@ -102,6 +102,13 @@
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
 					<ul>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>">Báo cáo vật tư thiếu</a></li>
+>>>>>>> 0c89422302303aaf1aa8f0c9bbff7d2e13f3f146
+>>>>>>> 1a77608956405c6866c16e8336dca9549c5567cd
 						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>

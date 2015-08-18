@@ -94,7 +94,7 @@
 					<ul>
 						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
 						<li><a href=""/>Khôi phục mật khẩu</li>
-					</ul>
+					</ul> 	 	 	
 				</li>
 				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
 			</ul>

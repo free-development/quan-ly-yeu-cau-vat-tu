@@ -14,6 +14,7 @@ function showForm(formId, check){
 		}
 		function preUpdateNsx(formId, check) {
 			var nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
+			alert(nsxMa);
 			$.ajax({
 				url: "/QLVatTuYeuCau/preEditNsx.html",	
 			  	type: "GET",
@@ -23,6 +24,7 @@ function showForm(formId, check){
 			    mimeType: 'application/json',
 			  	
 			  	success: function(nsx) {
+			  		alert(nsx.nsxMa);
 				  	$('input:text[name=nsxMaUpdate]').val(nsx.nsxMa);
 				  	$('input:text[name=nsxTenUpdate]').val(nsx.nsxTen);
 			  		showForm(formId, check);	
@@ -32,7 +34,7 @@ function showForm(formId, check){
 		}
 		function confirmDelete(){
 			var nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
-			if (confirm('Bạn có chắc xóa' + nsxMa))
+			if (confirm('Bạn có chắc xóa ' + nsxMa))
 				deleteNsx(nsxMa);
 		}
  		

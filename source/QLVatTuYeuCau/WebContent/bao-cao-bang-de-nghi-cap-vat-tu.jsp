@@ -182,8 +182,8 @@
 						<td class="d-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
 						<td class="e-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
 						<td class="f-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
-						<td class="g-column"><%=congVan.getTrangThai() %></td>
-						<td class="h-column"><%=congVan.getDonVi()%></td>
+						<td class="g-column"><%=congVan.getTrangThai().getTtTen() %></td>
+						<td class="h-column"><%=congVan.getDonVi().getDvTen()%></td>
 						<td class="k-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
 						<td class="m-column"><%=yeuCau.getYcSoLuong() %></td>
 
@@ -198,7 +198,7 @@
 						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
 					</button>
 					&nbsp;&nbsp;
-					<button type="button" class="button" onclick=onclick="location.href='<%=siteMap.home+ ".jsp"%>'">
+					<button type="button" class="button" onclick="location.href='<%=siteMap.home+ ".jsp"%>'">
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 					</button>
 				</div>

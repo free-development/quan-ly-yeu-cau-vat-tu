@@ -68,8 +68,10 @@ public class NsxController extends HttpServlet {
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String preEditNsx(@RequestParam("nsxMa") String nsxMa) {
 //		System.out.println("****" + nsxMa + "****");
+		System.out.println(nsxMa);
 		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
 		NoiSanXuat nsx = noiSanXuatDAO.getNoiSanXuat(nsxMa);
+		System.out.println(nsx.getNsxMa());
 		return JSonUtil.toJson(nsx);
 		/*ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
 		return toJson(nsxList);*/
