@@ -83,30 +83,38 @@
 				<li><a href="">Trang chủ</a></li>
 				<li><a href="">Danh mục</a>
 					<ul>
-						<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản xuất</a></li>
-						<li><a href="danh-muc-chat-luong.html">Danh mục chấtlượng</a></li>
-						<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-						<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử dụng</a></li>
-						<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li><li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh mục nơi sản xuất</a></li>
-						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh mục chất lượng</a></li>
-						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh mục vật tư</a></li>
-						<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh mục bộ phận sử dụng</a></li>
-						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh mục mục đích</a></li>
+						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
+								mục nơi sản xuất</a></li>
+						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
+								mục chất lượng</a></li>
+						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+								mục vật tư</a></li>
+						<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
+								mục bộ phận sử dụng</a></li>
+						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
+								mục mục đích</a></li>
 						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
-					</ul></li>
+						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+								mục chức danh</a></li>
+						
+					</ul>
+				</li>
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
-				<li><a href="">Báo cáo</a>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
 					<ul>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
 						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>">Báo cáo vật tư thiếu</a></li>
 >>>>>>> 0c89422302303aaf1aa8f0c9bbff7d2e13f3f146
+>>>>>>> 1a77608956405c6866c16e8336dca9549c5567cd
 						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
 				</li>
-<!-- 				<li><a href="danh-muc-chia-se-cong-van.html">Chia sẻ</a></li> -->
-				<li><a href="bao-cao.html">Quản lý người dùng</a></li>
+				<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản
+						lý người dùng</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
@@ -139,6 +147,8 @@
 				</fieldset>
 				
 			</form>
+			<br>
+			<br>
 			<% if("chitiet".equalsIgnoreCase(loaiBc)){
 			
 				ArrayList<CongVan> congVanList = (ArrayList<CongVan>) session.getAttribute("congVanList");			
@@ -148,9 +158,10 @@
 		    %>
 			
 				<div id="view-table-bao-cao" class="scroll">
-					<table>
+					<table style="margin: 0 auto;">
 							<tr bgcolor="lightgreen">
 								<th class="one-column">Số đến</th>
+								<th class="one-column">Số công văn</th>
 								<th class="three-column">Ngày nhận</th>
 								<th class="two-column">Mã vật tư</th>
 								<th class="three-column">Tên vật tư</th>
@@ -158,7 +169,7 @@
 								<th class="three-column">Chất lượng</th>
 								<th class="six-column">Đơn vị tính</th>
 								<th class="one-column">Số lượng thiếu</th>
-								
+								<th>Link công văn</th>
 							</tr>
 						
 									<% 								
@@ -172,6 +183,7 @@
 									<tr
 										<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
 										<td class="a-column"><%=congVan.getSoDen() %></td>
+										<td class="a-column"><%=congVan.getCvSo() %></td>
 										<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
 										<td class="a-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
 										<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
@@ -179,16 +191,13 @@
 										<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
 										<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
 										<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
+										<td><a href="">link công văn</td>
 									</tr>	
 								<%}} }%>			
 					</table>
 				</div>
 	
-				<div class="group-button">
-					<button class="button" type="button">
-						<i class="fa fa-print"></i>&nbsp;&nbsp;In
-					</button>
-					&nbsp;					 
+				<div class="group-button"style ="text-align: center;margin-top:10px;">			 
 					<button class="button" type="button" onclick="location.href='<%=siteMap.xuatFile+ ".jsp"%>'">
 						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
 					</button>
@@ -205,7 +214,7 @@
 	   		HashMap<Integer, CTVatTu> ctvtHash = (HashMap<Integer, CTVatTu>) session.getAttribute("ctvtHash");
 	   		HashMap<Integer, Integer> yeuCauHash = (HashMap<Integer, Integer>) session.getAttribute("yeuCau"); %>
 			<div id="view-table-bao-cao" class="scroll">
-				<table>
+				<table style="margin: 0 auto;">
 					<tr bgcolor="lightgreen">
 						<th class="two-column">Mã vật tư</th>
 						<th class="three-column">Tên vật tư</th>
@@ -235,11 +244,7 @@
 				</table>
 			</div>
 
-			<div class="group-button">
-				<button class="button" type="button">
-					<i class="fa fa-print"></i>&nbsp;&nbsp;In
-				</button>
-				&nbsp;
+			<div class="group-button"style ="text-align: center;margin-top:10px;">
 <!--     <a href="excel.jsp?exportToExcel=YES">Export to Excel</a> -->
 
 				<button class="button" type="button" onclick="location.href='<%=siteMap.xuatFile+ ".jsp"%>'">

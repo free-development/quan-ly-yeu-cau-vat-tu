@@ -1,4 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="map.siteMap"%>
+<%@ page language="java" contentType="text/html; charset= UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,12 +11,12 @@
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
 <link rel="stylesheet" href="style/style.css" type="text/css">
-<link rel="stylesheet" href="style/style.css" type="text/css">
-<link href="style/style-tao-tai-khoan.css" type="text/css"
+<link href="style/style-tao-doi-pass.css" type="text/css"
 	rel="stylesheet">
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
+<!--		<script type="text/javascript" src="js/check.js"></script>-->
 <script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
 
 <script type="text/javascript">
@@ -36,12 +39,13 @@
 			function checkPassword()
 				{
 					var password = document.forms["taoTaiKhoan"]["matkhau"].value;
-					var confirmPassword = document.forms["taoTaiKhoan"]["re-matkhau"].value;
+					var confirmPassword = document.forms["taoTaiKhoan"]["nlmatkhau"].value;
 					if(password != confirmPassword)
 					{
 						alert("Mật khẩu nhập lại chưa chính xác. Vui lòng kiểm tra lại!");
 						return false;
 					}
+					return true;
 				}
 		</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -73,33 +77,42 @@
 		</div>
 		<div class="main_menu">
 			<ul>
+
 				<li><a href="">Trang chủ</a></li>
 				<li><a href="">Danh mục</a>
 					<ul>
-						<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản
-								xuất
-								</p>
-						</a></li>
-						<li><a href="danh-muc-chat-luong.html">Danh mục chất
-								lượng</a></li>
-						<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-						<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử
-								dụng</a></li>
-						<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
+						<li><a href="<%=siteMap.clManage + "?action=managecl"%>">Danh
+								mục nơi sản xuất</a></li>
+						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
+								mục chất lượng</a></li>
+						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+								mục vật tư</a></li>
+						<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
+								mục bộ phận sử dụng</a></li>
+						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
+								mục mục đích</a></li>
+						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+								mục chức danh</a></li>
 					</ul></li>
 				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="bao-cao.html">Báo cáo</a></li>
-				<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
-				<li><a href="bao-cao.html">Quản lý người dùng</a></li>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
+					<ul>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản
+						lý người dùng</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
-
-		<div id="title-content">Đổi mật khẩu</div>
 		<div id="main-content">
-			<form action="" method="post" name="taoTaiKhoan">
-				<table>
-					<tr>
+			<form id="add-form" action="<%=siteMap.changePass %>" method="post"
+				name="taoTaiKhoan" action="/QLVatTuYeuCau/changePass.html">
+				<div class="input-table">
+					<table>
+						<div class="form-title">Đổi mật khẩu</div>
+						<tr>
 						<td class="input"><label for="msnv">Mã số NV</label></td>
 						<td><input type="text" autofocus required size="10"
 							maxlength="10"
@@ -126,7 +139,8 @@
 							title="Mật khẩu phải hơn 7 ký tự và nhỏ hơn 21" pattern=".{8,20}"
 							class="text" id="re-matkhau" name="re-matkhau"></td>
 					</tr>
-				</table>
+					</table>
+				</div>
 				<div class="button-group">
 					<button class="button" type="submit"
 						onclick="return checkPassword();">

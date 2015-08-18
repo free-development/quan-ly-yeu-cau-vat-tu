@@ -8,12 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -113,8 +111,36 @@ public class CTVatTuDAO {
 		}
 		return ctvtHash;
 	}
+
+	public ArrayList<CTVatTu> search(String vtMa, String vtTen, String nsx, String chatLuong) {
+		session.beginTransaction();
+		Criteria cr =  session.createCriteria(CTVatTu.class, "ctVatTu");
+		/*
+		if (vtTen != "")
+			cr.setFetchMode("ctVatTu.", mode)
+		*/
+		if (vtMa != "")
+		{	
+			Criterion expVatTu = Restrictions.eq("vatTu", new VatTu(vtMa, vtTen));
+			cr.add(expVatTu);
+		}
+		if (nsx != "") {
+			Criterion expNsx = Restrictions.eq("noiSanXuat", new NoiSanXuat(nsx));
+			cr.add(expNsx);
+		}
+		if (chatLuong != "") {
+			Criterion expChatLuong = Restrictions.eq("chatLuong", new ChatLuong(chatLuong));
+			cr.add(expChatLuong);
+		}
+		ArrayList<CTVatTu> ctVatTuList = (ArrayList<CTVatTu>) cr.list();
+		session.getTransaction().commit();
+		return ctVatTuList;
+	}
 	public static void main(String[] args) {
 //		CTVatTu ct = new CTVatTuDAO().getCTVatTu(new VatTu("666"), new NoiSanXuat("666"), new ChatLuong("666"));
-		System.out.println(new CTVatTuDAO().getLastInsert());
+		//System.out.println(new CTVatTuDAO().getLastInsert());
+		System.out.println(new CTVatTuDAO().search("", "Tru dien", "", "").size());
+		System.out.println(new CTVatTuDAO().search("", "", "", "CL4").size());
+		System.out.println(new CTVatTuDAO().search("", "", "Vn4", "").size());
 	}
 }

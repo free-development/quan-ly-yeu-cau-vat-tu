@@ -47,6 +47,8 @@ public class BcvttController extends HttpServlet {
         				ArrayList<YeuCau> yeuCau = (ArrayList<YeuCau>) yeuCauDAO.getByCvId(cvId);
         				yeuCauHash.put(cvId,yeuCau);
         			}
+        			session.setAttribute("ngaybd", DateUtil.parseDate(ngaybd));
+        			session.setAttribute("ngaykt", DateUtil.parseDate(ngaykt));
         			session.setAttribute("action", action);
         			session.setAttribute("congVanList", congVanList);
         			session.setAttribute("yeuCau", yeuCauHash);
@@ -72,6 +74,8 @@ public class BcvttController extends HttpServlet {
     				
     				yeuCauHash.put(ctVtId,soluong);
     			}
+		    		session.setAttribute("ngaybd", DateUtil.parseDate(ngaybd));
+					session.setAttribute("ngaykt", DateUtil.parseDate(ngaykt));
         			session.setAttribute("ctvtHash", ctvtHash);
         			session.setAttribute("action", action);
         			session.setAttribute("yeuCau", yeuCauHash);

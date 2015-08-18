@@ -62,26 +62,38 @@
 				<div class="main_menu">
 					<ul>
 						<li><a href="">Trang chủ</a></li>
-						<li><a>Danh mục</a>
-							<ul>
-								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
+						<li><a href="">Danh mục</a>
+					<ul>
+						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
 								mục nơi sản xuất</a></li>
 						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
 								mục chất lượng</a></li>
 						<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
 								mục vật tư</a></li>
-						<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh
+						<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
 								mục bộ phận sử dụng</a></li>
 						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
 								mục mục đích</a></li>
-						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh
-								mục vai trò</a></li>
-							</ul>
-						</li>
-						<li><a href="<%=siteMap.cvManage + "?action=manageCv"%>">Công văn</a></li>
-						<li><a href="<%=siteMap.bcvttManage + "?action=manageBcvtt"%>">Báo cáo</a></li>
-<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
-						<li><a href="<%=siteMap.ndManage + "?action=manageTk"%>">Quản lý người dùng</a></li>
+						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+								mục chức danh</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
+					<ul>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
+				<li><a href="">Quảnlý người dùng</a>
+					<ul>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
+						<li><a href=""/>Khôi phục mật khẩu</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
 					</ul>
 					<div class="clear"></div>
 				</div>

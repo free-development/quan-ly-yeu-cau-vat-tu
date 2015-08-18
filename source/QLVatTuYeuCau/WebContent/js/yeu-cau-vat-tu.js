@@ -86,3 +86,68 @@ function loadDataCv() {
 //	});
 //	showForm('main-form','update-form', true);
 //}
+function searchCtvt(formId, check) {
+var vtMa = $('input:text[name=vtMa]').val();
+var vtTen = $('input:text[name=vtTen]').val();
+var nsx = $('select[name=nsx]').val();
+var chatLuong = $('select[name=chatLuong]').val();
+//alert(vtMa + vtTen + nsx + chatLuong);
+$.ajax({
+	url: "/QLVatTuYeuCau/searchCtvt.html",	
+  	type: "GET",
+  	dateType: "JSON",
+  	data: { "vtMa": vtMa, "vtTen": vtTen, "nsx": nsx, "chatLuong": chatLuong},
+  	contentType: 'application/json',
+    mimeType: 'application/json',
+  	
+  	success: function(ctVatTuList) {
+//	  	$('input:text[name=soDensUpdate]').val(nsx.soDen);
+//	  	$('input:text[name=cvSoUpdate]').val(congVan.cvSo)
+//	  	document.getElementById('personlist').getElementsByTagName('option')[11].selected = 'selected';
+//	  	$('input:text[name=cvSoUpdate]').val(congVan.cvSo);
+//  		showForm(formId, check);	
+  		$('#view-search table tr').remove();
+//  		alert(ctVatTuList.length);
+  		for(i = 0; i < ctVatTuList.length; i++){
+//  			i++;
+//  			var str = '';
+//  			if (i % 2 == 1)
+//  				str += '<tr style=\"background : #CCFFFF;\">' + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtTen + '</td>'  + '<td>' + ctVatTuList[i].noiSanXuat.nsxTen + '</td>'  + '<td>' + ctVatTuList[i].chatLuong.clTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.dvt + '</td><td><input type=\"radio\" name=\"ctvtId\" value=\"' + ctVatTuList[i].ctvtId + '\"></td>' + '</tr>';
+//  			else str += '<tr>' + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtTen + '</td>'  + '<td>' + ctVatTuList[i].noiSanXuat.nsxTen + '</td>'  + '<td>' + ctVatTuList[i].chatLuong.clTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.dvt + '</td><td><input type=\"radio\" name=\"ctvtId\" value=\"' + ctVatTuList[i].ctvtId + '\"></td>' + '</tr>'; 
+//  			str += '>' + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>' + '</tr>' 
+  			if (i % 2 ==0 )
+  				$('#view-search table tr:first').after('<tr style=\"background : #CCFFFF;\">' + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtTen + '</td>'  + '<td>' + ctVatTuList[i].noiSanXuat.nsxTen + '</td>'  + '<td>' + ctVatTuList[i].chatLuong.clTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.dvt + '</td><td><input type=\"radio\" name=\"ctvtId\" value=\"' + ctVatTuList[i].vatTu.dvt + '\"></td>' + '</tr>');
+  			else
+  				$('#view-search table tr:first').after('<tr>' + '<td>' + ctVatTuList[i].vatTu.vtMa + '</td>'  + '<td>' + ctVatTuList[i].vatTu.vtTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.noiSanXuat.nsxTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.chatLuong.clTen + '</td>'  + '<td>' + ctVatTuList[i].vatTu.dvt + '</td><td><input type=\"radio\" name=\"ctvtId\" value=\"' + ctVatTuList[i].vatTu.dvt + '\"></td>' + '</tr>');
+//  			$('#view-search table tr:last').after(str);
+//  			alert( ctVatTuList[i].vatTu.vtMa);
+//  			alert('ok');
+		}
+  		
+  	}
+});
+}
+function preAddSoLuong(){
+	ctvtId = $('input:radio[name=ctvtId]').val();
+	alert(ctvtId);
+	
+	$.ajax({
+		url: "/QuanLyVatTu/preAddSoLuong.html",	
+	  	type: "GET",
+	  	dateType: "JSON",
+	  	data: { "ctvtId": ctvtId},
+	  	contentType: 'application/json',
+	    mimeType: 'application/json',
+	  	
+	  	success: function(ctvt) {
+		  	$('input:text[name=nsxMa]').val(nsx.nsxMa);
+		  	$('input:text[name=nsxTen]').val(nsx.nsxTen);
+	  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsx.nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
+	  		$('#add-form input:text[name=nsxMa]').val('');
+			$('#add-form input:text[name=nsxTen]').val('');
+	  		showForm("add-form", false);	
+	  	}
+	});
+		
+	showForm('search-form','add-so-luong-form',true);
+}

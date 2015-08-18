@@ -15,13 +15,13 @@
 		<property name="dinhMuc" type="int">
 			<column name="DINHMUC" />
 		</property>
-		<many-to-one name="chatLuong" class="model.ChatLuong">
+		<many-to-one name="chatLuong" class="model.ChatLuong" fetch="join">
 			<column name="CLMA" />
 		</many-to-one>
-		<many-to-one name="noiSanXuat" class="model.NoiSanXuat">
+		<many-to-one name="noiSanXuat" class="model.NoiSanXuat" fetch="join">
 			<column name="NSXMA" />
 		</many-to-one>
-		<many-to-one  name="vatTu" class="model.VatTu">
+		<many-to-one  name="vatTu" class="model.VatTu" fetch="join">
 			<column name="VTMA" />
 		</many-to-one>
 	</class>

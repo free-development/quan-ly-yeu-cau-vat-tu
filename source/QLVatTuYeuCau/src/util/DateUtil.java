@@ -44,6 +44,16 @@ public final class DateUtil {
 	 *            the date
 	 * @return the date
 	 */
+	public static final String toString(final java.sql.Date date)
+	{
+		String d = date.getDate()+"/"+date.getMonth()+"/"+date.getYear();
+		return d;
+	}
+	public static final String toString(final java.util.Date date)
+	{
+		String d = date.getDate()+"/"+date.getMonth()+"/"+date.getYear();
+		return d;
+	}
 	public static Date parseDate(final String date) {
 		Date d = null;
 		try {

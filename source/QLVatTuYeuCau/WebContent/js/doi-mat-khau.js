@@ -14,6 +14,7 @@ function showForm(formId, check){
 			}
 			function checkPassword()
 				{
+				alert("Xin chào ");	
 //				var msnv = $('input:text[name=msnv]').val();
 //				alert(msnv);
 				var passNew = $('input:password[name=passNew]').val();

@@ -8,19 +8,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.CTVatTuDAO;
 import dao.ChatLuongDAO;
 import dao.NoiSanXuatDAO;
+import dao.VaiTroDAO;
 import dao.YeuCauDAO;
 import map.siteMap;
 import model.CTVatTu;
 import model.ChatLuong;
 import model.NoiSanXuat;
+import model.VaiTro;
+import model.VatTu;
 import model.YeuCau;
+import util.JSonUtil;
 
 @Controller
 public class YcController extends HttpServlet {
@@ -46,5 +54,23 @@ public class YcController extends HttpServlet {
     	return new ModelAndView(siteMap.ycVatTu);
     	//return new ModelAndView(siteMap.login);
     }
-
+	@RequestMapping(value="/searchCtvt", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String searchCtvt(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen, @RequestParam("nsx") String nsx, @RequestParam("chatLuong") String chatLuong) {
+		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+		System.out.println("************"+vtMa + vtTen + nsx + chatLuong +"*********");
+		ArrayList<CTVatTu> ctVatTuList = ctvtDAO.search(vtMa, vtTen, nsx, chatLuong);
+		System.out.println(ctVatTuList.size());
+		return JSonUtil.toJson(ctVatTuList);
+	}
+	@RequestMapping(value="/preAddSoLuong", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String preAddSoLuong(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen, @RequestParam("nsx") String nsx, @RequestParam("chatLuong") String chatLuong) {
+		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+		System.out.println("************"+vtMa + vtTen + nsx + chatLuong +"*********");
+		ArrayList<CTVatTu> ctVatTuList = ctvtDAO.search(vtMa, vtTen, nsx, chatLuong);
+		System.out.println(ctVatTuList.size());
+		return JSonUtil.toJson(ctVatTuList);
+	}
+	
 }

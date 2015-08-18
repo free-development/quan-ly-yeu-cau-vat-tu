@@ -1,0 +1,12 @@
+--<ScriptOptions statementTerminator=";"/>
+
+ALTER TABLE `vattu`.`CHATLUONG` DROP PRIMARY KEY;
+
+DROP TABLE `vattu`.`CHATLUONG`;
+
+CREATE TABLE `vattu`.`CHATLUONG` (
+	`CLMA` CHAR(3) NOT NULL,
+	`CLTEN` VARCHAR(20),
+	PRIMARY KEY (`CLMA`)
+) ENGINE=InnoDB;
+
