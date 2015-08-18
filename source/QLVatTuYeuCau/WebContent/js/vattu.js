@@ -14,36 +14,42 @@
  			vtTen = $('#add-form input:text[name=vtTen]').val();
  			dvt = $('#add-form select[name=dvt]').val();
  			if(vtMa == '') {
- 				$('#requireVtMa').html('Vui long nhap ma vat tu');
+ 				$('#requireVtMa').html('Vui lòng nhập mã vật tư');
  			}
+ 			else if (vtTen == '')
+	 			{
+	 				$('#requireVtTen').html('Vui lòng nhập tên vật tư');
+	 			}
+ 			else if(dvt == '')
+ 				{
+ 					$('#requireDvt').html('Vui lòng chọn đơn vị tính');
+ 				}
  			else {
- 			//var chiTiet = $('#add-form button[name=chiTiet]').val();
-// 			alert(dvt);
-// 			alert(chiTie
- 			$.ajax({
- 				url: "/QLVatTuYeuCau/addVattu.html",	
-			  	type: "GET",
- 			  	dateType: "JSON",
- 			  	data: { "vtMa": vtMa, "vtTen": vtTen, "dvt": dvt},
- 			  	contentType: 'application/json',
- 			    mimeType: 'application/json',
-			  	
- 			  	success: function(result) {
-			  		if(result == "success")
-	 				{
-					$('#view-table-vat-tu table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vtMa + '\"</td><td class=\"col\">'+ vtMa +'</td><td class=\"col\">' + vtTen+'</td></tr>');
-			  		$('#add-form input:text[name=vtMa]').val('');
-					$('#add-form input:text[name=vtTen]').val('');
-					$('#add-form select[name=dvt]').val('');
-			  		showForm("add-form", false);	
-			  		alert("Vai trò "+vtMa + " đã được thêm ");	
-				}
-		  		else{
-		  			alert("Vai trò "+vtMa + " đã tồn tại ");
-		  		}
-			  	
- 			  	}
- 			});
+
+		 			$.ajax({
+		 				url: "/QLVatTuYeuCau/addVattu.html",	
+					  	type: "GET",
+		 			  	dateType: "JSON",
+		 			  	data: { "vtMa": vtMa, "vtTen": vtTen, "dvt": dvt},
+		 			  	contentType: 'application/json',
+		 			    mimeType: 'application/json',
+					  	
+		 			  	success: function(result) {
+					  		if(result == "success")
+			 				{
+							$('#view-table-vat-tu table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vtMa + '\"</td><td class=\"col\">'+ vtMa +'</td><td class=\"col\">' + vtTen+'</td></tr>');
+					  		$('#add-form input:text[name=vtMa]').val('');
+							$('#add-form input:text[name=vtTen]').val('');
+							$('#add-form select[name=dvt]').val('');
+					  		showForm("add-form", false);	
+					  		alert("Vai trò "+vtMa + " đã được thêm ");	
+						}
+				  		else{
+				  			alert("Vai trò "+vtMa + " đã tồn tại ");
+				  		}
+					  	
+		 			  	}
+		 			});
  			}
  		}
 		function preEditVattu(formId, check){
@@ -96,7 +102,7 @@
 				  	}
 				});
  	}
- 	function confirmDelete(){
+ 	function confirmDeleteVT(){
  		vtMa = $('input:checkbox[name=vtMa]:checked').val();
  		if (confirm('Bạn có chắc xóa ' + vtMa))
  			deleteVattu(vtMa);
@@ -119,7 +125,7 @@
  		    } 
  		});  
  	}
-  	function showChiTiet(formId,check, vtMa){  
+  	function showChiTiet(formId, check, vtMa){  
   		$.ajax({
   			url: "/QLVatTuYeuCau/showCTVatTu.html",
 			type: "GET",

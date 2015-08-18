@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import util.JSonUtil;
+import dao.ChatLuongDAO;
+import dao.NoiSanXuatDAO;
 import dao.VatTuDAO;
 import dao.CTVatTuDAO;
 
@@ -34,7 +36,8 @@ public class VattuController extends HttpServlet {
    @RequestMapping("/manageVattu")
 	protected ModelAndView manageCtvt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VatTuDAO vatTuDAO = new VatTuDAO();
-		
+		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
+		ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
 		String action = request.getParameter("action");
 		if("addVatTu".equalsIgnoreCase(action)) {
 			
@@ -66,7 +69,12 @@ public class VattuController extends HttpServlet {
 		}
 		if("manageVattu".equalsIgnoreCase(action)) {
 			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
-			return new ModelAndView("danh-muc-vat-tu", "vatTuList", vatTuList);
+			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.getAllNoiSanXuat();
+			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.getAllChatLuong();
+			request.setAttribute("noiSanXuatList", noiSanXuatList);
+			request.setAttribute("chatLuongList", chatLuongList);
+			request.setAttribute("vatTuList", vatTuList);
+			return new ModelAndView("danh-muc-vat-tu");
 		}
 		return new ModelAndView("login");
 	}

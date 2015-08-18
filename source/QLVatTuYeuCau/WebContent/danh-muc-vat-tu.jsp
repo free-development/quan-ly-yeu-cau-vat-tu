@@ -159,7 +159,7 @@
 					onclick="preEditVattu('update-form', true);">
 					<i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi
 				</button>
-				<button class="button" onclick="confirmDelete();">
+				<button class="button" onclick="confirmDeleteVT();">
 					<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa
 				</button>
 				&nbsp;
@@ -180,7 +180,89 @@
 			
 			
 			
-			<form id="chitiet">
+			
+					<!-- add-form-->
+			
+			<form id="add-form" method="get" action="<%=siteMap.vattuManage + "?action=manageVattu"%>">
+				<div class="input-table">
+					<table>
+						<div class="form-title" style="padding: 10px">Thêm vật tư</div>
+						<tr>
+							<th style="text-align: left"><label for="MVT">Mã vật
+									tư</label></th>
+							<td><input name="vtMa" size="5px" align=right type="text" onkeypress="changeVtMa();"
+								class="text" required autofocus size="8" maxlength="8" id="vtMa"
+								title="Mã vật tư không được để trống"><div id="requireVtMa" style="color: red"></div></td>
+						</tr>
+						<tr>
+							<th style="text-align: left"><label for="MVT">Tên vật tư</label></th>
+							<td><input name="vtTen" size="30px" align=right type="text" 
+								class="text" required title="Mã vật tư không được để trống"><div id="requireVtTen" style="color: red"></div></td>
+						</tr>
+						
+						<tr>
+							<th style="text-align: left"><label for="DVT">Đơn vị
+									tính</label></th>
+							<td><select class="select" name="dvt">
+									<option disabled selected>--Chọn--</option>
+									<option value="m">m</option>
+									<option value="cái">cái</option>
+									<option value="cuộn">cuộn</option>
+							</select><div id="requireDvt" style="color: red"></div></td>
+							
+						</tr>
+					
+					</table>
+				</div>
+				<div class="group-button">
+<!-- 					<input type="hidden" name="action" value="addVatTu"> -->
+					<button type="button" class="button" onclick="addVattu();">
+						<i class="fa fa-plus-circle"></i>&nbsp;Thêm
+					</button>
+<!-- 					<button class="button" onclick="showForm('add-chitiet', true)" > -->
+<!-- 						<i class="fa fa-plus-circle"></i>&nbsp;Thêm chi tiết -->
+					</button> 
+					<button type="reset" class="button" ><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+					<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+				</div>
+			</form>
+			
+			<form id="update-form">
+				<div class="input-table">
+					<table>
+						<div class="form-title">Cập nhật Vật tư</div>
+						<tr>
+							<th style="text-align: left"><label for="MVT">Mã vật
+									tư</label></th>
+							<td><input name="vtMaUpdate" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
+								class="text" value="10102345"></td>
+						</tr>
+						<tr>
+							<th style="text-align: left"><label for="MVT">Tên
+									vật tư</label></th>
+							<td><input name="vtTenUpdate" size="30px" align=right type="text"  
+								class="text" value="10102345"></td>
+						</tr>
+						<tr>
+							<th style="text-align: left"><label for="DVT">Đơn vị
+									tính</label></th>
+							<td><select class="select"  name="dvtUpdate">
+									<option value="">m</option>
+									<option value="">cái</option>
+									<option value="">cuộn</option>
+							</select></td>
+						</tr>
+					</table>
+				</div>
+				<div class="group-button">
+					<button class="button" onclick="confirmUpdateVattu();" ><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button> 
+					<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+					<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
+				</div>
+			</form>
+			
+			
+	<form id="chitiet">
 				<div id="view-table-chi-tiet" class="scroll-chi-tiet-vat-tu">
 
 				<table>
@@ -224,14 +306,14 @@
 					<div class="group-button">
 				<input type="hidden" name="action" value="deleteVatTu">
 				<button type="button" class="button"
-					onclick="showForm('add-form', true)">
-					<i class="fa fa-plus-circle"></i>&nbsp;Thêm
+					onclick="showForm('add-chitiet', true)">
+					<i class="fa fa-plus-circle"></i>&nbsp;Thêm chi tiết
 				</button>
 				<button type="button" class="button"
-					onclick="showForm('update-form', true)">
+					onclick="showForm('update-chitiet', true)">
 					<i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi
 				</button>
-				<button class="button" onclick="return confirmDelete()">
+				<button class="button" onclick="return confirmDeleteCTVT()">
 					<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa
 				</button>
 				&nbsp;
@@ -248,165 +330,153 @@
 				</button>
 			</div>
 		</form>
-					<!-- add-form-->
-			
-			<form id="add-form" method="get" action="<%=siteMap.vattuManage + "?action=manageVattu"%>">
-				<div class="input-table">
-					<table>
-						<div class="form-title" style="padding: 10px">Thêm vật tư</div>
-						<tr>
-							<th style="text-align: left"><label for="MVT">Mã vật
-									tư</label></th>
-							<td><input name="vtMa" size="5px" align=right type="text" onkeypress="changeVtMa();"
-								class="text" required autofocus size="8" maxlength="8" id="vtMa"
-								title="Mã vật tư không được để trống"><div id="requireVtMa"></div></td>
-						</tr>
-						<tr>
-							<th style="text-align: left"><label for="MVT">Tên
-									vật tư</label></th>
-							<td><input name="vtTen" size="30px" align=right type="text" 
-								class="text" required title="Mã vật tư không được để trống"></td>
-						</tr>
-						
-						<tr>
-							<th style="text-align: left"><label for="DVT">Đơn vị
-									tính</label></th>
-							<td><select class="select" name="dvt">
-									<option disabled selected>--Chọn--</option>
-									<option value="m">m</option>
-									<option value="cái">cái</option>
-									<option value="cuộn">cuộn</option>
-							</select></td>
-							
-						</tr>
-					
-					</table>
-				</div>
-				<div class="group-button">
-<!-- 					<input type="hidden" name="action" value="addVatTu"> -->
-					<button type="button" class="button" onclick="addVattu();">
-						<i class="fa fa-plus-circle"></i>&nbsp;Thêm
-					</button>
-<!-- 					<button class="button" onclick="showForm('add-chitiet', true)" > -->
-<!-- 						<i class="fa fa-plus-circle"></i>&nbsp;Thêm chi tiết -->
-<!-- 					</button> -->
-					<button type="reset" class="button" onclick="confirmUpdateVattu();">
-						<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
-					</button>
-					<button type="button" class="button"
-						onclick="showForm('add-form', false)">
-						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
-					</button>
-				</div>
-			</form>
 			<!-- add-chitiet -->
-			<form id="add-chitiet">
+			<form id="add-chitiet"  method="get" action="<%=siteMap.vattuManage + "?action=manageVattu"%>">
 									<div class="input-table">
 					<table>
 						<div class="form-title" style="padding: 10px">Thêm chi tiết vật tư</div>
-						<tr><th style="text-align: left"><label for="MVT">Mã vật
-									tư</label>
-							</th>
-							<td><input name="vtMa" size="5px" align=right type="text"
-								class="text" required autofocus size="8" maxlength="8"
-								title="Mã vật tư không được để trống"></td>
+						<tr>
+							<th style="text-align: left"><label for="MVT">Mã vật
+									tư</label></th>
+							<td><input name="ctvtMaAdd" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
+								class="text"></td>
 						</tr>
 						<tr>
-							<th style="text-align: left"><label for="MVT">Tên
-									vật tư</label></th>
-							<td><input name="vtTen" size="30px" align=right type="text"
-								class="text" required title="Mã vật tư không được để trống"></td>
+							<th style="text-align: left"><label for="MVT">Tên vật
+									tư</label></th>
+							<td><input name="ctvtTenAdd" size="30px" align=right type="text" readonly style="background-color: #D1D1E0;"
+								class="text" ></td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="MVT">Nơi
 									sản xuất</label></th>
-							<td><select class="select" name="nsxMa">
-									<option disabled selected>--Chọn--</option>
-									<option value="VN">Việt Nam</option>
-							</select></td>
+								<td>
+									<select 
+									title="" class="select" id="noisanxuat" name="noisanxuat" style="margin-top: 10px;">
+										<option disabled selected value="">-- Chọn nơi sản xuất --</option>
+										<%						  
+		 								
+		 								for (NoiSanXuat noiSanXuat : listNoiSanXuat)
+		 								{%>  
+		 								<option value=<%=noiSanXuat.getNsxMa()%>><%=noiSanXuat.getNsxTen()%></option> 
+		 								<%}  
+		  								%>  
+									</select><div id="requireNSX"></div>
+								</td>
+						</tr>
+						
+						<tr>
+							<th style="text-align: left"><label for="MVT">Đơn vị tính</label></th>
+							<td><input name="ctvtMaAdd" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
+								class="text"></td>
 						</tr>
 						<tr>
-							<th style="text-align: left"><label for="DVT">Đơn vị
-									tính</label></th>
-							<td><select class="select" name="dvt">
-									<option disabled selected>--Chọn--</option>
-									<option value="m">m</option>
-									<option value="cái">cái</option>
-									<option value="cuộn">cuộn</option>
-							</select></td>
-							<th style="text-align: left"><label for="DM">Định
-									mức</label></th>
+							<th style="text-align: left"><label for="DM">Định mức</label></th>
 							<td><input name="dinhMuc" size="5px" align=right type="text"
-								class="text" required title="Định mức không được để trống"></td>
+								class="text" required title="Định mức không được để trống"><div id="requireDM"></div></td>
 						</tr>
 						<tr>
-							<th style="text-align: left"><label for="DVT">Chất
-									lượng</label></th>
-							<td><select class="select" name="clMa">
-									<option disabled selected>--Chọn--</option>
-									<option value="001">Hàng mới</option>
-
-							</select></td>
-							<th style="text-align: left"><label for="Sl">Số
-									lượng tồn</label></th>
-							<td><input name="soLuongTon" size="5px" align=right
-								type="text" class="text" required
-								title="Số lượng tồn không được để trống"></td>
+							<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
+								<td>
+									<select 
+											title="" class="select" id="chatluong" name="chatluong" style="margin-top: 10px;">
+												<option disabled selected value="">-- Chọn chất lượng --</option>
+												<%						  
+				 								
+				 								for (ChatLuong chatLuong : listChatLuong)
+				 								{%>  
+				 								<option value=<%=chatLuong.getClMa()%>><%=chatLuong.getClTen()%></option> 
+				 								<%}  
+				  								%>  
+									</select><div id="requireNSX"></div>
+								</td>
+						</tr>
+						<tr>
+							<th style="text-align: left"><label for="Sl">Số lượng</label></th>
+							<td>
+								<input name="soLuongTon" size="5px" align=right type="text" class="text" required title="Số lượng tồn không được để trống">
+							</td>
 						</tr>
 					</table>
 				</div>
 				<div class="group-button">
-					<input type="hidden" name="action" value="addVatTu">
-					<button class="button">
-						<i class="fa fa-plus-circle"></i>&nbsp;Thêm
-					</button>
-					<button type="reset" class="button">
-						<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
-					</button>
-					<button type="button" class="button"
-						onclick="showForm('add-chitiet', false)">
-						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
-					</button>
+					<button type="button" class="button" onclick="addCTVattu();"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
+					<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+					<button type="button" class="button" onclick="showForm('add-chitiet', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>
-			<form id="update-form">
-				<div class="input-table">
+			
+			
+			<!-- update-chitiet -->
+			<form id="update-chitiet">
+									<div class="input-table">
 					<table>
-						<div class="form-title">Cập nhật Vật tư</div>
+						<div class="form-title" style="padding: 10px">Thêm chi tiết vật tư</div>
 						<tr>
-							<th style="text-align: left"><label for="MVT">Mã vật
+							<th style="text-align: left"><label for="MVT">Mã vật tư</label></th>
+							<td><input name="ctvtMaAdd" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
+								class="text"></td>
+						</tr>
+						<tr>
+							<th style="text-align: left"><label for="MVT">Tên vật
 									tư</label></th>
-							<td><input name="vtMaUpdate" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
-								class="text" value="10102345"></td>
+							<td><input name="ctvtTenAdd" size="30px" align=right type="text" readonly style="background-color: #D1D1E0;"
+								class="text" ></td>
 						</tr>
 						<tr>
-							<th style="text-align: left"><label for="MVT">Tên
-									vật tư</label></th>
-							<td><input name="vtTenUpdate" size="30px" align=right type="text"  
-								class="text" value="10102345"></td>
+							<th style="text-align: left"><label for="MVT">Nơi
+									sản xuất</label></th>
+							<td><select 
+							title="" class="select" id="noisanxuat" name="noisanxuat" style="margin-top: 10px;">
+								<option disabled selected value="">-- Chọn nơi sản xuất --</option>
+								<%						  
+ 								
+ 								for (NoiSanXuat noiSanXuat : listNoiSanXuat)
+ 								{%>  
+ 								<option value=<%=noiSanXuat.getNsxMa()%>><%=noiSanXuat.getNsxTen()%></option> 
+ 								<%}  
+  								%>  
+						</select><div id="requireNSX"></div></td>
+						</tr>
+						
+						<tr>
+							<th style="text-align: left"><label for="MVT">Đơn vị tính</label></th>
+							<td><input name="ctvtMaAdd" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
+								class="text"></td>
 						</tr>
 						<tr>
-							<th style="text-align: left"><label for="DVT">Đơn vị
-									tính</label></th>
-							<td><select class="select"  name="dvtUpdate">
-									<option value="">m</option>
-									<option value="">cái</option>
-									<option value="">cuộn</option>
-							</select></td>
+							<th style="text-align: left"><label for="DM">Định mức</label></th>
+							<td><input name="dinhMuc" size="5px" align=right type="text"
+								class="text" required title="Định mức không được để trống"><div id="requireDM"></div></td>
+						</tr>
+						<tr>
+							<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
+								<td>
+									<select 
+											title="" class="select" id="chatluong" name="chatluong" style="margin-top: 10px;">
+												<option disabled selected value="">-- Chọn chất lượng --</option>
+												<%						  
+				 								
+				 								for (ChatLuong chatLuong : listChatLuong)
+				 								{%>  
+				 								<option value=<%=chatLuong.getClMa()%>><%=chatLuong.getClTen()%></option> 
+				 								<%}  
+				  								%>  
+									</select><div id="requireNSX"></div>
+								</td>
+						</tr>
+						<tr>
+							<th style="text-align: left"><label for="Sl">Số lượng</label></th>
+							<td>
+								<input name="soLuongTon" size="5px" align=right type="text" class="text" required title="Số lượng tồn không được để trống">
+							</td>
 						</tr>
 					</table>
 				</div>
 				<div class="group-button">
-					<button class="button">
-						<i class="fa fa-floppy-o"></i>&nbsp;Lưu lại
-					</button>
-					<button type="reset" class="button">
-						<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
-					</button>
-					<button type="button" class="button"
-						onclick="showForm('update-form')">
-						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
-					</button>
+					<button type="button" class="button" onclick="confirmUpdateCTVattu();"><i class="fa fa-plus-circle"></i>&nbsp;Lưu</button>
+					<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+					<button type="button" class="button" onclick="showForm('update-chitiet', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>
 		</div>
