@@ -63,5 +63,14 @@ public class YcController extends HttpServlet {
 		System.out.println(ctVatTuList.size());
 		return JSonUtil.toJson(ctVatTuList);
 	}
+	@RequestMapping(value="/preAddSoLuong", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String preAddSoLuong(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen, @RequestParam("nsx") String nsx, @RequestParam("chatLuong") String chatLuong) {
+		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+		System.out.println("************"+vtMa + vtTen + nsx + chatLuong +"*********");
+		ArrayList<CTVatTu> ctVatTuList = ctvtDAO.search(vtMa, vtTen, nsx, chatLuong);
+		System.out.println(ctVatTuList.size());
+		return JSonUtil.toJson(ctVatTuList);
+	}
 	
 }

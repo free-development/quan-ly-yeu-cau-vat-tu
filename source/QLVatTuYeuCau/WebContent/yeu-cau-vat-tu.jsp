@@ -150,7 +150,7 @@
 							<td><%=nsx.getNsxTen() %></td>
 							<td><%=chatLuong.getClTen() %></td>
 							<td><%=vatTu.getDvt() %></td>
-							<td><input class="radio"  type="radio" name="ctvtId" value="<%=ctVatTu.getCtvtId() %>" onchange="addSoLuong();"> </td>
+							<td><input class="radio"  type="radio" name="ctvtId" value="<%=ctVatTu.getCtvtId() %>" onchange="preAddSoLuong();"> </td>
 						</tr>
 					<%}%>
 				</table>	
@@ -215,11 +215,13 @@
 			<table>
 				<tr><th >Ma vat tu</th><th >Ten vat tu</th><th >Noi san xuat</th><th >Chat luong</th><th >Don vi tinh</th><th >So luong</th></tr>
 				<tr>
-					<td><label name="vtMaAdd"></label></td>
-					<td><label  name="vtTenAdd"></label></td>
-					<td><label  name="nsxTenAdd"></label></td>
-					<td><label name="clTenAdd" "></label></td>
-					<td><label name="dvtAdd" ></label></td>
+					<td><div id="vtMaAdd"></div></td>
+					<td><div id="vtTenAdd"></div></td>
+					<td><div id="clTenAdd"></div></td>
+					<td><div id="nsxTenAdd"></div></td>
+					<td><div id="dvtAdd"></div></td>
+					<td><div id="vtMaAdd"></div></td>
+
 					<td><input type="number" min=0 autofocus  name="soLuongAdd" title="So luong phai la so!!!"  class="text" style="width: 80px;"></td>
 					<td><button class="button" type="button" onclick="addSoLuong();">Them</button></td>
 				</tr>
