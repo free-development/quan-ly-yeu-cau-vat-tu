@@ -45,16 +45,35 @@ public class TestYeuCAU {
 		FileDAO fileDAO = new FileDAO();
 		int id = ctVatTuDAO.getLastInsert(); 
 //
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+//		ChatLuong chatLuong = new ChatLuong("CL4", "Tot");
+//		NoiSanXuat nsx = new NoiSanXuat("Vn4", "Viet Nam");
+//		VatTu vatTu = new VatTu("VT4", "Tru dien", "cai");
+//		CTVatTu ctVatTu = new CTVatTu(1,vatTu, nsx, chatLuong, 0, 0);
+=======
+>>>>>>> 8a54957e3ef71238593978418e7e54b7143eedff
 		ChatLuong chatLuong = new ChatLuong("CL4", "Tot");
 		NoiSanXuat nsx = new NoiSanXuat("Vn4", "Viet Nam");
 		VatTu vatTu = new VatTu("VT4", "Tru dien", "cai");
 		CTVatTu ctVatTu = new CTVatTu(1,vatTu, nsx, chatLuong, 0, 0);
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1a77608956405c6866c16e8336dca9549c5567cd
 //		ChatLuong chatLuong = new ChatLuong("CL4", "Tot");
 //		NoiSanXuat nsx = new NoiSanXuat("Vn4", "Viet Nam");
 //		VatTu vatTu = new VatTu("VT4", "Tru dien", "cai");
 //		CTVatTu ctVatTu = new CTVatTu(1,vatTu, nsx, chatLuong, 0, 0);
 		
+<<<<<<< HEAD
+		ChatLuong chatLuong = new ChatLuong("CL5", "Tot");
+		NoiSanXuat nsx = new NoiSanXuat("Vn5", "Viet Nam");
+		VatTu vatTu = new VatTu("VT5", "Tru dien", "cai");
+		CTVatTu ctVatTu = new CTVatTu(5, vatTu, nsx, chatLuong, 0, 0);
+=======
 <<<<<<< HEAD
 		
 =======
@@ -71,16 +90,26 @@ public class TestYeuCAU {
 >>>>>>> 0b9431d5bf5d4f7e65aee0512507e4f7e01bd00c
 >>>>>>> 0c89422302303aaf1aa8f0c9bbff7d2e13f3f146
 >>>>>>> 9c14c1ecbc0635c71541f69c19f8eec131b598d1
+>>>>>>> 1a77608956405c6866c16e8336dca9549c5567cd
 		
+>>>>>>> 8a54957e3ef71238593978418e7e54b7143eedff
 		chatLuongDAO.addChatLuong(chatLuong);
 		noiSanXuatDAO.addNoiSanXuat(nsx);
 		vatTuDAO.addVatTu(vatTu);
 		ctVatTuDAO.addCTVatTu(ctVatTu);
 		
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		DonVi donVi = new DonVi("SX5", "Don vi 1", "0999894991", "tien@gmail.com", "Can Tho");
+		MucDich mucDich = new MucDich("SC5", "Sua chua lon");
+=======
+>>>>>>> 8a54957e3ef71238593978418e7e54b7143eedff
 		DonVi donVi = new DonVi("SX4", "Don vi 1", "0736864271", "quoi@gmail.com", "Can Tho");
 		MucDich mucDich = new MucDich("SC4", "Sua chua lon");
+>>>>>>> 1a77608956405c6866c16e8336dca9549c5567cd
 		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
-		CongVan congVan = new CongVan(id, DateUtil.convertToSqlDate(new java.util.Date()), "123", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("DGQ", "Dang giai quyet"), donVi,0);
+		CongVan congVan = new CongVan(9, DateUtil.convertToSqlDate(new java.util.Date()), "193", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("CGQ", "Chua giai quyet"), donVi,0);
 		
 		donViDAO.addDonVi(donVi);
 		mucDichDAO.addMucDich(mucDich);
@@ -89,7 +118,14 @@ public class TestYeuCAU {
 		new CongVanDAO().addCongVan(congVan);
 		fileDAO.addFile(file);
 		
+<<<<<<< HEAD
+		
+		YeuCau yeuCau = new YeuCau(id, ctVatTu, 80, 0);
+=======
 		YeuCau yeuCau = new YeuCau(id, ctVatTu, 50, 0);
+<<<<<<< HEAD
+
+=======
 //		DonVi donVi = new DonVi("SX7", "Don vi 1", "0737874271", "quoi@gmail.com", "Can Tho");
 //		MucDich mucDich = new MucDich("SC7", "Sua chua lon");
 //		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
@@ -161,6 +197,8 @@ public class TestYeuCAU {
 =======
 		YeuCau yeuCau = new YeuCau(id, ctVatTu, 90, 0);
 >>>>>>> 9c14c1ecbc0635c71541f69c19f8eec131b598d1
+>>>>>>> 1a77608956405c6866c16e8336dca9549c5567cd
+>>>>>>> 8a54957e3ef71238593978418e7e54b7143eedff
 
 		new YeuCauDAO().addYeuCau(yeuCau);
 		

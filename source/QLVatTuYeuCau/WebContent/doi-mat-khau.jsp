@@ -9,47 +9,19 @@
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
 <link rel="stylesheet" href="style/style.css" type="text/css">
-<link rel="stylesheet" href="style/style.css" type="text/css">
-<link href="style/style-tao-tai-khoan.css" type="text/css"
+<link href="style/style-tao-doi-pass.css" type="text/css"
 	rel="stylesheet">
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
 <!--		<script type="text/javascript" src="js/check.js"></script>-->
 <script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
-
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/doi-mat-khau.js"></script>
 <!--         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 <style type="text/css">
-.demo {
-	position: relative;
-	margin: 20px auto;
-	width: 620px;
-	height: 28px;
-	background-color: #121212;
-	border-radius: 12px;
-	overflow: hidden;
-	border: solid 4px #121212;
-}
-
-.circle {
-	width: 20px;
-	height: 20px;
-	background-color: #86cc01;
-	position: absolute;
-	border-radius: 50%;
-	display: inline-block;
-	left: -20px;
-	top: 4px;
-}
 </style>
-<script type="text/javascript">
-var tl = new TimelineMax();
-
-tl.staggerTo(".circle", 1.5, {x:650, repeat:-1, repeatDelay:0.5, force3D:true, ease:SlowMo.ease.config(0.2, 0.5)}, 0.15)
-</script>
-
 </head>
 <body>
 	<div class="wrapper">
@@ -87,29 +59,45 @@ tl.staggerTo(".circle", 1.5, {x:650, repeat:-1, repeatDelay:0.5, force3D:true, e
 				<li><a href="">Trang chủ</a></li>
 				<li><a href="">Danh mục</a>
 					<ul>
-						<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản
-								xuất
-								</p>
-						</a></li>
-						<li><a href="danh-muc-chat-luong.html">Danh mục chất
-								lượng</a></li>
-						<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-						<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử
-								dụng</a></li>
-						<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
-					</ul></li>
-				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="bao-cao.html">Báo cáo</a></li>
-				<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
-				<li><a href="bao-cao.html">Quản lý người dùng</a></li>
+						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
+								mục nơi sản xuất</a></li>
+						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
+								mục chất lượng</a></li>
+						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+								mục vật tư</a></li>
+						<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
+								mục bộ phận sử dụng</a></li>
+						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
+								mục mục đích</a></li>
+						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+								mục chức danh</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
+					<ul>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
+				<li><a href="">Quảnlý người dùng</a>
+					<ul>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
+						<li><a href=""/>Khôi phục mật khẩu</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
-
-		<div id="title-content">Đổi mật khẩu</div>
 		<div id="main-content">
-			<form action="" method="post" name="taoTaiKhoan">
-				<table>
+			<form id="add-form" action="<%=siteMap.changePass + "?action=changePass" %>" method="post"
+				name="doiMatKhau" >
+				<div class="input-table">
+					<table>
+						<div class="form-title">Đổi mật khẩu</div>
 					<tr>
 						<td class="input"><label for="msnv">Mã số NV</label></td>
 						<td><input type="text" autofocus required size="10"
@@ -137,9 +125,10 @@ tl.staggerTo(".circle", 1.5, {x:650, repeat:-1, repeatDelay:0.5, force3D:true, e
 							title="Mật khẩu phải hơn 7 ký tự và nhỏ hơn 21" pattern=".{8,20}"
 							class="text" id="rePassNew" name="rePassNew"></td>
 					</tr>
-				</table>
+					</table>
+				</div>
 				<div class="button-group">
-					<button class="button" type="button" onclick="checkPassword();">
+					<button class="button" type="submit" onclick="checkPassword()">
 						<i class="fa fa-plus-circle"></i>&nbsp;Lưu lại
 					</button>
 					&nbsp;
@@ -153,36 +142,6 @@ tl.staggerTo(".circle", 1.5, {x:650, repeat:-1, repeatDelay:0.5, force3D:true, e
 				</div>
 			</form>
 		</div>
-	</div>
-	</div>
-	<div id='loadhalaman'>
-		<div class='loadball'></div>
-		<div class='loadball-2'></div>
-	</div>
-	<!-- <style> -->
-	/* #abt-page-loader { */ /* position: fixed!important; */ /* top: 0; */
-	/* right: 0; */ /* bottom: 0; */ /* left: 0; */ /* z-index: 9999; */ /*
-	background:#000 url("img/loading.gif") no-repeat 50% 30%; */ /* color:
-	#FFF; */ /* display: none; */ /* font: 0/0 a; */ /* text-shadow: none;
-	*/ /* padding: 1em 1.2em; */ /* } */
-	<!-- </style> -->
-	<!-- <script type='text/javascript'> -->
-	// //
-	<![CDATA[
-// $(document.body).append('<div id="abt-page-loader">Loading...</div>');
-// $(window).on("beforeunload", function() {
-//     // ... Show the Animation `.fadeIn()`
-//     $('#abt-page-loader').fadeIn(1000).delay(6000).fadeOut(1000);
-// });
-// //]]>
-	//
-	</script>
-	<div class="demo">
-		<div class="circle"></div>
-		<div class="circle"></div>
-		<div class="circle"></div>
-		<div class="circle"></div>
-		<div class="circle"></div>
 	</div>
 </body>
 

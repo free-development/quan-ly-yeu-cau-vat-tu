@@ -1,3 +1,9 @@
+
+<%@page import="util.DateUtil"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="javax.swing.text.DateFormatter"%>
+<%@page import="java.util.logging.SimpleFormatter"%>
 <%@page import="model.YeuCau"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,6 +31,11 @@
 </head>
 <body>
 		<% 
+		java.sql.Date ngaybd = (java.sql.Date)session.getAttribute("ngaybd");
+		java.sql.Date ngaykt = (java.sql.Date)session.getAttribute("ngaykt");
+// 		Date dbd = new SimpleDateFormat ("dd-MM-yyyy").parse(ngaybd);
+// 		Date dkt = new SimpleDateFormat ("dd-MM-yyyy").parse(ngaykt);
+// 		Date dht = new SimpleDateFormat ("dd-MM-yyyy").parse(new Date().toString());
 		ArrayList<DonVi> listDonVi = (ArrayList<DonVi>) session.getAttribute("donViList");
 		ArrayList<TrangThai> listTrangThai = (ArrayList<TrangThai>) session.getAttribute("trangThaiList");
 		ArrayList<CongVan> congVanList = (ArrayList<CongVan>) session.getAttribute("congVanList");
@@ -40,10 +51,13 @@
 	            
 	        }
 		%>
+		<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;">Báo cáo bảng đề nghị cấp vật tư</div>
+		<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
+		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 		<div id="view-table-baocao">
-				<table style="text-align: center;margin: 0 auto;">
+				<table style="text-align: center;margin: 0 auto;bgcolor: none; color: black;border-style: dotted;border-width: 1px;">
 				<thead>
-						<tr bgcolor="lightgreen">
+						<tr bgcolor="#199e5e">
 						<th class="a-column">Số đến</th>
 						<th class="b-column">Ngày nhận</th>
 						<th class="c-column">Mã vật tư</th>
@@ -88,12 +102,12 @@
 					<%
         				if (exportToExcel == null) {
    				 	 %>
-   				 	 <button class="button" type="button">
+   				 	 <button class="button" type="button" onclick="window.print();">
 						<i class="fa fa-print"></i>&nbsp;&nbsp;In
 					</button>
 					&nbsp;&nbsp;
 					<button class="button" type="button" onclick="location.href='<%=siteMap.xuatBangDeNghi+".jsp"+ "?exportToExel=YES" %>'">
-						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
+						<i class="fa fa-print"></i>&nbsp;&nbsp;Tải file
 					</button>
 					&nbsp;&nbsp;
 					<button type="button" class="button"  onclick="location.href='<%=siteMap.baoCaoBangDeNghi+".jsp" %>'">
@@ -101,4 +115,5 @@
 					</button>
 					<% } %>
 				</div>
-		
+		</body>
+		</html>

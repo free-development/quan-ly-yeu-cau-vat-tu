@@ -161,6 +161,7 @@
 						</button>
 					</div>
 				</form>
+				
 				<!-------------- --add-form-------------- -->
 				<form id="add-form" method="get" action="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">
 					<div class="input-table-bo-phan">
@@ -240,7 +241,7 @@
 								<td class="input"><label for="MBPSD" class="input">Mã
 										BPSD</label></td>
 								<td><input name="dvMaUpdate" type="text" class="text"
-									required  size="2" maxlength="3" readonly style="color: 	"
+									required  size="2" maxlength="3" readonly style="background-color: #D1D1E0;"
 									pattern="[a-zA-Z0-9]{3}"
 									title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 							</tr>

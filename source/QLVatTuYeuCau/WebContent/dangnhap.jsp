@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
 <link rel="stylesheet" href="style/style.css" type="text/css">
-<link href="style/style-tao-tai-khoan.css" type="text/css"
+<link href="style/style-tao-dang-nhap.css" type="text/css"
 	rel="stylesheet">
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
@@ -19,15 +19,41 @@
 <!--		<script type="text/javascript" src="js/check.js"></script>-->
 <script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+
+			function showForm(formId, check){
+				if (check)
+					document.getElementById(formId).style.display="block";
+				else document.getElementById(formId).style.display="none";
+				var f = document.getElementById('main-form'), s, opacity;
+				s = f.style;
+				opacity = check? '10' : '100';
+				s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+				s.filter = 'alpha(opacity='+opacity+')';
+				for(var i=0; i<f.length; i++) f[i].disabled = check;
+			}
+			function confirmDelete(){
+				return confirm('Bạn có chắc xóa');
+			}
+			function checkPassword()
+				{
+					var password = document.forms["taoTaiKhoan"]["matkhau"].value;
+					var confirmPassword = document.forms["taoTaiKhoan"]["nlmatkhau"].value;
+					if(password != confirmPassword)
+					{
+						alert("Mật khẩu nhập lại chưa chính xác. Vui lòng kiểm tra lại!");
+						return false;
+					}
+					return true;
+				}
+		</script>
 <script type="text/javascript" src="js/nguoidung.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
 <body>
-
-	<%
-    		ArrayList<ChucDanh> listChucDanh = (ArrayList<ChucDanh>) request.getAttribute("chucDanhList");
-    	%>
 	<div class="wrapper">
 		<div class="header">
 			<!--
@@ -91,13 +117,13 @@
 			<div class="clear"></div>
 		</div>
 		<div id="main-content">
-			<form id="add-form" action="<%=siteMap.ndManage %>?action=addNd" method="post"
-				name="taoTaiKhoan" >
+			<form id="add-form" action="<%=siteMap.loGin + "?action=loGin" %>"method="post"
+				name="dangNhap" >
 				<div class="input-table">
 					<table>
-						<div class="form-title">Tạo tài khoản</div>
-						<tr>
-						<td class="input"><label for="msnv">Mã số nhân viên</label></td>
+						<div class="form-title">Đăng nhập</div>
+					<tr>
+						<td class="input"><label for="msnv">Mã số nhân viên: </label></td>
 						<td><input type="text" autofocus required size="10"
 							maxlength="10"
 							title="Mã số nhân viên đủ 10 ký tự, không chứa ký tự đặc biệt"
@@ -105,73 +131,18 @@
 					</tr>
 
 					<tr>
-						<td class="input"><label for="matkhau">Mật khẩu</label></td>
+						<td class="input"><label for="matkhau">Mật khẩu: </label></td>
 						<td><input type="password" required size="20" maxlength="20"
 							title="Mật khẩu phải hơn 7 ký tự và nhỏ hơn 21" pattern=".{8,20}"
 							class="text" id="matkhau" name="matkhau"></td>
 					</tr>
-
-					<tr>
-						<td class="input"><label for="re-matkhau">Nhập lại
-								mật khẩu</label></td>
-						<td><input type="password" required size="20" maxlength="20"
-							title="Mật khẩu phải hơn 7 ký tự và nhỏ hơn 21" pattern=".{8,20}"
-							class="text" id="nlmatkhau" name="nlmatkhau"></td>
-					</tr>
-
-					<tr>
-						<td class="input"><label for="chucdanh">Chức danh</label></td>
-						<td><select required title="Chức danh phải được chọn"
-							class="select" id="chucdanh" name="chucdanh">
-								<option disabled selected value="">-- Chọn chức danh --</option>
-								<%
-							
-									int count = 0;
-									for(ChucDanh chucDanh : listChucDanh)
-									{%>
-								<option value=<%=chucDanh.getCdMa()%>><%=chucDanh.getCdTen()%></option>
-								<%}
-								%>
-						</select></td>
-					</tr>
-
-					<tr>
-						<td class="input"><label for="hoten">Họ tên</label></td>
-						<td><input type="text" required size="20" maxlength="50"
-							title="Họ tên không được chứa chữ số và ký tự đặc biệt"
-							pattern="[a-zA-Z]*" class="text" id="hoten" name="hoten"></td>
-					</tr>
-
-					<tr>
-						<td class="input"><label for="sdt">Số điện thoại</label></td>
-						<td><input type="text" required size="11" maxlength="11"
-							title="Phải nhập đúng định dạng. Ví dụ: 01234567890"
-							pattern="[0-9]{10,11}" class="text" id="sdt" name="sdt"></td>
-					</tr>
-
-					<tr>
-						<td class="input"><label for="email">Email</label></td>
-						<td><input type="text" required size="20" maxlength="50"
-							title="Email phải được nhập" class="text" id="email" name="email"></td>
-					</tr>
-
-					<tr>
-						<td class="input"><label for="diachi">Địa chỉ</label></td>
-						<td><input type="text" required size="20" maxlength="50"
-							title="Địa chỉ phải được nhập" class="text" name="diachi"
-							id="diachi"></td>
-					</tr>
 					</table>
 				</div>
 				<div class="button-group">
-<!-- 					<input type="hidden" name="action" value="AddNd"> -->
-					<button class="button" type="button" onclick="checkPassword();">
-						<i class="fa fa-plus-circle"></i>&nbsp;Tạo mới
+					<button class="button" type="submit" onclick="loGin();">
+						<i class="fa fa-plus-circle"></i>&nbsp;Đăng nhập
 					</button>
 					&nbsp;
-					<button class="button" type="reset">
-						<i class="fa fa-refresh"></i>&nbsp;Nhập lại
-					</button>
 					&nbsp;
 					<button class="button" type="button">
 						<i class="fa fa-sign-out"></i>&nbsp;Thoát

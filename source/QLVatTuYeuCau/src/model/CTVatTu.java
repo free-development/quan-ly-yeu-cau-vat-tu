@@ -77,7 +77,7 @@ public class CTVatTu implements Serializable{
 		this.noiSanXuat = noiSanXuat;
 		this.chatLuong = chatLuong;
 	}
-
+	
 	/**
 	 * @return the dinhMuc
 	 */

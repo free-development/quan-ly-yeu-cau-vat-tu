@@ -92,7 +92,7 @@ public class NsxController extends HttpServlet {
 			System.out.println("fail");
 			result = "fail";
 		}
-			return result;
+			return JSonUtil.toJson(result);
 	}
 	@RequestMapping(value="/updateNsx", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

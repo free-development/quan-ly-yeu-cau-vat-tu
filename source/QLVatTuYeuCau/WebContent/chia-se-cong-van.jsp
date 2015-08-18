@@ -92,7 +92,7 @@
 		<div id="main-content">
 			<div id="main-content">
 				<form id="main-form">
-					<div id="title-content">Chia sẽ</div>
+					<div id="title-content">Chia sẻ công văn</div>
 					<div id="input-table">
 						<table>
 							<tr>

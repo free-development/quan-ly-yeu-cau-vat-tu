@@ -123,19 +123,20 @@ public class CongVanDAO {
 //		Criterion crdv,crtt,ngay;
 //		LogicalExpression exp;
 //		LogicalExpression andNgay;
-//		if (ngaybd == null) 
-//		{
-//		ngaybd = ngaykt;
-//		}
-//		if (ngaykt == null)
-//		{
-//		ngaykt = ngaybd;
-//		}
-//		if (ngaybd != null || ngaykt != null) 
-//		{
-//			Criterion ngay = Restrictions.between("cvNgayNhan", DateUtil.parseDate(ngaybd), DateUtil.parseDate(ngaykt));
-//		cr.add(ngay);
-//		}
+		
+		if (ngaybd != "" || ngaykt != "") 
+		{
+			if (ngaybd =="") 
+			{
+			ngaybd = ngaykt;
+			}
+			if (ngaykt == "")
+			{
+			ngaykt = ngaybd;
+			}
+			Criterion ngay = Restrictions.between("cvNgayNhan", DateUtil.parseDate(ngaybd), DateUtil.parseDate(ngaykt));
+		cr.add(ngay);
+		}
 	
 			if (ttMa != null && !"all".equalsIgnoreCase(ttMa)) {
 				Criterion crtt = Restrictions.eq("trangThai",new TrangThai(ttMa));
