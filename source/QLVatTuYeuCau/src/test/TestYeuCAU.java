@@ -45,6 +45,7 @@ public class TestYeuCAU {
 		DonViDAO donViDAO = new DonViDAO();
 		FileDAO fileDAO = new FileDAO();
 		int id = ctVatTuDAO.getLastInsert(); 
+<<<<<<< HEAD
 		 
 		//int idCv = new CongVanDAO().getLastInsert(); 
 
@@ -77,6 +78,26 @@ public class TestYeuCAU {
 		chatLuongDAO.addChatLuong(chatLuong5);
 		chatLuongDAO.addChatLuong(chatLuong8);
 		chatLuongDAO.addChatLuong(chatLuong0);
+=======
+
+
+		ChatLuong chatLuong = new ChatLuong("CL0", "Tot TotS");
+		NoiSanXuat nsx = new NoiSanXuat("Vn0", "Viet Nam");
+		VatTu vatTu = new VatTu("VT0", "Tru dien", "cai");
+		CTVatTu ctVatTu = new CTVatTu(3, vatTu, nsx, chatLuong, 0, 0);
+
+		chatLuongDAO.addChatLuong(chatLuong);
+		noiSanXuatDAO.addNoiSanXuat(nsx);
+		vatTuDAO.addVatTu(vatTu);
+		ctVatTuDAO.addCTVatTu(ctVatTu);
+		
+
+		DonVi donVi = new DonVi("SX5", "Don vi 1", "0999894991", "tien@gmail.com", "Can Tho");
+		MucDich mucDich = new MucDich("SC5", "Sua chua lon");
+
+		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
+		CongVan congVan = new CongVan(9, DateUtil.convertToSqlDate(new java.util.Date()), "193", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("CGQ", "Chua giai quyet"), donVi,0);
+>>>>>>> 96df0ef224a4023d8f44259795924128d787bad3
 		
 		noiSanXuatDAO.addNoiSanXuat(nsx);
 		noiSanXuatDAO.addNoiSanXuat(nsx5);
@@ -93,6 +114,7 @@ public class TestYeuCAU {
 		ctVatTuDAO.addCTVatTu(ctVatTu3);
 		ctVatTuDAO.addCTVatTu(ctVatTu);
 		
+<<<<<<< HEAD
 		DonVi donVi5 = new DonVi("SX5", "Don vi 1", "0999894991", "tien@gmail.com", "Can Tho");
 		DonVi donVi4 = new DonVi("SX4", "Don vi 1", "0736864271", "quoi@gmail.com", "Can Tho");
 		
@@ -156,6 +178,21 @@ public class TestYeuCAU {
 //
 //		new YeuCauDAO().addYeuCau(yeuCau);
 //		
+=======
+
+		
+		YeuCau yeuCau = new YeuCau(id, ctVatTu, 80, 0);
+
+
+		new MucDichDAO().addMucDich(mucDich);
+		new DonViDAO().addDonVi(donVi);
+		new CongVanDAO().addCongVan(congVan);
+		new FileDAO().addFile(file);
+	
+
+		new YeuCauDAO().addYeuCau(yeuCau);
+		
+>>>>>>> 96df0ef224a4023d8f44259795924128d787bad3
 		
 	}
 

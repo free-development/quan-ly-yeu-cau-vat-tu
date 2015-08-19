@@ -92,6 +92,7 @@
 		<div id="greeting">Chào Nguyễn Văn An</div>
 
 		<div id="main-content">
+			<div id="content-form">
 			<div id="title-content">Công văn</div>
 			<div id="main-content">
 				<!--            <form id="main-form">-->
@@ -120,24 +121,25 @@
 
 								</ol>
 					</div>
-
-					<select class="select">
-						<option selected disabled>--Văn bản đến--</option>
-						<option class="file"><a href="">Chưa giải quyết</a></option>
-						<option class="file"><a href="">Đang giải quyết</a></option>
-						<option class="file"><a href="">Đã giải quyết</a></option>
-					</select> <br> <br>
-
-
+				<div id="Link-vbd">
+						<div class="vbd-column">--Văn bản đến--</div><br>
+						<div class="tt-column">
+						<a href="" >Chưa giải quyết</a><br>
+						<a href="">Đang giải quyết</a><br>
+						<a href="">Đã giải quyết</a>
+						</div>
 				</div>
+					<br> <br>
+					
+			</div>
 				<div class="right-content">
 					<form id="search-form">
-						<div class="a"></div>
+						<div id="title-table">
 						<table>
 							<tr>
-								<td>Chỉ tiêu lọc dữ liệu</td>
+								<td class="column-loc">Chỉ tiêu lọc dữ liệu:</td>
 								<td><select class="select">
-										<option selected disabled>-- Lọc dữ liệu --</option>
+										<option selected disabled>-- Chỉ tiêu lọc --</option>
 										<option>Ngày đến</option>
 										<option>Số đến</option>
 										<option>Mục đích nhận</option>
@@ -177,6 +179,7 @@
 -->
 							</tr>
 						</table>
+						</div>
 					</form>	
                      <form name="main-form" method="get" action="<%=siteMap.ycvtManage%>">
                      <div class="scroll_content">
@@ -185,26 +188,26 @@
                      	for(CongVan congVan : congVanList) {
                      		count ++;
                      %>
-							<table style="font-size: 16px;" class="border-congvan">
-								<tr>
+					<table <%if (count % 2 == 1){ out.println("style=\"background : #CCFFFF;\"");}else{out.println("style=\"background : Blush;\"");}%>style="font-size: 16px;" class="border-congvan">
+								<tr >
 									<td class="column-check" rowspan="6">
-										<input type="checkbox" name="cvId" value="<%=congVan.getCvId()%>">
+										<input title="Click để chọn công văn"type="checkbox" name="cvId" value="<%=congVan.getCvId()%>">
 									</td>
-									<td class="column-so-den">Số đến: &nbsp;&nbsp;</td>
-									<td class="column-so-den" style="text-align: left" colspan=2><%=congVan.getSoDen() %></td>
+									<td class="left-column-soden">Số đến: &nbsp;&nbsp;</td>
+									<td class="column-so-den" style="text-align: left"><%=congVan.getSoDen() %></td>
 
-									<td class="left-column">So cong van: &nbsp;&nbsp;</td>
+									<td class="left-column-socv">Số công văn: &nbsp;&nbsp;</td>
 									<td class="column-date" style="text-align: left"><%=congVan.getCvSo() %></td>
 									
 									<td class="left-column-first" >Ngày đến: &nbsp;&nbsp;</td>
 
-									<td class="column-date" style="text-align: left"><%=congVan.getCvNgayNhan() %></td>
+									<td class="column-date"style="text-align: left"><%=congVan.getCvNgayNhan() %></td>
 
 									<td rowspan="2">
 										<div class="file" style="text-decoration: underline;">
 											<a
 												href="<%=siteMap.cvManage + "?action=download&file=" + congVan.getCvId()%>">
-												<div class="mo-ta"><%=fileHash.get(congVan.getCvId()).getMoTa() %></div>
+<%-- 												<div class="mo-ta">Click để xem file: <%=fileHash.get(congVan.getCvId()).getMoTa() %></div> --%>
 											</a>
 										</div>
 									</td>
@@ -215,40 +218,40 @@
 
 									<td class="left-column-first">Mục đích: &nbsp;&nbsp;</td>
 
-									<td colspan="3" style="text-align: left"><%=congVan.getMucDich() %></td>
+									<td class="column-color" colspan="3" style="text-align: left"><%=congVan.getMucDich() %></td>
 
-									<td class="left-column">Ngày CV đi:&nbsp;&nbsp;</td>
+									<td class="left-column-ngdi">Ngày công văn đi:&nbsp;&nbsp;</td>
 									<td class="column-date" style="text-align: left"><%=congVan.getCvNgayDi()%></td>
 								</tr>
 								<tr>
 
 									<td class="left-column-first">Nơi gửi: &nbsp;&nbsp;</td>
 
-									<td colspan="6" style="text-align: left"><%= congVan.getDonVi().getDvTen()%></td>
+									<td class="column-color" colspan="6" style="text-align: left"><%= congVan.getDonVi().getDvTen()%></td>
 								</tr>
 								<tr>
 
 									<td class="left-column-first">Trích yếu: &nbsp;&nbsp;</td>
-									<td colspan="6" style="text-align: left"><%= congVan.getTrichYeu()%></td>
+									<td class="column-color"colspan="6" style="text-align: left"><%= congVan.getTrichYeu()%></td>
 								</tr>
 								<tr>
 
 									<td class="left-column-first">Bút phê: &nbsp;&nbsp;</td>
 
-									<td colspan="6"><%= congVan.getButPhe()%></td>
+									<td class="column-color" colspan="6"><%= congVan.getButPhe()%></td>
 								</tr>
 								<tr>
 
 									<td class="left-column-first">Nơi GQ chính</td>
 
-									<td colspan="6"><%=congVan.getDonVi().getDvTen() %></td>
+									<td class="column-color"colspan="6"><%=congVan.getDonVi().getDvTen() %></td>
 								</tr>
 							</table>
-							<div class="chi-tiet">
-								<a
-									href="<%=siteMap.ycvtManage + "action=manageYcvt&congVan="+congVan.getCvId()%>">*Xem
-									chi tiết</a>
-							</div>
+<!-- 							<div class="chi-tiet"> -->
+<!-- 								<a -->
+<%-- 									href="<%=siteMap.ycvtManage + "action=manageYcvt&congVan="+congVan.getCvId()%>">*Xem --%>
+<!-- 									chi tiết</a> -->
+<!-- 							</div> -->
 							<%} %>
 
 						</div>
@@ -257,7 +260,7 @@
 							<button type="button" class="button" onclick="loadDataCv();">
 								<i class="fa fa-plus-circle"></i>&nbsp;Thêm mới
 							</button>
-							<button type="button" class="button"
+							<button type="button" class="button"title="Chỉ chọn một công văn để sửa"
 								onclick="preUpdateCv('main-form','update-form', true)">
 								<i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa
 							</button>
@@ -279,7 +282,7 @@
 					</form>
 				</div>
 
-
+				</div>
 
 				<!--    		</form>  -->
 				<!--                add-form-->
@@ -315,7 +318,7 @@
 								<th style="text-align: left;"><label
 									for="noiGoi" class="input">Nơi gửi</label></th>
 								<td><select class="select" name="donVi" id="noiGoi">
-										<option selected disabled value="">Chon noi gui</option>
+										<option selected disabled value="">Chọn nơi gởi</option>
 										<%for(DonVi donVi : donViList) {%>
 										<option value="<%=donVi.getDvMa()%>" ><%=donVi.getDvTen() %></option>
 										<%} %>
@@ -325,17 +328,17 @@
 								<td colspan="3"><textarea class="txtarea" name="trichYeu"></textarea></td>
 							</tr>
 							<tr>
-								<th style="text-align: left;" colspan="1"><label id="butPhe" class="input">But phe</label>
+								<th style="text-align: left;" colspan="1"><label id="butPhe" class="input">Bút phê</label>
 								<td colspan="3"><textarea class="txtarea" name="butPhe"></textarea></td>
 							</tr>
 							</tr>
 								<th  style="text-align: left;"><label
-										for="file" class="input" name="file">Dinh kem cong van: </label></th>
+										for="file" class="input" name="file">Đính kèm công văn: </label></th>
 								<td colspan="3"><input type="file" id="file" name="file">
 							<tr>	
 							</tr>
 								<th  style="text-align: left;"><label
-										for="moTa" class="input" >Mo ta file: </label></th>
+										for="moTa" class="input" >Mô tả file: </label></th>
 								<td colspan="3"><textarea class="txtarea" name="moTa"></textarea></td>
 							<tr>
 						</table>
@@ -388,7 +391,7 @@
 								<th style="text-align: left;"><label
 									for="noiGoi" class="input">Nơi gửi</label></th>
 								<td><select class="select" name="donViUpdate" id="noiGoi">
-										<option selected disabled value="">Chon noi gui</option>
+										<option selected disabled value="">Chọn nơi gởi</option>
 										<%for(DonVi donVi : donViList) {%>
 										<option value="<%=donVi.getDvMa()%>" ><%=donVi.getDvTen() %></option>
 										<%} %>
@@ -398,12 +401,12 @@
 								<td colspan="3"><textarea class="txtarea" name="trichYeuUpdate"></textarea></td>
 							</tr>
 							<tr>
-								<th style="text-align: left;" colspan="1"><label id="butPhe" class="input">But phe</label>
+								<th style="text-align: left;" colspan="1"><label id="butPhe" class="input">Bút phê</label>
 								<td colspan="3"><textarea class="txtarea" name="butPheUpdate"></textarea></td>
 							</tr>
 							<tr>
 								<th style="text-align: left;"><label
-									for="file" class="input" name="file">Tep dinh kem: </label></th>
+									for="file" class="input" name="file">Tệp đính kèm: </label></th>
 								<td><input type="file" id="file" name="file">
 							</tr>
 							<tr>
@@ -663,9 +666,11 @@
 									</button>
 								</div>
 							</form>
-							</div>
-							</div>
-
-							</div>
+						</table>
+						</div>
+						</form>
+						</div>
+						</div>
+						</div>		
 </body>
 </html>

@@ -1,10 +1,30 @@
+#view-search table{
+	margin:0 auto;
+	border: 1px solid #CCCCCC;
+	width:680px;
+}
 .left-content {
 	position: relative;
 	width: 150px;
 	left: 0px;
 	display: table-cell;
 }
-
+.column-tenvt{
+	width: 100px;
+	text-align: left;
+}
+.column-noisx{
+	margin-right: 20px;
+}
+.column-mavt{
+	width: 300px;
+	text-align: left;
+	font-weight: bold;
+	margin-right:20px;
+}
+#yc-table table{
+	margin:0 auto;
+}
 .right-content {
 	position: relative;
 	left: 0px;
@@ -48,7 +68,7 @@
 	padding-bottom: 5px;
 }
 
-#view-table table tr th {
+#view-table-vt table tr th {
 	border-style: dotted;
 	border-width: 1px;
 	margin: 0px;
@@ -58,7 +78,10 @@
 	padding-bottom: 5px;
 	background-color: #199e5e;
 }
-
+#view-table table{
+	width:680px;
+	margin: 0 auto;
+}
 .mid-column {
 	width: 20px;
 }
@@ -279,7 +302,7 @@
 */
 .scroll-vat-tu {
 	height: 100px;
-	width: 810px;
+	width: 680px;
 	display: auto;
 	border: 1px solid #CCCCCC;
 	margin: 1em 0;
@@ -383,7 +406,17 @@
 }
 
 #main-form {
-	
+	width: 950px;
+	height:170px;
+	/* position: absolute;  */
+	margin: 0 auto;
+	top: 35%;
+	background-color: #dceaf5;
+	border-radius: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 10px
 }
 
 #main-content {
@@ -473,10 +506,9 @@
 }
 #add-yeu-cau-form {
  /* display: none; */
-	width: 100%;
+	width: 680px;
+	height:120px;
 	/* position: absolute;  */
-	left: 20%;
-	right: 20%;
 	margin: 0 auto;
 	top: 35%;
 	background-color: #dceaf5;
