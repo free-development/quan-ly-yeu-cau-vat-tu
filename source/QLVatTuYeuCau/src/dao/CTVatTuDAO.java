@@ -144,11 +144,5 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return ctVatTuList;
 	}
-	public static void main(String[] args) {
-//		CTVatTu ct = new CTVatTuDAO().getCTVatTu(new VatTu("666"), new NoiSanXuat("666"), new ChatLuong("666"));
-		//System.out.println(new CTVatTuDAO().getLastInsert());
-		System.out.println(new CTVatTuDAO().search("", "Tru dien", "", "").size());
-		System.out.println(new CTVatTuDAO().search("", "", "", "CL4").size());
-		System.out.println(new CTVatTuDAO().search("", "", "Vn4", "").size());
-	}
+
 }

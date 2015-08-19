@@ -56,13 +56,14 @@
 		 */
 // 		YeuCau yeuCau = new YeuCau(1, ctVatTu, 50, 0);
 // 		new YeuCauDAO().addYeuCau(yeuCau);
-		out.println(request.getContextPath() + "<br>");
+// 		out.println(request.getContextPath() + "<br>");
 		
 		out.println(request.getPathInfo() + "<br>");
 		out.println(request.getRealPath("/") + "<br>");
 		out.println(request.getServletPath() + "<br>");
 		out.println(request.getRequestURI() + "<br>");
 // 		System.out.println(request.get);
+		out.println("vÕ pHÚ qUỚI");
 	%>
 </body>
 </html>

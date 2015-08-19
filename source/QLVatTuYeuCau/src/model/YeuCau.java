@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+@JsonSerialize
 public class YeuCau implements Serializable{
 	
 	private int ycId;
@@ -17,6 +20,7 @@ public class YeuCau implements Serializable{
 	 * DataTypeLength/Precision 10
 	 */
 	private int ycSoLuong;
+	private int capSoLuong;
 
 	/**
 	 * NOT NULL false
@@ -32,6 +36,16 @@ public class YeuCau implements Serializable{
 		this.ycSoLuong = 0;
 		this.daXoa = 0;
 		this.ycId = 0;
+		this.capSoLuong = 0;
+	}
+	/**
+	 * @param cvId
+	 * @param ctVatTu
+	 * @param ycSoLuong
+	 * @param daXoa
+	 */
+	public YeuCau(int ycId) {
+		this.ycId = ycId;
 	}
 
 	/**
@@ -40,11 +54,12 @@ public class YeuCau implements Serializable{
 	 * @param ycSoLuong
 	 * @param daXoa
 	 */
-	public YeuCau(int cvId, CTVatTu ctVatTu, int ycSoLuong, int daXoa) {
+	public YeuCau(int cvId, CTVatTu ctVatTu, int ycSoLuong, int capSoLuong, int daXoa) {
 		this.cvId = cvId;
 		this.ctVatTu = ctVatTu;
 		this.ycSoLuong = ycSoLuong;
 		this.daXoa = daXoa;
+		this.capSoLuong =  capSoLuong;
 	}
 	
 	/**
@@ -53,12 +68,13 @@ public class YeuCau implements Serializable{
 	 * @param ycSoLuong
 	 * @param daXoa
 	 */
-	public YeuCau(int ycId, int cvId, CTVatTu ctVatTu, int ycSoLuong, int daXoa) {
+	public YeuCau(int ycId, int cvId, CTVatTu ctVatTu, int ycSoLuong, int capSoLuong, int daXoa) {
 		this.ycId = ycId;
 		this.cvId = cvId;
 		this.ctVatTu = ctVatTu;
 		this.ycSoLuong = ycSoLuong;
 		this.daXoa = daXoa;
+		this.capSoLuong =  capSoLuong;
 	}
 
 	/**
@@ -77,6 +93,14 @@ public class YeuCau implements Serializable{
 
 	public int getYcId() {
 		return ycId;
+	}
+
+	public int getCapSoLuong() {
+		return capSoLuong;
+	}
+
+	public void setCapSoLuong(int capSoLuong) {
+		this.capSoLuong = capSoLuong;
 	}
 
 	public void setYcId(int ycId) {
