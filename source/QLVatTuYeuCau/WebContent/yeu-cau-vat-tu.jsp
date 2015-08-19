@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
 <link rel="stylesheet" href="style/style.css" type="text/css">
-<link href="style/style-yeu-cau.css"css" type="text/css" rel="stylesheet">
+<link href="style/style-yeu-cau.css"type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="style/style-menu-tree.css" type="text/css">
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
@@ -97,45 +97,51 @@
 
 		<div id="main-content">
 			<div class="form-title">Cập nhật yêu cầu vật tư</div>
+			
 			<form id="add-yeu-cau-form">
-			<fieldset style="width: 70%;">
-				<legend style="padding-left: 20px; ">Tim kiem</legend>
-				<table style="width: 40%; margin: 0 auto;">
+<!-- 			<fieldset style="width: 70%;margin:0 auto;"> -->
+<!-- 				<legend style="padding-left: 20px; ">Tìm kiếm</legend> -->
+				<div id="yc-table">
+				<table>
 					<tr>
-						<td><label for="vtMa">Ma vat tu: </label></td>
-						<td><input type="text" maxlength="3" size="3px" name="vtMa" id="vtMa" class="text"></td>
-						<td><label for="vtTen">Ten vat tu: </label></td>
-						<td><input type="text" maxlength="3" size="3px" name="vtTen" id="vtMa" class="text"></td>
+						<td><label for="vtMa">Mã vật tư: </label></td>
+						<td class="column-mavt"><input type="text" maxlength="3" size="3px" name="vtMa" id="vtMa" class="text"></td>
+						<td><label for="vtTen">Tên vật tư: </label></td>
+						<td class="column-tenvt"><input type="text" maxlength="3" size="3px" name="vtTen" id="vtMa" class="text"></td>
 					</tr>
 					<tr>
-						<td><label for="nsx">Noi san xuat: </label></td>
-						<td>
+						<td><label for="nsx">Nơi sản xuất: </label></td>
+						<td class="column-noisx">
 							<select name="nsx" id="nsx" class="select">
-							<option selected disabled value="" style="text-decoration: none;">-- Chon noi san xuat --</option>
+							<option selected disabled value="" style="text-decoration: none;">-- Chọn nơi sản xuất --</option>
 							<% for(NoiSanXuat nsx : nsxList) {%>
 								<option value=<%=nsx.getNsxMa() %>><%=nsx.getNsxTen() %></option>
 							<%} %>
 							</select>
 						</td>
-						<td><label for="chatLuong">Chat luong: </label></td>
+						<td><label for="chatLuong">Chất lượng: </label></td>
 						<td>
 							<select name="chatLuong" id="chatLuong" class="select">
-							<option selected disabled value="" style="text-decoration: none;">-- Chon chat luong --</option>
+							<option selected disabled value="" style="text-decoration: none;">-- Chọn chất lượng --</option>
 							<% for(ChatLuong chatLuong : chatLuongList) {%>
 								<option value=<%=chatLuong.getClMa() %>><%=chatLuong.getClTen()  %></option>
 							<%} %>
-							</select>
+ 							</select> 
 						</td>
 					</tr>
 					
 				</table>
 				<div class="group-button">
-					<button class="button" type="button" onclick="searchCtvt();">Tim kiem</button>
+					<button class="button" type="button" onclick="searchCtvt();">Tìm kiếm</button>
 				</div>
-			</fieldset>
+				</div>
+<!-- 			</fieldset> -->
+			</form>
+			<br>
+			<br>
 			<div id="view-search">
 				<table>
-					<tr><th >Ma vat tu</th><th >Ten vat tu</th><th >Noi san xuat</th><th >Chat luong</th><th >Don vi tinh</th><th ></th></tr>
+					<tr style="background-color: #199e5e"><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th ></th></tr>
 					<tr></tr>
 					<%
 						int countCtvt = 0;
@@ -155,12 +161,12 @@
 						</tr>
 					<%}%>
 				</table>	
-				</div>	
-			</form>
+			</div>	
+			<br><br>
 			<form id="main-form">
-					<div id="view-table" class="scroll-yeu-cau">
+					<div id="view-table-vt" class="scroll-vat-tu">
 <!-- 							<div class="form-title">Cập nhật yêu cầu vật tư</div> -->
-							<table>
+							<table >
 								<tr>
 									<th class="a-column">Chọn</th>
 									<th class="b-column">Mã vật tư</th>
@@ -208,13 +214,10 @@
 									<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 								</button>
 							</div>
-						</div>
-				</div>
-			</form>
-			
+				</form>
 			<form id="add-so-luong-form">
 			<table>
-				<tr><th >Ma vat tu</th><th >Ten vat tu</th><th >Noi san xuat</th><th >Chat luong</th><th >Don vi tinh</th><th >So luong</th></tr>
+				<tr><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th >Số lượng</th></tr>
 				<tr>
 					<td><div id="vtMaAdd"></div></td>
 					<td><div id="vtTenAdd"></div></td>

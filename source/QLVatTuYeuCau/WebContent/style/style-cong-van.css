@@ -10,7 +10,9 @@
 	left: 0px;
 	display: table-cell;
 }
-
+#content-form{
+	background-color: #dceaf5;;
+}
 #content {
 	margin: 0 auto;
 	width: 100%;
@@ -47,7 +49,11 @@
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
-
+#Link-vbd
+{
+	color:#000000;
+	background-color: #CCFFFF;
+}
 #view-table table tr th {
 	border-style: dotted;
 	border-width: 1px;
@@ -62,11 +68,34 @@
 .mid-column {
 	width: 20px;
 }
-
+.left-column-ngdi{
+	
+	text-align: left;
+	width: 150px;
+	margin-left: 10px;
+}
+.left-column-soden{
+	
+	text-align: left;
+	width: 30px;
+}
+#title-table table{
+	margin-left: 100px;
+	margin-top:20px;
+}
+.column-loc{
+	font-size: 18px;
+	width:170px;
+}
+.left-column-socv{
+	
+	text-align: left;
+	width: 100px;
+}
 .left-column-first {
 	width: 150px;
 	text-align: left;
-	font-weight: bold;
+	
 }
 
 .right-column {
@@ -80,13 +109,33 @@
 }
 
 .column-date {
-	width: 150px;
-	text-align: left;
-}
-
-.column-so-den {
 	width: 100px;
-	text-align: right;
+	text-align: left;
+	color:#3399CC;
+	font-weight: bold;
+}
+.vbd-column{
+	font-weight: bold;
+	text-align: center;
+}
+.tt-column a{
+	margin-left:50px;
+	color:blue;
+}
+.column-color {
+	color:#3399CC;
+	font-weight: bold;
+}
+.column-so-den {
+	color:red;
+	font-weight: bold;
+	text-align: left;
+	width: 100px;
+	
+}
+.column-ngden {
+	width: 60px;
+	text-align: left;
 }
 
 #scroll_time {
@@ -96,6 +145,7 @@
 	border: 1px solid #CCCCCC;
 	margin: 1em 0;
 	overflow: scroll; /*chú ý dòng này*/
+	background-color: #CCFFFF;;
 }
 
 .scroll_content {
@@ -115,9 +165,12 @@
 	color: black;
 }
 
-.column-check {
-	width: 10px;
+.column-check{
+	width: 20px;
 	text-align: right;
+	margin-right: 20px;
+	margin-left: 20px;
+	padding: 30px;
 }
 
 .form-title {
@@ -270,9 +323,11 @@
 	/*    bottom: 32%;*/
 	background-color: #dceaf5;
 	border-radius: 10px;
+	border: 4px solid #CCFFFF;
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-top: 20px /*    margin: 0 auto;*/
+	padding-top: 15px ;
+	
 }
 
 #update-form {
@@ -291,6 +346,7 @@
 	padding-right: 10px;
 	padding-top: 20px;
 	padding-bottom: 10px;
+	border: 4px solid #CCFFFF;
 }
 
 #update-yc-vat-tu {
