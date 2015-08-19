@@ -76,15 +76,18 @@ public class CvController extends HttpServlet {
     	TrangThaiDAO trangThaiDAO =  new TrangThaiDAO();
 		String action = request.getParameter("action");
 		if("manageCv".equalsIgnoreCase(action)) {
+			System.out.println("OK");
 			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) congVanDAO.getAllCongVan();
 			HashMap<Integer, File> fileHash = new HashMap<Integer, File>();
 			ArrayList<DonVi> donViList = (ArrayList<DonVi>) donViDAO.getAllDonVi();
 			ArrayList<MucDich> mucDichList = (ArrayList<MucDich>) mucDichDAO.getAllMucDich();
+			System.out.println("OK1");
 			for(CongVan congVan : congVanList) {
 				int cvId = congVan.getCvId();
 				File file = fileDAO.getByCongVanId(cvId);
 				fileHash.put(cvId, file);
 			}
+			System.out.println("OK2");
 //			request.setAttribute("congVanList", congVanList);
 //			request.setAttribute("fileHash", fileHash);
 //			request.setAttribute("mucDichList", mucDichList);

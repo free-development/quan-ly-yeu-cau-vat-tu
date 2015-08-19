@@ -80,8 +80,11 @@ public class CTVatTuDAO {
 		andExp = Restrictions.and(andExp, expChatLuong);
 		andExp = Restrictions.and(andExp, expVatTu);
 		cr.add(andExp);
+		ArrayList<CTVatTu> ctvtList = (ArrayList<CTVatTu>) cr.list();
 		
-		CTVatTu ctVatTu =  (CTVatTu) cr.list().get(0);
+		CTVatTu ctVatTu = null;
+		if(ctvtList.size() != 0)
+			ctVatTu = ctvtList.get(0);
 		session.getTransaction().commit();
 		return ctVatTu;
 	}
@@ -144,5 +147,21 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return ctVatTuList;
 	}
+<<<<<<< HEAD
 
+=======
+	public static void main(String[] args) {
+		CTVatTuDAO ct = new CTVatTuDAO();//.getCTVatTu("VT5", "NB", "CL0");
+//		System.out.pritnln(ct.getCtvtId());
+		//System.out.println(new CTVatTuDAO().getLastInsert());
+//		System.out.println(new CTVatTuDAO().search("", "Tru dien", "", "").size());
+//		System.out.println(new CTVatTuDAO().search("", "", "", "CL4").size());
+//		System.out.println(new CTVatTuDAO().search("", "", "Vn4", "").size());
+		ArrayList<CTVatTu> l = ct.getCTVTu("VT4");
+		for (CTVatTu vatTu : l) {
+			System.out.println(vatTu.getVatTu().getVtMa());
+		}
+		
+	}
+>>>>>>> 6f2a573f4301281094b8831233baed9b5b57cd91
 }
