@@ -52,7 +52,9 @@ public class CTVatTu implements Serializable{
 		this.noiSanXuat = noiSanXuat;
 		this.chatLuong = chatLuong;
 	}
-	
+	public CTVatTu(int ctvtId){
+		this.ctvtId = ctvtId;
+	}
 	public int getCtvtId() {
 		return ctvtId;
 	}

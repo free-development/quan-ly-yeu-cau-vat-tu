@@ -18,22 +18,10 @@
 	type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/vattu.js"></script>
-<script>
-    $(document).ready(function() {
-        $('.checkAll').click(function(event) {  //on click 
-            if(this.checked) { // check select status
-                $('.checkbox').each(function() { //loop through each checkbox
-                    this.checked = true;  //select all checkboxes with class "checkbox1"               
-                });
-            }else{
-                $('.checkbox').each(function() { //loop through each checkbox
-                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
-                });         
-            }
-        });
-        
-    }); 
-	</script>
+<script type="text/javascript" src="js/chi-tiet-vat-tu.js"></script>
+<!-- <script> -->
+
+<!-- 	</script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
@@ -246,16 +234,16 @@
 						<tr>
 							<th style="text-align: left"><label for="DVT">Đơn vị
 									tính</label></th>
-							<td><select class="select"  name="dvtUpdate">
-									<option value="">m</option>
-									<option value="">cái</option>
-									<option value="">cuộn</option>
+							<td><select id="dvtUp" class="select"  name="dvtUpdate">
+									<option value="m">m</option>
+									<option value="cai">cai</option>
+									<option value="cuon">cuộn</option>
 							</select></td>
 						</tr>
 					</table>
 				</div>
 				<div class="group-button">
-					<button class="button" onclick="confirmUpdateVattu();" ><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button> 
+					<button type="button" class="button" onclick="confirmUpdateVattu();" ><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button> 
 					<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 					<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
@@ -287,8 +275,8 @@
 
 					<tr
 						<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
-						<td class="left-column"><input type="checkbox" name="vtMa"
-							value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
+						<td class="left-column"><input type="checkbox" name="ctvtId"
+							value="<%=ctVatTu.getCtvtId() %>" id ="checkbox" class="checkbox"></td>
 						<td class="col"><%=ctVatTu.getVatTu().getVtMa() %></td>
 						<td class="col"><%=ctVatTu.getVatTu().getVtTen() %></td>
 						<td class="col"><%=ctVatTu.getNoiSanXuat().getNsxTen() %></td>
@@ -299,21 +287,19 @@
 
 					</tr>
 					<%} }%>
-
-				</table>
-					
+				</table>				
 			</div>
 					<div class="group-button">
 				<input type="hidden" name="action" value="deleteVatTu">
 				<button type="button" class="button"
-					onclick="showForm('add-chitiet', true)">
+					onclick="preAddCTVatTu('add-chitiet', true)">
 					<i class="fa fa-plus-circle"></i>&nbsp;Thêm chi tiết
 				</button>
 				<button type="button" class="button"
-					onclick="showForm('update-chitiet', true)">
+					onclick="preEditCTVattu('update-chitiet', true)">
 					<i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi
 				</button>
-				<button class="button" onclick="return confirmDeleteCTVT()">
+				<button class="button" type="button" onclick="confirmDeleteCTVT();">
 					<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa
 				</button>
 				&nbsp;
@@ -338,21 +324,26 @@
 						<tr>
 							<th style="text-align: left"><label for="MVT">Mã vật
 									tư</label></th>
-							<td><input name="ctvtMaAdd" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
+							<td><input name="vtMa" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
 								class="text"></td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="MVT">Tên vật
 									tư</label></th>
-							<td><input name="ctvtTenAdd" size="30px" align=right type="text" readonly style="background-color: #D1D1E0;"
+							<td><input name="vtTen" size="30px" align=right type="text" readonly style="background-color: #D1D1E0;"
 								class="text" ></td>
+						</tr>
+						<tr>
+							<th style="text-align: left"><label for="MVT">Đơn vị tính</label></th>
+							<td><input name="dvt" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
+								class="text"></td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="MVT">Nơi
 									sản xuất</label></th>
 								<td>
 									<select 
-									title="" class="select" id="noisanxuat" name="noisanxuat" style="margin-top: 10px;">
+									title="" class="select" id="noisanxuat" name="noiSanXuat" style="margin-top: 10px;">
 										<option disabled selected value="">-- Chọn nơi sản xuất --</option>
 										<%						  
 		 								
@@ -361,15 +352,11 @@
 		 								<option value=<%=noiSanXuat.getNsxMa()%>><%=noiSanXuat.getNsxTen()%></option> 
 		 								<%}  
 		  								%>  
-									</select><div id="requireNSX"></div>
+									</select><div id="requireNsx"></div>
 								</td>
 						</tr>
 						
-						<tr>
-							<th style="text-align: left"><label for="MVT">Đơn vị tính</label></th>
-							<td><input name="ctvtMaAdd" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
-								class="text"></td>
-						</tr>
+						
 						<tr>
 							<th style="text-align: left"><label for="DM">Định mức</label></th>
 							<td><input name="dinhMuc" size="5px" align=right type="text"
@@ -379,7 +366,7 @@
 							<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
 								<td>
 									<select 
-											title="" class="select" id="chatluong" name="chatluong" style="margin-top: 10px;">
+											title="" class="select" id="chatluong" name="chatLuong" style="margin-top: 10px;">
 												<option disabled selected value="">-- Chọn chất lượng --</option>
 												<%						  
 				 								
@@ -388,13 +375,13 @@
 				 								<option value=<%=chatLuong.getClMa()%>><%=chatLuong.getClTen()%></option> 
 				 								<%}  
 				  								%>  
-									</select><div id="requireNSX"></div>
+									</select><div id="requireCl"></div>
 								</td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="Sl">Số lượng</label></th>
 							<td>
-								<input name="soLuongTon" size="5px" align=right type="text" class="text" required title="Số lượng tồn không được để trống">
+								<input name="soLuongTon" size="5px" type="text" class="text" required title="Số lượng tồn không được để trống"><div id="requireSl"></div>
 							</td>
 						</tr>
 					</table>
@@ -411,23 +398,28 @@
 			<form id="update-chitiet">
 									<div class="input-table">
 					<table>
-						<div class="form-title" style="padding: 10px">Thêm chi tiết vật tư</div>
+						<div id="tua" class="form-title" style="padding: 10px">Thêm chi tiết vật tư</div>
 						<tr>
 							<th style="text-align: left"><label for="MVT">Mã vật tư</label></th>
-							<td><input name="ctvtMaAdd" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
+							<td><input name="vtMaUpdate" size="5px" type="text" readonly style="background-color: #D1D1E0;"
 								class="text"></td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="MVT">Tên vật
 									tư</label></th>
-							<td><input name="ctvtTenAdd" size="30px" align=right type="text" readonly style="background-color: #D1D1E0;"
+							<td><input name="vtTenUpdate" size="30px" align=right type="text" readonly style="background-color: #D1D1E0;"
 								class="text" ></td>
+						</tr>
+						<tr>
+							<th style="text-align: left"><label for="MVT">Đơn vị tính</label></th>
+							<td><input name="dvtUpdate" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
+								class="text"></td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="MVT">Nơi
 									sản xuất</label></th>
 							<td><select 
-							title="" class="select" id="noisanxuat" name="noisanxuat" style="margin-top: 10px;">
+							title="" class="select" id="noisanxuatUp" name="nsxUpdate" style="margin-top: 10px;">
 								<option disabled selected value="">-- Chọn nơi sản xuất --</option>
 								<%						  
  								
@@ -439,21 +431,17 @@
 						</select><div id="requireNSX"></div></td>
 						</tr>
 						
-						<tr>
-							<th style="text-align: left"><label for="MVT">Đơn vị tính</label></th>
-							<td><input name="ctvtMaAdd" size="5px" align=right type="text" readonly style="background-color: #D1D1E0;"
-								class="text"></td>
-						</tr>
+						
 						<tr>
 							<th style="text-align: left"><label for="DM">Định mức</label></th>
-							<td><input name="dinhMuc" size="5px" align=right type="text"
+							<td><input name="dinhMucUpdate" size="5px" align=right type="text"
 								class="text" required title="Định mức không được để trống"><div id="requireDM"></div></td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
 								<td>
 									<select 
-											title="" class="select" id="chatluong" name="chatluong" style="margin-top: 10px;">
+											title="" class="select" id="chatluongUp" name="clUpdate" style="margin-top: 10px;">
 												<option disabled selected value="">-- Chọn chất lượng --</option>
 												<%						  
 				 								
@@ -462,13 +450,13 @@
 				 								<option value=<%=chatLuong.getClMa()%>><%=chatLuong.getClTen()%></option> 
 				 								<%}  
 				  								%>  
-									</select><div id="requireNSX"></div>
+									</select><div id="requireNsx"></div>
 								</td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="Sl">Số lượng</label></th>
 							<td>
-								<input name="soLuongTon" size="5px" align=right type="text" class="text" required title="Số lượng tồn không được để trống">
+								<input name="soLuongTonUpdate" size="5px" type="text" class="text" required title="Số lượng tồn không được để trống">
 							</td>
 						</tr>
 					</table>
@@ -480,8 +468,5 @@
 				</div>
 			</form>
 		</div>
-	</div>
-
-	</div>
 </body>
 </html>

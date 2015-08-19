@@ -36,32 +36,31 @@ public class CtvtController extends HttpServlet {
 		CTVatTuDAO ctVatTuDAO = new CTVatTuDAO();
 		
 		String action = request.getParameter("action");
-		if("addVatTu".equalsIgnoreCase(action)) {
-			
-			String vtMa = request.getParameter("vtMa");
-			String vtTen = request.getParameter("vtTen");
-			String dvt = request.getParameter("dvt");
-			String nsxMa = request.getParameter("nsxMa");
-			String clMa = request.getParameter("clMa");
-			int dinhMuc = Integer.parseInt(request.getParameter("dinhMuc"));
-			int soLuongTon = Integer.parseInt(request.getParameter("soLuongTon"));
-//			if (new CTVatTuDAO().getCTVatTu(vtMa, nsxMa, clMa) != null)
+//		if("addVatTu".equalsIgnoreCase(action)) {
+//			
+//			String vtMa = request.getParameter("vtMa");
+//			String vtTen = request.getParameter("vtTen");
+//			String dvt = request.getParameter("dvt");
+//			String nsxMa = request.getParameter("nsxMa");
+//			String clMa = request.getParameter("clMa");
+//			int dinhMuc = Integer.parseInt(request.getParameter("dinhMuc"));
+//			int soLuongTon = Integer.parseInt(request.getParameter("soLuongTon"));
+//
+//			if(new CTVatTuDAO().getCTVatTu(vtMa, nsxMa, clMa) != null){
+//
+//				request.setAttribute("error", "Váº­t tÆ° Ä‘Ã£ tá»“n táº¡i");
 //				System.out.println("Vat tu da ton tai");
-			if(new CTVatTuDAO().getCTVatTu(vtMa, nsxMa, clMa) != null){
-//			if(false){
-				request.setAttribute("error", "Váº­t tÆ° Ä‘Ã£ tá»“n táº¡i");
-				System.out.println("Vat tu da ton tai");
-				return new ModelAndView("danh-muc-vat-tu");
-			}
-			else{
-				vatTuDAO.addVatTu(new VatTu(vtMa,vtTen,dvt));
-				ctVatTuDAO.addCTVatTu(new CTVatTu(new VatTu(vtMa,vtTen,dvt), new NoiSanXuat(nsxMa), new ChatLuong(clMa), dinhMuc, soLuongTon));
-				ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
-				ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) new CTVatTuDAO().getAllCTVatTu();
-				return new ModelAndView("danh-muc-vat-tu", "ctVatTuList", ctVatTuList);
-			}
-			
-		}
+//				return new ModelAndView("danh-muc-vat-tu");
+//			}
+//			else{
+//				vatTuDAO.addVatTu(new VatTu(vtMa,vtTen,dvt));
+//				ctVatTuDAO.addCTVatTu(new CTVatTu(new VatTu(vtMa,vtTen,dvt), new NoiSanXuat(nsxMa), new ChatLuong(clMa), dinhMuc, soLuongTon));
+//				ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
+//				ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) new CTVatTuDAO().getAllCTVatTu();
+//				return new ModelAndView("danh-muc-vat-tu", "ctVatTuList", ctVatTuList);
+//			}
+//			
+//		}
 		if("deleteVatTu".equalsIgnoreCase(action)) {
 			String[] vtIdList = request.getParameterValues("vtMa");
 			for(String s : vtIdList) {
@@ -84,8 +83,62 @@ public class CtvtController extends HttpServlet {
 			
 			CTVatTuDAO ctVatTuDAO = new CTVatTuDAO();
 			ArrayList<CTVatTu> listCTVatTu = (ArrayList<CTVatTu>) ctVatTuDAO.getCTVTu(vtMa);
-			System.out.println(listCTVatTu.get(0).getVatTu().getVtTen());
+			//System.out.println(listCTVatTu.get(0).getVatTu().getVtTen());
 			return JSonUtil.toJson(listCTVatTu);
 		}
 
+   @RequestMapping(value="/preEditCTVattu", method=RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String preEditCTVattu(@RequestParam("ctvtId") String ctvtId) {
+			System.out.println("****" + ctvtId + "****");
+			CTVatTuDAO ctVatTuDAO = new CTVatTuDAO();
+			CTVatTu vt = ctVatTuDAO.getCTVatTuById(Integer.parseInt(ctvtId));
+			System.out.println("****" + vt.getVatTu().getVtMa() + "****");
+			return JSonUtil.toJson(vt);
+		}
+   
+	@RequestMapping(value="/addCTVattu", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String addCTVattu(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen, @RequestParam("noiSanXuat") String noiSanXuat, @RequestParam("chatLuong") String chatLuong, 
+			 @RequestParam("dvt") String dvt, @RequestParam("dinhMuc") String dinhMuc, @RequestParam("soLuongTon") String soLuongTon) {
+		String result = "";
+		System.out.println("MA: " + vtMa);
+		System.out.println("NSX: " + noiSanXuat);
+		System.out.println("CL: " + chatLuong);
+		if(new CTVatTuDAO().getCTVatTu(vtMa, noiSanXuat, chatLuong) == null)
+		{
+			
+			CTVatTu ctvt = new CTVatTu(new VatTu(vtMa) , new NoiSanXuat(noiSanXuat), new ChatLuong(chatLuong), Integer.parseInt(dinhMuc), Integer.parseInt(soLuongTon));
+			new CTVatTuDAO().addCTVatTu(ctvt);
+			System.out.println("success");
+			result = "" + (new CTVatTuDAO().getLastInsert()-1);
+		
+		}
+		else
+		{
+			System.out.println("fail");			
+		}
+			return JSonUtil.toJson(result);
+	}
+	@RequestMapping(value="/updateCTVattu", method=RequestMethod.GET, 
+		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String updateCTVattu(@RequestParam("vtMaUpdate") String vtMaUpdate,  @RequestParam("nsxUpdate") String nsxUpdate, @RequestParam("clUpdate") String clUpdate, @RequestParam("dinhMucUpdate") String dinhMucUpdate, @RequestParam("soLuongTonUpdate") String soLuongTonUpdate) {
+		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+		CTVatTu ctvt = ctvtDAO.getCTVatTu(vtMaUpdate, nsxUpdate, clUpdate);
+		//CTVatTu ctvt = new CTVatTu(new VatTu(vtMaUpdate) , new NoiSanXuat(nsxUpdate), new ChatLuong(clUpdate), Integer.parseInt(dinhMucUpdate), Integer.parseInt(soLuongTonUpdate));
+		ctvt.setDinhMuc(Integer.parseInt(dinhMucUpdate));
+		ctvt.setNoiSanXuat(new NoiSanXuat(nsxUpdate));
+		ctvt.setChatLuong(new ChatLuong(clUpdate));
+		ctvt.setSoLuongTon(Integer.parseInt(soLuongTonUpdate));
+		ctvtDAO.updateCTVatTu(ctvt);
+//		new CTVatTuDAO().updateCTVatTu(ctvt);
+		return JSonUtil.toJson(ctvt);
+	}
+	@RequestMapping(value="/deleteCTVattu", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String deleteVattu(@RequestParam("ctvtId") String ctvtId) {
+		CTVatTu vt = new CTVatTu(Integer.parseInt(ctvtId));
+		new CTVatTuDAO().deleteCTVatTu(vt);
+		return JSonUtil.toJson(ctvtId);
+	}
 }
