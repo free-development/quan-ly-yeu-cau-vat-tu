@@ -102,17 +102,6 @@
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
 					<ul>
-<<<<<<< HEAD
-						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>">Báo cáo vật tư thiếu</a></li>
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>">Báo cáo vật tư thiếu</a></li>
->>>>>>> 0c89422302303aaf1aa8f0c9bbff7d2e13f3f146
->>>>>>> 1a77608956405c6866c16e8336dca9549c5567cd
->>>>>>> 859066776787cca63cc24964a4d447f9dcf21730
 						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
@@ -124,12 +113,12 @@
 		</div>
 
 		<div id="main-content">
-			<div id="title-content">Báo cáo vật tư thiếu</div>
+			<div id="title-content"style="margin-top: 20px;">Báo cáo vật tư thiếu</div>
 			<br>
 			<form id="option-form"  method="get" action="<%=siteMap.bcvttManage%>">
-				<fieldset>
-					<legend style="margin: 0 auto;">Tùy chọn báo cáo</legend>
-					<table style="margin: 0 auto; padding-bottom: 20px; cellspading: 30px">
+				<fieldset style="background-color:#dceaf5;width:700px;margin:0 auto;">
+					<legend style="margin: 0 auto;font-size: 18px">Tùy chọn báo cáo</legend>
+					<table style="margin: 0 auto; padding-bottom: 20px; cellspading: 30px;margin-top: 10px;">
 
                         <tr>
                             <th style="text-align: left">Thời gian:</th>
@@ -144,10 +133,9 @@
 							<td style="font-size: 20px"><input name="action" type="radio" value="chitiet" required title="Bạn phải chọn chế độ báo cáo"/>&nbsp;&nbsp;Chi tiết</td>
 						<td style="font-size: 20px"><input name="action" type="radio" value="tonghop"/>&nbsp;&nbsp;Tổng hợp</td>
 	                    </tr>
-	                    <tr>
-	                    	<td><input type="submit" value="Xem" class="button"/></td>
-	                    </tr>
 					</table>
+<!-- 					<input type="hidden" name="action" value="baocaovtt"> -->
+					<input style="margin-left: 300px;margin-bottom: 20px;"type="submit" value="Xem" class="button"/>
 				</fieldset>
 				
 			</form>
@@ -162,7 +150,8 @@
 		    %>
 			
 				<div id="view-table-bao-cao" class="scroll">
-					<table style="margin: 0 auto;">
+					<div style="text-align: center;font-size: 20px;color:firebrick;font-weight: bold;margin-top:10px;">Chi tiết vật tư thiếu</div>
+					<table style="margin: 0 auto;border: 2px solid #CCCCCC;width:900px;">
 							<tr bgcolor="lightgreen">
 								<th class="one-column">Số đến</th>
 								<th class="one-column">Số công văn</th>
@@ -185,17 +174,17 @@
 									%>
 												
 									<tr
-										<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
-										<td class="a-column"><%=congVan.getSoDen() %></td>
-										<td class="a-column"><%=congVan.getCvSo() %></td>
-										<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
-										<td class="a-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
-										<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
-										<td class="c-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
-										<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
-										<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
-										<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
-										<td><a href="">link công văn</td>
+										<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+										<td class="a-column"style="text-align: center;"><%=congVan.getSoDen() %></td>
+										<td class="a-column"style="text-align: center;"><%=congVan.getCvSo() %></td>
+										<td class="b-column"style="text-align: center;"><%=congVan.getCvNgayNhan() %></td>
+										<td class="a-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
+										<td class="b-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
+										<td class="c-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
+										<td class="d-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
+										<td class="e-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
+										<td class="e-column"style="text-align: center;"><%=yeuCau.getYcSoLuong() %></td>
+										<td style="text-align: center;"><a style="color: blue;" href="">Xem</td>
 									</tr>	
 								<%}} }%>			
 					</table>
@@ -218,7 +207,8 @@
 	   		HashMap<Integer, CTVatTu> ctvtHash = (HashMap<Integer, CTVatTu>) session.getAttribute("ctvtHash");
 	   		HashMap<Integer, Integer> yeuCauHash = (HashMap<Integer, Integer>) session.getAttribute("yeuCau"); %>
 			<div id="view-table-bao-cao" class="scroll">
-				<table style="margin: 0 auto;">
+				<div style="text-align: center;font-size: 20px;color:firebrick;font-weight: bold;margin-top:10px;">Tổng hợp vật tư thiếu</div>
+				<table style="margin: 0 auto;border: 2px solid #CCCCCC;width:700px;">
 					<tr bgcolor="lightgreen">
 						<th class="two-column">Mã vật tư</th>
 						<th class="three-column">Tên vật tư</th>
@@ -236,13 +226,13 @@
 							%>
 									
 					<tr
-						<%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
-						<td class="a-column"><%=ctvt.getVatTu().getVtMa() %></td>
-						<td class="b-column"><%=ctvt.getVatTu().getVtTen() %></td>
-						<td class="c-column"><%=ctvt.getNoiSanXuat().getNsxTen() %></td>
-						<td class="d-column"><%=ctvt.getChatLuong().getClTen() %></td>
-						<td class="e-column"><%=ctvt.getVatTu().getDvt() %></td>
-						<td class="e-column"><%=yeuCauHash.get(key) %></td>
+						<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+						<td class="a-column"style="text-align: center;"><%=ctvt.getVatTu().getVtMa() %></td>
+						<td class="b-column"style="text-align: center;"><%=ctvt.getVatTu().getVtTen() %></td>
+						<td class="c-column"style="text-align: center;"><%=ctvt.getNoiSanXuat().getNsxTen() %></td>
+						<td class="d-column"style="text-align: center;"><%=ctvt.getChatLuong().getClTen() %></td>
+						<td class="e-column"style="text-align: center;"><%=ctvt.getVatTu().getDvt() %></td>
+						<td class="e-column"style="text-align: center;"><%=yeuCauHash.get(key) %></td>
 					</tr>
 					<%} %>
 				</table>

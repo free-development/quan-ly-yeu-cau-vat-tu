@@ -83,7 +83,7 @@
 						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
 								mục chức danh</a></li>
 					</ul></li>
-				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
+				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
 					<ul>
 						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>

@@ -203,14 +203,14 @@
 
 									<td class="column-date"style="text-align: left"><%=congVan.getCvNgayNhan() %></td>
 
-									<td rowspan="2">
-										<div class="file" style="text-decoration: underline;">
-											<a
-												href="<%=siteMap.cvManage + "?action=download&file=" + congVan.getCvId()%>">
-<%-- 												<div class="mo-ta">Click để xem file: <%=fileHash.get(congVan.getCvId()).getMoTa() %></div> --%>
-											</a>
-										</div>
-									</td>
+<!-- 									<td rowspan="2"> -->
+<!-- 										<div class="file" style="text-decoration: underline;"> -->
+<!-- 											<a -->
+<%-- 												href="<%=siteMap.cvManage + "?action=download&file=" + congVan.getCvId()%>"> --%>
+<%-- <%-- 												<div class="mo-ta"><%=fileHash.get(congVan.getCvId()).getMoTa() %></div> --%> --%>
+<!-- 											</a> -->
+<!-- 										</div> -->
+<!-- 									</td> -->
 
 
 								</tr>
@@ -226,8 +226,12 @@
 								<tr>
 
 									<td class="left-column-first">Nơi gửi: &nbsp;&nbsp;</td>
-
 									<td class="column-color" colspan="6" style="text-align: left"><%= congVan.getDonVi().getDvTen()%></td>
+									<td>Click để xem file</td>
+									<td rowspan="4"><a
+												href="<%=siteMap.cvManage + "?action=download&file=" + congVan.getCvId()%>">
+<%-- 												<div class="mo-ta"><%=fileHash.get(congVan.getCvId()).getMoTa() %></div> --%>
+											</a></td>
 								</tr>
 								<tr>
 
