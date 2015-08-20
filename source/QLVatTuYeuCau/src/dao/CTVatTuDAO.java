@@ -154,10 +154,10 @@ public class CTVatTuDAO {
 //		System.out.println(new CTVatTuDAO().search("", "Tru dien", "", "").size());
 //		System.out.println(new CTVatTuDAO().search("", "", "", "CL4").size());
 //		System.out.println(new CTVatTuDAO().search("", "", "Vn4", "").size());
-		ArrayList<CTVatTu> l = ct.getCTVTu("VT4");
-		for (CTVatTu vatTu : l) {
-			System.out.println(vatTu.getVatTu().getVtMa());
-		}
+		CTVatTu l = ct.getCTVatTu("VT4","VN0","CL0");
+		//for (CTVatTu vatTu : l) {
+			System.out.println(l.getVatTu().getVtMa());
+		//}
 		
 	}
 }

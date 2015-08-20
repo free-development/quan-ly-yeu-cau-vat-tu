@@ -23,8 +23,8 @@
  			dvt = $('#add-chitiet input:text[name=dvt]').val();
  			noiSanXuat = $('#add-chitiet select[name=noiSanXuat]').val();
  			chatLuong = $('#add-chitiet select[name=chatLuong]').val();
- 			dinhMuc = $('#add-chitiet input:text[name=dinhMuc]').val();
- 			soLuongTon = $('#add-chitiet input:text[name=soLuongTon]').val();
+ 			dinhMuc = $('#add-chitiet input[name=dinhMuc]').val();
+ 			soLuongTon = $('#add-chitiet input[name=soLuongTon]').val();
  			if(dinhMuc == '') {
  				$('#requireDM').html('Vui lòng nhập định mức');
  			}
@@ -48,15 +48,16 @@
  			  	contentType: 'application/json',
  			    mimeType: 'application/json',
 			  	
- 			  	success: function(result) {
-			  		if(result != "")
+ 			  	success: function(ctvt) {
+ 			  		
+			  		if(ctvt != "")
 	 				{
 					$('#view-table-chi-tiet table tr:first').after('<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"ctvtId\" value=\"' 
-							+result + '\"</td><td class=\"col\">'
+							+ctvt.ctvtId + '\"</td><td class=\"col\">'
 							+ vtMa +'</td><td class=\"col\">'
 							+ vtTen +'</td><td class=\"col\">'
-							+ noiSanXuat +'</td><td class=\"col\">' 				
-							+ chatLuong +'</td><td class=\"col\">'
+							+ ctvt.noiSanXuat.nsxTen +'</td><td class=\"col\">' 				
+							+ ctvt.chatLuong.clTen +'</td><td class=\"col\">'
 							+ dvt +'</td><td class=\"col\">'
 							+ dinhMuc +'</td><td class=\"col\">'
 							+ soLuongTon +'</td></tr>');
@@ -64,8 +65,8 @@
 					$('#add-chitiet select[name=noiSanXuat]').val('');
 					$('#add-chitiet select[name=chatLuong]').val('');
 					
-					$('#add-chitiet input:text[name=dinhMuc]').val('');
-					$('#add-chitiet input:text[name=soLuongTon]').val('');
+					$('#add-chitiet input[name=dinhMuc]').val('');
+					$('#add-chitiet input[name=soLuongTon]').val('');
 			  		
 			  		alert("Vật tư "+vtMa + " đã được thêm ");	
 				}
@@ -79,7 +80,7 @@
  		}
 		function preEditCTVattu(formId, check){
 			ctvtId = $('#view-table-chi-tiet input:checkbox[name=ctvtId]:checked').val();
-			alert(ctvtId);
+			//alert(ctvtId);
 				$.ajax({
 					url: "/QLVatTuYeuCau/preEditCTVattu.html",
 					type: "GET",
@@ -95,8 +96,8 @@
 					  	$('#noisanxuatUp option[value='+vt.noiSanXuat.nsxMa+']').prop('selected',true);
 					  	$('#chatluongUp option[value='+vt.chatLuong.clMa+']').prop('selected',true);
 						$('#update-chitiet input:text[name=dvtUpdate]').val(vt.vatTu.dvt);
-						$('#update-chitiet input:text[name=dinhMucUpdate]').val(vt.dinhMuc);
-						$('#update-chitiet input:text[name=soLuongTonUpdate]').val(vt.soLuongTon);
+						$('#update-chitiet input[name=dinhMucUpdate]').val(vt.dinhMuc);
+						$('#update-chitiet input[name=soLuongTonUpdate]').val(vt.soLuongTon);
 					  	
 					  	showForm(formId, check);
 					}
@@ -110,8 +111,8 @@
 			var nsxUpdate = $('#update-chitiet select[name=nsxUpdate]').val();
 			var clUpdate = $('#update-chitiet select[name=clUpdate]').val();
 			var dvtUpdate = $('#update-chitiet input:text[name=dvtUpdate]').val();
-			var dinhMucUpdate = $('#update-chitiet input:text[name=dinhMucUpdate]').val();
-			var soLuongTonUpdate = $('#update-chitiet input:text[name=soLuongTonUpdate]').val();
+			var dinhMucUpdate = $('#update-chitiet input[name=dinhMucUpdate]').val();
+			var soLuongTonUpdate = $('#update-chitiet input[name=soLuongTonUpdate]').val();
 			if (confirm('Bạn có chắc thay đổi vật tư có mã ' + vtMaUpdate))
 				updateCTVattu(vtMaUpdate, vtTenUpdate, dvtUpdate, nsxUpdate, clUpdate, dinhMucUpdate, soLuongTonUpdate);
 		}
@@ -130,8 +131,8 @@
 				  				+ctvt.ctvtId + '\"</td><td class=\"col\">'
 				  				+ vtMaUpdate +'</td><td class=\"col\">'
 				  				+ vtTenUpdate +'</td><td class=\"col\">'
-				  				+ nsxUpdate +'</td><td class=\"col\">'
-				  				+ clUpdate +'</td><td class=\"col\">'
+				  				+ ctvt.noiSanXuat.nsxTen +'</td><td class=\"col\">'
+				  				+ ctvt.chatLuong.clTen +'</td><td class=\"col\">'
 				  				+ dvtUpdate +'</td><td class=\"col\">'
 				  				+ dinhMucUpdate +'</td><td class=\"col\">'
 				  				+ soLuongTonUpdate+'</td></tr>');
@@ -140,8 +141,8 @@
 				  		$('select[name=nsxUpdate]').val('');
 				  		$('select[name=clUpdate]').val('');
 						$('input:text[name=dvtUpdate]').val('');
-						$('input:text[name=dinhMucUpdate]').val('');
-						$('input:text[name=soLuongTonUpdate]').val('');
+						$('input[name=dinhMucUpdate]').val('');
+						$('input[name=soLuongTonUpdate]').val('');
 				  		showForm("update-chitiet", false);	
 				  		alert("Sửa thành công chi tiết vật tư có mã "+vtMaUpdate+ " !")
 				  	}
@@ -150,7 +151,7 @@
  	function confirmDeleteCTVT(){
  		ctvtId = $('#view-table-chi-tiet input:checkbox[name=ctvtId]:checked').val();
 // 		alert(cvvtId);
- 		if (confirm('Bạn có chắc xóa ' + ctvtId))
+ 		if (confirm('Bạn có chắc xóa '))
  			deleteCTVattu(ctvtId);
  	}
 	
@@ -167,7 +168,7 @@
  		    
  		  	success: function() {
  		  		$('#view-table-chi-tiet table tr').has('input[name="ctvtId"]:checked').remove();
- 		  		alert(ctvtId + " da bi xoa");
+ 		  		alert("Đã xóa thành công!");
 				
  		    } 
  		});  
@@ -182,12 +183,12 @@
         $('#view-table-chi-tiet .checkAll').click(function(event) {  //on click 
             if(this.checked) { // check select status
                 $('#view-table-chi-tiet .checkbox').each(function() { //loop through each checkbox
-                    this.checked = true;  //select all checkboxes with class "checkbox1"               
+                    this.checked = true;  //select all checkboxes with class "checkbox1"    
                 });
             }else{
                 $('#view-table-chi-tiet .checkbox').each(function() { //loop through each checkbox
                     this.checked = false; //deselect all checkboxes with class "checkbox1"                       
-                });         
+                });
             }
         });
         

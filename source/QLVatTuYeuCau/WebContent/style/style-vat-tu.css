@@ -267,6 +267,16 @@
 	margin: 1em 0;
 	overflow: scroll;
 }
+.scroll-chi-tiet {
+	max-height: 420px;
+	/*height: 300px;*/
+	height: 800px;
+	width: 1024px;
+	display: auto;
+	border: 1px solid #CCCCCC;
+	margin: 1em 0;
+	overflow: scroll;
+}
 #chitiet{
 	display: none;
 }
