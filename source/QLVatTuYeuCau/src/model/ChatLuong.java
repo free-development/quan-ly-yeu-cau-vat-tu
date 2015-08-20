@@ -13,7 +13,7 @@ public class ChatLuong implements Serializable {
 	 * DataTypeLength/Precision 3
 	 */
 	private String clMa;
-
+	private int daXoa;
 	/**
 	 * NOT NULL false
 	 * DomainName 
@@ -25,14 +25,27 @@ public class ChatLuong implements Serializable {
 	public ChatLuong() {
 		this.clMa = "";
 		this.clTen = "";
+		this.daXoa = 0;
 	}
 	/**
 	 * @param clMa
 	 * @param clTen
 	 */
-	public ChatLuong(String clMa, String clTen) {
+	public ChatLuong(String clMa, String clTen)
+	{
 		this.clMa = clMa;
 		this.clTen = clTen;
+	}
+	public ChatLuong(String clMa, String clTen,int daXoa) {
+		this.clMa = clMa;
+		this.clTen = clTen;
+		this.daXoa = daXoa;
+	}
+	public int getDaXoa() {
+		return daXoa;
+	}
+	public void setDaXoa(int daXoa) {
+		this.daXoa = daXoa;
 	}
 	public ChatLuong(String clMa) {
 		this.clMa = clMa;

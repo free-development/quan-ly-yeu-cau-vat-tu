@@ -30,7 +30,7 @@ function checkPassword()
 
  function loGin() {
 		var msnv = $('#add-form input:text[name=msnv]').val();
-		var matkhau = $('#add-form input:password[name=matkhau]').val();
+		var matkhau = $('#add-form input:password[name=matkhau]').val();	
 			$.ajax({
 				url: "/QLVatTuYeuCau/loGin.html",	
 			  	type: "POST",
@@ -39,6 +39,7 @@ function checkPassword()
 			  	contentType: 'application/json',
 			    mimeType: 'application/json',
 			  	success: function(result) {
+			  		alert("OK1");
 			  		if(result == "success")
 	 				{
  				  		alert("Xin chào "+ msnv + " bạn đã đăng nhập thành công");	
