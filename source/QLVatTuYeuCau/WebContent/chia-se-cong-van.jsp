@@ -1,5 +1,9 @@
-﻿<%@page import="model.DonVi"%>
-<%@page import="java.util.ArrayList"%>
+﻿<%@page import="model.CongVan"%>
+<%@page import="model.NguoiDung"%>
+<%@page import="model.VaiTro"%>
+<%@page import="dao.VaiTroDAO"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%><%@page import="java.util.ArrayList"%>
 <%@page import="map.siteMap"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
@@ -9,10 +13,10 @@
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
 <link rel="stylesheet" href="style/style-chia-se.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">-->
-<link
-	href="style\font-awesome-4.3.0\font-awesome-4.3.0\css\font-awesome.min.css"
-	type="text/css" rel="stylesheet">
+<link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
+		type="text/css" rel="stylesheet">
 <script type="text/javascript">
 		function showForm(formId, check){
 			if (check)
@@ -33,6 +37,13 @@
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
 <body>
+	<%
+	ArrayList<VaiTro> vaiTroList = (ArrayList<VaiTro>) request.getAttribute("vaiTroList");
+	ArrayList<NguoiDung> nguoiDungList = (ArrayList<NguoiDung>) request.getAttribute("nguoiDungList");
+	CongVan congVan = (CongVan) session.getAttribute("congVan");
+	
+	
+	%>
 	<div class="wrapper">
 		<div class="header">
 			<!--
@@ -91,73 +102,80 @@
 
 		<div id="main-content">
 			<div id="main-content">
-				<form id="main-form">
-					<div id="title-content">Chia sẻ công văn</div>
-					<div id="input-table">
+				<div id="title-content">Chia sẻ công văn</div>
+				<form id="main-form" action="<%=siteMap.updateChiaSeCv%>" method="get">
+					
+					<div id="input-table" style="width: 75%">
 						<table>
 							<tr>
-								<th class="a-column">Số công văn:</th>
-								<td class="b-column">2118-0</td>
+								<th style="text-align: ce"">Số công văn:</th>
+								<td class="b-column"><%=congVan.getCvSo() %></td>
 								<th class="c-column">Ngày đến:</th>
-								<td class="b-column">23/06/2015</td>
+								<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
 								<th class="e-column">Người lập phiếu:</th>
 								<td class="f-column">NV002</td>
 							</tr>
 						</table>
 					</div>
-					<br />
-					<div id="view-table">
-						<table>
+<!-- 					<br /> -->
+<%-- 					<form action="<%=siteMap.chiaSeCv%>" method="get"> --%>
+					<div id="view-table" >
+						<table style="margin: 0 auto;" class="scroll-chia-se" > 
 							<tr style="background-color: #199e5e;">
 
-								<th class="one-column">Mã nhân viên</th>
-								<th class="two-column">Tên nhân viên</th>
-								<th class="three-column">Mua sắm</th>
-								<th class="four-column">Lập phiếu</th>
-								<th class="five-column">Cập nhật vật tư</th>
-								<th class="six-column">...</th>
+								<th style="width: 100px;">Mã nhân viên</th>
+								<th style="width: 200px;">Tên nhân viên</th>
+								<%for (VaiTro vaiTro : vaiTroList) {%>
+								<th class="thead-vaitro" style="max-width: 300px;"><%=vaiTro.getVtTen() %></th>
+								<%} %>
+<!-- 								<th class="four-column">Lập phiếu</th> -->
+<!-- 								<th class="five-column">Cập nhật vật tư</th> -->
+<!-- 								<th class="six-column">...</th> -->
 
 							</tr>
-							<tr>
-
-								<td class="a-column">NV001</td>
-								<td class="b-column">Nguyễn Văn A</td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-
+							<% int count = 0;for(NguoiDung nguoiDung : nguoiDungList) { count ++;%>
+							<tr <% if (count % 2 ==0) out.println("style=\"background : #CCFFFF;\"");%>>
+								<td class="tbody-nguoidung"><%=nguoiDung.getMsnv() %></td>
+								<td class="tbody-nguoidung"><%=nguoiDung.getHoTen() %></td>
+								<% for(VaiTro vaiTro : vaiTroList) {%>
+								<td class="checkbox"><input type="checkbox" name="vaiTro" value="<%	out.print(nguoiDung.getMsnv() + "#" + vaiTro.getVtId()); %>"></td>
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+								<%} %>
 							</tr>
-							<tr>
+							<%} %>
+<!-- 							<tr> -->
 
-								<td class="a-column">NV002</td>
-								<td class="b-column">Trần Thị B</td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-							</tr>
-							<tr>
+<!-- 								<td class="a-column">NV002</td> -->
+<!-- 								<td class="b-column">Trần Thị B</td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
 
-								<td class="a-column">NV003</td>
-								<td class="b-column">Võ Văn C</td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-							</tr>
-							<tr>
+<!-- 								<td class="a-column">NV003</td> -->
+<!-- 								<td class="b-column">Võ Văn C</td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
 
-								<td class="a-column">NV004</td>
-								<td class="b-column">Lê Thị D</td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-								<td class="checkbox"><input type="checkbox" name=""></td>
-							</tr>
+<!-- 								<td class="a-column">NV004</td> -->
+<!-- 								<td class="b-column">Lê Thị D</td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
+<!-- 							</tr> -->
 						</table>
 					</div>
 					<div class="group-button">
+					<input type="hidden" value="save" name="action">
 						<button class="btn">
 							<i class="fa fa-floppy-o"></i>&nbsp;Lưu lại
 						</button>

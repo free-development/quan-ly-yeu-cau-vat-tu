@@ -53,8 +53,10 @@ public class siteMap {
 	public static final String baoCaoBangDeNghi = "bao-cao-bang-de-nghi-cap-vat-tu";
 	
 	// map chia se cong van
-	public static final String cscvManage = home +  "manageCscv.html";
-	public static final String chiaSe = "chia-se-cong-van";
+	public static final String cscvManage = home +  "cscvManage.html";
+	public static final String updateChiaSeCv = home +  "chiaSeCv.html";
+	
+	public static final String chiaSeCv = "chia-se-cong-van";
 	
 	// map cong van
 	public static final String cvManage = home +  "cvManage.html";
@@ -68,12 +70,29 @@ public class siteMap {
 	public static final String updateYeuCau = home + "updateYeuCau.html"; 
 	public static final String ycVatTu = "yeu-cau-vat-tu";
 	
+	// map chia se cong van
+//	public static final String cscvmanage = home +  "cscvManage.html";
+//	public static final String chiaSeCv = "chia-se-cong-van";
+	
 	// map file download file
 	public static final String  fileDownload = "download-file";
 	// map xuat file bcvtt
 		public static final String  xuatFile = "xuatFile";
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+		// map login page
+=======
+
+
+		
+>>>>>>> 074243b826faecfa9fe230b8ba82139956ff69fb
 
 	// map login page
+>>>>>>> d46b6927db412ea0605bdd4f91e7e8de74d91293
 	public static final String  login = "login";
 		public static final String  xuatBangDeNghi = "xuatBangDeNghi";
+	//map home
+		
 }

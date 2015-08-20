@@ -3,15 +3,17 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.Query;
 
+import model.CTVatTu;
 import model.YeuCau;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
@@ -44,27 +46,29 @@ public class YeuCauDAO {
 		session.save(yeuCau);
 		session.getTransaction().commit();
 	}
+	
 	public void updateYeuCau(YeuCau yeuCau){
 		session.beginTransaction();
 		session.update(yeuCau);
 		session.getTransaction().commit();
 	}
-	public void deleteYeuCau(YeuCau yeuCau){
+	public void deleteYeuCau(int ycId){
 		session.beginTransaction();
-		session.delete(yeuCau);
+		// Cach 1 dung giong nhu Statement
+		String sql = "update YeuCau set daXoa = 1 where ycId = " + ycId ;		
+		Query query = session.createQuery(sql);
+		query.executeUpdate();
+		/*
+		 Cach 2 dung giong nhu Prepare statement
+			 String sql = "update YeuCau set daXoa = 1 where ycId = :ycId";
+			Query query = session.createQuery(sql);
+			query.setParameter("ycId", 1);
+			query.executeUpdate();
+			session.getTransaction().commit();
+		 */
+		
 		session.getTransaction().commit();
 	}
-//	public int getYeuCau1(final String clMa)
-//	{
-//		session.beginTransaction();
-//		Criteria cr = session.createCriteria(YeuCau.class);
-//		Criterion expClMa=Restrictions.eq("clMa", clMa);
-//		cr.add(expClMa);
-//		int l = cr.list().size();
-//		session.getTransaction().commit();
-//		return l;
-//		
-//	}
 
 	public ArrayList<YeuCau> getByCvId(int cvId) {
 			session.beginTransaction();
@@ -95,5 +99,61 @@ public class YeuCauDAO {
 		session.getTransaction().commit();
 		return yeuCauList;
 	}
-
+	
+	public void addOrUpdateYeuCau(YeuCau yeuCau){
+		session.beginTransaction();
+		session.saveOrUpdate(yeuCau);
+		session.getTransaction().commit();
+	}
+	
+	// get so luong yeu by 
+	public YeuCau getYeuCau(final int cvId, final int ctvtId) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(YeuCau.class);
+		Criterion expCv = Restrictions.eq("cvId", cvId);
+		Criterion expCtvt = Restrictions.eq("ctVatTu", new CTVatTu(ctvtId));
+		Criterion expDaXoa= Restrictions.eq("daXoa", 0);
+		cr.add(expCv);
+		cr.add(expCtvt);
+		cr.add(expDaXoa);
+		ArrayList<YeuCau> ycList  = (ArrayList<YeuCau>) cr.list();
+		YeuCau yeuCau = null;
+		if (ycList.size() != 0)
+			yeuCau = (YeuCau) cr.list().get(0);
+		
+		session.getTransaction().commit();
+		return yeuCau;
+	}
+	
+	public int getLastInsert() {
+		session.beginTransaction();
+		Criteria cr =  session.createCriteria(YeuCau.class).setProjection(Projections.max("ycId"));
+		Integer idOld =  (Integer) cr.list().get(0);
+		int id = 0;
+		if (idOld != null)
+			id += idOld + 1;
+		else
+			id++;
+		
+		session.getTransaction().commit();
+		return id;
+	}
+	
+	public YeuCau addSoLuong(final int cvId, final int ctvtId, int soLuong) {
+		YeuCau yeuCau = getYeuCau(cvId, ctvtId);
+		if (yeuCau == null)
+			yeuCau = new YeuCau(cvId, new CTVatTu(ctvtId), soLuong, 0,0);
+		else {
+			int soLuongOld = yeuCau.getYcSoLuong();
+			soLuong += soLuongOld;
+			yeuCau.setYcSoLuong(soLuong);
+		}
+		addOrUpdateYeuCau(yeuCau);
+		int ycId = getLastInsert()-1;
+		yeuCau.setYcId(ycId);
+		return yeuCau;
+	}
+	public static void main(String[] args) {
+		new YeuCauDAO().deleteYeuCau(1);
+	}
 }

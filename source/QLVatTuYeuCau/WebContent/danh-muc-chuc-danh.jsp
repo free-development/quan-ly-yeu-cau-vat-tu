@@ -164,14 +164,14 @@
 						<tr>
 							<td class="input"><label for="MCD">Mã chức danh</label></td>
 							<td><input name="cdMa" type="text" class="text" required
-								autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}"
-								title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+								autofocus size="2" maxlength="3" onkeypress="changeCdMa();" pattern="[a-zA-Z0-9]{3}"
+								title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"><div id="requireCdMa" style="color: red"></div></td>
 						</tr>
 						<tr>
 							<th class="input"><label for="TCD">Tên chức danh</label>
 							</td>
 							<td><input name="cdTen" size="30px" align=left type="text"
-								class="text" required title="Tên chất lượng không được để trống"></td>
+								class="text" onkeypress="changeCdTen();"required title="Tên chất lượng không được để trống"><div id="requireCdTen" style="color: red"></div></td>
 						</tr>
 					</table>
 				</div>
@@ -206,9 +206,9 @@
 						<tr>
 							<td class="input"><label for="TCD">Tên chức danh</label></td>
 							<td><input name="cdTenUpdate" size="30px" align=left
-								type="text" class="text"
+								type="text" class="text" onkeypress="changeCdTenUpdate();"
 								value="Hàng thu hồi có thể sử dụng được" required
-								title="Tên chất lượng không được để trống"></td>
+								title="Tên chất lượng không được để trống"><div id="requireCdTenUpdate" style="color: red"></div></td>
 						</tr>
 					</table>
 				</div>

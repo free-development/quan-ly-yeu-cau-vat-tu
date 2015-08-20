@@ -96,7 +96,7 @@
 					</ul>
 				</li>
 				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
-					</ul>
+				</ul>
 					<div class="clear"></div>
 				</div>
 	

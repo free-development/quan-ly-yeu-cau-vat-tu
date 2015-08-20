@@ -20,6 +20,9 @@
  		<property name="ycSoLuong" type="int" access="field"> 
  			<column name="YCSOLUONG" /> 
  		</property> 
+ 		<property name="capSoLuong" type="int" access="field"> 
+ 			<column name="CAPSOLUONG" /> 
+ 		</property> 
  		<property name="cvId" type="int" access="field"> 
  			<column name="CVID" /> 
  		</property>

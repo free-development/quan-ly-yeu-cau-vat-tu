@@ -103,10 +103,12 @@
 		</div>
 
 		<div id="main-content">
-			<div id="title-content">Báo cáo bảng đề nghị cấp vật tư</div>
+			<div id="title-content"style="margin-bottom: 10px;">Báo cáo bảng đề nghị cấp vật tư</div>
 			<div id="content">
 			<form id="option-form" method="get" action ="<%=siteMap.bcbdnManage %>">
-				<table style="margin-left: 200px;margin-top: 10px;">
+			<fieldset style="background-color:#dceaf5;width:750px;margin:0 auto;">
+			
+				<table style="margin:0 auto;margin-top: 20px;">
 					<tr>
                             <th style="text-align: left;margin-top: 10px;padding-right:10px;" >Thời gian:</th>
                             <td style="text-align: left;margin-top: 10px;" colspan="2" >Từ ngày &nbsp;
@@ -130,9 +132,8 @@
 						</select>
 						</td>
 					</tr>
-				</table>
-				<table class="radio" style="margin-top: 10px;margin-left: 200px;">
-					<th style="text-align: left;padding-right:10px;">Trạng thái:</th>				  
+				<table class="radio" style="margin-top: 30px;margin:0 auto;">
+					<th style="text-align: left;margin-top: 20px;padding-right:50px;">Trạng thái:</th>				  
  								
  								<td style="text-align: right;"><input type="radio" name="trangthai" value="CGQ"></td>
 								<td style="text-align: left;"><label class="lable1" for="CGQ">Chưa giải quyết</label></td>
@@ -145,10 +146,11 @@
 								<td style="text-align: left;"><label class="lable1" for="CGQ">Tất cả</label></td>
 				</table>
 				<input type="hidden" name="action" value="baocaobdn">
-				<input class="button" type="submit" value="Xem">
+				<input style="margin-top: 15px;"class="button" type="submit" value="Xem">
 <!-- 					<i class="fa fa-eye"></i>&nbsp;&nbsp;</> -->
 				<br>
 				<br>
+				</fieldset>
 				</form>
 			</div>
 			<div id="view-table" style="max-height: 420px;width: 1024px;display: auto;border: 1px solid #CCCCCC;margin: 1em 0;overflow: scroll;">
@@ -198,12 +200,13 @@
 						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
 					</button>
 					&nbsp;&nbsp;
-					<button type="button" class="button" onclick="location.href='<%=siteMap.home+ ".jsp"%>'">
+					<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 					</button>
 				</div>
 		</div>
 		</div>
+		</table>
 	
 </body>
 </html>

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import map.siteMap;
 import model.CTVatTu;
 import model.CongVan;
+import model.DonVi;
+import model.TrangThai;
 import model.YeuCau;
 
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 import util.DateUtil;
 import dao.CTVatTuDAO;
 import dao.CongVanDAO;
+import dao.DonViDAO;
+import dao.TrangThaiDAO;
 import dao.YeuCauDAO;
 import util.DateUtil;
 
@@ -36,6 +40,9 @@ public class BcvttController extends HttpServlet {
     	HttpSession session = request.getSession(false);
     	
     	String action = request.getParameter("action");
+    	if ("manageBcvtt".equalsIgnoreCase(action)) {
+		return new ModelAndView(siteMap.baoCaoVatTuThieu);
+		}
     	if("chitiet".equalsIgnoreCase(action)){
 //    		String loaiBc = new String(action);
     		String ngaybd = request.getParameter("ngaybd");
