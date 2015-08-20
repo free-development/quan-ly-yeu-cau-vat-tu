@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+@JsonSerialize
 public class CTVatTu implements Serializable{
 
 	private int ctvtId;
@@ -36,7 +38,12 @@ public class CTVatTu implements Serializable{
 		this.noiSanXuat = new NoiSanXuat();
 		this.chatLuong = new ChatLuong();
 	}
-
+	/**
+	 * @param ctvtId
+	 */
+	public CTVatTu(final int ctvtId) {
+		this.ctvtId =  ctvtId;
+	}
 	/**
 	 * @param dinhMuc
 	 * @param soLuongTon
@@ -52,7 +59,11 @@ public class CTVatTu implements Serializable{
 		this.noiSanXuat = noiSanXuat;
 		this.chatLuong = chatLuong;
 	}
-	
+<<<<<<< HEAD
+=======
+	public CTVatTu(int ctvtId){
+		this.ctvtId = ctvtId;
+	}
 	public int getCtvtId() {
 		return ctvtId;
 	}
@@ -61,6 +72,7 @@ public class CTVatTu implements Serializable{
 		this.ctvtId = ctvtId;
 	}
 
+>>>>>>> 6f2a573f4301281094b8831233baed9b5b57cd91
 	/**
 	 * @param dinhMuc
 	 * @param soLuongTon
@@ -77,6 +89,15 @@ public class CTVatTu implements Serializable{
 		this.noiSanXuat = noiSanXuat;
 		this.chatLuong = chatLuong;
 	}
+	public int getCtvtId() {
+		return ctvtId;
+	}
+
+	public void setCtvtId(int ctvtId) {
+		this.ctvtId = ctvtId;
+	}
+
+	
 	
 	/**
 	 * @return the dinhMuc

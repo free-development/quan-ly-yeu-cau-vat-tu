@@ -141,8 +141,12 @@
 			<br>
 			<div id="view-search">
 				<table>
+<<<<<<< HEAD
+					<tr><th >Ma vat tu</th><th >Ten vat tu</th><th >Noi san xuat</th><th >Chat luong</th><th >Don vi tinh</th><th ></th></tr>
+=======
 					<tr style="background-color: #199e5e"><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th ></th></tr>
 					<tr></tr>
+>>>>>>> 6f2a573f4301281094b8831233baed9b5b57cd91
 					<%
 						int countCtvt = 0;
 						for(CTVatTu ctVatTu : ctVatTuList) { 
@@ -157,7 +161,7 @@
 							<td><%=nsx.getNsxTen() %></td>
 							<td><%=chatLuong.getClTen() %></td>
 							<td><%=vatTu.getDvt() %></td>
-							<td><input class="radio"  type="radio" name="ctvtId" value="<%=ctVatTu.getCtvtId() %>" onchange="preAddSoLuong();"> </td>
+							<td><input class="radio"  type="radio" id="a" name="ctvtId" value="<%=ctVatTu.getCtvtId() %>" onchange="preAddSoLuong();"> </td>
 						</tr>
 					<%}%>
 				</table>	
@@ -184,13 +188,14 @@
 									VatTu vatTu = ctVatTu.getVatTu();
 									ChatLuong chatLuong = ctVatTu.getChatLuong();
 								%>
-								<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
-									<td><input type="checkbox" name = "yeuCau" value=<%=yeuCau.getYcId()%>> </td>
+								<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%> id="<%=yeuCau.getYcId()	%>">
+									<td><input id="<%=yeuCau.getYcId() %>" type="checkbox" name = "yeuCau" value=<%=yeuCau.getYcId()%>> </td>
 									<td><%=vatTu.getVtMa()%></td>
 									<td><%=vatTu.getVtTen()%></td>
 									<td><%=nsx.getNsxTen()%></td>
 									<td><%=chatLuong.getClTen()%></td>
 									<td><%=vatTu.getDvt()%></td>
+									<td><%=yeuCau.getYcSoLuong()%></td>
 								<%} %>
 							</table>
 							</div>
@@ -203,7 +208,7 @@
 									onclick="showForm('update-yc-vat-tu','add-yeu-cau-form', true)">
 									<i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa
 								</button>
-								<button class="button" onclick="return confirmDelete()">
+								<button class="button" type="button" onclick="return confirmDelete();">
 									<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa
 								</button>
 								<button type="reset" class="button">
