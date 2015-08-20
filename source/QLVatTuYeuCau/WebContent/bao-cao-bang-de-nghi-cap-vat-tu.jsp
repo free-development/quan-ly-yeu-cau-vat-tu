@@ -200,12 +200,13 @@
 						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
 					</button>
 					&nbsp;&nbsp;
-					<button type="button" class="button" onclick="location.href='<%=siteMap.home+ ".jsp"%>'">
+					<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 					</button>
 				</div>
 		</div>
 		</div>
+		</table>
 	
 </body>
 </html>

@@ -49,8 +49,8 @@
 		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 				<div id="view-table-bao-cao" >
 					<table style="bgcolor: none; color: black; width:800px;">
-						<thead>
-							<tr>
+						<thead >
+							<tr style="background-color: #199e5e;">
 								<th class="one-column">Số đến</th>
 								<th class="three-column">Ngày nhận</th>
 								<th class="two-column">Mã vật tư</th>
@@ -123,7 +123,7 @@
 			<div id="view-table-bao-cao" >
 				<table style="width:650px;" >
 					<tr style="bgcolor: none; color: black; border-width: 1px;" >
-						<th class="two-column"style="text-align: center;">Mã vật tư</th>
+						<th class="two-column"style="text-align: center;background-color: #199e5e;">Mã vật tư</th>
 						<th class="three-column">Tên vật tư</th>
 						<th class="three-column">Nơi sản xuất</th>
 						<th class="three-column">Chất lượng</th>

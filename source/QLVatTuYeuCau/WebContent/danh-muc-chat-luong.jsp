@@ -155,21 +155,21 @@
 			</form>
 
 			<form id="add-form" method="get"
-				action="<%=siteMap.clManage + "?action=manageCl" %>">
+				action="<%=siteMap.clManage + "?action=manageCl" %>" style="background-color: #DCEAF5;">
 				<div class="input-table">
 					<table>
 						<div class="form-title">Thêm chất lượng</div>
 						<tr>
-							<td class="input"><label for="MCL">Mã CL</label></td>
+							<td class="input"><label for="MCL">Mã chất lượng:</label></td>
 							<td><input name="clMa" type="text" class="text" required
-								autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}"
-								title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+								autofocus size="2" onkeypress="changeClMa();" maxlength="3" pattern="[a-zA-Z0-9]{3}"
+								title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"><div id="requireClMa" style="color: red"></div></td>
 						</tr>
 						<tr>
-							<th class="input"><label for="MMD">Tên CL</label>
+							<th class="input"><label for="MMD">Tên chất lượng</label>
 							</td>
 							<td><input name="clTen" size="30px" align=left type="text"
-								class="text" required title="Tên chất lượng không được để trống"></td>
+								class="text" onkeypress="changeClTen();" required title="Tên chất lượng không được để trống"><div id="requireClTen" style="color: red"></div></td>
 						</tr>
 					</table>
 				</div>
@@ -204,9 +204,9 @@
 						<tr>
 							<td class="input"><label for="MCL">Tên chất lượng</label></td>
 							<td><input name="clTenUpdate" size="30px" align=left
-								type="text" class="text"
+								type="text" class="text" onkeypress="changeClTenUpdate();"
 								value="Hàng thu hồi có thể sử dụng được" required
-								title="Tên chất lượng không được để trống"></td>
+								title="Tên chất lượng không được để trống"><div id="requireClTenUpdate" style="color: red"></div></td>
 						</tr>
 					</table>
 				</div>

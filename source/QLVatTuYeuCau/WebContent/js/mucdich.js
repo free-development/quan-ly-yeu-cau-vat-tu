@@ -51,6 +51,15 @@ function showForm(formId, check){
  	function addMd() {
 		var mdMa = $('#add-form input:text[name= mdMa]').val();
 		var mdTen = $('#add-form input:text[name=mdTen]').val();
+		if(mdMa == '') 
+		{
+			$('#requireMdMa').html('Vui lòng nhập mã mục đích');
+		}
+		else if (mdTen == '')
+			{
+				$('#requireMdTen').html('Vui lòng nhập tên mục đích');
+			}
+		else{
 		$.ajax({
 			url: "/QLVatTuYeuCau/addMd.html",	
 		  	type: "GET",
@@ -75,13 +84,31 @@ function showForm(formId, check){
 		  			
 			}
 		});
+		}
 	}
- 	
+ 	function changeMdMa(){
+  		$('#requireMdMa').html('');
+  		$('#add-form input:text[name=mdMa]').focus();
+ 	} 
+ 	function changeMdTen(){
+  		$('#requireMdTen').html('');
+  		$('#add-form input:text[name=mdTen]').focus();
+ 	} 
+ 	function changeMdTenUpdate(){
+  		$('#requireMdTenUpdate').html('');
+  		$('#update-form input:text[name=mdTenUpdate]').focus();
+ 	} 
  	function confirmUpdateMd(){
 		var mdMaUpdate = $('input:text[name=mdMaUpdate]').val();
 		var mdTenUpdate = $('input:text[name=mdTenUpdate]').val();
-		if (confirm('Bạn có chắc thay doi noi san xuat co ma ' + mdMaUpdate))
+		if (mdTenUpdate == '')
+		{
+			$('#requireMdTenUpdate').html('Vui lòng nhập tên mục đích');
+		}
+		else{
+		if (confirm('Bạn có chắc thay đổi mục đích có mã ' + mdMaUpdate))
 			updateMd(mdMaUpdate, mdTenUpdate);
+		}
 	}
  	function updateMd(mdMaUpdate, mdTenUpdate) {
 

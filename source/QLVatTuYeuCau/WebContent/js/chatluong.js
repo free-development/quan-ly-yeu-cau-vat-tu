@@ -50,6 +50,15 @@
  	function addCl() {
 		var clMa = $('#add-form input:text[name=clMa]').val();
 		var clTen = $('#add-form input:text[name=clTen]').val();
+		if(clMa == '') 
+			{
+				$('#requireClMa').html('Vui lòng nhập mã chất lượng');
+			}
+		else if (clTen == '')
+ 			{
+ 				$('#requireClTen').html('Vui lòng nhập tên chất lượng');
+ 			}
+		else{
 			$.ajax({
 				url: "/QLVatTuYeuCau/addCl.html",	
 			  	type: "GET",
@@ -74,16 +83,34 @@
  			  			
 			  	}
 			});
+		}
 	}
- 	
+ 	function changeClMa(){
+  		$('#requireClMa').html('');
+  		$('#add-form input:text[name=clMa]').focus();
+ 	} 
+ 	function changeClTen(){
+  		$('#requireClTen').html('');
+  		$('#add-form input:text[name=clTen]').focus();
+ 	} 
+ 	function changeClTenUpdate(){
+  		$('#requireClTenUpdate').html('');
+  		$('#add-form input:text[name=clTenUpdate]').focus();
+ 	} 
  	function confirmUpdateCl(){
 		var clMaUpdate = $('input:text[name=clMaUpdate]').val();
 		var clTenUpdate = $('input:text[name=clTenUpdate]').val();
-		if (confirm('Bạn có chắc thay doi noi san xuat co ma ' + clMaUpdate))
+		 if (clTenUpdate == '')
+ 			{
+ 				$('#requireClTenUpdate').html('Vui lòng nhập tên chất lượng');
+ 			}
+		else{
+		if (confirm('Bạn có chắc thay doi chất lượng có mã ' + clMaUpdate))
 			updateCl(clMaUpdate, clTenUpdate);
+		}
 	}
  	function updateCl(clMaUpdate, clTenUpdate) {
-
+ 		
 		$.ajax({
 			url: "/QLVatTuYeuCau/updateCl.html",	
 		  	type: "GET",
@@ -98,6 +125,7 @@
 		  		$('input:text[name=clMaUpdate]').val('');
 				clTenUpdate = $('input:text[name=clTenUpdate]').val('');
 		  		showForm("update-form", false);	
+		  		alert("Thay đổi thành công chất lượng có mã "+vtMaUpdate+ " !")
 		  	}
 		});
 	}

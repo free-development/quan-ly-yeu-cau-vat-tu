@@ -51,6 +51,15 @@ function confirmDeleteCd(){
 	function addCd() {
 	var cdMa = $('#add-form input:text[name= cdMa]').val();
 	var cdTen = $('#add-form input:text[name=cdTen]').val();
+	if(cdMa == '') 
+	{
+		$('#requireCdMa').html('Vui lòng nhập mã chức danh');
+	}
+	else if (cdTen == '')
+		{
+			$('#requireCdTen').html('Vui lòng nhập tên chức danh');
+		}
+	else{
 	$.ajax({
 		url: "/QLVatTuYeuCau/addCd.html",	
 	  	type: "GET",
@@ -75,13 +84,32 @@ function confirmDeleteCd(){
 	  			
   	}
 	});
+	}
 }
+	function changeCdMa(){
+  		$('#requireCdMa').html('');
+  		$('#add-form input:text[name=cdMa]').focus();
+ 	} 
+ 	function changeCdTen(){
+  		$('#requireCdTen').html('');
+  		$('#add-form input:text[name=cdTen]').focus();
+ 	} 
+ 	function changeCdTenUpdate(){
+  		$('#requireCdTenUpdate').html('');
+  		$('#update-form input:text[name=cdTenUpdate]').focus();
+ 	} 
 	
 	function confirmUpdateCd(){
 	var cdMaUpdate = $('input:text[name=cdMaUpdate]').val();
 	var cdTenUpdate = $('input:text[name=cdTenUpdate]').val();
-	if (confirm('Bạn có chắc thay doi noi san xuat co ma ' + cdMaUpdate))
+	if (cdTenUpdate == '')
+		{
+			$('#requireCdTenUpdate').html('Vui lòng nhập tên chức danh');
+		}
+	else{
+	if (confirm('Bạn có chắc thay đổi chức danh có mã ' + cdMaUpdate))
 		updateCd(cdMaUpdate, cdTenUpdate);
+	}
 }
 	function updateCd(cdMaUpdate, cdTenUpdate) {
 

@@ -70,22 +70,37 @@
 				<li><a href="">Trang chủ</a></li>
 				<li><a href="">Danh mục</a>
 					<ul>
-						<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản
-								xuất
-								</p>
-						</a></li>
-						<li><a href="danh-muc-chat-luong.html">Danh mục chất
-								lượng</a></li>
-						<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-						<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử
-								dụng</a></li>
-						<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
-					</ul></li>
-				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="bao-cao.html">Báo cáo</a></li>
-				<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
-				<li><a href="bao-cao.html">Quản lý người dùng</a></li>
-				<li><a href="login.html">Đăng xuất</a></li>
+						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
+								mục nơi sản xuất</a></li>
+						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
+								mục chất lượng</a></li>
+						<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
+								mục vật tư</a></li>
+						<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
+								mục bộ phận sử dụng</a></li>
+						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
+								mục mục đích</a></li>
+						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+								mục chức danh</a></li>
+						
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
+					<ul>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
+				<li><a href="">Quảnlý người dùng</a>
+					<ul>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
+						<li><a href=""/>Khôi phục mật khẩu</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
+<!-- 				<li><a href="login.html">Đăng xuất</a></li> -->
 			</ul>
 			<div class="clear"></div>
 		</div>
@@ -96,7 +111,7 @@
 			<div id="title-content">Công văn</div>
 			<div id="main-content">
 				<!--            <form id="main-form">-->
-				<div class="left-content">
+				<div class="left-content" >
 					<div id="scroll_time">
 						<ol class="tree">
 							<li><label for="folder1">Năm 2015</label> <input
@@ -188,9 +203,9 @@
                      	for(CongVan congVan : congVanList) {
                      		count ++;
                      %>
-					<table <%if (count % 2 == 1){ out.println("style=\"background : #CCFFFF;\"");}else{out.println("style=\"background : Blush;\"");}%>style="font-size: 16px;" class="border-congvan">
+					<table <%if (count % 2 == 1){ out.println("style=\"background : #CCFFFF;\"");}else{out.println("style=\"background : Blush;\"");}%>style="font-size: 16px;width:900px;" class="border-congvan">
 								<tr >
-									<td class="column-check" rowspan="6">
+									<td class="column-check" rowspan="7">
 										<input title="Click để chọn công văn"type="checkbox" name="cvId" value="<%=congVan.getCvId()%>">
 									</td>
 									<td class="left-column-soden">Số đến: &nbsp;&nbsp;</td>
@@ -202,17 +217,7 @@
 									<td class="left-column-first" >Ngày đến: &nbsp;&nbsp;</td>
 
 									<td class="column-date"style="text-align: left"><%=congVan.getCvNgayNhan() %></td>
-
-<!-- 									<td rowspan="2"> -->
-<!-- 										<div class="file" style="text-decoration: underline;"> -->
-<!-- 											<a -->
-<%-- 												href="<%=siteMap.cvManage + "?action=download&file=" + congVan.getCvId()%>"> --%>
-<%-- <%-- 												<div class="mo-ta"><%=fileHash.get(congVan.getCvId()).getMoTa() %></div> --%> --%>
-<!-- 											</a> -->
-<!-- 										</div> -->
-<!-- 									</td> -->
-
-
+									
 								</tr>
 								<tr>
 
@@ -222,16 +227,13 @@
 
 									<td class="left-column-ngdi">Ngày công văn đi:&nbsp;&nbsp;</td>
 									<td class="column-date" style="text-align: left"><%=congVan.getCvNgayDi()%></td>
+									
 								</tr>
 								<tr>
 
 									<td class="left-column-first">Nơi gửi: &nbsp;&nbsp;</td>
 									<td class="column-color" colspan="6" style="text-align: left"><%= congVan.getDonVi().getDvTen()%></td>
-									<td>Click để xem file</td>
-									<td rowspan="4"><a
-												href="<%=siteMap.cvManage + "?action=download&file=" + congVan.getCvId()%>">
-<%-- 												<div class="mo-ta"><%=fileHash.get(congVan.getCvId()).getMoTa() %></div> --%>
-											</a></td>
+									
 								</tr>
 								<tr>
 
@@ -249,6 +251,13 @@
 									<td class="left-column-first">Nơi GQ chính</td>
 
 									<td class="column-color"colspan="6"><%=congVan.getDonVi().getDvTen() %></td>
+								</tr>
+								<tr>
+								<td class="left-column-first">Link file công văn: </td>
+								<td colspan="6"><a
+												href="<%=siteMap.cvManage + "?action=download&file=" + congVan.getCvId()%>">
+												<div class="mo-ta"><%=fileHash.get(congVan.getCvId()).getMoTa() %></div>
+											</a></td>
 								</tr>
 							</table>
 <!-- 							<div class="chi-tiet"> -->
@@ -279,9 +288,9 @@
 								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Cập nhật yêu cầu vật tư
 							</button>
 							&nbsp;
-							<button type="button" class="button">
-								<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
-							</button>
+							<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
+						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
+					</button>
 						</div>
 					</form>
 				</div>

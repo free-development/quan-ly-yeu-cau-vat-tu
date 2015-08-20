@@ -152,7 +152,7 @@
 				<div id="view-table-bao-cao" class="scroll">
 					<div style="text-align: center;font-size: 20px;color:firebrick;font-weight: bold;margin-top:10px;">Chi tiết vật tư thiếu</div>
 					<table style="margin: 0 auto;border: 2px solid #CCCCCC;width:900px;">
-							<tr bgcolor="lightgreen">
+							<tr bgcolor="#199e5e">
 								<th class="one-column">Số đến</th>
 								<th class="one-column">Số công văn</th>
 								<th class="three-column">Ngày nhận</th>
@@ -184,7 +184,7 @@
 										<td class="d-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
 										<td class="e-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
 										<td class="e-column"style="text-align: center;"><%=yeuCau.getYcSoLuong() %></td>
-										<td style="text-align: center;"><a style="color: blue;" href="">Xem</td>
+										<td style="text-align: center;"><a style="color: blue;" href="<%=siteMap.cvManage + "?action=download&file=" + congVan.getCvId()%>">Xem</td>
 									</tr>	
 								<%}} }%>			
 					</table>
@@ -195,7 +195,7 @@
 						<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
 					</button>
 					&nbsp;
-					<button type="button" class="button" onclick="showForm('main-form')">
+					<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 					</button>
 				</div>
@@ -209,7 +209,7 @@
 			<div id="view-table-bao-cao" class="scroll">
 				<div style="text-align: center;font-size: 20px;color:firebrick;font-weight: bold;margin-top:10px;">Tổng hợp vật tư thiếu</div>
 				<table style="margin: 0 auto;border: 2px solid #CCCCCC;width:700px;">
-					<tr bgcolor="lightgreen">
+					<tr bgcolor="#199e5e">
 						<th class="two-column">Mã vật tư</th>
 						<th class="three-column">Tên vật tư</th>
 						<th class="three-column">Nơi sản xuất</th>
@@ -245,9 +245,9 @@
 					<i class="fa fa-print"></i>&nbsp;&nbsp;Xuất file
 				</button>
 				&nbsp;
-				<button type="button" class="button" onclick="location.href='<%=siteMap.home+ ".jsp"%>'">
-					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
-				</button>
+				<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
+						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
+					</button>
 			</div>
 				<%}}%>
 	</div>
