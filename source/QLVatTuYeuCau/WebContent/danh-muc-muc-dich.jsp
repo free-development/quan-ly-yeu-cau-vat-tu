@@ -171,15 +171,15 @@
 							<table>
 								<div class="form-title">Thêm mục đích</div>
 								<tr>
-									<th><label for="MMD">Mã mục đích</label></th>
+									<th><label for="MMD">Mã mục đích:</label></th>
 									<td><input name="mdMa" type="text" class="text" required
-										autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}"
-										title="Mã mục đích chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+										autofocus size="2" maxlength="3" onkeypress="changeMdMa();" pattern="[a-zA-Z0-9]{3}"
+										title="Mã mục đích chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"><div id="requireMdMa" style="color: red"></div></td>
 								</tr>
 								<tr>
-									<th><label for="MMD">Tên mục đích</label></th>
+									<th><label for="MMD">Tên mục đích:</label></th>
 									<td><input name="mdTen" size="30px" align=left type="text"
-										class="text" required title="Tên mục đích không được để trống"></td>
+										class="text" onkeypress="changeMdTen();" required title="Tên mục đích không được để trống"><div id="requireMdTen" style="color: red"></div></td>
 								</tr>
 							</table>
 						</div>
@@ -204,17 +204,17 @@
 							<table>
 								<div class="form-title">Cập nhật mục đích</div>
 								<tr>
-									<th><label for="MMD">Mã mục đích</label></th>
+									<th><label for="MMD">Mã mục đích: </label></th>
 									<td><input name="mdMaUpdate" type="text" class="text"
 										required size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}"
 										title="Mã mục đích chỉ gồm 3 ký tự, không chứa khoảng trắng và ký tự đặc biệt"
 										value="MMA" readonly></td>
 								</tr>
 								<tr>
-									<th><label for="MMD">Tên mục đích</label></th>
+									<th><label for="MMD">Tên mục đích: </label></th>
 									<td><input name="mdTenUpdate" autofocus size="30px"
-										align=left type="text" class="text" required
-										title="Tên mục đích không được để trống"></td>
+										align=left type="text" class="text" onkeypress="changeMdTen();" required
+										title="Tên mục đích không được để trống"><div id="requireMdTenUpdate" style="color: red"></div></td>
 								</tr>
 							</table>
 						</div>

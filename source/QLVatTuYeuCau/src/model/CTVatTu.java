@@ -41,9 +41,7 @@ public class CTVatTu implements Serializable{
 	/**
 	 * @param ctvtId
 	 */
-	public CTVatTu(final int ctvtId) {
-		this.ctvtId =  ctvtId;
-	}
+	
 	/**
 	 * @param dinhMuc
 	 * @param soLuongTon
@@ -59,6 +57,16 @@ public class CTVatTu implements Serializable{
 		this.noiSanXuat = noiSanXuat;
 		this.chatLuong = chatLuong;
 	}
+<<<<<<< HEAD
+=======
+
+	public CTVatTu(int ctvtId){
+		this.ctvtId = ctvtId;
+	}
+	public int getCtvtId() {
+		return ctvtId;
+	}
+>>>>>>> d46b6927db412ea0605bdd4f91e7e8de74d91293
 
 
 
@@ -78,13 +86,7 @@ public class CTVatTu implements Serializable{
 		this.noiSanXuat = noiSanXuat;
 		this.chatLuong = chatLuong;
 	}
-	public int getCtvtId() {
-		return ctvtId;
-	}
 
-	public void setCtvtId(int ctvtId) {
-		this.ctvtId = ctvtId;
-	}
 
 	
 	

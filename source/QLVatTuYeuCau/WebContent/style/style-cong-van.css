@@ -3,6 +3,7 @@
 	width: 150px;
 	left: 0px;
 	display: table-cell;
+	
 }
 
 .right-content {
@@ -52,7 +53,7 @@
 #Link-vbd
 {
 	color:#000000;
-	background-color: #CCFFFF;
+	
 }
 #view-table table tr th {
 	border-style: dotted;
@@ -79,6 +80,11 @@
 	text-align: left;
 	width: 30px;
 }
+.left-column-socv{
+	
+	text-align: left;
+	width: 60px;
+}
 #title-table table{
 	margin-left: 100px;
 	margin-top:20px;
@@ -91,6 +97,13 @@
 	
 	text-align: left;
 	width: 100px;
+}
+.column-so-den {
+	color:red;
+	font-weight: bold;
+	text-align: left;
+	width: 100px;
+	
 }
 .left-column-first {
 	width: 150px;
@@ -121,18 +134,13 @@
 .tt-column a{
 	margin-left:50px;
 	color:blue;
+	text-decoration: underline;
 }
 .column-color {
 	color:#3399CC;
 	font-weight: bold;
 }
-.column-so-den {
-	color:red;
-	font-weight: bold;
-	text-align: left;
-	width: 100px;
-	
-}
+
 .column-ngden {
 	width: 60px;
 	text-align: left;
@@ -145,7 +153,7 @@
 	border: 1px solid #CCCCCC;
 	margin: 1em 0;
 	overflow: scroll; /*chú ý dòng này*/
-	background-color: #CCFFFF;;
+	
 }
 
 .scroll_content {
@@ -459,6 +467,7 @@
 
 .mo-ta {
 	color: blue;
+	text-decoration: underline;
 }
 
 .btn-search1 {

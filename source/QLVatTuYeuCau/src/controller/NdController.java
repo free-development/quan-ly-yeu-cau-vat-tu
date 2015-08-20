@@ -135,7 +135,6 @@ public class NdController extends HttpServlet {
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String loGin(@RequestParam("msnv") String msnv, @RequestParam("matkhau") String matkhau)
 			 {
-
 		System.out.println("OK");
 		String result = "";
 		if (new CTNguoiDungDAO().login(msnv, StringUtil.encryptMD5(matkhau))) 

@@ -52,50 +52,55 @@
 	        }
 		%>
 		<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;">Báo cáo bảng đề nghị cấp vật tư</div>
-		<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
+		<% if((ngaybd!=null)&&(ngaykt!=null)){%>
+			
+			<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
+			
+			<% }%>
 		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
-		<div id="view-table-baocao">
-				<table style="text-align: center;margin: 0 auto;bgcolor: none; color: black;border-style: dotted;border-width: 1px;">
-				<thead>
-						<tr bgcolor="#199e5e">
-						<th class="a-column">Số đến</th>
-						<th class="b-column">Ngày nhận</th>
-						<th class="c-column">Mã vật tư</th>
-						<th class="d-column">Tên vật tư</th>
-						<th class="e-column">Nơi sản xuất</th>
-						<th class="f-column">Đơn vị tính</th>
-						<th class="g-column">Trạng thái</th>
-						<th class="k-column">Đơn vị</th>
-						<th class="h-column">Chất lượng</th>
-						<th class="m-column">Số lượng</th>
-						
-					</tr>
-					</thead>
-							<tbody>
-							<%
-							if(yeuCauHash != null) {
-							 int cnt = 0;
-							for(CongVan congVan  : congVanList) {
-							ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
-							for (YeuCau yeuCau : yeuCauList) {cnt++;
-							%>
-							<tr
-								<%if (cnt % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
-								<td class="a-column"><%=congVan.getSoDen() %></td>
-								<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
-								<td class="c-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
-								<td class="d-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
-								<td class="e-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
-								<td class="f-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
-								<td class="g-column"><%=congVan.getTrangThai() %></td>
-								<td class="h-column"><%=congVan.getDonVi()%></td>
-								<td class="k-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
-								<td class="m-column"><%=yeuCau.getYcSoLuong() %></td>
-
-							</tr>
-								<%}} %>
-						</tbody>
-						<%} %>
+			<div id="view-table-baocao">
+					<table style="text-align: center;margin: 0 auto;bgcolor: none; color: black;border-style: dotted;border-width: 1px;">
+					<thead>
+							<tr bgcolor="#199e5e">
+							<th class="a-column">Số đến</th>
+							<th class="b-column">Ngày nhận</th>
+							<th class="c-column">Mã vật tư</th>
+							<th class="d-column">Tên vật tư</th>
+							<th class="e-column">Nơi sản xuất</th>
+							<th class="f-column">Đơn vị tính</th>
+							<th class="g-column">Trạng thái</th>
+							<th class="k-column">Đơn vị</th>
+							<th class="h-column">Chất lượng</th>
+							<th class="m-column">Số lượng</th>
+							
+						</tr>
+						</thead>
+								<tbody>
+								<%
+								if(yeuCauHash != null) {
+								 int cnt = 0;
+								for(CongVan congVan  : congVanList) {
+								ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
+								for (YeuCau yeuCau : yeuCauList) {cnt++;
+								%>
+								<tr
+									<%if (cnt % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+									<td class="a-column"><%=congVan.getSoDen() %></td>
+									<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
+									<td class="c-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
+									<td class="d-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
+									<td class="e-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
+									<td class="f-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
+									<td class="g-column"><%=congVan.getTrangThai() %></td>
+									<td class="h-column"><%=congVan.getDonVi()%></td>
+									<td class="k-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
+									<td class="m-column"><%=yeuCau.getYcSoLuong() %></td>
+	
+								</tr>
+									<%}} %>
+							</tbody>
+							<%} 
+					%>
 				</table>
 				</div>
 				<div class="group-button">
