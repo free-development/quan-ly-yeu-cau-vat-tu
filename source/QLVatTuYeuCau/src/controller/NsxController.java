@@ -111,8 +111,9 @@ public class NsxController extends HttpServlet {
 //		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
 //		NoiSanXuat nsx = noiSanXuatDAO.getNoiSanXuat(nsxMa);
 //		return toJson(nsx);
-//		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
+		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
 		new NoiSanXuatDAO().deleteNoiSanXuat(new NoiSanXuatDAO().getNoiSanXuat(nsxMa));
+//		System.out.println(JSonUtil.toJson(nsxMa));
 //		return toJson(nsxList);
 		return JSonUtil.toJson(nsxMa);
 	}

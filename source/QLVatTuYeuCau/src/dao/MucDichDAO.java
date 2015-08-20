@@ -23,10 +23,7 @@ public class MucDichDAO {
 	}
 	public MucDich getMucDich(final String mdMa) {
 		session.beginTransaction();
-		
 		MucDich mucDich = (MucDich) session.get(MucDich.class, mdMa);
-//		session.
-		
 		session.getTransaction().commit();
 		return mucDich;
 	}

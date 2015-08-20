@@ -21,7 +21,8 @@
 
 #view-table {
 	margin: 0 auto;
-	width: 700px;
+	/* width: 100%; */
+	
 }
 
 #view-table table {
@@ -42,7 +43,7 @@
 #view-table table tr th {
 	border-style: dotted;
 	border-width: 1px;
-	margin: 0px;
+	/* margin: 0px;*/
 	border-spacing: 0px border-spacing: 0px;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -107,7 +108,7 @@
 }
 
 .e-column {
-	width: 120px;
+	width: 150px;
 	text-align: left;
 }
 
@@ -158,4 +159,14 @@
 	font-weight: bold;
 	padding-top: 20px;
 	padding-bottom: 20px;
+}
+.scroll-chia-se {
+	/* max-height: 420px; */
+	/*height: 300px;*/
+	width: 900x;
+	display: auto;
+	border: 1px solid #CCCCCC;
+	margin: 1em 0;
+	overflow: scroll;
+	max-width: 5000%;
 }

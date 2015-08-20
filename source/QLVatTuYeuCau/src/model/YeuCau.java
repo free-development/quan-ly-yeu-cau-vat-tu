@@ -80,14 +80,14 @@ public class YeuCau implements Serializable{
 	/**
 	 * @return the cvId
 	 */
-	public final int getCvId() {
+	public  int getCvId() {
 		return cvId;
 	}
 
 	/**
 	 * @param cvId the cvId to set
 	 */
-	public final void setCvId(int cvId) {
+	public  void setCvId(int cvId) {
 		this.cvId = cvId;
 	}
 
@@ -114,28 +114,28 @@ public class YeuCau implements Serializable{
 	/**
 	 * @return the ctVatTu
 	 */
-	public final CTVatTu getCtVatTu() {
+	public  CTVatTu getCtVatTu() {
 		return ctVatTu;
 	}
 
 	/**
 	 * @param ctVatTu the ctVatTu to set
 	 */
-	public final void setCtVatTu(CTVatTu ctVatTu) {
+	public  void setCtVatTu(CTVatTu ctVatTu) {
 		this.ctVatTu = ctVatTu;
 	}
 
 	/**
 	 * @return the ycSoLuong
 	 */
-	public final int getYcSoLuong() {
+	public  int getYcSoLuong() {
 		return ycSoLuong;
 	}
 
 	/**
 	 * @param ycSoLuong the ycSoLuong to set
 	 */
-	public final void setYcSoLuong(int ycSoLuong) {
+	public  void setYcSoLuong(int ycSoLuong) {
 		this.ycSoLuong = ycSoLuong;
 	}
 
@@ -143,7 +143,7 @@ public class YeuCau implements Serializable{
 	/**
 	 * @param daXoa the daXoa to set
 	 */
-	public final void setDaXoa(int daXoa) {
+	public  void setDaXoa(int daXoa) {
 		this.daXoa = daXoa;
 	}
 }

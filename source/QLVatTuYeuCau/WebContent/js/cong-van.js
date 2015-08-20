@@ -40,6 +40,17 @@ function deleteCv(cvId) {
 function loadDataCv() {
 	showForm('main-form', 'add-form', true);
 }
+function chiaSeCv() {
+	var cvId = $('input:checkbox[name=cvId]:checked').val();
+	$.ajax({
+		url: "/QLVatTuYeuCau/chiaSeCv.html",	
+	  	type: "GET",
+	  	dateType: "JSON",
+	  	data: { "cvId": cvId},
+	  	contentType: 'application/json',
+	    mimeType: 'application/json'
+	});  
+}
 //function addCongVan() {
 //	var nsxMa = $('#add-form input:text[name=nsxMa]').val();
 //	var nsxTen = $('#add-form input:text[name=nsxTen]').val();

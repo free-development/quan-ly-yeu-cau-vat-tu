@@ -246,6 +246,10 @@
 
 									<td class="column-color"colspan="6"><%=congVan.getDonVi().getDvTen() %></td>
 								</tr>
+								<a h></a>
+								<button class="button" type="button" onclick="location.href='<%=siteMap.cscvManage + "?action=chiaSeCv&congVan=" + congVan.getCvId()%>'">
+								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Chia se cong van
+							</button>
 							</table>
 <!-- 							<div class="chi-tiet"> -->
 <!-- 								<a -->
@@ -273,6 +277,9 @@
 							&nbsp;
 							<button class="button" onclick="return checkCongVan();">
 								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Cập nhật yêu cầu vật tư
+							</button>
+							<button class="button" onclick="return chiaSeCv();">
+								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Chia se cong van
 							</button>
 							&nbsp;
 							<button type="button" class="button">
