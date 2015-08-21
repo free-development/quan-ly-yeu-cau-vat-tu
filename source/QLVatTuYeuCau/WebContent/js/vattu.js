@@ -72,7 +72,7 @@
 						$('input:text[name=vtMaUpdate]').val(vt.vtMa);
 					  	$('input:text[name=vtTenUpdate]').val(vt.vtTen);
 						$('#dvtUp option[value='+vt.dvt+']').prop('selected',true);
-					  	
+						$('#aa').focus();
 					  	showForm(formId, check);
 					}
 					
@@ -126,8 +126,9 @@
  		    
  		    
  		  	success: function() {
- 		  		alert(vtMa + " da bi xoa");
+ 		  		
 				$('#view-table-vat-tu table tr').has('input[name="vtMa"]:checked').remove();
+				alert(vtMa + " da bi xoa");
  		    } 
  		});  
  	}
@@ -179,7 +180,16 @@
   		$('#requireVtMa').html('');
   		$('#add-form input:text[name=vtMa]').focus();
  	} 	
-
+  	
+  	function changeVtTen(){
+  		$('#requireVtTen').html('');
+  		$('#add-form input:text[name=vtTen]').focus();
+ 	}
+  	
+  	function changeVtDvt(){
+  		$('#requireVtDvt').html('');
+  		$('#add-form input[name=dvt]').focus();
+ 	}
   	
     $(document).ready(function() {
         $('#view-table-vat-tu .checkAll').click(function(event) {  //on click 
@@ -190,14 +200,12 @@
             }else{
                 $('#view-table-vat-tu .checkbox').each(function() { //loop through each checkbox
                     this.checked = false; //deselect all checkboxes with class "checkbox1"                       
-                });         
+                });
             }
         });
         
     }); 
-//    function test(){
-//    	$('#test select #2').prop('selected',true);
-//    }
+
     function test1(){
     	$('#test select option[value='+3+']').prop('selected',true);
     }

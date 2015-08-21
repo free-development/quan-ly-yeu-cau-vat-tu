@@ -71,9 +71,8 @@ public class CtvtController extends HttpServlet {
 			return new ModelAndView("danh-muc-vat-tu", "vatTuList", vatTuList);
 		}
 		if("manageCtvt".equalsIgnoreCase(action)) {
-			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
 			ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) new CTVatTuDAO().getAllCTVatTu();
-			return new ModelAndView("danh-muc-vat-tu", "ctVatTuList", ctVatTuList);
+			return new ModelAndView("danh-muc-chi-tiet-vat-tu", "ctVatTuList", ctVatTuList);
 		}
 		return new ModelAndView("login");
 	}
@@ -101,7 +100,7 @@ public class CtvtController extends HttpServlet {
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String addCTVattu(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen, @RequestParam("noiSanXuat") String noiSanXuat, @RequestParam("chatLuong") String chatLuong, 
 			 @RequestParam("dvt") String dvt, @RequestParam("dinhMuc") String dinhMuc, @RequestParam("soLuongTon") String soLuongTon) {
-		String result = "";
+		//String result = "";
 		System.out.println("MA: " + vtMa);
 		System.out.println("NSX: " + noiSanXuat);
 		System.out.println("CL: " + chatLuong);
@@ -111,31 +110,45 @@ public class CtvtController extends HttpServlet {
 			CTVatTu ctvt = new CTVatTu(new VatTu(vtMa) , new NoiSanXuat(noiSanXuat), new ChatLuong(chatLuong), Integer.parseInt(dinhMuc), Integer.parseInt(soLuongTon));
 			new CTVatTuDAO().addCTVatTu(ctvt);
 			System.out.println("success");
-			result = "" + (new CTVatTuDAO().getLastInsert()-1);
+
+			int id = new CTVatTuDAO().getLastInsert()-1;
+			CTVatTu ctVatTu = new CTVatTuDAO().getCTVatTuById(id);
+			return JSonUtil.toJson(ctVatTu);
 		
 		}
 		else
 		{
-			System.out.println("fail");			
+			System.out.println("fail");	
+			return JSonUtil.toJson("");
 		}
-			return JSonUtil.toJson(result);
+		
 	}
 	@RequestMapping(value="/updateCTVattu", method=RequestMethod.GET, 
 		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String updateCTVattu(@RequestParam("vtMaUpdate") String vtMaUpdate,  @RequestParam("nsxUpdate") String nsxUpdate, @RequestParam("clUpdate") String clUpdate, @RequestParam("dinhMucUpdate") String dinhMucUpdate, @RequestParam("soLuongTonUpdate") String soLuongTonUpdate) {
+//		System.out.println(vtMaUpdate + "&" + nsxUpdate + "&" + clUpdate + "&" + dinhMucUpdate + "&" + soLuongTonUpdate);
 		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+		System.out.println(vtMaUpdate + "&" + nsxUpdate + "&" + clUpdate + "&" + dinhMucUpdate + "&" + soLuongTonUpdate);
 		CTVatTu ctvt = ctvtDAO.getCTVatTu(vtMaUpdate, nsxUpdate, clUpdate);
-		//CTVatTu ctvt = new CTVatTu(new VatTu(vtMaUpdate) , new NoiSanXuat(nsxUpdate), new ChatLuong(clUpdate), Integer.parseInt(dinhMucUpdate), Integer.parseInt(soLuongTonUpdate));
-		ctvt.setDinhMuc(Integer.parseInt(dinhMucUpdate));
-		ctvt.setNoiSanXuat(new NoiSanXuat(nsxUpdate));
-		ctvt.setChatLuong(new ChatLuong(clUpdate));
-		ctvt.setSoLuongTon(Integer.parseInt(soLuongTonUpdate));
-		ctvtDAO.updateCTVatTu(ctvt);
-//		new CTVatTuDAO().updateCTVatTu(ctvt);
+		System.out.println(vtMaUpdate + "&" + nsxUpdate + "&" + clUpdate + "&" + dinhMucUpdate + "&" + soLuongTonUpdate);
+		// CTVatTu ctvt = new CTVatTu(new VatTu(vtMaUpdate) , new
+		// NoiSanXuat(nsxUpdate), new ChatLuong(clUpdate),
+		// Integer.parseInt(dinhMucUpdate), Integer.parseInt(soLuongTonUpdate));
+//		ctvt.setDinhMuc(Integer.parseInt(dinhMucUpdate));
+//		ctvt.setNoiSanXuat(new NoiSanXuat(nsxUpdate));
+//		ctvt.setChatLuong(new ChatLuong(clUpdate));
+//		ctvt.setSoLuongTon(Integer.parseInt(soLuongTonUpdate));
+//		System.out.println(ctvt.getCtvtId() + ctvt.getSoLuongTon());
+//		ctvtDAO.updateCTVatTu(ctvt);
+		// new CTVatTuDAO().updateCTVatTu(ctvt);
+		if (ctvt == null)
+			System.out.println("Result  = null");
+		else 
+			System.out.println(ctvt.getCtvtId());
 		return JSonUtil.toJson(ctvt);
 	}
-	@RequestMapping(value="/deleteCTVattu", method=RequestMethod.GET, 
-			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(value = "/deleteCTVattu", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteVattu(@RequestParam("ctvtId") String ctvtId) {
 		CTVatTu vt = new CTVatTu(Integer.parseInt(ctvtId));
 		new CTVatTuDAO().deleteCTVatTu(vt);

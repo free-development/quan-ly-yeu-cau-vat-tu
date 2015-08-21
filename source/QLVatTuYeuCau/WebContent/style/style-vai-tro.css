@@ -24,10 +24,9 @@
 
 #add-form {
 	display: none;
-	width: 27%;
-	height: 40%;
+	width: 26%;;
 	left: 35%;
-	bottom: 65%;
+	height: 35%;
 	position: absolute;
 	margin-top: 30px;
 	background-color: #DCEAF5;
@@ -39,13 +38,10 @@
 
 #update-form {
 	display: none;
-	width: 30%;
-	height: 40%;
-	position: absolute;
+	width: 26%;;
 	left: 35%;
-	right: 35%;
-	top: 65%;
-	bottom: 65%;
+	height: 35%;
+	position: absolute;
 	background-color: #DCEAF5;
 	border-radius: 10px;
 	padding-left: 10px;

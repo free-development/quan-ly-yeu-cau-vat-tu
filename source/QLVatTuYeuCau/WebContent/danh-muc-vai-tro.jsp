@@ -165,7 +165,7 @@
 								<th><label for="id">ID</label></th>
 								<td><input name="vtId" type="text" class="text" required
 									autofocus size="3" maxlength="3"
-									title="Mã nơi sản xuất không được trống"></td>
+									title="Mã nơi sản xuất không được trống"><div id="requirevtID" style="color: red"></td>
 							</tr>
 							<tr>
 								<th class="label"><label for="tenvaitro">Tên vai trò</label></th>
