@@ -82,7 +82,7 @@ public class BpsdController extends HttpServlet {
 		System.out.println("MA: "+dvMa);
 		if(new DonViDAO().getDonVi(dvMa)==null)
 		{
-			new DonViDAO().addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email ));
+			new DonViDAO().addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email,0 ));
 			System.out.println("success");
 			result = "success";	
 		}
@@ -101,7 +101,7 @@ public class BpsdController extends HttpServlet {
 	 public @ResponseBody String updateBp(@RequestParam("dvMaUpdate") String dvMaUpdate, @RequestParam("dvTenUpdate") String dvTenUpdate, 
 			 @RequestParam("sdtUpdate") String sdtUpdate, @RequestParam("diaChiUpdate") String diaChiUpdate, @RequestParam("emailUpdate") String emailUpdate ) {
 
-		DonVi dv = new DonVi(dvMaUpdate, dvTenUpdate, sdtUpdate, diaChiUpdate, emailUpdate);
+		DonVi dv = new DonVi(dvMaUpdate, dvTenUpdate, sdtUpdate, diaChiUpdate, emailUpdate,0);
 		new DonViDAO().updateDonVi(dv);
 		return JSonUtil.toJson(dv);
 	}

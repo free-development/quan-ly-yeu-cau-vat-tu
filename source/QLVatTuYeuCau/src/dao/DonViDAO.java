@@ -2,11 +2,11 @@ package dao;
 
 import java.util.List;
 
-import model.DonVi;
-
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import model.DonVi;
 import util.HibernateUtil;
 
 public class DonViDAO {
@@ -43,10 +43,16 @@ public class DonViDAO {
 		session.update(donVi);
 		session.getTransaction().commit();
 	}
-	public void deleteDonVi(DonVi donVi){
+	public void deleteDonVi(String dvMa){
 		session.beginTransaction();
-		session.delete(donVi);
+		//session.delete(donVi);
+		String sql = "update DonVi set daXoa = 1 where dvMa = '" + dvMa +"'";		
+		Query query = session.createQuery(sql);
+		query.executeUpdate();
 		session.getTransaction().commit();
+	}
+	public static void main(String[] args) {
+		new DonViDAO().deleteDonVi("SX4");
 	}
 	
 }

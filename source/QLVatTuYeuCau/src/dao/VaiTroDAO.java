@@ -1,9 +1,11 @@
 package dao;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.CTVatTu;
+import model.VTCongVan;
 import model.VaiTro;
 
 import org.hibernate.Criteria;
@@ -61,5 +63,13 @@ public class VaiTroDAO {
 		int l =  cr.list().size();
 		session.getTransaction().commit();
 		return l;
+	}
+	public ArrayList<VaiTro> toVaiTro(ArrayList<VTCongVan> vtcvList) {
+		ArrayList<VaiTro> vaiTroList = new ArrayList<VaiTro>();
+		for (VTCongVan vtCongVan : vtcvList) {
+			VaiTro vaiTro = getVaiTro(vtCongVan.getVtId());
+			vaiTroList.add(vaiTro);
+		}
+		return vaiTroList;
 	}
 }

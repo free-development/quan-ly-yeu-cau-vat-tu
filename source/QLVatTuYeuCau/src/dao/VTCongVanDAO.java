@@ -13,6 +13,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import model.VTCongVan;
+import model.VaiTro;
 import util.HibernateUtil;
 
 /**
@@ -57,13 +58,14 @@ public class VTCongVanDAO {
 		session.beginTransaction();
 		Criteria cr = session.createCriteria(VTCongVan.class);
 		Criterion expCv = Restrictions.eq("cvId", cvId);
-//		Criterion expNd = Restrictions.eq("msnv", msnv);
+		Criterion expNd = Restrictions.eq("msnv", msnv);
 		cr.add(expCv);
-//		cr.add(expNd);
+		cr.add(expNd);
 		ArrayList<VTCongVan> vtCongVanList = (ArrayList<VTCongVan>) cr.list();
 		session.getTransaction().commit();
 		return vtCongVanList;
 	}
+	
 //	public ArrayList<VTCongVan> groupByMsnv() {
 //		
 //	}

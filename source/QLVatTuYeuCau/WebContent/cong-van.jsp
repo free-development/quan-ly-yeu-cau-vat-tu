@@ -252,12 +252,10 @@
 
 									<td class="column-color"colspan="6"><%=congVan.getDonVi().getDvTen() %></td>
 								</tr>
-<<<<<<< HEAD
-								<a h></a>
+								
 								<button class="button" type="button" onclick="location.href='<%=siteMap.cscvManage + "?action=chiaSeCv&congVan=" + congVan.getCvId()%>'">
 								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Chia se cong van
 							</button>
-=======
 								<tr>
 								<td class="left-column-first">Link file công văn: </td>
 								<td colspan="6"><a
@@ -265,7 +263,6 @@
 												<div class="mo-ta"><%=fileHash.get(congVan.getCvId()).getMoTa() %></div>
 											</a></td>
 								</tr>
->>>>>>> d46b6927db412ea0605bdd4f91e7e8de74d91293
 							</table>
 <!-- 							<div class="chi-tiet"> -->
 <!-- 								<a -->

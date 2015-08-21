@@ -19,5 +19,8 @@
 		<property name="diaChi" type="java.lang.String">
 			<column name="DIACHI" />
 		</property>
+		<property name="daXoa" type="int">
+			<column name="DAXOA" />
+		</property>
 	</class>
 </hibernate-mapping>

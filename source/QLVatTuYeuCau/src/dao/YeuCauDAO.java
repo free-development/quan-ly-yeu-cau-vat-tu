@@ -30,8 +30,6 @@ public class YeuCauDAO {
 		session.beginTransaction();
 		
 		YeuCau YeuCau = (YeuCau) session.get(YeuCau.class, cvId);
-//		session.
-		
 		session.getTransaction().commit();
 		return YeuCau;
 	}

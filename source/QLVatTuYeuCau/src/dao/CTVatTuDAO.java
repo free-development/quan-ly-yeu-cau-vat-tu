@@ -147,11 +147,6 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return ctVatTuList;
 	}
-<<<<<<< HEAD
-=======
-
-
->>>>>>> d46b6927db412ea0605bdd4f91e7e8de74d91293
 	public static void main(String[] args) {
 		CTVatTuDAO ct = new CTVatTuDAO();//.getCTVatTu("VT5", "NB", "CL0");
 //		System.out.pritnln(ct.getCtvtId());
@@ -165,8 +160,4 @@ public class CTVatTuDAO {
 		}
 		
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> d46b6927db412ea0605bdd4f91e7e8de74d91293
 }

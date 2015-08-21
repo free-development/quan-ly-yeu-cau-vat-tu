@@ -1,6 +1,2 @@
-/model/
-/test/
-/util/
-/dao/
 /controller/
-/map/
+/dao/

@@ -8,13 +8,16 @@ public class DonVi implements Serializable{
 	private String sdt;
 	private String email;
 	private String diaChi;
+	private int daXoa;
 	
+
 	public DonVi() {
 		this.dvMa = "";
 		this.dvTen = "";
 		this.sdt = "";
 		this.email = "";
 		this.diaChi = "";
+		daXoa = 0;
 	}
 	
 	/**
@@ -30,13 +33,15 @@ public class DonVi implements Serializable{
 	 * @param sdt
 	 * @param email
 	 * @param diaChi
+	 * @param daXoa
 	 */
-	public DonVi(String dvMa, String dvTen, String sdt, String diaChi, String email) {
+	public DonVi(String dvMa, String dvTen, String sdt, String diaChi, String email, int daXoa) {
 		this.dvMa = dvMa;
 		this.dvTen = dvTen;
 		this.sdt = sdt;
 		this.email = email;
 		this.diaChi = diaChi;
+		this.daXoa = daXoa;
 	}
 
 	/**
@@ -108,5 +113,11 @@ public class DonVi implements Serializable{
 	public void setDiaChi(String dvDiaChi) {
 		this.diaChi = dvDiaChi;
 	}
-	
+	public int getDaXoa() {
+		return daXoa;
+	}
+
+	public void setDaXoa(int daXoa) {
+		this.daXoa = daXoa;
+	}
 }

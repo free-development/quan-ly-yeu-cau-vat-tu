@@ -1,4 +1,6 @@
-﻿<%@page import="model.CongVan"%>
+﻿<%@page import="sun.misc.GC.LatencyRequest"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="model.CongVan"%>
 <%@page import="model.NguoiDung"%>
 <%@page import="model.VaiTro"%>
 <%@page import="dao.VaiTroDAO"%>
@@ -38,8 +40,8 @@
 </head>
 <body>
 	<%
-	ArrayList<VaiTro> vaiTroList = (ArrayList<VaiTro>) request.getAttribute("vaiTroList");
-	ArrayList<NguoiDung> nguoiDungList = (ArrayList<NguoiDung>) request.getAttribute("nguoiDungList");
+	ArrayList<VaiTro> vaiTroList = (ArrayList<VaiTro>) session.getAttribute("vaiTroList");
+	ArrayList<NguoiDung> nguoiDungList = (ArrayList<NguoiDung>) session.getAttribute("nguoiDungList");
 	CongVan congVan = (CongVan) session.getAttribute("congVan");
 	
 	
@@ -139,39 +141,9 @@
 								<td class="tbody-nguoidung"><%=nguoiDung.getHoTen() %></td>
 								<% for(VaiTro vaiTro : vaiTroList) {%>
 								<td class="checkbox"><input type="checkbox" name="vaiTro" value="<%	out.print(nguoiDung.getMsnv() + "#" + vaiTro.getVtId()); %>"></td>
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
 								<%} %>
 							</tr>
 							<%} %>
-<!-- 							<tr> -->
-
-<!-- 								<td class="a-column">NV002</td> -->
-<!-- 								<td class="b-column">Trần Thị B</td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 							</tr> -->
-<!-- 							<tr> -->
-
-<!-- 								<td class="a-column">NV003</td> -->
-<!-- 								<td class="b-column">Võ Văn C</td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 							</tr> -->
-<!-- 							<tr> -->
-
-<!-- 								<td class="a-column">NV004</td> -->
-<!-- 								<td class="b-column">Lê Thị D</td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 								<td class="checkbox"><input type="checkbox" name=""></td> -->
-<!-- 							</tr> -->
 						</table>
 					</div>
 					<div class="group-button">
@@ -186,8 +158,46 @@
 							<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 						</button>
 				</form>
+				</div>
+				
+				<div id="view-chia-se">
+				<%
+					HashMap<String, NguoiDung> nguoiDungHash = (HashMap<String, NguoiDung>) request.getAttribute("nguoiDungHash");
+					HashMap<String, ArrayList<VaiTro>> vaiTroHash = (HashMap<String, ArrayList<VaiTro>>) request.getAttribute("vaiTroHash");
+					if (nguoiDungHash.size()!=0) {
+				%>
+					<table>
+						<tr><th><input type = "checkbox" class="checkAll" name=""></th><th>Msnv</th><th>Họ tên</th><th>Vai trò</th></tr>
+						<%
+							int i = 0;
+							for(String key : nguoiDungHash.keySet()) {
+								ArrayList<VaiTro> vtList = vaiTroHash.get(key);
+								String hoTen = nguoiDungHash.get(key).getHoTen();
+								i++;
+						%>
+						<tr  <% if (count % 2 ==0) out.println("style=\"background : #CCFFFF;\"");%>>
+							<td><input type = "checkbox" class="checkbox" name = "msnv" value="<%=key%>"></td>
+							<td><%=key %></td>
+							<td><%=hoTen %></td>
+							<td>
+								<%
+									StringBuilder str = new StringBuilder("");
+									for(VaiTro vaiTro : vaiTroList) {
+										str.append(vaiTro.getVtTen() + "<br>");
+									}
+									int end = str.length() - 1;
+									str.delete(end - 4, end);
+									out.println(str.toString());
+								%>
+								
+							</td>
+						</tr>
+						<%}%>
+					</table>
+				<%} else out.println("Chưa chia sẻ công văn");%>
+				</div>
+				
 			</div>
-		</div>
 
 	</div>
 </body>
