@@ -71,11 +71,30 @@
 			</div>
 
 		</div>
-		<div class="main_menu">
-			<ul>
-				<li><a href="">Trang chủ</a></li>
-				<li><a href="">Danh mục</a>
+			<div class="main_menu">
 					<ul>
+<<<<<<< HEAD
+						<li><a href="">Trang chủ</a></li>
+						<li><a href="">Danh mục</a>
+							<ul>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
+										mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
+										mục chất lượng</a></li>
+								<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
+										mục vật tư</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+										mục chi tiết vật tư</a></li>
+								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
+										mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
+										mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+										mục chức danh</a></li>
+								
+							</ul>
+=======
 						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
 								mục nơi sản xuất</a></li>
 						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
@@ -93,6 +112,7 @@
 								mục chức danh</a></li>
 						
 					</ul>
+>>>>>>> 56a8def5473945091642c412d3a965ee178bd745
 				</li>
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
@@ -108,9 +128,15 @@
 					</ul>
 				</li>
 				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
+<<<<<<< HEAD
+				</ul>
+					<div class="clear"></div>
+				</div>
+=======
 			</ul>
 			<div class="clear"></div>
 		</div>
+>>>>>>> 56a8def5473945091642c412d3a965ee178bd745
 
 		<div id="main-content">
 			<div id="title-content">Danh mục bộ phận sử dụng</div>
@@ -166,7 +192,7 @@
 							<i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua
 						</button>
 						&nbsp;&nbsp;
-						<button type="button" class="button" onclick="location.href='<%=siteMap.home+ ".jsp"%>'">
+						<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
 							<i class="fa fa-sign-out"></i>Thoát
 						</button>
 					</div>
@@ -180,30 +206,30 @@
 							<tr>
 								<td class="input"><label for="MBPSD" class="input" >Mã
 										BPSD</label></td>
-								<td><input name="dvMa" type="text" class="text" required
+								<td><input name="dvMa" type="text" class="text" required onkeypress="changedvMa();"
 									autofocus size="3" maxlength="3" pattern="[a-zA-Z0-9]{3}"
-									title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+									title="Mã bộ phận sử dụng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"><div id="requiredvMa" style="color: red"></div></td>
 							</tr>
 							<tr>
 								<td class="input"><label for="MBPSD">Tên BPSD</label></td>
 								<td><input name="dvTen" size="30px" align=left type="text"
-									class="text" required
-									title="Tên bộ phận sử dụng không được để trống"></td>
+									class="text" required onkeypress="changedvTen();"
+									title="Tên bộ phận sử dụng không được để trống"><div id="requiredvTen" style="color: red"></div></td>
 							</tr>
 							<tr>
 								<td class="input"><label>Số điện thoại</label></td>
-								<td><input name="sdt" size="15px" maxlength="11"
-									type="text" class="text"></td>
+								<td><input name="sdt" size="15px" maxlength="11" onkeypress="changeSdt();"
+									type="text" class="text"><div id="requireSdt" style="color: red"></div></td>
 							</tr>
 							<tr>
 								<td class="input"><label>Địa chỉ</label></td>
-								<td><input name="diaChi" size="30px" align=left type="text"
-									class="text"></td>
+								<td><input name="diaChi" size="30px" align=left type="text" onkeypress="changeDiachi();"
+									class="text"><div id="requireDiachi" style="color: red"></div></td>
 							</tr>
 							<tr>
 								<td class="input"><label>Email</label></td>
-								<td><input name="email" size="30px" align=left type="text"
-									class="text"></td>
+								<td><input name="email" size="30px" align=left type="text" onkeypress="changeEmail();"
+									class="text"><div id="requireEmail" style="color: red"></div></td>
 							</tr>
 
 							<!--
@@ -258,23 +284,23 @@
 							<tr>
 								<td class="input"><label for="MBPSD">Tên BPSD</label></td>
 								<td><input name="dvTenUpdate" size="30px" align=left
-									type="text" class="text" required autofocus
-									title="Tên bộ phận sử dụng không được để trống"></td>
+									type="text" class="text" required autofocus onkeypress="changedvTenUp();"
+									title="Tên bộ phận sử dụng không được để trống"><div id="requiredvTenUp" style="color: red"></div></td>
 							</tr>
 							<tr>
 								<td class="input"><label>Số điện thoại</label></td>
-								<td><input name="sdtUpdate" size="15px" align=left
-									type="text" class="text" maxlength="12"></td>
+								<td><input name="sdtUpdate" size="15px" align=left onkeypress="changeSdtUp();"
+									type="text" class="text" maxlength="12"><div id="requireSdtUp" style="color: red"></div></td>
 							</tr>
 							<tr>
 								<td class="input"><label>Địa chỉ</label></td>
-								<td><input name="diaChiUpdate" size="30px" align=left
-									type="text" class="text"></td>
+								<td><input name="diaChiUpdate" size="30px" align=left onkeypress="changeDiachiUp();"
+									type="text" class="text"><div id="requireDiachiUp" style="color: red"></div></td>
 							</tr>
 							<tr>
 								<td class="input"><label>Email</label></td>
-								<td><input name="emailUpdate" size="30px" align=left
-									type="text" class="text"></td>
+								<td><input name="emailUpdate" size="30px" align=left onkeypress="changeEmailUp();"
+									type="text" class="text"><div id="requireEmailUp" style="color: red"></div></td>
 							</tr>
 
 							<!--

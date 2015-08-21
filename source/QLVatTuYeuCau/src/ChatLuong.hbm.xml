@@ -10,5 +10,11 @@
 		<property name="clTen" type="java.lang.String">
 			<column name="CLTEN" />
 		</property>
+<<<<<<< HEAD
+=======
+		<property name="daXoa" type="int">
+			<column name="DAXOA" />
+		</property>
+>>>>>>> 3bf12b655fc507c106cc06a8eec075821271d221
 	</class>
 </hibernate-mapping>

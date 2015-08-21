@@ -45,7 +45,7 @@ public class ClController extends HttpServlet {
 				return new ModelAndView("danh-muc-chat-luong");
 			}
 			else{
-			chatLuongDAO.addChatLuong(new ChatLuong(clMa,clTen));
+			chatLuongDAO.addChatLuong(new ChatLuong(clMa,clTen,0));
 			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.getAllChatLuong();
 			return new ModelAndView("danh-muc-chat-luong", "chatLuongList", chatLuongList);
 			}
@@ -53,7 +53,7 @@ public class ClController extends HttpServlet {
 		if("deleteCl".equalsIgnoreCase(action)) {
 			String[] idList = request.getParameterValues("clMa");
 			for(String s : idList) {
-					chatLuongDAO.deleteChatLuong(chatLuongDAO.getChatLuong(s));
+					chatLuongDAO.deleteChatLuong(s);
 			}
 			
 			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.getAllChatLuong();
@@ -76,7 +76,7 @@ public class ClController extends HttpServlet {
 	@RequestMapping(value="/deleteCl", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteCd(@RequestParam("clMa") String clMa) {
-		new ChatLuongDAO().deleteChatLuong(new ChatLuongDAO().getChatLuong(clMa));
+		new ChatLuongDAO().deleteChatLuong(clMa);
 		return JSonUtil.toJson(clMa);
 	}
 
@@ -87,7 +87,7 @@ public class ClController extends HttpServlet {
 		System.out.println("MA: "+clMa);
 		if(new ChatLuongDAO().getChatLuong(clMa)==null)
 		{
-			new ChatLuongDAO().addChatLuong(new ChatLuong(clMa,clTen));
+			new ChatLuongDAO().addChatLuong(new ChatLuong(clMa,clTen,0));
 			System.out.println("success");
 			result = "success";
 			
@@ -107,7 +107,7 @@ public class ClController extends HttpServlet {
 	 public @ResponseBody String updateCl(@RequestParam("clMaUpdate") String clMaUpdate, @RequestParam("clTenUpdate") String clTenUpdate) {
 		System.out.println(clMaUpdate);
 		System.out.println(clTenUpdate);
-		ChatLuong cl = new ChatLuong(clMaUpdate, clTenUpdate);
+		ChatLuong cl = new ChatLuong(clMaUpdate, clTenUpdate,0);
 		new ChatLuongDAO().updateChatLuong(cl);
 		return JSonUtil.toJson(cl);
 	}

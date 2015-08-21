@@ -45,6 +45,9 @@
 					  		$('#add-form input:text[name=vtMa]').val('');
 							$('#add-form input:text[name=vtTen]').val('');
 							$('#add-form select[name=dvt]').val('');
+							$('#add-chitiet input:text[name=vtMa]').val(vtMa);
+							$('#add-chitiet input:text[name=vtTen]').val(vtTen);
+							$('#add-chitiet input:text[name=dvt]').val(dvt);
 					  		showForm("add-form", false);	
 					  		alert("Vật tư "+ vtMa + " đã được thêm ");	
 						}
@@ -87,26 +90,38 @@
 				updateVattu(vtMaUpdate, vtTenUpdate, dvtUpdate);
 		}
  		function updateVattu(vtMaUpdate, vtTenUpdate, dvtUpdate){
- 			$.ajax({
-				url: "/QLVatTuYeuCau/updateVattu.html",	
-			  	type: "GET",
-			  	dateType: "JSON",
-			  	data: { "vtMaUpdate": vtMaUpdate, "vtTenUpdate": vtTenUpdate, "dvtUpdate": dvtUpdate},
-			  	contentType: 'application/json',
-			    mimeType: 'application/json',
-				  	
-				  	success: function(vt) {
-				  		$('table tr').has('input[name="vtMa"]:checked').remove();
-				  		$('#view-table-vat-tu table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vtMaUpdate + '\"</td><td class=\"col\">'+ vtMaUpdate +'</td><td class=\"col\">' + vtTenUpdate+'</td><td class=\"col\">' 
-				  				+ dvtUpdate+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showChiTiet(\'chitiet\',true,\''
-								+vtMaUpdate+'\');\">Xem</button></td></tr>');
-				  		$('input:text[name=vtMaUpdate]').val('');			 
-				  		$('input:text[name=vtTenUpdate]').val('');
-						$('select[name=dvtUpdate]').val('');
-				  		showForm("update-form", false);	
-				  		alert("Thay đổi thành công vật tư có mã "+vtMaUpdate+ " !")
-				  	}
-				});
+ 			
+ 			if (vtTenUpdate == '')
+	 			{
+	 				$('#requireVtTenUp').html('Vui lòng nhập tên vật tư');
+	 			}
+ 			else if(dvtUpdate == '')
+ 				{
+ 					$('#requireDvtUp').html('Vui lòng chọn đơn vị tính');
+ 				}
+ 			else {
+
+		 			$.ajax({
+						url: "/QLVatTuYeuCau/updateVattu.html",	
+					  	type: "GET",
+					  	dateType: "JSON",
+					  	data: { "vtMaUpdate": vtMaUpdate, "vtTenUpdate": vtTenUpdate, "dvtUpdate": dvtUpdate},
+					  	contentType: 'application/json',
+					    mimeType: 'application/json',
+						  	
+						  	success: function(vt) {
+						  		$('table tr').has('input[name="vtMa"]:checked').remove();
+						  		$('#view-table-vat-tu table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vtMaUpdate + '\"</td><td class=\"col\">'+ vtMaUpdate +'</td><td class=\"col\">' + vtTenUpdate+'</td><td class=\"col\">' 
+						  				+ dvtUpdate+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showChiTiet(\'chitiet\',true,\''
+										+vtMaUpdate+'\');\">Xem</button></td></tr>');
+						  		$('input:text[name=vtMaUpdate]').val('');			 
+						  		$('input:text[name=vtTenUpdate]').val('');
+								$('select[name=dvtUpdate]').val('');
+						  		showForm("update-form", false);	
+						  		alert("Thay đổi thành công vật tư có mã "+vtMaUpdate+ " !")
+						  	}
+						});
+ 			}
  	}
  	function confirmDeleteVT(){
  		vtMa = $('input:checkbox[name=vtMa]:checked').val();
@@ -190,6 +205,18 @@
   		$('#requireVtDvt').html('');
   		$('#add-form input[name=dvt]').focus();
  	}
+  	
+
+  	function changeVtTenUp(){
+  		$('#requireVtTenUp').html('');
+  		$('#update-form input:text[name=vtTenUpdate]').focus();
+ 	}
+  	
+  	function changeVtDvtUp(){
+  		$('#requireVtDvtUp').html('');
+  		$('#update-form input[name=dvtUpdate]').focus();
+ 	}
+  	
   	
     $(document).ready(function() {
         $('#view-table-vat-tu .checkAll').click(function(event) {  //on click 

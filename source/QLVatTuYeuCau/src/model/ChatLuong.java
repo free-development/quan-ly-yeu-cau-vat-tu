@@ -30,12 +30,9 @@ public class ChatLuong implements Serializable {
 	/**
 	 * @param clMa
 	 * @param clTen
+	 * @param daXoa
 	 */
-	public ChatLuong(String clMa, String clTen)
-	{
-		this.clMa = clMa;
-		this.clTen = clTen;
-	}
+	
 	public ChatLuong(String clMa, String clTen,int daXoa) {
 		this.clMa = clMa;
 		this.clTen = clTen;
