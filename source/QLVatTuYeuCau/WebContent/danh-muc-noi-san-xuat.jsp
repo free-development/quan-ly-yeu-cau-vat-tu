@@ -61,29 +61,43 @@
 
 		</div>
 		<div class="main_menu">
-			<ul>
-				<li><a href="">Trang chủ</a></li>
-				<li><a href="">Danh mục</a>
 					<ul>
-						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
-								mục nơi sản xuất</a></li>
-						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
-								mục chất lượng</a></li>
-						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
-								mục vật tư</a></li>
-						<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh
-								mục bộ phận sử dụng</a></li>
-						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
-								mục mục đích</a></li>
-						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh
-								mục vai trò</a></li>
-					</ul></li>
-				<li><a
-					href="<%=siteMap.cvManage+"?action=manageCv"%>">Công văn</a></li>
-						<li><a href="bao-cao.html">Báo cáo</a></li>
-						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>
-						<li><a href="bao-cao.html">Quản lý người dùng</a></li>
+						<li><a href="">Trang chủ</a></li>
+						<li><a href="">Danh mục</a>
+							<ul>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
+										mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
+										mục chất lượng</a></li>
+								<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
+										mục vật tư</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+										mục chi tiết vật tư</a></li>
+								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
+										mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
+										mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+										mục chức danh</a></li>
+								
+							</ul>
+				</li>
+				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
+					<ul>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
+				</li>
+				<li><a href="">Quảnlý người dùng</a>
+					<ul>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
+						<li><a href=""/>Khôi phục mật khẩu</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
+				</ul>
 					<div class="clear"></div>
 				</div>
 	
@@ -128,7 +142,7 @@
 						<button class="button" type="reset">
 							<i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua
 						</button>&nbsp;
-						<button type="button" class="btn">
+						<button type="button" class="btn" onclick="location.href='<%=siteMap.home%>'">
 							<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 						</button>
 		</div>
@@ -140,20 +154,19 @@
 					<div class="form-title">Thêm nơi sản xuất</div>
 					<tr>
 						<th><label for="MNSX">Mã NSX</label></th>
-						<td><input name="nsxMa" type="text" class="text" required
+						<td><input name="nsxMa" type="text" class="text" required onkeypress="changensxMa();"
 							autofocus size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}"
-							title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
+							title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"><div id="requirensxMa" style="color: red"></td>
 					</tr>
 					<tr>
 						<th class="label"><label for="MNSX">Tên NSX</label></th>
-						<td><input name="nsxTen" size="30px" align=left type="text"
+						<td><input name="nsxTen" size="30px" align=left type="text" onkeypress="changensxTen();"
 							class="text" required
-							title="Tên nơi sản xuất không được để trống"></td>
+							title="Tên nơi sản xuất không được để trống"><div id="requirensxTen" style="color: red"></td>
 					</tr>
 				</table>
 			</div>
 			<div class="group-button">
-<!-- 				<input type="hidden" name="action" value="AddNsx"> -->
 				<button class="button" type="button" onclick="addNsx();">
 					<i class="fa fa-plus-circle"></i>&nbsp;Thêm
 				</button>
@@ -174,19 +187,16 @@
 					<div class="form-title">Cập nhật nơi sản xuất</div>
 					<tr>
 						<th><label for="MNSX">Mã NSX</label></th>
-						<td><input name="nsxMaUpdate" type="text" class="text"
-							required  size="2" maxlength="3" style="color: #D1D1E0"
+						<td><input name="nsxMaUpdate" type="text" class="text" 
+							required  size="2" maxlength="3" readonly style="background-color: #D1D1E0;"
 							pattern="[a-zA-Z0-9]{3}"
-							title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt" readonly></td>
-						<!-- 							<td><select id="select" name="nsxMa"> -->
-						<!-- 								<option>Chon nsx</option> -->
-						<!-- 							</select></td> -->
+							title="Mã nơi sản xuất chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"></td>
 					</tr>
 					<tr>
 						<th><label for="MNSX">Tên NSX</label></th>
-						<td><input name="nsxTenUpdate" size="30px" type="text"
+						<td><input name="nsxTenUpdate" size="30px" type="text" onkeypress="changensxTenUp();"
 							class="text" required autofocus
-							title="Tên nơi sản xuất không được để trống"></td>
+							title="Tên nơi sản xuất không được để trống"><div id="requirensxTenUp" style="color: red"></div></td>
 					</tr>
 				</table>
 			</div>

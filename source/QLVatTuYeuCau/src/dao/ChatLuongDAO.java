@@ -5,6 +5,7 @@ import java.util.List;
 import model.ChatLuong;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
@@ -31,7 +32,9 @@ public class ChatLuongDAO {
 	}
 	public List<ChatLuong> getAllChatLuong() {
 		session.beginTransaction();
-		List<ChatLuong> chatLuongList = (List<ChatLuong>) session.createCriteria(ChatLuong.class).list();
+		Criteria cr = session.createCriteria(ChatLuong.class);
+		Criterion expDaXoa = Restrictions.eq("daXoa", 0);
+		List<ChatLuong> chatLuongList = (List<ChatLuong>) cr.list();
 		session.getTransaction().commit();
 		return chatLuongList;
 	}
@@ -45,9 +48,11 @@ public class ChatLuongDAO {
 		session.update(chatLuong);
 		session.getTransaction().commit();
 	}
-	public void deleteChatLuong(ChatLuong chatLuong){
+	public void deleteChatLuong(String clMa){
 		session.beginTransaction();
-		session.delete(chatLuong);
+		String sql = "update ChatLuong set daXoa = 1 where dvMa = '" + clMa +"'";		
+		Query query = session.createQuery(sql);
+		query.executeUpdate();
 		session.getTransaction().commit();
 	}
 	public int getChatLuong1(final String clMa)

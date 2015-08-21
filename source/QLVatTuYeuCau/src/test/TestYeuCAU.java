@@ -50,10 +50,10 @@ public class TestYeuCAU {
 		//int idCv = new CongVanDAO().getLastInsert(); 
 
 
-		ChatLuong chatLuong = new ChatLuong("CL4", "Tot");
-		ChatLuong chatLuong5 = new ChatLuong("CL5", "Tot");
-		ChatLuong chatLuong8 = new ChatLuong("CL8", "Tot TotS");
-		ChatLuong chatLuong0 = new ChatLuong("CL0", "Tot TotS");
+		ChatLuong chatLuong = new ChatLuong("CL4", "Tot",0);
+		ChatLuong chatLuong5 = new ChatLuong("CL5", "Tot",0);
+		ChatLuong chatLuong8 = new ChatLuong("CL8", "Tot TotS",0);
+		ChatLuong chatLuong0 = new ChatLuong("CL0", "Tot TotS",0);
 		
 		NoiSanXuat nsx = new NoiSanXuat("Vn4", "Viet Nam");
 		NoiSanXuat nsx5 = new NoiSanXuat("Vn5", "Viet Nam");

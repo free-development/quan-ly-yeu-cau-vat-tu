@@ -61,33 +61,46 @@
 			</div>
 
 		</div>
-		<div class="main_menu">
-			<ul>
-				<li><a href="">Trang chủ</a></li>
-				<li><a href="">Danh mục</a>
+	<div class="main_menu">
 					<ul>
-						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
-								mục nơi sản xuất</a></li>
-						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
-								mục chất lượng</a></li>
-						<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
-								mục vật tư</a></li>
-						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
-								mục chi tiết vật tư</a></li>
-						<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh
-								mục bộ phận sử dụng</a></li>
-						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
-								mục mục đích</a></li>
-						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh
-								mục vai trò</a></li>
-					</ul></li>
-				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="bao-cao.html">Báo cáo</a></li>
-				<!--					<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
-				<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản lý người dùng</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
+						<li><a href="">Trang chủ</a></li>
+						<li><a href="">Danh mục</a>
+							<ul>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
+										mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
+										mục chất lượng</a></li>
+								<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
+										mục vật tư</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+										mục chi tiết vật tư</a></li>
+								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
+										mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
+										mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+										mục chức danh</a></li>
+								
+							</ul>
+				</li>
+				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
+					<ul>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
+				<li><a href="">Quảnlý người dùng</a>
+					<ul>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
+						<li><a href=""/>Khôi phục mật khẩu</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
+				</ul>
+					<div class="clear"></div>
+				</div>
 
 		<div id="main-content">
 			<div id="title-content">Danh mục vật tư</div>
@@ -160,7 +173,7 @@
 					<i class="fa fa-print"></i>&nbsp;&nbsp;In
 				</button>
 				&nbsp;
-				<button type="button" class="button" onclick="showForm('main-form', false)">
+				<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
 					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 				</button>
 			</div>
@@ -225,17 +238,17 @@
 						<tr>
 							<th style="text-align: left"><label for="MVT">Tên
 									vật tư</label></th>
-							<td><input name="vtTenUpdate" size="30px" align=right type="text"  id="aa"
-								class="text" value="10102345"></td>
+							<td><input name="vtTenUpdate" size="30px" align=right type="text"  id="aa" onkeypress="changeVtTenUp();"
+								class="text" value="10102345"><div id="requireVtTenUp" style="color: red"></div></td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="DVT">Đơn vị
 									tính</label></th>
-							<td><select id="dvtUp" class="select"  name="dvtUpdate">
+							<td><select id="dvtUp" class="select"  name="dvtUpdate" onkeypress="changeVtDvtUp();">
 									<option value="m">m</option>
 									<option value="cai">cai</option>
 									<option value="cuon">cuộn</option>
-							</select></td>
+							</select><div id="requireDvtUp" style="color: red"></div></td>
 						</tr>
 					</table>
 				</div>
@@ -308,7 +321,7 @@
 					<i class="fa fa-print"></i>&nbsp;&nbsp;In
 				</button>
 				&nbsp;
-				<button type="button" class="button" onclick="showForm('main-form', false)">
+				<button type="button" class="button" onclick="showForm('chitiet', false)">
 					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 				</button>
 			</div>
@@ -340,7 +353,7 @@
 							<th style="text-align: left"><label for="MVT">Nơi
 									sản xuất</label></th>
 								<td>
-									<select 
+									<select onkeypress="changeNsx();"
 									title="" class="select" id="noisanxuat" name="noiSanXuat" style="margin-top: 10px;">
 										<option disabled selected value="">-- Chọn nơi sản xuất --</option>
 										<%						  
@@ -357,13 +370,13 @@
 						
 						<tr>
 							<th style="text-align: left"><label for="DM">Định mức</label></th>
-							<td><input name="dinhMuc" size="5px" align=right type="number"
+							<td><input name="dinhMuc" size="5px" align=right type="number" onkeypress="changeDM();"
 								class="text" required title="Định mức không được để trống"><div id="requireDM"></div></td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
 								<td>
-									<select 
+									<select onkeypress="changeCl();" 
 											title="" class="select" id="chatluong" name="chatLuong" style="margin-top: 10px;">
 												<option disabled selected value="">-- Chọn chất lượng --</option>
 												<%						  
@@ -379,7 +392,7 @@
 						<tr>
 							<th style="text-align: left"><label for="Sl">Số lượng</label></th>
 							<td>
-								<input name="soLuongTon" size="5px" type="number" class="text" required title="Số lượng tồn không được để trống"><div id="requireSl" style="color: red"></div>
+								<input name="soLuongTon" size="5px" type="number" class="text" required title="Số lượng tồn không được để trống" onkeypress="changeSL();"><div id="requireSl" style="color: red"></div>
 							</td>
 						</tr>
 					</table>
@@ -416,7 +429,7 @@
 						<tr>
 							<th style="text-align: left"><label for="MVT">Nơi sản xuất</label></th>
 							<td><select 
-							title="" class="select" id="noisanxuatUp" name="nsxUpdate" style="margin-top: 10px;">
+							title="" class="select" id="noisanxuatUp" name="nsxUpdate" readonly style="background-color: #D1D1E0;margin-top: 10px;">
 								<option disabled selected value="">-- Chọn nơi sản xuất --</option>
 								<%						  
  								
@@ -425,14 +438,14 @@
  								<option value=<%=noiSanXuat.getNsxMa()%>><%=noiSanXuat.getNsxTen()%></option> 
  								<%}  
   								%>  
-						</select><div id="requireNsx" style="color: red"></div></td>
+						</select></div></td>
 						</tr>
 						
 						<tr>
 							<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
 								<td>
 									<select 
-											title="" class="select" id="chatluongUp" name="clUpdate" style="margin-top: 10px;">
+											title="" class="select" id="chatluongUp" name="clUpdate" readonly style="background-color: #D1D1E0;margin-top: 10px;">
 												<option disabled selected value="">-- Chọn chất lượng --</option>
 												<%						  
 				 								
@@ -441,18 +454,18 @@
 				 								<option value=<%=chatLuong.getClMa()%>><%=chatLuong.getClTen()%></option> 
 				 								<%}  
 				  								%>  
-									</select><div id="requireCl" style="color: red"></div>
+									</select>
 								</td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="DM">Định mức</label></th>
-							<td><input name="dinhMucUpdate" size="5px" type="number"
-								class="text" required title="Định mức không được để trống"><div id="requireDM" style="color: red"></div></td>
+							<td><input name="dinhMucUpdate" size="5px" type="number" onkeypress="changeDMUp();"
+								class="text" required title="Định mức không được để trống"><div id="requireDMUp" style="color: red"></div></td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="Sl">Số lượng</label></th>
 							<td>
-								<input name="soLuongTonUpdate" size="5px" type="number" class="text" required title="Số lượng tồn không được để trống"><div id="requireSl" style="color: red"></div>
+								<input name="soLuongTonUpdate" size="5px" type="number" class="text" required title="Số lượng tồn không được để trống" onkeypress="changeSLUp();"><div id="requireSlUp" style="color: red"></div>
 							</td>
 						</tr>
 					</table>

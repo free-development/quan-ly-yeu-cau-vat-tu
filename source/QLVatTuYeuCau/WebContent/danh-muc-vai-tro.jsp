@@ -18,7 +18,7 @@
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery-1.6.3.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery-1.6.3.min.js"></script> -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/vaitro.js"></script>
 <script>
@@ -74,36 +74,46 @@
 			</div>
 
 		</div>
-		<div class="main_menu">
-			<ul>
-				<li><a href="">Trang chủ</a></li>
-				<li><a href="">Danh mục</a>
+			<div class="main_menu">
 					<ul>
-						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
-								mục nơi sản xuất</a></li>
-						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
-								mục chất lượng</a></li>
-						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
-								mục vật tư</a></li>
-						<li><a href="<%=siteMap.bpsdManage + "?action=manageBpsd"%>">Danh
-								mục bộ phận sử dụng</a></li>
-						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
-								mục mục đích</a></li>
-						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh
-								mục vai trò</a></li>
-					</ul></li>
-				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="bao-cao.html">Báo cáo</a>
+						<li><a href="">Trang chủ</a></li>
+						<li><a href="">Danh mục</a>
+							<ul>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
+										mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
+										mục chất lượng</a></li>
+								<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
+										mục vật tư</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+										mục chi tiết vật tư</a></li>
+								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
+										mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
+										mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+										mục chức danh</a></li>
+								
+							</ul>
+				</li>
+				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
 					<ul>
 						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
 				</li>
-				<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
-				<li><a href="bao-cao.html">Quản lý người dùng</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
+				<li><a href="">Quảnlý người dùng</a>
+					<ul>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
+						<li><a href=""/>Khôi phục mật khẩu</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
+				</ul>
+					<div class="clear"></div>
+				</div>
 
 		<div id="main-content">
 			<div id="title-content">Danh mục vai trò</div>
@@ -151,7 +161,7 @@
 							<i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua
 						</button>
 						&nbsp;
-						<button type="button" class="btn" onclick="location.href='<%=siteMap.home+ ".jsp"%>'">
+						<button type="button" class="btn" onclick="location.href='<%=siteMap.home%>'">
 							<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 						</button>
 					</div>
@@ -163,30 +173,29 @@
 							<div class="form-title">Thêm vai trò</div>
 							<tr>
 								<th><label for="id">ID</label></th>
-								<td><input name="vtId" type="text" class="text" required
-									autofocus size="3" maxlength="3"
-									title="Mã nơi sản xuất không được trống"><div id="requirevtID" style="color: red"></td>
+								<td><input name="vtId" type="number" class="text" required
+									autofocus size="3" maxlength="3" onkeypress="changeVtId();"
+									title="Mã nơi sản xuất không được trống"><div id="requirevtId" style="color: red"></div></td>
 							</tr>
 							<tr>
 								<th class="label"><label for="tenvaitro">Tên vai trò</label></th>
-								<td><input name="vtTen" size="30px" type="text"
-									class="text" required title="Tên vai trò không được để trống"></td>
+								<td><input name="vtTen" size="30px" type="text" onkeypress="changeVtTen();"
+									class="text" required title="Tên vai trò không được để trống"><div id="requirevtTen" style="color: red"></div></td>
 							</tr>
 						</table>
 					</div>
 					<div class="group-button">
-						<input type="hidden" name="action" value="addVaiTro">
-						<button type="button" class="button" onclick="addVt();">
-							<i class="fa fa-plus-circle"></i>&nbsp;Thêm
-						</button>
-						<button type="reset" class="button">
-							<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
-						</button>
-						<button type="button" class="button"
-							onclick="showForm('add-form', false)">
-							<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
-						</button>
-					</div>
+				<button class="button" type="button" onclick="addVt();">
+					<i class="fa fa-plus-circle"></i>&nbsp;Thêm
+				</button>
+				<button type="reset" class="button">
+					<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
+				</button>
+				<button type="button" class="button"
+					onclick="showForm('add-form', false)">
+					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
+				</button>
+			</div>
 				</form>
 
 				<!-- ---------------Update form-------------- -->
@@ -196,19 +205,19 @@
 							<div class="form-title">Cập nhật vai trò</div>
 							<tr>
 								<th><label for="id">ID</label></th>
-								<td><input name="vtIdUpdate" type="text" class="text" style="color: #D1D1E0"
-									required title="ID vai trò không để trống" readonly></td>
+								<td><input name="vtIdUpdate" type="number" class="text" 
+									required title="ID vai trò không để trống" readonly style="background-color: #D1D1E0;"><div id="requirevtID" style="color: red"></div></td>
 							</tr>
 							<tr>
 								<th><label for="tenvaitro">Tên vai trò</label></th>
-								<td><input name="vtTenUpdate" size="30px" type="text"
-									class="text" required title="Tên vai trò không được để trống"></td>
+								<td><input name="vtTenUpdate" size="30px" type="text" onkeypress="changeVtTenUp();"
+									class="text" required title="Tên vai trò không được để trống"><div id="requirevtTenUp" style="color: red"></div></td>
 							</tr>
 						</table>
 					</div>
 					<div class="group-button">
-						<input type="hidden" name="action" value="updateVaiTro">
-						<button type="button" class="button" onclick="confirmUpdateVt()">
+						
+						<button type="button" class="button" onclick="confirmUpdateVt();">
 							<i class="fa fa-floppy-o"></i>&nbsp;Lưu lại
 						</button>
 						<button type="reset" class="button">
