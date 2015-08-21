@@ -1,11 +1,17 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import model.ChucDanh;
 import model.NoiSanXuat;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
 
@@ -28,7 +34,10 @@ public class NoiSanXuatDAO {
 	}
 	public List<NoiSanXuat> getAllNoiSanXuat() {
 		session.beginTransaction();
-		List<NoiSanXuat> noiSanXuatList = (List<NoiSanXuat>) session.createCriteria(NoiSanXuat.class).list();
+		Criteria cr = session.createCriteria(NoiSanXuat.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+		cr.add(xoaCd);
+		ArrayList<NoiSanXuat> noiSanXuatList = (ArrayList<NoiSanXuat>) cr.list(); 
 		session.getTransaction().commit();
 		return noiSanXuatList;
 	}
@@ -42,10 +51,15 @@ public class NoiSanXuatDAO {
 		session.update(noiSanXuat);
 		session.getTransaction().commit();
 	}
-	public void deleteNoiSanXuat(NoiSanXuat noiSanXuat){
+	public void deleteNoiSanXuat(String nsxMa){
 		session.beginTransaction();
-		session.delete(noiSanXuat);
+		String sql = "update NoiSanXuat set daXoa = 1 where nsxMa = '" + nsxMa + "'";		
+		Query query = session.createQuery(sql);
+		query.executeUpdate();
 		session.getTransaction().commit();
+	}
+	public static void main(String[] args) {
+		new NoiSanXuatDAO().deleteNoiSanXuat("Vn5");
 	}
 	
 }

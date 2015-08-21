@@ -44,14 +44,14 @@ public class NsxController extends HttpServlet {
 			String nsxMa = request.getParameter("nsxMa");
 			String nsxTen = request.getParameter("nsxTen");
 			
-			noiSanXuatDAO.addNoiSanXuat(new NoiSanXuat(nsxMa,nsxTen));
+			noiSanXuatDAO.addNoiSanXuat(new NoiSanXuat(nsxMa,nsxTen,0));
 			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.getAllNoiSanXuat();
 			return new ModelAndView("danh-muc-noi-san-xuat", "noiSanXuatList", noiSanXuatList);
 		}
 		if("deleteNsx".equalsIgnoreCase(action)) {
 			String[] idList = request.getParameterValues("nsxMa");
 			for(String s : idList) {
-					noiSanXuatDAO.deleteNoiSanXuat(noiSanXuatDAO.getNoiSanXuat(s));
+					noiSanXuatDAO.deleteNoiSanXuat(s);
 			}
 			
 			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.getAllNoiSanXuat();
@@ -83,7 +83,7 @@ public class NsxController extends HttpServlet {
 		System.out.println("MA: "+nsxMa);
 		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
 		{
-			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen));
+			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
 			System.out.println("success");
 			result = "success";	
 		}
@@ -100,7 +100,7 @@ public class NsxController extends HttpServlet {
 
 		System.out.println(nsxMaUpdate);
 		System.out.println(nsxTenUpdate);
-		NoiSanXuat nsx = new NoiSanXuat(nsxMaUpdate, nsxTenUpdate);
+		NoiSanXuat nsx = new NoiSanXuat(nsxMaUpdate, nsxTenUpdate,0);
 		new NoiSanXuatDAO().updateNoiSanXuat(nsx);
 		return JSonUtil.toJson(nsx);
 	}
@@ -112,7 +112,7 @@ public class NsxController extends HttpServlet {
 //		NoiSanXuat nsx = noiSanXuatDAO.getNoiSanXuat(nsxMa);
 //		return toJson(nsx);
 		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
-		new NoiSanXuatDAO().deleteNoiSanXuat(new NoiSanXuatDAO().getNoiSanXuat(nsxMa));
+		new NoiSanXuatDAO().deleteNoiSanXuat(nsxMa);
 //		System.out.println(JSonUtil.toJson(nsxMa));
 //		return toJson(nsxList);
 		return JSonUtil.toJson(nsxMa);

@@ -1,11 +1,15 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.ChatLuong;
+import model.ChucDanh;
 import model.MucDich;
+import model.YeuCau;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
@@ -29,7 +33,10 @@ public class MucDichDAO {
 	}
 	public List<MucDich> getAllMucDich() {
 		session.beginTransaction();
-		List<MucDich> mucDichList = (List<MucDich>) session.createCriteria(MucDich.class).list();
+		Criteria cr = session.createCriteria(MucDich.class);
+		Criterion xoaMd = Restrictions.eq("daXoa", 0);
+		cr.add(xoaMd);
+		ArrayList<MucDich> mucDichList = (ArrayList<MucDich>) cr.list(); 
 		session.getTransaction().commit();
 		return mucDichList;
 	}
@@ -43,9 +50,11 @@ public class MucDichDAO {
 		session.update(mucDich);
 		session.getTransaction().commit();
 	}
-	public void deleteMucDich(MucDich mucDich){
+	public void deleteMucDich(String mdMa){
 		session.beginTransaction();
-		session.delete(mucDich);
+		String sql = "update MucDich  set daXoa = 1 where mdMa = '" + mdMa + "'";	
+		Query query = session.createQuery(sql);
+		query.executeUpdate();
 		session.getTransaction().commit();
 	}
 	public int getMucDich1(final String mdMa)
@@ -59,4 +68,5 @@ public class MucDichDAO {
 		return l;
 		
 	}
+	
 }

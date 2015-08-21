@@ -19,21 +19,29 @@ public class NoiSanXuat implements Serializable{
 	 * DataTypeLength/Precision 20
 	 */
 	private String nsxTen;
-
+	private int daXoa;
 	public NoiSanXuat() {
 		this.nsxMa = "";
 		this.nsxTen = "";
+		this.daXoa = 0;
 	}
 	/**
 	 * @param nsxMa
 	 * @param nsxTen
 	 */
-	public NoiSanXuat(String nsxMa, String nsxTen) {
+	public NoiSanXuat(String nsxMa, String nsxTen,int daXoa) {
 		this.nsxMa = nsxMa;
 		this.nsxTen = nsxTen;
+		this.daXoa = daXoa;
 	}
 	public NoiSanXuat(String nsxMa) {
 		this.nsxMa = nsxMa;
+	}
+	public int getDaXoa() {
+		return daXoa;
+	}
+	public void setDaXoa(int daXoa) {
+		this.daXoa = daXoa;
 	}
 	/**
 	 * @return the nsxMa

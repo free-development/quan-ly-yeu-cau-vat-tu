@@ -43,7 +43,7 @@ public class BpsdController extends HttpServlet {
 			String sdt = request.getParameter("sdt");
 			String diaChi = request.getParameter("diaChi");
 			String email = request.getParameter("email");
-			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email ));
+			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email,0 ));
 			
 			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
 			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
@@ -53,7 +53,7 @@ public class BpsdController extends HttpServlet {
 			String[] idList = request.getParameterValues("dvMa");
 			for(String s : idList) {
 				if(s != null) {
-					donViDAO.deleteDonVi(donViDAO.getDonVi(s));
+					donViDAO.deleteDonVi(s);
 				}
 			}
 			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
@@ -108,7 +108,7 @@ public class BpsdController extends HttpServlet {
 	@RequestMapping(value="/deleteBp", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteBp(@RequestParam("dvMa") String dvMa) {
-		new DonViDAO().deleteDonVi(new DonViDAO().getDonVi(dvMa));
+		new DonViDAO().deleteDonVi(dvMa);
 		return JSonUtil.toJson(dvMa);
 	}
 }
