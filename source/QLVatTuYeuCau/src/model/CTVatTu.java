@@ -57,8 +57,6 @@ public class CTVatTu implements Serializable{
 		this.noiSanXuat = noiSanXuat;
 		this.chatLuong = chatLuong;
 	}
-<<<<<<< HEAD
-=======
 
 	public CTVatTu(int ctvtId){
 		this.ctvtId = ctvtId;
@@ -66,7 +64,6 @@ public class CTVatTu implements Serializable{
 	public int getCtvtId() {
 		return ctvtId;
 	}
->>>>>>> d46b6927db412ea0605bdd4f91e7e8de74d91293
 
 
 
