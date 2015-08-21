@@ -98,11 +98,8 @@ public class YcController extends HttpServlet {
 	 public @ResponseBody String deleteYc(@RequestParam("ycId") String ycId) {
 		int id = Integer.parseInt(ycId);
 		YeuCauDAO ycDAO = new YeuCauDAO();
-<<<<<<< HEAD
 		ycDAO.deleteYeuCau(id);
-=======
 		//ycDAO.deleteYeuCau(new YeuCau(id));
->>>>>>> da98c2abc9aea41403cecc84b8718e78685dbd33
 	//	return toJson(nsxList);
 		return JSonUtil.toJson(ycId);
 	}
