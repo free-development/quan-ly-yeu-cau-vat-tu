@@ -87,8 +87,10 @@
 								mục nơi sản xuất</a></li>
 						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
 								mục chất lượng</a></li>
-						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+						<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
 								mục vật tư</a></li>
+						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+								mục chi tiết vật tư</a></li>
 						<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
 								mục bộ phận sử dụng</a></li>
 						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
@@ -106,8 +108,13 @@
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
 				</li>
-				<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Quản
-						lý người dùng</a></li>
+				<li><a href="">Quảnlý người dùng</a>
+					<ul>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
+						<li><a href=""/>Khôi phục mật khẩu</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
