@@ -19,6 +19,14 @@
 	type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/noi-san-xuat.js"></script>
+<script type="text/javascript">
+// $(document).ready(function() {
+// 	  	$('.page').click(function(){
+// 	    	var page = $(this).val();
+// 	    	alert(page);
+// 	    });	
+// 	});
+</script>
 <meta charset="UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
@@ -132,7 +140,7 @@
 								<%
 									long pageNum = size / 10;
 									for(int i = 0; i < pageNum; i++) { %>
-									
+										<input type="button" value="<%=i%>" id="page" name="page" class="page">
 								<%} %>
 							</th>
 						</tr>
