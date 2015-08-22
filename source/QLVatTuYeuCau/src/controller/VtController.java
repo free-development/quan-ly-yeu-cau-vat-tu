@@ -39,7 +39,7 @@ public class VtController extends HttpServlet {
 		if("AddVaiTro".equalsIgnoreCase(action)) {
 			int vtId = Integer.parseInt(request.getParameter("vtId"));
 			String vtTen = request.getParameter("vtTen");
-			vaiTroDAO.addVaiTro(new VaiTro(vtId, vtTen));
+			vaiTroDAO.addVaiTro(new VaiTro(vtId, vtTen,0));
 			
 			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
 			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
@@ -48,7 +48,7 @@ public class VtController extends HttpServlet {
 		if("deleteVaiTro".equalsIgnoreCase(action)) {
 			String[] vtIdList = request.getParameterValues("vtId");
 			for(String s : vtIdList) {
-					vaiTroDAO.deleteVaiTro(vaiTroDAO.getVaiTro(Integer.parseInt(s)));
+					vaiTroDAO.deleteVaiTro(s);
 			}
 			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
 			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
@@ -76,7 +76,7 @@ public class VtController extends HttpServlet {
 		System.out.println("MA: "+vtId);
 		if(new VaiTroDAO().getVaiTro(vtId)==null)
 		{
-			new VaiTroDAO().addVaiTro(new VaiTro(vtId, vtTen));;
+			new VaiTroDAO().addVaiTro(new VaiTro(vtId, vtTen,0));;
 			System.out.println("success");
 			result = "success";
 			
@@ -98,15 +98,15 @@ public class VtController extends HttpServlet {
 		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String updateVt(@RequestParam("vtIdUpdate") String vtIdUpdate, @RequestParam("vtTenUpdate") String vtTenUpdate) {
 
-		VaiTro vt = new VaiTro(Integer.parseInt(vtIdUpdate), vtTenUpdate);
+		VaiTro vt = new VaiTro(Integer.parseInt(vtIdUpdate), vtTenUpdate,0);
 		new VaiTroDAO().updateVaiTro(vt);
 		return JSonUtil.toJson(vt);
 	}
 	@RequestMapping(value="/deleteVt", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteVt(@RequestParam("vtId") String vtId) {
-		VaiTro vt = new VaiTro(Integer.parseInt(vtId));
-		new VaiTroDAO().deleteVaiTro(vt);
+		//VaiTro vt = new VaiTro(Integer.parseInt(vtId));
+		new VaiTroDAO().deleteVaiTro(vtId);
 		return JSonUtil.toJson(vtId);
 	}
 }

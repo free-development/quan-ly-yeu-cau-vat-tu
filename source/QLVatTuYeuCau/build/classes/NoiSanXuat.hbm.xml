@@ -10,5 +10,8 @@
 		<property name="nsxTen" type="java.lang.String" access="field">
 			<column name="NSXTEN" />
 		</property>
+		<property name="daXoa" type="int" access="field"> 
+ 			<column name="DAXOA" /> 
+ 		</property>
 	</class>
 </hibernate-mapping>

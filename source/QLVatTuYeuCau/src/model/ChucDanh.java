@@ -15,10 +15,12 @@ public class ChucDanh implements Serializable{
 	 * 30
 	 */
 	private String cdTen;
+	private int daXoa;
 
 	public ChucDanh() {
 		this.cdMa = "";
 		this.cdTen = "";
+		this.daXoa = 0;
 	}
 	
 	/**
@@ -28,9 +30,10 @@ public class ChucDanh implements Serializable{
 	public ChucDanh(String cdMa) {
 		this.cdMa = cdMa;
 	}
-	public ChucDanh(String cdMa, String cdTen) {
+	public ChucDanh(String cdMa, String cdTen,int daXoa) {
 		this.cdMa = cdMa;
 		this.cdTen = cdTen;
+		this.daXoa = daXoa;
 	}
 
 	/**
@@ -38,6 +41,14 @@ public class ChucDanh implements Serializable{
 	 */
 	public String getCdMa() {
 		return cdMa;
+	}
+
+	public int getDaXoa() {
+		return daXoa;
+	}
+
+	public void setDaXoa(int daXoa) {
+		this.daXoa = daXoa;
 	}
 
 	/**

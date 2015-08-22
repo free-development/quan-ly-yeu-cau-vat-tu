@@ -5,10 +5,11 @@ import java.io.Serializable;
 public class VaiTro implements Serializable{
 	private int vtId;
 	private String vtTen;
-	
+	private int daXoa;
 	public VaiTro() {
 		this.vtId = 0;
 		this.vtTen = "";
+		this.daXoa = 0;
 	}
 	
 	/**
@@ -25,9 +26,18 @@ public class VaiTro implements Serializable{
 	public VaiTro(int vtId) {
 		this.vtId = vtId;
 	}
-	public VaiTro(int vtId, String vtTen) {
+	public VaiTro(int vtId, String vtTen,int daXoa) {
 		this.vtId = vtId;
 		this.vtTen = vtTen;
+		this.daXoa = daXoa;
+	}
+
+	public int getDaXoa() {
+		return daXoa;
+	}
+
+	public void setDaXoa(int daXoa) {
+		this.daXoa = daXoa;
 	}
 
 	/**

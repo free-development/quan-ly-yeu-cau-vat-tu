@@ -39,14 +39,14 @@ public class CdController extends HttpServlet {
 			String cdMa = request.getParameter("cdMa");
 			String cdTen = request.getParameter("cdTen");
 			
-			chucDanhDAO.addChucDanh(new ChucDanh(cdMa,cdTen));
+			chucDanhDAO.addChucDanh(new ChucDanh(cdMa,cdTen,0));
 			ArrayList<ChucDanh> chucDanhList =  (ArrayList<ChucDanh>) chucDanhDAO.getAllChucDanh();
 			return new ModelAndView("danh-muc-chuc-danh", "chucDanhList", chucDanhList);
 		}
 		if("deleteCd".equalsIgnoreCase(action)) {
 			String[] idList = request.getParameterValues("cdMa");
 			for(String s : idList) {
-					chucDanhDAO.deleteChucDanh(chucDanhDAO.getChucDanh(s));
+					chucDanhDAO.deleteChucDanh(s);
 			}
 			ArrayList<ChucDanh> chucDanhList =  (ArrayList<ChucDanh>) chucDanhDAO.getAllChucDanh();
 			return new ModelAndView("danh-muc-chuc-danh", "chucDanhList", chucDanhList);
@@ -69,7 +69,7 @@ public class CdController extends HttpServlet {
 	@RequestMapping(value="/deleteCd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteCd(@RequestParam("cdMa") String cdMa) {
-		new ChucDanhDAO().deleteChucDanh(new ChucDanhDAO().getChucDanh(cdMa));
+		new ChucDanhDAO().deleteChucDanh(cdMa);
 		return JSonUtil.toJson(cdMa);
 	}
 	@RequestMapping(value="/addCd", method=RequestMethod.GET, 
@@ -79,7 +79,7 @@ public class CdController extends HttpServlet {
 		System.out.println("MA: "+cdMa);
 		if(new ChucDanhDAO().getChucDanh(cdMa)==null)
 		{
-			new ChucDanhDAO().addChucDanh(new ChucDanh(cdMa,cdTen));
+			new ChucDanhDAO().addChucDanh(new ChucDanh(cdMa,cdTen,0));
 			System.out.println("success");
 			result = "success";
 			
@@ -98,7 +98,7 @@ public class CdController extends HttpServlet {
 	 public @ResponseBody String updateCd(@RequestParam("cdMaUpdate") String cdMaUpdate, @RequestParam("cdTenUpdate") String cdTenUpdate) {
 		System.out.println(cdMaUpdate);
 		System.out.println(cdTenUpdate);
-		ChucDanh cd = new ChucDanh(cdMaUpdate, cdTenUpdate);
+		ChucDanh cd = new ChucDanh(cdMaUpdate, cdTenUpdate,0);
 		new ChucDanhDAO().updateChucDanh(cd);
 		return JSonUtil.toJson(cd);
 	}

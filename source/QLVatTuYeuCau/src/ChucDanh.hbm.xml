@@ -10,5 +10,8 @@
 		<property name="cdTen" type="java.lang.String">
 			<column name="CDTEN" />
 		</property>
+		<property name="daXoa" type="int" access="field"> 
+ 			<column name="DAXOA" /> 
+ 		</property>
 	</class>
 </hibernate-mapping>

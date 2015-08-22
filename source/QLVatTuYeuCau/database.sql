@@ -54,7 +54,6 @@ create table CHATLUONG
    CLMA                 char(3) not null,
    CLTEN                varchar(20),
    primary key (CLMA),
-   DAXOA int
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -66,7 +65,6 @@ create table CHUCDANH
    CDMA                 varchar(10) not null,
    CDTEN                varchar(30),
    primary key (CDMA),
-   DAXOA int
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -155,7 +153,6 @@ create table MUCDICH
    MDMA                 char(3) not null,
    MDTEN                varchar(50),
    primary key (MDMA),
-   DAXOA int
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

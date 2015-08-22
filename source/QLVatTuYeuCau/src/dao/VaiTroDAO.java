@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.CTVatTu;
+import model.ChucDanh;
 import model.VTCongVan;
 import model.VaiTro;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
@@ -36,7 +38,10 @@ public class VaiTroDAO {
 	}
 	public List<VaiTro> getAllVaiTro() {
 		session.beginTransaction();
-		List<VaiTro> vaiTroList = (List<VaiTro>) session.createCriteria(VaiTro.class).list();
+		Criteria cr = session.createCriteria(VaiTro.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+		cr.add(xoaCd);
+		ArrayList<VaiTro> vaiTroList = (ArrayList<VaiTro>) cr.list(); 
 		session.getTransaction().commit();
 		return vaiTroList;
 	}
@@ -50,9 +55,11 @@ public class VaiTroDAO {
 		session.update(vaiTro);
 		session.getTransaction().commit();
 	}
-	public void deleteVaiTro(VaiTro vaiTro){
+	public void deleteVaiTro(String vtId){
 		session.beginTransaction();
-		session.delete(vaiTro);
+		String sql = "update VaiTro set daXoa = 1 where vtId = '" + vtId+"'" ;		
+		Query query = session.createQuery(sql);
+		query.executeUpdate();
 		session.getTransaction().commit();
 	}
 	public int getVaiTroDAO(final int vtId) {
@@ -71,5 +78,8 @@ public class VaiTroDAO {
 			vaiTroList.add(vaiTro);
 		}
 		return vaiTroList;
+	}
+	public static void main(String[] args) {
+		new VaiTroDAO().deleteVaiTro("2");
 	}
 }

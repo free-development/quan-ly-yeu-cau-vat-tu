@@ -17,31 +17,52 @@ function showForm(formId, check){
  			sdt = $('#add-form input:text[name=sdt]').val();
  			diaChi = $('#add-form input:text[name=diaChi]').val();
  			email = $('#add-form input:text[name=email]').val();
- 			$.ajax({
- 				url: "/QLVatTuYeuCau/addBp.html",	
-			  	type: "GET",
- 			  	dateType: "JSON",
- 			  	data: { "dvMa": dvMa, "dvTen": dvTen, "sdt": sdt, "diaChi": diaChi, "email": email},
- 			  	contentType: 'application/json',
- 			    mimeType: 'application/json',
-			  	
- 			  	success: function(result) {
- 			  		if(result == "success")
-	 				{
-$('#view-table-bo-phan table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"'+ dvMa + '\"</td><td class=\"col\">' + dvMa +'</td><td class=\"col\">' + dvTen+'</td><td class=\"col\">' + sdt+'</td><td class=\"col\">'+ diaChi+'</td><td class=\"col\">'+ email+'</td></tr>');
-					$('#add-form input:text[name=dvMa]').val('');
-		 			$('#add-form input:text[name=dvTen]').val('');
-		 			$('#add-form input:text[name=sdt]').val('');
-		 			$('#add-form input:text[name=diaChi]').val('');
-		 			$('#add-form input:text[name=email]').val('');
-		 			showForm("add-form", false);
-		 			alert(dvMa + " đã được thêm ");	
-					}
-			  		else{
-			  			alert(dvMa + " đã tồn tại ");
-			  		}
- 			  	}
- 			 });
+ 			if(dvMa == '') {
+ 				$('#requiredvMa').html('Vui lòng nhập mã BPSD');
+ 			}
+ 			else if (dvTen == '')
+	 			{
+	 				$('#requiredvTen').html('Vui lòng nhập tên BPSD');
+	 			}
+ 			else if (sdt == '')
+ 			{
+ 				$('#requireSdt').html('Vui lòng nhập số điện thoại');
+ 			}
+ 			else if (diaChi == '')
+ 			{
+ 				$('#requireDiachi').html('Vui lòng nhập địa chỉ');
+ 			}
+ 			else if (email == '')
+ 			{
+ 				$('#requireEmail').html('Vui lòng nhập email');
+ 			}
+ 			else {
+		 			$.ajax({
+		 				url: "/QLVatTuYeuCau/addBp.html",	
+					  	type: "GET",
+		 			  	dateType: "JSON",
+		 			  	data: { "dvMa": dvMa, "dvTen": dvTen, "sdt": sdt, "diaChi": diaChi, "email": email},
+		 			  	contentType: 'application/json',
+		 			    mimeType: 'application/json',
+					  	
+		 			  	success: function(result) {
+		 			  		if(result == "success")
+			 				{
+		 			  			$('#view-table-bo-phan table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"'+ dvMa + '\"</td><td class=\"col\">' + dvMa +'</td><td class=\"col\">' + dvTen+'</td><td class=\"col\">' + sdt+'</td><td class=\"col\">'+ diaChi+'</td><td class=\"col\">'+ email+'</td></tr>');
+								$('#add-form input:text[name=dvMa]').val('');
+					 			$('#add-form input:text[name=dvTen]').val('');
+					 			$('#add-form input:text[name=sdt]').val('');
+					 			$('#add-form input:text[name=diaChi]').val('');
+					 			$('#add-form input:text[name=email]').val('');
+					 			showForm("add-form", false);
+					 			alert(dvMa + " đã được thêm ");	
+							}
+					  		else{
+					  			alert(dvMa + " đã tồn tại ");
+					  		}
+		 			  	}
+		 			 });
+ 			}
  		}
 		function preUpdateBp(formId, check){
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
@@ -70,39 +91,75 @@ $('#view-table-bo-phan table tr:first').after('<tr><td class=\"left-column\"><in
 			var sdtUpdate = $('input:text[name=sdtUpdate]').val();
  			var diaChiUpdate = $('input:text[name=diaChiUpdate]').val();
  			var emailUpdate = $('input:text[name=emailUpdate]').val();
-			if (confirm('Bạn có chắc thay đổi đơn vị có mã ' + dvMaUpdate))
-				updateBp(dvMaUpdate, dvTenUpdate, sdtUpdate, diaChiUpdate, emailUpdate);
+ 			if (dvTenUpdate == '')
+ 			{
+ 				$('#requiredvTenUp').html('Vui lòng nhập tên BPSD');
+ 			}
+		else if (sdtUpdate == '')
+		{
+			$('#requireSdtUp').html('Vui lòng nhập số điện thoại');
+		}
+		else if (diaChiUpdate == '')
+		{
+			$('#requireDiachiUp').html('Vui lòng nhập địa chỉ');
+		}
+		else if (emailUpdate == '')
+		{
+			$('#requireEmailUp').html('Vui lòng nhập email');
+		}
+		else {
+				if (confirm('Bạn có chắc thay đổi đơn vị có mã ' + dvMaUpdate))
+					updateBp(dvMaUpdate, dvTenUpdate, sdtUpdate, diaChiUpdate, emailUpdate);
+			}
 		}
  	 	function updateBp(dvMaUpdate, dvTenUpdate, sdtUpdate, diaChiUpdate, emailUpdate) {
-
-			$.ajax({
-				url: "/QLVatTuYeuCau/updateBp.html",	
-			  	type: "GET",
-			  	dateType: "JSON",
-			  	data: { "dvMaUpdate": dvMaUpdate, "dvTenUpdate": dvTenUpdate, "sdtUpdate": sdtUpdate, "diaChiUpdate": diaChiUpdate, "emailUpdate": emailUpdate},
-			  	contentType: 'application/json',
-			    mimeType: 'application/json',
-			  	
-			  	success: function(dv) {
-			  		$('table tr').has('input[name="dvMa"]:checked').remove();
-					$('#view-table-bo-phan table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"' +dvMaUpdate + '\"</td><td class=\"col\">'
-							 + dvMaUpdate +'</td><td class=\"col\">' 
-							 + dvTenUpdate +'</td><td class=\"col\">' 
-							 + sdtUpdate +'</td><td class=\"col\">' 
-							 + diaChiUpdate +'</td><td class=\"col\">' 
-							 + emailUpdate +'</td></tr>');
-			  		$('input:text[name=dvMaUpdate]').val('');
-					dvTenUpdate = $('input:text[name=dvTenUpdate]').val('');
-					sdtUpdate = $('input:text[name=sdtUpdate]').val('');
-					diaChiUpdate = $('input:text[name=diaChiUpdate]').val('');
-					emailUpdate = $('input:text[name=emailUpdate]').val('');
-			  		showForm("update-form", false);	
-			  	}
-			});
+ 	 		 if (dvTenUpdate == '')
+	 			{
+	 				$('#requiredvTenUp').html('Vui lòng nhập tên BPSD');
+	 			}
+			else if (sdtUpdate == '')
+			{
+				$('#requireSdtUp').html('Vui lòng nhập số điện thoại');
+			}
+			else if (diaChiUpdate == '')
+			{
+				$('#requireDiachiUp').html('Vui lòng nhập địa chỉ');
+			}
+			else if (emailUpdate == '')
+			{
+				$('#requireEmailUp').html('Vui lòng nhập email');
+			}
+			else {
+					$.ajax({
+						url: "/QLVatTuYeuCau/updateBp.html",	
+					  	type: "GET",
+					  	dateType: "JSON",
+					  	data: { "dvMaUpdate": dvMaUpdate, "dvTenUpdate": dvTenUpdate, "sdtUpdate": sdtUpdate, "diaChiUpdate": diaChiUpdate, "emailUpdate": emailUpdate},
+					  	contentType: 'application/json',
+					    mimeType: 'application/json',
+					  	
+					  	success: function(dv) {
+					  		$('table tr').has('input[name="dvMa"]:checked').remove();
+							$('#view-table-bo-phan table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"' +dvMaUpdate + '\"</td><td class=\"col\">'
+									 + dvMaUpdate +'</td><td class=\"col\">' 
+									 + dvTenUpdate +'</td><td class=\"col\">' 
+									 + sdtUpdate +'</td><td class=\"col\">' 
+									 + diaChiUpdate +'</td><td class=\"col\">' 
+									 + emailUpdate +'</td></tr>');
+					  		$('input:text[name=dvMaUpdate]').val('');
+							dvTenUpdate = $('input:text[name=dvTenUpdate]').val('');
+							sdtUpdate = $('input:text[name=sdtUpdate]').val('');
+							diaChiUpdate = $('input:text[name=diaChiUpdate]').val('');
+							emailUpdate = $('input:text[name=emailUpdate]').val('');
+					  		showForm("update-form", false);	
+					  		alert("Thay đổi thành công bộ phân có mã "+ dvMaUpdate);
+					  	}
+					});
+			}
 		}
 		function confirmDelete(){
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
-			if (confirm('Bạn có chắc xóa' + dvMa))
+			if (confirm('Bạn có chắc xóa ' + dvMa))
 				deleteBp(dvMa);
 		}
  		
@@ -116,8 +173,52 @@ $('#view-table-bo-phan table tr:first').after('<tr><td class=\"left-column\"><in
 			  	contentType: 'application/json',
 			    mimeType: 'application/json',
 			  	success: function() {
-				  	alert(dvMa + "da bi xoa");
 							$('table tr').has('input[name="dvMa"]:checked').remove();
+							alert(dvMa + " da bi xoa");
 			    } 
 			});  
 		}
+	 	 
+	 	function changedvMa(){
+ 	  		$('#requiredvMa').html('');
+ 	  		$('#add-form input:text[name=dvMa]').focus();
+ 	 	} 	
+ 	  	
+ 	  	function changedvTen(){
+ 	  		$('#requirevtTen').html('');
+ 	  		$('#add-form input:text[name=dvTen]').focus();
+ 	 	}	
+ 	  	
+ 	 	function changeSdt(){
+ 	  		$('#requireSdt').html('');
+ 	  		$('#add-form input:text[name=sdt]').focus();
+ 	 	} 	
+ 	  	
+ 	  	function changeDiachi(){
+ 	  		$('#requireDiachi').html('');
+ 	  		$('#add-form input:text[name=diaChi]').focus();
+ 	 	}	
+ 	  	function changeEmail(){
+ 	  		$('#requireEmail').html('');
+ 	  		$('#add-form input:text[name=email]').focus();
+ 	 	}	
+ 	  	
+ 	  	
+ 	  	function changedvTenUp(){
+ 	  		$('#requirevtTenUp').html('');
+ 	  		$('#add-form input:text[name=dvTenUpdate]').focus();
+ 	 	}	
+ 	  	
+ 	 	function changeSdtUp(){
+ 	  		$('#requireSdtUp').html('');
+ 	  		$('#add-form input:text[name=sdtUpdate]').focus();
+ 	 	} 	
+ 	  	
+ 	  	function changeDiachiUp(){
+ 	  		$('#requireDiachiUp').html('');
+ 	  		$('#add-form input:text[name=diaChiUpdate]').focus();
+ 	 	}	
+ 	  	function changeEmailUp(){
+ 	  		$('#requireEmailUp').html('');
+ 	  		$('#add-form input:text[name=emailUpdate]').focus();
+ 	 	}	

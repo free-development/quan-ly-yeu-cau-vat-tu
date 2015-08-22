@@ -43,7 +43,7 @@ public class MdController extends HttpServlet {
 			}
 			else
 			{
-			mucDichDAO.addMucDich(new MucDich(mdMa,mdTen));
+			mucDichDAO.addMucDich(new MucDich(mdMa,mdTen,0));
 			ArrayList<MucDich> mucDichList =  (ArrayList<MucDich>) mucDichDAO.getAllMucDich();
 			return new ModelAndView("danh-muc-muc-dich", "mucDichList", mucDichList);
 			}
@@ -51,7 +51,7 @@ public class MdController extends HttpServlet {
 		if("deleteMd".equalsIgnoreCase(action)) {
 			String[] idList = request.getParameterValues("mdMa");
 			for(String s : idList) {
-					mucDichDAO.deleteMucDich(mucDichDAO.getMucDich(s));
+					mucDichDAO.deleteMucDich(s);
 			}
 			
 			ArrayList<MucDich> mucDichList =  (ArrayList<MucDich>) mucDichDAO.getAllMucDich();
@@ -74,7 +74,7 @@ public class MdController extends HttpServlet {
 	@RequestMapping(value="/deleteMd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteMd(@RequestParam("mdMa") String mdMa) {
-		new MucDichDAO().deleteMucDich(new MucDichDAO().getMucDich(mdMa));
+		new MucDichDAO().deleteMucDich(mdMa);
 		return JSonUtil.toJson(mdMa);
 	}
 	@RequestMapping(value="/addMd", method=RequestMethod.GET, 
@@ -84,7 +84,7 @@ public class MdController extends HttpServlet {
 		System.out.println("MA: "+mdMa);
 		if(new MucDichDAO().getMucDich(mdMa)==null)
 		{
-			new MucDichDAO().addMucDich(new MucDich(mdMa,mdTen));
+			new MucDichDAO().addMucDich(new MucDich(mdMa,mdTen,0));
 			System.out.println("success");
 			result = "success";
 			
@@ -103,7 +103,7 @@ public class MdController extends HttpServlet {
 	 public @ResponseBody String updateMd(@RequestParam("mdMaUpdate") String mdMaUpdate, @RequestParam("mdTenUpdate") String mdTenUpdate) {
 		System.out.println(mdMaUpdate);
 		System.out.println(mdTenUpdate);
-		MucDich md = new MucDich(mdMaUpdate, mdTenUpdate);
+		MucDich md = new MucDich(mdMaUpdate, mdTenUpdate,0);
 		new MucDichDAO().updateMucDich(md);
 		return JSonUtil.toJson(md);
 	}

@@ -68,10 +68,10 @@
 					$('#add-chitiet input[name=dinhMuc]').val('');
 					$('#add-chitiet input[name=soLuongTon]').val('');
 			  		
-			  		alert("Vật tư "+vtMa + " đã được thêm ");	
+			  		alert("Chi tiết vật tư "+vtMa + " đã được thêm ");	
 				}
 		  		else{
-		  			alert("Vật tư "+vtMa + " đã tồn tại ");
+		  			alert("Chi tiết vật tư "+vtMa + " đã tồn tại ");
 		  		}
 			  	
  			  	}
@@ -113,8 +113,19 @@
 			var dvtUpdate = $('#update-chitiet input:text[name=dvtUpdate]').val();
 			var dinhMucUpdate = $('#update-chitiet input[name=dinhMucUpdate]').val();
 			var soLuongTonUpdate = $('#update-chitiet input[name=soLuongTonUpdate]').val();
-			if (confirm('Bạn có chắc thay đổi vật tư có mã ' + vtMaUpdate))
-				updateCTVattu(vtMaUpdate, vtTenUpdate, dvtUpdate, nsxUpdate, clUpdate, dinhMucUpdate, soLuongTonUpdate);
+			if(dinhMucUpdate == '') {
+ 				$('#requireDMUp').html('Vui lòng nhập định mức');
+ 			}
+ 			
+ 			else if(soLuongTonUpdate == '') {
+ 				$('#requireSlUp').html('Vui lòng nhập số lượng');
+ 			}
+ 			
+ 			else {
+		
+					if (confirm('Bạn có chắc thay đổi vật tư có mã ' + vtMaUpdate))
+						updateCTVattu(vtMaUpdate, vtTenUpdate, dvtUpdate, nsxUpdate, clUpdate, dinhMucUpdate, soLuongTonUpdate);
+ 			}
 		}
  		function updateCTVattu(vtMaUpdate, vtTenUpdate, dvtUpdate, nsxUpdate, clUpdate, dinhMucUpdate, soLuongTonUpdate){
  			$.ajax({
@@ -174,10 +185,31 @@
  		});  
  	}
 
-  	function changeCTVtMa(){
-  		$('#requireVtMa').html('');
-  		$('#add-form input:text[name=vtMa]').focus();
+  	function changeDM(){
+  		$('#requireDM').html('');
+  		$('#add-chitiet input[name=dinhMuc]').focus();
  	} 	
+  	
+  	function changeSL(){
+  		$('#requireSl').html('');
+  		$('#add-chitiet input[name=soLuongTon]').focus();
+ 	}
+	function changeNsx(){
+  		$('#requireNSX').html('');
+  		$('#add-chitiet select[name=noisanxuat]').focus();
+ 	}
+	function changeCL(){
+  		$('#requireCl').html('');
+  		$('#add-chitiet select[name=chatluong]').focus();
+ 	}
+	function changeDMUp(){
+  		$('#requireDM').html('');
+  		$('#update-chitiet input[name=dinhMucUpdate]').focus();
+ 	}
+	function changeSLUp(){
+  		$('#requireSL').html('');
+  		$('#update-chitiet input[name=soLuongTonUpdate]').focus();
+ 	}
 
     $(document).ready(function() {
         $('#view-table-chi-tiet .checkAll').click(function(event) {  //on click 

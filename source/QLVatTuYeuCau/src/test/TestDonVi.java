@@ -10,7 +10,7 @@ public class TestDonVi {
 	}
 	
 	public static void main(String[] args) {
-		new DonViDAO().addDonVi(new DonVi("DV1", "Don vi 1", "09999999999", "qu@a.c", "Ag"));
+		new DonViDAO().addDonVi(new DonVi("DV1", "Don vi 1", "09999999999", "qu@a.c", "Ag",0));
 	}
 	
 }

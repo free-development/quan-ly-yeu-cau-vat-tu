@@ -12,10 +12,12 @@ import java.io.Serializable;
 public class MucDich implements Serializable{
 	private String mdMa;
 	private String mdTen;
+	private int daXoa;
 	
 	public MucDich() {
 		this.mdMa = "";
 		this.mdTen = "";
+		this.daXoa = 0;
 	}
 	
 	/**
@@ -30,16 +32,25 @@ public class MucDich implements Serializable{
 	 * @param mdMa
 	 * @param mdTen
 	 */
-	public MucDich(String mdMa, String mdTen) {
+	public MucDich(String mdMa, String mdTen,int daXoa) {
 		this.mdMa = mdMa;
 		this.mdTen = mdTen;
 	}
+	
 
 	/**
 	 * @return the mdMa
 	 */
 	public String getMdMa() {
 		return mdMa;
+	}
+
+	public int getDaXoa() {
+		return daXoa;
+	}
+
+	public void setDaXoa(int daXoa) {
+		this.daXoa = daXoa;
 	}
 
 	/**
