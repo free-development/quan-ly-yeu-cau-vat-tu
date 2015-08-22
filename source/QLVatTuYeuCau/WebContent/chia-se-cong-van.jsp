@@ -1,4 +1,4 @@
-﻿<%@page import="sun.misc.GC.LatencyRequest"%>
+﻿	<%@page import="sun.misc.GC.LatencyRequest"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="model.CongVan"%>
 <%@page import="model.NguoiDung"%>
@@ -43,8 +43,8 @@
 	ArrayList<VaiTro> vaiTroList = (ArrayList<VaiTro>) session.getAttribute("vaiTroList");
 	ArrayList<NguoiDung> nguoiDungList = (ArrayList<NguoiDung>) session.getAttribute("nguoiDungList");
 	CongVan congVan = (CongVan) session.getAttribute("congVan");
-	
-	
+	HashMap<String,NguoiDung> vtNguoiDungHash = (HashMap<String,NguoiDung>) request.getAttribute("vtNguoiDungHash");
+	HashMap<String, HashMap<Integer, VaiTro>> vaiTroHash = (HashMap<String, HashMap<Integer, VaiTro>>) request.getAttribute("vaiTroHash");
 	%>
 	<div class="wrapper">
 		<div class="header">
@@ -149,12 +149,23 @@
 <!-- 								<th class="six-column">...</th> -->
 
 							</tr>
-							<% int count = 0;for(NguoiDung nguoiDung : nguoiDungList) { count ++;%>
-							<tr <% if (count % 2 ==0) out.println("style=\"background : #CCFFFF;\"");%>>
+							<% int count = 0;for(NguoiDung nguoiDung : nguoiDungList) { 
+								count ++;
+								String msnv = nguoiDung.getMsnv();
+							%>
+							<tr <% if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 								<td class="tbody-nguoidung"><%=nguoiDung.getMsnv() %></td>
 								<td class="tbody-nguoidung"><%=nguoiDung.getHoTen() %></td>
-								<% for(VaiTro vaiTro : vaiTroList) {%>
-								<td class="checkbox"><input type="checkbox" name="vaiTro" value="<%	out.print(nguoiDung.getMsnv() + "#" + vaiTro.getVtId()); %>"></td>
+								<% for(VaiTro vaiTro : vaiTroList) {
+									int vtId = vaiTro.getVtId();
+									HashMap<Integer, VaiTro> vtHash = vaiTroHash.get(msnv);
+									boolean check = false;
+									if (vtNguoiDungHash.get(msnv) != null && vtHash.get(vtId) != null)
+										check = true;
+								%>
+								<td class="checkbox">
+									<input type="checkbox" name="vaiTro" <%if (check) out.print("checked "); %> value="<%	out.print(msnv + "#" + vtId); %>" >
+								</td>
 								<%} %>
 							</tr>
 							<%} %>
@@ -176,30 +187,30 @@
 				
 				<div id="view-chia-se">
 				<%
-					HashMap<String, NguoiDung> nguoiDungHash = (HashMap<String, NguoiDung>) request.getAttribute("nguoiDungHash");
-					HashMap<String, ArrayList<VaiTro>> vaiTroHash = (HashMap<String, ArrayList<VaiTro>>) request.getAttribute("vaiTroHash");
-					if (nguoiDungHash.size()!=0) {
+					if (vtNguoiDungHash.size() != 0 || vtNguoiDungHash == null) {
 				%>
 					<table>
 						<tr><th><input type = "checkbox" class="checkAll" name=""></th><th>Msnv</th><th>Họ tên</th><th>Vai trò</th></tr>
 						<%
 							int i = 0;
-							for(String key : nguoiDungHash.keySet()) {
-								ArrayList<VaiTro> vtList = vaiTroHash.get(key);
-								String hoTen = nguoiDungHash.get(key).getHoTen();
+							for(String msnv :  vtNguoiDungHash.keySet()) {
+								HashMap<Integer, VaiTro> vtHash = vaiTroHash.get(msnv);
+								NguoiDung nguoiDung =  vtNguoiDungHash.get(msnv);
+								String hoTen = nguoiDung.getHoTen();
 								i++;
 						%>
 						<tr  <% if (count % 2 ==0) out.println("style=\"background : #CCFFFF;\"");%>>
-							<td><input type = "checkbox" class="checkbox" name = "msnv" value="<%=key%>"></td>
-							<td><%=key %></td>
+							<td><input type = "checkbox" class="checkbox" name = "msnv" value="<%=msnv%>"></td>
+							<td><%=msnv %></td>
 							<td><%=hoTen %></td>
 							<td>
 								<%
 									StringBuilder str = new StringBuilder("");
-									for(VaiTro vaiTro : vaiTroList) {
+									for(Integer vtId : vtHash.keySet()) {
+										VaiTro vaiTro = vtHash.get(vtId);
 										str.append(vaiTro.getVtTen() + "<br>");
 									}
-									int end = str.length() - 1;
+									int end = str.length();
 									str.delete(end - 4, end);
 									out.println(str.toString());
 								%>

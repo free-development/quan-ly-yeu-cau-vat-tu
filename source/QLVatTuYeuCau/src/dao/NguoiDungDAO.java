@@ -1,11 +1,15 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.NguoiDung;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
 
@@ -46,5 +50,22 @@ public class NguoiDungDAO {
 		session.delete(nguoiDung);
 		session.getTransaction().commit();
 	}
-	
+	public ArrayList<String> startWith(String i) {
+		session.beginTransaction();
+//		session.createCriteria(NguoiDung.class, "hoTen");
+		//Criteria likeHoten = Restrictions.ilike(propertyName, value)
+		String sql = "select hoTen from NguoiDung where hoTen LIKE :hoTen";
+		Query query = session.createQuery(sql);
+		query.setParameter("hoTen", i+"%");
+		ArrayList<String> list = (ArrayList<String>) query.list();
+		session.getTransaction().commit();
+		return list;
+	}
+	public static void main(String[] args) {
+		ArrayList<String> list = new NguoiDungDAO().startWith("TRUONG TRUNG");
+		if(list.size() > 0) {
+			for(String hoTen : list)
+				System.out.println(hoTen);
+		}
+	}
 }

@@ -61,7 +61,6 @@ public class CTVatTu implements Serializable{
 	public CTVatTu(int ctvtId){
 		this.ctvtId = ctvtId;
 	}
-	
 
 	/**
 	 * @param dinhMuc

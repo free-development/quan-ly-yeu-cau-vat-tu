@@ -30,6 +30,7 @@
     	response.setCharacterEncoding("UTF-8");
     	
     		ArrayList<NoiSanXuat> listNoiSanXuat = (ArrayList<NoiSanXuat>) request.getAttribute("noiSanXuatList");
+    		Long size = (Long) request.getAttribute("size");
     	%>
 	<div class="wrapper">
 		<div class="header">
@@ -62,7 +63,6 @@
 		</div>
 		<div class="main_menu">
 					<ul>
-<<<<<<< HEAD
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
 							<ul>
@@ -83,25 +83,6 @@
 										mục chức danh</a></li>
 								
 							</ul>
-=======
-						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
-								mục nơi sản xuất</a></li>
-						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
-								mục chất lượng</a></li>
-						<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
-								mục vật tư</a></li>
-						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
-								mục chi tiết vật tư</a></li>
-						<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
-								mục bộ phận sử dụng</a></li>
-						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
-								mục mục đích</a></li>
-						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
-						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
-								mục chức danh</a></li>
-						
-					</ul>
->>>>>>> 56a8def5473945091642c412d3a965ee178bd745
 				</li>
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
@@ -114,12 +95,6 @@
 					<ul>
 						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
 						<li><a href=""/>Khôi phục mật khẩu</li>
-<<<<<<< HEAD
-=======
-					</ul>
-				</li>
-				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
->>>>>>> 56a8def5473945091642c412d3a965ee178bd745
 					</ul>
 				</li>
 				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
@@ -152,6 +127,15 @@
 							<td class="col"><%=noiSanXuat.getNsxTen() %></td>
 						</tr>
 						<%} }%>
+						<tr>
+							<th colspan="3">
+								<%
+									long pageNum = size / 10;
+									for(int i = 0; i < pageNum; i++) { %>
+									
+								<%} %>
+							</th>
+						</tr>
 					</table>		
 				</div>				
 				

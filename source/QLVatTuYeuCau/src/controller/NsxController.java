@@ -31,6 +31,7 @@ import dao.NoiSanXuatDAO;
 @Controller
 public class NsxController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	int page = 1;
 	@RequestMapping("/manageNsx")
 	public ModelAndView manageNsx(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
@@ -43,7 +44,6 @@ public class NsxController extends HttpServlet {
 		if("AddNsx".equalsIgnoreCase(action)) {
 			String nsxMa = request.getParameter("nsxMa");
 			String nsxTen = request.getParameter("nsxTen");
-			
 			noiSanXuatDAO.addNoiSanXuat(new NoiSanXuat(nsxMa,nsxTen,0));
 			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.getAllNoiSanXuat();
 			return new ModelAndView("danh-muc-noi-san-xuat", "noiSanXuatList", noiSanXuatList);
@@ -58,7 +58,9 @@ public class NsxController extends HttpServlet {
 			return new ModelAndView("danh-muc-noi-san-xuat", "noiSanXuatList", noiSanXuatList);
 		}
 		if("manageNsx".equalsIgnoreCase(action)) {
-			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.getAllNoiSanXuat();
+			long size = noiSanXuatDAO.size();
+			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.limit(page, 10);
+			request.setAttribute("size", size);
 			return new ModelAndView("danh-muc-noi-san-xuat", "noiSanXuatList", noiSanXuatList);
 		}
 		return new ModelAndView("login");
