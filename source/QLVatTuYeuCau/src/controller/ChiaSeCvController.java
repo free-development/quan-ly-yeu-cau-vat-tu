@@ -45,9 +45,24 @@ public class ChiaSeCvController extends HttpServlet {
 			ArrayList<VaiTro> vaiTroList = (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
 			ArrayList<NguoiDung> nguoiDungList = (ArrayList<NguoiDung>) nguoiDungDAO.getAllNguoiDung();
 			
+			VTCongVanDAO vtCongVanDAO = new VTCongVanDAO();
+
+			HashMap<String,NguoiDung> vtNguoiDungHash = vtCongVanDAO.getNguoiXuLy(cvId);
+			HashMap<String, ArrayList<VaiTro>> vaiTroHash = new HashMap<String, ArrayList<VaiTro>>();
+			for(String msnv : vtNguoiDungHash.keySet()) {
+				ArrayList<VTCongVan> vtcvList = vtCongVanDAO.getVTCongVan(cvId, msnv);
+				ArrayList<VaiTro> vtList = vaiTroDAO.toVaiTro(vtcvList);
+				vaiTroHash.put(msnv, vtList);
+			}
+			
+			request.setAttribute("vaiTroHash", vaiTroHash);
+			request.setAttribute("vtNguoiDungHash", vtNguoiDungHash);
+			
 			session.setAttribute("vaiTroList", vaiTroList);
 			session.setAttribute("nguoiDungList", nguoiDungList);
 			session.setAttribute("congVan", congVan);
+			
+			
 			return new ModelAndView(siteMap.chiaSeCv);
 		}
 		return new ModelAndView("login");
@@ -63,15 +78,14 @@ public class ChiaSeCvController extends HttpServlet {
 			System.out.println(vaiTro.length);
 			VTCongVanDAO vtCongVanDAO = new VTCongVanDAO();
 			NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
+			VaiTroDAO vaiTroDAO =  new VaiTroDAO();
 			
 			//String[] msnv = new String[vaiTro.length];
-			HashMap<String, NguoiDung> nguoiDungHash = new HashMap<String, NguoiDung>();
 			int cvId = congVan.getCvId();			
 			
 			for (String vtMa : vaiTro) {
 				String[] str = vtMa.split("\\#");
 				NguoiDung nguoiDung = nguoiDungDAO.getNguoiDung(str[0]);
-				nguoiDungHash.put(str[0], nguoiDung);
 				VTCongVan vtCongVan = new VTCongVan();
 				vtCongVan.setCvId(cvId);
 				vtCongVan.setMsnv(str[0]);
@@ -79,16 +93,17 @@ public class ChiaSeCvController extends HttpServlet {
 				vtCongVanDAO.addVTCongVan(vtCongVan);
 			}
 			
-			VaiTroDAO vaiTroDAO = new VaiTroDAO();
+			
+			HashMap<String,NguoiDung> vtNguoiDungHash = vtCongVanDAO.getNguoiXuLy(cvId);
 			HashMap<String, ArrayList<VaiTro>> vaiTroHash = new HashMap<String, ArrayList<VaiTro>>();
-			for(String key : nguoiDungHash.keySet()) {
-				ArrayList<VTCongVan> vtcvList = vtCongVanDAO.getVTCongVan(cvId, key);
-				ArrayList<VaiTro> vaiTroList = vaiTroDAO.toVaiTro(vtcvList);
-				vaiTroHash.put(key, vaiTroList);
+			for(String msnv : vtNguoiDungHash.keySet()) {
+				ArrayList<VTCongVan> vtcvList = vtCongVanDAO.getVTCongVan(cvId, msnv);
+				ArrayList<VaiTro> vtList = vaiTroDAO.toVaiTro(vtcvList);
+				vaiTroHash.put(msnv, vtList);
 			}
 			
 			request.setAttribute("vaiTroHash", vaiTroHash);
-			request.setAttribute("nguoiDungList", nguoiDungHash);
+			request.setAttribute("nguoiXlList", vtNguoiDungHash);
 			return new ModelAndView(siteMap.chiaSeCv);
 		}
 		return new ModelAndView("login");

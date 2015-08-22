@@ -398,3 +398,8 @@ insert into NGUOIDUNG values ('b1203958', 'TK', 'Le Thi Cam Tien', 'An giang', '
 insert into NGUOIDUNG values ('b1203957', 'TP', 'Nguyen Thi Cam Nhung', 'An giang', 'quoipro94@gmail.com', '0979921380');
 insert into NGUOIDUNG values ('b1203955', 'VT', 'Truong Trung Hieu', 'An giang', 'quoipro94@gmail.com', '0979921380');
 insert into NGUOIDUNG values ('b1203954', 'NV', 'Truong Quoc huy', 'An giang', 'quoipro94@gmail.com', '0979921380');
+
+
+insert into CHUCDANH value('AD','Admin');
+insert into NGUOIDUNG values ('admin123','Ad','Vo Phu Quoi','An Giang','quoipro94@gmail.com','0979921380');
+insert into CTNGUOIDUNG values ('admin123' ,md5('123456789'));

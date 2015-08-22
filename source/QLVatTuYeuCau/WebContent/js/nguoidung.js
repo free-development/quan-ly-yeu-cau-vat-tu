@@ -28,12 +28,13 @@ function checkPassword()
 			}
 	}
 
- function loGin() {
-		var msnv = $('#add-form input:text[name=msnv]').val();
-		var matkhau = $('#add-form input:password[name=matkhau]').val();	
+ function login() {
+		var msnv = $('input:text[name=msnv]').val();
+		var matkhau = $('input:password[name=matkhau]').val();
+		alert(msnv + matkhau);
 			$.ajax({
-				url: "/QLVatTuYeuCau/loGin.html",	
-			  	type: "POST",
+				url: "/QLVatTuYeuCau/login.html",	
+			  	type: "GET",
 			  	dateType: "JSON",
 			  	data: { "msnv": msnv, "matkhau": matkhau},
 			  	contentType: 'application/json',
@@ -43,7 +44,7 @@ function checkPassword()
 			  		if(result == "success")
 	 				{
  				  		alert("Xin chào "+ msnv + " bạn đã đăng nhập thành công");	
- 				  		window.location.assign("home");
+ 				  		window.location.assign("/QLVatTuYeuCau");
  					}
  			  		else{
  			  			alert("Mã số nhân viên và mật khẩu chưa đúng vui lòng kiểm tra lại");

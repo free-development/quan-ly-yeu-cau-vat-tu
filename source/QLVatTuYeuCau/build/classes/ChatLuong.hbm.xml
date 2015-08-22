@@ -10,7 +10,7 @@
 		<property name="clTen" type="java.lang.String">
 			<column name="CLTEN" />
 		</property>
-		<property name="daXoa" type="java.lang.String">
+		<property name="daXoa" type="int">
 			<column name="DAXOA" />
 		</property>
 	</class>
