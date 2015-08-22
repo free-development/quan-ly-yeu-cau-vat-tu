@@ -149,5 +149,28 @@ public class NsxController extends HttpServlet {
 			return null;
 		}
 	}*/
-	
+	@RequestMapping(value="/loadPageNsx", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String loadPageNsx(@RequestParam("pageNumber") String pageNumber) {
+		String result = "";
+		System.out.println("MA: " + pageNumber);
+		NoiSanXuatDAO nsxDAO = new NoiSanXuatDAO();
+		int page = Integer.parseInt(pageNumber);
+		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) nsxDAO.limit((page -1 ) * 10, 10);
+		
+		/*
+		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
+		{
+			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
+			System.out.println("success");
+			result = "success";	
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+		*/
+			return JSonUtil.toJson(nsxList);
+	}
 }

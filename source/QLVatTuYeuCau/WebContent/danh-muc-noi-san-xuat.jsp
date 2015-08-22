@@ -19,6 +19,14 @@
 	type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/noi-san-xuat.js"></script>
+<script type="text/javascript">
+// $(document).ready(function() {
+// 	  	$('.page').click(function(){
+// 	    	var page = $(this).val();
+// 	    	alert(page);
+// 	    });	
+// 	});
+</script>
 <meta charset="UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
@@ -109,7 +117,7 @@
 		<div id="main-content">
 			
 			<form id="main-form">
-				<div id="view-table" class="scroll-nsx">
+				<div id="view-table">
 					<table>
 						<tr style="background:#199e5e">
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>
@@ -120,7 +128,7 @@
 							if(listNoiSanXuat != null) {
 							int count = 0;
 							for(NoiSanXuat noiSanXuat : listNoiSanXuat) { count++ ;%>
-						<tr
+						<tr class="rowContent" 
 							<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="nsxMa" value="<%=noiSanXuat.getNsxMa() %>" class="checkbox"></td>
 							<td class="col"><%=noiSanXuat.getNsxMa() %></td>
@@ -131,8 +139,8 @@
 							<th colspan="3">
 								<%
 									long pageNum = size / 10;
-									for(int i = 0; i < pageNum; i++) { %>
-									
+									for(int i = 0; i <= pageNum; i++) { %>
+										<input type="button" value="<%=i+1%>" class="page">
 								<%} %>
 							</th>
 						</tr>
