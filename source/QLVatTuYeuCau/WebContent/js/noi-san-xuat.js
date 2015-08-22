@@ -112,8 +112,8 @@ if (nsxTenUpdate == '')
 	 			}
  
  			else {
-					$.ajax({
-						url: "/QLVatTuYeuCau/updateNsx.html",	
+ 				$.ajax({
+				url: "/QLVatTuYeuCau/updateNsx.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
 			  	data: { "nsxMaUpdate": nsxMaUpdate, "nsxTenUpdate": nsxTenUpdate},
@@ -150,7 +150,34 @@ function changensxTenUp(){
 }
 $(document).ready(function() {
   	$('.page').click(function(){
-	var page = $(this).val();
-    	alert(page);
+	var pageNumber = $(this).val();
+    	$.ajax({
+			url: "/QLVatTuYeuCau/loadPageNsx.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "pageNumber": pageNumber},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	
+		  	success: function(nsxList) {
+		  		$('#view-table table .rowContent').remove();
+				if(nsxList.length>0){
+					for(i = 0;i < nsxList.length; i++ ) {
+						var nsx = nsxList[i] ;
+						var style = '';	
+						if (i % 2 == 0)
+							style = 'style=\"background : #CCFFFF;\"';
+						var str = '';
+						str = '<tr class=\"rowContent\" ' + style + '>'
+							+ '<td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' 
+							+ nsx.nsxMa +'\" class=\"checkbox\"></td>'
+							+ '<td class=\"col\">' + nsx.nsxMa + '</td>'
+							+ '<td class=\"col\">' + nsx.nsxTen + '</td>'
+							+ '</tr>';
+						$('#view-table table tr:first').after(str);
+					}
+				}
+		  	}
+		});
     });	
 })   
