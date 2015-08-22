@@ -55,24 +55,24 @@ public class TestYeuCAU {
 		ChatLuong chatLuong8 = new ChatLuong("CL8", "Tot TotS",0);
 		ChatLuong chatLuong0 = new ChatLuong("CL0", "Tot TotS",0);
 		
-		NoiSanXuat nsx = new NoiSanXuat("Vn4", "Viet Nam");
-		NoiSanXuat nsx5 = new NoiSanXuat("Vn5", "Viet Nam");
-		NoiSanXuat nsx9 = new NoiSanXuat("Vn9", "Viet Nam");
-		NoiSanXuat nsx0 = new NoiSanXuat("Vn0", "Viet Nam");
-		
+//		NoiSanXuat nsx = new NoiSanXuat("Vn4", "Viet Nam");
+//		NoiSanXuat nsx5 = new NoiSanXuat("Vn5", "Viet Nam");
+//		NoiSanXuat nsx9 = new NoiSanXuat("Vn9", "Viet Nam");
+//		NoiSanXuat nsx0 = new NoiSanXuat("Vn0", "Viet Nam");
+//		
 		
 		VatTu vatTu = new VatTu("VT4", "Tru dien", "cai");
 		VatTu vatTu5 = new VatTu("VT5", "Tru dien", "cai");
 		VatTu vatTu9 = new VatTu("VT9", "Tru dien", "cai");
 		VatTu vatTu0 = new VatTu("VT0", "Tru dien", "cai");
 		
-		CTVatTu ctVatTu = new CTVatTu(id,vatTu5, nsx, chatLuong, 0, 0);
-		id = ctVatTuDAO.getLastInsert(); 
-		CTVatTu ctVatTu5 = new CTVatTu(id, vatTu9, nsx, chatLuong, 0, 0);
-		id = ctVatTuDAO.getLastInsert(); 
-		CTVatTu ctVatTu9 = new CTVatTu(id, vatTu0, nsx, chatLuong, 0, 0);
-		id = ctVatTuDAO.getLastInsert(); 
-		CTVatTu ctVatTu3 = new CTVatTu(id, vatTu, nsx, chatLuong, 0, 0);
+//		CTVatTu ctVatTu = new CTVatTu(id,vatTu5, nsx, chatLuong, 0, 0);
+//		id = ctVatTuDAO.getLastInsert(); 
+//		CTVatTu ctVatTu5 = new CTVatTu(id, vatTu9, nsx, chatLuong, 0, 0);
+//		id = ctVatTuDAO.getLastInsert(); 
+//		CTVatTu ctVatTu9 = new CTVatTu(id, vatTu0, nsx, chatLuong, 0, 0);
+//		id = ctVatTuDAO.getLastInsert(); 
+//		CTVatTu ctVatTu3 = new CTVatTu(id, vatTu, nsx, chatLuong, 0, 0);
 
 		chatLuongDAO.addChatLuong(chatLuong);
 		chatLuongDAO.addChatLuong(chatLuong5);
@@ -84,38 +84,38 @@ public class TestYeuCAU {
 		
 
 		chatLuongDAO.addChatLuong(chatLuong);
-		noiSanXuatDAO.addNoiSanXuat(nsx);
+		//noiSanXuatDAO.addNoiSanXuat(nsx);
 		vatTuDAO.addVatTu(vatTu);
-		ctVatTuDAO.addCTVatTu(ctVatTu);
+		//ctVatTuDAO.addCTVatTu(ctVatTu);
 		
 
 		
-		MucDich mucDich = new MucDich("SC5", "Sua chua lon");
+		//MucDich mucDich = new MucDich("SC5", "Sua chua lon");
 
 		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
 		
 		
-		noiSanXuatDAO.addNoiSanXuat(nsx);
-		noiSanXuatDAO.addNoiSanXuat(nsx5);
-		noiSanXuatDAO.addNoiSanXuat(nsx9);
-		noiSanXuatDAO.addNoiSanXuat(nsx0);
+//		noiSanXuatDAO.addNoiSanXuat(nsx);
+//		noiSanXuatDAO.addNoiSanXuat(nsx5);
+//		noiSanXuatDAO.addNoiSanXuat(nsx9);
+//		noiSanXuatDAO.addNoiSanXuat(nsx0);
 		
 		vatTuDAO.addVatTu(vatTu);
 		vatTuDAO.addVatTu(vatTu0);
 		vatTuDAO.addVatTu(vatTu5);
 		vatTuDAO.addVatTu(vatTu9);
 		
-		ctVatTuDAO.addCTVatTu(ctVatTu9);
-		ctVatTuDAO.addCTVatTu(ctVatTu5);
-		ctVatTuDAO.addCTVatTu(ctVatTu3);
-		ctVatTuDAO.addCTVatTu(ctVatTu);
+//		ctVatTuDAO.addCTVatTu(ctVatTu9);
+//		ctVatTuDAO.addCTVatTu(ctVatTu5);
+//		ctVatTuDAO.addCTVatTu(ctVatTu3);
+//		ctVatTuDAO.addCTVatTu(ctVatTu);
 
 		
 		
-		MucDich mucDich5 = new MucDich("SC5", "Sua chua lon");
-		MucDich mucDich4 = new MucDich("SC4", "Sua chua lon");
-		mucDichDAO.addMucDich(mucDich4);
-		mucDichDAO.addMucDich(mucDich5);
+//		MucDich mucDich5 = new MucDich("SC5", "Sua chua lon");
+//		MucDich mucDich4 = new MucDich("SC4", "Sua chua lon");
+//		mucDichDAO.addMucDich(mucDich4);
+//		mucDichDAO.addMucDich(mucDich5);
 		
 		
 	
@@ -168,7 +168,7 @@ public class TestYeuCAU {
 		
 
 
-		new MucDichDAO().addMucDich(mucDich);
+		//new MucDichDAO().addMucDich(mucDich);
 		
 		
 		new FileDAO().addFile(file);

@@ -1,11 +1,17 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import model.ChucDanh;
 import model.VatTu;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
 
@@ -25,7 +31,10 @@ public class VatTuDAO {
 	}
 	public List<VatTu> getAllVatTu() {
 		session.beginTransaction();
-		List<VatTu> vatTuList = (List<VatTu>) session.createCriteria(VatTu.class).list();
+		Criteria cr = session.createCriteria(VatTu.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+		cr.add(xoaCd);
+		ArrayList<VatTu> vatTuList = (ArrayList<VatTu>) cr.list(); 
 		session.getTransaction().commit();
 		return vatTuList;
 	}
@@ -39,10 +48,14 @@ public class VatTuDAO {
 		session.update(vatTu);
 		session.getTransaction().commit();
 	}
-	public void deleteVatTu(VatTu vatTu){
+	public void deleteVatTu(String vtMa){
 		session.beginTransaction();
-		session.delete(vatTu);
+		String sql = "update VatTu set daXoa = 1 where vtMa = '" + vtMa + "'";		
+		Query query = session.createQuery(sql);
+		query.executeUpdate();
 		session.getTransaction().commit();
 	}
-	
+	public static void main(String[] args) {
+		new VatTuDAO().deleteVatTu("vt1");
+	}
 }

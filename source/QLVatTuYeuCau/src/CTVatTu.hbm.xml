@@ -15,6 +15,9 @@
 		<property name="dinhMuc" type="int">
 			<column name="DINHMUC" />
 		</property>
+		<property name="daXoa" type="int">
+			<column name="DAXOA" />
+		</property>
 		<many-to-one name="chatLuong" class="model.ChatLuong" fetch="join">
 			<column name="CLMA" />
 		</many-to-one>
