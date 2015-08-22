@@ -153,7 +153,7 @@
 				</fieldset>
 				</form>
 			</div>
-			<div id="view-table" style="max-height: 420px;width: 1024px;display: auto;border: 1px solid #CCCCCC;margin: 1em 0;overflow: scroll;">
+			<div id="view-table" style="max-height: 420px;width: 1024px;display: auto;border: 1px solid #CCCCCC;margin: 0 auto;overflow: scroll;">
 				<table>
 					<tr bgcolor="lightgreen">
 						<th class="a-column">Số đến</th>

@@ -21,11 +21,10 @@ public class TestCongVan {
 	 */
 	public static void main(String[] args) {
 		DonVi donVi = new DonVi("SX1", "Don vi 1", "0736864271", "quoi@gmail.com", "Can Tho",0);
-<<<<<<< HEAD
 		MucDich mucDich = new MucDich("SCL", "Sua chua lon",0);
-=======
-		MucDich mucDich = new MucDich("SCL", "Sua chua lon");
->>>>>>> 3bf12b655fc507c106cc06a8eec075821271d221
+
+//		MucDich mucDich = new MucDich("SCL", "Sua chua lon",0);
+
 		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
 		CongVan congVan = new CongVan(1, DateUtil.convertToSqlDate(new java.util.Date()), "123", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("DGQ", "Dang giai quyet"), donVi,0);
 		new CongVanDAO().addCongVan(congVan);

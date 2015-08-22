@@ -12,7 +12,7 @@ public class VatTu implements Serializable{
 	 * DataTypeLength/Precision 16
 	 */
 	private String vtMa;
-
+	private int daXoa;
 	/**
 	 * NOT NULL false
 	 * DomainName 
@@ -33,6 +33,7 @@ public class VatTu implements Serializable{
 		this.vtMa = "";
 		this.vtTen = "";
 		this.dvt = "";
+		this.daXoa =0;
 	}
 	/**
 	 * @param vtMa
@@ -56,10 +57,11 @@ public class VatTu implements Serializable{
 	 * @param vtTen
 	 * @param dvt
 	 */
-	public VatTu(String vtMa, String vtTen, String dvt) {
+	public VatTu(String vtMa, String vtTen, String dvt,int daXoa) {
 		this.vtMa = vtMa;
 		this.vtTen = vtTen;
 		this.dvt = dvt;
+		this.daXoa = daXoa;
 	}
 
 	/**
@@ -83,6 +85,12 @@ public class VatTu implements Serializable{
 		return vtTen;
 	}
 
+	public int getDaXoa() {
+		return daXoa;
+	}
+	public void setDaXoa(int daXoa) {
+		this.daXoa = daXoa;
+	}
 	/**
 	 * @param vtTen the vtTen to set
 	 */

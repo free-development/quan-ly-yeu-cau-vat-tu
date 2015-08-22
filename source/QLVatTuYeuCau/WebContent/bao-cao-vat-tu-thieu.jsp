@@ -16,8 +16,9 @@
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
  <link rel="stylesheet" href="style/style.css" type="text/css">
-<link href="style/style-bao-cao-vdat-tu-thieu.css" type="text/css"
+<link href="style/style-bao-cao-vat-tu-thieu.css" type="text/css"
 	rel="stylesheet">
+
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
@@ -156,20 +157,21 @@
 		   		
 		    %>
 			
-				<div id="view-table-bao-cao" class="scroll">
+				
 					<div style="text-align: center;font-size: 20px;color:firebrick;font-weight: bold;margin-top:10px;">Chi tiết vật tư thiếu</div>
-					<table style="margin: 0 auto;border: 2px solid #CCCCCC;width:900px;">
-							<tr bgcolor="#199e5e">
-								<th class="one-column">Số đến</th>
-								<th class="one-column">Số công văn</th>
-								<th class="three-column">Ngày nhận</th>
-								<th class="two-column">Mã vật tư</th>
-								<th class="three-column">Tên vật tư</th>
-								<th class="three-column">Nơi sản xuất</th>
-								<th class="three-column">Chất lượng</th>
-								<th class="six-column">Đơn vị tính</th>
-								<th class="one-column">Số lượng thiếu</th>
-								<th>Link công văn</th>
+					<div id="view-table-bao-cao" style="max-height: 420px;width: 900px;display: auto;border: 1px solid #CCCCCC;margin: 0 auto;overflow: scroll;">
+					<table style="margin: 0 auto;width:900px;border: 1px solid black;">
+							<tr bgcolor="#199e5e"style="border: 1px solid black;">
+								<th style="border: 1px solid black;" class="one-column">Số đến</th>
+								<th style="border: 1px solid black;" class="one-column">Số công văn</th>
+								<th style="border: 1px solid black;" class="three-column">Ngày nhận</th>
+								<th style="border: 1px solid black;" class="two-column">Mã vật tư</th>
+								<th style="border: 1px solid black;" class="three-column">Tên vật tư</th>
+								<th style="border: 1px solid black;" class="three-column">Nơi sản xuất</th>
+								<th style="border: 1px solid black;" class="three-column">Chất lượng</th>
+								<th style="border: 1px solid black;" class="six-column">Đơn vị tính</th>
+								<th style="border: 1px solid black;" class="one-column">Số lượng thiếu</th>
+								<th style="border: 1px solid black;">Link công văn</th>
 							</tr>
 						
 									<% 								
@@ -181,7 +183,8 @@
 									%>
 												
 									<tr
-										<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+										<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>
+										style="border: 1px solid black;">
 										<td class="a-column"style="text-align: center;"><%=congVan.getSoDen() %></td>
 										<td class="a-column"style="text-align: center;"><%=congVan.getCvSo() %></td>
 										<td class="b-column"style="text-align: center;"><%=congVan.getCvNgayNhan() %></td>
@@ -213,17 +216,18 @@
 			
 	   		HashMap<Integer, CTVatTu> ctvtHash = (HashMap<Integer, CTVatTu>) session.getAttribute("ctvtHash");
 	   		HashMap<Integer, Integer> yeuCauHash = (HashMap<Integer, Integer>) session.getAttribute("yeuCau"); %>
-			<div id="view-table-bao-cao" class="scroll">
+			
 				<div style="text-align: center;font-size: 20px;color:firebrick;font-weight: bold;margin-top:10px;">Tổng hợp vật tư thiếu</div>
-				<table style="margin: 0 auto;border: 2px solid #CCCCCC;width:700px;">
-					<tr bgcolor="#199e5e">
-						<th class="two-column">Mã vật tư</th>
-						<th class="three-column">Tên vật tư</th>
-						<th class="three-column">Nơi sản xuất</th>
-						<th class="three-column">Chất lượng</th>
-						<th class="six-column">Đơn vị tính</th>
-						<th class="one-column">Tổng số lượng thiếu</th>
-					</tr>
+				<div id="view-table-bao-cao" class="scroll">
+				<table style="margin: 0 auto;width:700px;border: 1px solid black;" >
+					<tr bgcolor="#199e5e" style="border: 1px solid black;">
+						<th style="border: 1px solid black;" class="two-column">Mã vật tư</th>
+						<th style="border: 1px solid black;" class="three-column">Tên vật tư</th>
+						<th style="border: 1px solid black;" class="three-column">Nơi sản xuất</th>
+						<th style="border: 1px solid black;" class="three-column">Chất lượng</th>
+						<th style="border: 1px solid black;" class="six-column">Đơn vị tính</th>
+						<th style="border: 1px solid black;" class="one-column">Tổng số lượng thiếu</th>
+					</tr >
 								<%
 							if(yeuCauHash != null){
 							int count = 0;
@@ -233,7 +237,8 @@
 							%>
 									
 					<tr
-						<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+						<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>
+						style="border: 1px solid black;">
 						<td class="a-column"style="text-align: center;"><%=ctvt.getVatTu().getVtMa() %></td>
 						<td class="b-column"style="text-align: center;"><%=ctvt.getVatTu().getVtTen() %></td>
 						<td class="c-column"style="text-align: center;"><%=ctvt.getNoiSanXuat().getNsxTen() %></td>

@@ -21,7 +21,7 @@
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 		<%
@@ -44,21 +44,32 @@
 		   		HashMap<Integer, ArrayList<YeuCau>> ctvtList = (HashMap<Integer, ArrayList<YeuCau>>) session.getAttribute("ctvtList");
 		   		
 		    %>
+		    <table style = "margin: 0 auto;width:960px;">
+		<tr>
+			<td style="text-align: left;">TỔNG CÔNG TY ĐIỆN LỰC THÀNH PHỐ CẦN THƠ</td>
+			<td style="text-align: right;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</td>
+			
+		<tr>
+			<td style="text-align: left;">Địa chỉ: 06 Nguyễn Trãi, Q.Ninh Kiều, TP.Cần Thơ.</td>
+			<td style="text-align: right;">Độc lập - Tự do - Hạnh phúc</td>
+			
+		</tr>
+		</table>
 			<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;">Báo cáo chi tiết vật tư thiếu</div>
 		<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
 		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 				<div id="view-table-bao-cao" >
-					<table style="bgcolor: none; color: black; width:800px;">
+					<table  style="border: solid 1px black;">
 						<thead >
-							<tr style="background-color: #199e5e;">
-								<th class="one-column">Số đến</th>
-								<th class="three-column">Ngày nhận</th>
-								<th class="two-column">Mã vật tư</th>
-								<th class="three-column">Tên vật tư</th>
-								<th class="three-column">Nơi sản xuất</th>
-								<th class="three-column">Chất lượng</th>
-								<th class="six-column">Đơn vị tính</th>
-								<th class="one-column">Số lượng thiếu</th>
+							<tr bgcolor="#199e5e" >
+								<th style="border: 1px solid black;" class="one-column">Số đến</th>
+								<th style="border: 1px solid black;" class="three-column">Ngày nhận</th>
+								<th style="border: 1px solid black;" class="two-column">Mã vật tư</th>
+								<th style="border: 1px solid black;" class="three-column">Tên vật tư</th>
+								<th style="border: 1px solid black;" class="three-column">Nơi sản xuất</th>
+								<th style="border: 1px solid black;" class="three-column">Chất lượng</th>
+								<th style="border: 1px solid black;" class="six-column">Đơn vị tính</th>
+								<th style="border: 1px solid black;" class="one-column">Số lượng thiếu</th>
 								
 							</tr>
 						</thead>
@@ -117,28 +128,40 @@
 			
 	   		HashMap<Integer, CTVatTu> ctvtHash = (HashMap<Integer, CTVatTu>) session.getAttribute("ctvtHash");
 	   		HashMap<Integer, Integer> yeuCauHash = (HashMap<Integer, Integer>) session.getAttribute("yeuCau"); %>
+	   		<table style = "margin: 0 auto;width:960px;">
+		<tr>
+			<td style="text-align: left;">TỔNG CÔNG TY ĐIỆN LỰC THÀNH PHỐ CẦN THƠ</td>
+			<td style="text-align: right;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</td>
+			
+		<tr>
+			<td style="text-align: left;">Địa chỉ: 06 Nguyễn Trãi, Q.Ninh Kiều, TP.Cần Thơ.</td>
+			<td style="text-align: right;">Độc lập - Tự do - Hạnh phúc</td>
+			
+		</tr>
+		</table>
 	   		<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;">Báo cáo tổng hợp vật tư thiếu</div>
 		<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
 		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 			<div id="view-table-bao-cao" >
 				<table style="width:650px;" >
-					<tr style="bgcolor: none; color: black; border-width: 1px;" >
-						<th class="two-column"style="text-align: center;background-color: #199e5e;">Mã vật tư</th>
-						<th class="three-column">Tên vật tư</th>
-						<th class="three-column">Nơi sản xuất</th>
-						<th class="three-column">Chất lượng</th>
-						<th class="six-column">Đơn vị tính</th>
-						<th class="one-column">Tổng số lượng thiếu</th>
+					<tr bgcolor="#199e5e"  style="border: solid 1px black;" >
+						<th style="border: 1px solid black;" class="two-column"style="text-align: center;">Mã vật tư</th>
+						<th style="border: 1px solid black;" class="three-column">Tên vật tư</th>
+						<th style="border: 1px solid black;" class="three-column">Nơi sản xuất</th>
+						<th style="border: 1px solid black;" class="three-column">Chất lượng</th>
+						<th style="border: 1px solid black;" class="six-column">Đơn vị tính</th>
+						<th style="border: 1px solid black;" class="one-column">Tổng số lượng thiếu</th>
 						
 					</tr>
 								<%
+								int count = 0;
 							if(yeuCauHash != null){
-							for(Integer key  : yeuCauHash.keySet()) { ;
+							for(Integer key  : yeuCauHash.keySet()) { count++;
 							CTVatTu ctvt = ctvtHash.get(key);
 // 							for (YeuCau yeuCau : yeuCauList) {
 							%>
 									
-					<tr>
+					<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%> >
 						<td class="a-column"><%=ctvt.getVatTu().getVtMa() %></td>
 						<td class="b-column"><%=ctvt.getVatTu().getVtTen() %></td>
 						<td class="c-column"><%=ctvt.getNoiSanXuat().getNsxTen() %></td>

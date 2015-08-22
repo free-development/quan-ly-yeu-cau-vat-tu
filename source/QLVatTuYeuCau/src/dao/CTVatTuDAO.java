@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
@@ -42,7 +43,10 @@ public class CTVatTuDAO {
 	}
 	public List<CTVatTu> getAllCTVatTu() {
 		session.beginTransaction();
-		List<CTVatTu> CTVatTuList = (List<CTVatTu>) session.createCriteria(CTVatTu.class).list();
+		Criteria cr = session.createCriteria(CTVatTu.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+		cr.add(xoaCd);
+		ArrayList<CTVatTu> CTVatTuList = (ArrayList<CTVatTu>) cr.list(); 
 		session.getTransaction().commit();
 		return CTVatTuList;
 	}
@@ -56,9 +60,11 @@ public class CTVatTuDAO {
 		session.update(ctVatTu);
 		session.getTransaction().commit();
 	}
-	public void deleteCTVatTu(CTVatTu ctVatTu){
+	public void deleteCTVatTu(String vtMa){
 		session.beginTransaction();
-		session.delete(ctVatTu);
+		String sql = "update CTVatTu set daXoa = 1 where vtMa = '" + vtMa + "'";		
+		Query query = session.createQuery(sql);
+		query.executeUpdate();
 		session.getTransaction().commit();
 	}
 	public CTVatTu getCTVatTuById(final int ctvtId) {
@@ -148,16 +154,16 @@ public class CTVatTuDAO {
 		return ctVatTuList;
 	}
 	public static void main(String[] args) {
-		CTVatTuDAO ct = new CTVatTuDAO();//.getCTVatTu("VT5", "NB", "CL0");
+		//CTVatTuDAO ct = new CTVatTuDAO();//.getCTVatTu("VT5", "NB", "CL0");
 //		System.out.pritnln(ct.getCtvtId());
 		//System.out.println(new CTVatTuDAO().getLastInsert());
 //		System.out.println(new CTVatTuDAO().search("", "Tru dien", "", "").size());
 //		System.out.println(new CTVatTuDAO().search("", "", "", "CL4").size());
 //		System.out.println(new CTVatTuDAO().search("", "", "Vn4", "").size());
-		CTVatTu l = ct.getCTVatTu("VT4","VN0","CL0");
+		//CTVatTu l = ct.getCTVatTu("VT4","VN0","CL0");
 		//for (CTVatTu vatTu : l) {
-			System.out.println(l.getVatTu().getVtMa());
+		//	System.out.println(l.getVatTu().getVtMa());
 		//}
-		
+			new CTVatTuDAO().deleteCTVatTu("vt7");
 	}
 }

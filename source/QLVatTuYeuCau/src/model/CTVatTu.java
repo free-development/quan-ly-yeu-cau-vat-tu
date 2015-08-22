@@ -14,7 +14,7 @@ public class CTVatTu implements Serializable{
 	 */
 	
 	private int dinhMuc;
-
+	private int daXoa;
 	/**
 	 * NOT NULL false
 	 * DomainName 
@@ -36,6 +36,7 @@ public class CTVatTu implements Serializable{
 		this.vatTu = new VatTu();
 		this.noiSanXuat = new NoiSanXuat();
 		this.chatLuong = new ChatLuong();
+		this.daXoa = 0;
 	}
 	
 
@@ -47,12 +48,14 @@ public class CTVatTu implements Serializable{
 	 * @param chaLluong
 	 */
 	public CTVatTu(VatTu vatTu,
-			NoiSanXuat noiSanXuat, ChatLuong chatLuong, int dinhMuc, int soLuongTon) {
+			NoiSanXuat noiSanXuat, ChatLuong chatLuong, int dinhMuc, int soLuongTon,int daXoa) {
 		this.dinhMuc = dinhMuc;
 		this.soLuongTon = soLuongTon;
 		this.vatTu = vatTu;
 		this.noiSanXuat = noiSanXuat;
 		this.chatLuong = chatLuong;
+		this.daXoa = daXoa;
+		
 	}
 
 	public CTVatTu(int ctvtId){
@@ -68,17 +71,28 @@ public class CTVatTu implements Serializable{
 	 * @param chaLluong
 	 */
 	public CTVatTu(int ctvtId, VatTu vatTu,
-			NoiSanXuat noiSanXuat, ChatLuong chatLuong, int dinhMuc, int soLuongTon) {
+			NoiSanXuat noiSanXuat, ChatLuong chatLuong, int dinhMuc, int soLuongTon,int daXoa) {
 		this.ctvtId =  ctvtId;
 		this.dinhMuc = dinhMuc;
 		this.soLuongTon = soLuongTon;
 		this.vatTu = vatTu;
 		this.noiSanXuat = noiSanXuat;
 		this.chatLuong = chatLuong;
+		this.daXoa = daXoa;
 	}
 
 	
 	
+	public int getDaXoa() {
+		return daXoa;
+	}
+
+
+	public void setDaXoa(int daXoa) {
+		this.daXoa = daXoa;
+	}
+
+
 	public int getCtvtId() {
 		return ctvtId;
 	}
