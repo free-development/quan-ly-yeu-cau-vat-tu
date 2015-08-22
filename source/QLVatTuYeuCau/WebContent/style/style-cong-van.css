@@ -193,6 +193,7 @@
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	cursor: pointer;
 }
 
 .input-table table tr td {
@@ -227,6 +228,7 @@
 	font-weight: bold;
 	color: rgb(0, 0, 255);
 	margin-bottom: 20px;
+	
 }
 
 .two-column {
@@ -297,6 +299,7 @@
 	padding: 8px 30px 8px 20px;
 	margin-right: 0px;
 	border: none;
+	cursor: pointer;
 }
 
 .btn:hover {

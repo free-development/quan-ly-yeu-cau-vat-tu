@@ -46,9 +46,8 @@ import util.StringUtil;
 @Controller
 public class CvController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String tempPath = "/home/quoioln/study/java/FileUpload/Temp/"; 
-    private final String pathFile = "/home/quoioln/study/java/FileUpload/File/";
-    
+	private final String tempPath = "D:/Goc Hoc Tap/free-deverlop/Temp/"; 
+    private final String pathFile = "D:/Goc Hoc Tap/free-deverlop/File/";
     public ModelAndView getCongvan(TrangThaiDAO trangThaiDAO, CongVanDAO congVanDAO, MucDichDAO mucDichDAO, FileDAO fileDAO, DonViDAO donViDAO, HttpServletRequest request) {
     	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) congVanDAO.getAllCongVan();
 		HashMap<Integer, File> fileHash = new HashMap<Integer, File>();
