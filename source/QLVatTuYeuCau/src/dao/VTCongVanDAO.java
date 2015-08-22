@@ -16,6 +16,7 @@ import org.hibernate.criterion.Restrictions;
 
 import model.NguoiDung;
 import model.VTCongVan;
+import model.VaiTro;
 import util.HibernateUtil;
 
 /**
@@ -44,6 +45,11 @@ public class VTCongVanDAO {
 	public void addVTCongVan(VTCongVan vtCongVan){
 		session.beginTransaction();
 		session.save(vtCongVan);
+		session.getTransaction().commit();
+	}
+	public void addOrUpdateVTCongVan(VTCongVan vtCongVan){
+		session.beginTransaction();
+		session.saveOrUpdate(vtCongVan);
 		session.getTransaction().commit();
 	}
 	public void updateVTCongVan(VTCongVan vtCongVan){
@@ -86,6 +92,16 @@ public class VTCongVanDAO {
 		}
 		session.getTransaction().commit();
 		return nguoiDungHash;
+	}
+	public HashMap<Integer, VaiTro> toVaiTro(ArrayList<VTCongVan> vtcvList) {
+		HashMap<Integer, VaiTro> vaiTroHash = new HashMap<Integer, VaiTro>();
+		for (VTCongVan vtCongVan : vtcvList) {
+			
+			VaiTro vaiTro = new VaiTroDAO().getVaiTro(vtCongVan.getVtId());
+			int vtId = vaiTro.getVtId();
+			vaiTroHash.put(vtId, vaiTro);
+		}
+		return vaiTroHash;
 	}
 	public static void main(String[] args) {
 		ArrayList<VTCongVan> l = new VTCongVanDAO().getVTCongVan(1, "b1203954");

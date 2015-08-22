@@ -44,7 +44,7 @@
 	ArrayList<NguoiDung> nguoiDungList = (ArrayList<NguoiDung>) session.getAttribute("nguoiDungList");
 	CongVan congVan = (CongVan) session.getAttribute("congVan");
 	HashMap<String,NguoiDung> vtNguoiDungHash = (HashMap<String,NguoiDung>) request.getAttribute("vtNguoiDungHash");
-	HashMap<String, ArrayList<VaiTro>> vaiTroHash = (HashMap<String, ArrayList<VaiTro>>) request.getAttribute("vaiTroHash");
+	HashMap<String, HashMap<Integer, VaiTro>> vaiTroHash = (HashMap<String, HashMap<Integer, VaiTro>>) request.getAttribute("vaiTroHash");
 	%>
 	<div class="wrapper">
 		<div class="header">
@@ -157,9 +157,10 @@
 								<td class="tbody-nguoidung"><%=nguoiDung.getMsnv() %></td>
 								<td class="tbody-nguoidung"><%=nguoiDung.getHoTen() %></td>
 								<% for(VaiTro vaiTro : vaiTroList) {
-									Integer vtId = vaiTro.getVtId();
+									int vtId = vaiTro.getVtId();
+									HashMap<Integer, VaiTro> vtHash = vaiTroHash.get(msnv);
 									boolean check = false;
-									if (vtNguoiDungHash.get(msnv) != null && vaiTroHash.get(msnv).g != null)
+									if (vtNguoiDungHash.get(msnv) != null && vtHash.get(vtId) != null)
 										check = true;
 								%>
 								<td class="checkbox">
@@ -193,7 +194,7 @@
 						<%
 							int i = 0;
 							for(String msnv :  vtNguoiDungHash.keySet()) {
-								ArrayList<VaiTro> vtList = vaiTroHash.get(msnv);
+								HashMap<Integer, VaiTro> vtHash = vaiTroHash.get(msnv);
 								NguoiDung nguoiDung =  vtNguoiDungHash.get(msnv);
 								String hoTen = nguoiDung.getHoTen();
 								i++;
@@ -205,7 +206,8 @@
 							<td>
 								<%
 									StringBuilder str = new StringBuilder("");
-									for(VaiTro vaiTro : vtList) {
+									for(Integer vtId : vtHash.keySet()) {
+										VaiTro vaiTro = vtHash.get(vtId);
 										str.append(vaiTro.getVtTen() + "<br>");
 									}
 									int end = str.length();

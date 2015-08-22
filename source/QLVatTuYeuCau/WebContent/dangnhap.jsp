@@ -25,7 +25,7 @@
 </head>
 <body>
 		<div id="main-content">
-			<form id="add-form" action="<%=siteMap.loGin + "?action=loGin" %>"method="post"
+			<form id="add-form" action="<%=siteMap.login + "?action=loGin" %>"method="post"
 				name="dangNhap" >
 				<div class="input-table">
 					<table>
