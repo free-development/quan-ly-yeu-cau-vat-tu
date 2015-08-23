@@ -65,24 +65,24 @@
 			<ul>
 				<li><a href="">Trang chủ</a></li>
 				<li><a href="">Danh mục</a>
-					<ul>
-						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
-								mục nơi sản xuất</a></li>
-						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
-								mục chất lượng</a></li>
-						<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
-								mục vật tư</a></li>
-						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
-								mục chi tiết vật tư</a></li>
-						<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
-								mục bộ phận sử dụng</a></li>
-						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
-								mục mục đích</a></li>
-						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
-						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
-								mục chức danh</a></li>
-						
-					</ul>
+							<ul>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
+										mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
+										mục chất lượng</a></li>
+								<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
+										mục vật tư</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+										mục chi tiết vật tư</a></li>
+								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
+										mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
+										mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+										mục chức danh</a></li>
+								
+							</ul>
 				</li>
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
@@ -91,7 +91,7 @@
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
 				</li>
-				<li><a href="">Quảnlý người dùng</a>
+				<li><a href="">Quản lý người dùng</a>
 					<ul>
 						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
 						<li><a href=""/>Khôi phục mật khẩu</li>
@@ -107,7 +107,7 @@
 				<div id="title-content">Chia sẻ công văn</div>
 				<form id="main-form" action="<%=siteMap.updateChiaSeCv%>" method="get">
 					
-					<div id="input-table" style="width: 75%">
+					<div id="input-table" style="width: 75%; margin-left: 25px;">
 						<table>
 							<tr>
 								<th style="text-align: ce"">Số công văn:</th>
@@ -122,7 +122,7 @@
 <!-- 					<br /> -->
 <%-- 					<form action="<%=siteMap.chiaSeCv%>" method="get"> --%>
 					<div id="view-table" >
-						<table style="margin: 0 auto;" class="scroll-chia-se" > 
+						<table style="margin: 0 auto; margin-top:10px; max-height: 420px;width: 960px;display: auto;margin: 0 auto;overflow: scroll;" > 
 							<tr style="background-color: #199e5e;">
 
 								<th style="width: 100px;">Mã nhân viên</th>
@@ -168,6 +168,7 @@
 						<button type="button" class="btn" onclick="showForm('main-form')">
 							<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 						</button>
+					</div>
 				</form>
 				</div>
 				
@@ -176,8 +177,20 @@
 				<%
 					if (vtNguoiDungHash.size() != 0 || vtNguoiDungHash == null) {
 				%>
+<<<<<<< HEAD
 					<table>
 						<tr><th><input type = "checkbox" class="checkAll" name="checkAll"></th><th>Msnv</th><th>Họ tên</th><th>Vai trò</th></tr>
+=======
+				<div id="title-content">Công việc đã chia sẽ</div>
+				<div id="view-table-chia-se">
+					<table >
+						<tr bgcolor= "#199e5e">
+						<th style="text-align: center;"><input type = "checkbox" class="checkAll" name=""></th>
+						<th>MSNV</th>
+						<th>Họ tên</th>
+						<th>Vai trò</th>
+						</tr>
+>>>>>>> 50ee70863990f3fbc9c5bb3e7a558c77fd6db693
 						<%
 							int i = 0;
 							for(String msnv :  vtNguoiDungHash.keySet()) {
@@ -186,8 +199,8 @@
 								String hoTen = nguoiDung.getHoTen();
 								i++;
 						%>
-						<tr  <% if (count % 2 ==0) out.println("style=\"background : #CCFFFF;\"");%>>
-							<td><input type = "checkbox" class="checkbox" name = "msnv" value="<%=msnv%>"></td>
+						<tr  <% if (i % 2 ==0) out.println("style=\"background : #CCFFFF;\"");%>>
+							<td style="text-align: center;"><input type = "checkbox" class="checkbox" name = "msnv" value="<%=msnv%>"></td>
 							<td><%=msnv %></td>
 							<td><%=hoTen %></td>
 							<td>
@@ -206,6 +219,16 @@
 						</tr>
 						<%}%>
 					</table>
+					<div class="group-button">
+					<input type="hidden" value="save" name="action">
+						<button class="btn">
+							<i class="fa fa-pencil fa-fw"></i>&nbsp;sửa
+						</button>
+						<button type="reset" class="btn">
+							<i class="fa fa-trash-o"></i>&nbsp;&nbsp;xóa
+						</button>
+					</div>
+				</div>
 				<%} else out.println("Chưa chia sẻ công văn");%>
 				</div>
 				

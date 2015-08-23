@@ -61,11 +61,11 @@ public class TestYeuCAU {
 //		NoiSanXuat nsx0 = new NoiSanXuat("Vn0", "Viet Nam");
 //		
 		
-		VatTu vatTu = new VatTu("VT4", "Tru dien", "cai");
-		VatTu vatTu5 = new VatTu("VT5", "Tru dien", "cai");
-		VatTu vatTu9 = new VatTu("VT9", "Tru dien", "cai");
-		VatTu vatTu0 = new VatTu("VT0", "Tru dien", "cai");
-		
+//		VatTu vatTu = new VatTu("VT4", "Tru dien", "cai");
+//		VatTu vatTu5 = new VatTu("VT5", "Tru dien", "cai");
+//		VatTu vatTu9 = new VatTu("VT9", "Tru dien", "cai");
+//		VatTu vatTu0 = new VatTu("VT0", "Tru dien", "cai");
+//		
 //		CTVatTu ctVatTu = new CTVatTu(id,vatTu5, nsx, chatLuong, 0, 0);
 //		id = ctVatTuDAO.getLastInsert(); 
 //		CTVatTu ctVatTu5 = new CTVatTu(id, vatTu9, nsx, chatLuong, 0, 0);
@@ -85,7 +85,7 @@ public class TestYeuCAU {
 
 		chatLuongDAO.addChatLuong(chatLuong);
 		//noiSanXuatDAO.addNoiSanXuat(nsx);
-		vatTuDAO.addVatTu(vatTu);
+//		vatTuDAO.addVatTu(vatTu);
 		//ctVatTuDAO.addCTVatTu(ctVatTu);
 		
 
@@ -100,10 +100,10 @@ public class TestYeuCAU {
 //		noiSanXuatDAO.addNoiSanXuat(nsx9);
 //		noiSanXuatDAO.addNoiSanXuat(nsx0);
 		
-		vatTuDAO.addVatTu(vatTu);
-		vatTuDAO.addVatTu(vatTu0);
-		vatTuDAO.addVatTu(vatTu5);
-		vatTuDAO.addVatTu(vatTu9);
+//		vatTuDAO.addVatTu(vatTu);
+//		vatTuDAO.addVatTu(vatTu0);
+//		vatTuDAO.addVatTu(vatTu5);
+//		vatTuDAO.addVatTu(vatTu9);
 		
 //		ctVatTuDAO.addCTVatTu(ctVatTu9);
 //		ctVatTuDAO.addCTVatTu(ctVatTu5);

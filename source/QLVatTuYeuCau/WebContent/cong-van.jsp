@@ -291,9 +291,6 @@
 							<button class="button" onclick="return checkCongVan();">
 								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Cập nhật yêu cầu vật tư
 							</button>
-							<button class="button" onclick="return chiaSeCv();">
-								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Chia se cong van
-							</button>
 							&nbsp;
 							<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
