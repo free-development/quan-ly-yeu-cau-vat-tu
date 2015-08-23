@@ -4,24 +4,19 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.ChatLuong;
+import model.CongVan;
+import model.DonVi;
+import model.File;
+import model.TrangThai;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-
-import model.CongVan;
-import model.File;
-import model.CongVan;
-import model.DonVi;
-import model.TrangThai;
-
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import util.DateUtil;
@@ -49,6 +44,29 @@ public class CongVanDAO {
 		session.getTransaction().commit();
 		return congVanList;
 	}
+	
+	public List<CongVan> limit(int first, int limit) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(CongVan.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+//		Criterion limitRow = Restrictions.
+		cr.add(xoaCd);
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<CongVan> congVanList = (ArrayList<CongVan>) cr.list(); 
+		session.getTransaction().commit();
+		return congVanList;
+	}
+	public long size() {
+		session.beginTransaction();
+		String sql = "select count(cvId) from CongVan";
+		Query query =  session.createQuery(sql);
+		long size = (long) query.list().get(0);
+		session.getTransaction().commit();
+		return size;
+		
+	}
+	
 	public void addCongVan(CongVan congVan){
 		session.beginTransaction();
 		session.save(congVan);
@@ -150,5 +168,6 @@ public class CongVanDAO {
 		ArrayList<CongVan> congVanList = (ArrayList<CongVan>) cr.list();
 		session.getTransaction().commit();
 		return congVanList;
-	} 	 	
+	}
+	
 }

@@ -59,6 +59,11 @@ public class NoiSanXuatDAO {
 		session.save(noiSanXuat);
 		session.getTransaction().commit();
 	}
+	public void addOrUpdateNoiSanXuat(NoiSanXuat noiSanXuat){
+		session.beginTransaction();
+		session.saveOrUpdate(noiSanXuat);
+		session.getTransaction().commit();
+	}
 	public void updateNoiSanXuat(NoiSanXuat noiSanXuat){
 		session.beginTransaction();
 		session.update(noiSanXuat);

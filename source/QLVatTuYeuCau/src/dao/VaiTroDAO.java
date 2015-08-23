@@ -45,6 +45,29 @@ public class VaiTroDAO {
 		session.getTransaction().commit();
 		return vaiTroList;
 	}
+	
+	public List<VaiTro> limit(int first, int limit) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(VaiTro.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+//		Criterion limitRow = Restrictions.
+		cr.add(xoaCd);
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<VaiTro> vaiTroList = (ArrayList<VaiTro>) cr.list(); 
+		session.getTransaction().commit();
+		return vaiTroList;
+	}
+	public long size() {
+		session.beginTransaction();
+		String sql = "select count(vtId) from VaiTro";
+		Query query =  session.createQuery(sql);
+		long size = (long) query.list().get(0);
+		session.getTransaction().commit();
+		return size;
+		
+	}
+	
 	public void addVaiTro(VaiTro vaiTro){
 		session.beginTransaction();
 		session.save(vaiTro);

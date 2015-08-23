@@ -36,7 +36,7 @@
 }
 
 #view-table table tr td {
-	border-style: dotted;
+	border-style: solid;
 	border-width: 1px;
 	margin: 0px;
 	border-spacing: 0px;
@@ -47,7 +47,7 @@
 }
 
 #view-table table tr th {
-	border-style: dotted;
+	border-style: solid;
 	border-width: 1px;
 	margin: 0px;
 	border-spacing: 0px padding-left: 10px;
@@ -136,6 +136,19 @@
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 20px
+}
+
+#paging table {
+	margin: 0 auto;
+	margin-top: 20px;
+	border-style: none;
+}
+#paging table tr td{
+	border-style: none;
+}
+#paging table tr td a {
+	color: blue;
+	font-size: 15px;
 }
 
 .scroll {

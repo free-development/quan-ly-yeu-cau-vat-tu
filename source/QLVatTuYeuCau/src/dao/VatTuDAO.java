@@ -3,10 +3,13 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.ChatLuong;
 import model.ChucDanh;
 import model.VatTu;
 
+
 import org.hibernate.Criteria;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -38,9 +41,37 @@ public class VatTuDAO {
 		session.getTransaction().commit();
 		return vatTuList;
 	}
+	
+	public List<VatTu> limit(int first, int limit) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(VatTu.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+//		Criterion limitRow = Restrictions.
+		cr.add(xoaCd);
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<VatTu> vatTuList = (ArrayList<VatTu>) cr.list(); 
+		session.getTransaction().commit();
+		return vatTuList;
+	}
+	public long size() {
+		session.beginTransaction();
+		String sql = "select count(vtMa) from VatTu";
+		Query query =  session.createQuery(sql);
+		long size = (long) query.list().get(0);
+		session.getTransaction().commit();
+		return size;
+		
+	}
+	
 	public void addVatTu(VatTu vatTu){
 		session.beginTransaction();
 		session.save(vatTu);
+		session.getTransaction().commit();
+	}
+	public void addOrUpdateVatTu(VatTu vatTu){
+		session.beginTransaction();
+		session.saveOrUpdate(vatTu);
 		session.getTransaction().commit();
 	}
 	public void updateVatTu(VatTu vatTu){
@@ -55,7 +86,34 @@ public class VatTuDAO {
 		query.executeUpdate();
 		session.getTransaction().commit();
 	}
+
+
+
+public ArrayList<String> startWith(String i) {
+		session.beginTransaction();
+
+		String sql = "select vtTen from VatTu where vtTen LIKE :vtTen";
+		Query query = session.createQuery(sql);
+		query.setParameter("vtTen", i+"%");
+		ArrayList<String> list = (ArrayList<String>) query.list();
+		
+		session.getTransaction().commit();
+		return list;
+	}
+public ArrayList<String> startWithMa(String i) {
+	session.beginTransaction();
+
+	String sql = "select vtMa from VatTu where vtMa LIKE :vtMa";
+	Query query = session.createQuery(sql);
+	query.setParameter("vtMa", i+"%");
+	ArrayList<String> list = (ArrayList<String>) query.list();
+	
+	session.getTransaction().commit();
+	return list;
+}
+
 	public static void main(String[] args) {
 		new VatTuDAO().deleteVatTu("vt1");
 	}
+
 }

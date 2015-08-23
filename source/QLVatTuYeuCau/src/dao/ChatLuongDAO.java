@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.ChatLuong;
 import model.ChucDanh;
+import model.NoiSanXuat;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -41,9 +42,35 @@ public class ChatLuongDAO {
 		session.getTransaction().commit();
 		return chatLuongList;
 	}
+	public List<ChatLuong> limit(int first, int limit) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(ChatLuong.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+//		Criterion limitRow = Restrictions.
+		cr.add(xoaCd);
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<ChatLuong> chatLuongList = (ArrayList<ChatLuong>) cr.list(); 
+		session.getTransaction().commit();
+		return chatLuongList;
+	}
+	public long size() {
+		session.beginTransaction();
+		String sql = "select count(clMa) from ChatLuong";
+		Query query =  session.createQuery(sql);
+		long size = (long) query.list().get(0);
+		session.getTransaction().commit();
+		return size;
+		
+	}
 	public void addChatLuong(ChatLuong chatLuong){
 		session.beginTransaction();
 		session.save(chatLuong);
+		session.getTransaction().commit();
+	}
+	public void addOrUpdateChatLuong(ChatLuong chatLuong){
+		session.beginTransaction();
+		session.saveOrUpdate(chatLuong);
 		session.getTransaction().commit();
 	}
 	public void updateChatLuong(ChatLuong chatLuong){

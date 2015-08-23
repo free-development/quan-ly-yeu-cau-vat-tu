@@ -62,6 +62,15 @@
 		function preEditVattu(formId, check){
 			vtMa = $('input:checkbox[name=vtMa]:checked').val();
 			//alert(vtMa);
+			var vtMaList = [];
+			$.each($("input[name='vtMa']:checked"), function(){            
+				vtMaList.push($(this).val());
+		    });
+			if (vtMaList.length == 0)
+				alert('Bạn phải chọn 1 vật tư để thay đổi!!');
+			else if (vtMaList.length > 1)
+				alert('Bạn chỉ được chọn 1 vật tư để thay đổi!!');
+			else {
 				$.ajax({
 					url: "/QLVatTuYeuCau/preEditVattu.html",
 					type: "GET",
@@ -81,7 +90,7 @@
 					
 				});
 		}
-
+		}
 		function confirmUpdateVattu(){
 			var vtMaUpdate = $('input:text[name=vtMaUpdate]').val();
 			var vtTenUpdate = $('input:text[name=vtTenUpdate]').val();
@@ -124,9 +133,41 @@
  			}
  	}
  	function confirmDeleteVT(){
- 		vtMa = $('input:checkbox[name=vtMa]:checked').val();
- 		if (confirm('Bạn có chắc xóa ' + vtMa))
- 			deleteVattu(vtMa);
+<<<<<<< HEAD
+ 		vtMa = $('input:checkbox[name=vtMa]:checked').val();	
+ 		$.ajax({
+ 			url: "/QLVatTuYeuCau/comfirmdeleteVattu.html",	
+ 		  	type: "GET",
+ 		  	dateType: "JSON",
+ 		  	data: { "vtMa": vtMa},
+ 		  	contentType: 'application/json',
+ 		    mimeType: 'application/json',
+ 		    
+ 		    
+ 		  	success: function(result) {
+ 		  		if(result == "success")
+ 		  			{
+ 		  			if (confirm('Bạn có chắc xóa ' + vtMa))
+ 		  	 			deleteVattu(vtMa);	  			
+ 		  			}
+ 		  		else
+ 		  			{
+ 		  				alert("Không thể xóa!");
+ 		  			}
+ 		    } 
+ 		});  
+ 		
+=======
+ 		var vtMa = $('input:checkbox[name=vtMa]:checked').val();
+		var vtMaList = [];
+		$.each($("input[name='vtMa']:checked"), function(){            
+			vtMaList.push($(this).val());
+	    });
+		if (vtMaList.length == 0)
+			alert('Bạn phải chọn 1 hoặc nhiều vật tư để xóa!!');
+		else if (confirm('Bạn có chắc xóa vật tư có mã ' + vtMaList.join(", ")))
+			deleteVattu(vtMa);
+>>>>>>> 5ea1ec7e3af2f33e8b138c4ece2829537bc0326f
  	}
 	
   	 function deleteVattu(vtMa) {
@@ -140,13 +181,22 @@
  		    mimeType: 'application/json',
  		    
  		    
- 		  	success: function() {
- 		  		
-				$('#view-table-vat-tu table tr').has('input[name="vtMa"]:checked').remove();
-				alert(vtMa + " da bi xoa");
+ 		  	success: function(result) {
+ 		  		if(result == "success")
+ 		  			{
+	 		  			$('#view-table-vat-tu table tr').has('input[name="vtMa"]:checked').remove();
+	 					alert(vtMa + " da bi xoa");		  			
+ 		  			}
+ 		  		else
+ 		  			{
+ 		  				alert("Không thể xóa!");
+ 		  			}
  		    } 
  		});  
  	}
+  	 
+
+
   	function showChiTiet(formId, check, vtMa){  
   		$.ajax({
   			url: "/QLVatTuYeuCau/showCTVatTu.html",
@@ -159,6 +209,17 @@
 			success: function(listCTVatTu){
 				
 				$('#view-table-chi-tiet table .rowContent').remove();
+//				if(listCTVatTu.a == null)
+//					alert("1");
+//					else alert("2");
+//				alert(listCTVatTu.a)
+				if(listCTVatTu.vtMa != null) {
+					$('#add-chitiet input:text[name=vtMa]').val(listCTVatTu.vtMa);
+					$('#add-chitiet input:text[name=vtTen]').val(listCTVatTu.vtTen);
+					$('#add-chitiet input:text[name=dvt]').val(listCTVatTu.dvt);
+					alert("Không có chi tiết vật tư!");
+				}
+				else {
 				if(listCTVatTu.length>0){
 					
 				
@@ -181,15 +242,15 @@
 						$('#add-chitiet input:text[name=vtTen]').val(vtTen);
 						$('#add-chitiet input:text[name=dvt]').val(dvt);
 						
-				}
-				else
-					{	
-						alert("Không có chi tiết vật tư!")
 					}
-			  	showForm(formId, check);
+				}
+				showForm(formId, check);
 			}
+		  	
   		});
   	}
+  	
+  	
 
   	function changeVtMa(){
   		$('#requireVtMa').html('');
@@ -232,7 +293,66 @@
         });
         
     }); 
+<<<<<<< HEAD
+=======
 
     function test1(){
     	$('#test select option[value='+3+']').prop('selected',true);
     }
+    
+    
+    $(document).ready(function() {
+ 	  	$('.page').click(function(){
+ 		var pageNumber = $(this).val();
+ 	    	$.ajax({
+ 				url: "/QLVatTuYeuCau/loadPageVatTu.html",	
+ 			  	type: "GET",
+ 			  	dateType: "JSON",
+ 			  	data: { "pageNumber": pageNumber},
+ 			  	contentType: 'application/json',
+ 			    mimeType: 'application/json',
+ 			  	
+ 			  	success: function(vtList) {
+ 			  		$('#view-table table .rowContent').remove();
+ 					if(vtList.length>0){
+ 						for(i = 0;i < vtList.length; i++ ) {
+ 							var vt = vtList[i] ;
+ 							var style = '';	
+ 							if (i % 2 == 0)
+ 								style = 'style=\"background : #CCFFFF;\"';
+ 							var str = '';
+ 							str = '<tr class=\"rowContent\" ' + style + '>'
+ 								+ '<td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' 
+ 								+ vt.vtMa +'\" class=\"checkbox\"></td>'
+ 								+ '<td class=\"col\">' + vt.vtMa + '</td>'
+ 								+ '<td class=\"col\">' + vt.vtTen + '</td>'
+ 								+ '<td class=\"col\">' + vt.dvt + '</td>'
+ 								+ '</tr>';
+ 							$('#view-table table tr:first').after(str);
+ 						}
+ 					}
+ 			  	}
+ 			});
+ 	    });	
+ 	})   
+ 	$(document).ready(function() {
+	$('#add-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+		 addVattu();
+	    return false;  
+	  }
+	});   
+});   
+$(document).ready(function() {
+	$('#update-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+	    updateVattu();
+	    return false;  
+	  }
+	});   
+});  
+>>>>>>> 5ea1ec7e3af2f33e8b138c4ece2829537bc0326f

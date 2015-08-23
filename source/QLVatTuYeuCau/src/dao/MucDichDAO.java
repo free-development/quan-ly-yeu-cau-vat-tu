@@ -68,5 +68,25 @@ public class MucDichDAO {
 		return l;
 		
 	}
-	
+	public List<MucDich> limit(int first, int limit) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(MucDich.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+//		Criterion limitRow = Restrictions.
+		cr.add(xoaCd);
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<MucDich> mucDichList = (ArrayList<MucDich>) cr.list(); 
+		session.getTransaction().commit();
+		return mucDichList;
+	}
+	public long size() {
+		session.beginTransaction();
+		String sql = "select count(mdMa) from MucDich";
+		Query query =  session.createQuery(sql);
+		long size = (long) query.list().get(0);
+		session.getTransaction().commit();
+		return size;
+		
+	}
 }

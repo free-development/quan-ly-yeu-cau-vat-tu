@@ -405,6 +405,8 @@ alter table VAITRO add DAXOA int(2) not null;
 alter table CHUCDANH add DAXOA int(2) not null;
 alter table NOISANXUAT add DAXOA int(2) not null;
 alter table MUCDICH add DAXOA int(2) not null;
+alter table VATTU add DAXOA int(2) not null;
+alter table CTVATTU add DAXOA int(2) not null;
 
 update VAITRO set DAXOA = 0;
 update CHUCDANH set DAXOA = 0;

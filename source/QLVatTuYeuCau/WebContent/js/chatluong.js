@@ -11,6 +11,15 @@
 	}
 	function preUpdateCl(formId, check) {
 		var clMa = $('input:checkbox[name=clMa]:checked').val();
+		var clMaList = [];
+		$.each($("input[name='clMa']:checked"), function(){            
+			clMaList.push($(this).val());
+	    });
+		if (clMaList.length == 0)
+			alert('Bạn phải chọn 1 chất lượng để thay đổi!!');
+		else if (clMaList.length > 1)
+			alert('Bạn chỉ được chọn 1 chất lượng để thay đổi!!');
+		else {
 		$.ajax({
 			url: "/QLVatTuYeuCau/preUpdateCl.html",	
 		  	type: "GET",
@@ -26,10 +35,17 @@
 		  		
 		  	}
 		});
+		}
 	}
 	function confirmDeleteCl(){
 		var clMa = $('input:checkbox[name=clMa]:checked').val();
-		if (confirm('Bạn có chắc xóa ' + clMa))
+		var clMaList = [];
+		$.each($("input[name='clMa']:checked"), function(){            
+			clMaList.push($(this).val());
+	    });
+		if (clMaList.length == 0)
+			alert('Bạn phải chọn 1 hoặc nhiều chất lượng để xóa!!');
+		else if (confirm('Bạn có chắc xóa chất lượng có mã ' + clMaList.join(", ")))
 			deleteCl(clMa);
 	}
 		
@@ -129,3 +145,57 @@
 		  	}
 		});
 	}
+ 	
+ 	$(document).ready(function() {
+ 	  	$('.page').click(function(){
+ 		var pageNumber = $(this).val();
+ 	    	$.ajax({
+ 				url: "/QLVatTuYeuCau/loadPageCl.html",	
+ 			  	type: "GET",
+ 			  	dateType: "JSON",
+ 			  	data: { "pageNumber": pageNumber},
+ 			  	contentType: 'application/json',
+ 			    mimeType: 'application/json',
+ 			  	
+ 			  	success: function(clList) {
+ 			  		$('#view-table table .rowContent').remove();
+ 					if(clList.length>0){
+ 						for(i = 0;i < clList.length; i++ ) {
+ 							var cl = clList[i] ;
+ 							var style = '';	
+ 							if (i % 2 == 0)
+ 								style = 'style=\"background : #CCFFFF;\"';
+ 							var str = '';
+ 							str = '<tr class=\"rowContent\" ' + style + '>'
+ 								+ '<td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' 
+ 								+ cl.clMa +'\" class=\"checkbox\"></td>'
+ 								+ '<td class=\"col\">' + cl.clMa + '</td>'
+ 								+ '<td class=\"col\">' + cl.clTen + '</td>'
+ 								+ '</tr>';
+ 							$('#view-table table tr:first').after(str);
+ 						}
+ 					}
+ 			  	}
+ 			});
+ 	    });	
+ 	})   
+ 	$(document).ready(function() {
+	$('#add-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+		 addCl();
+	    return false;  
+	  }
+	});   
+});   
+$(document).ready(function() {
+	$('#update-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+	    updateCl();
+	    return false;  
+	  }
+	});   
+});  

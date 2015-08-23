@@ -11,6 +11,16 @@ function showForm(formId, check){
 	}
 	function preUpdateMd(formId, check) {
 		var mdMa = $('input:checkbox[name=mdMa]:checked').val();
+		
+		var mdMaList = [];
+		$.each($("input[name='mdMa']:checked"), function(){            
+			mdMaList.push($(this).val());
+	    });
+		if (mdMaList.length == 0)
+			alert('Bạn phải chọn 1 mục đích để thay đổi!!');
+		else if (mdMaList.length > 1)
+			alert('Bạn chỉ được chọn 1 mục đích để thay đổi!!');
+		else {
 		$.ajax({
 			url: "/QLVatTuYeuCau/preUpdateMd.html",	
 		  	type: "GET",
@@ -26,10 +36,17 @@ function showForm(formId, check){
 		  		
 		  	}
 		});
+		}
 	}
 	function confirmDeleteMd(){
 		var mdMa = $('input:checkbox[name=mdMa]:checked').val();
-		if (confirm('Bạn có chắc xóa ' + mdMa))
+		var mdMaList = [];
+		$.each($("input[name='mdMa']:checked"), function(){            
+			mdMaList.push($(this).val());
+	    });
+		if (mdMaList.length == 0)
+			alert('Bạn phải chọn 1 hoặc nhiều mục đích để xóa!!');
+		else if (confirm('Bạn có chắc xóa mục đích có mã ' + mdMaList.join(", ")))
 			deleteMd(mdMa);
 	}
 		
@@ -129,3 +146,57 @@ function showForm(formId, check){
 		  	}
 		});
 	}
+ 	
+ 	$(document).ready(function() {
+ 	  	$('.page').click(function(){
+ 		var pageNumber = $(this).val();
+ 	    	$.ajax({
+ 				url: "/QLVatTuYeuCau/loadPageMd.html",	
+ 			  	type: "GET",
+ 			  	dateType: "JSON",
+ 			  	data: { "pageNumber": pageNumber},
+ 			  	contentType: 'application/json',
+ 			    mimeType: 'application/json',
+ 			  	
+ 			  	success: function(mdList) {
+ 			  		$('#view-table table .rowContent').remove();
+ 					if(mdList.length>0){
+ 						for(i = 0;i < mdList.length; i++ ) {
+ 							var md = mdList[i] ;
+ 							var style = '';	
+ 							if (i % 2 == 0)
+ 								style = 'style=\"background : #CCFFFF;\"';
+ 							var str = '';
+ 							str = '<tr class=\"rowContent\" ' + style + '>'
+ 								+ '<td class=\"left-column\"><input type=\"checkbox\" name=\"mdMa\" value=\"' 
+ 								+ md.mdMa +'\" class=\"checkbox\"></td>'
+ 								+ '<td class=\"col\">' + md.mdMa + '</td>'
+ 								+ '<td class=\"col\">' + md.mdTen + '</td>'
+ 								+ '</tr>';
+ 							$('#view-table table tr:first').after(str);
+ 						}
+ 					}
+ 			  	}
+ 			});
+ 	    });	
+ 	})   
+ 	$(document).ready(function() {
+	$('#add-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+		 addMd();
+	    return false;  
+	  }
+	});   
+});   
+$(document).ready(function() {
+	$('#update-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+	    updateMd();
+	    return false;  
+	  }
+	});   
+});  

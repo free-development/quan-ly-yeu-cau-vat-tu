@@ -31,6 +31,7 @@ import dao.VaiTroDAO;
 @Controller
 public class ClController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	int page = 1;
 	@RequestMapping("/manageCl")
 	public ModelAndView manageCl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
@@ -60,7 +61,9 @@ public class ClController extends HttpServlet {
 			return new ModelAndView("danh-muc-chat-luong", "chatLuongList", chatLuongList);
 		}
 		if("manageCl".equalsIgnoreCase(action)) {
-			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.getAllChatLuong();
+			long size = chatLuongDAO.size();
+			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.limit(page, 10);
+			request.setAttribute("size", size);
 			return new ModelAndView("danh-muc-chat-luong", "chatLuongList", chatLuongList);
 		}
 		return new ModelAndView("login");
@@ -110,5 +113,29 @@ public class ClController extends HttpServlet {
 		ChatLuong cl = new ChatLuong(clMaUpdate, clTenUpdate,0);
 		new ChatLuongDAO().updateChatLuong(cl);
 		return JSonUtil.toJson(cl);
+	}
+	@RequestMapping(value="/loadPageCl", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String loadPageCl(@RequestParam("pageNumber") String pageNumber) {
+		String result = "";
+		System.out.println("MA: " + pageNumber);
+		ChatLuongDAO clDAO = new ChatLuongDAO();
+		int page = Integer.parseInt(pageNumber);
+		ArrayList<ChatLuong> clList = (ArrayList<ChatLuong>) clDAO.limit((page -1 ) * 10, 10);
+		
+		/*
+		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
+		{
+			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
+			System.out.println("success");
+			result = "success";	
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+		*/
+			return JSonUtil.toJson(clList);
 	}
 }

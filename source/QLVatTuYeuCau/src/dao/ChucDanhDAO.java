@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.ChatLuong;
 import model.ChucDanh;
 import model.YeuCau;
 
@@ -39,6 +40,29 @@ public class ChucDanhDAO {
 		session.getTransaction().commit();
 		return chucDanhList;
 	}
+	
+	public List<ChucDanh> limit(int first, int limit) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(ChucDanh.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+//		Criterion limitRow = Restrictions.
+		cr.add(xoaCd);
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<ChucDanh> chucDanhList = (ArrayList<ChucDanh>) cr.list(); 
+		session.getTransaction().commit();
+		return chucDanhList;
+	}
+	public long size() {
+		session.beginTransaction();
+		String sql = "select count(cdMa) from ChucDanh";
+		Query query =  session.createQuery(sql);
+		long size = (long) query.list().get(0);
+		session.getTransaction().commit();
+		return size;
+		
+	}
+	
 	public void addChucDanh(ChucDanh chucDanh){
 		session.beginTransaction();
 		session.save(chucDanh);

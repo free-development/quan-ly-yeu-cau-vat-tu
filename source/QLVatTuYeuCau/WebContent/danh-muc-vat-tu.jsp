@@ -4,7 +4,7 @@
 <%@page import="model.ChatLuong"%>
 <%@page import="map.siteMap"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +23,20 @@
 
 <!-- 	</script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
+
+<link rel="stylesheet" type="text/css" href="style/jquery.autocomplete.css" />
+	<script src="http://www.google.com/jsapi"></script>  
+	<script>  
+		google.load("jquery", "1");
+	</script>
+	<script src="js/jquery.autocomplete.js"></script>  
+	<style>
+		input {
+			font-size: 120%;
+		}
+	</style>
 </head>
 <body>
 	<%
@@ -31,37 +44,38 @@
      	ArrayList<CTVatTu> listCTVatTu = (ArrayList<CTVatTu>) request.getAttribute("ctVatTuList");
    		ArrayList<NoiSanXuat> listNoiSanXuat = (ArrayList<NoiSanXuat>) request.getAttribute("noiSanXuatList");
    		ArrayList<ChatLuong> listChatLuong = (ArrayList<ChatLuong>) request.getAttribute("chatLuongList");
+   		Long size = (Long) request.getAttribute("size");
     %>
-	<div class="wrapper">
-		<div class="header">
-			<!--
+        <div class="wrapper">
+				<div class="header">
+	<!--
 					<img src="img/logo.png" alt="" id="logo" width=80 height=80/><br/>
 					<img src="img/textlogo.png" alt="" id="logo" width=80 height=20/>
 	-->
-			<div id="top_title">Văn phòng điện tử</div>
-			<div id="bottom-title">Công ty điện lực cần thơ</div>
-			<div class="search_form" id="search">
-				<form action="" method="post">
-					<!--
+					<div id="top_title">Văn phòng điện tử</div>
+					<div id="bottom-title">Công ty điện lực cần thơ</div>
+					<div class="search_form" id="search">
+						<form action="" method="post">
+<!--
 							<span class="search-select">
 								<select name="" ><option disabled selected>--Tùy chọn kiếm kiềm--</option></select>
 								<option value=""></option>
 							</span>
 -->
-
-					<span class="search-text"> &nbsp; <input type="search"
-						class="search" name="search_box" name="search"
-						placeholder="Tìm kiếm" />
-					</span> <span class="search-button"> &nbsp;
-						<button class="btn-search">
-							<i class="fa fa-search"></i>
-						</button>
-					</span>
-				</form>
-			</div>
-
-		</div>
-	<div class="main_menu">
+							
+							<span class="search-text">
+								&nbsp;
+							<input type="search" class="search" name="search_box" name="search" placeholder="Tìm kiếm" />
+							</span>
+							<span class="search-button">
+							&nbsp;
+							<button class="btn-search"><i class="fa fa-search" ></i></button>
+							</span>
+						</form>
+					</div>
+					
+				</div>
+				<div class="main_menu">
 					<ul>
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
@@ -104,15 +118,36 @@
 
 		<div id="main-content">
 			<div id="title-content">Danh mục vật tư</div>
-
+<!-- 					<h3>* Tìm kiếm mã</h3> -->
+<!-- 						<input type="text" id="country" name="country"/> -->
+						
+<!-- 						<script> -->
+<!--  							$("#country").autocomplete("getdata.jsp"); -->
+<!-- 						</script> -->
 			<table>		
 					<tr>		
 					<th  style="text-align: left; color: black; font-size: 19px;">* Tìm kiếm mã</th>
 								<td>
 									<div class="search_form1" id="search">		
 										<form action="" method="post">	
-											<span class="search-text"> &nbsp; <input type="search" class="text" name="search_box" name="search" placeholder="Tìm kiếm" /> 												
-												<td><input type="checkbox" class="checkbox" style="text-align: center;"/></td>
+<!-- 											<span class="search-text"> &nbsp; <input type="search" class="text" name="search_box" name="search" placeholder="Tìm kiếm" /> 												 -->
+<!-- 												<td><input type="checkbox" class="checkbox" style="text-align: center;"/></td> -->
+<!-- 												<td  style="text-align: center; color: black; font-size: 19px;">Theo tên</td>&nbsp;&nbsp;&nbsp; -->
+<!-- 											</span> -->
+											
+											<span class="search-text"> &nbsp; <input type="text" id="searchName" class="text" name="country"/>						
+														<script>
+															$('#checkTen').checked
+																{
+																	$("#searchName").autocomplete("getdata.jsp");
+																}
+															$('#checkTen').unchecked
+																{
+																	$("#searchName").autocomplete("getdataMa.jsp");
+																}
+															
+														</script> 												
+												<td><input name="theoten" type="checkbox" value="check" class="checkbox" style="text-align: center;" id="checkTen"/></td>
 												<td  style="text-align: center; color: black; font-size: 19px;">Theo tên</td>&nbsp;&nbsp;&nbsp;
 											</span>
 												<td> <span class="search-button"> &nbsp; <button class="btn-search" style="background-color: #00A69B;"><i class="fa fa-search"></i></button></span></td>						
@@ -121,8 +156,8 @@
 					</tr>					
 				</table>
 			
-
-			<div id="view-table-vat-tu" class="scroll-chi-tiet-vat-tu">
+			
+			<div id="view-table-vat-tu" >
 
 				<table>
 					<tr style="background: #199e5e; height: 30px">
@@ -138,7 +173,7 @@
 							int count = 0;
 							for(VatTu vatTu : listVatTu) { count++;%>
 
-					<tr
+					<tr class="rowContent"
 						<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 						<td class="left-column"><input type="checkbox" name="vtMa"
 							value="<%=vatTu.getVtMa() %>" class="checkbox"></td>
@@ -150,6 +185,22 @@
 					<%} }%>
 				</table>
 			</div>
+
+			<div id = "paging" >
+							<table style ="border-style: none;">
+								<tr>
+									<td><a href=""> Previous<< </a></td>
+									<td>
+										<%
+											long pageNum = size / 10;
+											for(int i = 0; i <= pageNum; i++) { %>
+												<input type="button" value="<%=i+1%>" class="page">
+										<%} %>
+									</td>
+									<td><a href="">>>Next </a> </td>
+								</tr>
+							</table>
+						</div>
 
 			<div class="group-button">
 				<input type="hidden" name="action" value="deleteVatTu">
@@ -265,8 +316,7 @@
 
 				<table>
 					<tr style="background: #199e5e">
-						<th class="left-column"><input type="checkbox"
-							class="checkAll"></th>
+						<th class="left-column"><input type="checkbox" class="checkAll"></th>
 						<th class="four-column">Mã vật tư</th>
 						<th class="three-col">Tên vật tư</th>
 						<th class="six-column">Nơi sản xuất</th>
@@ -363,15 +413,15 @@
 		 								<option value=<%=noiSanXuat.getNsxMa()%>><%=noiSanXuat.getNsxTen()%></option>
 		 								<%}
 		  								%>  
-									</select><div id="requireNsx"></div>
+									</select><div id="requireNsx" style="color: red"></div>
 								</td>
 						</tr>
 						
 						
 						<tr>
 							<th style="text-align: left"><label for="DM">Định mức</label></th>
-							<td><input name="dinhMuc" size="5px" align=right type="number" onkeypress="changeDM();"
-								class="text" required title="Định mức không được để trống"><div id="requireDM"></div></td>
+							<td><input name="dinhMuc" style="width: 100px" align=right type="number" onkeypress="changeDM();"
+								class="text" required title="Định mức không được để trống"><div id="requireDM" style="color: red"></div></td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
@@ -392,7 +442,7 @@
 						<tr>
 							<th style="text-align: left"><label for="Sl">Số lượng</label></th>
 							<td>
-								<input name="soLuongTon" size="5px" type="number" class="text" required title="Số lượng tồn không được để trống" onkeypress="changeSL();"><div id="requireSl" style="color: red"></div>
+								<input name="soLuongTon" style="width: 100px" type="number" class="text" required title="Số lượng tồn không được để trống" onkeypress="changeSL();"><div id="requireSl" style="color: red"></div>
 							</td>
 						</tr>
 					</table>

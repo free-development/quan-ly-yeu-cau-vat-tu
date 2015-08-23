@@ -34,6 +34,7 @@
     	ArrayList<DonVi> donViList = (ArrayList<DonVi>) request.getAttribute("donViList");
     	ArrayList<MucDich> mucDichList = (ArrayList<MucDich>) request.getAttribute("mucDichList");
     	ArrayList<TrangThai> trangThaiList = (ArrayList<TrangThai>) request.getAttribute("trangThaiList");
+    	Long size = (Long) request.getAttribute("size");
     %>
 	<div class="wrapper">
 		<div class="header">
@@ -203,7 +204,7 @@
                      	for(CongVan congVan : congVanList) {
                      		count ++;
                      %>
-					<table <%if (count % 2 == 1){ out.println("style=\"background : #CCFFFF;\"");}else{out.println("style=\"background : Blush;\"");}%>style="font-size: 16px;width:900px;" class="border-congvan">
+					<table class="rowContent" <%if (count % 2 == 1){ out.println("style=\"background : #CCFFFF;\"");}else{out.println("style=\"background : Blush;\"");}%>style="font-size: 16px;width:900px;" class="border-congvan">
 								<tr >
 									<td class="column-check" rowspan="7">
 										<input title="Click để chọn công văn"type="checkbox" name="cvId" value="<%=congVan.getCvId()%>">
@@ -272,6 +273,8 @@
 							<%} %>
 
 						</div>
+						
+						
 						<div class="group-button">
 							<input type="hidden" name="action" value="update-yeu-cau">
 							<button type="button" class="button" onclick="loadDataCv();">

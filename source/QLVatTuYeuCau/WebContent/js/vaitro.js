@@ -12,6 +12,15 @@ function showForm(formId, check){
 
 		function preUpdateVt(formId, check){
 			vtId = $('input:checkbox[name=vtId]:checked').val();
+			var vtMaList = [];
+			$.each($("input[name='vtId']:checked"), function(){            
+				vtMaList.push($(this).val());
+		    });
+			if (vtMaList.length == 0)
+				alert('Bạn phải chọn 1 vai trò để thay đổi!!');
+			else if (vtMaList.length > 1)
+				alert('Bạn chỉ được chọn 1 vai trò để thay đổi!!');
+			else {
 				$.ajax({
 					url: "/QLVatTuYeuCau/preEditVt.html",
 					type: "GET",
@@ -29,10 +38,17 @@ function showForm(formId, check){
 					}
 					
 				});
+			}
 		}
 		function confirmDelete(){
 			vtId = $('input:checkbox[name=vtId]:checked').val();
-			if (confirm('Bạn có chắc xóa ' + vtId))
+			var vtMaList = [];
+			$.each($("input[name='vtId']:checked"), function(){            
+				vtMaList.push($(this).val());
+		    });
+			if (vtMaList.length == 0)
+				alert('Bạn phải chọn 1 hoặc nhiều vai trò để xóa!!');
+			else if (confirm('Bạn có chắc xóa vai trò có mã ' + vtMaList.join(", ")))
 				deleteVt(vtId);
 		}
  		
@@ -138,3 +154,57 @@ function showForm(formId, check){
  	  		$('#requirevtTenUp').html('');
  	  		$('#update-form input:text[name=vtTenUpdate]').focus();
  	 	}
+ 	  	
+ 	  	$(document).ready(function() {
+ 		  	$('.page').click(function(){
+ 			var pageNumber = $(this).val();
+ 		    	$.ajax({
+ 					url: "/QLVatTuYeuCau/loadPageVt.html",	
+ 				  	type: "GET",
+ 				  	dateType: "JSON",
+ 				  	data: { "pageNumber": pageNumber},
+ 				  	contentType: 'application/json',
+ 				    mimeType: 'application/json',
+ 				  	
+ 				  	success: function(vtList) {
+ 				  		$('#view-table table .rowContent').remove();
+ 						if(vtList.length>0){
+ 							for(i = 0;i < vtList.length; i++ ) {
+ 								var vt = vtList[i] ;
+ 								var style = '';	
+ 								if (i % 2 == 0)
+ 									style = 'style=\"background : #CCFFFF;\"';
+ 								var str = '';
+ 								str = '<tr class=\"rowContent\" ' + style + '>'
+ 									+ '<td class=\"left-column\"><input type=\"checkbox\" name=\"vtId\" value=\"' 
+ 									+ vt.vtId +'\" class=\"checkbox\"></td>'
+ 									+ '<td class=\"col\">' + vt.vtId + '</td>'
+ 									+ '<td class=\"col\">' + vt.vtTen + '</td>'
+ 									+ '</tr>';
+ 								$('#view-table table tr:first').after(str);
+ 							}
+ 						}
+ 				  	}
+ 				});
+ 		    });	
+ 		})   
+ 		$(document).ready(function() {
+ 	$('#add-form').keypress(function(e) {
+ 	 var key = e.which;
+ 	 if(key == 13)  // the enter key code
+ 	  {
+ 		 addVt();
+ 	    return false;  
+ 	  }
+ 	});   
+ 	});   
+ 	$(document).ready(function() {
+ 	$('#update-form').keypress(function(e) {
+ 	 var key = e.which;
+ 	 if(key == 13)  // the enter key code
+ 	  {
+ 	    updateVt();
+ 	    return false;  
+ 	  }
+ 	});   
+ 	});

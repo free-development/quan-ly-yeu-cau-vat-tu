@@ -6,6 +6,19 @@
 	
 }
 
+#paging table {
+	margin: 0 auto;
+	margin-top: 20px;
+	border-style: none;
+}
+#paging table tr td{
+	border-style: none;
+}
+#paging table tr td a {
+	color: blue;
+	font-size: 15px;
+}
+
 .right-content {
 	position: relative;
 	left: 0px;
