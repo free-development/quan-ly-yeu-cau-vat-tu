@@ -34,7 +34,12 @@ function preUpdateNsx(formId, check) {
 }
 function confirmDelete(){
 	var nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
-	if (confirm('Bạn có chắc xóa ' + nsxMa))
+	var nsxMaList = [];
+	$.each($("input[name='nsxMa']:checked"), function(){            
+		nsxMaList.push($(this).val());
+    });
+//    alert("My favourite sports are: " + favorite.join(", "));
+	if (confirm('Bạn có chắc xóa nơi sản xuất có mã ' + nsxMaList.join(", ")))
 		deleteNsx(nsxMa);
 }
 
@@ -95,6 +100,7 @@ function addNsx() {
 function confirmUpdateNsx(){
 	var nsxMaUpdate = $('input:text[name=nsxMaUpdate]').val();
 	var nsxTenUpdate = $('input:text[name=nsxTenUpdate]').val();
+	
 	if (nsxTenUpdate == '')
 	{
 		$('#requirensxTenUp').html('Vui lòng nhập tên nơi sản xuất');
@@ -181,3 +187,14 @@ $(document).ready(function() {
 		});
     });	
 })   
+$(document).ready(function() {
+	$('#add-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+		 alert('ok');
+	    addNsx();
+	    return false;  
+	  }
+	});   
+});   
