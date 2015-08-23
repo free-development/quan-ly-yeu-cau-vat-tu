@@ -32,6 +32,7 @@ import dao.VaiTroDAO;
 @Controller
 public class BpsdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	int page = 1;
 	@RequestMapping("/manageBpsd")
 	public ModelAndView manageBpsd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DonViDAO donViDAO = new DonViDAO();
@@ -69,7 +70,9 @@ public class BpsdController extends HttpServlet {
 		}
 		
 		if("manageBpsd".equalsIgnoreCase(action)) {
-			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
+			long size = donViDAO.size();
+			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.limit(page, 10);
+			request.setAttribute("size", size);
 			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
 		}
 		return new ModelAndView("login");
@@ -118,5 +121,30 @@ public class BpsdController extends HttpServlet {
 	 public @ResponseBody String deleteBp(@RequestParam("dvMa") String dvMa) {
 		new DonViDAO().deleteDonVi(dvMa);
 		return JSonUtil.toJson(dvMa);
+	}
+	
+	@RequestMapping(value="/loadPageDv", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String loadPageDv(@RequestParam("pageNumber") String pageNumber) {
+		String result = "";
+		System.out.println("MA: " + pageNumber);
+		DonViDAO dvDAO = new DonViDAO();
+		int page = Integer.parseInt(pageNumber);
+		ArrayList<DonVi> dvList = (ArrayList<DonVi>) dvDAO.limit((page -1 ) * 10, 10);
+		
+		/*
+		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
+		{
+			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
+			System.out.println("success");
+			result = "success";	
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+		*/
+			return JSonUtil.toJson(dvList);
 	}
 }

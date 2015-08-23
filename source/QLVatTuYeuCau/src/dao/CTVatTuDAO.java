@@ -50,6 +50,29 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return CTVatTuList;
 	}
+	
+	public List<CTVatTu> limit(int first, int limit) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(CTVatTu.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+//		Criterion limitRow = Restrictions.
+		cr.add(xoaCd);
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<CTVatTu> ctVatTuList = (ArrayList<CTVatTu>) cr.list(); 
+		session.getTransaction().commit();
+		return ctVatTuList;
+	}
+	public long size() {
+		session.beginTransaction();
+		String sql = "select count(ctvtId) from CTVatTu";
+		Query query =  session.createQuery(sql);
+		long size = (long) query.list().get(0);
+		session.getTransaction().commit();
+		return size;
+		
+	}
+	
 	public void addCTVatTu(CTVatTu ctVatTu){
 		session.beginTransaction();
 		session.save(ctVatTu);

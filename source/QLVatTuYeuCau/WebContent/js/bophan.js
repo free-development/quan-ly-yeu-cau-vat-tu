@@ -66,6 +66,15 @@ function showForm(formId, check){
  		}
 		function preUpdateBp(formId, check){
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
+			var dvMaList = [];
+			$.each($("input[name='dvMa']:checked"), function(){            
+				dvMaList.push($(this).val());
+		    });
+			if (dvMaList.length == 0)
+				alert('Bạn phải chọn 1 bộ phận để thay đổi!!');
+			else if (dvMaList.length > 1)
+				alert('Bạn chỉ được chọn 1 đơn vị để thay đổi!!');
+			else {
 				$.ajax({
 					url: "/QLVatTuYeuCau/preEditBp.html",
 					type: "GET",
@@ -84,6 +93,7 @@ function showForm(formId, check){
 					  	showForm(formId, check);
 					}
 				});
+			}
 		}
  	 	function confirmUpdateBp(){
 			var dvMaUpdate = $('input:text[name=dvMaUpdate]').val();
@@ -159,7 +169,13 @@ function showForm(formId, check){
 		}
 		function confirmDelete(){
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
-			if (confirm('Bạn có chắc xóa ' + dvMa))
+			var dvMaList = [];
+			$.each($("input[name='dvMa']:checked"), function(){            
+				dvMaList.push($(this).val());
+		    });
+			if (dvMaList.length == 0)
+				alert('Bạn phải chọn 1 hoặc nhiều bộ phận để xóa!!');
+			else if (confirm('Bạn có chắc xóa bộ phận có mã ' + dvMaList.join(", ")))
 				deleteBp(dvMa);
 		}
  		
@@ -222,3 +238,60 @@ function showForm(formId, check){
  	  		$('#requireEmailUp').html('');
  	  		$('#add-form input:text[name=emailUpdate]').focus();
  	 	}	
+ 	  	
+ 	  	$(document).ready(function() {
+ 	 	  	$('.page').click(function(){
+ 	 		var pageNumber = $(this).val();
+ 	 	    	$.ajax({
+ 	 				url: "/QLVatTuYeuCau/loadPageDv.html",	
+ 	 			  	type: "GET",
+ 	 			  	dateType: "JSON",
+ 	 			  	data: { "pageNumber": pageNumber},
+ 	 			  	contentType: 'application/json',
+ 	 			    mimeType: 'application/json',
+ 	 			  	
+ 	 			  	success: function(dvList) {
+ 	 			  		$('#view-table table .rowContent').remove();
+ 	 					if(dvList.length>0){
+ 	 						for(i = 0;i < dvList.length; i++ ) {
+ 	 							var dv = dvList[i] ;
+ 	 							var style = '';	
+ 	 							if (i % 2 == 0)
+ 	 								style = 'style=\"background : #CCFFFF;\"';
+ 	 							var str = '';
+ 	 							str = '<tr class=\"rowContent\" ' + style + '>'
+ 	 								+ '<td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"' 
+ 	 								+ dv.dvMa +'\" class=\"checkbox\"></td>'
+ 	 								+ '<td class=\"col\">' + dv.dvMa + '</td>'
+ 	 								+ '<td class=\"col\">' + dv.dvTen + '</td>'
+ 	 								+ '<td class=\"col\">' + dv.sdt + '</td>'
+ 	 								+ '<td class=\"col\">' + dv.email + '</td>'
+ 	 								+ '<td class=\"col\">' + dv.diaChi + '</td>'
+ 	 								+ '</tr>';
+ 	 							$('#view-table table tr:first').after(str);
+ 	 						}
+ 	 					}
+ 	 			  	}
+ 	 			});
+ 	 	    });	
+ 	 	})   
+ 	 	$(document).ready(function() {
+ 		$('#add-form').keypress(function(e) {
+ 		 var key = e.which;
+ 		 if(key == 13)  // the enter key code
+ 		  {
+ 			 addBp();
+ 		    return false;  
+ 		  }
+ 		});   
+ 	});   
+ 	$(document).ready(function() {
+ 		$('#update-form').keypress(function(e) {
+ 		 var key = e.which;
+ 		 if(key == 13)  // the enter key code
+ 		  {
+ 		    updateBp();
+ 		    return false;  
+ 		  }
+ 		});   
+ 	});  

@@ -28,6 +28,7 @@ import dao.MucDichDAO;
 @Controller
 public class MdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	int page = 1;
 	@RequestMapping("/manageMd")
 	public ModelAndView manageMd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MucDichDAO mucDichDAO = new MucDichDAO();
@@ -58,7 +59,9 @@ public class MdController extends HttpServlet {
 			return new ModelAndView("danh-muc-muc-dich", "mucDichList", mucDichList);
 		}
 		if("manageMd".equalsIgnoreCase(action)) {
-			ArrayList<MucDich> mucDichList =  (ArrayList<MucDich>) mucDichDAO.getAllMucDich();
+			long size = mucDichDAO.size();
+			ArrayList<MucDich> mucDichList =  (ArrayList<MucDich>) mucDichDAO.limit(page, 10);
+			request.setAttribute("size", size);
 			return new ModelAndView("danh-muc-muc-dich", "mucDichList", mucDichList);
 		}
 		return new ModelAndView("login");
@@ -106,5 +109,29 @@ public class MdController extends HttpServlet {
 		MucDich md = new MucDich(mdMaUpdate, mdTenUpdate,0);
 		new MucDichDAO().updateMucDich(md);
 		return JSonUtil.toJson(md);
+	}
+	@RequestMapping(value="/loadPageMd", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String loadPageMd(@RequestParam("pageNumber") String pageNumber) {
+		String result = "";
+		System.out.println("MA: " + pageNumber);
+		MucDichDAO mdDAO = new MucDichDAO();
+		int page = Integer.parseInt(pageNumber);
+		ArrayList<MucDich> mdList = (ArrayList<MucDich>) mdDAO.limit((page -1 ) * 10, 10);
+		
+		/*
+		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
+		{
+			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
+			System.out.println("success");
+			result = "success";	
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+		*/
+			return JSonUtil.toJson(mdList);
 	}
 }

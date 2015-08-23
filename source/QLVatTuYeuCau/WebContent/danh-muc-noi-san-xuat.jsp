@@ -135,17 +135,33 @@
 							<td class="col"><%=noiSanXuat.getNsxTen() %></td>
 						</tr>
 						<%} }%>
-						<tr>
-							<th colspan="3">
-								<%
+<!-- 						<tr> -->
+<!-- 							<th colspan="3"> -->
+<%-- 								<% --%>
+
+<%-- 									for(int i = 0; i <= pageNum; i++) { %> --%>
+<%-- 										<input type="button" value="<%=i+1%>" class="page"> --%>
+<%-- 								<%} %> --%>
+<!-- 							</th> -->
+<!-- 						</tr> -->
+					</table>		
+				</div>				
+				
+				<div id = "paging" >
+							<table style ="border-style: none;">
+								<tr>
+									<td><a href=""> Previous<< </a></td>
+									<td>
+										<%
 									long pageNum = size / 10;
 									for(int i = 0; i <= pageNum; i++) { %>
 										<input type="button" value="<%=i+1%>" class="page">
 								<%} %>
-							</th>
-						</tr>
-					</table>		
-				</div>				
+									</td>
+									<td><a href="">>>Next </a> </td>
+								</tr>
+							</table>
+						</div>
 				
 				<div class="group-button">
 					<input type="hidden" name="action" value="deleteNsx">
@@ -163,8 +179,9 @@
 						<button type="button" class="btn" onclick="location.href='<%=siteMap.home%>'">
 							<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 						</button>
-		</div>
+				</div>
 		</form>
+		
 		<!-------------- --add-form-------------- -->
 		<form id="add-form" onsubmit="addNsx();">
 			<div class="input-table">

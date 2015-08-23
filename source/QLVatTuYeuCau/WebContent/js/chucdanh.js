@@ -11,6 +11,15 @@ function showForm(formId, check){
 }
 function preUpdateCd(formId, check) {
 	var cdMa = $('input:checkbox[name=cdMa]:checked').val();
+	var cdMaList = [];
+	$.each($("input[name='cdMa']:checked"), function(){            
+		cdMaList.push($(this).val());
+    });
+	if (cdMaList.length == 0)
+		alert('Bạn phải chọn 1 chức danh để thay đổi!!');
+	else if (cdMaList.length > 1)
+		alert('Bạn chỉ được chọn 1 chức danh để thay đổi!!');
+	else {
 	$.ajax({
 		url: "/QLVatTuYeuCau/preUpdateCd.html",	
 	  	type: "GET",
@@ -26,10 +35,71 @@ function preUpdateCd(formId, check) {
 	  		
 	  	}
 	});
+	}
 }
+
+$(document).ready(function() {
+	  	$('.page').click(function(){
+		var pageNumber = $(this).val();
+	    	$.ajax({
+				url: "/QLVatTuYeuCau/loadPageCd.html",	
+			  	type: "GET",
+			  	dateType: "JSON",
+			  	data: { "pageNumber": pageNumber},
+			  	contentType: 'application/json',
+			    mimeType: 'application/json',
+			  	
+			  	success: function(cdList) {
+			  		$('#view-table table .rowContent').remove();
+					if(cdList.length>0){
+						for(i = 0;i < cdList.length; i++ ) {
+							var cd = cdList[i] ;
+							var style = '';	
+							if (i % 2 == 0)
+								style = 'style=\"background : #CCFFFF;\"';
+							var str = '';
+							str = '<tr class=\"rowContent\" ' + style + '>'
+								+ '<td class=\"left-column\"><input type=\"checkbox\" name=\"cdMa\" value=\"' 
+								+ cd.cdMa +'\" class=\"checkbox\"></td>'
+								+ '<td class=\"col\">' + cd.cdMa + '</td>'
+								+ '<td class=\"col\">' + cd.cdTen + '</td>'
+								+ '</tr>';
+							$('#view-table table tr:first').after(str);
+						}
+					}
+			  	}
+			});
+	    });	
+	})   
+	$(document).ready(function() {
+$('#add-form').keypress(function(e) {
+ var key = e.which;
+ if(key == 13)  // the enter key code
+  {
+	 addCd();
+    return false;  
+  }
+});   
+});   
+$(document).ready(function() {
+$('#update-form').keypress(function(e) {
+ var key = e.which;
+ if(key == 13)  // the enter key code
+  {
+    updateCd();
+    return false;  
+  }
+});   
+});  
 function confirmDeleteCd(){
 	var cdMa = $('input:checkbox[name=cdMa]:checked').val();
-	if (confirm('Bạn có chắc xóa ' + cdMa))
+	var cdMaList = [];
+	$.each($("input[name='cdMa']:checked"), function(){            
+		cdMaList.push($(this).val());
+    });
+	if (cdMaList.length == 0)
+		alert('Bạn phải chọn 1 hoặc nhiều chức danh để xóa!!');
+	else if (confirm('Bạn có chắc xóa chức danh có mã ' + cdMaList.join(", ")))
 		deleteCd(cdMa);
 }
 	

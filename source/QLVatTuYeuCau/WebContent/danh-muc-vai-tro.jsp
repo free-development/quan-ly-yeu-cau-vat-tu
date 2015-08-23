@@ -44,6 +44,7 @@
 
 	<%
     		ArrayList<VaiTro> listVaiTro = (ArrayList<VaiTro>) request.getAttribute("vaiTroList");
+			Long size = (Long) request.getAttribute("size");
     	%>
 	<div class="wrapper">
 		<div class="header">
@@ -120,7 +121,7 @@
 			<div id="main-content">
 
 				<form id="main-form">
-					<div id="view-table" class="scroll-nsx">
+					<div id="view-table">
 						<table>
 							<tr style="background: #199e5e">
 								<th class="left-column"><input type="checkbox"
@@ -132,7 +133,7 @@
 							if(listVaiTro != null) {
 							int count = 0;
 							for(VaiTro vaiTro : listVaiTro) {count++ ;%>
-							<tr
+							<tr class="rowContent"
 								<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 								<td class="left-column"><input type="checkbox" name="vtId"
 									value="<%=vaiTro.getVtId() %>" class="checkbox"></td>
@@ -142,7 +143,23 @@
 							<%} }%>
 						</table>
 					</div>
-
+					
+					<div id = "paging" >
+							<table style ="border-style: none;">
+								<tr>
+									<td><a href=""> Previous<< </a></td>
+									<td>
+										<%
+											long pageNum = size / 10;
+											for(int i = 0; i <= pageNum; i++) { %>
+												<input type="button" value="<%=i+1%>" class="page">
+										<%} %>
+									</td>
+									<td><a href="">>>Next </a> </td>
+								</tr>
+							</table>
+						</div>
+					
 					<div class="group-button">
 						<input type="hidden" name="action" value="deleteVaiTro">
 						<button type="button" class="button"

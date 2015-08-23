@@ -23,13 +23,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import util.JSonUtil;
+import dao.ChatLuongDAO;
 import dao.VatTuDAO;
 import dao.CTVatTuDAO;
 
 @Controller
 public class CtvtController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	int page = 1;
    @RequestMapping("/manageCtvt")
 	protected ModelAndView manageCtvt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VatTuDAO vatTuDAO = new VatTuDAO();
@@ -71,7 +72,9 @@ public class CtvtController extends HttpServlet {
 			return new ModelAndView("danh-muc-vat-tu", "vatTuList", vatTuList);
 		}
 		if("manageCtvt".equalsIgnoreCase(action)) {
-			ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) new CTVatTuDAO().getAllCTVatTu();
+			long size = ctVatTuDAO.size();
+			ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) ctVatTuDAO.limit(page, 10);
+			request.setAttribute("size", size);
 			return new ModelAndView("danh-muc-chi-tiet-vat-tu", "ctVatTuList", ctVatTuList);
 		}
 		return new ModelAndView("login");
@@ -153,5 +156,30 @@ public class CtvtController extends HttpServlet {
 		CTVatTu vt = new CTVatTu(Integer.parseInt(ctvtId));
 		new CTVatTuDAO().deleteCTVatTu(ctvtId);
 		return JSonUtil.toJson(ctvtId);
+	}
+	
+	@RequestMapping(value="/loadPageCtvt", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String loadPageCtvt(@RequestParam("pageNumber") String pageNumber) {
+		String result = "";
+		System.out.println("MA: " + pageNumber);
+		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+		int page = Integer.parseInt(pageNumber);
+		ArrayList<CTVatTu> ctvtList = (ArrayList<CTVatTu>) ctvtDAO.limit((page -1 ) * 10, 10);
+		
+		/*
+		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
+		{
+			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
+			System.out.println("success");
+			result = "success";	
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+		*/
+			return JSonUtil.toJson(ctvtList);
 	}
 }

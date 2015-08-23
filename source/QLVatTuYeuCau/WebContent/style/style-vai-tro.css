@@ -21,7 +21,18 @@
 .right-column {
 	width: 430px;
 }
-
+#paging table {
+	margin: 0 auto;
+	margin-top: 20px;
+	border-style: none;
+}
+#paging table tr td{
+	border-style: none;
+}
+#paging table tr td a {
+	color: blue;
+	font-size: 15px;
+}
 #add-form {
 	display: none;
 	width: 26%;;

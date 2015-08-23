@@ -44,6 +44,8 @@
     	ArrayList<CTVatTu> listCTVatTu = (ArrayList<CTVatTu>) request.getAttribute("ctVatTuList");
    		ArrayList<NoiSanXuat> listNoiSanXuat = (ArrayList<NoiSanXuat>) request.getAttribute("noiSanXuatList");
    		ArrayList<ChatLuong> listChatLuong = (ArrayList<ChatLuong>) request.getAttribute("chatLuongList");
+   		Long size = (Long) request.getAttribute("size");
+   		
     %>
 	<div class="wrapper">
 		<div class="header">
@@ -154,7 +156,7 @@
 			<!--
                     
 -->
-			<div id="view-table" class="scroll-chi-tiet">
+			<div id="view-table-vat-tu">
 
 				<table>
 					<tr style="background: #199e5e">
@@ -173,7 +175,7 @@
 							int count = 0;
 							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
 
-					<tr
+					<tr class="rowContent"
 						<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 						<td class="left-column"><input type="checkbox" name="vtMa"
 							value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
@@ -190,6 +192,24 @@
 
 				</table>
 			</div>
+
+			
+				<div id = "paging" >
+							<table style ="border-style: none;">
+								<tr>
+									<td><a href=""> Previous<< </a></td>
+									<td>
+										<%
+											long pageNum = size / 10;
+											for(int i = 0; i <= pageNum; i++) { %>
+												<input type="button" value="<%=i+1%>" class="page">
+										<%} %>
+									</td>
+									<td><a href="">>>Next </a> </td>
+								</tr>
+							</table>
+						</div>
+
 
 			<div class="group-button">
 

@@ -62,6 +62,15 @@
 		function preEditVattu(formId, check){
 			vtMa = $('input:checkbox[name=vtMa]:checked').val();
 			//alert(vtMa);
+			var vtMaList = [];
+			$.each($("input[name='vtMa']:checked"), function(){            
+				vtMaList.push($(this).val());
+		    });
+			if (vtMaList.length == 0)
+				alert('Bạn phải chọn 1 vật tư để thay đổi!!');
+			else if (vtMaList.length > 1)
+				alert('Bạn chỉ được chọn 1 vật tư để thay đổi!!');
+			else {
 				$.ajax({
 					url: "/QLVatTuYeuCau/preEditVattu.html",
 					type: "GET",
@@ -81,7 +90,7 @@
 					
 				});
 		}
-
+		}
 		function confirmUpdateVattu(){
 			var vtMaUpdate = $('input:text[name=vtMaUpdate]').val();
 			var vtTenUpdate = $('input:text[name=vtTenUpdate]').val();
@@ -124,9 +133,15 @@
  			}
  	}
  	function confirmDeleteVT(){
- 		vtMa = $('input:checkbox[name=vtMa]:checked').val();
- 		if (confirm('Bạn có chắc xóa ' + vtMa))
- 			deleteVattu(vtMa);
+ 		var vtMa = $('input:checkbox[name=vtMa]:checked').val();
+		var vtMaList = [];
+		$.each($("input[name='vtMa']:checked"), function(){            
+			vtMaList.push($(this).val());
+	    });
+		if (vtMaList.length == 0)
+			alert('Bạn phải chọn 1 hoặc nhiều vật tư để xóa!!');
+		else if (confirm('Bạn có chắc xóa vật tư có mã ' + vtMaList.join(", ")))
+			deleteVattu(vtMa);
  	}
 	
   	 function deleteVattu(vtMa) {
@@ -236,3 +251,59 @@
     function test1(){
     	$('#test select option[value='+3+']').prop('selected',true);
     }
+    
+    
+    $(document).ready(function() {
+ 	  	$('.page').click(function(){
+ 		var pageNumber = $(this).val();
+ 	    	$.ajax({
+ 				url: "/QLVatTuYeuCau/loadPageVatTu.html",	
+ 			  	type: "GET",
+ 			  	dateType: "JSON",
+ 			  	data: { "pageNumber": pageNumber},
+ 			  	contentType: 'application/json',
+ 			    mimeType: 'application/json',
+ 			  	
+ 			  	success: function(vtList) {
+ 			  		$('#view-table table .rowContent').remove();
+ 					if(vtList.length>0){
+ 						for(i = 0;i < vtList.length; i++ ) {
+ 							var vt = vtList[i] ;
+ 							var style = '';	
+ 							if (i % 2 == 0)
+ 								style = 'style=\"background : #CCFFFF;\"';
+ 							var str = '';
+ 							str = '<tr class=\"rowContent\" ' + style + '>'
+ 								+ '<td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' 
+ 								+ vt.vtMa +'\" class=\"checkbox\"></td>'
+ 								+ '<td class=\"col\">' + vt.vtMa + '</td>'
+ 								+ '<td class=\"col\">' + vt.vtTen + '</td>'
+ 								+ '<td class=\"col\">' + vt.dvt + '</td>'
+ 								+ '</tr>';
+ 							$('#view-table table tr:first').after(str);
+ 						}
+ 					}
+ 			  	}
+ 			});
+ 	    });	
+ 	})   
+ 	$(document).ready(function() {
+	$('#add-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+		 addVattu();
+	    return false;  
+	  }
+	});   
+});   
+$(document).ready(function() {
+	$('#update-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+	    updateVattu();
+	    return false;  
+	  }
+	});   
+});  
