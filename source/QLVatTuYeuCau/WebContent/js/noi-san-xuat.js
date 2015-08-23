@@ -14,23 +14,32 @@ function showForm(formId, check){
 }
 function preUpdateNsx(formId, check) {
 	var nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
-	
-	$.ajax({
-		url: "/QLVatTuYeuCau/preEditNsx.html",	
-	  	type: "GET",
-	  	dateType: "JSON",
-	  	data: { "nsxMa": nsxMa},
-	  	contentType: 'application/json',
-	    mimeType: 'application/json',
-	  	
-	  	success: function(nsx) {
-	  		
-		  	$('input:text[name=nsxMaUpdate]').val(nsx.nsxMa);
-		  	$('input:text[name=nsxTenUpdate]').val(nsx.nsxTen);
-	  		showForm(formId, check);	
-	  		
-	  	}
-	});
+	var nsxMaList = [];
+	$.each($("input[name='nsxMa']:checked"), function(){            
+		nsxMaList.push($(this).val());
+    });
+	if (nsxMaList.length == 0)
+		alert('Bạn phải chọn 1 nơi sản xuất để thay đổi!!');
+	else if (nsxMaList.length > 1)
+		alert('Bạn chỉ được chọn 1 nơi sản xuất để thay đổi!!');
+	else {
+		$.ajax({
+			url: "/QLVatTuYeuCau/preEditNsx.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "nsxMa": nsxMa},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	
+		  	success: function(nsx) {
+		  		
+			  	$('input:text[name=nsxMaUpdate]').val(nsx.nsxMa);
+			  	$('input:text[name=nsxTenUpdate]').val(nsx.nsxTen);
+		  		showForm(formId, check);	
+		  		
+		  	}
+		});
+	}
 }
 function confirmDelete(){
 	var nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
@@ -38,8 +47,9 @@ function confirmDelete(){
 	$.each($("input[name='nsxMa']:checked"), function(){            
 		nsxMaList.push($(this).val());
     });
-//    alert("My favourite sports are: " + favorite.join(", "));
-	if (confirm('Bạn có chắc xóa nơi sản xuất có mã ' + nsxMaList.join(", ")))
+	if (nsxMaList.length == 0)
+		alert('Bạn phải chọn 1 hoặc nhiều nơi sản xuất để xóa!!');
+	else if (confirm('Bạn có chắc xóa nơi sản xuất có mã ' + nsxMaList.join(", ")))
 		deleteNsx(nsxMa);
 }
 
@@ -193,8 +203,17 @@ $(document).ready(function() {
 	 if(key == 13)  // the enter key code
 	  {
 		 alert('ok');
-	    addNsx();
 	    return false;  
 	  }
 	});   
 });   
+$(document).ready(function() {
+	$('#update-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+	    updateNsx();
+	    return false;  
+	  }
+	});   
+});  

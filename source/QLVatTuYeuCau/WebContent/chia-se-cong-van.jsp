@@ -1,5 +1,4 @@
-﻿	<%@page import="sun.misc.GC.LatencyRequest"%>
-<%@page import="java.util.HashMap"%>
+﻿<%@page import="java.util.HashMap"%>
 <%@page import="model.CongVan"%>
 <%@page import="model.NguoiDung"%>
 <%@page import="model.VaiTro"%>
