@@ -27,7 +27,7 @@
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 		<% 
@@ -51,17 +51,28 @@
 	            
 	        }
 		%>
-		<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;">Báo cáo bảng đề nghị cấp vật tư</div>
+		<table style = "margin: 0 auto;width:960px;">
+		<tr>
+			<td style="text-align: left;">TỔNG CÔNG TY ĐIỆN LỰC THÀNH PHỐ CẦN THƠ</td>
+			<td style="text-align: right;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</td>
+			
+		<tr>
+			<td style="text-align: left;">Địa chỉ: 06 Nguyễn Trãi, Q.Ninh Kiều, TP.Cần Thơ.</td>
+			<td style="text-align: right;">Độc lập - Tự do - Hạnh phúc</td>
+			
+		</tr>
+		</table>
+		<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;margin-top:20px;">Báo cáo bảng đề nghị cấp vật tư</div>
 		<% if((ngaybd!=null)&&(ngaykt!=null)){%>
 			
 			<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
 			
 			<% }%>
 		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
-			<div id="view-table-baocao">
-					<table style="text-align: center;margin: 0 auto;bgcolor: none; color: black;border-style: dotted;border-width: 1px;">
+			<div id="view-table-bao-cao">
+					<table style="text-align: center;margin: 0 auto; color: black;border: solid 1px black;width:960px;">
 					<thead>
-							<tr bgcolor="#199e5e">
+						<tr bgcolor="#199e5e"  style= "border-style: solid;border-color:black;">
 							<th class="a-column">Số đến</th>
 							<th class="b-column">Ngày nhận</th>
 							<th class="c-column">Mã vật tư</th>
@@ -83,8 +94,9 @@
 								ArrayList<YeuCau> yeuCauList = yeuCauHash.get(congVan.getCvId());
 								for (YeuCau yeuCau : yeuCauList) {cnt++;
 								%>
-								<tr
-									<%if (cnt % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+								<tr 
+									<%if (cnt % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>
+									style= "border-style: solid;border-color:black black black black;">
 									<td class="a-column"><%=congVan.getSoDen() %></td>
 									<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
 									<td class="c-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
@@ -119,6 +131,7 @@
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 					</button>
 					<% } %>
+					 
 				</div>
 		</body>
 		</html>

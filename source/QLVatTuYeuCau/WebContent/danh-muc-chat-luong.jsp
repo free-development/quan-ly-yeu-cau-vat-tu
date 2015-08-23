@@ -40,6 +40,7 @@
 <body>
 	<%
     		ArrayList<ChatLuong> listChatLuong = (ArrayList<ChatLuong>) request.getAttribute("chatLuongList");
+			Long size = (Long) request.getAttribute("size");
     	%>
 	<div class="wrapper">
 		<div class="header">
@@ -95,7 +96,7 @@
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
 				</li>
-				<li><a href="">Quảnlý người dùng</a>
+				<li><a href="">Quản lý người dùng</a>
 					<ul>
 						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
 						<li><a href=""/>Khôi phục mật khẩu</li>
@@ -111,7 +112,7 @@
 		<div id="main-content">
 
 			<form id="main-form">
-				<div id="view-table" class="scroll">
+				<div id="view-table">
 					<table>
 						<tr style="background-color: #199e5e;">
 							<td class="left-column"><input type="checkbox" name=""
@@ -132,6 +133,7 @@
 							<td class="col"><%=chatLuong.getClTen() %></td>
 						</tr>
 						<%} }%>
+					
 					</table>
 				</div>
 				<div class="group-button">
@@ -156,8 +158,23 @@
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 					</button>
 				</div>
+				
 			</form>
-
+			<div id = "paging" >
+							<table style ="border-style: none;">
+								<tr>
+									<td><a href=""> Previous<< </a></td>
+									<td>
+										<%
+											long pageNum = size / 10;
+											for(int i = 0; i <= pageNum; i++) { %>
+												<input type="button" value="<%=i+1%>" class="page">
+										<%} %>
+									</td>
+									<td><a href="">>>Next </a> </td>
+								</tr>
+							</table>
+						</div>
 			<form id="add-form" method="get"
 				action="<%=siteMap.clManage + "?action=manageCl" %>" style="background-color: #DCEAF5;">
 				<div class="input-table">

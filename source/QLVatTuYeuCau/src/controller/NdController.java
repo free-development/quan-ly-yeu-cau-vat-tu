@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.CTNguoiDung;
 import model.ChatLuong;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.CTNguoiDungDAO;
+import dao.CTVatTuDAO;
 import dao.ChatLuongDAO;
 import dao.ChucDanhDAO;
 import dao.DonViDAO;
@@ -118,7 +120,6 @@ public class NdController extends HttpServlet {
 	public @ResponseBody String changePass(@RequestParam("msnv") String msnv, @RequestParam("passOld") String passOld
 			, @RequestParam("passNew") String passNew) {
 
-		System.out.println("OK");
 		String result = "";
 		if (new CTNguoiDungDAO().login(msnv, StringUtil.encryptMD5(passOld))) {
 			new CTNguoiDungDAO().updateCTNguoiDung(new CTNguoiDung(msnv, StringUtil.encryptMD5(passNew)));
@@ -130,23 +131,38 @@ public class NdController extends HttpServlet {
 		}
 		return JSonUtil.toJson(result);
 	}
-	
-	@RequestMapping(value="/loGin", method=RequestMethod.POST, 
-			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String loGin(@RequestParam("msnv") String msnv, @RequestParam("matkhau") String matkhau)
-			 {
-		System.out.println("OK");
-		String result = "";
-		if (new CTNguoiDungDAO().login(msnv, StringUtil.encryptMD5(matkhau))) 
-		{
-			result = "success";
+	@RequestMapping("/login")
+	public ModelAndView login (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		String msnv = request.getParameter("msnv");
+		String matKhau = request.getParameter("matkhau");
+		CTNguoiDungDAO ctndDAO = new CTNguoiDungDAO();
+		NguoiDungDAO ndDAO = new NguoiDungDAO();
+		boolean check = ctndDAO.login(msnv, StringUtil.encryptMD5(matKhau));
+		if (check) {
+			NguoiDung nguoiDung =  ndDAO. getNguoiDung(msnv);
+			session.setAttribute("nguoiDung", nguoiDung);
+			return new ModelAndView("index");
+		} else {
+			return new ModelAndView("login", "status", "fail");
 		}
-		else 
-		{
+	}
+/*	
+	@RequestMapping(value="/login", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String login(@RequestParam("msnv") String msnv, @RequestParam("matkhau") String matkhau)
+	{
+//		HttpSession session =  
+		String result = "";
+		if (new CTNguoiDungDAO().login(msnv, StringUtil.encryptMD5(matkhau))) {
+			result = "success";
+			
+		}
+		else {
 			result = "fail";
 		}
 		return JSonUtil.toJson(result);
 	}
 	
-
+*/
 }

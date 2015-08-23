@@ -60,7 +60,6 @@
 	width: 1300px;
 }
 #view-table-bao-cao table tr td {
-	border-style: dotted;
 	border-width: 1px;
 	margin: 0px;
 	border-spacing: 0px;
@@ -71,7 +70,6 @@
 }
 
 #view-table-bao-cao table tr th {
-	border-style: dotted;
 	width: 900px;
 	height: 40px;
 	color: white;

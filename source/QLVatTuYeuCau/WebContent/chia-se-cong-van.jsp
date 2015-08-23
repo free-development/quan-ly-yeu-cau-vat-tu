@@ -1,5 +1,4 @@
-﻿<%@page import="sun.misc.GC.LatencyRequest"%>
-<%@page import="java.util.HashMap"%>
+﻿<%@page import="java.util.HashMap"%>
 <%@page import="model.CongVan"%>
 <%@page import="model.NguoiDung"%>
 <%@page import="model.VaiTro"%>
@@ -19,22 +18,8 @@
 <!--		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">-->
 <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 		type="text/css" rel="stylesheet">
-<script type="text/javascript">
-		function showForm(formId, check){
-			if (check)
-				document.getElementById(formId).style.display="block";
-			else document.getElementById(formId).style.display="none";
-			var f = document.getElementById('main-form'), s, opacity;
-			s = f.style;
-			opacity = check? '10' : '100';
-			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-			s.filter = 'alpha(opacity='+opacity+')';
-			for(var i=0; i<f.length; i++) f[i].disabled = check;
-		}
-		function confirmDelete(){
-			return confirm('Bạn có chắc xóa');
-		}
-	</script>
+<script type="text/javascript" src="js/chia-se-cong-van.js"></script>
+<script type="text/javascript" src="js/check.js"js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
@@ -43,8 +28,8 @@
 	ArrayList<VaiTro> vaiTroList = (ArrayList<VaiTro>) session.getAttribute("vaiTroList");
 	ArrayList<NguoiDung> nguoiDungList = (ArrayList<NguoiDung>) session.getAttribute("nguoiDungList");
 	CongVan congVan = (CongVan) session.getAttribute("congVan");
-	
-	
+	HashMap<String,NguoiDung> vtNguoiDungHash = (HashMap<String,NguoiDung>) request.getAttribute("vtNguoiDungHash");
+	HashMap<String, HashMap<Integer, VaiTro>> vaiTroHash = (HashMap<String, HashMap<Integer, VaiTro>>) request.getAttribute("vaiTroHash");
 	%>
 	<div class="wrapper">
 		<div class="header">
@@ -79,24 +64,24 @@
 			<ul>
 				<li><a href="">Trang chủ</a></li>
 				<li><a href="">Danh mục</a>
-					<ul>
-						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
-								mục nơi sản xuất</a></li>
-						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
-								mục chất lượng</a></li>
-						<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
-								mục vật tư</a></li>
-						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
-								mục chi tiết vật tư</a></li>
-						<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
-								mục bộ phận sử dụng</a></li>
-						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
-								mục mục đích</a></li>
-						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
-						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
-								mục chức danh</a></li>
-						
-					</ul>
+							<ul>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
+										mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
+										mục chất lượng</a></li>
+								<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
+										mục vật tư</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+										mục chi tiết vật tư</a></li>
+								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
+										mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
+										mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+										mục chức danh</a></li>
+								
+							</ul>
 				</li>
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
@@ -105,7 +90,7 @@
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
 				</li>
-				<li><a href="">Quảnlý người dùng</a>
+				<li><a href="">Quản lý người dùng</a>
 					<ul>
 						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
 						<li><a href=""/>Khôi phục mật khẩu</li>
@@ -121,7 +106,7 @@
 				<div id="title-content">Chia sẻ công văn</div>
 				<form id="main-form" action="<%=siteMap.updateChiaSeCv%>" method="get">
 					
-					<div id="input-table" style="width: 75%">
+					<div id="input-table" style="width: 75%; margin-left: 25px;">
 						<table>
 							<tr>
 								<th style="text-align: ce"">Số công văn:</th>
@@ -136,7 +121,7 @@
 <!-- 					<br /> -->
 <%-- 					<form action="<%=siteMap.chiaSeCv%>" method="get"> --%>
 					<div id="view-table" >
-						<table style="margin: 0 auto;" class="scroll-chia-se" > 
+						<table style="margin: 0 auto; margin-top:10px; max-height: 420px;width: 960px;display: auto;margin: 0 auto;overflow: scroll;" > 
 							<tr style="background-color: #199e5e;">
 
 								<th style="width: 100px;">Mã nhân viên</th>
@@ -149,12 +134,23 @@
 <!-- 								<th class="six-column">...</th> -->
 
 							</tr>
-							<% int count = 0;for(NguoiDung nguoiDung : nguoiDungList) { count ++;%>
-							<tr <% if (count % 2 ==0) out.println("style=\"background : #CCFFFF;\"");%>>
+							<% int count = 0;for(NguoiDung nguoiDung : nguoiDungList) { 
+								count ++;
+								String msnv = nguoiDung.getMsnv();
+							%>
+							<tr <% if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 								<td class="tbody-nguoidung"><%=nguoiDung.getMsnv() %></td>
 								<td class="tbody-nguoidung"><%=nguoiDung.getHoTen() %></td>
-								<% for(VaiTro vaiTro : vaiTroList) {%>
-								<td class="checkbox"><input type="checkbox" name="vaiTro" value="<%	out.print(nguoiDung.getMsnv() + "#" + vaiTro.getVtId()); %>"></td>
+								<% for(VaiTro vaiTro : vaiTroList) {
+									int vtId = vaiTro.getVtId();
+									HashMap<Integer, VaiTro> vtHash = vaiTroHash.get(msnv);
+									boolean check = false;
+									if (vtNguoiDungHash.get(msnv) != null && vtHash.get(vtId) != null)
+										check = true;
+								%>
+								<td class="checkbox">
+									<input type="checkbox" name="vaiTro" <%if (check) out.print("checked "); %> value="<%	out.print(msnv + "#" + vtId); %>" >
+								</td>
 								<%} %>
 							</tr>
 							<%} %>
@@ -171,35 +167,49 @@
 						<button type="button" class="btn" onclick="showForm('main-form')">
 							<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 						</button>
+					</div>
 				</form>
 				</div>
 				
 				<div id="view-chia-se">
+				<form action=""></form>
 				<%
-					HashMap<String, NguoiDung> nguoiDungHash = (HashMap<String, NguoiDung>) request.getAttribute("nguoiDungHash");
-					HashMap<String, ArrayList<VaiTro>> vaiTroHash = (HashMap<String, ArrayList<VaiTro>>) request.getAttribute("vaiTroHash");
-					if (nguoiDungHash.size()!=0) {
+					if (vtNguoiDungHash.size() != 0 || vtNguoiDungHash == null) {
 				%>
+<<<<<<< HEAD
 					<table>
-						<tr><th><input type = "checkbox" class="checkAll" name=""></th><th>Msnv</th><th>Họ tên</th><th>Vai trò</th></tr>
+						<tr><th><input type = "checkbox" class="checkAll" name="checkAll"></th><th>Msnv</th><th>Họ tên</th><th>Vai trò</th></tr>
+=======
+				<div id="title-content">Công việc đã chia sẽ</div>
+				<div id="view-table-chia-se">
+					<table >
+						<tr bgcolor= "#199e5e">
+						<th style="text-align: center;"><input type = "checkbox" class="checkAll" name=""></th>
+						<th>MSNV</th>
+						<th>Họ tên</th>
+						<th>Vai trò</th>
+						</tr>
+>>>>>>> 50ee70863990f3fbc9c5bb3e7a558c77fd6db693
 						<%
 							int i = 0;
-							for(String key : nguoiDungHash.keySet()) {
-								ArrayList<VaiTro> vtList = vaiTroHash.get(key);
-								String hoTen = nguoiDungHash.get(key).getHoTen();
+							for(String msnv :  vtNguoiDungHash.keySet()) {
+								HashMap<Integer, VaiTro> vtHash = vaiTroHash.get(msnv);
+								NguoiDung nguoiDung =  vtNguoiDungHash.get(msnv);
+								String hoTen = nguoiDung.getHoTen();
 								i++;
 						%>
-						<tr  <% if (count % 2 ==0) out.println("style=\"background : #CCFFFF;\"");%>>
-							<td><input type = "checkbox" class="checkbox" name = "msnv" value="<%=key%>"></td>
-							<td><%=key %></td>
+						<tr  <% if (i % 2 ==0) out.println("style=\"background : #CCFFFF;\"");%>>
+							<td style="text-align: center;"><input type = "checkbox" class="checkbox" name = "msnv" value="<%=msnv%>"></td>
+							<td><%=msnv %></td>
 							<td><%=hoTen %></td>
 							<td>
 								<%
 									StringBuilder str = new StringBuilder("");
-									for(VaiTro vaiTro : vaiTroList) {
+									for(Integer vtId : vtHash.keySet()) {
+										VaiTro vaiTro = vtHash.get(vtId);
 										str.append(vaiTro.getVtTen() + "<br>");
 									}
-									int end = str.length() - 1;
+									int end = str.length();
 									str.delete(end - 4, end);
 									out.println(str.toString());
 								%>
@@ -208,6 +218,16 @@
 						</tr>
 						<%}%>
 					</table>
+					<div class="group-button">
+					<input type="hidden" value="save" name="action">
+						<button class="btn">
+							<i class="fa fa-pencil fa-fw"></i>&nbsp;sửa
+						</button>
+						<button type="reset" class="btn">
+							<i class="fa fa-trash-o"></i>&nbsp;&nbsp;xóa
+						</button>
+					</div>
+				</div>
 				<%} else out.println("Chưa chia sẻ công văn");%>
 				</div>
 				

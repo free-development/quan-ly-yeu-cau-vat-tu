@@ -51,7 +51,7 @@ public class VattuController extends HttpServlet {
 				return new ModelAndView("danh-muc-vat-tu");
 			}
 			else{
-				vatTuDAO.addVatTu(new VatTu(vtMa,vtTen,dvt));
+				vatTuDAO.addVatTu(new VatTu(vtMa,vtTen,dvt,0));
 				ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
 				return new ModelAndView("danh-muc-vat-tu", "vatTuList", vatTuList);
 			}
@@ -61,7 +61,7 @@ public class VattuController extends HttpServlet {
 			String[] vtMaList = request.getParameterValues("vtMa");
 			for(String s : vtMaList) {
 				
-					vatTuDAO.deleteVatTu(vatTuDAO.getVatTu(s));
+					vatTuDAO.deleteVatTu(s);
 			}
 			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.getAllVatTu();
 			return new ModelAndView("danh-muc-vat-tu", "vatTuList", vatTuList);
@@ -93,7 +93,7 @@ public class VattuController extends HttpServlet {
 		System.out.println("MA: "+vtMa);
 		if(new VatTuDAO().getVatTu(vtMa) == null)
 		{
-			new VatTuDAO().addVatTu(new VatTu(vtMa, vtTen, dvt));
+			new VatTuDAO().addVatTu(new VatTu(vtMa, vtTen, dvt,0));
 			System.out.println("success");
 			result = "success";
 			
@@ -110,7 +110,7 @@ public class VattuController extends HttpServlet {
 		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String updateVattu(@RequestParam("vtMaUpdate") String vtMaUpdate, @RequestParam("vtTenUpdate") String vtTenUpdate, @RequestParam("dvtUpdate") String dvtUpdate) {
 
-		VatTu vt = new VatTu(vtMaUpdate, vtTenUpdate, dvtUpdate);
+		VatTu vt = new VatTu(vtMaUpdate, vtTenUpdate, dvtUpdate,0);
 		new VatTuDAO().updateVatTu(vt);
 		return JSonUtil.toJson(vt);
 	}
@@ -118,7 +118,7 @@ public class VattuController extends HttpServlet {
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteVattu(@RequestParam("vtMa") String vtMa) {
 		VatTu vt = new VatTu(vtMa);
-		new VatTuDAO().deleteVatTu(vt);
+		new VatTuDAO().deleteVatTu(vtMa);
 		return JSonUtil.toJson(vtMa);
 	}
 }

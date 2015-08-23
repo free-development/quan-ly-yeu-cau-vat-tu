@@ -63,7 +63,13 @@
 		out.println(request.getServletPath() + "<br>");
 		out.println(request.getRequestURI() + "<br>");
 // 		System.out.println(request.get);
-		out.println("vÕ pHÚ qUỚI");
+		NoiSanXuatDAO chatLuongDAO = new NoiSanXuatDAO();
+// 		chatLuongDAO.addChatLuong(new ChatLuong("TTT","Tốt",0));
+		NoiSanXuat cl = chatLuongDAO.getNoiSanXuat("AFC");
+		out.println(cl.getNsxTen());
+		
+		
+		
 	%>
 </body>
 </html>

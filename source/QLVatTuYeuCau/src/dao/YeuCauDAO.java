@@ -56,6 +56,7 @@ public class YeuCauDAO {
 		String sql = "update YeuCau set daXoa = 1 where ycId = " + ycId ;		
 		Query query = session.createQuery(sql);
 		query.executeUpdate();
+		
 		/*
 		 Cach 2 dung giong nhu Prepare statement
 			 String sql = "update YeuCau set daXoa = 1 where ycId = :ycId";

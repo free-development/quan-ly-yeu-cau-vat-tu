@@ -395,3 +395,20 @@ insert into NGUOIDUNG values ('b1203958', 'TK', 'Le Thi Cam Tien', 'An giang', '
 insert into NGUOIDUNG values ('b1203957', 'TP', 'Nguyen Thi Cam Nhung', 'An giang', 'quoipro94@gmail.com', '0979921380');
 insert into NGUOIDUNG values ('b1203955', 'VT', 'Truong Trung Hieu', 'An giang', 'quoipro94@gmail.com', '0979921380');
 insert into NGUOIDUNG values ('b1203954', 'NV', 'Truong Quoc huy', 'An giang', 'quoipro94@gmail.com', '0979921380');
+
+
+insert into CHUCDANH value('AD','Admin');
+insert into NGUOIDUNG values ('admin123','Ad','Vo Phu Quoi','An Giang','quoipro94@gmail.com','0979921380');
+insert into CTNGUOIDUNG values ('admin123' ,md5('123456789'));
+
+alter table VAITRO add DAXOA int(2) not null;
+alter table CHUCDANH add DAXOA int(2) not null;
+alter table NOISANXUAT add DAXOA int(2) not null;
+alter table MUCDICH add DAXOA int(2) not null;
+alter table VATTU add DAXOA int(2) not null;
+alter table CTVATTU add DAXOA int(2) not null;
+
+update VAITRO set DAXOA = 0;
+update CHUCDANH set DAXOA = 0;
+update NOISANXUAT set DAXOA = 0;
+update MUCDICH set DAXOA = 0;

@@ -19,6 +19,14 @@
 	type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/noi-san-xuat.js"></script>
+<script type="text/javascript">
+// $(document).ready(function() {
+// 	  	$('.page').click(function(){
+// 	    	var page = $(this).val();
+// 	    	alert(page);
+// 	    });	
+// 	});
+</script>
 <meta charset="UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
@@ -30,6 +38,7 @@
     	response.setCharacterEncoding("UTF-8");
     	
     		ArrayList<NoiSanXuat> listNoiSanXuat = (ArrayList<NoiSanXuat>) request.getAttribute("noiSanXuatList");
+    		Long size = (Long) request.getAttribute("size");
     	%>
 	<div class="wrapper">
 		<div class="header">
@@ -90,7 +99,7 @@
 						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
 					</ul>
 				</li>
-				<li><a href="">Quảnlý người dùng</a>
+				<li><a href="">Quản lý người dùng</a>
 					<ul>
 						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
 						<li><a href=""/>Khôi phục mật khẩu</li>
@@ -108,7 +117,7 @@
 		<div id="main-content">
 			
 			<form id="main-form">
-				<div id="view-table" class="scroll-nsx">
+				<div id="view-table">
 					<table>
 						<tr style="background:#199e5e">
 							<th class="left-column"><input type="checkbox" class="checkAll"></th>
@@ -119,13 +128,22 @@
 							if(listNoiSanXuat != null) {
 							int count = 0;
 							for(NoiSanXuat noiSanXuat : listNoiSanXuat) { count++ ;%>
-						<tr
+						<tr class="rowContent" 
 							<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td class="left-column"><input type="checkbox" name="nsxMa" value="<%=noiSanXuat.getNsxMa() %>" class="checkbox"></td>
 							<td class="col"><%=noiSanXuat.getNsxMa() %></td>
 							<td class="col"><%=noiSanXuat.getNsxTen() %></td>
 						</tr>
 						<%} }%>
+						<tr>
+							<th colspan="3">
+								<%
+									long pageNum = size / 10;
+									for(int i = 0; i <= pageNum; i++) { %>
+										<input type="button" value="<%=i+1%>" class="page">
+								<%} %>
+							</th>
+						</tr>
 					</table>		
 				</div>				
 				
@@ -148,7 +166,7 @@
 		</div>
 		</form>
 		<!-------------- --add-form-------------- -->
-		<form id="add-form" method="get" action="<%=siteMap.nsxManage + "?action=manageNsx"%>">
+		<form id="add-form" onsubmit="addNsx();">
 			<div class="input-table">
 				<table>
 					<div class="form-title">Thêm nơi sản xuất</div>
@@ -160,7 +178,7 @@
 					</tr>
 					<tr>
 						<th class="label"><label for="MNSX">Tên NSX</label></th>
-						<td><input name="nsxTen" size="30px" align=left type="text" onkeypress="changensxTen();"
+						<td><input name="nsxTen" id = "a" size="30px" align=left type="text" onkeypress="changensxTen();"
 							class="text" required
 							title="Tên nơi sản xuất không được để trống"><div id="requirensxTen" style="color: red"></td>
 					</tr>

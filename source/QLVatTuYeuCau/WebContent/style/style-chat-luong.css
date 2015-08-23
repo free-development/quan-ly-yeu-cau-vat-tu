@@ -15,7 +15,18 @@
 	width: 40px;
 	text-align: center;
 }
-
+#paging table {
+	margin: 0 auto;
+	margin-top: 20px;
+	border-style: none;
+}
+#paging table tr td{
+	border-style: none;
+}
+#paging table tr td a {
+	color: blue;
+	font-size: 15px;
+}
 .mid-column {
 	width: 70px;
 	text-align: center;

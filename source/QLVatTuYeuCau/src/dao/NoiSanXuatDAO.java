@@ -41,9 +41,27 @@ public class NoiSanXuatDAO {
 		session.getTransaction().commit();
 		return noiSanXuatList;
 	}
+	public List<NoiSanXuat> limit(int first, int limit) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(NoiSanXuat.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+//		Criterion limitRow = Restrictions.
+		cr.add(xoaCd);
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<NoiSanXuat> noiSanXuatList = (ArrayList<NoiSanXuat>) cr.list(); 
+		session.getTransaction().commit();
+		return noiSanXuatList;
+	}
+	
 	public void addNoiSanXuat(NoiSanXuat noiSanXuat){
 		session.beginTransaction();
 		session.save(noiSanXuat);
+		session.getTransaction().commit();
+	}
+	public void addOrUpdateNoiSanXuat(NoiSanXuat noiSanXuat){
+		session.beginTransaction();
+		session.saveOrUpdate(noiSanXuat);
 		session.getTransaction().commit();
 	}
 	public void updateNoiSanXuat(NoiSanXuat noiSanXuat){
@@ -58,8 +76,23 @@ public class NoiSanXuatDAO {
 		query.executeUpdate();
 		session.getTransaction().commit();
 	}
+	public long size() {
+		session.beginTransaction();
+		String sql = "select count(nsxMa) from NoiSanXuat";
+		Query query =  session.createQuery(sql);
+		long size = (long) query.list().get(0);
+		session.getTransaction().commit();
+		return size;
+		
+	}
 	public static void main(String[] args) {
-		new NoiSanXuatDAO().deleteNoiSanXuat("Vn5");
+//		new NoiSanXuatDAO().deleteNoiSanXuat("Vn5");
+//		System.out.println(new NoiSanXuatDAO().size());
+		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().limit(0, 10);
+		int count = 0;
+		for (NoiSanXuat nsx : nsxList) {
+			count++;
+			System.out.println(count + nsx.getNsxTen()); }
 	}
 	
 }

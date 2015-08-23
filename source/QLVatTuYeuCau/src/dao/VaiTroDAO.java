@@ -71,14 +71,7 @@ public class VaiTroDAO {
 		session.getTransaction().commit();
 		return l;
 	}
-	public ArrayList<VaiTro> toVaiTro(ArrayList<VTCongVan> vtcvList) {
-		ArrayList<VaiTro> vaiTroList = new ArrayList<VaiTro>();
-		for (VTCongVan vtCongVan : vtcvList) {
-			VaiTro vaiTro = getVaiTro(vtCongVan.getVtId());
-			vaiTroList.add(vaiTro);
-		}
-		return vaiTroList;
-	}
+	
 	public static void main(String[] args) {
 		new VaiTroDAO().deleteVaiTro("2");
 	}

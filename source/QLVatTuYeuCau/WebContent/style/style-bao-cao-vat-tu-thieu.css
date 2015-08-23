@@ -66,7 +66,7 @@
 }
 
 #view-table-bao-cao table tr td {
-	border-style: dotted;
+	border: 1px solid black;
 	border-width: 1px;
 	margin: 0px;
 	border-spacing: 0px;
@@ -77,16 +77,13 @@
 }
 
 #view-table-bao-cao table tr th {
-	border-style: dotted;
-	width: 900px;
-	height: 40px;
-	color: white;
+	border: 1px solid black;
 	border-width: 1px;
 	margin: 0px;
 	border-spacing: 0px
 	padding-left: 10px;
 	padding-right: 10px;
-	background-color: #199e5e;
+	
 	
 }
 
@@ -183,9 +180,8 @@
 .scroll {
 	max-height: 420px;
 	/*height: 300px;*/
-	width: 1024px;
+	width: 900px;
 	display: auto;
-	border: 1px solid #CCCCCC;
 	margin: 1em 0;
 	overflow: scroll;
 }
