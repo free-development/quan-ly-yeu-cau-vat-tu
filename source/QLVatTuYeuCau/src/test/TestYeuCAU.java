@@ -55,10 +55,10 @@ public class TestYeuCAU {
 		ChatLuong chatLuong8 = new ChatLuong("CL8", "Tot TotS",0);
 		ChatLuong chatLuong0 = new ChatLuong("CL0", "Tot TotS",0);
 		
-		NoiSanXuat nsx = new NoiSanXuat("Vn4", "Viet Nam");
-		NoiSanXuat nsx5 = new NoiSanXuat("Vn5", "Viet Nam");
-		NoiSanXuat nsx9 = new NoiSanXuat("Vn9", "Viet Nam");
-		NoiSanXuat nsx0 = new NoiSanXuat("Vn0", "Viet Nam");
+		NoiSanXuat nsx = new NoiSanXuat("Vn4", "Viet Nam",0);
+		NoiSanXuat nsx5 = new NoiSanXuat("Vn5", "Viet Nam",0);
+		NoiSanXuat nsx9 = new NoiSanXuat("Vn9", "Viet Nam",0);
+		NoiSanXuat nsx0 = new NoiSanXuat("Vn0", "Viet Nam",0);
 		
 		
 		VatTu vatTu = new VatTu("VT4", "Tru dien", "cai");
@@ -90,7 +90,7 @@ public class TestYeuCAU {
 		
 
 		
-		MucDich mucDich = new MucDich("SC5", "Sua chua lon");
+		MucDich mucDich = new MucDich("SC5", "Sua chua lon",0);
 
 		File file = new File("~/study/linux command", "File hoc linux command can ban", 1);
 		
@@ -112,8 +112,8 @@ public class TestYeuCAU {
 
 		
 		
-		MucDich mucDich5 = new MucDich("SC5", "Sua chua lon");
-		MucDich mucDich4 = new MucDich("SC4", "Sua chua lon");
+		MucDich mucDich5 = new MucDich("SC5", "Sua chua lon",0);
+		MucDich mucDich4 = new MucDich("SC4", "Sua chua lon",0);
 		mucDichDAO.addMucDich(mucDich4);
 		mucDichDAO.addMucDich(mucDich5);
 		
@@ -145,23 +145,24 @@ public class TestYeuCAU {
 		
 		
 //
-//		YeuCau yeuCau2 = new YeuCau(id, ctVatTu5, 50, 0);
-//		DonVi donVi = new DonVi("SX9", "Don vi 3", "0977874271", "tien@gmail.com", "Can Tho");
-//		MucDich mucDich = new MucDich("SC7", "Sua chua lon");
-//		File file1 = new File("~/study/linux command", "File hoc linux command can ban", 1);
-//
-//		CongVan congVan4 = new CongVan(4, DateUtil.convertToSqlDate(new java.util.Date()), "123", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("CGQ", "Chua giai quyet"), donVi,0);
-//
-//		new MucDichDAO().addMucDich(mucDich);
-//		new DonViDAO().addDonVi(donVi);
-//		new CongVanDAO().addCongVan(congVan);
-//		new FileDAO().addFile(file);
-//		
-////		YeuCau yeuCau = new YeuCau(3, ctVatTu, 90, 0);
-//		YeuCau yeuCau3 = new YeuCau(id, ctVatTu, 90, 0);
-//
-//		new YeuCauDAO().addYeuCau(yeuCau);
-//		
+		YeuCau yeuCau2 = new YeuCau(id, ctVatTu5,50, 50, 0);
+		DonVi donVi = new DonVi("SX9", "Don vi 3", "0977874271", "tien@gmail.com", "Can Tho",0);
+		MucDich mucDich2 = new MucDich("SC7", "Sua chua lon",0);
+		File file1 = new File("~/study/linux command", "File hoc linux command can ban", 1);
+
+		CongVan congVan4 = new CongVan(4, DateUtil.convertToSqlDate(new java.util.Date()), "123", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich, new TrangThai("CGQ", "Chua giai quyet"), donVi,0);
+		CongVan congVan5 = new CongVan(5, DateUtil.convertToSqlDate(new java.util.Date()), "123", DateUtil.convertToSqlDate(new java.util.Date()), "Khong co trich yeu", "Khong co bu phe", mucDich2, new TrangThai("DGQ", "Dang giai quyet"), donVi,0);
+		
+		new MucDichDAO().addMucDich(mucDich2);
+		new DonViDAO().addDonVi(donVi);
+		new CongVanDAO().addCongVan(congVan4);
+		new FileDAO().addFile(file);
+		
+		
+		
+
+		new YeuCauDAO().addYeuCau(yeuCau2);
+		
 
 
 		

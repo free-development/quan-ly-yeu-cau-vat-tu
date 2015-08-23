@@ -1,9 +1,11 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.VatTu;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -44,5 +46,28 @@ public class VatTuDAO {
 		session.delete(vatTu);
 		session.getTransaction().commit();
 	}
+
+
+public ArrayList<String> startWith(String i) {
+		session.beginTransaction();
+
+		String sql = "select vtTen from VatTu where vtTen LIKE :vtTen";
+		Query query = session.createQuery(sql);
+		query.setParameter("vtTen", i+"%");
+		ArrayList<String> list = (ArrayList<String>) query.list();
+		
+		session.getTransaction().commit();
+		return list;
+	}
+public ArrayList<String> startWithMa(String i) {
+	session.beginTransaction();
+
+	String sql = "select vtMa from VatTu where vtMa LIKE :vtMa";
+	Query query = session.createQuery(sql);
+	query.setParameter("vtMa", i+"%");
+	ArrayList<String> list = (ArrayList<String>) query.list();
 	
+	session.getTransaction().commit();
+	return list;
+}
 }

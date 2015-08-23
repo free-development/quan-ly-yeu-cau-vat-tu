@@ -151,11 +151,8 @@
 				</table>
 			</div>
 
-			<!--
-                    
--->
+			
 			<div id="view-table" class="scroll-chi-tiet">
-
 				<table>
 					<tr style="background: #199e5e">
 						<th class="left-column"><input type="checkbox"

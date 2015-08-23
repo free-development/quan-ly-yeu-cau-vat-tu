@@ -82,6 +82,10 @@ public class CtvtController extends HttpServlet {
 			
 			CTVatTuDAO ctVatTuDAO = new CTVatTuDAO();
 			ArrayList<CTVatTu> listCTVatTu = (ArrayList<CTVatTu>) ctVatTuDAO.getCTVTu(vtMa);
+			if(listCTVatTu.size() == 0) {
+				VatTu vatTu = new VatTuDAO().getVatTu(vtMa);
+				return JSonUtil.toJson(vatTu);
+			}
 			//System.out.println(listCTVatTu.get(0).getVatTu().getVtTen());
 			return JSonUtil.toJson(listCTVatTu);
 		}

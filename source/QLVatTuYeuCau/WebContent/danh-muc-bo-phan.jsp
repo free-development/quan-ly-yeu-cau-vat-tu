@@ -112,7 +112,7 @@
 								mục chức danh</a></li>
 						
 					</ul>
->>>>>>> 56a8def5473945091642c412d3a965ee178bd745
+
 				</li>
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
@@ -128,15 +128,15 @@
 					</ul>
 				</li>
 				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
-<<<<<<< HEAD
+
 				</ul>
 					<div class="clear"></div>
 				</div>
-=======
+
 			</ul>
 			<div class="clear"></div>
 		</div>
->>>>>>> 56a8def5473945091642c412d3a965ee178bd745
+
 
 		<div id="main-content">
 			<div id="title-content">Danh mục bộ phận sử dụng</div>

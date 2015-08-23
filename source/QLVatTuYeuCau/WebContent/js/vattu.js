@@ -124,9 +124,29 @@
  			}
  	}
  	function confirmDeleteVT(){
- 		vtMa = $('input:checkbox[name=vtMa]:checked').val();
- 		if (confirm('Bạn có chắc xóa ' + vtMa))
- 			deleteVattu(vtMa);
+ 		vtMa = $('input:checkbox[name=vtMa]:checked').val();	
+ 		$.ajax({
+ 			url: "/QLVatTuYeuCau/comfirmdeleteVattu.html",	
+ 		  	type: "GET",
+ 		  	dateType: "JSON",
+ 		  	data: { "vtMa": vtMa},
+ 		  	contentType: 'application/json',
+ 		    mimeType: 'application/json',
+ 		    
+ 		    
+ 		  	success: function(result) {
+ 		  		if(result == "success")
+ 		  			{
+ 		  			if (confirm('Bạn có chắc xóa ' + vtMa))
+ 		  	 			deleteVattu(vtMa);	  			
+ 		  			}
+ 		  		else
+ 		  			{
+ 		  				alert("Không thể xóa!");
+ 		  			}
+ 		    } 
+ 		});  
+ 		
  	}
 	
   	 function deleteVattu(vtMa) {
@@ -140,13 +160,22 @@
  		    mimeType: 'application/json',
  		    
  		    
- 		  	success: function() {
- 		  		
-				$('#view-table-vat-tu table tr').has('input[name="vtMa"]:checked').remove();
-				alert(vtMa + " da bi xoa");
+ 		  	success: function(result) {
+ 		  		if(result == "success")
+ 		  			{
+	 		  			$('#view-table-vat-tu table tr').has('input[name="vtMa"]:checked').remove();
+	 					alert(vtMa + " da bi xoa");		  			
+ 		  			}
+ 		  		else
+ 		  			{
+ 		  				alert("Không thể xóa!");
+ 		  			}
  		    } 
  		});  
  	}
+  	 
+
+
   	function showChiTiet(formId, check, vtMa){  
   		$.ajax({
   			url: "/QLVatTuYeuCau/showCTVatTu.html",
@@ -159,6 +188,17 @@
 			success: function(listCTVatTu){
 				
 				$('#view-table-chi-tiet table .rowContent').remove();
+//				if(listCTVatTu.a == null)
+//					alert("1");
+//					else alert("2");
+//				alert(listCTVatTu.a)
+				if(listCTVatTu.vtMa != null) {
+					$('#add-chitiet input:text[name=vtMa]').val(listCTVatTu.vtMa);
+					$('#add-chitiet input:text[name=vtTen]').val(listCTVatTu.vtTen);
+					$('#add-chitiet input:text[name=dvt]').val(listCTVatTu.dvt);
+					alert("Không có chi tiết vật tư!");
+				}
+				else {
 				if(listCTVatTu.length>0){
 					
 				
@@ -181,15 +221,15 @@
 						$('#add-chitiet input:text[name=vtTen]').val(vtTen);
 						$('#add-chitiet input:text[name=dvt]').val(dvt);
 						
-				}
-				else
-					{	
-						alert("Không có chi tiết vật tư!")
 					}
-			  	showForm(formId, check);
+				}
+				showForm(formId, check);
 			}
+		  	
   		});
   	}
+  	
+  	
 
   	function changeVtMa(){
   		$('#requireVtMa').html('');
@@ -232,7 +272,3 @@
         });
         
     }); 
-
-    function test1(){
-    	$('#test select option[value='+3+']').prop('selected',true);
-    }
