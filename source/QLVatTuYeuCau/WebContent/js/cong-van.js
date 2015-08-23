@@ -51,6 +51,49 @@ function chiaSeCv() {
 	    mimeType: 'application/json'
 	});  
 }
+
+$(document).ready(function() {
+	  	$('.page').click(function(){
+		var pageNumber = $(this).val();
+	    	$.ajax({
+				url: "/QLVatTuYeuCau/loadPageCv.html",	
+			  	type: "GET",
+			  	dateType: "JSON",
+			  	data: { "pageNumber": pageNumber},
+			  	contentType: 'application/json',
+			    mimeType: 'application/json',
+			  	
+			  	success: function(cvList) {
+			  		$('#view-table table .rowContent').remove();
+					if(cvList.length>0){
+						for(i = 0;i < cvList.length; i++ ) {
+							var cv = cvList[i] ;
+							var style = '';	
+							if (i % 2 == 0)
+								style = 'style=\"background : #CCFFFF;\"';
+							var str = '';
+							str = '<tr class=\"rowContent\" ' + style + '>'
+								+ '<td class=\"left-column\"><input type=\"checkbox\" name=\"cvId\" value=\"' 
+								+ cv.cvId +'\" class=\"checkbox\"></td>'
+								+ '<td class=\"col\">' + cv.cvId + '</td>'
+								+ '<td class=\"col\">' + cv.donVi.dvMa + '</td>'
+								+ '<td class=\"col\">' + cv.trangThai.ttMa + '</td>'
+								+ '<td class=\"col\">' + cv.mucDich.mdMa + '</td>'
+								+ '<td class=\"col\">' + cv.soDen + '</td>'
+								+ '<td class=\"col\">' + cv.ngayNhan + '</td>'
+								+ '<td class=\"col\">' + cv.cvSo + '</td>'
+								+ '<td class=\"col\">' + cv.ngayGoi + '</td>'
+								+ '<td class=\"col\">' + cv.trichYeu + '</td>'
+								+ '<td class=\"col\">' + cv.butPhe + '</td>'
+								+ '</tr>';
+							$('#view-table table tr:first').after(str);
+						}
+					}
+			  	}
+			});
+	    });	
+	})   
+
 //function addCongVan() {
 //	var nsxMa = $('#add-form input:text[name=nsxMa]').val();
 //	var nsxTen = $('#add-form input:text[name=nsxTen]').val();

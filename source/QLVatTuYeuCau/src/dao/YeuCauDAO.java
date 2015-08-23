@@ -1,10 +1,15 @@
 package dao;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 
+
 import model.CTVatTu;
+import model.CongVan;
+import model.DonVi;
+import model.TrangThai;
 import model.YeuCau;
 
 import org.hibernate.Criteria;
@@ -16,6 +21,7 @@ import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import util.DateUtil;
 import util.HibernateUtil;
 
 public class YeuCauDAO {
@@ -79,7 +85,18 @@ public class YeuCauDAO {
 			ArrayList<YeuCau> yeuCauList = (ArrayList<YeuCau>) cr.list(); 
 			session.getTransaction().commit();
 			return yeuCauList;
-		}
+	}
+	public long sizeByCongVan(int cvId) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(YeuCau.class);
+		Criterion expCv = Restrictions.eq("cvId", cvId);
+		Criterion xoaYc = Restrictions.eq("daXoa", 0);
+		LogicalExpression andExp = Restrictions.and(expCv, xoaYc);
+		cr.add(andExp);
+		long size = (long) cr.setProjection(Projections.rowCount()).uniqueResult();
+		session.getTransaction().commit();
+		return size;
+}
 	public ArrayList<YeuCau> getVTThieu() {
 		session.beginTransaction();
 		Criteria cr = session.createCriteria(YeuCau.class);
@@ -88,6 +105,41 @@ public class YeuCauDAO {
 		ArrayList<YeuCau> yeuCauList = (ArrayList<YeuCau>) cr.list(); 
 		session.getTransaction().commit();
 		return yeuCauList;
+	}
+	
+	public List<YeuCau> limitByIdCv(int cvId, int first, int limit) {
+		/*
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(YeuCau.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+//		Criterion limitRow = Restrictions.
+		cr.add(xoaCd);
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<YeuCau> yeuCauList = (ArrayList<YeuCau>) cr.list(); 
+		session.getTransaction().commit();
+		return yeuCauList;
+		*/
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(YeuCau.class);
+		Criterion expCv = Restrictions.eq("cvId", cvId);
+		Criterion xoaYc = Restrictions.eq("daXoa", 0);
+		LogicalExpression andExp = Restrictions.and(expCv, xoaYc);
+		cr.add(andExp);
+		cr.setFirstResult(first); 
+		cr.setMaxResults(limit);
+		ArrayList<YeuCau> yeuCauList = (ArrayList<YeuCau>) cr.list(); 
+		session.getTransaction().commit();
+		return yeuCauList;
+	}
+	
+	public long size (ArrayList<CongVan> congVanList) {
+		long size = 0;
+		for (CongVan congVan : congVanList) {
+			long tempSize = sizeByCongVan(congVan.getCvId());
+			size += tempSize;
+		}
+		return size;
 	}
 	public ArrayList<YeuCau> getByDaXoa() {
 		session.beginTransaction();
@@ -124,6 +176,8 @@ public class YeuCauDAO {
 		return yeuCau;
 	}
 	
+	
+	
 	public int getLastInsert() {
 		session.beginTransaction();
 		Criteria cr =  session.createCriteria(YeuCau.class).setProjection(Projections.max("ycId"));
@@ -153,6 +207,7 @@ public class YeuCauDAO {
 		return yeuCau;
 	}
 	public static void main(String[] args) {
-		new YeuCauDAO().deleteYeuCau(1);
+		ArrayList<CongVan> congVanList = new CongVanDAO().getTrangThai("", "", null, null);
+		System.out.println(new YeuCauDAO().size(congVanList));
 	}
 }

@@ -80,6 +80,15 @@
  		}
 		function preEditCTVattu(formId, check){
 			ctvtId = $('#view-table-chi-tiet input:checkbox[name=ctvtId]:checked').val();
+			var ctvtMaList = [];
+			$.each($("input[name='ctvtId']:checked"), function(){            
+				ctvtMaList.push($(this).val());
+		    });
+			if (ctvtMaList.length == 0)
+				alert('Bạn phải chọn 1 chi tiết vật tư để thay đổi!!');
+			else if (ctvtMaList.length > 1)
+				alert('Bạn chỉ được chọn 1 chi tiết vật tư để thay đổi!!');
+			else {
 			//alert(ctvtId);
 				$.ajax({
 					url: "/QLVatTuYeuCau/preEditCTVattu.html",
@@ -103,6 +112,7 @@
 					}
 					
 				});
+		}
 		}
 
 		function confirmUpdateCTVattu(){
@@ -161,9 +171,14 @@
  	}
  	function confirmDeleteCTVT(){
  		ctvtId = $('#view-table-chi-tiet input:checkbox[name=ctvtId]:checked').val();
-// 		alert(cvvtId);
- 		if (confirm('Bạn có chắc xóa '))
- 			deleteCTVattu(ctvtId);
+ 		var ctvtMaList = [];
+		$.each($("input[name='ctvtId']:checked"), function(){            
+			ctvtMaList.push($(this).val());
+	    });
+		if (ctvtMaList.length == 0)
+			alert('Bạn phải chọn 1 hoặc nhiều chi tiết vật tư để xóa!!');
+		else if (confirm('Bạn có chắc xóa chi tiết vật tư có mã ' + ctvtMaList.join(", ")))
+			deleteCTVatTu(ctvtId);
  	}
 	
   	 function deleteCTVattu(ctvtId) {
@@ -226,3 +241,61 @@
         
     }); 
     
+    
+    $(document).ready(function() {
+ 	  	$('.page').click(function(){
+ 		var pageNumber = $(this).val();
+ 	    	$.ajax({
+ 				url: "/QLVatTuYeuCau/loadPageCtvt.html",	
+ 			  	type: "GET",
+ 			  	dateType: "JSON",
+ 			  	data: { "pageNumber": pageNumber},
+ 			  	contentType: 'application/json',
+ 			    mimeType: 'application/json',
+ 			  	
+ 			  	success: function(ctvtList) {
+ 			  		$('#view-table table .rowContent').remove();
+ 					if(ctvtList.length>0){
+ 						for(i = 0;i < ctvtList.length; i++ ) {
+ 							var ctvt = ctvtList[i] ;
+ 							var style = '';	
+ 							if (i % 2 == 0)
+ 								style = 'style=\"background : #CCFFFF;\"';
+ 							var str = '';
+ 							str = '<tr class=\"rowContent\" ' + style + '>'
+ 								+ '<td class=\"left-column\"><input type=\"checkbox\" name=\"ctvtId\" value=\"' 
+ 								+ ctvt.ctvtId +'\" class=\"checkbox\"></td>'
+ 								+ '<td class=\"col\">' + ctvt.ctvtId + '</td>'
+ 								+ '<td class=\"col\">' + ctvt.noiSanXuat.nsxMa+ '</td>'
+ 								+ '<td class=\"col\">' + ctvt.chatLuong.clMa+ '</td>'
+ 								+ '<td class=\"col\">' + ctvt.vatTu.vtMa+ '</td>'
+ 								+ '<td class=\"col\">' + ctvt.dinhMuc+ '</td>'
+ 								+ '<td class=\"col\">' + ctvt.soLuongTon+ '</td>'
+ 								+ '</tr>';
+ 							$('#view-table table tr:first').after(str);
+ 						}
+ 					}
+ 			  	}
+ 			});
+ 	    });	
+ 	})   
+ 	$(document).ready(function() {
+	$('#add-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+		 addCTVatTu();
+	    return false;  
+	  }
+	});   
+});   
+$(document).ready(function() {
+	$('#update-form').keypress(function(e) {
+	 var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+	    updateCTVatTu();
+	    return false;  
+	  }
+	});   
+});  

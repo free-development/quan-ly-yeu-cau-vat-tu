@@ -31,6 +31,7 @@ import dao.MucDichDAO;
 @Controller
 public class CdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	int page = 1;
 	@RequestMapping("/manageCd")
 	public ModelAndView manageCd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ChucDanhDAO chucDanhDAO = new ChucDanhDAO();
@@ -52,7 +53,9 @@ public class CdController extends HttpServlet {
 			return new ModelAndView("danh-muc-chuc-danh", "chucDanhList", chucDanhList);
 		}
 		if("manageCd".equalsIgnoreCase(action)) {
-			ArrayList<ChucDanh> chucDanhList =  (ArrayList<ChucDanh>) chucDanhDAO.getAllChucDanh();
+			long size = chucDanhDAO.size();
+			ArrayList<ChucDanh> chucDanhList =  (ArrayList<ChucDanh>) chucDanhDAO.limit(page, 10);
+			request.setAttribute("size", size);
 			return new ModelAndView("danh-muc-chuc-danh", "chucDanhList", chucDanhList);
 		}
 		return new ModelAndView("login");
@@ -101,5 +104,30 @@ public class CdController extends HttpServlet {
 		ChucDanh cd = new ChucDanh(cdMaUpdate, cdTenUpdate,0);
 		new ChucDanhDAO().updateChucDanh(cd);
 		return JSonUtil.toJson(cd);
+	}
+	
+	@RequestMapping(value="/loadPageCd", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String loadPageCd(@RequestParam("pageNumber") String pageNumber) {
+		String result = "";
+		System.out.println("MA: " + pageNumber);
+		ChucDanhDAO cdDAO = new ChucDanhDAO();
+		int page = Integer.parseInt(pageNumber);
+		ArrayList<ChucDanh> cdList = (ArrayList<ChucDanh>) cdDAO.limit((page -1 ) * 10, 10);
+		
+		/*
+		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
+		{
+			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
+			System.out.println("success");
+			result = "success";	
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+		*/
+			return JSonUtil.toJson(cdList);
 	}
 }

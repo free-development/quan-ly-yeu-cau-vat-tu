@@ -41,6 +41,7 @@
 
 	<%
     		ArrayList<DonVi> listDonVi = (ArrayList<DonVi>) request.getAttribute("donViList");
+			Long size = (Long) request.getAttribute("size");
     	%>
 	<div class="wrapper">
 		<div class="header">
@@ -73,7 +74,7 @@
 		</div>
 			<div class="main_menu">
 					<ul>
-<<<<<<< HEAD
+
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
 							<ul>
@@ -94,6 +95,7 @@
 										mục chức danh</a></li>
 								
 							</ul>
+<<<<<<< HEAD
 =======
 						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
 								mục nơi sản xuất</a></li>
@@ -113,6 +115,8 @@
 						
 					</ul>
 
+=======
+>>>>>>> 5ea1ec7e3af2f33e8b138c4ece2829537bc0326f
 				</li>
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
@@ -136,14 +140,17 @@
 			</ul>
 			<div class="clear"></div>
 		</div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5ea1ec7e3af2f33e8b138c4ece2829537bc0326f
 
 		<div id="main-content">
 			<div id="title-content">Danh mục bộ phận sử dụng</div>
 			<div id="main-content">
 
 				<form id="main-form">
-					<div id="view-table-bo-phan" class="scroll-nsx">
+					<div id="view-table-bo-phan">
 						<table>
 							<tr>
 								<th class="left-column"><input type="checkbox"
@@ -158,7 +165,7 @@
 							if(listDonVi != null) {
 							int count = 0;
 							for(DonVi donVi : listDonVi) {count++ ;%>
-							<tr
+							<tr class="rowContent"
 								<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 								<td class="left-column"><input type="checkbox" name="dvMa"
 									value="<%=donVi.getDvMa() %>" class="checkbox"></td>
@@ -170,8 +177,23 @@
 							</tr>
 							<%} }%>
 						</table>
+					
 					</div>
-
+					<div id = "paging" >
+							<table style ="border-style: none;">
+								<tr>
+									<td><a href=""> Previous<< </a></td>
+									<td>
+										<%
+											long pageNum = size / 10;
+											for(int i = 0; i <= pageNum; i++) { %>
+												<input type="button" value="<%=i+1%>" class="page">
+										<%} %>
+									</td>
+									<td><a href="">>>Next </a> </td>
+								</tr>
+							</table>
+						</div>
 					<div class="group-button-bo-phan">
 						<input type="hidden" name="action" value="deleteBpsd">
 						<button type="button" class="button"

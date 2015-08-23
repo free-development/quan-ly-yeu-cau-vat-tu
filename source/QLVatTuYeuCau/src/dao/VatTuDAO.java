@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.ChatLuong;
 import model.ChucDanh;
 import model.VatTu;
 
@@ -40,6 +41,29 @@ public class VatTuDAO {
 		session.getTransaction().commit();
 		return vatTuList;
 	}
+	
+	public List<VatTu> limit(int first, int limit) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(VatTu.class);
+		Criterion xoaCd = Restrictions.eq("daXoa", 0);
+//		Criterion limitRow = Restrictions.
+		cr.add(xoaCd);
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<VatTu> vatTuList = (ArrayList<VatTu>) cr.list(); 
+		session.getTransaction().commit();
+		return vatTuList;
+	}
+	public long size() {
+		session.beginTransaction();
+		String sql = "select count(vtMa) from VatTu";
+		Query query =  session.createQuery(sql);
+		long size = (long) query.list().get(0);
+		session.getTransaction().commit();
+		return size;
+		
+	}
+	
 	public void addVatTu(VatTu vatTu){
 		session.beginTransaction();
 		session.save(vatTu);

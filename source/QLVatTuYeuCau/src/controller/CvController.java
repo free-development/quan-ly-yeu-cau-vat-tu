@@ -23,6 +23,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 import dao.CTNguoiDungDAO;
 import dao.CTVatTuDAO;
+import dao.ChatLuongDAO;
 import dao.CongVanDAO;
 import dao.DonViDAO;
 import dao.FileDAO;
@@ -32,6 +33,7 @@ import dao.TrangThaiDAO;
 import map.siteMap;
 import model.CTNguoiDung;
 import model.CTVatTu;
+import model.ChatLuong;
 import model.CongVan;
 import model.DonVi;
 import model.File;
@@ -46,6 +48,7 @@ import util.StringUtil;
 @Controller
 public class CvController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	int page = 1;
 	private final String tempPath = "D:/Goc Hoc Tap/free-deverlop/Temp/"; 
     private final String pathFile = "D:/Goc Hoc Tap/free-deverlop/File/";
     public ModelAndView getCongvan(TrangThaiDAO trangThaiDAO, CongVanDAO congVanDAO, MucDichDAO mucDichDAO, FileDAO fileDAO, DonViDAO donViDAO, HttpServletRequest request) {
@@ -93,6 +96,12 @@ public class CvController extends HttpServlet {
 //			request.setAttribute("donViList", donViList);
 //			return new ModelAndView(siteMap.congVan);
 			return getCongvan(trangThaiDAO, congVanDAO, mucDichDAO, fileDAO, donViDAO, request);
+		}
+		if("manageCv".equalsIgnoreCase(action)) {
+			long size = congVanDAO.size();
+			ArrayList<CongVan> congVanList =  (ArrayList<CongVan>) congVanDAO.limit(page, 10);
+			request.setAttribute("size", size);
+			return new ModelAndView("cong-van", "congVanList", congVanList);
 		}
 		if("download".equals(action)) {
 			try {
@@ -178,4 +187,28 @@ public class CvController extends HttpServlet {
 		return JSonUtil.toJson(cvId);
 	}
 	
+	@RequestMapping(value="/loadPageCv", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String loadPageCv(@RequestParam("pageNumber") String pageNumber) {
+		String result = "";
+		System.out.println("MA: " + pageNumber);
+		CongVanDAO cvDAO = new CongVanDAO();
+		int page = Integer.parseInt(pageNumber);
+		ArrayList<CongVan> cvList = (ArrayList<CongVan>) cvDAO.limit((page -1 ) * 10, 10);
+		
+		/*
+		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
+		{
+			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
+			System.out.println("success");
+			result = "success";	
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+		*/
+			return JSonUtil.toJson(cvList);
+	}
 }

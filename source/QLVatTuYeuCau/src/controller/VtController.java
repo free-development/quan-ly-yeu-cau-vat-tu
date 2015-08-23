@@ -31,6 +31,7 @@ import dao.VaiTroDAO;
 @Controller
 public class VtController extends HttpServlet {
 	private static final long serialVersionUvtId = 1L;
+	int page = 1;
 	@RequestMapping("/manageVt")
 	public ModelAndView manageVt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VaiTroDAO vaiTroDAO = new VaiTroDAO();
@@ -54,7 +55,9 @@ public class VtController extends HttpServlet {
 			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
 		}
 		if("manageVt".equalsIgnoreCase(action)) {
-			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
+			long size = vaiTroDAO.size();
+			ArrayList<VaiTro> vaiTroList =  (ArrayList<VaiTro>) vaiTroDAO.limit(page, 10);
+			request.setAttribute("size", size);
 			return new ModelAndView("danh-muc-vai-tro", "vaiTroList", vaiTroList);
 		}
 		return new ModelAndView("login");
@@ -108,5 +111,30 @@ public class VtController extends HttpServlet {
 		//VaiTro vt = new VaiTro(Integer.parseInt(vtId));
 		new VaiTroDAO().deleteVaiTro(vtId);
 		return JSonUtil.toJson(vtId);
+	}
+	
+	@RequestMapping(value="/loadPageVt", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String loadPageVt(@RequestParam("pageNumber") String pageNumber) {
+		String result = "";
+		System.out.println("MA: " + pageNumber);
+		VaiTroDAO vtDAO = new VaiTroDAO();
+		int page = Integer.parseInt(pageNumber);
+		ArrayList<VaiTro> vtList = (ArrayList<VaiTro>) vtDAO.limit((page -1 ) * 10, 10);
+		
+		/*
+		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
+		{
+			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
+			System.out.println("success");
+			result = "success";	
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+		*/
+			return JSonUtil.toJson(vtList);
 	}
 }

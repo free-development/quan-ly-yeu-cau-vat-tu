@@ -32,7 +32,11 @@ import dao.CTVatTuDAO;
 @Controller
 public class VattuController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+<<<<<<< HEAD
     
+=======
+	int page = 1;
+>>>>>>> 5ea1ec7e3af2f33e8b138c4ece2829537bc0326f
    @RequestMapping("/manageVattu")
 	protected ModelAndView manageCtvt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VatTuDAO vatTuDAO = new VatTuDAO();
@@ -68,7 +72,9 @@ public class VattuController extends HttpServlet {
 
 		}
 		if("manageVattu".equalsIgnoreCase(action)) {
-			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
+			long size = vatTuDAO.size();
+			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.limit(page, 10);
+			request.setAttribute("size", size);
 			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.getAllNoiSanXuat();
 			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.getAllChatLuong();
 			request.setAttribute("noiSanXuatList", noiSanXuatList);
@@ -120,5 +126,30 @@ public class VattuController extends HttpServlet {
 		VatTu vt = new VatTu(vtMa);
 		new VatTuDAO().deleteVatTu(vtMa);
 		return JSonUtil.toJson(vtMa);
+	}
+	
+	@RequestMapping(value="/loadPageVatTu", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String loadPageVt(@RequestParam("pageNumber") String pageNumber) {
+		String result = "";
+		System.out.println("MA: " + pageNumber);
+		VatTuDAO vtDAO = new VatTuDAO();
+		int page = Integer.parseInt(pageNumber);
+		ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.limit((page -1 ) * 10, 10);
+		
+		/*
+		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
+		{
+			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
+			System.out.println("success");
+			result = "success";	
+		}
+		else
+		{
+			System.out.println("fail");
+			result = "fail";
+		}
+		*/
+			return JSonUtil.toJson(vtList);
 	}
 }
