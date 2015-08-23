@@ -166,7 +166,7 @@
 		</div>
 		</form>
 		<!-------------- --add-form-------------- -->
-		<form id="add-form" method="get" action="<%=siteMap.nsxManage + "?action=manageNsx"%>">
+		<form id="add-form" onsubmit="addNsx();">
 			<div class="input-table">
 				<table>
 					<div class="form-title">Thêm nơi sản xuất</div>
@@ -178,7 +178,7 @@
 					</tr>
 					<tr>
 						<th class="label"><label for="MNSX">Tên NSX</label></th>
-						<td><input name="nsxTen" size="30px" align=left type="text" onkeypress="changensxTen();"
+						<td><input name="nsxTen" id = "a" size="30px" align=left type="text" onkeypress="changensxTen();"
 							class="text" required
 							title="Tên nơi sản xuất không được để trống"><div id="requirensxTen" style="color: red"></td>
 					</tr>

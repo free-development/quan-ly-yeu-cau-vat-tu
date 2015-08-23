@@ -1,5 +1,4 @@
-﻿	<%@page import="sun.misc.GC.LatencyRequest"%>
-<%@page import="java.util.HashMap"%>
+﻿<%@page import="java.util.HashMap"%>
 <%@page import="model.CongVan"%>
 <%@page import="model.NguoiDung"%>
 <%@page import="model.VaiTro"%>
@@ -19,22 +18,8 @@
 <!--		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">-->
 <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 		type="text/css" rel="stylesheet">
-<script type="text/javascript">
-		function showForm(formId, check){
-			if (check)
-				document.getElementById(formId).style.display="block";
-			else document.getElementById(formId).style.display="none";
-			var f = document.getElementById('main-form'), s, opacity;
-			s = f.style;
-			opacity = check? '10' : '100';
-			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-			s.filter = 'alpha(opacity='+opacity+')';
-			for(var i=0; i<f.length; i++) f[i].disabled = check;
-		}
-		function confirmDelete(){
-			return confirm('Bạn có chắc xóa');
-		}
-	</script>
+<script type="text/javascript" src="js/chia-se-cong-van.js"></script>
+<script type="text/javascript" src="js/check.js"js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
@@ -187,9 +172,14 @@
 				</div>
 				
 				<div id="view-chia-se">
+				<form action=""></form>
 				<%
 					if (vtNguoiDungHash.size() != 0 || vtNguoiDungHash == null) {
 				%>
+<<<<<<< HEAD
+					<table>
+						<tr><th><input type = "checkbox" class="checkAll" name="checkAll"></th><th>Msnv</th><th>Họ tên</th><th>Vai trò</th></tr>
+=======
 				<div id="title-content">Công việc đã chia sẽ</div>
 				<div id="view-table-chia-se">
 					<table >
@@ -199,6 +189,7 @@
 						<th>Họ tên</th>
 						<th>Vai trò</th>
 						</tr>
+>>>>>>> 50ee70863990f3fbc9c5bb3e7a558c77fd6db693
 						<%
 							int i = 0;
 							for(String msnv :  vtNguoiDungHash.keySet()) {

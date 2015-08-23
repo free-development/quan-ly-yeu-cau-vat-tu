@@ -1,4 +1,7 @@
-/dao/
+/conf/
 /controller/
+/dao/
+/map/
 /model/
 /test/
+/util/
