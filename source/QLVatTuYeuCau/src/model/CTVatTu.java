@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-public class CTVatTu implements Serializable{
+public class CTVatTu implements Serializable {
 
 	private int ctvtId;
 	/**

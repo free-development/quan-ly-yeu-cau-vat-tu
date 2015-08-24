@@ -108,16 +108,21 @@ public class NsxController extends HttpServlet {
 	}
 	@RequestMapping(value="/deleteNsx", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String deleteNsx(@RequestParam("nsxMa") String nsxMa) {
+	 public @ResponseBody String deleteNsx(@RequestParam("nsxList") String nsxList) {
 //		System.out.println("****" + nsxMa + "****");
 //		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
 //		NoiSanXuat nsx = noiSanXuatDAO.getNoiSanXuat(nsxMa);
 //		return toJson(nsx);
-		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
-		new NoiSanXuatDAO().deleteNoiSanXuat(nsxMa);
+//		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) new NoiSanXuatDAO().getAllNoiSanXuat();
+		String[] str = nsxList.split("\\, ");
+		
+		NoiSanXuatDAO nsxDAO =  new NoiSanXuatDAO();
+		for(String nsxMa : str) {
+			nsxDAO.deleteNoiSanXuat(nsxMa);
+		}
 //		System.out.println(JSonUtil.toJson(nsxMa));
 //		return toJson(nsxList);
-		return JSonUtil.toJson(nsxMa);
+		return JSonUtil.toJson(nsxList);
 	}
 	/*private String toJson(String nsxMa) {
 		ObjectMapper mapper = new ObjectMapper();

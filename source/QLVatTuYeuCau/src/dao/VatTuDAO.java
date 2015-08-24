@@ -100,6 +100,9 @@ public ArrayList<String> startWith(String i) {
 		session.getTransaction().commit();
 		return list;
 	}
+public void close() {
+	HibernateUtil.shutdown();
+}
 public ArrayList<String> startWithMa(String i) {
 	session.beginTransaction();
 

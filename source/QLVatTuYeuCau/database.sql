@@ -412,3 +412,5 @@ update VAITRO set DAXOA = 0;
 update CHUCDANH set DAXOA = 0;
 update NOISANXUAT set DAXOA = 0;
 update MUCDICH set DAXOA = 0;
+update VATTU set DAXOA = 0;
+update CTVATTU set DAXOA = 0;

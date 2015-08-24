@@ -32,10 +32,9 @@ public class YeuCauDAO {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
-	public YeuCau getYeuCau(final int cvId) {
+	public YeuCau getYeuCau(final int ycId) {
 		session.beginTransaction();
-		
-		YeuCau YeuCau = (YeuCau) session.get(YeuCau.class, cvId);
+		YeuCau YeuCau = (YeuCau) session.get(YeuCau.class, ycId);
 		session.getTransaction().commit();
 		return YeuCau;
 	}
@@ -194,16 +193,18 @@ public class YeuCauDAO {
 	
 	public YeuCau addSoLuong(final int cvId, final int ctvtId, int soLuong) {
 		YeuCau yeuCau = getYeuCau(cvId, ctvtId);
-		if (yeuCau == null)
+		if (yeuCau == null) {
 			yeuCau = new YeuCau(cvId, new CTVatTu(ctvtId), soLuong, 0,0);
+			addYeuCau(yeuCau);
+			int ycId = getLastInsert()-1;
+			yeuCau = new YeuCauDAO().getYeuCau(ycId);
+		}
 		else {
 			int soLuongOld = yeuCau.getYcSoLuong();
 			soLuong += soLuongOld;
 			yeuCau.setYcSoLuong(soLuong);
+			updateYeuCau(yeuCau);
 		}
-		addOrUpdateYeuCau(yeuCau);
-		int ycId = getLastInsert()-1;
-		yeuCau.setYcId(ycId);
 		return yeuCau;
 	}
 	public static void main(String[] args) {

@@ -39,26 +39,31 @@ function searchCtvt() {
 	});
 }
 function preAddSoLuong(){
-	ctvtId = $('input:radio[name=ctvtId]').val();
-	alert(5);
-	$.ajax({
-		url: "/QLVatTuYeuCau/preAddSoLuong.html",	
-	  	type: "GET",
-	  	dateType: "JSON",
-	  	data: { "ctvtId": ctvtId},
-	  	contentType: 'application/json',
-	    mimeType: 'application/json',
-	  	
-	  	success: function(ctvt) {
-	  		$('#vtMaAdd').html(ctvt.vatTu.vtMa);
-	  		$('#vtTenAdd').html(ctvt.vatTu.vtTen);
-	  		$('#nsxTenAdd').html(ctvt.noiSanXuat.nsxTen);
-	  		$('#clTenAdd').html(ctvt.chatLuong.clTen);
-	  		$('#dvtAdd').html(ctvt.vatTu.dvt);
-	  	}
-	});
-		
-	showForm('search-form','add-so-luong-form',true);
+//	$(document).ready(function() {
+//		$('#view-search input:checkbox[name=ctvtId]').clicked(function() {
+//			var ctvtId = this.val();
+	var ctvtId = $('#view-search input:radio[name=ctvtId]:checked').val();
+			alert(ctvtId);
+			$.ajax({
+				url: "/QLVatTuYeuCau/preAddSoLuong.html",	
+			  	type: "GET",
+			  	dateType: "JSON",
+			  	data: { "ctvtId": ctvtId},
+			  	contentType: 'application/json',
+			    mimeType: 'application/json',
+			  	
+			  	success: function(ctvt) {
+			  		$('#vtMaAdd').html(ctvt.vatTu.vtMa);
+			  		$('#vtTenAdd').html(ctvt.vatTu.vtTen);
+			  		$('#nsxTenAdd').html(ctvt.noiSanXuat.nsxTen);
+			  		$('#clTenAdd').html(ctvt.chatLuong.clTen);
+			  		$('#dvtAdd').html(ctvt.vatTu.dvt);
+			  	}
+			});
+				
+			showForm('search-form','add-so-luong-form',true);
+//		});
+//	});	
 }
 
 function addSoLuong(){
@@ -78,19 +83,20 @@ function addSoLuong(){
 	  			alert('them so luong thanh cong');
 	  			$('input:radio[name=ctvtId]').prop('checked',false);
 	  			$('input[name=soLuongAdd]').val('0');
-	  			alert('PK');
 //	  			showForm('search-form','add-so-luong-form',false);
 //	  			$('#view-table'+yeuCau.ycId).remove();
+	  			var ctVatTu = yeuCau.ctVatTu;
 	  			str = '<tr id=\"' + yeuCau.ycId +'\"> '
 					+ '<td><input id=\"'+ yeuCau.ycId + '\" type=\"checkbox\" name = \"yeuCau\" value=\"' + yeuCau.ycId + '\"</td>'
-  					+ '<td>' + yeuCau.vatTu.vtMa + '</td>'
-  					+ '<td>' + yeuCau.vatTu.vtTen + '</td>'
-  					+ '<td>' + yeuCau.nsx.nsxTen + '</td>'
-  					+ '<td>' + yeuCau.chatLuong.clTen + '</td>'
-  					+ '<td>' + yeuCau.vatTu.dvt + '</td>'
+  					+ '<td>' + ctVatTu.vatTu.vtMa + '</td>'
+  					+ '<td>' + ctVatTu.vatTu.vtTen + '</td>'
+  					+ '<td>' + ctVatTu.noiSanXuat.nsxTen + '</td>'
+  					+ '<td>' + ctVatTu.chatLuong.clTen + '</td>'
+  					+ '<td>' + ctVatTu.vatTu.dvt + '</td>'
   					+ '<td>' + yeuCau.ycSoLuong + '</td>'
   					+ '</tr>';
-	  			alert(str);
+//	  			alert(str);
+	  			$('#view-table-yc table tr:first').after(str);
 //	  			$('#view-table table tr:first').after('<tr id=\"' + yeuCau.ycId +'\"> '
 //	  					+ '<td><input id=\"'+ yeuCau.ycId + '\" type=\"checkbox\" name = \"yeuCau\" value=\"' + yeuCau.ycId + '\"</td>'
 //	  					+ '<td>' + yeuCau.vatTu.vtMa + '</td>'
@@ -101,7 +107,6 @@ function addSoLuong(){
 //	  					+ '<td>' + yeuCau.ycSoLuong + '</td>'
 //	  					+ '</tr>');
 	  			alert('them so luong thanh cong :)');
-	  			alert('123556');
 	  		}
 //	  	}
 	});

@@ -96,6 +96,9 @@ public class ChatLuongDAO {
 		return l;
 		
 	}
+	public void close() {
+		HibernateUtil.shutdown();
+	}
 	public static void main(String[] args) {
 		new ChatLuongDAO().deleteChatLuong("cl5");
 	}

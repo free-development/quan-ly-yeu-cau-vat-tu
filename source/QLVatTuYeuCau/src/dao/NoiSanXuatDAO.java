@@ -78,12 +78,15 @@ public class NoiSanXuatDAO {
 	}
 	public long size() {
 		session.beginTransaction();
-		String sql = "select count(nsxMa) from NoiSanXuat";
+		String sql = "select count(nsxMa) from NoiSanXuat where daXoa = 0";
 		Query query =  session.createQuery(sql);
 		long size = (long) query.list().get(0);
 		session.getTransaction().commit();
 		return size;
 		
+	}
+	public void close() {
+		HibernateUtil.shutdown();
 	}
 	public static void main(String[] args) {
 //		new NoiSanXuatDAO().deleteNoiSanXuat("Vn5");
