@@ -169,7 +169,7 @@ public class TestYeuCAU {
 		
 		
 //
-		YeuCau yeuCau2 = new YeuCau(id, ctVatTu5, 50, 50, 0);
+	//	YeuCau yeuCau2 = new YeuCau(id, ctVatTu5, 50, 50, 0);
 		DonVi donVi = new DonVi("SX9", "Don vi 3", "0977874271", "tien@gmail.com", "Can Tho",0);
 		MucDich mucDich2 = new MucDich("SC7", "Sua chua lon",0);
 		File file1 = new File("~/study/linux command", "File hoc linux command can ban", 1);

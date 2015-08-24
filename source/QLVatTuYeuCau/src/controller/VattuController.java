@@ -32,15 +32,8 @@ import dao.CTVatTuDAO;
 @Controller
 public class VattuController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
-	int page = 1;
-=======
-
-    
-
 	int page = 1;
 
->>>>>>> 62a0aa1d1a6a766162a5f9cd78fba98e624079ab
    @RequestMapping("/manageVattu")
 	protected ModelAndView manageCtvt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VatTuDAO vatTuDAO = new VatTuDAO();
