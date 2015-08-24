@@ -44,23 +44,7 @@ public class BpsdController extends HttpServlet {
 			String sdt = request.getParameter("sdt");
 			String diaChi = request.getParameter("diaChi");
 			String email = request.getParameter("email");
-
-
-			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email,0 ));
-
 			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email, 0 ));
-
-
-
-			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email, 0));
-
-
-			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email, 0));
-
-			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email,0 ));
-			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email, 0 ));
-
-			
 			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
 			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
 		}
@@ -78,7 +62,7 @@ public class BpsdController extends HttpServlet {
 		
 		if("manageBpsd".equalsIgnoreCase(action)) {
 			long size = donViDAO.size();
-			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.limit(page, 10);
+			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.limit(page - 1, 10);
 			request.setAttribute("size", size);
 			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
 		}
