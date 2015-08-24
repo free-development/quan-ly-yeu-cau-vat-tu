@@ -167,7 +167,7 @@ function showForm(formId, check){
 					});
 			}
 		}
-		function confirmDelete(){
+		function confirmDeleteBp(){
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
 			var dvMaList = [];
 			$.each($("input[name='dvMa']:checked"), function(){            
