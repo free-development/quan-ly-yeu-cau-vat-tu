@@ -138,6 +138,9 @@ function showForm(formId, check){
 					});
  			}
 		}
+ 	 	function resetUpdateVt(){
+ 	 		$('#update-form input:text[name=vtTenUpdate]').val('');
+ 	 	}
  	 	function changeVtId(){
  	  		$('#requirevtId').html('');
  	  		$('#add-form input[name=vtId]').focus();

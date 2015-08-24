@@ -237,7 +237,7 @@
 						<button type="button" class="button" onclick="confirmUpdateVt();">
 							<i class="fa fa-floppy-o"></i>&nbsp;Lưu lại
 						</button>
-						<button type="reset" class="button">
+						<button  type="button" class="button" onclick="resetUpdateVt();">
 							<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
 						</button>
 						<button type="button" class="button"

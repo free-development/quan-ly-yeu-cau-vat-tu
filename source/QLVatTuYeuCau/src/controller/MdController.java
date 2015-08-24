@@ -60,8 +60,8 @@ public class MdController extends HttpServlet {
 		}
 		if("manageMd".equalsIgnoreCase(action)) {
 			long size = mucDichDAO.size();
-			ArrayList<MucDich> mucDichList =  (ArrayList<MucDich>) mucDichDAO.limit(page, 10);
-			request.setAttribute("size", size);
+			ArrayList<MucDich> mucDichList =  (ArrayList<MucDich>) mucDichDAO.limit(page - 1, 10);
+			request.setAttribute("page", size/10);
 			return new ModelAndView("danh-muc-muc-dich", "mucDichList", mucDichList);
 		}
 		return new ModelAndView("login");
@@ -80,6 +80,8 @@ public class MdController extends HttpServlet {
 		new MucDichDAO().deleteMucDich(mdMa);
 		return JSonUtil.toJson(mdMa);
 	}
+	
+	
 	@RequestMapping(value="/addMd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String addMd(@RequestParam("mdMa") String mdMa, @RequestParam("mdTen") String mdTen) {

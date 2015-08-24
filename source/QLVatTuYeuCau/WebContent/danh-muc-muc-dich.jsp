@@ -38,7 +38,7 @@
 <body>
 	<%
     		ArrayList<MucDich> listMucDich = (ArrayList<MucDich>) request.getAttribute("mucDichList");
-	Long size = (Long) request.getAttribute("size");
+	Long pageNum = (Long) request.getAttribute("page");
     	%>
 	<div class="wrapper">
 		<div class="header">
@@ -150,7 +150,7 @@
 									<td><a href=""> Previous<< </a></td>
 									<td>
 										<%
-											long pageNum = size / 10;
+// 											long pageNum = size / 10;
 											for(int i = 0; i <= pageNum; i++) { %>
 												<input type="button" value="<%=i+1%>" class="page">
 										<%} %>
@@ -170,7 +170,7 @@
 								onclick="preUpdateMd('update-form', true)">
 								<i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi
 							</button>
-							<button class="button" onclick="confirmDeleteMd()">
+							<button class="button" onclick="confirmDeleteMd();">
 								<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa
 							</button>
 							&nbsp;
@@ -178,7 +178,7 @@
 								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua
 							</button>
 							&nbsp;
-							<button type="button" class="button">
+							<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
 								<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 							</button>
 						</div>
@@ -229,7 +229,7 @@
 									<td><input name="mdMaUpdate" type="text" class="text"
 										required size="2" maxlength="3" pattern="[a-zA-Z0-9]{3}"
 										title="Mã mục đích chỉ gồm 3 ký tự, không chứa khoảng trắng và ký tự đặc biệt"
-										value="MMA" readonly></td>
+										value="MMA" readonly style="background-color: #D1D1E0;"></td>
 								</tr>
 								<tr>
 									<th><label for="MMD">Tên mục đích: </label></th>
@@ -244,7 +244,7 @@
 							<button class="button" type="button" onclick="confirmUpdateMd()">
 								<i class="fa fa-floppy-o"></i>&nbsp;Lưu lại
 							</button>
-							<button type="reset" class="button">
+							<button class="button" type="button" onclick="resetUpdateMd()">
 								<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
 							</button>
 							<button type="button" class="button"

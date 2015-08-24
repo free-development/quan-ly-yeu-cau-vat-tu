@@ -37,6 +37,9 @@
 			font-size: 120%;
 		}
 	</style>
+	<script type="text/javascript">
+	
+	</script>
 </head>
 <body>
 	<%
@@ -116,7 +119,7 @@
 					<div class="clear"></div>
 				</div>
 
-		<div id="main-content">
+		<div id="main-vattu">
 			<div id="title-content">Danh mục vật tư</div>
 <!-- 					<h3>* Tìm kiếm mã</h3> -->
 <!-- 						<input type="text" id="country" name="country"/> -->
@@ -129,28 +132,34 @@
 					<th  style="text-align: left; color: black; font-size: 19px;">* Tìm kiếm mã</th>
 								<td>
 									<div class="search_form1" id="search">		
-										<form action="" method="post">	
+										<form>	
 <!-- 											<span class="search-text"> &nbsp; <input type="search" class="text" name="search_box" name="search" placeholder="Tìm kiếm" /> 												 -->
 <!-- 												<td><input type="checkbox" class="checkbox" style="text-align: center;"/></td> -->
 <!-- 												<td  style="text-align: center; color: black; font-size: 19px;">Theo tên</td>&nbsp;&nbsp;&nbsp; -->
 <!-- 											</span> -->
 											
-											<span class="search-text"> &nbsp; <input type="text" id="searchName" class="text" name="country"/>						
+											<span class="search-text"> &nbsp; <input type="search" id="searchName" class="text" name="vattu"/>						
 														<script>
-															$('#checkTen').checked
-																{
-																	$("#searchName").autocomplete("getdata.jsp");
-																}
-															$('#checkTen').unchecked
-																{
-																	$("#searchName").autocomplete("getdataMa.jsp");
-																}
+														$("#searchName").autocomplete("getdataMa.jsp");
+														$("#searchName").autocomplete("getdata.jsp");
+// 														i = 0;
+// 															$('#checkTen').check(function() {
+// 																var check = $(this).val();
+// 																alert(check);
+// 																if(i % 2 == 0)
+// 																	$("#searchName").autocomplete("getdata.jsp");
+// 																else 
+// 																	$("#searchName").autocomplete("getdataMa.jsp");
+															//});
+// 															$('#checkTen').uncheck(function() {
+// 																	$("#searchName").autocomplete("getdataMa.jsp");
+// 															});
 															
 														</script> 												
-												<td><input name="theoten" type="checkbox" value="check" class="checkbox" style="text-align: center;" id="checkTen"/></td>
+												<td><input type="checkbox" value="check" class="checkbox" style="text-align: center;" id="checkTen"/></td>
 												<td  style="text-align: center; color: black; font-size: 19px;">Theo tên</td>&nbsp;&nbsp;&nbsp;
 											</span>
-												<td> <span class="search-button"> &nbsp; <button class="btn-search" style="background-color: #00A69B;"><i class="fa fa-search"></i></button></span></td>						
+												<td> <span class="search-button"> &nbsp; <button type="button" class="btn-search" style="background-color: #00A69B;" onclick="timKiemVattu();"><i class="fa fa-search"></i></button></span></td>						
 										</form>
 									</div>
 					</tr>					
@@ -180,7 +189,7 @@
 						<td class="col" ><%=vatTu.getVtMa() %></td>
 						<td class="col" ><%=vatTu.getVtTen() %></td>
 						<td class="col" style="text-align: center;"><%=vatTu.getDvt() %></td>
-						<td style="text-align: center;"><button type="button" class="button-xem" value="Xem" onclick="showChiTiet('chitiet',true,'<%=vatTu.getVtMa()%>');">Xem</button></td>
+						<td style="text-align: center;"><button type="button" class="button-xem" value="Xem" onclick="showCTVatTu('chitiet',true,'<%=vatTu.getVtMa()%>');">Xem</button></td>
 					</tr>
 					<%} }%>
 				</table>
@@ -220,9 +229,9 @@
 					<i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua
 				</button>
 				&nbsp;
-				<button class="button" type="button">
-					<i class="fa fa-print"></i>&nbsp;&nbsp;In
-				</button>
+<!-- 				<button class="button" type="button"> -->
+<!-- 					<i class="fa fa-print"></i>&nbsp;&nbsp;In -->
+<!-- 				</button> -->
 				&nbsp;
 				<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
 					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
@@ -271,7 +280,7 @@
 <!-- 					<button class="button" onclick="showForm('add-chitiet', true)" > -->
 <!-- 						<i class="fa fa-plus-circle"></i>&nbsp;Thêm chi tiết -->
 					</button> 
-					<button type="reset" class="button" ><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+					<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 					<button type="button" class="button" onclick="showForm('add-form', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>
@@ -305,7 +314,7 @@
 				</div>
 				<div class="group-button">
 					<button type="button" class="button" onclick="confirmUpdateVattu();" ><i class="fa fa-floppy-o"></i>&nbsp;Lưu lại</button> 
-					<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+					<button type="button" class="button" onclick="resetUpdateVT();"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 					<button type="button" class="button" onclick="showForm('update-form')"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>
@@ -449,7 +458,7 @@
 				</div>
 				<div class="group-button">
 					<button type="button" class="button" onclick="addCTVattu();"><i class="fa fa-plus-circle"></i>&nbsp;Thêm</button>
-					<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+					<button type="button" class="button" onclick="resetAddCTVT();"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 					<button type="button" class="button" onclick="showForm('add-chitiet', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>
@@ -522,7 +531,7 @@
 				</div>
 				<div class="group-button">
 					<button type="button" class="button" onclick="confirmUpdateCTVattu();"><i class="fa fa-plus-circle"></i>&nbsp;Lưu</button>
-					<button type="reset" class="button"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
+					<button type="button" class="button" onclick="resetUpdateCTVT();"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại</button>
 					<button type="button" class="button" onclick="showForm('update-chitiet', false)"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát</button>
 				</div>
 			</form>

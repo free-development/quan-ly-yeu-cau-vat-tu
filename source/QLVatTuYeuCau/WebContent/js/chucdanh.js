@@ -199,3 +199,6 @@ function confirmDeleteCd(){
 	  	}
 	});
 }
+	function resetUpdateCD(){
+		$('#update-form input:text[name=cdTenUpdate]').val('');
+	}
