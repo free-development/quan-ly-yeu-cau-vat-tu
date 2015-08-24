@@ -53,7 +53,7 @@ create table CHATLUONG
 (
    CLMA                 char(3) not null,
    CLTEN                varchar(20),
-   primary key (CLMA),
+   primary key (CLMA)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -64,7 +64,7 @@ create table CHUCDANH
 (
    CDMA                 varchar(10) not null,
    CDTEN                varchar(30),
-   primary key (CDMA),
+   primary key (CDMA)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -152,7 +152,7 @@ create table MUCDICH
 (
    MDMA                 char(3) not null,
    MDTEN                varchar(50),
-   primary key (MDMA),
+   primary key (MDMA)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -337,14 +337,14 @@ alter table CTVATTU add constraint FK_SANXUAT2 foreign key (NSXMA)
 alter table NGUOIDUNG add constraint FK_RELATIONSHIP_2 foreign key (CDMA)
       references CHUCDANH (CDMA) on delete restrict on update restrict;
 
-alter table PHIEUNHAP add constraint FK_LAP_PHIEUNHAP foreign key (CVID, MSNV, VTID)
-      references VTCONGVAN (CVID, MSNV, VTID) on delete restrict on update restrict;
+-- alter table PHIEUNHAP add constraint FK_LAP_PHIEUNHAP foreign key (CVID, MSNV, VTID)
+   --   references VTCONGVAN (CVID, MSNV, VTID) on delete restrict on update restrict;
 
-alter table PHIEUXUAT add constraint FK_LAP_PHIEU_XUAT foreign key (CVID, MSNV, VTID)
-      references VTCONGVAN (CVID, MSNV, VTID) on delete restrict on update restrict;
+-- alter table PHIEUXUAT add constraint FK_LAP_PHIEU_XUAT foreign key (CVID, MSNV, VTID)
+--      references VTCONGVAN (CVID, MSNV, VTID) on delete restrict on update restrict;
 
-alter table VATTUNHAP add constraint FK_CHITIET_VATTU_NHAP foreign key (NSXMA, CLMA, VTMA)
-      references CTVATTU (NSXMA, CLMA, VTMA) on delete restrict on update restrict;
+-- alter table VATTUNHAP add constraint FK_CHITIET_VATTU_NHAP foreign key (NSXMA, CLMA, VTMA)
+ --     references CTVATTU (NSXMA, CLMA, VTMA) on delete restrict on update restrict;
 
 alter table VATTUNHAP add constraint FK_VATTU_NHAP2 foreign key (PNID)
       references PHIEUNHAP (PNID) on delete restrict on update restrict;
@@ -407,7 +407,11 @@ alter table NOISANXUAT add DAXOA int(2) not null;
 alter table MUCDICH add DAXOA int(2) not null;
 alter table VATTU add DAXOA int(2) not null;
 alter table CTVATTU add DAXOA int(2) not null;
+alter table CHATLUONG add DAXOA int(2) not null;
+alter table DONVI add DAXOA int(2) not null;
 
+update DONVI set DAXOA = 0;
+update CHATLUONG set DAXOA = 0;
 update VAITRO set DAXOA = 0;
 update CHUCDANH set DAXOA = 0;
 update NOISANXUAT set DAXOA = 0;

@@ -43,17 +43,8 @@
 	ArrayList<TrangThai> listTrangThai = (ArrayList<TrangThai>) session.getAttribute("trangThaiList");
 	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) session.getAttribute("congVanList");
 	HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) session.getAttribute("yeuCau");
-	Long size = (Long) request.getAttribute("size");
     %>
-  	<script >alert('<%
-  			out.println("size of don vi: " + listDonVi.size() + "<br>");
-		  	out.println("size of trang thai list: " + listTrangThai.size() + "<br>");
-		  	out.println("size of cong van list: " + congVanList.size() + "<br>");
-		  	out.println("size of yeu cauhash: " + yeuCauHash.size() + "<br>");
-		  	out.println("size of page: " + size + "<br>");
-// 		  	out.println("size of yeu cau list by cong van: " + yeuCauHash.get(0).size() + "<br>");
-  	
-  	%>')</script>
+  
 	<div class="wrapper">
 		<div class="header">
 			<div id="top_title">Văn phòng điện tử</div>
@@ -162,7 +153,6 @@
 				</fieldset>
 				</form>
 			</div>
-			<form id="main-form">
 			<div id="view-table" style="max-height: 420px;width: 1024px;display: auto;border: 1px solid #CCCCCC;margin: 0 auto;overflow: scroll;">
 				<table>
 					<tr bgcolor="lightgreen">
@@ -187,7 +177,6 @@
 							%>
 									
 					<tr
-						class="rowContent"
 						<%if (cnt % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 						<td class="a-column"><%=congVan.getSoDen() %></td>
 						<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
@@ -218,22 +207,6 @@
 		</div>
 		</div>
 		</table>
-		</fieldset>
-		</form>
-	<div id = "paging" >
-							<table style ="border-style: none;">
-								<tr>
-									<td><a href=""> Previous<< </a></td>
-									<td>
-										<%
-											long pageNum = size / 10;
-											for(int i = 0; i <= pageNum; i++) { %>
-												<input type="button" value="<%=i+1%>" class="page">
-										<%} %>
-									</td>
-									<td><a href="">>>Next </a> </td>
-								</tr>
-							</table>
-						</div>
+	
 </body>
-</html>
+</html>s

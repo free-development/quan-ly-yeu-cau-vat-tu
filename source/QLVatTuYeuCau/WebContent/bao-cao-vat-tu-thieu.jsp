@@ -218,7 +218,7 @@
 	   		HashMap<Integer, Integer> yeuCauHash = (HashMap<Integer, Integer>) session.getAttribute("yeuCau"); %>
 			
 				<div style="text-align: center;font-size: 20px;color:firebrick;font-weight: bold;margin-top:10px;">Tổng hợp vật tư thiếu</div>
-				<div id="view-table-bao-cao" class="scroll">
+				<div id="view-table-bao-cao" style="max-height: 420px;width: 700px;display: auto;border: 1px solid #CCCCCC;margin: 0 auto;overflow: scroll;">
 				<table style="margin: 0 auto;width:700px;border: 1px solid black;" >
 					<tr bgcolor="#199e5e" style="border: 1px solid black;">
 						<th style="border: 1px solid black;" class="two-column">Mã vật tư</th>
