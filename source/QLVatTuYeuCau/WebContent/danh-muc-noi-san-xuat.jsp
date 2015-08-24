@@ -240,7 +240,7 @@
 				<button class="button" type="button" onclick="confirmUpdateNsx();">
 					<i class="fa fa-floppy-o"></i>&nbsp;Lưu lại
 				</button>
-				<button type="reset" class="button">
+				<button class="button" type="button" onclick="resetUpdateNsx();">
 					<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
 				</button>
 				<button type="button" class="button"

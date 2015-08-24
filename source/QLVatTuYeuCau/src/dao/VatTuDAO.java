@@ -32,6 +32,12 @@ public class VatTuDAO {
 		session.getTransaction().commit();
 		return vatTu;
 	}
+	public VatTu getVatTuTen(final String vtTen) {
+		session.beginTransaction();
+		VatTu vatTu = (VatTu) session.get(VatTu.class, vtTen);
+		session.getTransaction().commit();
+		return vatTu;
+	}
 	public List<VatTu> getAllVatTu() {
 		session.beginTransaction();
 		Criteria cr = session.createCriteria(VatTu.class);
@@ -100,7 +106,18 @@ public ArrayList<String> startWith(String i) {
 		session.getTransaction().commit();
 		return list;
 	}
-public ArrayList<String> startWithMa(String i) {
+public ArrayList<VatTu> startWithTK(String i) {
+	session.beginTransaction();
+
+	String sql = "from VatTu where vtTen LIKE :vtTen";
+	Query query = session.createQuery(sql);
+	query.setParameter("vtTen", i+"%");
+	ArrayList<VatTu> list = (ArrayList<VatTu>) query.list();
+	
+	session.getTransaction().commit();
+	return list;
+}
+ public ArrayList<String> startWithMa(String i) {
 	session.beginTransaction();
 
 	String sql = "select vtMa from VatTu where vtMa LIKE :vtMa";
@@ -111,7 +128,17 @@ public ArrayList<String> startWithMa(String i) {
 	session.getTransaction().commit();
 	return list;
 }
+ public ArrayList<VatTu> startWithMaTK(String i) {
+	session.beginTransaction();
 
+	String sql = "from VatTu where vtMa LIKE :vtMa";
+	Query query = session.createQuery(sql);
+	query.setParameter("vtMa", i+"%");
+	ArrayList<VatTu> list = (ArrayList<VatTu>) query.list();
+	
+	session.getTransaction().commit();
+	return list;
+}
 	public static void main(String[] args) {
 		new VatTuDAO().deleteVatTu("vt1");
 	}

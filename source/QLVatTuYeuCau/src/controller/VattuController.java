@@ -32,45 +32,45 @@ import dao.CTVatTuDAO;
 @Controller
 public class VattuController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
+
     
-=======
+
 	int page = 1;
->>>>>>> 5ea1ec7e3af2f33e8b138c4ece2829537bc0326f
+
    @RequestMapping("/manageVattu")
 	protected ModelAndView manageCtvt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VatTuDAO vatTuDAO = new VatTuDAO();
 		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
 		ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
 		String action = request.getParameter("action");
-		if("addVatTu".equalsIgnoreCase(action)) {
-			
-			String vtMa = request.getParameter("vtMa");
-			String vtTen = request.getParameter("vtTen");
-			String dvt = request.getParameter("dvt");
-
-			if(new VatTuDAO().getVatTu(vtMa) != null){
-				request.setAttribute("error", "Vật tư đã tồn tại");
-				System.out.println("Vat tu da ton tai");
-				return new ModelAndView("danh-muc-vat-tu");
-			}
-			else{
-				vatTuDAO.addVatTu(new VatTu(vtMa,vtTen,dvt,0));
-				ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
-				return new ModelAndView("danh-muc-vat-tu", "vatTuList", vatTuList);
-			}
-			
-		}
-		if("deleteVatTu".equalsIgnoreCase(action)) {
-			String[] vtMaList = request.getParameterValues("vtMa");
-			for(String s : vtMaList) {
-				
-					vatTuDAO.deleteVatTu(s);
-			}
-			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.getAllVatTu();
-			return new ModelAndView("danh-muc-vat-tu", "vatTuList", vatTuList);
-
-		}
+//		if("addVatTu".equalsIgnoreCase(action)) {
+//			
+//			String vtMa = request.getParameter("vtMa");
+//			String vtTen = request.getParameter("vtTen");
+//			String dvt = request.getParameter("dvt");
+//
+//			if(new VatTuDAO().getVatTu(vtMa) != null){
+//				request.setAttribute("error", "Vật tư đã tồn tại");
+//				System.out.println("Vat tu da ton tai");
+//				return new ModelAndView("danh-muc-vat-tu");
+//			}
+//			else{
+//				vatTuDAO.addVatTu(new VatTu(vtMa,vtTen,dvt,0));
+//				ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) new VatTuDAO().getAllVatTu();
+//				return new ModelAndView("danh-muc-vat-tu", "vatTuList", vatTuList);
+//			}
+//			
+//		}
+//		if("deleteVatTu".equalsIgnoreCase(action)) {
+//			String[] vtMaList = request.getParameterValues("vtMa");
+//			for(String s : vtMaList) {
+//				
+//					vatTuDAO.deleteVatTu(s);
+//			}
+//			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.getAllVatTu();
+//			return new ModelAndView("danh-muc-vat-tu", "vatTuList", vatTuList);
+//
+//		}
 		if("manageVattu".equalsIgnoreCase(action)) {
 			long size = vatTuDAO.size();
 			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.limit(page, 10);
@@ -111,6 +111,23 @@ public class VattuController extends HttpServlet {
 			result = "fail";
 		}
 			return JSonUtil.toJson(result);
+	}
+	@RequestMapping(value="/timKiemVattu", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String timKiemVattu(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen) {
+		VatTuDAO vtDAO = new VatTuDAO();
+		System.out.println("Ma goi qua"+vtMa);
+		if(vtMa != null){
+			ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.startWithMaTK(vtMa);
+			System.out.println("MA: "+vtMa);
+			return JSonUtil.toJson(vtList);
+		}
+		else
+		{
+			ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.startWithTK(vtTen);
+			System.out.println("Ten: "+vtTen);
+			return JSonUtil.toJson(vtList);
+		}
 	}
 	@RequestMapping(value="/updateVattu", method=RequestMethod.GET, 
 		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

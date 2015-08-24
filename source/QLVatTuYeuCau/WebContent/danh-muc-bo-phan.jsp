@@ -72,9 +72,8 @@
 			</div>
 
 		</div>
-			<div class="main_menu">
+		<div class="main_menu">
 					<ul>
-
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
 							<ul>
@@ -95,28 +94,6 @@
 										mục chức danh</a></li>
 								
 							</ul>
-<<<<<<< HEAD
-=======
-						<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
-								mục nơi sản xuất</a></li>
-						<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
-								mục chất lượng</a></li>
-						<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
-								mục vật tư</a></li>
-						<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
-								mục chi tiết vật tư</a></li>
-						<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
-								mục bộ phận sử dụng</a></li>
-						<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
-								mục mục đích</a></li>
-						<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
-						<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
-								mục chức danh</a></li>
-						
-					</ul>
-
-=======
->>>>>>> 5ea1ec7e3af2f33e8b138c4ece2829537bc0326f
 				</li>
 				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
 				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
@@ -132,19 +109,9 @@
 					</ul>
 				</li>
 				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
-
 				</ul>
 					<div class="clear"></div>
 				</div>
-
-			</ul>
-			<div class="clear"></div>
-		</div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 5ea1ec7e3af2f33e8b138c4ece2829537bc0326f
-
 		<div id="main-content">
 			<div id="title-content">Danh mục bộ phận sử dụng</div>
 			<div id="main-content">
@@ -350,7 +317,7 @@
 						<button type="button" class="button" onclick="confirmUpdateBp();">
 							<i class="fa fa-plus-circle"></i>&nbsp;Lưu lại
 						</button>
-						<button type="reset" class="button">
+						<button type="button" class="button" onclick="resetUpdateBP();">
 							<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
 						</button>
 						<button type="button" class="button"

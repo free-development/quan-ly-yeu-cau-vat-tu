@@ -147,7 +147,9 @@ if (nsxTenUpdate == '')
 			});
 	}
 }
-
+function resetUpdateNsx(){
+	$('#update-form input:text[name=nsxTenUpdate]').val('');
+}
 function changensxMa(){
 	$('#requirensxMa').html('');
 	$('#add-form input:text[name=nsxMa]').focus();
@@ -197,6 +199,9 @@ $(document).ready(function() {
 		});
     });	
 })   
+	function reset(){
+			$('#update-form input:text[name=nsxTenUpdate]').val('');
+ 	}
 $(document).ready(function() {
 	$('#add-form').keypress(function(e) {
 	 var key = e.which;

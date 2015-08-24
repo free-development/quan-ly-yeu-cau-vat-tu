@@ -41,10 +41,8 @@
 <body>
 	<%
     
-    	ArrayList<CTVatTu> listCTVatTu = (ArrayList<CTVatTu>) request.getAttribute("ctVatTuList");
-   		ArrayList<NoiSanXuat> listNoiSanXuat = (ArrayList<NoiSanXuat>) request.getAttribute("noiSanXuatList");
-   		ArrayList<ChatLuong> listChatLuong = (ArrayList<ChatLuong>) request.getAttribute("chatLuongList");
-   		Long size = (Long) request.getAttribute("size");
+    	ArrayList<CTVatTu> listCTVatTu = (ArrayList<CTVatTu>) session.getAttribute("ctVatTuList");
+	Long pageNum = (Long) request.getAttribute("page");
    		
     %>
 	<div class="wrapper">
@@ -152,24 +150,16 @@
 					</tr>
 				</table>
 			</div>
-
-<<<<<<< HEAD
 			
-			<div id="view-table" class="scroll-chi-tiet">
-=======
-			<!--
-                    
--->
-			<div id="view-table-vat-tu">
-
->>>>>>> 5ea1ec7e3af2f33e8b138c4ece2829537bc0326f
+<!-- 			<div id="view-table"> -->
+			<div id="view-table-chi-tiet">
 				<table>
 					<tr style="background: #199e5e">
 						<th class="left-column"><input type="checkbox"
 							class="checkAll"></th>
 						<th class="a-column">Mã vật tư</th>
-						<th class="a-column">Tên vật tư</th>
-						<th class="three-column">Nơi sản xuất</th>
+						<th class="three-column">Tên vật tư</th>
+						<th class="six-column">Nơi sản xuất</th>
 						<th class="six-column">Chất lượng</th>
 						<th class="four-column">Đơn vị tính</th>
 						<th class="five-column">Định mức</th>
@@ -205,7 +195,7 @@
 									<td><a href=""> Previous<< </a></td>
 									<td>
 										<%
-											long pageNum = size / 10;
+											//long pageNum = size / 10;
 											for(int i = 0; i <= pageNum; i++) { %>
 												<input type="button" value="<%=i+1%>" class="page">
 										<%} %>
@@ -222,7 +212,7 @@
 					onclick="">
 					<i class="fa fa-pencil fa-fw"></i>&nbsp;Import
 				</button>
-				<button class="button" onclick="">
+				<button class="button" type="button" onclick="location.href='<%=siteMap.xuatCTVatTu+".jsp"%>'">
 					<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xuất File
 				</button>
 				&nbsp;
@@ -232,7 +222,7 @@
 					<i class="fa fa-print"></i>&nbsp;&nbsp;In
 				</button>
 				&nbsp;
-				<button type="button" class="button" onclick="showForm('main-form')">
+				<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
 					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 				</button>
 			</div>

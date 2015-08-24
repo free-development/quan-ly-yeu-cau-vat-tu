@@ -8,9 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import map.siteMap;
 import model.CTVatTu;
 import model.ChatLuong;
+import model.MucDich;
 import model.NoiSanXuat;
 import model.VatTu;
 
@@ -35,7 +38,7 @@ public class CtvtController extends HttpServlet {
 	protected ModelAndView manageCtvt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VatTuDAO vatTuDAO = new VatTuDAO();
 		CTVatTuDAO ctVatTuDAO = new CTVatTuDAO();
-		
+		HttpSession session = request.getSession(false);
 		String action = request.getParameter("action");
 //		if("addVatTu".equalsIgnoreCase(action)) {
 //			
@@ -73,9 +76,10 @@ public class CtvtController extends HttpServlet {
 		}
 		if("manageCtvt".equalsIgnoreCase(action)) {
 			long size = ctVatTuDAO.size();
-			ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) ctVatTuDAO.limit(page, 10);
-			request.setAttribute("size", size);
-			return new ModelAndView("danh-muc-chi-tiet-vat-tu", "ctVatTuList", ctVatTuList);
+			ArrayList<CTVatTu> ctVatTuList =  (ArrayList<CTVatTu>) ctVatTuDAO.limit(page - 1, 10);
+			request.setAttribute("page", size/10);
+			session.setAttribute("ctVatTuList", ctVatTuList);
+			return new ModelAndView(siteMap.ctVatu);
 		}
 		return new ModelAndView("login");
 	}
