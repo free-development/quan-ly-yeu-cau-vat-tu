@@ -3,25 +3,65 @@
 <%@page import="model.NguoiDung"%>
 <%@page import="model.VaiTro"%>
 <%@page import="dao.VaiTroDAO"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%><%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="map.siteMap"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Văn phòng điện tử công ty điện lực Cần Thơ</title>
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
+<link rel="stylesheet" href="style/style.css"
+	type="text/css">	
 <link rel="stylesheet" href="style/style-chia-se.css" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--		 <link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">-->
 <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 		type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/chia-se-cong-van.js"></script>
-<script type="text/javascript" src="js/check.js"js"></script>
+<script type="text/javascript" src="js/check.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#update').click(function() {
+		var msnv = $('#view-table-chia-se input:checkbox[name=msnv]:checked').val();
+		alert(msnv);
+		var msnvList = [];
+		$.each($('#view-table-chia-se input:checkbox[name=msnv]:checked'), function(){            
+			msnvList.push($(this).val());
+		});
+		var str = '';
+		for (i = 0; i < msnvList.length; i++) {
+			str += msnvList[i];
+		}
+		if (msnvList.length == 0)
+			alert('Bạn phải chọn 1 nhân viên để thay đổi!!');
+		else if (msnvList.length > 1)
+			alert('Bạn chỉ được chọn 1 nhân viên để thay đổi!!');
+		else {
+			$.ajax({
+				url: "/QLVatTuYeuCau/updateYeuCau.html",	
+			  	type: "GET",
+			  	dateType: "JSON",
+			  	data: { "msnvList": str},
+			  	contentType: 'application/json',
+			    mimeType: 'application/json',
+			  	success: function(nsx) {
+// 				  	$('input:text[name=nsxMaUpdate]').val(nsx.nsxMa);
+// 				  	$('input:text[name=nsxTenUpdate]').val(nsx.nsxTen);
+// 			  		showForm(formId, check);	
+					alert('OK');
+			  	}
+			});
+		}	
+	});   
+});  
+
+</script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
 <body>
 	<%
@@ -100,12 +140,9 @@
 			</ul>
 			<div class="clear"></div>
 		</div>
-
 		<div id="main-content">
-			<div id="main-content">
-				<div id="title-content">Chia sẻ công văn</div>
+			<div id="title-content">Chia sẻ công văn</div>
 				<form id="main-form" action="<%=siteMap.updateChiaSeCv%>" method="get">
-					
 					<div id="input-table" style="width: 75%; margin-left: 25px;">
 						<table>
 							<tr>
@@ -169,27 +206,19 @@
 						</button>
 					</div>
 				</form>
-				</div>
 				
 				<div id="view-chia-se">
-				<form action=""></form>
+				<form action="">
 				<%
 					if (vtNguoiDungHash.size() != 0 || vtNguoiDungHash == null) {
 				%>
-<<<<<<< HEAD
-					<table>
-						<tr><th><input type = "checkbox" class="checkAll" name="checkAll"></th><th>Msnv</th><th>Họ tên</th><th>Vai trò</th></tr>
-=======
 				<div id="title-content">Công việc đã chia sẽ</div>
 				<div id="view-table-chia-se">
 					<table >
 						<tr bgcolor= "#199e5e">
 						<th style="text-align: center;"><input type = "checkbox" class="checkAll" name=""></th>
-						<th>MSNV</th>
-						<th>Họ tên</th>
-						<th>Vai trò</th>
+							</th><th>Msnv</th><th>Họ tên</th><th>Vai trò</th>
 						</tr>
->>>>>>> 50ee70863990f3fbc9c5bb3e7a558c77fd6db693
 						<%
 							int i = 0;
 							for(String msnv :  vtNguoiDungHash.keySet()) {
@@ -220,19 +249,19 @@
 					</table>
 					<div class="group-button">
 					<input type="hidden" value="save" name="action">
-						<button class="btn">
+						<button class="button" id="update" type="button">
 							<i class="fa fa-pencil fa-fw"></i>&nbsp;sửa
 						</button>
-						<button type="reset" class="btn">
+						<button type="reset" class="button" type="button">
 							<i class="fa fa-trash-o"></i>&nbsp;&nbsp;xóa
 						</button>
 					</div>
 				</div>
 				<%} else out.println("Chưa chia sẻ công văn");%>
-				</div>
-				
+<!-- 				</div> -->
+				</form>
 			</div>
-
+		</div>
 	</div>
 </body>
 </html>

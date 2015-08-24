@@ -208,6 +208,10 @@ $(document).ready(function() {
 	 if(key == 13)  // the enter key code
 	  {
 		 addNsx();
+<<<<<<< HEAD
+//		 alert('ok');
+=======
+>>>>>>> ee42d38d438861e951cf95665b6ac44c696b8202
 	    return false;  
 	  }
 	});   
