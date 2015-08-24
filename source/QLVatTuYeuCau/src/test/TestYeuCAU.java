@@ -185,7 +185,7 @@ public class TestYeuCAU {
 		
 		
 
-		new YeuCauDAO().addYeuCau(yeuCau2);
+		//new YeuCauDAO().addYeuCau(yeuCau2);
 		
 
 

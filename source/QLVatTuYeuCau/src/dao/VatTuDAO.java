@@ -110,7 +110,7 @@ public ArrayList<String> startWith(String i) {
 public void close() {
 	HibernateUtil.shutdown();
 }
-public ArrayList<String> startWithMa(String i) {
+
 
 public ArrayList<VatTu> startWithTK(String i) {
 	session.beginTransaction();
