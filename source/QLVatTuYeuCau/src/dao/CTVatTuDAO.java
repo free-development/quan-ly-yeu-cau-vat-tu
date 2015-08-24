@@ -181,6 +181,26 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return ctVatTuList;
 	}
+	public void close() {
+		HibernateUtil.shutdown();
+	}
+	public void begin(){
+		session.beginTransaction();
+	}
+	public void commit(){
+		session.getTransaction().commit();
+	}
+	public void rollback() {
+		session.getTransaction().rollback();
+	}
+	
+	public void addCTVatTuRoll(CTVatTu ctVatTu){
+		session.save(ctVatTu);
+	}
+	public void updateCTVatTuRoll(CTVatTu ctVatTu){
+		session.update(ctVatTu);
+	}
+	
 	public static void main(String[] args) {
 		//CTVatTuDAO ct = new CTVatTuDAO();//.getCTVatTu("VT5", "NB", "CL0");
 //		System.out.pritnln(ct.getCtvtId());
@@ -196,6 +216,6 @@ public class CTVatTuDAO {
 			if (ctvt == null)
 				System.out.println("OK");
 			else 
-				System.out.println("fail");
+				System.out.println(ctvt.getCtvtId() + "fail");
 	}
 }

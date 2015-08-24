@@ -165,7 +165,7 @@
 			</div>	
 			<br><br>
 			<form id="main-form">
-					<div id="view-table-vt" class="scroll-vat-tu">
+					<div id="view-table-yc" class="scroll-vat-tu">
 <!-- 							<div class="form-title">Cập nhật yêu cầu vật tư</div> -->
 							<table >
 								<tr>

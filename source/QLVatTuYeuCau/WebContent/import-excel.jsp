@@ -8,9 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+		String status = (String) request.getAttribute("status");
+		if (status != null && status.equals("unknownFile"))
+			out.println("<script>alert('File nhập khồng được hỗ trợ. Vui lòng chọn file excel')</script>");
+		else if (status != null && status.equals("formatException"))
+			out.println("<script>alert('Lỗi kiểu dữ liệu. Vui lòng chọn đúng mẫu!!!l')</script>");
+	%>
 	<form action="<%=siteMap.readExcel %>" method="post" enctype="multipart/form-data" >
-		<input type="file" name="file">
-		 <input type="text" name="name"> 
+		<input type="file" name="file" accept=".xls, .xlsx">
 		<input value="uploadFile" name="action" type="submit">
 	</form>
 </body>

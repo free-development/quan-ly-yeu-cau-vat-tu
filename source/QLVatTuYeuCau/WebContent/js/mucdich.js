@@ -51,7 +51,7 @@ function showForm(formId, check){
 	}
 		
  	 function deleteMd(mdMa) {
-		$.ajax({
+ 		$.ajax({
 			url: "/QLVatTuYeuCau/deleteMd.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
@@ -60,8 +60,8 @@ function showForm(formId, check){
 		    mimeType: 'application/json',
 		  	success: function() {
 			  	alert(mdMa + " da bi xoa.");
-						$('table tr').has('input[name="mdMa"]:checked').remove();
-		    } 
+			  	$('table tr').has('input[name="mdMa"]:checked').remove();
+		  	}
 		});  
 	} 
  	

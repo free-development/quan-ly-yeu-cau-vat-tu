@@ -44,26 +44,28 @@ function preUpdateNsx(formId, check) {
 function confirmDelete(){
 	var nsxMa = $('input:checkbox[name=nsxMa]:checked').val();
 	var nsxMaList = [];
+	
 	$.each($("input[name='nsxMa']:checked"), function(){            
 		nsxMaList.push($(this).val());
     });
+	var str = nsxMaList.join(", ");
 	if (nsxMaList.length == 0)
 		alert('Bạn phải chọn 1 hoặc nhiều nơi sản xuất để xóa!!');
-	else if (confirm('Bạn có chắc xóa nơi sản xuất có mã ' + nsxMaList.join(", ")))
-		deleteNsx(nsxMa);
+	else if (confirm('Bạn có chắc xóa nơi sản xuất có mã ' + str))
+		deleteNsx(str);
 }
 
- function deleteNsx(nsxMa) {
+ function deleteNsx(str) {
 	$.ajax({
 		url: "/QLVatTuYeuCau/deleteNsx.html",	
 	  	type: "GET",
 	  	dateType: "JSON",
-	  	data: { "nsxMa": nsxMa},
+	  	data: { "nsxList": str},
 	  	contentType: 'application/json',
 	    mimeType: 'application/json',
 	  	success: function() {
 					$('table tr').has('input[name="nsxMa"]:checked').remove();
-					alert(nsxMa + " da bi xoa");
+					alert('Noi san xuat co ma ' + str + " da bi xoa");
 	    } 
 	});  
 } 
@@ -208,10 +210,7 @@ $(document).ready(function() {
 	 if(key == 13)  // the enter key code
 	  {
 		 addNsx();
-<<<<<<< HEAD
 //		 alert('ok');
-=======
->>>>>>> ee42d38d438861e951cf95665b6ac44c696b8202
 	    return false;  
 	  }
 	});   

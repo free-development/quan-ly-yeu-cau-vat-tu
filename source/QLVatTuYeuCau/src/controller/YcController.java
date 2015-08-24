@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -88,10 +89,10 @@ public class YcController extends HttpServlet {
 		int ctvtId = (Integer) session.getAttribute("ctvtId");
 		System.out.println(cvId);
 		System.out.println(ctvtId);
-		
-		YeuCau yeuCau = ycDAO.addSoLuong(cvId, ctvtId, Integer.parseInt(soLuong));
-		System.out.println(yeuCau.getCapSoLuong());
-		return JSonUtil.toJson(yeuCau.getCtVatTu());
+		int sl = Integer.parseInt(soLuong);
+		YeuCau yeuCau = ycDAO.addSoLuong(cvId, ctvtId, sl);
+//		JOptionPane.showMessageDialog(null,yeuCau.getCtVatTu().getVatTu().getVtMa());
+		return JSonUtil.toJson(yeuCau);
 	}
 	@RequestMapping(value="/deleteYc", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

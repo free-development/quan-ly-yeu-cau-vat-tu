@@ -150,9 +150,18 @@
 					</tr>
 				</table>
 			</div>
+<<<<<<< HEAD
+			<div id="view-table" class="scroll-chi-tiet">
+			<!--
+                    
+-->
+			<div id="view-table-vat-tu">
+
+=======
 			
 <!-- 			<div id="view-table"> -->
 			<div id="view-table-chi-tiet">
+>>>>>>> 62a0aa1d1a6a766162a5f9cd78fba98e624079ab
 				<table>
 					<tr style="background: #199e5e">
 						<th class="left-column"><input type="checkbox"

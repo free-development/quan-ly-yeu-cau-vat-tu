@@ -80,6 +80,8 @@ public class MdController extends HttpServlet {
 		new MucDichDAO().deleteMucDich(mdMa);
 		return JSonUtil.toJson(mdMa);
 	}
+	
+	
 	@RequestMapping(value="/addMd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String addMd(@RequestParam("mdMa") String mdMa, @RequestParam("mdTen") String mdTen) {
