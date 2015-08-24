@@ -59,7 +59,7 @@ public class NsxController extends HttpServlet {
 		}
 		if("manageNsx".equalsIgnoreCase(action)) {
 			long size = noiSanXuatDAO.size();
-			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.limit(page, 10);
+			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.limit(page - 1, 10);
 			request.setAttribute("size", size);
 			return new ModelAndView("danh-muc-noi-san-xuat", "noiSanXuatList", noiSanXuatList);
 		}

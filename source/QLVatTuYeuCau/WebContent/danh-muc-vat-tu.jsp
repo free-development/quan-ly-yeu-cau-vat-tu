@@ -172,8 +172,8 @@
 					<tr style="background: #199e5e; height: 30px">
 						<th class="left-column"><input type="checkbox"
 							class="checkAll"></th>
-						<th class="two-column" style="text-align: left">Mã vật tư</th>
-						<th class="three-column"style="text-align: left">Tên vật tư</th>					
+						<th class="two-column" style="text-align: left;">Mã vật tư</th>
+						<th class="three-column"style="text-align: left;">Tên vật tư</th>					
 						<th class="four-column">Đơn vị tính</th>
 						<th class="four-column">Xem chi tiết</th>
 					</tr>
@@ -186,8 +186,8 @@
 						<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 						<td class="left-column"><input type="checkbox" name="vtMa"
 							value="<%=vatTu.getVtMa() %>" class="checkbox"></td>
-						<td class="col" ><%=vatTu.getVtMa() %></td>
-						<td class="col" ><%=vatTu.getVtTen() %></td>
+						<td class="col" style="text-align: left;" ><%=vatTu.getVtMa() %></td>
+						<td class="col" style="text-align: left;"><%=vatTu.getVtTen() %></td>
 						<td class="col" style="text-align: center;"><%=vatTu.getDvt() %></td>
 						<td style="text-align: center;"><button type="button" class="button-xem" value="Xem" onclick="showCTVatTu('chitiet',true,'<%=vatTu.getVtMa()%>');">Xem</button></td>
 					</tr>

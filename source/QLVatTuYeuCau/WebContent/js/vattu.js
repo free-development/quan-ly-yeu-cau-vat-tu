@@ -13,7 +13,7 @@
 			var vtTen = '';
 			var vtMa = '';
 			var check = $('#checkTen:checked').val();
-			if (check != '')
+			if (check != null)
 				vtTen = $('#search input[name=vattu]').val();
 			else 
 				vtMa = $('#search input[name=vattu]').val();
