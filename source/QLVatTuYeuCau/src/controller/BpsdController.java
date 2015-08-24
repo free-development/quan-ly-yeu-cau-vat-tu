@@ -139,19 +139,7 @@ public class BpsdController extends HttpServlet {
 		int page = Integer.parseInt(pageNumber);
 		ArrayList<DonVi> dvList = (ArrayList<DonVi>) dvDAO.limit((page -1 ) * 10, 10);
 		
-		/*
-		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
-		{
-			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
-			System.out.println("success");
-			result = "success";	
-		}
-		else
-		{
-			System.out.println("fail");
-			result = "fail";
-		}
-		*/
+
 			return JSonUtil.toJson(dvList);
 	}
 }

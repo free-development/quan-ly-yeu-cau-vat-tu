@@ -172,8 +172,8 @@
 					<tr style="background: #199e5e; height: 30px">
 						<th class="left-column"><input type="checkbox"
 							class="checkAll"></th>
-						<th class="two-column">Mã vật tư</th>
-						<th class="three-column">Tên vật tư</th>					
+						<th class="two-column" style="text-align: left">Mã vật tư</th>
+						<th class="three-column"style="text-align: left">Tên vật tư</th>					
 						<th class="four-column">Đơn vị tính</th>
 						<th class="four-column">Xem chi tiết</th>
 					</tr>

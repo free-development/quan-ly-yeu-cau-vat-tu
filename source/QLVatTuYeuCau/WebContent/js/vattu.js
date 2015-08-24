@@ -167,7 +167,7 @@
 						  	success: function(vt) {
 						  		$('table tr').has('input[name="vtMa"]:checked').remove();
 						  		$('#view-table-vat-tu table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vtMaUpdate + '\"</td><td class=\"col\">'+ vtMaUpdate +'</td><td class=\"col\">' + vtTenUpdate+'</td><td class=\"col\">' 
-						  				+ dvtUpdate+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showChiTiet(\'chitiet\',true,\''
+						  				+ dvtUpdate+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
 										+vtMaUpdate+'\');\">Xem</button></td></tr>');
 						  		$('input:text[name=vtMaUpdate]').val('');			 
 						  		$('input:text[name=vtTenUpdate]').val('');
@@ -358,7 +358,7 @@
  			    mimeType: 'application/json',
  			  	
  			  	success: function(vtList) {
- 			  		$('#view-table table .rowContent').remove();
+ 			  		$('#view-table-vat-tu table .rowContent').remove();
  					if(vtList.length>0){
  						for(i = 0;i < vtList.length; i++ ) {
  							var vt = vtList[i] ;
@@ -372,8 +372,9 @@
  								+ '<td class=\"col\">' + vt.vtMa + '</td>'
  								+ '<td class=\"col\">' + vt.vtTen + '</td>'
  								+ '<td class=\"col\">' + vt.dvt + '</td>'
- 								+ '</tr>';
- 							$('#view-table table tr:first').after(str);
+ 								+ '<td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
+								+vt.vtMa+'\');\">Xem</button></td></tr>';
+ 							$('#view-table-vat-tu table tr:first').after(str);
  						}
  					}
  			  	}
