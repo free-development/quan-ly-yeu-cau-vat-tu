@@ -168,9 +168,7 @@ function showForm(formId, check){
 					});
 			}
 		}
-<<<<<<< HEAD
-		function confirmDeleteBp(){
-=======
+
  	 	function resetUpdateBP(){
  	 		$('#update-form input:text[name=dvTenUpdate]').val('');
 			$('#update-form input:text[name=sdtUpdate]').val('');
@@ -178,7 +176,7 @@ function showForm(formId, check){
 			$('#update-form input:text[name=emailUpdate]').val('');
  	 	}
 		function confirmDelete(){
->>>>>>> origin/master
+
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
 			var dvMaList = [];
 			$.each($("input[name='dvMa']:checked"), function(){            
@@ -290,7 +288,7 @@ function showForm(formId, check){
  	 			  	}
  	 			});
  	 	    });	
- 	 	})   
+ 	 	});
  	 	$(document).ready(function() {
  		$('#add-form').keypress(function(e) {
  		 var key = e.which;

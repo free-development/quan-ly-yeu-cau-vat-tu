@@ -27,8 +27,9 @@
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
-<script type="text/javascript" src="js/yeu-cau-vat-tu.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/yeu-cau-vat-tu.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
@@ -197,12 +198,11 @@
 							</table>
 							</div>
 							<div class="group-button">
-								<button type="button" class="button"
-									onclick="showForm('yc-vat-tu', 'add-form-ycvt', true)">
-									<i class="fa fa-plus-circle"></i>&nbsp;Thêm mới
-								</button>
-								<button type="button" class="button"
-									onclick="showForm('update-yc-vat-tu','add-yeu-cau-form', true)">
+<!-- 								<button type="button" class="button" -->
+<!-- 									onclick="showForm('yc-vat-tu', 'add-form-ycvt', true)"> -->
+<!-- 									<i class="fa fa-plus-circle"></i>&nbsp;Thêm mới -->
+<!-- 								</button> -->
+								<button type="button" class="button" id="update-so-luong">
 									<i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa
 								</button>
 								<button class="button" type="button" onclick="return confirmDelete();">
@@ -217,7 +217,7 @@
 								</button>
 							</div>
 				</form>
-			<form id="add-so-luong-form">
+			<form id="add-so-luong-form" onsubmit="return false">
 			<table>
 				<tr><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th >Số lượng</th></tr>
 				<tr>

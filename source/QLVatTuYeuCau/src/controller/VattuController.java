@@ -113,14 +113,14 @@ public class VattuController extends HttpServlet {
 	 public @ResponseBody String timKiemVattu(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen) {
 		VatTuDAO vtDAO = new VatTuDAO();
 		System.out.println("Ma goi qua"+vtMa);
-		if(vtMa != null){
-			ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.startWithMaTK(vtMa);
+		if(vtMa != ""){
+			ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.searchVtMa(vtMa);
 			System.out.println("MA: "+vtMa);
 			return JSonUtil.toJson(vtList);
 		}
 		else
 		{
-			ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.startWithTK(vtTen);
+			ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.searchVtTen(vtTen);
 			System.out.println("Ten: "+vtTen);
 			return JSonUtil.toJson(vtList);
 		}

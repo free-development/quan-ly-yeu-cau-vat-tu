@@ -9,7 +9,7 @@ function showForm(formId1, formId2, check){
     s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
     s.filter = 'alpha(opacity='+opacity+')';
     for(var i=0; i<f.length; i++) f[i].disabled = check;
-}
+};
 
 function searchCtvt() {
 	var vtMa = $('input:text[name=vtMa]').val();
@@ -37,13 +37,12 @@ function searchCtvt() {
 			}
 	  	}
 	});
-}
+};
 function preAddSoLuong(){
 //	$(document).ready(function() {
 //		$('#view-search input:checkbox[name=ctvtId]').clicked(function() {
 //			var ctvtId = this.val();
 	var ctvtId = $('#view-search input:radio[name=ctvtId]:checked').val();
-			alert(ctvtId);
 			$.ajax({
 				url: "/QLVatTuYeuCau/preAddSoLuong.html",	
 			  	type: "GET",
@@ -64,7 +63,7 @@ function preAddSoLuong(){
 			showForm('search-form','add-so-luong-form',true);
 //		});
 //	});	
-}
+};
 
 function addSoLuong(){
 	var soLuong = $('input[name=soLuongAdd]').val();
@@ -74,17 +73,16 @@ function addSoLuong(){
 		url: "/QLVatTuYeuCau/addSoLuong.html",	
 	  	type: "GET",
 	  	dateType: "JSON",
+	  	
+
 	  	data: { "soLuong": soLuong},
 	  	contentType: 'application/json',
 	    mimeType: 'application/json',
 	  	
 	  	success: function(yeuCau) {
-//	  		if(result == "success") {
 	  			alert('them so luong thanh cong');
 	  			$('input:radio[name=ctvtId]').prop('checked',false);
 	  			$('input[name=soLuongAdd]').val('0');
-//	  			showForm('search-form','add-so-luong-form',false);
-//	  			$('#view-table'+yeuCau.ycId).remove();
 	  			var ctVatTu = yeuCau.ctVatTu;
 	  			str = '<tr id=\"' + yeuCau.ycId +'\"> '
 					+ '<td><input id=\"'+ yeuCau.ycId + '\" type=\"checkbox\" name = \"yeuCau\" value=\"' + yeuCau.ycId + '\"</td>'
@@ -95,28 +93,16 @@ function addSoLuong(){
   					+ '<td>' + ctVatTu.vatTu.dvt + '</td>'
   					+ '<td>' + yeuCau.ycSoLuong + '</td>'
   					+ '</tr>';
-//	  			alert(str);
 	  			$('#view-table-yc table tr:first').after(str);
-//	  			$('#view-table table tr:first').after('<tr id=\"' + yeuCau.ycId +'\"> '
-//	  					+ '<td><input id=\"'+ yeuCau.ycId + '\" type=\"checkbox\" name = \"yeuCau\" value=\"' + yeuCau.ycId + '\"</td>'
-//	  					+ '<td>' + yeuCau.vatTu.vtMa + '</td>'
-//	  					+ '<td>' + yeuCau.vatTu.vtTen + '</td>'
-//	  					+ '<td>' + yeuCau.nsx.nsxTen + '</td>'
-//	  					+ '<td>' + yeuCau.chatLuong.clTen + '</td>'
-//	  					+ '<td>' + yeuCau.dvt + '</td>'
-//	  					+ '<td>' + yeuCau.ycSoLuong + '</td>'
-//	  					+ '</tr>');
-	  			alert('them so luong thanh cong :)');
 	  		}
-//	  	}
 	});
 	showForm('search-form','add-so-luong-form',true);
-}
+};
 function confirmDelete() {
 	var ycId = $('#view-table input:checkbox[name=yeuCau]:checked').val();
 	if(confirm('Ban co chac xoa yeu cau?'))
 		deleteYc(ycId);
-}
+};
 function deleteYc(ycId) {
 	$.ajax({
 		url: "/QLVatTuYeuCau/deleteYc.html",	
@@ -130,4 +116,35 @@ function deleteYc(ycId) {
 					$('#view-table table').has('input[name="yeuCau"]:checked').remove();
 	    } 
 	});  
-} 
+};
+$(document).ready(function(){
+	$('#add-so-luong-form').keypress(function(e) {
+	var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+		addSoLuong();
+	    return false;  
+	  }
+	}); 
+});
+$(document).ready(function(){
+	$('#add-so-luong-form').keypress(function(e) {
+	var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+		addSoLuong();
+	    return false;  
+	  }
+	}); 
+});
+$(document).ready(function(){
+	$('#update-so-luong').click(function(){
+		var ycList = [];
+		$.each($('#view-table input:checkbox[name=yeucau]:checked'), function(){
+			ysList.push($(this).val());
+		});
+		var str = ycList.join(", ");
+		alert(str);
+		//showForm('update-yc-vat-tu','add-yeu-cau-form', true);
+	});
+});	

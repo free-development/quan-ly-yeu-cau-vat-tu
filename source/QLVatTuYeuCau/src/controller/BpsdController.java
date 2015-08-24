@@ -38,13 +38,19 @@ public class BpsdController extends HttpServlet {
 		DonViDAO donViDAO = new DonViDAO();
 		
 		String action = request.getParameter("action");
-		if("AddBpsd".equalsIgnoreCase(action)) {
+		if("AddBp".equalsIgnoreCase(action)) {
 			String dvMa = request.getParameter("dvMa");
 			String dvTen = request.getParameter("dvTen");
 			String sdt = request.getParameter("sdt");
 			String diaChi = request.getParameter("diaChi");
 			String email = request.getParameter("email");
+
+			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email,0 ));
+
+			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email,0 ));			
+
 			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email, 0 ));
+
 			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
 			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
 		}
@@ -123,19 +129,7 @@ public class BpsdController extends HttpServlet {
 		int page = Integer.parseInt(pageNumber);
 		ArrayList<DonVi> dvList = (ArrayList<DonVi>) dvDAO.limit((page -1 ) * 10, 10);
 		
-		/*
-		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
-		{
-			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
-			System.out.println("success");
-			result = "success";	
-		}
-		else
-		{
-			System.out.println("fail");
-			result = "fail";
-		}
-		*/
+
 			return JSonUtil.toJson(dvList);
 	}
 }
