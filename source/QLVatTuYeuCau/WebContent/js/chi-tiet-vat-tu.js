@@ -78,6 +78,13 @@
  			});
  			}
  		}
+		function resetAddCTVT()
+		{
+			$('#add-chitiet select[name=noiSanXuat]').val('');
+			$('#add-chitiet select[name=chatLuong]').val('');			
+			$('#add-chitiet input[name=dinhMuc]').val('');
+			$('#add-chitiet input[name=soLuongTon]').val('');
+		}
 		function preEditCTVattu(formId, check){
 			ctvtId = $('#view-table-chi-tiet input:checkbox[name=ctvtId]:checked').val();
 			var ctvtMaList = [];
@@ -169,6 +176,10 @@
 				  	}
 				});
  	}
+ 		function resetUpdateCTVT(){
+ 			$('#update-chitiet input[name=dinhMucUpdate]').val('');
+			$('#update-chitiet input[name=soLuongTonUpdate]').val('');
+ 		}
  	function confirmDeleteCTVT(){
  		ctvtId = $('#view-table-chi-tiet input:checkbox[name=ctvtId]:checked').val();
  		var ctvtMaList = [];

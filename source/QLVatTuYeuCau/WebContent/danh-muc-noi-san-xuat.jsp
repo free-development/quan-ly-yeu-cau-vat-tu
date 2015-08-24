@@ -69,7 +69,7 @@
 			</div>
 
 		</div>
-		<div class="main_menu">
+	<div class="main_menu">
 					<ul>
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
@@ -240,7 +240,7 @@
 				<button class="button" type="button" onclick="confirmUpdateNsx();">
 					<i class="fa fa-floppy-o"></i>&nbsp;Lưu lại
 				</button>
-				<button type="reset" class="button">
+				<button class="button" type="button" onclick="resetUpdateNsx();">
 					<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
 				</button>
 				<button type="button" class="button"

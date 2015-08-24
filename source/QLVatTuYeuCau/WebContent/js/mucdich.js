@@ -146,7 +146,9 @@ function showForm(formId, check){
 		  	}
 		});
 	}
- 	
+ 	function resetUpdateMd(){
+ 		$('#update-form input:text[name=mdTenUpdate]').val('');
+ 	}
  	$(document).ready(function() {
  	  	$('.page').click(function(){
  		var pageNumber = $(this).val();

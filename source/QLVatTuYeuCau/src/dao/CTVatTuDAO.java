@@ -78,6 +78,11 @@ public class CTVatTuDAO {
 		session.save(ctVatTu);
 		session.getTransaction().commit();
 	}
+	public void addOrUpdateCTVatTu(CTVatTu ctVatTu){
+		session.beginTransaction();
+		session.saveOrUpdate(ctVatTu);
+		session.getTransaction().commit();
+	}
 	public void updateCTVatTu(CTVatTu ctVatTu){
 		session.beginTransaction();
 		session.update(ctVatTu);
@@ -187,6 +192,10 @@ public class CTVatTuDAO {
 		//for (CTVatTu vatTu : l) {
 		//	System.out.println(l.getVatTu().getVtMa());
 		//}
-			new CTVatTuDAO().deleteCTVatTu("vt7");
+			CTVatTu ctvt = new CTVatTuDAO().getCTVatTu("12122001", "VN", "000");
+			if (ctvt == null)
+				System.out.println("OK");
+			else 
+				System.out.println("fail");
 	}
 }

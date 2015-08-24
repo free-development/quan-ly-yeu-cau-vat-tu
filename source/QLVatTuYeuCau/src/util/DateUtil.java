@@ -32,7 +32,9 @@ public final class DateUtil {
 	public static Date convertToSqlDate(final java.util.Date date) {
 		return new Date(date.getYear(), date.getMonth(), date.getDate());
 	}
-	
+//	public static S to(final java.util.Date date) {
+//		return new Date(date.getYear(), date.getMonth(), date.getDate());
+//	}
 	// public static DateUtil nowDateSql() {
 	// java.util.Date date = new java.util.Date();
 	// return ()
@@ -51,9 +53,10 @@ public final class DateUtil {
 	}
 	public static final String toString(final java.util.Date date)
 	{
-		String d = date.getDate()+"/"+date.getMonth()+"/"+date.getYear();
+		String d = date.getDate()+"/"+ (date.getMonth() + 1) +"/" + (date.getYear() + 1900);
 		return d;
 	}
+	
 	public static Date parseDate(final String date) {
 		Date d = null;
 		try {

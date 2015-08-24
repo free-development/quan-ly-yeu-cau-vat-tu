@@ -12,3 +12,13 @@ function showForm(formId, check){
 function confirmDelete(){
 	return confirm('Bạn có chắc xóa');
 }
+//$(document).ready(function() {
+//	$('#update').click(function(){
+//		alert('OK');
+//	});
+//});
+$(document).ready(function() {
+	$('#update').click(function() {
+	alert('OK');
+	});   
+});  

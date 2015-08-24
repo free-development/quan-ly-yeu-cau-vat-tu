@@ -57,9 +57,9 @@
 		  	data: { "clMa": clMa},
 		  	contentType: 'application/json',
 		    mimeType: 'application/json',
-		  	success: function() {
-			  	alert(clMa + " da bi xoa.");
+		  	success: function() {		  	
 			  	$('table tr').has('input[name="clMa"]:checked').remove();
+			  	alert(clMa + " da bi xoa.");
 		  	}
 		});  
 	}
@@ -101,6 +101,9 @@
 			});
 		}
 	}
+ 	function resetUpdateCL(){
+			$('#update-form input:text[name=clTenUpdate]').val('');
+ 	}
  	function changeClMa(){
   		$('#requireClMa').html('');
   		$('#add-form input:text[name=clMa]').focus();
@@ -145,7 +148,9 @@
 		  	}
 		});
 	}
- 	
+ 	function resetUpdateCL(){
+ 		$('#update-form input:text[name=clTenUpdate]').val('');
+ 	}
  	$(document).ready(function() {
  	  	$('.page').click(function(){
  		var pageNumber = $(this).val();

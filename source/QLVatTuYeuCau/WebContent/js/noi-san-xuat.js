@@ -147,7 +147,9 @@ if (nsxTenUpdate == '')
 			});
 	}
 }
-
+function resetUpdateNsx(){
+	$('#update-form input:text[name=nsxTenUpdate]').val('');
+}
 function changensxMa(){
 	$('#requirensxMa').html('');
 	$('#add-form input:text[name=nsxMa]').focus();
@@ -197,12 +199,19 @@ $(document).ready(function() {
 		});
     });	
 })   
+	function reset(){
+			$('#update-form input:text[name=nsxTenUpdate]').val('');
+ 	}
 $(document).ready(function() {
 	$('#add-form').keypress(function(e) {
 	 var key = e.which;
 	 if(key == 13)  // the enter key code
 	  {
 		 addNsx();
+<<<<<<< HEAD
+//		 alert('ok');
+=======
+>>>>>>> ee42d38d438861e951cf95665b6ac44c696b8202
 	    return false;  
 	  }
 	});   

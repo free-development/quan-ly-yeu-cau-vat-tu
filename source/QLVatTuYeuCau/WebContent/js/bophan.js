@@ -55,7 +55,7 @@ function showForm(formId, check){
 					 			$('#add-form input:text[name=diaChi]').val('');
 					 			$('#add-form input:text[name=email]').val('');
 					 			showForm("add-form", false);
-					 			alert(dvMa + " đã được thêm ");	
+					 			alert(dvMa + " đã được thêm! ");	
 							}
 					  		else{
 					  			alert(dvMa + " đã tồn tại ");
@@ -64,6 +64,7 @@ function showForm(formId, check){
 		 			 });
  			}
  		}
+	
 		function preUpdateBp(formId, check){
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
 			var dvMaList = [];
@@ -167,7 +168,17 @@ function showForm(formId, check){
 					});
 			}
 		}
+<<<<<<< HEAD
 		function confirmDeleteBp(){
+=======
+ 	 	function resetUpdateBP(){
+ 	 		$('#update-form input:text[name=dvTenUpdate]').val('');
+			$('#update-form input:text[name=sdtUpdate]').val('');
+			$('#update-form input:text[name=diaChiUpdate]').val('');
+			$('#update-form input:text[name=emailUpdate]').val('');
+ 	 	}
+		function confirmDelete(){
+>>>>>>> origin/master
 			dvMa = $('input:checkbox[name=dvMa]:checked').val();
 			var dvMaList = [];
 			$.each($("input[name='dvMa']:checked"), function(){            
@@ -194,7 +205,12 @@ function showForm(formId, check){
 			    } 
 			});  
 		}
-	 	 
+	 	 function resetUpdateBP(){
+	 		$('#update-form input:text[name=dvTenUpdate]').val('');
+			$('#update-form input:text[name=sdtUpdate]').val('');
+			$('#update-form input:text[name=diaChiUpdate]').val('');
+			$('#update-form input:text[name=emailUpdate]').val('');
+	 	 }
 	 	function changedvMa(){
  	  		$('#requiredvMa').html('');
  	  		$('#add-form input:text[name=dvMa]').focus();

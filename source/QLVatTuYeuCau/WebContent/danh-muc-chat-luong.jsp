@@ -172,7 +172,7 @@
 						<i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua
 					</button>
 					&nbsp;
-					<button type="button" class="btn">
+					<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 					</button>
 				</div>
@@ -221,7 +221,7 @@
 						<tr>
 							<td class="input"><label for="MCL">Mã chất lượng</label></td>
 							<td><input name="clMaUpdate" type="text" class="text"
-								required autofocus size="2" maxlength="3" value="A80"
+								required autofocus size="2" maxlength="3" value="A80" style="background-color: #D1D1E0;"
 								pattern="[a-zA-Z0-9]{3}"
 								title="Mã chất lượng chỉ gồm 3 ký tự, không chứ khoảng trắng và ký tự đặc biệt"
 								value="MCL" readonly></td>
@@ -240,7 +240,7 @@
 					<button class="button" onclick="confirmUpdateCl()" type="button">
 						<i class="fa fa-floppy-o"></i>&nbsp;Lưu lại
 					</button>
-					<button type="reset" class="button">
+					<button type="button" class="button" onclick="resetUpdateCL();">
 						<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
 					</button>
 					<button type="button" class="button"

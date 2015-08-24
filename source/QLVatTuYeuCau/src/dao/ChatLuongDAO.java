@@ -68,6 +68,11 @@ public class ChatLuongDAO {
 		session.save(chatLuong);
 		session.getTransaction().commit();
 	}
+	public void addOrUpdateChatLuong(ChatLuong chatLuong){
+		session.beginTransaction();
+		session.saveOrUpdate(chatLuong);
+		session.getTransaction().commit();
+	}
 	public void updateChatLuong(ChatLuong chatLuong){
 		session.beginTransaction();
 		session.update(chatLuong);

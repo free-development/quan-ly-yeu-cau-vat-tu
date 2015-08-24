@@ -10,19 +10,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;import org.hibernate.type.descriptor.sql.VarbinaryTypeDescriptor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.CongVanDAO;
 import dao.NguoiDungDAO;
+import dao.NoiSanXuatDAO;
 import dao.VTCongVanDAO;
 import dao.VaiTroDAO;
 import map.siteMap;
 import model.CongVan;
 import model.NguoiDung;
+import model.NoiSanXuat;
 import model.VTCongVan;
 import model.VaiTro;
+import util.JSonUtil;
 
 @Controller
 @WebServlet("/ChiaSeCvController")
@@ -108,4 +115,11 @@ public class ChiaSeCvController extends HttpServlet {
 		}
 		return new ModelAndView("login");
 	}
+   @RequestMapping(value="/updateYeuCau", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String updateYeuCau(@RequestParam("msnvList") String msnvList) {
+		System.out.println(msnvList);
+			return JSonUtil.toJson(msnvList);
+	}
+   
 }

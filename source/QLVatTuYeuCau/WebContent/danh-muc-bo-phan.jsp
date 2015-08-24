@@ -72,9 +72,8 @@
 			</div>
 
 		</div>
-			<div class="main_menu">
+		<div class="main_menu">
 					<ul>
-
 						<li><a href="">Trang chủ</a></li>
 						<li><a href="">Danh mục</a>
 							<ul>
@@ -110,15 +109,9 @@
 					</ul>
 				</li>
 				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
-
 				</ul>
 					<div class="clear"></div>
 				</div>
-
-			</ul>
-			<div class="clear"></div>
-		</div>
-
 		<div id="main-content">
 			<div id="title-content">Danh mục bộ phận sử dụng</div>
 			<div id="main-content">
@@ -324,7 +317,7 @@
 						<button type="button" class="button" onclick="confirmUpdateBp();">
 							<i class="fa fa-plus-circle"></i>&nbsp;Lưu lại
 						</button>
-						<button type="reset" class="button">
+						<button type="button" class="button" onclick="resetUpdateBP();">
 							<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
 						</button>
 						<button type="button" class="button"

@@ -79,7 +79,10 @@
 	padding-bottom: 5px;
 	text-align: center;
 }
-
+#main-vattu {
+	height: 1000px;
+	background-color: while;
+}
 #view-table-vat-tu table tr th {
 	border-style: solid;
 	border-width: 1px;

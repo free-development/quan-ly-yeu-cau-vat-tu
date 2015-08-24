@@ -9,6 +9,50 @@
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
 		}	
+		function timKiemVattu(){
+			var vtTen = '';
+			var vtMa = '';
+			var check = $('#checkTen:checked').val();
+			if (check != '')
+				vtTen = $('#search input[name=vattu]').val();
+			else 
+				vtMa = $('#search input[name=vattu]').val();
+			/*
+			alert(check);
+			alert(vtTen);
+			alert(vtMa);
+			*/
+			$.ajax({
+				url: "/QLVatTuYeuCau/timKiemVattu.html",	
+			  	type: "GET",
+ 			  	dateType: "JSON",
+ 			  	data: { "vtMa": vtMa, "vtTen": vtTen},
+ 			  	contentType: 'application/json',
+ 			    mimeType: 'application/json',
+			  	
+ 			  	success: function(vtList){
+ 			  		
+ 			  		if(vtList.length>0){
+ 			  			$('#view-table-vat-tu table .rowContent').remove();
+						for(i = 0;i < vtList.length; i++ ) {
+							vattu = vtList[i];
+							//alert(vtList[i].vtMa);
+		 			  		
+					  				$('#view-table-vat-tu table tr:first').after('<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vattu.vtMa 
+									+ '\"</td><td class=\"col\">'+ vattu.vtMa +'</td><td class=\"col\">' + vattu.vtTen
+									+'</td><td class=\"col\" style=\"text-align: center;\">' + vattu.dvt
+									+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
+									+vattu.vtMa+'\');\">Xem</button></td></tr>');
+						}
+ 			  		}
+ 			  		else
+ 			  			{
+ 			  				alert("Không tìm thấy vật tư!");
+ 			  			}
+ 			  	}
+			});
+			
+		}
 		function addVattu() {
  			vtMa = $('#add-form input:text[name=vtMa]').val();
  			vtTen = $('#add-form input:text[name=vtTen]').val();
@@ -40,7 +84,7 @@
 							$('#view-table-vat-tu table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vtMa 
 									+ '\"</td><td class=\"col\">'+ vtMa +'</td><td class=\"col\">' + vtTen
 									+'</td><td class=\"col\" style=\"text-align: center;\">' + dvt
-									+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showChiTiet(\'chitiet\',true,\''
+									+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
 									+vtMa+'\');\">Xem</button></td></tr>');
 					  		$('#add-form input:text[name=vtMa]').val('');
 							$('#add-form input:text[name=vtTen]').val('');
@@ -48,8 +92,9 @@
 							$('#add-chitiet input:text[name=vtMa]').val(vtMa);
 							$('#add-chitiet input:text[name=vtTen]').val(vtTen);
 							$('#add-chitiet input:text[name=dvt]').val(dvt);
-					  		showForm("add-form", false);	
-					  		alert("Vật tư "+ vtMa + " đã được thêm ");	
+							alert("Vật tư "+ vtMa + " đã được thêm ");
+					  		showForm("add-form", false);			
+					  			
 						}
 				  		else{
 				  			alert("Vật tư "+ vtMa + " đã tồn tại ");
@@ -59,6 +104,7 @@
 		 			});
  			}
  		}
+
 		function preEditVattu(formId, check){
 			vtMa = $('input:checkbox[name=vtMa]:checked').val();
 			//alert(vtMa);
@@ -132,7 +178,34 @@
 						});
  			}
  	}
+ 		function resetUpdateVT(){
+ 			$('#update-form input:text[name=vtTenUpdate]').val('');
+			$('#update-form select[name=dvtUpdate]').val('');
+ 		}
  	function confirmDeleteVT(){
+ 		vtMa = $('input:checkbox[name=vtMa]:checked').val();	
+ 		$.ajax({
+ 			url: "/QLVatTuYeuCau/comfirmdeleteVattu.html",	
+ 		  	type: "GET",
+ 		  	dateType: "JSON",
+ 		  	data: { "vtMa": vtMa},
+ 		  	contentType: 'application/json',
+ 		    mimeType: 'application/json',
+ 		    
+ 		    
+ 		  	success: function(result) {
+ 		  		if(result == "success")
+ 		  			{
+ 		  			if (confirm('Bạn có chắc xóa ' + vtMa))
+ 		  	 			deleteVattu(vtMa);	  			
+ 		  			}
+ 		  		else
+ 		  			{
+ 		  				alert("Không thể xóa!");
+ 		  			}
+ 		    } 
+ 		});  
+ 		
  		var vtMa = $('input:checkbox[name=vtMa]:checked').val();
 		var vtMaList = [];
 		$.each($("input[name='vtMa']:checked"), function(){            
@@ -142,6 +215,7 @@
 			alert('Bạn phải chọn 1 hoặc nhiều vật tư để xóa!!');
 		else if (confirm('Bạn có chắc xóa vật tư có mã ' + vtMaList.join(", ")))
 			deleteVattu(vtMa);
+
  	}
 	
   	 function deleteVattu(vtMa) {
@@ -155,14 +229,23 @@
  		    mimeType: 'application/json',
  		    
  		    
- 		  	success: function() {
- 		  		
-				$('#view-table-vat-tu table tr').has('input[name="vtMa"]:checked').remove();
-				alert(vtMa + " da bi xoa");
+ 		  	success: function(result) {
+ 		  		if(result == "success")
+ 		  			{
+	 		  			$('#view-table-vat-tu table tr').has('input[name="vtMa"]:checked').remove();
+	 					alert(vtMa + " da bi xoa");		  			
+ 		  			}
+ 		  		else
+ 		  			{
+ 		  				alert("Không thể xóa!");
+ 		  			}
  		    } 
  		});  
  	}
-  	function showChiTiet(formId, check, vtMa){  
+  	 
+
+
+  	function showCTVatTu(formId, check, vtMa){  
   		$.ajax({
   			url: "/QLVatTuYeuCau/showCTVatTu.html",
 			type: "GET",
@@ -174,37 +257,47 @@
 			success: function(listCTVatTu){
 				
 				$('#view-table-chi-tiet table .rowContent').remove();
-				if(listCTVatTu.length>0){
-					
-				
-						for(i = 0;i < listCTVatTu.length; i++ ) { 
-		
-						$('#view-table-chi-tiet table tr:first').after("<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"ctvtId\" value=\""
-								+ listCTVatTu[i].ctvtId + "\" id=\"checkbox\"></td>"
-								+"<td class=\"col\">" +listCTVatTu[i].vatTu.vtMa+ "</td>"
-								+"<td class=\"col\">" +listCTVatTu[i].vatTu.vtTen+ "</td>"
-								+"<td class=\"col\">" +listCTVatTu[i].noiSanXuat.nsxTen+ "</td>"
-								+"<td class=\"col\">" +listCTVatTu[i].chatLuong.clTen+ "</td>"
-								+"<td class=\"col\">" +listCTVatTu[i].vatTu.dvt+ "</td>"
-								+"<td class=\"col\">" +listCTVatTu[i].dinhMuc+ "</td>"
-								+"<td class=\"col\">" +listCTVatTu[i].soLuongTon+ "</td></tr>");
-						}
-						vtMa = listCTVatTu[0].vatTu.vtMa;
-						vtTen = listCTVatTu[0].vatTu.vtTen;
-						dvt = listCTVatTu[0].vatTu.dvt;
-						$('#add-chitiet input:text[name=vtMa]').val(vtMa);
-						$('#add-chitiet input:text[name=vtTen]').val(vtTen);
-						$('#add-chitiet input:text[name=dvt]').val(dvt);
-						
+//				if(listCTVatTu.a == null)
+//					alert("1");
+//					else alert("2");
+			//	alert(listCTVatTu.vtMa)
+				if(listCTVatTu.vtMa != null) {
+					$('#add-chitiet input:text[name=vtMa]').val(listCTVatTu.vtMa);
+					$('#add-chitiet input:text[name=vtTen]').val(listCTVatTu.vtTen);
+					$('#add-chitiet input:text[name=dvt]').val(listCTVatTu.dvt);
+					alert("Không có chi tiết vật tư!");
 				}
-				else
-					{	
-						alert("Không có chi tiết vật tư!")
-					}
-			  	showForm(formId, check);
+				else {
+					if(listCTVatTu.length>0){
+					
+							for(i = 0;i < listCTVatTu.length; i++ ) {
+			
+							$('#view-table-chi-tiet table tr:first').after("<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"ctvtId\" value=\""
+									+ listCTVatTu[i].ctvtId + "\" id=\"checkbox\"></td>"
+									+"<td class=\"col\">" +listCTVatTu[i].vatTu.vtMa+ "</td>"
+									+"<td class=\"col\">" +listCTVatTu[i].vatTu.vtTen+ "</td>"
+									+"<td class=\"col\">" +listCTVatTu[i].noiSanXuat.nsxTen+ "</td>"
+									+"<td class=\"col\">" +listCTVatTu[i].chatLuong.clTen+ "</td>"
+									+"<td class=\"col\">" +listCTVatTu[i].vatTu.dvt+ "</td>"
+									+"<td class=\"col\">" +listCTVatTu[i].dinhMuc+ "</td>"
+									+"<td class=\"col\">" +listCTVatTu[i].soLuongTon+ "</td></tr>");
+							}
+							vtMa = listCTVatTu[0].vatTu.vtMa;
+							vtTen = listCTVatTu[0].vatTu.vtTen;
+							dvt = listCTVatTu[0].vatTu.dvt;
+							$('#add-chitiet input:text[name=vtMa]').val(vtMa);
+							$('#add-chitiet input:text[name=vtTen]').val(vtTen);
+							$('#add-chitiet input:text[name=dvt]').val(dvt);
+							
+						}
+				}
+				showForm(formId, check);
 			}
+		  	
   		});
   	}
+  	
+  	
 
   	function changeVtMa(){
   		$('#requireVtMa').html('');
