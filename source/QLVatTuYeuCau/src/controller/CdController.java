@@ -54,7 +54,7 @@ public class CdController extends HttpServlet {
 		}
 		if("manageCd".equalsIgnoreCase(action)) {
 			long size = chucDanhDAO.size();
-			ArrayList<ChucDanh> chucDanhList =  (ArrayList<ChucDanh>) chucDanhDAO.limit(page, 10);
+			ArrayList<ChucDanh> chucDanhList =  (ArrayList<ChucDanh>) chucDanhDAO.limit(page -1, 10);
 			request.setAttribute("size", size);
 			return new ModelAndView("danh-muc-chuc-danh", "chucDanhList", chucDanhList);
 		}
