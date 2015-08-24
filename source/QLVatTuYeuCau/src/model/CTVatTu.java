@@ -47,8 +47,7 @@ public class CTVatTu implements Serializable {
 	 * @param noiSanXuat
 	 * @param chaLluong
 	 */
-	public CTVatTu(VatTu vatTu,
-			NoiSanXuat noiSanXuat, ChatLuong chatLuong, int dinhMuc, int soLuongTon,int daXoa) {
+	public CTVatTu(VatTu vatTu,NoiSanXuat noiSanXuat, ChatLuong chatLuong, int dinhMuc, int soLuongTon,int daXoa) {
 		this.dinhMuc = dinhMuc;
 		this.soLuongTon = soLuongTon;
 		this.vatTu = vatTu;
