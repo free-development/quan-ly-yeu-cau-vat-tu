@@ -33,7 +33,14 @@ import dao.CTVatTuDAO;
 public class VattuController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	int page = 1;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> a09acf16fb97349f62e2e74f18237c726674fed4
+>>>>>>> eca19f70796dc49b4bcd64d23ae12439463e4290
    @RequestMapping("/manageVattu")
 	protected ModelAndView manageCtvt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VatTuDAO vatTuDAO = new VatTuDAO();
@@ -70,7 +77,7 @@ public class VattuController extends HttpServlet {
 //		}
 		if("manageVattu".equalsIgnoreCase(action)) {
 			long size = vatTuDAO.size();
-			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.limit(page, 10);
+			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.limit(page - 1, 10);
 			request.setAttribute("size", size);
 			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.getAllNoiSanXuat();
 			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.getAllChatLuong();
@@ -114,14 +121,14 @@ public class VattuController extends HttpServlet {
 	 public @ResponseBody String timKiemVattu(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen) {
 		VatTuDAO vtDAO = new VatTuDAO();
 		System.out.println("Ma goi qua"+vtMa);
-		if(vtMa != null){
-			ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.startWithMaTK(vtMa);
+		if(vtMa != ""){
+			ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.searchVtMa(vtMa);
 			System.out.println("MA: "+vtMa);
 			return JSonUtil.toJson(vtList);
 		}
 		else
 		{
-			ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.startWithTK(vtTen);
+			ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.searchVtTen(vtTen);
 			System.out.println("Ten: "+vtTen);
 			return JSonUtil.toJson(vtList);
 		}

@@ -92,9 +92,6 @@ public class VatTuDAO {
 		query.executeUpdate();
 		session.getTransaction().commit();
 	}
-
-
-
 public ArrayList<String> startWith(String i) {
 		session.beginTransaction();
 
@@ -106,6 +103,12 @@ public ArrayList<String> startWith(String i) {
 		session.getTransaction().commit();
 		return list;
 	}
+<<<<<<< HEAD
+public void close() {
+	HibernateUtil.shutdown();
+}
+public ArrayList<VatTu> searchVtTen(String i) {
+=======
 
 public void close() {
 	HibernateUtil.shutdown();
@@ -113,6 +116,7 @@ public void close() {
 
 
 public ArrayList<VatTu> startWithTK(String i) {
+>>>>>>> eca19f70796dc49b4bcd64d23ae12439463e4290
 	session.beginTransaction();
 
 	String sql = "from VatTu where vtTen LIKE :vtTen";
@@ -124,18 +128,19 @@ public ArrayList<VatTu> startWithTK(String i) {
 	return list;
 }
  public ArrayList<String> startWithMa(String i) {
+<<<<<<< HEAD
+=======
 
+>>>>>>> eca19f70796dc49b4bcd64d23ae12439463e4290
 	session.beginTransaction();
-
 	String sql = "select vtMa from VatTu where vtMa LIKE :vtMa";
 	Query query = session.createQuery(sql);
 	query.setParameter("vtMa", i+"%");
 	ArrayList<String> list = (ArrayList<String>) query.list();
-	
 	session.getTransaction().commit();
 	return list;
 }
- public ArrayList<VatTu> startWithMaTK(String i) {
+ public ArrayList<VatTu> searchVtMa(String i) {
 	session.beginTransaction();
 
 	String sql = "from VatTu where vtMa LIKE :vtMa";

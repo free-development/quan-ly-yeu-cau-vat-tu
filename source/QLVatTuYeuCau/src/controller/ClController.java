@@ -62,7 +62,7 @@ public class ClController extends HttpServlet {
 		}
 		if("manageCl".equalsIgnoreCase(action)) {
 			long size = chatLuongDAO.size();
-			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.limit(page, 10);
+			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.limit(page -1, 10);
 			request.setAttribute("size", size);
 			return new ModelAndView("danh-muc-chat-luong", "chatLuongList", chatLuongList);
 		}
