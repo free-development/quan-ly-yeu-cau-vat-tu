@@ -65,7 +65,7 @@ function confirmDelete(){
 	    mimeType: 'application/json',
 	  	success: function() {
 					$('table tr').has('input[name="nsxMa"]:checked').remove();
-					alert('Noi san xuat co ma ' + str + " da bi xoa");
+					alert('Nơi sản xuất có mã ' + str + " đã bị xóa");
 	    } 
 	});  
 } 

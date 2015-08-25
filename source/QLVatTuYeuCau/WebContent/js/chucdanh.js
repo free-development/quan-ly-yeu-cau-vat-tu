@@ -97,23 +97,24 @@ function confirmDeleteCd(){
 	$.each($("input[name='cdMa']:checked"), function(){            
 		cdMaList.push($(this).val());
     });
+	var str = cdMaList.join(", ");
 	if (cdMaList.length == 0)
 		alert('Bạn phải chọn 1 hoặc nhiều chức danh để xóa!!');
-	else if (confirm('Bạn có chắc xóa chức danh có mã ' + cdMaList.join(", ")))
-		deleteCd(cdMa);
+	else if (confirm('Bạn có chắc xóa chức danh có mã ' + str))
+		deleteCd(str);
 }
 	
-	 function deleteCd(cdMa) {
+	 function deleteCd(str) {
 	$.ajax({
 		url: "/QLVatTuYeuCau/deleteCd.html",	
 	  	type: "GET",
 	  	dateType: "JSON",
-	  	data: { "cdMa": cdMa},
+	  	data: { "cdList": str},
 	  	contentType: 'application/json',
 	    mimeType: 'application/json',
 	  	success: function() {
-		  	alert(cdMa + " da bi xoa.");
 					$('table tr').has('input[name="cdMa"]:checked').remove();
+					alert('Bộ phận có mã ' + str + " đã bị xóa");
 	    } 
 	});  
 } 

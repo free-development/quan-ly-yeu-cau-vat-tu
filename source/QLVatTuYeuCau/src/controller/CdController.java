@@ -27,6 +27,7 @@ import util.JSonUtil;
 import dao.ChatLuongDAO;
 import dao.ChucDanhDAO;
 import dao.MucDichDAO;
+import dao.NoiSanXuatDAO;
 
 @Controller
 public class CdController extends HttpServlet {
@@ -71,9 +72,14 @@ public class CdController extends HttpServlet {
 	
 	@RequestMapping(value="/deleteCd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String deleteCd(@RequestParam("cdMa") String cdMa) {
-		new ChucDanhDAO().deleteChucDanh(cdMa);
-		return JSonUtil.toJson(cdMa);
+	 public @ResponseBody String deleteCd(@RequestParam("cdList") String cdList) {
+		String[] str = cdList.split("\\, ");
+		
+		ChucDanhDAO cdDAO =  new ChucDanhDAO();
+		for(String cdMa : str) {
+			cdDAO.deleteChucDanh(cdMa);
+		}
+		return JSonUtil.toJson(cdList);
 	}
 	@RequestMapping(value="/addCd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

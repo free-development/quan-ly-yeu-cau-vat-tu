@@ -107,10 +107,14 @@ public class VtController extends HttpServlet {
 	}
 	@RequestMapping(value="/deleteVt", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String deleteVt(@RequestParam("vtId") String vtId) {
-		//VaiTro vt = new VaiTro(Integer.parseInt(vtId));
-		new VaiTroDAO().deleteVaiTro(vtId);
-		return JSonUtil.toJson(vtId);
+	 public @ResponseBody String deleteVt(@RequestParam("vtList") String vtList) {
+		String[] str = vtList.split("\\, ");
+		
+		VaiTroDAO vtDAO =  new VaiTroDAO();
+		for(String vtId : str) {
+			vtDAO.deleteVaiTro(vtId);
+		}
+		return JSonUtil.toJson(vtList);
 	}
 	
 	@RequestMapping(value="/loadPageVt", method=RequestMethod.GET, 

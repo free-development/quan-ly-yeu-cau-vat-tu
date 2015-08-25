@@ -108,7 +108,7 @@
 			<form id="option-form" method="get" action ="<%=siteMap.bcbdnManage %>">
 			<fieldset style="background-color:#dceaf5;width:750px;margin:0 auto;">
 			
-				<table style="margin:0 auto;margin-top: 20px;">
+				<table style="margin:0 auto; margin-top: 30px;">
 					<tr>
                             <th style="text-align: left;margin-top: 10px;padding-right:10px;" >Thời gian:</th>
                             <td style="text-align: left;margin-top: 10px;" colspan="2" >Từ ngày &nbsp;
@@ -132,7 +132,7 @@
 						</select>
 						</td>
 					</tr>
-				<table class="radio" style="margin-top: 30px;margin:0 auto;">
+				<table class="radio" style="margin-top: 20px;margin:0 auto;">
 					<th style="text-align: left;margin-top: 20px;padding-right:50px;">Trạng thái:</th>				  
  								
  								<td style="text-align: right;"><input type="radio" name="trangthai" value="CGQ"></td>
@@ -153,8 +153,8 @@
 				</fieldset>
 				</form>
 			</div>
-			<div id="view-table" style="max-height: 420px;width: 1024px;display: auto;border: 1px solid #CCCCCC;margin: 0 auto;overflow: scroll;">
-				<table>
+			<div id="view-table" style="smax-height: 420px;width: 1024px;display: auto;border: 1px solid #CCCCCC;margin: 0 auto;margin-top: 20px;;overflow: scroll;">
+				<table >
 					<tr bgcolor="lightgreen">
 						<th class="a-column">Số đến</th>
 						<th class="b-column">Ngày nhận</th>

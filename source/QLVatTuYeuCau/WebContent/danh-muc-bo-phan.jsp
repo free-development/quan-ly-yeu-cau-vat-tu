@@ -173,7 +173,7 @@
 							<i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi
 						</button>
 						&nbsp;&nbsp;
-						<button class="button" onclick="confirmDeleteBp()">
+						<button class="button" type="button" onclick="confirmDelete()">
 							<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa
 						</button>
 						&nbsp;&nbsp;

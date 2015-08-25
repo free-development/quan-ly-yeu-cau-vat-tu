@@ -46,25 +46,25 @@ function showForm(formId, check){
 			$.each($("input[name='vtId']:checked"), function(){            
 				vtMaList.push($(this).val());
 		    });
+			var str = vtMaList.join(", ");
 			if (vtMaList.length == 0)
 				alert('Bạn phải chọn 1 hoặc nhiều vai trò để xóa!!');
-			else if (confirm('Bạn có chắc xóa vai trò có mã ' + vtMaList.join(", ")))
-				deleteVt(vtId);
+			else if (confirm('Bạn có chắc xóa vai trò có mã ' + str))
+				deleteVt(str);
 		}
  		
-	 	 function deleteVt(vtId) {
+	 	 function deleteVt(str) {
 			 
 			$.ajax({
 				url: "/QLVatTuYeuCau/deleteVt.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
-			  	data: { "vtId": vtId},
+			  	data: { "vtList": str},
 			  	contentType: 'application/json',
 			    mimeType: 'application/json',
 			  	success: function() {
-			  		$('table tr').has('input[name="vtId"]:checked').remove();
-				  	alert(vtId + " da bi xoa");
-							
+							$('table tr').has('input[name="vtId"]:checked').remove();
+							alert('Bộ phận có mã ' + str + " đã bị xóa");
 			    } 
 			});  
 		} 
@@ -91,7 +91,7 @@ function showForm(formId, check){
 		 			  	success: function(result) {
 					  		if(result == "success")
 			 				{
-							$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtId\" value=\"' +vtId + '\"</td><td class=\"col\">'+ vtId +'</td><td class=\"col\">' + vtTen+'</td></tr>');
+							$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"vtId\" value=\"' +vtId + '\"</td><td class=\"col\">'+ vtId +'</td><td class=\"col\">' + vtTen+'</td></tr>');
 					  		$('#add-form input[name=vtId]').val('');
 							$('#add-form input:text[name=vtTen]').val('');
 					  		showForm("add-form", false);	
@@ -129,7 +129,7 @@ function showForm(formId, check){
 					  	
 					  	success: function(vt) {
 					  		$('table tr').has('input[name="vtId"]:checked').remove();
-					  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtId\" value=\"' +vtIdUpdate + '\"</td><td class=\"col\">'+ vtIdUpdate +'</td><td class=\"col\">' + vtTenUpdate+'</td></tr>');
+					  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"vtId\" value=\"' +vtIdUpdate + '\"</td><td class=\"col\">'+ vtIdUpdate +'</td><td class=\"col\">' + vtTenUpdate+'</td></tr>');
 					  		$('input[name=vtIdUpdate]').val('');
 							vtTenUpdate = $('input:text[name=vtTenUpdate]').val('');
 					  		showForm("update-form", false);	

@@ -44,24 +44,25 @@ function showForm(formId, check){
 		$.each($("input[name='mdMa']:checked"), function(){            
 			mdMaList.push($(this).val());
 	    });
+		var str = mdMaList.join(", ");
 		if (mdMaList.length == 0)
 			alert('Bạn phải chọn 1 hoặc nhiều mục đích để xóa!!');
-		else if (confirm('Bạn có chắc xóa mục đích có mã ' + mdMaList.join(", ")))
-			deleteMd(mdMa);
+		else if (confirm('Bạn có chắc xóa mục đích có mã ' + str))
+			deleteMd(str);
 	}
 		
- 	 function deleteMd(mdMa) {
+ 	 function deleteMd(str) {
  		$.ajax({
 			url: "/QLVatTuYeuCau/deleteMd.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
-		  	data: { "mdMa": mdMa},
+		  	data: { "mdList": str},
 		  	contentType: 'application/json',
 		    mimeType: 'application/json',
 		  	success: function() {
-			  	alert(mdMa + " da bi xoa.");
-			  	$('table tr').has('input[name="mdMa"]:checked').remove();
-		  	}
+						$('table tr').has('input[name="mdMa"]:checked').remove();
+						alert('Mục đích có mã ' + str + " đã bị xóa");
+		    } 
 		});  
 	} 
  	
