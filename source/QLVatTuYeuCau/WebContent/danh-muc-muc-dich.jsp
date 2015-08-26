@@ -147,7 +147,7 @@
 						<div id = "paging" >
 							<table style ="border-style: none;">
 								<tr>
-									<td><a href=""> Previous </a></td>
+									<td><a href=""> << Previous </a></td>
 									<td>
 										<%
  											//long pageNum = size / 10;

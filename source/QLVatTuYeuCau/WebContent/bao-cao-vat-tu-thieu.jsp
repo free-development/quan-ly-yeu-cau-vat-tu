@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
  <link rel="stylesheet" href="style/style.css" type="text/css">
-<link href="style/style-bao-cao-vat-tu-thieu.css" type="text/css"
+<link href="style/style-bao-cao-bang-de-nghi.css" type="text/css"
 	rel="stylesheet">
 
 <link
@@ -159,8 +159,8 @@
 			
 				
 					<div style="text-align: center;font-size: 20px;color:firebrick;font-weight: bold;margin-top:10px;">Chi tiết vật tư thiếu</div>
-					<div id="view-table-bao-cao" style="max-height: 420px;width: 900px;display: auto;border: 1px dotted #CCCCCC;margin: 0 auto;overflow: scroll;">
-					<table style="margin: 0 auto;width:900px;border: 1px dotted black;">
+					<div id="view-table-bao-cao" style="max-height: 420px;width: 1000px;display: auto;border: 1px dotted #CCCCCC;margin: 0 auto;overflow: scroll;">
+					<table style="margin: 0 auto;width:1000px;border: 1px dotted black;">
 							<tr bgcolor="#199e5e"style="border: 1px dotted black;">
 								<th style="border: 1px dotted black;" class="one-column">Số đến</th>
 								<th style="border: 1px dotted black;" class="one-column">Số công văn</th>
@@ -218,8 +218,8 @@
 	   		HashMap<Integer, Integer> yeuCauHash = (HashMap<Integer, Integer>) session.getAttribute("yeuCau"); %>
 			
 				<div style="text-align: center;font-size: 20px;color:firebrick;font-weight: bold;margin-top:10px;">Tổng hợp vật tư thiếu</div>
-				<div id="view-table-bao-cao" style="max-height: 420px;width: 900px;display: auto;border: 1px dotted #CCCCCC;margin: 0 auto;overflow: scroll;">
-				<table style="margin: 0 auto;width:900px;border: 1px dotted black;" >
+				<div id="view-table-bao-cao" style="max-height: 420px;width: 1000px;display: auto;border: 1px dotted #CCCCCC;margin: 0 auto;overflow: scroll;">
+				<table style="margin: 0 auto;width:1000px;border: 1px dotted black;" >
 					<tr bgcolor="#199e5e" style="border: 1px dotted black;">
 						<th style="border: 1px dotted black;" class="two-column">Mã vật tư</th>
 						<th style="border: 1px dotted black;" class="three-column">Tên vật tư</th>
