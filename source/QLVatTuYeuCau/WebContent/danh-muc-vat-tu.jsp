@@ -5,7 +5,7 @@
 <%@page import="model.ChatLuong"%>
 <%@page import="map.siteMap"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -264,12 +264,19 @@
 						
 						<tr>
 							<th style="text-align: left"><label for="DVT">Đơn vị tính</label></th>
-							<td><select class="select" name="dvt" onkeypress="changeVtDvt();">
-									<option disabled selected>--Chọn--</option>
-									<option value="m">m</option>
-									<option value="cái">cái</option>
-									<option value="cuộn">cuộn</option>
-							</select><div id="requireDvt" style="color: red"></div></td>
+							<td>
+									<select onkeypress="changedvt();"
+									title="" class="select" id="donvitinh" name="dvt" style="margin-top: 10px;">
+										<option disabled selected value="">-- Chọn đơn vị tính --</option>
+										<%						  
+		 								
+		 								for (DonViTinh donViTinh : listDonViTinh)
+		 								{%>  
+		 								<option value=<%=donViTinh.getDvtId()%>><%=donViTinh.getDvtTen()%></option>
+		 								<%}
+		  								%>  
+									</select><div id="requireDvt" style="color: red"></div>
+								</td>
 							
 						</tr>
 					
@@ -316,8 +323,8 @@
 						<tr>
 							<th style="text-align: left"><label for="MVT">Đơn vị tính</label></th>
 								<td>
-									<select onkeypress="changedvt();"
-									title="" class="select" id="donvitinh" name="dvt" style="margin-top: 10px;">
+									<select onkeypress="changedvtUp();"
+									title="" class="select" id="donvitinh" name="dvtUpdate" style="margin-top: 10px;">
 										<option disabled selected value="">-- Chọn đơn vị tính --</option>
 										<%						  
 		 								
@@ -326,7 +333,7 @@
 		 								<option value=<%=donViTinh.getDvtId()%>><%=donViTinh.getDvtTen()%></option>
 		 								<%}
 		  								%>  
-									</select><div id="requireDvt" style="color: red"></div>
+									</select><div id="requireDvtUp" style="color: red"></div>
 								</td>
 						</tr>
 					</table>

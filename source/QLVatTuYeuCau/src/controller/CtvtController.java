@@ -135,7 +135,7 @@ public class CtvtController extends HttpServlet {
 		{
 			
 			CTVatTu ctvt = new CTVatTu(new VatTu(vtMa) , new NoiSanXuat(noiSanXuat), new ChatLuong(chatLuong), Integer.parseInt(dinhMuc), Integer.parseInt(soLuongTon),0);
-			new CTVatTuDAO().addCTVatTu(ctvt);
+			new CTVatTuDAO().addOrUpdateCTVatTu(ctvt);
 			System.out.println("success");
 
 			int id = new CTVatTuDAO().getLastInsert()-1;

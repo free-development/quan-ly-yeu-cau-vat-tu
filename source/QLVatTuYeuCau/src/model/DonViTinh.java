@@ -13,7 +13,9 @@ public class DonViTinh implements Serializable{
 	}
 	
 	/**
+	 * @param dvtId
 	 * @param dvtTen
+	 * @param daXoa
 	 */
 
 	public DonViTinh(int dvtId) {
@@ -28,28 +30,28 @@ public class DonViTinh implements Serializable{
 		this.dvtTen = dvtTen;
 		this.daXoa = daXoa;
 	}
-	public final int getDvtId() {
+	public int getDvtId() {
 		return dvtId;
 	}
 
-	public final void setDvtId(int dvtId) {
+	public void setDvtId(int dvtId) {
 		this.dvtId = dvtId;
 	}
 
-	public final String getDvtTen() {
+	public String getDvtTen() {
 		return dvtTen;
 	}
 
-	public final void setDvtTen(String dvtTen) {
+	public void setDvtTen(String dvtTen) {
 		this.dvtTen = dvtTen;
 	}
 
 
-	public final int getDaXoa() {
+	public int getDaXoa() {
 		return daXoa;
 	}
 
-	public final void setDaXoa(int daXoa) {
+	public void setDaXoa(int daXoa) {
 		this.daXoa = daXoa;
 	}
 

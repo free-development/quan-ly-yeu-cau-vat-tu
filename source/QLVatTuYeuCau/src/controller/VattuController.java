@@ -103,7 +103,7 @@ public class VattuController extends HttpServlet {
 		int id = Integer.parseInt(dvt);
 		if(new VatTuDAO().getVatTu(vtMa) == null)
 		{
-			new VatTuDAO().addVatTu(new VatTu(vtMa, vtTen, new DonViTinh(id),0));
+			new VatTuDAO().addOrUpdateVatTu(new VatTu(vtMa, vtTen, new DonViTinh(id),0));
 			System.out.println("success");
 			result = "success";
 			
@@ -120,7 +120,8 @@ public class VattuController extends HttpServlet {
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String timKiemVattu(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen) {
 		VatTuDAO vtDAO = new VatTuDAO();
-		System.out.println("Ma goi qua"+vtMa);
+		System.out.println("Ma goi qua " + vtMa);
+		System.out.println("Ten goi qua " + vtTen);
 		if(vtMa != ""){
 			ArrayList<VatTu> vtList = (ArrayList<VatTu>) vtDAO.searchVtMa(vtMa);
 			System.out.println("MA: "+vtMa);
