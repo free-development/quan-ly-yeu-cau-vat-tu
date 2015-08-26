@@ -44,11 +44,8 @@ public class BpsdController extends HttpServlet {
 			String sdt = request.getParameter("sdt");
 			String diaChi = request.getParameter("diaChi");
 			String email = request.getParameter("email");
-<<<<<<< HEAD
+
 			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email,0 ));			
-=======
-			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email, 0 ));
->>>>>>> eca19f70796dc49b4bcd64d23ae12439463e4290
 			ArrayList<DonVi> donViList =  (ArrayList<DonVi>) donViDAO.getAllDonVi();
 			return new ModelAndView("danh-muc-bo-phan", "donViList", donViList);
 		}

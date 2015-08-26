@@ -1,5 +1,6 @@
 <%@page import="model.CTVatTu"%>
 <%@page import="model.VatTu"%>
+<%@page import="model.DonViTinh"%>
 <%@page import="model.NoiSanXuat"%>
 <%@page import="model.ChatLuong"%>
 <%@page import="map.siteMap"%>
@@ -47,6 +48,7 @@
      	ArrayList<CTVatTu> listCTVatTu = (ArrayList<CTVatTu>) request.getAttribute("ctVatTuList");
    		ArrayList<NoiSanXuat> listNoiSanXuat = (ArrayList<NoiSanXuat>) request.getAttribute("noiSanXuatList");
    		ArrayList<ChatLuong> listChatLuong = (ArrayList<ChatLuong>) request.getAttribute("chatLuongList");
+   		ArrayList<DonViTinh> listDonViTinh = (ArrayList<DonViTinh>) request.getAttribute("donViTinhList");
    		Long size = (Long) request.getAttribute("size");
     %>
         <div class="wrapper">
@@ -188,7 +190,7 @@
 							value="<%=vatTu.getVtMa() %>" class="checkbox"></td>
 						<td class="col" style="text-align: left;" ><%=vatTu.getVtMa() %></td>
 						<td class="col" style="text-align: left;"><%=vatTu.getVtTen() %></td>
-						<td class="col" style="text-align: center;"><%=vatTu.getDvt() %></td>
+						<td class="col" style="text-align: center;"><%=vatTu.getDvt().getDvtTen() %></td>
 						<td style="text-align: center;"><button type="button" class="button-xem" value="Xem" onclick="showCTVatTu('chitiet',true,'<%=vatTu.getVtMa()%>');">Xem</button></td>
 					</tr>
 					<%} }%>
@@ -301,14 +303,30 @@
 							<td><input name="vtTenUpdate" size="30px" align=right type="text"  id="aa" onkeypress="changeVtTenUp();"
 								class="text" value="10102345"><div id="requireVtTenUp" style="color: red"></div></td>
 						</tr>
+<!-- 						<tr> -->
+<!-- 							<th style="text-align: left"><label for="DVT">Đơn vị -->
+<!-- 									tính</label></th> -->
+<!-- 							<td><select id="dvtUp" class="select"  name="dvtUpdate" onkeypress="changeVtDvtUp();"> -->
+<!-- 									<option value="m">m</option> -->
+<!-- 									<option value="cai">cai</option> -->
+<!-- 									<option value="cuon">cuộn</option> -->
+<!-- 							</select><div id="requireDvtUp" style="color: red"></div></td> -->
+<!-- 						</tr> -->
 						<tr>
-							<th style="text-align: left"><label for="DVT">Đơn vị
-									tính</label></th>
-							<td><select id="dvtUp" class="select"  name="dvtUpdate" onkeypress="changeVtDvtUp();">
-									<option value="m">m</option>
-									<option value="cai">cai</option>
-									<option value="cuon">cuộn</option>
-							</select><div id="requireDvtUp" style="color: red"></div></td>
+							<th style="text-align: left"><label for="MVT">Đơn vị tính</label></th>
+								<td>
+									<select onkeypress="changedvt();"
+									title="" class="select" id="donvitinh" name="dvt" style="margin-top: 10px;">
+										<option disabled selected value="">-- Chọn đơn vị tính --</option>
+										<%						  
+		 								
+		 								for (DonViTinh donViTinh : listDonViTinh)
+		 								{%>  
+		 								<option value=<%=donViTinh.getDvtId()%>><%=donViTinh.getDvtTen()%></option>
+		 								<%}
+		  								%>  
+									</select><div id="requireDvt" style="color: red"></div>
+								</td>
 						</tr>
 					</table>
 				</div>
@@ -350,7 +368,7 @@
 						<td class="col"><%=ctVatTu.getVatTu().getVtTen() %></td>
 						<td class="col"><%=ctVatTu.getNoiSanXuat().getNsxTen() %></td>
 						<td class="col"><%=ctVatTu.getChatLuong().getClTen() %></td>
-						<td class="col"><%=ctVatTu.getVatTu().getDvt() %></td>
+						<td class="col"><%=ctVatTu.getVatTu().getDvt().getDvtTen() %></td>
 						<td class="col"><%=ctVatTu.getDinhMuc() %></td>
 						<td class="col"><%=ctVatTu.getSoLuongTon() %></td>
 

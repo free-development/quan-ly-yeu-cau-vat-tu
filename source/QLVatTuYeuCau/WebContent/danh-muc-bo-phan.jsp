@@ -114,7 +114,6 @@
 				</div>
 		<div id="main-content">
 			<div id="title-content">Danh mục bộ phận sử dụng</div>
-			<div id="main-content">
 
 				<form id="main-form">
 					<div id="view-table-bo-phan">

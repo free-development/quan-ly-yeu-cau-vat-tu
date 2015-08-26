@@ -181,9 +181,47 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return ctVatTuList;
 	}
-	public void close() {
-		HibernateUtil.shutdown();
+	public ArrayList<String> startWith(String i) {
+		session.beginTransaction();
+
+		String sql = "select vtTen from VatTu where vtTen LIKE :vtTen";
+		Query query = session.createQuery(sql);
+		query.setParameter("vtTen", i+"%");
+		ArrayList<String> list = (ArrayList<String>) query.list();
+		
+		session.getTransaction().commit();
+		return list;
 	}
+public void close() {
+	HibernateUtil.shutdown();
+}
+public ArrayList<CTVatTu> searchVtTen(String i) {
+	session.beginTransaction();
+	String sql = "from CTVatTu where vtMa in (select * from VatTu where vtTen LIKE :vtTen)";
+	Query query = session.createQuery(sql);
+	query.setParameter("vtTen", i+"%");
+	ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) query.list();
+	session.getTransaction().commit();
+	return list;
+}
+ public ArrayList<String> startWithMa(String i) {
+	session.beginTransaction();
+	String sql = "select distinct vtMa from VatTu where vtMa LIKE :vtMa";
+	Query query = session.createQuery(sql);
+	query.setParameter("vtMa", i+"%");
+	ArrayList<String> list = (ArrayList<String>) query.list();
+	session.getTransaction().commit();
+	return list;
+}
+ public ArrayList<CTVatTu> searchVtMa(String i) {
+	session.beginTransaction();
+	String sql = "from CTVatTu where vtMa LIKE :vtTen";
+	Query query = session.createQuery(sql);
+	query.setParameter("vtMa", i+"%");
+	ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) query.list();
+	session.getTransaction().commit();
+	return list;
+}
 	public void begin(){
 		session.beginTransaction();
 	}

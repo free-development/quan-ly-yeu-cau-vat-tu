@@ -11,7 +11,7 @@
 	<%
 		String status = (String) request.getAttribute("status");
 		if (status != null && status.equals("unknownFile"))
-			out.println("<script>alert('File nhập khồng được hỗ trợ. Vui lòng chọn file excel')</script>");
+			out.println("<script>alert('File nhập không được hỗ trợ. Vui lòng chọn file excel')</script>");
 		else if (status != null && status.equals("formatException"))
 			out.println("<script>alert('Lỗi kiểu dữ liệu. Vui lòng chọn đúng mẫu!!!l')</script>");
 	%>

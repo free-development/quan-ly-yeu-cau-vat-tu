@@ -103,35 +103,19 @@ public ArrayList<String> startWith(String i) {
 		session.getTransaction().commit();
 		return list;
 	}
-<<<<<<< HEAD
 public void close() {
 	HibernateUtil.shutdown();
 }
 public ArrayList<VatTu> searchVtTen(String i) {
-=======
-
-public void close() {
-	HibernateUtil.shutdown();
-}
-
-
-public ArrayList<VatTu> startWithTK(String i) {
->>>>>>> eca19f70796dc49b4bcd64d23ae12439463e4290
 	session.beginTransaction();
-
 	String sql = "from VatTu where vtTen LIKE :vtTen";
 	Query query = session.createQuery(sql);
 	query.setParameter("vtTen", i+"%");
 	ArrayList<VatTu> list = (ArrayList<VatTu>) query.list();
-	
 	session.getTransaction().commit();
 	return list;
 }
  public ArrayList<String> startWithMa(String i) {
-<<<<<<< HEAD
-=======
-
->>>>>>> eca19f70796dc49b4bcd64d23ae12439463e4290
 	session.beginTransaction();
 	String sql = "select vtMa from VatTu where vtMa LIKE :vtMa";
 	Query query = session.createQuery(sql);
@@ -142,12 +126,10 @@ public ArrayList<VatTu> startWithTK(String i) {
 }
  public ArrayList<VatTu> searchVtMa(String i) {
 	session.beginTransaction();
-
 	String sql = "from VatTu where vtMa LIKE :vtMa";
 	Query query = session.createQuery(sql);
 	query.setParameter("vtMa", i+"%");
 	ArrayList<VatTu> list = (ArrayList<VatTu>) query.list();
-	
 	session.getTransaction().commit();
 	return list;
 }

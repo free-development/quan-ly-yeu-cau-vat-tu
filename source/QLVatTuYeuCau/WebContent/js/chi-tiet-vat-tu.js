@@ -9,7 +9,66 @@
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
 		}	
-
+		function showFormCT(formId, check){
+			if (check)
+				document.getElementById(formId).style.display="block";
+			else document.getElementById(formId).style.display="none";
+			var f = document.getElementById('view-table-chi-tiet'), s, opacity;
+			s = f.style;
+			opacity = check? '10' : '100';
+			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
+			s.filter = 'alpha(opacity='+opacity+')';
+			for(var i=0; i<f.length; i++) f[i].disabled = check;
+		}	
+		function timKiemCTVatTu(){
+			
+			var vtTen = '';
+			var vtMa = '';
+			var check = $('#checkTen:checked').val();
+			if (check != null)
+				vtTen = $('#search input[name=vattu]').val();
+			else 
+				vtMa = $('#search input[name=vattu]').val();
+			/*
+			alert(check);
+			alert(vtTen);
+			alert(vtMa);
+			*/
+			$.ajax({
+				url: "/QLVatTuYeuCau/timKiemCTVattu.html",	
+			  	type: "GET",
+ 			  	dateType: "JSON",
+ 			  	data: { "vtMa": vtMa, "vtTen": vtTen},
+ 			  	contentType: 'application/json',
+ 			    mimeType: 'application/json',
+			  	
+ 			  	success: function(ctvtList){
+ 			  		
+ 			  		if(ctvtList.length>0){
+ 			  			$('#view-table-chi-tiet table .rowContent').remove();
+						for(i = 0;i < ctvtList.length; i++ ) {
+							ctvattu = ctvtList[i];
+							//alert(vtList[i].vtMa);
+		 			  		
+							$('#view-table-chi-tiet table tr:first').after('<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"ctvtId\" value=\"' 
+									+ctvattu.ctvtId + '\"</td><td class=\"col\">'
+									+ vtMa +'</td><td class=\"col\">'
+									+ vtTen +'</td><td class=\"col\">'
+									+ ctvattu.noiSanXuat.nsxTen +'</td><td class=\"col\">' 				
+									+ ctvattu.chatLuong.clTen +'</td><td class=\"col\">'
+									+ ctvattu.vatTu.dvt +'</td><td class=\"col\">'
+									+ ctvattu.dinhMuc +'</td><td class=\"col\">'
+									+ ctvattu.soLuongTon +'</td></tr>');
+						}
+ 			  		}
+ 			  		else
+ 			  			{
+ 			  				alert("Không tìm thấy vật tư!");
+ 			  			}
+ 			  	}
+			});
+			
+		}
 		function preAddCTVatTu(formId, check){
 			var vtMa = $('#add-chitiet input:text[name=vtMa]').val();
 			

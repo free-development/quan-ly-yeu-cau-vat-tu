@@ -30,7 +30,7 @@ import dao.VaiTroDAO;
 
 @Controller
 public class VtController extends HttpServlet {
-	private static final long serialVersionUvtId = 1L;
+	private static final long serialVersionUID = 1L;
 	int page = 1;
 	@RequestMapping("/manageVt")
 	public ModelAndView manageVt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

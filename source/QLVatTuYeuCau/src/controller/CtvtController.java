@@ -93,10 +93,26 @@ public class CtvtController extends HttpServlet {
 				VatTu vatTu = new VatTuDAO().getVatTu(vtMa);
 				return JSonUtil.toJson(vatTu);
 			}
-			//System.out.println(listCTVatTu.get(0).getVatTu().getVtTen());
+			System.out.println(listCTVatTu.get(0).getVatTu().getVtTen());
 			return JSonUtil.toJson(listCTVatTu);
 		}
-
+	@RequestMapping(value="/timKiemCTVattu", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String timKiemCTVattu(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen) {
+		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+		System.out.println("Ma goi qua"+ vtMa);
+		if(vtMa != ""){
+			ArrayList<CTVatTu> ctvtList = (ArrayList<CTVatTu>) ctvtDAO.searchVtMa(vtMa);
+			System.out.println("MA: "+vtMa);
+			return JSonUtil.toJson(ctvtList);
+		}
+		else
+		{
+			ArrayList<CTVatTu> ctvtList = (ArrayList<CTVatTu>) ctvtDAO.searchVtTen(vtTen);
+			System.out.println("Ten: "+vtTen);
+			return JSonUtil.toJson(ctvtList);
+		}
+	}
    @RequestMapping(value="/preEditCTVattu", method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String preEditCTVattu(@RequestParam("ctvtId") String ctvtId) {
