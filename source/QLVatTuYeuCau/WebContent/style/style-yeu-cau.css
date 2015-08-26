@@ -507,7 +507,7 @@
 #add-yeu-cau-form {
  /* display: none; */
 	width: 680px;
-	height:120px;
+	height:40px;
 	/* position: absolute;  */
 	margin: 0 auto;
 	top: 35%;
@@ -533,4 +533,17 @@
 	padding-top: 20px;
 	padding-bottom: 10px
 	*/
+}
+#view-search {
+	width: 100%;
+	margin: 0 auto;
+}
+#add-so-luong-form {
+	display: none;
+}
+#update-so-luong-form {
+	display: none;
+}
+#cap-so-luong-form {
+	display: none;
 }

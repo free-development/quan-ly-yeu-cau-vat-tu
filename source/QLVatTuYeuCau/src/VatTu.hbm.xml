@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="model.VatTu" table="VATTU" catalog="vattu">
-		<id name="vtMa" type="java.lang.String">
+		<id name="vtMa" type="java.lang.String" >
 			<column name="VTMA" />
 			<generator class="assigned" />
 		</id>

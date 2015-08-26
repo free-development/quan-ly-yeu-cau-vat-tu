@@ -62,7 +62,7 @@ public class VatTuDAO {
 	}
 	public long size() {
 		session.beginTransaction();
-		String sql = "select count(vtMa) from VatTu";
+		String sql = "select count(vtMa) from VatTu where daXoa = 0";
 		Query query =  session.createQuery(sql);
 		long size = (long) query.list().get(0);
 		session.getTransaction().commit();
@@ -143,7 +143,6 @@ public ArrayList<VatTu> startWithTK(String i) {
 }
  public ArrayList<VatTu> searchVtMa(String i) {
 	session.beginTransaction();
-
 	String sql = "from VatTu where vtMa LIKE :vtMa";
 	Query query = session.createQuery(sql);
 	query.setParameter("vtMa", i+"%");
