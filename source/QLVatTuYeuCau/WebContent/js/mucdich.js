@@ -90,7 +90,7 @@ function showForm(formId, check){
 				{
 		  		 	$('input:text[name=mdMa]').val(mdMa);
 				  	$('input:text[name=mdTen]').val(mdTen);
-			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"mdMa\" value=\"' +mdMa + '\"</td><td class=\"col\">'+ mdMa +'</td><td class=\"col\">' + mdTen+'</td></tr>');
+			  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"mdMa\" value=\"' +mdMa + '\"</td><td class=\"col\">'+ mdMa +'</td><td class=\"col\">' + mdTen+'</td></tr>');
 			  		$('#add-form input:text[name=mdMa]').val('');
 					$('#add-form input:text[name=mdTen]').val('');
 			  		showForm("add-form", false);
@@ -140,7 +140,7 @@ function showForm(formId, check){
 		  	
 		  	success: function(md) {
 		  		$('table tr').has('input[name="mdMa"]:checked').remove();
-		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"mdMa\" value=\"' +mdMaUpdate + '\"</td><td class=\"col\">'+ mdMaUpdate +'</td><td class=\"col\">' + mdTenUpdate+'</td></tr>');
+		  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"mdMa\" value=\"' +mdMaUpdate + '\"</td><td class=\"col\">'+ mdMaUpdate +'</td><td class=\"col\">' + mdTenUpdate+'</td></tr>');
 		  		$('input:text[name=mdMaUpdate]').val('');
 				mdTenUpdate = $('input:text[name=mdTenUpdate]').val('');
 		  		showForm("update-form", false);	

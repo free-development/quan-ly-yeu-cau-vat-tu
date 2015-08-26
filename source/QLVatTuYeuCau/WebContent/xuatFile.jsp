@@ -56,7 +56,9 @@
 		</tr>
 		</table>
 			<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;">Báo cáo chi tiết vật tư thiếu</div>
+		<% if((ngaybd!=null)&&(ngaykt!=null)){%>
 		<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
+		<% }%>
 		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 				<div id="view-table-bao-cao" >
 					<table  style="border: solid 1px black;">
@@ -140,7 +142,9 @@
 		</tr>
 		</table>
 	   		<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;">Báo cáo tổng hợp vật tư thiếu</div>
+		<% if((ngaybd!=null)&&(ngaykt!=null)){%>
 		<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
+		<% }%>
 		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 			<div id="view-table-bao-cao" >
 				<table style="width:650px;" >

@@ -143,7 +143,7 @@ function confirmDeleteCd(){
 			{
 	    	$('input:text[name=cdMa]').val(cdMa);
 			  	$('input:text[name=cdTen]').val(cdTen);
-		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"cdMa\" value=\"' +cdMa + '\"</td><td class=\"col\">'+ cdMa +'</td><td class=\"col\">' + cdTen+'</td></tr>');
+		  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"cdMa\" value=\"' +cdMa + '\"</td><td class=\"col\">'+ cdMa +'</td><td class=\"col\">' + cdTen+'</td></tr>');
 		  		$('#add-form input:text[name=cdMa]').val('');
 				$('#add-form input:text[name=cdTen]').val('');
 		  		showForm("add-form", false);
@@ -193,7 +193,7 @@ function confirmDeleteCd(){
 	    mimeType: 'application/json',
 	  	success: function(cd) {
 	  		$('table tr').has('input[name="cdMa"]:checked').remove();
-	  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"cdMa\" value=\"' +cdMaUpdate + '\"</td><td class=\"col\">'+ cdMaUpdate +'</td><td class=\"col\">' + cdTenUpdate+'</td></tr>');
+	  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"cdMa\" value=\"' +cdMaUpdate + '\"</td><td class=\"col\">'+ cdMaUpdate +'</td><td class=\"col\">' + cdTenUpdate+'</td></tr>');
 	  		$('input:text[name=cdMaUpdate]').val('');
 			cdTenUpdate = $('input:text[name=cdTenUpdate]').val('');
 	  		showForm("update-form", false);	

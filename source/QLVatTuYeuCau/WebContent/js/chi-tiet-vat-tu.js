@@ -155,7 +155,7 @@
 				  	
 				  	success: function(ctvt) {
 				  		$('table tr').has('input[name="ctvtId"]:checked').remove();
-				  		$('#view-table-chi-tiet table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"ctvtId\" value=\"' 
+				  		$('#view-table-chi-tiet table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"ctvtId\" value=\"' 
 				  				+ctvt.ctvtId + '\"</td><td class=\"col\">'
 				  				+ vtMaUpdate +'</td><td class=\"col\">'
 				  				+ vtTenUpdate +'</td><td class=\"col\">'

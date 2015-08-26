@@ -94,7 +94,7 @@ function addNsx() {
 	//			  		alert(result);
 				  		if (result == "success")
 				  	{
-				  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
+				  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
 				  		$('#add-form input:text[name=nsxMa]').val('');
 						$('#add-form input:text[name=nsxTen]').val('');
 				  		showForm("add-form", false);	
@@ -140,7 +140,7 @@ if (nsxTenUpdate == '')
 			  	
 			  	success: function(nsx) {
 			  		$('table tr').has('input[name="nsxMa"]:checked').remove();
-			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMaUpdate + '\"</td><td class=\"col\">'+ nsxMaUpdate +'</td><td class=\"col\">' + nsxTenUpdate+'</td></tr>');
+			  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMaUpdate + '\"</td><td class=\"col\">'+ nsxMaUpdate +'</td><td class=\"col\">' + nsxTenUpdate+'</td></tr>');
 			  		$('input:text[name=nsxMaUpdate]').val('');
 					nsxTenUpdate = $('input:text[name=nsxTenUpdate]').val('');
 			  		showForm("update-form", false);	
