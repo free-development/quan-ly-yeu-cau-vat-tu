@@ -137,12 +137,12 @@ create table DONVI
 DEFAULT CHARACTER SET = utf8;
 
 create table DONVITINH
-	(
-		DVTID int  primary key auto_increment,
-	   DVTTEN               varchar(20),
-	   DAXOA int(2)
-	) ENGINE = InnoDB
-	DEFAULT CHARACTER SET = utf8;
+(
+	DVTID int  primary key auto_increment,
+   DVTTEN               varchar(20),
+   DAXOA int(2)
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 /*==============================================================*/
 /* Table: FILE                                                  */
 /*==============================================================*/
@@ -250,8 +250,9 @@ create table VATTU
 (
    VTMA                 char(16) not null,
    VTTEN                varchar(50),
-   DVT                  varchar(10),
-   primary key (VTMA)
+   DVTID int(2),
+   primary key (VTMA),
+   constraint fk_DVT foreign key(DVTID) references DONVITINH(DVTID)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
