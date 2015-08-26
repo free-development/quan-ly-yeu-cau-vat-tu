@@ -27,12 +27,12 @@ public class VatTu implements Serializable{
 	 * DatatypeName INT
 	 * DataTypeLength/Precision 10
 	 */
-	private String dvt;
+	private DonViTinh dvt;
 	
 	public VatTu() {
 		this.vtMa = "";
 		this.vtTen = "";
-		this.dvt = "";
+		this.dvt = new DonViTinh();
 		this.daXoa =0;
 	}
 	/**
@@ -50,6 +50,7 @@ public class VatTu implements Serializable{
 	public VatTu(String vtMa, String vtTen) {
 		this.vtMa = vtMa;
 		this.vtTen = vtTen;
+		this.daXoa = 0;
 	}
 	
 	/**
@@ -57,7 +58,7 @@ public class VatTu implements Serializable{
 	 * @param vtTen
 	 * @param dvt
 	 */
-	public VatTu(String vtMa, String vtTen, String dvt,int daXoa) {
+	public VatTu(String vtMa, String vtTen, DonViTinh dvt,int daXoa) {
 		this.vtMa = vtMa;
 		this.vtTen = vtTen;
 		this.dvt = dvt;
@@ -98,17 +99,10 @@ public class VatTu implements Serializable{
 		this.vtTen = vtTen;
 	}
 
-	/**
-	 * @return the dvt
-	 */
-	public  String getDvt() {
+	public DonViTinh getDvt() {
 		return dvt;
 	}
-
-	/**
-	 * @param dvt the dvt to set
-	 */
-	public  void setDvt(String dvt) {
+	public void setDvt(DonViTinh dvt) {
 		this.dvt = dvt;
 	}
 

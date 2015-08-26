@@ -9,7 +9,56 @@
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
 		}	
-
+	
+		function timKiemCTVatTu(){
+			
+			var vtTen = '';
+			var vtMa = '';
+			var check = $('#checkTen:checked').val();
+			if (check != null)
+				vtTen = $('#search input[name=vattu]').val();
+			else 
+				vtMa = $('#search input[name=vattu]').val();
+			/*
+			alert(check);
+			alert(vtTen);
+			alert(vtMa);
+			*/
+			$.ajax({
+				url: "/QLVatTuYeuCau/timKiemCTVattu.html",	
+			  	type: "GET",
+ 			  	dateType: "JSON",
+ 			  	data: { "vtMa": vtMa, "vtTen": vtTen},
+ 			  	contentType: 'application/json',
+ 			    mimeType: 'application/json',
+			  	
+ 			  	success: function(ctvtList){
+ 			  		
+ 			  		if(ctvtList.length>0){
+ 			  			$('#view-table-chi-tiet table .rowContent').remove();
+						for(i = 0;i < ctvtList.length; i++ ) {
+							ctvattu = ctvtList[i];
+							//alert(vtList[i].vtMa);
+		 			  		
+							$('#view-table-chi-tiet table tr:first').after('<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"ctvtId\" value=\"' 
+									+ctvattu.ctvtId + '\"</td><td class=\"col\">'
+									+ vtMa +'</td><td class=\"col\">'
+									+ vtTen +'</td><td class=\"col\">'
+									+ ctvattu.noiSanXuat.nsxTen +'</td><td class=\"col\">' 				
+									+ ctvattu.chatLuong.clTen +'</td><td class=\"col\">'
+									+ ctvattu.vatTu.dvt.dvtTen +'</td><td class=\"col\">'
+									+ ctvattu.dinhMuc +'</td><td class=\"col\">'
+									+ ctvattu.soLuongTon +'</td></tr>');
+						}
+ 			  		}
+ 			  		else
+ 			  			{
+ 			  				alert("Không tìm thấy vật tư!");
+ 			  			}
+ 			  	}
+			});
+			
+		}
 		function preAddCTVatTu(formId, check){
 			var vtMa = $('#add-chitiet input:text[name=vtMa]').val();
 			
@@ -111,7 +160,7 @@
 					  	$('#update-chitiet input:text[name=vtTenUpdate]').val(vt.vatTu.vtTen);
 					  	$('#noisanxuatUp option[value='+vt.noiSanXuat.nsxMa+']').prop('selected',true);
 					  	$('#chatluongUp option[value='+vt.chatLuong.clMa+']').prop('selected',true);
-						$('#update-chitiet input:text[name=dvtUpdate]').val(vt.vatTu.dvt);
+						$('#update-chitiet input:text[name=dvtUpdate]').val(vt.vatTu.dvt.dvtTen);
 						$('#update-chitiet input[name=dinhMucUpdate]').val(vt.dinhMuc);
 						$('#update-chitiet input[name=soLuongTonUpdate]').val(vt.soLuongTon);
 					  	

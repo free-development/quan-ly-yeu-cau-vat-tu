@@ -10,11 +10,11 @@
 		<property name="vtTen" type="java.lang.String">
 			<column name="VTTEN" />
 		</property>
-		<property name="dvt" type="string">
-			<column name="DVT" />
-		</property>
 		<property name="daXoa" type="int">
 			<column name="DAXOA" />
 		</property>
+		<many-to-one name="dvt"  class="model.DonViTinh" fetch="join">
+			<column name="DVTID"></column>
+		</many-to-one>
 	</class>
 </hibernate-mapping>

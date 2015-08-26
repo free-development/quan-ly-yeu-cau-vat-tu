@@ -33,7 +33,7 @@
 	        request.setCharacterEncoding("UTF-8");
 	        if (exportToExcel != null && exportToExcel.toString().equalsIgnoreCase("YES")) {
 	            response.setContentType("application/vnd.ms-excel");
-	            response.setHeader("Content-Disposition", "inline; filename=" + "excel.xls");
+	            response.setHeader("Content-Disposition", "inline; filename=" + "Baocaovattuthieu.xls");
 	            
 	        }
 		%>
@@ -46,11 +46,27 @@
 		    %>
 		    <table style = "margin: 0 auto;width:960px;">
 		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
 			<td style="text-align: left;">TỔNG CÔNG TY ĐIỆN LỰC THÀNH PHỐ CẦN THƠ</td>
-			<td style="text-align: right;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</td>
+			<td></td>
+			<td></td>
+			<td></td>
 			
+			
+			<td style="text-align: right;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</td>
+		</tr>
 		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
 			<td style="text-align: left;">Địa chỉ: 06 Nguyễn Trãi, Q.Ninh Kiều, TP.Cần Thơ.</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			
+			
 			<td style="text-align: right;">Độc lập - Tự do - Hạnh phúc</td>
 			
 		</tr>
@@ -61,7 +77,7 @@
 		<% }%>
 		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 				<div id="view-table-bao-cao" >
-					<table  style="border: solid 1px black;">
+					<table  style="border: solid 1px black;width:960px;">
 						<thead >
 							<tr bgcolor="#199e5e" >
 								<th style="border: 1px solid black;" class="one-column">Số đến</th>
@@ -133,10 +149,16 @@
 	   		<table style = "margin: 0 auto;width:960px;">
 		<tr>
 			<td style="text-align: left;">TỔNG CÔNG TY ĐIỆN LỰC THÀNH PHỐ CẦN THƠ</td>
+			<td></td>
+			<td></td>
+			<td></td>
 			<td style="text-align: right;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</td>
-			
+		</tr>
 		<tr>
 			<td style="text-align: left;">Địa chỉ: 06 Nguyễn Trãi, Q.Ninh Kiều, TP.Cần Thơ.</td>
+			<td></td>
+			<td></td>
+			<td></td>
 			<td style="text-align: right;">Độc lập - Tự do - Hạnh phúc</td>
 			
 		</tr>
@@ -147,7 +169,7 @@
 		<% }%>
 		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 			<div id="view-table-bao-cao" >
-				<table style="width:650px;" >
+				<table style="width:960px;" >
 					<tr bgcolor="#199e5e"  style="border: solid 1px black;" >
 						<th style="border: 1px solid black;" class="two-column"style="text-align: center;">Mã vật tư</th>
 						<th style="border: 1px solid black;" class="three-column">Tên vật tư</th>

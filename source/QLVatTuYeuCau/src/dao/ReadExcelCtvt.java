@@ -22,6 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import model.CTVatTu;
 import model.ChatLuong;
+import model.DonViTinh;
 import model.NoiSanXuat;
 import model.VatTu;
 
@@ -42,6 +43,7 @@ public class ReadExcelCtvt {
 			ArrayList<NoiSanXuat> nsxList = new ArrayList<NoiSanXuat>();
 			ArrayList<ChatLuong> chatLuongList = new ArrayList<ChatLuong>();
 			ArrayList<CTVatTu> ctvtList = new ArrayList<CTVatTu>();
+			ArrayList<DonViTinh> dvtList = new ArrayList<DonViTinh>(); 
 			while (rows.hasNext()) {
 				row = (XSSFRow) rows.next();
 				j++;
@@ -51,6 +53,7 @@ public class ReadExcelCtvt {
 				int count = 0;
 				String vtMa = "";
 				String vtTen = "";
+				String dvtId = "";
 				String dvt = "";
 				String nsxMa = "";
 				String nsxTen = "";
@@ -70,7 +73,7 @@ public class ReadExcelCtvt {
 							break;
 						case 2:
 							dvt = cell.getStringCellValue();
-							break;
+							break;	
 						case 3:
 							nsxMa = cell.getStringCellValue();
 							break;
@@ -86,6 +89,7 @@ public class ReadExcelCtvt {
 						}
 					} else if (cell.getCellType() == XSSFCell.CELL_TYPE_NUMERIC) {
 						switch (count) {
+							
 							case 7:
 								soLuong = cell.getNumericCellValue();
 								break;
@@ -96,11 +100,15 @@ public class ReadExcelCtvt {
 					}
 					count++;
 				}
-				if (vtMa == "" && vtTen == "" && vtTen == "" && vtTen == dvt && nsxMa == "" && nsxTen == "" && clMa == "" && clTen == "" && dinhMuc == 0 && soLuong ==0)
+				if (vtMa == "" && vtTen == "" && vtTen == "" && dvt == "" && nsxMa == "" && nsxTen == "" && clMa == "" && clTen == "" && dinhMuc == -1 && soLuong == -1)
 					break;
-				if (vtMa == "" || vtTen == "" || vtTen == "" || vtTen == dvt || nsxMa == "" || nsxTen == "" || clMa == "" || clTen == "" || dinhMuc == 0 || soLuong ==0)
+				if (vtMa == "" || vtTen == "" || vtTen == "" || dvt == "" || nsxMa == "" || nsxTen == "" || clMa == "" || clTen == "" || dinhMuc == -1 || soLuong == -1)
 					return false;
-				VatTu vatTu = new VatTu(vtMa, vtTen, dvt, 0);
+				DonViTinh donViTinh = new DonViTinh(dvt, 0);
+//				if (new DonViTinhDAO().getDonViTinhByTen(dvt)  == null) {
+//					dvtList.add(donViTinh);
+//				}
+				VatTu vatTu = new VatTu(vtMa, vtTen, donViTinh, 0);
 				NoiSanXuat nsx = new NoiSanXuat(nsxMa, nsxTen, 0);
 				ChatLuong chatLuong = new ChatLuong(clMa, clTen, 0);
 				CTVatTu ctvt = new CTVatTu(new VatTu(vtMa), new NoiSanXuat(nsxMa), new ChatLuong(clMa),
@@ -109,7 +117,7 @@ public class ReadExcelCtvt {
 				nsxList.add(nsx);
 				chatLuongList.add(chatLuong);
 				ctvtList.add(ctvt);
-				
+				dvtList.add(donViTinh);
 			}
 			int lenght = vatTuList.size();
 			for (int i = 0; i< lenght; i++) {
@@ -117,9 +125,21 @@ public class ReadExcelCtvt {
 				NoiSanXuatDAO nsxDAO = new NoiSanXuatDAO();
 				ChatLuongDAO clDAO = new ChatLuongDAO();
 				CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+				DonViTinhDAO dvtDAO = new DonViTinhDAO();
 				VatTu vatTu = vatTuList.get(i);
 				NoiSanXuat nsx = nsxList.get(i);
 				ChatLuong chatLuong = chatLuongList.get(i);
+				DonViTinh dvt = dvtList.get(i);
+				DonViTinh temp = dvtDAO.getDonViTinhByTen(dvt.getDvtTen());
+				if (temp ==  null) {
+					dvtDAO.addDonViTinh(dvt);
+				} else {
+					temp.setDvtTen(dvt.getDvtTen());
+					temp.setDaXoa(0);
+					new DonViTinhDAO().updateDonViTinh(temp);
+				}
+//				dvtDAO.addOrUpdateDonViTinh(dvt);
+				
 				vtDAO.addOrUpdateVatTu(vatTu);
 				nsxDAO.addOrUpdateNoiSanXuat(nsx);
 				clDAO.addOrUpdateChatLuong(chatLuong);
@@ -153,6 +173,7 @@ public class ReadExcelCtvt {
 			ArrayList<NoiSanXuat> nsxList = new ArrayList<NoiSanXuat>();
 			ArrayList<ChatLuong> chatLuongList = new ArrayList<ChatLuong>();
 			ArrayList<CTVatTu> ctvtList = new ArrayList<CTVatTu>();
+			ArrayList<DonViTinh> dvtList = new ArrayList<DonViTinh>(); 
 			while (rows.hasNext()) {
 				row = (HSSFRow) rows.next();
 				j++;
@@ -167,8 +188,8 @@ public class ReadExcelCtvt {
 				String nsxTen = "";
 				String clMa = "";
 				String clTen = "";
-				double soLuong = 0;
-				double dinhMuc = 0;
+				double soLuong = -1;
+				double dinhMuc = -1;
 				while (cells.hasNext()) {
 					cell = (HSSFCell) cells.next();
 					if (cell.getCellType() == HSSFCell.CELL_TYPE_STRING) {
@@ -181,7 +202,7 @@ public class ReadExcelCtvt {
 							break;
 						case 2:
 							dvt = cell.getStringCellValue();
-							break;
+							break;	
 						case 3:
 							nsxMa = cell.getStringCellValue();
 							break;
@@ -195,8 +216,9 @@ public class ReadExcelCtvt {
 							clTen = cell.getStringCellValue();
 							break;
 						}
-					} else if (cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
+					} else if (cell.getCellType() == XSSFCell.CELL_TYPE_NUMERIC) {
 						switch (count) {
+							
 							case 7:
 								soLuong = cell.getNumericCellValue();
 								break;
@@ -207,11 +229,15 @@ public class ReadExcelCtvt {
 					}
 					count++;
 				}
-				if (vtMa == "" && vtTen == "" && vtTen == "" && vtTen == dvt && nsxMa == "" && nsxTen == "" && clMa == "" && clTen == "" && dinhMuc == 0 && soLuong ==0)
+				if (vtMa == "" && vtTen == "" && vtTen == "" && dvt == "" && nsxMa == "" && nsxTen == "" && clMa == "" && clTen == "" && dinhMuc == -1 && soLuong == -1)
 					break;
-				if (vtMa == "" || vtTen == "" || vtTen == "" || vtTen == dvt || nsxMa == "" || nsxTen == "" || clMa == "" || clTen == "" || dinhMuc == 0 || soLuong ==0)
+				if (vtMa == "" || vtTen == "" || vtTen == "" || dvt == "" || nsxMa == "" || nsxTen == "" || clMa == "" || clTen == "" || dinhMuc == -1 || soLuong == -1)
 					return false;
-				VatTu vatTu = new VatTu(vtMa, vtTen, dvt, 0);
+				DonViTinh donViTinh = new DonViTinh(dvt, 0);
+//				if (new DonViTinhDAO().getDonViTinhByTen(dvt)  == null) {
+					dvtList.add(donViTinh);
+//				}
+				VatTu vatTu = new VatTu(vtMa, vtTen, donViTinh, 0);
 				NoiSanXuat nsx = new NoiSanXuat(nsxMa, nsxTen, 0);
 				ChatLuong chatLuong = new ChatLuong(clMa, clTen, 0);
 				CTVatTu ctvt = new CTVatTu(new VatTu(vtMa), new NoiSanXuat(nsxMa), new ChatLuong(clMa),
@@ -220,7 +246,7 @@ public class ReadExcelCtvt {
 				nsxList.add(nsx);
 				chatLuongList.add(chatLuong);
 				ctvtList.add(ctvt);
-				
+//				dvtList.add(donViTinh);
 			}
 			int lenght = vatTuList.size();
 			for (int i = 0; i< lenght; i++) {
@@ -228,9 +254,23 @@ public class ReadExcelCtvt {
 				NoiSanXuatDAO nsxDAO = new NoiSanXuatDAO();
 				ChatLuongDAO clDAO = new ChatLuongDAO();
 				CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+				DonViTinhDAO dvtDAO = new DonViTinhDAO();
 				VatTu vatTu = vatTuList.get(i);
 				NoiSanXuat nsx = nsxList.get(i);
 				ChatLuong chatLuong = chatLuongList.get(i);
+				DonViTinh dvt = dvtList.get(i);
+				DonViTinh temp = dvtDAO.getDonViTinhByTen(dvt.getDvtTen());
+				if (temp ==  null) {
+					dvtDAO.addDonViTinh(dvt);
+					dvt.setDvtId(new DonViTinhDAO().lastInsertId());
+				} else {
+					temp.setDvtTen(dvt.getDvtTen());
+					temp.setDaXoa(0);
+					dvt.setDvtId(temp.getDvtId());
+					new DonViTinhDAO().updateDonViTinh(temp);
+				}
+//				dvtDAO.addOrUpdateDonViTinh(dvt);
+				
 				vtDAO.addOrUpdateVatTu(vatTu);
 				nsxDAO.addOrUpdateNoiSanXuat(nsx);
 				clDAO.addOrUpdateChatLuong(chatLuong);

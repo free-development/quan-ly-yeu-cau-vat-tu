@@ -24,6 +24,7 @@
 }
 #yc-table table{
 	margin:0 auto;
+	width:650px;
 }
 .right-content {
 	position: relative;
@@ -53,11 +54,11 @@
 	margin-bottom: 20px;
 }
 
-#view-table-vt table {
+#view-table-yc table {
 	border-spacing: 0px;
 }
 
-#view-table-vt table tr td {
+#view-table-yc table tr td {
 	border-style: dotted;
 	border-width: 1px;
 	margin: 0px;
@@ -68,7 +69,7 @@
 	padding-bottom: 5px;
 }
 
-#view-table-vt table tr th {
+#view-table-yc table tr th {
 	border-style: dotted;
 	border-width: 1px;
 	margin: 0px;
@@ -78,6 +79,137 @@
 	padding-bottom: 5px;
 	background-color: #199e5e;
 }
+
+#view-table-ds table {
+	border-spacing: 0px;
+}
+
+#view-table-ds table tr td {
+	border-style: dotted;
+	border-width: 1px;
+	margin: 0px;
+	border-spacing: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#view-table-ds table tr th {
+	border-style: dotted;
+	border-width: 1px;
+	margin: 0px;
+	border-spacing: 0px padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #199e5e;
+}
+
+#view-table-them table {
+	border-spacing: 0px;
+}
+
+#view-table-them table tr td {
+	border-style: dotted;
+	border-width: 1px;
+	margin: 0px;
+	border-spacing: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#view-table-them table tr th {
+	border-style: dotted;
+	border-width: 1px;
+	margin: 0px;
+	border-spacing: 0px padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #199e5e;
+}
+
+#view-table-doi table {
+	border-spacing: 0px;
+}
+
+#view-table-doi table tr td {
+	border-style: dotted;
+	border-width: 1px;
+	margin: 0px;
+	border-spacing: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#view-table-doi table tr th {
+	border-style: dotted;
+	border-width: 1px;
+	margin: 0px;
+	border-spacing: 0px padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #199e5e;
+}
+
+#view-table-doi table {
+	border-spacing: 0px;
+}
+
+#view-table-doi table tr td {
+	border-style: dotted;
+	border-width: 1px;
+	margin: 0px;
+	border-spacing: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#view-table-doi table tr th {
+	border-style: dotted;
+	border-width: 1px;
+	margin: 0px;
+	border-spacing: 0px padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #199e5e;
+}
+
+#view-table-cap table {
+	border-spacing: 0px;
+}
+
+#view-table-cap table tr td {
+	border-style: dotted;
+	border-width: 1px;
+	margin: 0px;
+	border-spacing: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#view-table-cap table tr th {
+	border-style: dotted;
+	border-width: 1px;
+	margin: 0px;
+	border-spacing: 0px padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #199e5e;
+}
+
 #view-table table{
 	width:680px;
 	margin: 0 auto;
@@ -302,10 +434,10 @@
 */
 .scroll-vat-tu {
 	height: 100px;
-	width: 680px;
+	width: 900px;
 	display: auto;
 	border: 1px solid #CCCCCC;
-	margin: 1em 0;
+	margin: 0 auto;
 	overflow: scroll; /*chú ý dòng này*/
 }
 
@@ -411,7 +543,6 @@
 	/* position: absolute;  */
 	margin: 0 auto;
 	top: 35%;
-	background-color: #dceaf5;
 	border-radius: 10px;
 	padding-left: 20px;
 	padding-right: 20px;
@@ -506,8 +637,8 @@
 }
 #add-yeu-cau-form {
  /* display: none; */
-	width: 680px;
-	height:40px;
+	width: 700px;
+	height:100px;
 	/* position: absolute;  */
 	margin: 0 auto;
 	top: 35%;
@@ -535,15 +666,45 @@
 	*/
 }
 #view-search {
-	width: 100%;
+	width: 960px;
 	margin: 0 auto;
 }
 #add-so-luong-form {
+	width:950px;
+	height: 210px;
+	border-radius: 10px;
+	background-color: #dceaf5;
 	display: none;
+	top: 200px;
+	left: 15%;
+	position: absolute;
+	margin: 0 auto;
 }
 #update-so-luong-form {
+	width:950px;
+	height: 210px;
+	border-radius: 10px;
+	background-color: #dceaf5;
 	display: none;
+	top: 200px;
+	left: 15%;
+	position: absolute;
+	margin: 0 auto;
 }
 #cap-so-luong-form {
+	width:950px;
+	height: 210px;
+	border-radius: 10px;
+	background-color: #dceaf5;
 	display: none;
+	top: 200px;
+	left: 15%;
+	position: absolute;
+	margin: 0 auto;
+}
+
+
+#main-content {
+	height: 2000px;
+	background-color: while;
 }

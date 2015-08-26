@@ -88,6 +88,7 @@
 								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
 										mục mục đích</a></li>
 								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+								<li><a href="<%=siteMap.dvtManage + "?action=manageDvt"%>">Danh mục đơn vị tính</a></li>
 								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
 										mục chức danh</a></li>
 								
@@ -151,7 +152,7 @@
 				<div id = "paging" >
 							<table style ="border-style: none;">
 								<tr>
-									<td><a href=""> Previous<< </a></td>
+									<td><input type="button" value="<<Previous"></td>
 									<td>
 										<%
 									long pageNum = size / 10;
@@ -159,7 +160,7 @@
 										<input type="button" value="<%=i+1%>" class="page">
 								<%} %>
 									</td>
-									<td><a href="">>>Next </a> </td>
+									<td><input type="button" value="Next>>"></td>
 								</tr>
 							</table>
 						</div>

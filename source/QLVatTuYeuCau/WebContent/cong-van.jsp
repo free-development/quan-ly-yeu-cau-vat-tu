@@ -133,8 +133,10 @@
 											<li class="file"><a href="">Ngày 23</a></li>
 											<li class="file"><a href="">Ngày 22</a></li>
 											<li class="file"><a href="">Ngày 21</a></li>
-										</ol></li>
-
+										</ol>
+										</li>
+								</ol>
+								</li>
 								</ol>
 					</div>
 				<div id="Link-vbd">
@@ -213,7 +215,7 @@
 									<td class="column-so-den" style="text-align: left"><%=congVan.getSoDen() %></td>
 
 									<td class="left-column-socv">Số công văn: &nbsp;&nbsp;</td>
-									<td class="column-date" style="text-align: left"><%=congVan.getCvSo() %></td>
+									<td class="column-socv" style="text-align: left;color:red;"><%=congVan.getCvSo() %></td>
 									
 									<td class="left-column-first" >Ngày đến: &nbsp;&nbsp;</td>
 
@@ -254,7 +256,7 @@
 									<td class="column-color"colspan="6"><%=congVan.getDonVi().getDvTen() %></td>
 								</tr>
 								
-								<button class="button" type="button" onclick="location.href='<%=siteMap.cscvManage + "?action=chiaSeCv&congVan=" + congVan.getCvId()%>'">
+								<button  class="button" type="button" onclick="location.href='<%=siteMap.cscvManage + "?action=chiaSeCv&congVan=" + congVan.getCvId()%>'">
 								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Chia se cong van
 							</button>
 								<tr>

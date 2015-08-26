@@ -40,7 +40,7 @@
 		 			  		
 					  				$('#view-table-vat-tu table tr:first').after('<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vattu.vtMa 
 									+ '\"</td><td class=\"col\">'+ vattu.vtMa +'</td><td class=\"col\">' + vattu.vtTen
-									+'</td><td class=\"col\" style=\"text-align: center;\">' + vattu.dvt
+									+'</td><td class=\"col\" style=\"text-align: center;\">' + vattu.dvt.dvtTen
 									+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
 									+vattu.vtMa+'\');\">Xem</button></td></tr>');
 						}
@@ -129,7 +129,7 @@
 						
 						$('input:text[name=vtMaUpdate]').val(vt.vtMa);
 					  	$('input:text[name=vtTenUpdate]').val(vt.vtTen);
-						$('#dvtUp option[value='+vt.dvt+']').prop('selected',true);
+						$('#dvtUp option[value='+vt.dvt.dvtTen+']').prop('selected',true);
 						$('#aa').focus();
 					  	showForm(formId, check);
 					}
@@ -183,6 +183,28 @@
 			$('#update-form select[name=dvtUpdate]').val('');
  		}
  	function confirmDeleteVT(){
+ 		vtMa = $('input:checkbox[name=vtMa]:checked').val();	
+ 		$.ajax({
+ 			url: "/QLVatTuYeuCau/comfirmdeleteVattu.html",	
+ 		  	type: "GET",
+ 		  	dateType: "JSON",
+ 		  	data: { "vtMa": vtMa},
+ 		  	contentType: 'application/json',
+ 		    mimeType: 'application/json',
+ 		    
+ 		    
+ 		  	success: function(result) {
+ 		  		if(result == "success")
+ 		  			{
+ 		  			if (confirm('Bạn có chắc xóa ' + vtMa))
+ 		  	 			deleteVattu(vtMa);  			
+ 		  			}
+ 		  		else
+ 		  			{
+ 		  				alert("Không thể xóa!");
+ 		  			}
+ 		    } 
+ 		});  
  		
  		var vtMa = $('input:checkbox[name=vtMa]:checked').val();
 		var vtMaList = [];
@@ -216,7 +238,8 @@
   	 
 
 
-  	function showCTVatTu(formId, check, vtMa){  
+  	function showCTVatTu(formId, check, vtMa){ 
+
   		$.ajax({
   			url: "/QLVatTuYeuCau/showCTVatTu.html",
 			type: "GET",
@@ -224,7 +247,7 @@
 		  	data: {"vtMa": vtMa},
 		  	contentType: 'application/json',
 		    mimeType: 'application/json',
-			
+		 
 			success: function(listCTVatTu){
 				
 				$('#view-table-chi-tiet table .rowContent').remove();
@@ -235,7 +258,7 @@
 				if(listCTVatTu.vtMa != null) {
 					$('#add-chitiet input:text[name=vtMa]').val(listCTVatTu.vtMa);
 					$('#add-chitiet input:text[name=vtTen]').val(listCTVatTu.vtTen);
-					$('#add-chitiet input:text[name=dvt]').val(listCTVatTu.dvt);
+					$('#add-chitiet input:text[name=dvt]').val(listCTVatTu.dvt.dvtTen);
 					alert("Không có chi tiết vật tư!");
 				}
 				else {
@@ -249,16 +272,16 @@
 									+"<td class=\"col\">" +listCTVatTu[i].vatTu.vtTen+ "</td>"
 									+"<td class=\"col\">" +listCTVatTu[i].noiSanXuat.nsxTen+ "</td>"
 									+"<td class=\"col\">" +listCTVatTu[i].chatLuong.clTen+ "</td>"
-									+"<td class=\"col\">" +listCTVatTu[i].vatTu.dvt+ "</td>"
+									+"<td class=\"col\">" +listCTVatTu[i].vatTu.dvt.dvtTen+ "</td>"
 									+"<td class=\"col\">" +listCTVatTu[i].dinhMuc+ "</td>"
 									+"<td class=\"col\">" +listCTVatTu[i].soLuongTon+ "</td></tr>");
 							}
 							vtMa = listCTVatTu[0].vatTu.vtMa;
 							vtTen = listCTVatTu[0].vatTu.vtTen;
-							dvt = listCTVatTu[0].vatTu.dvt;
+							dvt = listCTVatTu[0].vatTu.dvt.dvtTen;
 							$('#add-chitiet input:text[name=vtMa]').val(vtMa);
 							$('#add-chitiet input:text[name=vtTen]').val(vtTen);
-							$('#add-chitiet input:text[name=dvt]').val(dvt);
+							$('#add-chitiet input[name=dvt]').val(dvt);
 							
 						}
 				}
@@ -280,8 +303,8 @@
   		$('#add-form input:text[name=vtTen]').focus();
  	}
   	
-  	function changeVtDvt(){
-  		$('#requireVtDvt').html('');
+  	function changeDvt(){
+  		$('#requireDvt').html('');
   		$('#add-form input[name=dvt]').focus();
  	}
   	
@@ -291,8 +314,8 @@
   		$('#update-form input:text[name=vtTenUpdate]').focus();
  	}
   	
-  	function changeVtDvtUp(){
-  		$('#requireVtDvtUp').html('');
+  	function changeDvtUp(){
+  		$('#requireDvtUp').html('');
   		$('#update-form input[name=dvtUpdate]').focus();
  	}
   	
@@ -342,7 +365,7 @@
  								+ vt.vtMa +'\" class=\"checkbox\"></td>'
  								+ '<td class=\"col\">' + vt.vtMa + '</td>'
  								+ '<td class=\"col\">' + vt.vtTen + '</td>'
- 								+ '<td class=\"col\">' + vt.dvt + '</td>'
+ 								+ '<td class=\"col\">' + vt.dvt.dvtTen + '</td>'
  								+ '<td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
 								+vt.vtMa+'\');\">Xem</button></td></tr>';
  							$('#view-table-vat-tu table tr:first').after(str);

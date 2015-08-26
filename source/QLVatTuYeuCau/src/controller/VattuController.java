@@ -14,6 +14,7 @@ import model.ChatLuong;
 import model.NoiSanXuat;
 import model.VaiTro;
 import model.VatTu;
+import model.DonViTinh;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -29,16 +30,19 @@ import dao.DonViDAO;
 import dao.NoiSanXuatDAO;
 import dao.VatTuDAO;
 import dao.CTVatTuDAO;
+import dao.DonViTinhDAO;
 
 @Controller
 public class VattuController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	int page = 1;
+
    @RequestMapping("/manageVattu")
 	protected ModelAndView manageCtvt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VatTuDAO vatTuDAO = new VatTuDAO();
 		NoiSanXuatDAO noiSanXuatDAO = new NoiSanXuatDAO();
 		ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
+		DonViTinhDAO donViTinhDAO = new DonViTinhDAO();
 		String action = request.getParameter("action");
 //		if("addVatTu".equalsIgnoreCase(action)) {
 //			
@@ -74,8 +78,10 @@ public class VattuController extends HttpServlet {
 			request.setAttribute("size", size);
 			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.getAllNoiSanXuat();
 			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.getAllChatLuong();
+			ArrayList<DonViTinh> donViTinhList =  (ArrayList<DonViTinh>) donViTinhDAO.getAllDonViTinh();
 			request.setAttribute("noiSanXuatList", noiSanXuatList);
 			request.setAttribute("chatLuongList", chatLuongList);
+			request.setAttribute("donViTinhList", donViTinhList);
 			request.setAttribute("vatTuList", vatTuList);
 			return new ModelAndView("danh-muc-vat-tu");
 		}
@@ -94,9 +100,10 @@ public class VattuController extends HttpServlet {
 	 public @ResponseBody String addVattu(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen, @RequestParam("dvt") String dvt) {
 		String result = "";
 		System.out.println("MA: "+vtMa);
+		int id = Integer.parseInt(dvt);
 		if(new VatTuDAO().getVatTu(vtMa) == null)
 		{
-			new VatTuDAO().addVatTu(new VatTu(vtMa, vtTen, dvt,0));
+			new VatTuDAO().addVatTu(new VatTu(vtMa, vtTen, new DonViTinh(id),0));
 			System.out.println("success");
 			result = "success";
 			
@@ -129,8 +136,8 @@ public class VattuController extends HttpServlet {
 	@RequestMapping(value="/updateVattu", method=RequestMethod.GET, 
 		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String updateVattu(@RequestParam("vtMaUpdate") String vtMaUpdate, @RequestParam("vtTenUpdate") String vtTenUpdate, @RequestParam("dvtUpdate") String dvtUpdate) {
-
-		VatTu vt = new VatTu(vtMaUpdate, vtTenUpdate, dvtUpdate,0);
+		int id = Integer.parseInt(dvtUpdate);
+		VatTu vt = new VatTu(vtMaUpdate, vtTenUpdate, new DonViTinh(id),0);
 		new VatTuDAO().updateVatTu(vt);
 		return JSonUtil.toJson(vt);
 	}

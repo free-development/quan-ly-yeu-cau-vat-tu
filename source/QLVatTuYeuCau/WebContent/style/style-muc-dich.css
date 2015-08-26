@@ -36,7 +36,7 @@
 }
 
 #view-table table tr td {
-	border-style: solid;
+	border-style: dotted;
 	border-width: 1px;
 	margin: 0px;
 	border-spacing: 0px;
@@ -47,10 +47,11 @@
 }
 
 #view-table table tr th {
-	border-style: solid;
+	border-style: dotted;
 	border-width: 1px;
 	margin: 0px;
-	border-spacing: 0px padding-left: 10px;
+	border-spacing: 0px ;
+	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 5px;
 	padding-bottom: 5px;
