@@ -214,7 +214,7 @@ public class CTVatTuDAO {
 	public ArrayList<CTVatTu> searchByCtvtMaLimit(String vtMa, int first, int limit) {
 		session.beginTransaction();
 
-		String sql = "select a from CTVatTu a join a.vatTu b  where a.vatTu.vtMa LIKE :vtMa and a.vatTu.vtMa = b.vtMa";
+		String sql = "select a.ctvtId, a.vatTu, a.noiSanXuat, a.chatLuong, a.dinhMuc, a.soLuongTon, a.daXoa from CTVatTu a join a.vatTu b  where a.vatTu.vtMa LIKE :vtMa and a.vatTu.vtMa = b.vtMa";
 		Query query = session.createQuery(sql);
 		query.setParameter("vtMa", vtMa+"%");
 		query.setFirstResult(first);
@@ -237,7 +237,7 @@ public class CTVatTuDAO {
 	public ArrayList<CTVatTu> searchByCtvtTenLimit(String vtTen, int first, int limit) {
 		session.beginTransaction();
 
-		String sql = "select a from CTVatTu a join a.vatTu b  where a.vatTu.vtTen LIKE :vtMa and a.vatTu.vtTen = b.vtTen";
+		String sql = "select a.ctvtId, a.vatTu, a.noiSanXuat, a.chatLuong, a.dinhMuc, a.soLuongTon, a.daXoa from CTVatTu a join a.vatTu b  where a.vatTu.vtTen LIKE :vtMa and a.vatTu.vtTen = b.vtTen";
 		Query query = session.createQuery(sql);
 		query.setParameter("vtMa", vtTen+"%");
 		query.setFirstResult(first);

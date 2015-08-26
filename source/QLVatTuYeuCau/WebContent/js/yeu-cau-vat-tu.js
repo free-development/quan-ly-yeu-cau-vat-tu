@@ -256,28 +256,39 @@ function searchCtVt(){
 		  	contentType: 'application/json',
 		    mimeType: 'application/json',
 	  	
-		  	success: function(ctvtList){
-//		  		var size = objectList[1];
-//		  		var ctvtList = objectList[0];
+		  	success: function(objectList){
+		  		
+		  		var size = objectList[1];
+		  		alert(size);	
+		  		var ctvtList = objectList[0];
+//		  		alert("OK");
 		  		var length = ctvtList.length;
-		  		if(size > 0){
+		  		alert(objectList[0].noiSanXuat.nsxTen);
+//		  		alert(objectList[0][0].vatTu.vtTen);	
+		  		if(length > 0){
+		  			
 		  			$('#view-search table .rowContent').remove();
-					for(i = 0;i < length; i++ ) {
-						ctVatTu = ctvtList[i];
-						alert(ctVatTu.dinhMuc);
-						//alert(vtList[i].vtMa);
-				  		/*
-				  				$('#view-table-vat-tu table tr:first').after('<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vattu.vtMa 
-								+ '\"</td><td class=\"col\">'+ vattu.vtMa +'</td><td class=\"col\">' + vattu.vtTen
-								+'</td><td class=\"col\" style=\"text-align: center;\">' + vattu.dvt
-								+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
-								+vattu.vtMa+'\');\">Xem</button></td></tr>');
-								*/
+					for(i = 0; i < length; i++ ) {
+						var ctVatTu = ctvtList[i];
+						alert(ctVatTu.vatTu.vtTen);
+						var style = '';
+						if (i % 2 == 1)
+							style = 'style=\"background : #CCFFFF;\"';
+						var cells =   '<td>' + ctVatTu.vatTu.vtMa + '</td>'
+									+ '<td>' + ctVatTu.vatTu.vtTen + '</td>'
+									+ '<td>' + ctVatTu.noiSanXuat.nsxTen + '</td>'
+									+ '<td>' + ctVatTu.chatLuong.clTen + '</td>'
+									+ '<td>' + ctVatTu.dvt.dvtTen + '</td>'
+									+ '<td><input class=\"radio\"  type=\"radio\" id="a" name=\"ctvtId\" value=\"' + ctVatTu.ctvtId + '\" onchange=\"preAddSoLuong();\"> </td>';
+						var row = '<tr ' +style + '>' + cells + '</tr>';
+						$('#view-table-yc table tr:first').after(row);
 			  		}
 		  		} else {
 	  				alert("Không tìm thấy vật tư!");
 	  			}
+	  			
 		  	}
+		  	
 	});
 }
 /*

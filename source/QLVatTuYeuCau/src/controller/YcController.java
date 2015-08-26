@@ -176,22 +176,21 @@ public class YcController extends HttpServlet {
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String searchCtvtYc(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen) {
 		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
-//		ArrayList<Object> objectList = new ArrayList<Object>();
+		ArrayList<Object> objectList = new ArrayList<Object>();
 		if(vtMa != ""){
 			long size = ctvtDAO.sizeOfSearchCtvtMa(vtMa); 
 			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtMaLimit(vtMa, page - 1, 5);
-//			objectList.add(ctvtList);
-//			bjectList.add(size);
-			JOptionPane.showMessageDialog(null, ctvtList.size());
+			objectList.add(ctvtList);
+			objectList.add(size);
 			return JSonUtil.toJson(ctvtList);
 		}
 		else
 		{
 			long size = ctvtDAO.sizeOfSearchCtvtTen(vtTen); 
 			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtTenLimit(vtTen, page - 1, 5);
-//			objectList.add(ctvtList);
-//			objectList.add(size);
-			return JSonUtil.toJson(ctvtList);
+			objectList.add(ctvtList);
+			objectList.add(size);
+			return JSonUtil.toJson(objectList);
 		}
 		
 		/*return JSonUtil.toJson(objectList);*/
