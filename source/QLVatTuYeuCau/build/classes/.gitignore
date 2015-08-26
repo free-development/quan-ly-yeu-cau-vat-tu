@@ -1,5 +1,9 @@
+/conf/
+/controller/
+/dao/
+/map/
+/model/
 /net/
 /test/
 /util/
-/controller/
-/dao/
+/DonViTinh.hbm.xml
