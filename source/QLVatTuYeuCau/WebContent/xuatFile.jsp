@@ -33,7 +33,7 @@
 	        request.setCharacterEncoding("UTF-8");
 	        if (exportToExcel != null && exportToExcel.toString().equalsIgnoreCase("YES")) {
 	            response.setContentType("application/vnd.ms-excel");
-	            response.setHeader("Content-Disposition", "inline; filename=" + "excel.xls");
+	            response.setHeader("Content-Disposition", "inline; filename=" + "Baocaovattuthieu.xls");
 	            
 	        }
 		%>
@@ -46,11 +46,27 @@
 		    %>
 		    <table style = "margin: 0 auto;width:960px;">
 		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
 			<td style="text-align: left;">TỔNG CÔNG TY ĐIỆN LỰC THÀNH PHỐ CẦN THƠ</td>
-			<td style="text-align: right;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</td>
+			<td></td>
+			<td></td>
+			<td></td>
 			
+			
+			<td style="text-align: right;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</td>
+		</tr>
 		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
 			<td style="text-align: left;">Địa chỉ: 06 Nguyễn Trãi, Q.Ninh Kiều, TP.Cần Thơ.</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			
+			
 			<td style="text-align: right;">Độc lập - Tự do - Hạnh phúc</td>
 			
 		</tr>
@@ -133,10 +149,16 @@
 	   		<table style = "margin: 0 auto;width:960px;">
 		<tr>
 			<td style="text-align: left;">TỔNG CÔNG TY ĐIỆN LỰC THÀNH PHỐ CẦN THƠ</td>
+			<td></td>
+			<td></td>
+			<td></td>
 			<td style="text-align: right;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</td>
-			
+		</tr>
 		<tr>
 			<td style="text-align: left;">Địa chỉ: 06 Nguyễn Trãi, Q.Ninh Kiều, TP.Cần Thơ.</td>
+			<td></td>
+			<td></td>
+			<td></td>
 			<td style="text-align: right;">Độc lập - Tự do - Hạnh phúc</td>
 			
 		</tr>
