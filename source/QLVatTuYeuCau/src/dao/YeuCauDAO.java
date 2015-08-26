@@ -38,6 +38,7 @@ public class YeuCauDAO {
 		session.getTransaction().commit();
 		return YeuCau;
 	}
+	
 	public List<YeuCau> getAllYeuCau() {
 		session.beginTransaction();
 		List<YeuCau> yeuCauList = (List<YeuCau>) session.createCriteria(YeuCau.class).list();
@@ -162,10 +163,10 @@ public class YeuCauDAO {
 		Criteria cr = session.createCriteria(YeuCau.class);
 		Criterion expCv = Restrictions.eq("cvId", cvId);
 		Criterion expCtvt = Restrictions.eq("ctVatTu", new CTVatTu(ctvtId));
-		Criterion expDaXoa= Restrictions.eq("daXoa", 0);
+//		Criterion expDaXoa= Restrictions.eq("daXoa", 0);
 		cr.add(expCv);
 		cr.add(expCtvt);
-		cr.add(expDaXoa);
+//		cr.add(expDaXoa);
 		ArrayList<YeuCau> ycList  = (ArrayList<YeuCau>) cr.list();
 		YeuCau yeuCau = null;
 		if (ycList.size() != 0)
@@ -201,11 +202,43 @@ public class YeuCauDAO {
 		}
 		else {
 			int soLuongOld = yeuCau.getYcSoLuong();
-			soLuong += soLuongOld;
+			if(yeuCau.getDaXoa() == 0)
+				soLuong += soLuongOld;
 			yeuCau.setYcSoLuong(soLuong);
+			yeuCau.setDaXoa(0);
+			yeuCau.setCapSoLuong(0);
 			updateYeuCau(yeuCau);
 		}
 		return yeuCau;
+	}
+	
+	// function cap vat tu
+	public YeuCau capVatTu(YeuCau yeuCau, final int soLuongCap) {
+		
+		int sl = yeuCau.getYcSoLuong();
+		if(yeuCau.getDaXoa() == 0)
+			sl += soLuongCap;
+		yeuCau.setCapSoLuong(sl);
+		new YeuCauDAO().updateYeuCau(yeuCau);
+		return yeuCau;
+	}
+	// check before update so luong yeu cau
+	public boolean checkUpdateSoLuong(final int ycId, int soLuong) {
+		YeuCau yeuCau = getYeuCau(ycId);
+		return (yeuCau.getCapSoLuong() <= soLuong);
+	}
+	// check before update so luong yeu cau
+	public int checkCapSoLuong(final int ycId, int soLuong) {
+		YeuCau yeuCau = getYeuCau(ycId);
+		int capSoLuong = yeuCau.getCapSoLuong() + soLuong;
+		int ycSoLuong = yeuCau.getYcSoLuong();
+		int temp = ycSoLuong - capSoLuong;
+		if (temp == 0)
+			return 1;
+		else if (temp > 0)
+			return 0;
+		else
+			return -1;
 	}
 	public static void main(String[] args) {
 		ArrayList<CongVan> congVanList = new CongVanDAO().getTrangThai("", "", null, null);

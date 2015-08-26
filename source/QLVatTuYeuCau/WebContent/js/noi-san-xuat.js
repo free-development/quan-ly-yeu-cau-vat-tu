@@ -65,7 +65,7 @@ function confirmDelete(){
 	    mimeType: 'application/json',
 	  	success: function() {
 					$('table tr').has('input[name="nsxMa"]:checked').remove();
-					alert('Noi san xuat co ma ' + str + " da bi xoa");
+					alert('Nơi sản xuất có mã ' + str + " đã bị xóa");
 	    } 
 	});  
 } 
@@ -82,8 +82,8 @@ function addNsx() {
 	 			}
  
  			else {
-						$.ajax({
-							url: "/QLVatTuYeuCau/addNsx.html",	
+				$.ajax({
+					url: "/QLVatTuYeuCau/addNsx.html",	
 				  	type: "GET",
 				  	dateType: "JSON",
 				  	data: { "nsxMa": nsxMa, "nsxTen": nsxTen},
@@ -93,8 +93,20 @@ function addNsx() {
 				  	success: function(result) {
 	//			  		alert(result);
 				  		if (result == "success")
+<<<<<<< HEAD
+					  	{
+					  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
+					  		$('#add-form input:text[name=nsxMa]').val('');
+							$('#add-form input:text[name=nsxTen]').val('');
+					  		showForm("add-form", false);	
+					  		alert("Nơi sản xuất "+ nsxMa + " đã được thêm ");	
+						}
+				  		else{
+				  			alert("Nơi sản xuất "+nsxMa + " đã tồn tại ");
+				  		}
+=======
 				  	{
-				  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
+				  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
 				  		$('#add-form input:text[name=nsxMa]').val('');
 						$('#add-form input:text[name=nsxTen]').val('');
 				  		showForm("add-form", false);	
@@ -104,6 +116,7 @@ function addNsx() {
 			  			alert("Nơi sản xuất "+nsxMa + " đã tồn tại ");
 			  		}
 				  	
+>>>>>>> 2d14a7d8f1f0ee59326c84b9f19fc66e97271565
 	 			  	}
 				});
 	}
@@ -140,7 +153,7 @@ if (nsxTenUpdate == '')
 			  	
 			  	success: function(nsx) {
 			  		$('table tr').has('input[name="nsxMa"]:checked').remove();
-			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMaUpdate + '\"</td><td class=\"col\">'+ nsxMaUpdate +'</td><td class=\"col\">' + nsxTenUpdate+'</td></tr>');
+			  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMaUpdate + '\"</td><td class=\"col\">'+ nsxMaUpdate +'</td><td class=\"col\">' + nsxTenUpdate+'</td></tr>');
 			  		$('input:text[name=nsxMaUpdate]').val('');
 					nsxTenUpdate = $('input:text[name=nsxTenUpdate]').val('');
 			  		showForm("update-form", false);	

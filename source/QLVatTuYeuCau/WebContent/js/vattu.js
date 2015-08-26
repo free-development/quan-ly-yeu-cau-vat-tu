@@ -166,7 +166,7 @@
 						  	
 						  	success: function(vt) {
 						  		$('table tr').has('input[name="vtMa"]:checked').remove();
-						  		$('#view-table-vat-tu table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vtMaUpdate + '\"</td><td class=\"col\">'+ vtMaUpdate +'</td><td class=\"col\">' + vtTenUpdate+'</td><td class=\"col\">' 
+						  		$('#view-table-vat-tu table tr:first').after('<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vtMaUpdate + '\"</td><td class=\"col\">'+ vtMaUpdate +'</td><td class=\"col\">' + vtTenUpdate+'</td><td class=\"col\">' 
 						  				+ dvtUpdate+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
 										+vtMaUpdate+'\');\">Xem</button></td></tr>');
 						  		$('input:text[name=vtMaUpdate]').val('');			 
@@ -183,6 +183,7 @@
 			$('#update-form select[name=dvtUpdate]').val('');
  		}
  	function confirmDeleteVT(){
+<<<<<<< HEAD
  		vtMa = $('input:checkbox[name=vtMa]:checked').val();	
  		$.ajax({
  			url: "/QLVatTuYeuCau/comfirmdeleteVattu.html",	
@@ -205,40 +206,35 @@
  		  			}
  		    } 
  		});  
+=======
+>>>>>>> 43267cbf6f27da96e2d9807b21f922f7cdfed45f
  		
  		var vtMa = $('input:checkbox[name=vtMa]:checked').val();
 		var vtMaList = [];
 		$.each($("input[name='vtMa']:checked"), function(){            
 			vtMaList.push($(this).val());
 	    });
+		var str = vtMaList.join(", ");
 		if (vtMaList.length == 0)
 			alert('Bạn phải chọn 1 hoặc nhiều vật tư để xóa!!');
-		else if (confirm('Bạn có chắc xóa vật tư có mã ' + vtMaList.join(", ")))
-			deleteVattu(vtMa);
+		else if (confirm('Bạn có chắc xóa vật tư có mã ' + str))
+			deleteVattu(str);
 
  	}
 	
-  	 function deleteVattu(vtMa) {
+  	 function deleteVattu(str) {
 		 
  		$.ajax({
  			url: "/QLVatTuYeuCau/deleteVattu.html",	
  		  	type: "GET",
  		  	dateType: "JSON",
- 		  	data: { "vtMa": vtMa},
- 		  	contentType: 'application/json',
- 		    mimeType: 'application/json',
- 		    
- 		    
+ 		  	data: { "vtList": str},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
  		  	success: function(result) {
- 		  		if(result == "success")
- 		  			{
+ 		  		
 	 		  			$('#view-table-vat-tu table tr').has('input[name="vtMa"]:checked').remove();
-	 					alert(vtMa + " da bi xoa");		  			
- 		  			}
- 		  		else
- 		  			{
- 		  				alert("Không thể xóa!");
- 		  			}
+	 		  			alert('Vật tư có mã ' + str + " đã bị xóa");	  			
  		    } 
  		});  
  	}

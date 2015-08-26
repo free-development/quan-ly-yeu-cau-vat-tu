@@ -48,7 +48,7 @@ function showForm(formId, check){
 		 			  	success: function(result) {
 		 			  		if(result == "success")
 			 				{
-		 			  			$('#view-table-bo-phan table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"'+ dvMa + '\"</td><td class=\"col\">' + dvMa +'</td><td class=\"col\">' + dvTen+'</td><td class=\"col\">' + sdt+'</td><td class=\"col\">'+ diaChi+'</td><td class=\"col\">'+ email+'</td></tr>');
+		 			  			$('#view-table-bo-phan table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"'+ dvMa + '\"</td><td class=\"col\">' + dvMa +'</td><td class=\"col\">' + dvTen+'</td><td class=\"col\">' + sdt+'</td><td class=\"col\">'+ diaChi+'</td><td class=\"col\">'+ email+'</td></tr>');
 								$('#add-form input:text[name=dvMa]').val('');
 					 			$('#add-form input:text[name=dvTen]').val('');
 					 			$('#add-form input:text[name=sdt]').val('');
@@ -151,7 +151,7 @@ function showForm(formId, check){
 					  	
 					  	success: function(dv) {
 					  		$('table tr').has('input[name="dvMa"]:checked').remove();
-							$('#view-table-bo-phan table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"' +dvMaUpdate + '\"</td><td class=\"col\">'
+							$('#view-table-bo-phan table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"dvMa\" value=\"' +dvMaUpdate + '\"</td><td class=\"col\">'
 									 + dvMaUpdate +'</td><td class=\"col\">' 
 									 + dvTenUpdate +'</td><td class=\"col\">' 
 									 + sdtUpdate +'</td><td class=\"col\">' 
@@ -169,7 +169,6 @@ function showForm(formId, check){
 			}
 		}
 
-
  	 	function resetUpdateBP(){
  	 		$('#update-form input:text[name=dvTenUpdate]').val('');
 			$('#update-form input:text[name=sdtUpdate]').val('');
@@ -183,24 +182,25 @@ function showForm(formId, check){
 			$.each($("input[name='dvMa']:checked"), function(){            
 				dvMaList.push($(this).val());
 		    });
+			var str = dvMaList.join(", ");
 			if (dvMaList.length == 0)
 				alert('Bạn phải chọn 1 hoặc nhiều bộ phận để xóa!!');
-			else if (confirm('Bạn có chắc xóa bộ phận có mã ' + dvMaList.join(", ")))
-				deleteBp(dvMa);
+			else if (confirm('Bạn có chắc xóa bộ phận có mã ' + str))
+				deleteBp(str);
 		}
  		
-	 	 function deleteBp(dvMa) {
+	 	 function deleteBp(str) {
 			 
 			$.ajax({
 				url: "/QLVatTuYeuCau/deleteBp.html",	
 			  	type: "GET",
 			  	dateType: "JSON",
-			  	data: { "dvMa": dvMa},
+			  	data: { "dvList": str},
 			  	contentType: 'application/json',
 			    mimeType: 'application/json',
 			  	success: function() {
 							$('table tr').has('input[name="dvMa"]:checked').remove();
-							alert(dvMa + " da bi xoa");
+							alert('Bộ phận có mã ' + str + " đã bị xóa");
 			    } 
 			});  
 		}

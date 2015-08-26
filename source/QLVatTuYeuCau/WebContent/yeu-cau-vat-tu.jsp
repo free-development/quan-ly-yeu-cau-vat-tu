@@ -1,3 +1,4 @@
+<%@page import="javax.persistence.criteria.CriteriaBuilder.In"%>
 <%@page import="model.YeuCau"%>
 <%@page import="model.NoiSanXuat"%>
 <%@page import="model.ChatLuong"%>
@@ -22,13 +23,21 @@
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
 <link rel="stylesheet" href="style/style.css" type="text/css">
+<link rel="stylesheet" href="style/jquery.autocomplete.css" type="text/css">
 <link href="style/style-yeu-cau.css"type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="style/style-menu-tree.css" type="text/css">
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
-<script type="text/javascript" src="js/yeu-cau-vat-tu.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/check.js"></script>
+<script src="http://www.google.com/jsapi"></script>  
+	<script>  
+		google.load("jquery", "1");
+	</script>
+	<script src="js/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="js/yeu-cau-vat-tu.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
@@ -38,6 +47,9 @@
 		ArrayList<YeuCau> yeuCauList = (ArrayList<YeuCau>) request.getAttribute("yeuCauList");
 		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) request.getAttribute("nsxList");
 		ArrayList<ChatLuong> chatLuongList = (ArrayList<ChatLuong>) request.getAttribute("chatLuongList");
+		Integer cvId = (Integer) session.getAttribute("cvId");
+		if (cvId == null)
+			response.sendRedirect(siteMap.congVan);
     %>
 	<div class="wrapper">
 		<div class="header">
@@ -105,44 +117,52 @@
 				<table>
 					<tr>
 						<td><label for="vtMa">Mã vật tư: </label></td>
-						<td class="column-mavt"><input type="text" maxlength="3" size="3px" name="vtMa" id="vtMa" class="text"></td>
-						<td><label for="vtTen">Tên vật tư: </label></td>
-						<td class="column-tenvt"><input type="text" maxlength="3" size="3px" name="vtTen" id="vtMa" class="text"></td>
-					</tr>
-					<tr>
-						<td><label for="nsx">Nơi sản xuất: </label></td>
-						<td class="column-noisx">
-							<select name="nsx" id="nsx" class="select">
-							<option selected disabled value="" style="text-decoration: none;">-- Chọn nơi sản xuất --</option>
-							<% for(NoiSanXuat nsx : nsxList) {%>
-								<option value=<%=nsx.getNsxMa() %>><%=nsx.getNsxTen() %></option>
-							<%} %>
-							</select>
+						<td class="column-mavt" colspan=3><input type="search" maxlength="16" size="19px" name="search" id="searchName" class="text" autocomplete="off">
+						&nbsp;&nbsp;&nbsp;<input type="checkbox" value="check" class="checkbox" style="text-align: center;" id="checkTen"/>
+						Theo tên
+						<script>
+														$("#searchName").autocomplete("getdataMa.jsp");
+														$("#searchName").autocomplete("getdata.jsp");
+						</script>
 						</td>
-						<td><label for="chatLuong">Chất lượng: </label></td>
-						<td>
-							<select name="chatLuong" id="chatLuong" class="select">
-							<option selected disabled value="" style="text-decoration: none;">-- Chọn chất lượng --</option>
-							<% for(ChatLuong chatLuong : chatLuongList) {%>
-								<option value=<%=chatLuong.getClMa() %>><%=chatLuong.getClTen()  %></option>
-							<%} %>
- 							</select> 
-						</td>
+						<td><button class="button" type="button" id="search";">Tìm kiếm</button></td>
+<!-- 						<td><label for="vtTen">Tên vật tư: </label></td> -->
+<!-- 						<td class="column-tenvt"><input type="text" maxlength="3" size="3px" name="vtTen" id="vtMa" class="text"></td> -->
 					</tr>
+<!-- 					<tr> -->
+<!-- 						<td><label for="nsx">Nơi sản xuất: </label></td> -->
+<!-- 						<td class="column-noisx"> -->
+<!-- 							<select name="nsx" id="nsx" class="select"> -->
+<!-- 							<option selected disabled value="" style="text-decoration: none;">-- Chọn nơi sản xuất --</option> -->
+<%-- 							<% for(NoiSanXuat nsx : nsxList) {%> --%>
+<%-- 								<option value=<%=nsx.getNsxMa() %>><%=nsx.getNsxTen() %></option> --%>
+<%-- 							<%} %> --%>
+<!-- 							</select> -->
+<!-- 						</td> -->
+<!-- 						<td><label for="chatLuong">Chất lượng: </label></td> -->
+<!-- 						<td> -->
+<!-- 							<select name="chatLuong" id="chatLuong" class="select"> -->
+<!-- 							<option selected disabled value="" style="text-decoration: none;">-- Chọn chất lượng --</option> -->
+<%-- 							<% for(ChatLuong chatLuong : chatLuongList) {%> --%>
+<%-- 								<option value=<%=chatLuong.getClMa() %>><%=chatLuong.getClTen()  %></option> --%>
+<%-- 							<%} %> --%>
+<!--  							</select>  -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
 					
 				</table>
-				<div class="group-button">
-					<button class="button" type="button" onclick="searchCtvt();">Tìm kiếm</button>
-				</div>
-				</div>
+<!-- 				<div class="group-button"> -->
+<!-- 					<button class="button" type="button" onclick="searchCtvt();">Tìm kiếm</button> -->
+<!-- 				</div> -->
+<!-- 				</div> -->
 <!-- 			</fieldset> -->
 			</form>
 			<br>
 			<br>
 			<div id="view-search">
 				<table>
-					<tr><th >Ma vat tu</th><th >Ten vat tu</th><th >Noi san xuat</th><th >Chat luong</th><th >Don vi tinh</th><th ></th></tr>
-					<tr style="background-color: #199e5e"><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th ></th></tr>
+<!-- 					<tr><th >Ma vat tu</th><th >Ten vat tu</th><th >Noi san xuat</th><th >Chat luong</th><th >Don vi tinh</th><th ></th></tr> -->
+					<tr style="background-color: #199e5e"><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th >Thêm</th></tr>
 					<tr></tr>
 					<%
 						int countCtvt = 0;
@@ -152,13 +172,14 @@
 							NoiSanXuat nsx = ctVatTu.getNoiSanXuat();
 							ChatLuong chatLuong = ctVatTu.getChatLuong();
 						%>
-						<tr id="row" <%if (countCtvt % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
+						<tr id="row" class = "rowContent" <%if (countCtvt % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
 							<td><%=vatTu.getVtMa() %></td>
 							<td><%=vatTu.getVtTen() %></td>
 							<td><%=nsx.getNsxTen() %></td>
 							<td><%=chatLuong.getClTen() %></td>
 							<td><%=vatTu.getDvt() %></td>
 							<td><input class="radio"  type="radio" id="a" name="ctvtId" value="<%=ctVatTu.getCtvtId() %>" onchange="preAddSoLuong();"> </td>
+							
 						</tr>
 					<%}%>
 				</table>	
@@ -169,13 +190,14 @@
 <!-- 							<div class="form-title">Cập nhật yêu cầu vật tư</div> -->
 							<table >
 								<tr>
-									<th class="a-column">Chọn</th>
+									<th class="a-column"><input type="checkbox" name="checkAll" class="checkAll"></th>
 									<th class="b-column">Mã vật tư</th>
 									<th class="c-column">Tên vật tư</th>
 									<th class="e-column">Nơi sản xuất</th>
 									<th class="f-column">Chất lượng</th>
 									<th class="g-column">Đvt</th>
-									<th class="d-column">Số lượng</th>
+									<th class="d-column">Số lượng yêu cầu</th>
+									<th >Đã cấp</th>
 								</tr>
 								<%
 									int count = 0;
@@ -186,38 +208,40 @@
 									ChatLuong chatLuong = ctVatTu.getChatLuong();
 								%>
 								<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%> id="<%=yeuCau.getYcId()	%>">
-									<td><input id="<%=yeuCau.getYcId() %>" type="checkbox" name = "yeuCau" value=<%=yeuCau.getYcId()%>> </td>
+									<td><input id="<%=yeuCau.getYcId() %>" type="checkbox" class="checkbox" name = "yeuCau" value=<%=yeuCau.getYcId()%>> </td>
 									<td><%=vatTu.getVtMa()%></td>
 									<td><%=vatTu.getVtTen()%></td>
 									<td><%=nsx.getNsxTen()%></td>
 									<td><%=chatLuong.getClTen()%></td>
 									<td><%=vatTu.getDvt()%></td>
-									<td><%=yeuCau.getYcSoLuong()%></td>
+									<td id="soLuong<%=yeuCau.getYcId()%>"><%=yeuCau.getYcSoLuong()%></td>
+									<td id="soLuongCap<%=yeuCau.getYcId()%>"><%=yeuCau.getCapSoLuong()%></td>
 								<%} %>
 							</table>
 							</div>
 							<div class="group-button">
-								<button type="button" class="button"
-									onclick="showForm('yc-vat-tu', 'add-form-ycvt', true)">
-									<i class="fa fa-plus-circle"></i>&nbsp;Thêm mới
-								</button>
-								<button type="button" class="button"
-									onclick="showForm('update-yc-vat-tu','add-yeu-cau-form', true)">
+<!-- 								<button type="button" class="button" -->
+<!-- 									onclick="showForm('yc-vat-tu', 'add-form-ycvt', true)"> -->
+<!-- 									<i class="fa fa-plus-circle"></i>&nbsp;Thêm mới -->
+<!-- 								</button> -->
+								<button type="button" class="button" id="pre-update-yc">
 									<i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa
+								</button>
+								<button type="button" class="button" id="preCapVatTu">
+									<i class="fa fa-refresh"></i>&nbsp;&nbsp;Cấp phát
 								</button>
 								<button class="button" type="button" onclick="return confirmDelete();">
 									<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa
 								</button>
-								<button type="reset" class="button">
-									<i class="fa fa-refresh"></i>&nbsp;&nbsp;Nhập lại
-								</button>
+								
 								<button type="button" class="button"
 									onclick="showForm('main-form', 'update-yc-vat-tu',false)">
 									<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 								</button>
 							</div>
 				</form>
-			<form id="add-so-luong-form">
+			<form id="add-so-luong-form" onsubmit="return false">
+			<div class="form-title">Thêm yêu cầu vật tư</div>
 			<table>
 				<tr><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th >Số lượng</th></tr>
 				<tr>
@@ -229,11 +253,43 @@
 <!-- 					<td><div id="vtMaAdd"></div></td> -->
 
 					<td><input type="number" min=0 autofocus  name="soLuongAdd" title="So luong phai la so!!!"  class="text" style="width: 80px;"></td>
-					<td><button class="button" type="button" onclick="addSoLuong();">Them</button></td>
+					<td><button class="button" type="button" onclick="addSoLuong();">Thêm</button></td>
 				</tr>
 <!-- 				<t	r> -->
 					
 <!-- 				</tr> -->
+			</table>
+			</form>
+			
+			<form id="update-so-luong-form" onsubmit="return false">
+			<div class = "form-title">Thay đổi số lượng yêu cầu</div>
+			<table>
+				<tr><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th >Số lượng</th></tr>
+				<tr>
+					<td><div id="vtMaUpdate"></div></td>
+					<td><div id="vtTenUpdate"></div></td>
+					<td><div id="clTenUpdate"></div></td>
+					<td><div id="nsxTenUpdate"></div></td>
+					<td><div id="dvtUpdate"></div></td>
+					<td><input type="number" min=0 autofocus  name="soLuongUpdate" title="So luong phai la so!!!"  class="text" style="width: 80px;"></td>
+					<td><button class="button" type="button" id="updateYc">Lưu lại</button></td>
+				</tr>
+			</table>
+			</form>
+			
+			<form id="cap-so-luong-form" onsubmit="return false">
+			<div class = "form-title">Cấp phát vật tư</div>
+			<table>
+				<tr><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th >Số lượng</th></tr>
+				<tr>
+					<td><div id="vtMaCap"></div></td>
+					<td><div id="vtTenCap"></div></td>
+					<td><div id="clTenCap"></div></td>
+					<td><div id="nsxTenCap"></div></td>
+					<td><div id="dvtCap"></div></td>
+					<td><input type="number" min=0 autofocus  name="soLuongCap" title="So luong phai la so!!!"  class="text" style="width: 80px;"></td>
+					<td><button class="button" type="button" id="capVatTu">Lưu lại</button></td>
+				</tr>
 			</table>
 			</form>
 			

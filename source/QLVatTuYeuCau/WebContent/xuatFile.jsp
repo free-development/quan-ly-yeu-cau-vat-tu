@@ -56,10 +56,12 @@
 		</tr>
 		</table>
 			<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;">Báo cáo chi tiết vật tư thiếu</div>
+		<% if((ngaybd!=null)&&(ngaykt!=null)){%>
 		<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
+		<% }%>
 		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 				<div id="view-table-bao-cao" >
-					<table  style="border: solid 1px black;">
+					<table  style="border: solid 1px black;width:960px;">
 						<thead >
 							<tr bgcolor="#199e5e" >
 								<th style="border: 1px solid black;" class="one-column">Số đến</th>
@@ -140,10 +142,12 @@
 		</tr>
 		</table>
 	   		<div style="text-align: center;font-size: 20px;font-weight: bold;color: #199e5e;">Báo cáo tổng hợp vật tư thiếu</div>
+		<% if((ngaybd!=null)&&(ngaykt!=null)){%>
 		<div style="text-align: center;">Từ ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaybd)%>&nbsp;&nbsp;đến ngày:&nbsp;&nbsp;<%=DateUtil.toString(ngaykt)%></div>
+		<% }%>
 		<div style="margin-right: 20px;padding-left: 900px;">Ngày in:&nbsp;&nbsp; <%=DateUtil.toString(new java.util.Date())%></div>
 			<div id="view-table-bao-cao" >
-				<table style="width:650px;" >
+				<table style="width:960px;" >
 					<tr bgcolor="#199e5e"  style="border: solid 1px black;" >
 						<th style="border: 1px solid black;" class="two-column"style="text-align: center;">Mã vật tư</th>
 						<th style="border: 1px solid black;" class="three-column">Tên vật tư</th>

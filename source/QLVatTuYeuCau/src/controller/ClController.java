@@ -78,9 +78,14 @@ public class ClController extends HttpServlet {
 	}
 	@RequestMapping(value="/deleteCl", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String deleteCl(@RequestParam("clMa") String clMa) {
-		new ChatLuongDAO().deleteChatLuong(clMa);
-		return JSonUtil.toJson(clMa);
+	 public @ResponseBody String deleteCl(@RequestParam("clList") String clList) {
+		String[] str = clList.split("\\, ");
+		
+		ChatLuongDAO clDAO =  new ChatLuongDAO();
+		for(String clMa : str) {
+			clDAO.deleteChatLuong(clMa);
+		}
+		return JSonUtil.toJson(clList);
 	}
 
 	@RequestMapping(value="/addCl", method=RequestMethod.GET, 

@@ -7,7 +7,7 @@ package model;
  * @author quoioln
  *
  */
-
+	
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -31,7 +31,7 @@ public class RepairWrongUrlParamEncoding {
     /* First step: encode the incorrectly converted UTF-8 strings back to 
                        the original URL format
     */
-    restoredParamToOriginal = URLEncoder.encode(wrongUrlParam, "ISO-8859-1");
+    restoredParamToOriginal = URLEncoder.encode(wrongUrlParam, "UTF-8");
     
     /* Second step: decode to UTF-8 again from the original one
     */

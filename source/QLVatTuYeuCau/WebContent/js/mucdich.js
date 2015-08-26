@@ -44,24 +44,25 @@ function showForm(formId, check){
 		$.each($("input[name='mdMa']:checked"), function(){            
 			mdMaList.push($(this).val());
 	    });
+		var str = mdMaList.join(", ");
 		if (mdMaList.length == 0)
 			alert('Bạn phải chọn 1 hoặc nhiều mục đích để xóa!!');
-		else if (confirm('Bạn có chắc xóa mục đích có mã ' + mdMaList.join(", ")))
-			deleteMd(mdMa);
+		else if (confirm('Bạn có chắc xóa mục đích có mã ' + str))
+			deleteMd(str);
 	}
 		
- 	 function deleteMd(mdMa) {
+ 	 function deleteMd(str) {
  		$.ajax({
 			url: "/QLVatTuYeuCau/deleteMd.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
-		  	data: { "mdMa": mdMa},
+		  	data: { "mdList": str},
 		  	contentType: 'application/json',
 		    mimeType: 'application/json',
 		  	success: function() {
-			  	alert(mdMa + " da bi xoa.");
-			  	$('table tr').has('input[name="mdMa"]:checked').remove();
-		  	}
+						$('table tr').has('input[name="mdMa"]:checked').remove();
+						alert('Mục đích có mã ' + str + " đã bị xóa");
+		    } 
 		});  
 	} 
  	
@@ -89,7 +90,7 @@ function showForm(formId, check){
 				{
 		  		 	$('input:text[name=mdMa]').val(mdMa);
 				  	$('input:text[name=mdTen]').val(mdTen);
-			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"mdMa\" value=\"' +mdMa + '\"</td><td class=\"col\">'+ mdMa +'</td><td class=\"col\">' + mdTen+'</td></tr>');
+			  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"mdMa\" value=\"' +mdMa + '\"</td><td class=\"col\">'+ mdMa +'</td><td class=\"col\">' + mdTen+'</td></tr>');
 			  		$('#add-form input:text[name=mdMa]').val('');
 					$('#add-form input:text[name=mdTen]').val('');
 			  		showForm("add-form", false);
@@ -139,7 +140,7 @@ function showForm(formId, check){
 		  	
 		  	success: function(md) {
 		  		$('table tr').has('input[name="mdMa"]:checked').remove();
-		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"mdMa\" value=\"' +mdMaUpdate + '\"</td><td class=\"col\">'+ mdMaUpdate +'</td><td class=\"col\">' + mdTenUpdate+'</td></tr>');
+		  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"mdMa\" value=\"' +mdMaUpdate + '\"</td><td class=\"col\">'+ mdMaUpdate +'</td><td class=\"col\">' + mdTenUpdate+'</td></tr>');
 		  		$('input:text[name=mdMaUpdate]').val('');
 				mdTenUpdate = $('input:text[name=mdTenUpdate]').val('');
 		  		showForm("update-form", false);	

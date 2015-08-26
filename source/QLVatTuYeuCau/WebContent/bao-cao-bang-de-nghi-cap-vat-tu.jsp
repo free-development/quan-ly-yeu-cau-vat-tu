@@ -43,17 +43,8 @@
 	ArrayList<TrangThai> listTrangThai = (ArrayList<TrangThai>) session.getAttribute("trangThaiList");
 	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) session.getAttribute("congVanList");
 	HashMap<Integer, ArrayList<YeuCau>> yeuCauHash = (HashMap<Integer, ArrayList<YeuCau>>) session.getAttribute("yeuCau");
-	Long size = (Long) request.getAttribute("size");
     %>
-  	<script >alert('<%
-  			out.println("size of don vi: " + listDonVi.size() + "<br>");
-		  	out.println("size of trang thai list: " + listTrangThai.size() + "<br>");
-		  	out.println("size of cong van list: " + congVanList.size() + "<br>");
-		  	out.println("size of yeu cauhash: " + yeuCauHash.size() + "<br>");
-		  	out.println("size of page: " + size + "<br>");
-// 		  	out.println("size of yeu cau list by cong van: " + yeuCauHash.get(0).size() + "<br>");
-  	
-  	%>')</script>
+  
 	<div class="wrapper">
 		<div class="header">
 			<div id="top_title">Văn phòng điện tử</div>
@@ -117,7 +108,7 @@
 			<form id="option-form" method="get" action ="<%=siteMap.bcbdnManage %>">
 			<fieldset style="background-color:#dceaf5;width:750px;margin:0 auto;">
 			
-				<table style="margin:0 auto;margin-top: 20px;">
+				<table style="margin:0 auto; margin-top: 30px;">
 					<tr>
                             <th style="text-align: left;margin-top: 10px;padding-right:10px;" >Thời gian:</th>
                             <td style="text-align: left;margin-top: 10px;" colspan="2" >Từ ngày &nbsp;
@@ -141,7 +132,7 @@
 						</select>
 						</td>
 					</tr>
-				<table class="radio" style="margin-top: 30px;margin:0 auto;">
+				<table class="radio" style="margin-top: 20px;margin:0 auto;">
 					<th style="text-align: left;margin-top: 20px;padding-right:50px;">Trạng thái:</th>				  
  								
  								<td style="text-align: right;"><input type="radio" name="trangthai" value="CGQ"></td>
@@ -162,9 +153,8 @@
 				</fieldset>
 				</form>
 			</div>
-			<form id="main-form">
-			<div id="view-table" style="max-height: 420px;width: 1024px;display: auto;border: 1px solid #CCCCCC;margin: 0 auto;overflow: scroll;">
-				<table>
+			<div id="view-table" style="smax-height: 420px;width: 1024px;display: auto;border: 1px solid #CCCCCC;margin: 0 auto;margin-top: 20px;;overflow: scroll;">
+				<table >
 					<tr bgcolor="lightgreen">
 						<th class="a-column">Số đến</th>
 						<th class="b-column">Ngày nhận</th>
@@ -187,7 +177,6 @@
 							%>
 									
 					<tr
-						class="rowContent"
 						<%if (cnt % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 						<td class="a-column"><%=congVan.getSoDen() %></td>
 						<td class="b-column"><%=congVan.getCvNgayNhan() %></td>
@@ -218,22 +207,6 @@
 		</div>
 		</div>
 		</table>
-		</fieldset>
-		</form>
-	<div id = "paging" >
-							<table style ="border-style: none;">
-								<tr>
-									<td><a href=""> Previous<< </a></td>
-									<td>
-										<%
-											long pageNum = size / 10;
-											for(int i = 0; i <= pageNum; i++) { %>
-												<input type="button" value="<%=i+1%>" class="page">
-										<%} %>
-									</td>
-									<td><a href="">>>Next </a> </td>
-								</tr>
-							</table>
-						</div>
+	
 </body>
-</html>
+</html>s

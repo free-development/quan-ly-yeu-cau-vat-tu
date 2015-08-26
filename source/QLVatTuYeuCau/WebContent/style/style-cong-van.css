@@ -134,6 +134,13 @@
 	text-align: left;
 }
 
+.column-socv{
+	width: 100px;
+	text-align: left;
+	color:#EE0000;
+	font-weight: bold;
+}
+
 .column-date {
 	width: 100px;
 	text-align: left;
@@ -482,7 +489,7 @@
 }
 
 .mo-ta {
-	color: blue;
+	color: red;
 	text-decoration: underline;
 }
 

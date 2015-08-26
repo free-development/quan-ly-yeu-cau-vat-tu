@@ -156,6 +156,7 @@
 									</div>
 					</tr>					
 				</table>
+<<<<<<< HEAD
 					</div>
 		<!-- 			<div id="view-table-vat-tu"> -->
 					<div id="view-table-chi-tiet">
@@ -242,6 +243,85 @@
 								<input value="uploadFile" name="action" type="submit" class="button">
 								<input value="Thoát" name="showForm('import-form','false')" type="button" class="button">
 						</form>
+=======
+			</div>
+<!-- 			<div id="view-table-vat-tu"> -->
+			<div id="view-table-chi-tiet">
+				<table>
+					<tr style="background: #199e5e">
+						<th class="left-column"><input type="checkbox"
+							class="checkAll"></th>
+						<th class="a-column">Mã vật tư</th>
+						<th class="three-column">Tên vật tư</th>
+						<th class="six-column">Nơi sản xuất</th>
+						<th class="six-column">Chất lượng</th>
+						<th class="four-column">Đơn vị tính</th>
+						<th class="five-column">Định mức</th>
+						<th class="seven-column">Số lượng tồn</th>
+					</tr>
+					<%
+							if(listCTVatTu != null) {
+							int count = 0;
+							for(CTVatTu ctVatTu : listCTVatTu) { count++;%>
+
+					<tr class="rowContent"
+						<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+						<td class="left-column"><input type="checkbox" name="vtMa"
+							value="<%=ctVatTu.getVatTu().getVtMa() %>" class="checkbox"></td>
+						<td class="col"><%=ctVatTu.getVatTu().getVtMa() %></td>
+						<td class="col"><%=ctVatTu.getVatTu().getVtTen() %></td>
+						<td class="col"><%=ctVatTu.getNoiSanXuat().getNsxTen() %></td>
+						<td class="col"><%=ctVatTu.getChatLuong().getClTen() %></td>
+						<td class="col"><%=ctVatTu.getVatTu().getDvt() %></td>
+						<td class="col"><%=ctVatTu.getDinhMuc() %></td>
+						<td class="col"><%=ctVatTu.getSoLuongTon() %></td>
+
+					</tr>
+					<%} }%>
+
+				</table>
+			</div>
+
+			
+				<div id = "paging" >
+							<table style ="border-style: none;">
+								<tr>
+									<td><a href=""> << Previous </a></td>
+									<td>
+										<%
+											//long pageNum = size / 10;
+											for(int i = 0; i <= pageNum; i++) { %>
+												<input type="button" value="<%=i+1%>" class="page">
+										<%} %>
+									</td>
+									<td><a href="">Next>> </a> </td>
+								</tr>
+							</table>
+						</div>
+
+
+			<div class="group-button">
+
+				<button type="button" class="button"
+					onclick="">
+					<i class="fa fa-pencil fa-fw"></i>&nbsp;Import
+				</button>
+				<button class="button" type="button" onclick="location.href='<%=siteMap.xuatCTVatTu+".jsp"%>'">
+					<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xuất File
+				</button>
+				&nbsp;
+
+				&nbsp;
+				<button class="button" type="button">
+					<i class="fa fa-print"></i>&nbsp;&nbsp;In
+				</button>
+				&nbsp;
+				<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
+					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
+				</button>
+			</div>
+			
+>>>>>>> 43267cbf6f27da96e2d9807b21f922f7cdfed45f
 			
 		</div>
 	</div>

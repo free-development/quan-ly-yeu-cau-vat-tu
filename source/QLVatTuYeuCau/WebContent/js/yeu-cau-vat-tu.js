@@ -9,7 +9,7 @@ function showForm(formId1, formId2, check){
     s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
     s.filter = 'alpha(opacity='+opacity+')';
     for(var i=0; i<f.length; i++) f[i].disabled = check;
-}
+};
 
 function searchCtvt() {
 	var vtMa = $('input:text[name=vtMa]').val();
@@ -37,13 +37,12 @@ function searchCtvt() {
 			}
 	  	}
 	});
-}
+};
 function preAddSoLuong(){
 //	$(document).ready(function() {
 //		$('#view-search input:checkbox[name=ctvtId]').clicked(function() {
 //			var ctvtId = this.val();
 	var ctvtId = $('#view-search input:radio[name=ctvtId]:checked').val();
-			alert(ctvtId);
 			$.ajax({
 				url: "/QLVatTuYeuCau/preAddSoLuong.html",	
 			  	type: "GET",
@@ -64,11 +63,10 @@ function preAddSoLuong(){
 			showForm('search-form','add-so-luong-form',true);
 //		});
 //	});	
-}
+};
 
 function addSoLuong(){
 	var soLuong = $('input[name=soLuongAdd]').val();
-	alert(soLuong);
 	count = 0;
 	$.ajax({
 		url: "/QLVatTuYeuCau/addSoLuong.html",	
@@ -79,55 +77,280 @@ function addSoLuong(){
 	    mimeType: 'application/json',
 	  	
 	  	success: function(yeuCau) {
-//	  		if(result == "success") {
 	  			alert('them so luong thanh cong');
 	  			$('input:radio[name=ctvtId]').prop('checked',false);
 	  			$('input[name=soLuongAdd]').val('0');
-//	  			showForm('search-form','add-so-luong-form',false);
-//	  			$('#view-table'+yeuCau.ycId).remove();
 	  			var ctVatTu = yeuCau.ctVatTu;
-	  			str = '<tr id=\"' + yeuCau.ycId +'\"> '
-					+ '<td><input id=\"'+ yeuCau.ycId + '\" type=\"checkbox\" name = \"yeuCau\" value=\"' + yeuCau.ycId + '\"</td>'
-  					+ '<td>' + ctVatTu.vatTu.vtMa + '</td>'
-  					+ '<td>' + ctVatTu.vatTu.vtTen + '</td>'
-  					+ '<td>' + ctVatTu.noiSanXuat.nsxTen + '</td>'
-  					+ '<td>' + ctVatTu.chatLuong.clTen + '</td>'
-  					+ '<td>' + ctVatTu.vatTu.dvt + '</td>'
-  					+ '<td>' + yeuCau.ycSoLuong + '</td>'
-  					+ '</tr>';
-//	  			alert(str);
-	  			$('#view-table-yc table tr:first').after(str);
-//	  			$('#view-table table tr:first').after('<tr id=\"' + yeuCau.ycId +'\"> '
-//	  					+ '<td><input id=\"'+ yeuCau.ycId + '\" type=\"checkbox\" name = \"yeuCau\" value=\"' + yeuCau.ycId + '\"</td>'
-//	  					+ '<td>' + yeuCau.vatTu.vtMa + '</td>'
-//	  					+ '<td>' + yeuCau.vatTu.vtTen + '</td>'
-//	  					+ '<td>' + yeuCau.nsx.nsxTen + '</td>'
-//	  					+ '<td>' + yeuCau.chatLuong.clTen + '</td>'
-//	  					+ '<td>' + yeuCau.dvt + '</td>'
-//	  					+ '<td>' + yeuCau.ycSoLuong + '</td>'
-//	  					+ '</tr>');
-	  			alert('them so luong thanh cong :)');
-	  		}
-//	  	}
+	  			var cells = '<td><input id=\"'+ yeuCau.ycId + '\" type=\"checkbox\" name = \"yeuCau\" value=\"' + yeuCau.ycId + '\"</td>'
+					+ '<td>' + ctVatTu.vatTu.vtMa + '</td>'
+					+ '<td>' + ctVatTu.vatTu.vtTen + '</td>'
+					+ '<td>' + ctVatTu.noiSanXuat.nsxTen + '</td>'
+					+ '<td>' + ctVatTu.chatLuong.clTen + '</td>'
+					+ '<td>' + ctVatTu.vatTu.dvt + '</td>'
+					+ '<td>' + yeuCau.ycSoLuong + '</td>';
+					
+	  			var row = '<tr id=\"' + yeuCau.ycId +'\"> ' + cells + + '</tr>';
+	  			if (yeuCau.ycSoLuong == soLuong) {
+		  			$('#view-table-yc table tr:first').after(row);
+	  			}
+	  			else {
+	  				$('#view-table-yc table #' + yeuCau.ycId).html(cells);
+	  			}
+	  			showForm('search-form','add-so-luong-form',false);
+	  	}
 	});
-	showForm('search-form','add-so-luong-form',true);
-}
+	
+};
 function confirmDelete() {
-	var ycId = $('#view-table input:checkbox[name=yeuCau]:checked').val();
-	if(confirm('Ban co chac xoa yeu cau?'))
-		deleteYc(ycId);
-}
-function deleteYc(ycId) {
+	var ycList = [];
+	$.each($('#view-table-yc input:checkbox[name=yeuCau]:checked'), function(){
+		ycList.push($(this).val());
+	})
+	var str = ycList.join(', ');
+	if (ycList.length == 0)
+		alert('Bạn phải chọn 1 yêu cầu để sửa đổi!');
+	else if (ycList.length > 1)
+		alert('Bạn phải chọn 1 yêu cầu để sửa đổi!');
+	else if(confirm('Ban co chac xoa yeu cau?'));
+		deleteYc(str);
+};
+function deleteYc(ycList) {
 	$.ajax({
 		url: "/QLVatTuYeuCau/deleteYc.html",	
 	  	type: "GET",
 	  	dateType: "JSON",
-	  	data: { "ycId": ycId},
+	  	data: { "ycList": ycList},
 	  	contentType: 'application/json',
 	    mimeType: 'application/json',
-	  	success: function() {
-		  	alert("yeu cau co da bi xoa");
-					$('#view-table table').has('input[name="yeuCau"]:checked').remove();
+	  	success: function(result) {
+		  	alert("Yêu cầu đã được xóa!");
+			$('#view-table-yc table tr').has('input:checkbox[name=yeuCau]:checked').remove();
 	    } 
 	});  
-} 
+};
+function preUpdateYc() {
+	var ycList = [];
+	$.each($('#view-table-yc input:checkbox[name=yeuCau]:checked'), function(){
+		ycList.push($(this).val());
+	})
+	var str = ycList.join(', ');
+	if (ycList.length == 0)
+		alert('Bạn phải chọn 1 yêu cầu để sửa đổi!');
+	else if (ycList.length > 1)
+		alert('Bạn phải chọn 1 yêu cầu để sửa đổi!');
+	else {
+		
+		$.ajax({
+			url: "/QLVatTuYeuCau/preUpdateYc.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "yeuCau": ycList[0]},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	success: function(yeuCau) {
+		  		var ctVatTu = yeuCau.ctVatTu;
+		  		$('#vtMaUpdate').html(ctVatTu.vatTu.vtMa);
+		  		$('#vtTenUpdate').html(ctVatTu.vatTu.vtTen);
+		  		$('#nsxTenUpdate').html(ctVatTu.noiSanXuat.nsxTen);
+		  		$('#clTenUpdate').html(ctVatTu.chatLuong.clTen);
+		  		$('#dvtUpdate').html(ctVatTu.vatTu.dvt);	
+			  	$('#update-so-luong-form input[name=soLuongUpdate]').val(yeuCau.ycSoLuong);
+		    } 
+		});  
+		showForm('search-form','update-so-luong-form',true);
+	}
+}
+function updateYc() {
+	var soLuong = $('input[name=soLuongUpdate]').val();
+	count = 0;
+	$.ajax({
+		url: "/QLVatTuYeuCau/updateSoLuong.html",	
+	  	type: "GET",
+	  	dateType: "JSON",
+	  	data: { "soLuong": soLuong},
+	  	contentType: 'application/json',
+	    mimeType: 'application/json',
+	  	
+	  	success: function(ycId) {
+	  		if (ycId == 'fail')
+	  			alert('Số lương yêu cầu không hợp lệ! Số lượng yêu cầu phải lớn hơn số lượng cấp!!!');
+	  		else {
+	  			alert('cap nhat so luong thanh cong');
+	//  			alert('soLuong' + ycId);
+	//	  			$('input:radio[name=ctvtId]').prop('checked',false);
+	  			$('input[name=soLuongUpdate]').val('0');	
+				$('#view-table-yc table tr #soLuong' + ycId).html(soLuong);
+	  		}
+	  		showForm('search-form','update-so-luong-form',false);
+  		}
+	});
+}
+function preCapVatTu() {
+	var ycList = [];
+	$.each($('#view-table-yc input:checkbox[name=yeuCau]:checked'), function(){
+		ycList.push($(this).val());
+	})
+	var str = ycList.join(', ');
+	if (ycList.length == 0)
+		alert('Bạn phải chọn 1 yêu cầu để cấp phát!');
+	else if (ycList.length > 1)
+		alert('Bạn phải chọn 1 yêu cầu để cấp phát!');
+	else {
+		
+		$.ajax({
+			url: "/QLVatTuYeuCau/preCapVatTu.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "yeuCau": ycList[0]},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+		  	success: function(yeuCau) {
+		  		var ctVatTu = yeuCau.ctVatTu;
+		  		$('#vtMaCap').html(ctVatTu.vatTu.vtMa);
+		  		$('#vtTenCap').html(ctVatTu.vatTu.vtTen);
+		  		$('#nsxTenCap').html(ctVatTu.noiSanXuat.nsxTen);
+		  		$('#clTenCap').html(ctVatTu.chatLuong.clTen);
+		  		$('#dvtCap').html(ctVatTu.vatTu.dvt);	
+			  	$('#Cap-so-luong-form input[name=soLuongCap]').val(yeuCau.capSoLuong);
+		    } 
+		});  
+		showForm('search-form','cap-so-luong-form',true)
+	}
+}
+function capVatTu() {
+	var soLuong = $('input[name=soLuongCap]').val();
+	count = 0;
+	$.ajax({
+		url: "/QLVatTuYeuCau/capVatTu.html",	
+	  	type: "GET",
+	  	dateType: "JSON",
+	  	data: { "soLuong": soLuong},
+	  	contentType: 'application/json',
+	    mimeType: 'application/json',
+	  	
+	  	success: function(ycVatTu) {
+	  		if (ycVatTu == 'fail')
+	  			alert('Số lương cấp phát không hợp lệ! Số lượng cấp phát phải nhỏ hơn hoặc bằng tổng số lượng yêu cầu!!!');
+	  		else {
+	  			alert('Cấp phát vật tư thành công');
+	  			$('input[name=soLuongCap]').val('0');	
+				$('#view-table-yc table tr #soLuongCap' + ycVatTu.ycId).html(ycVatTu.capSoLuong);
+	  		}
+	  		showForm('search-form','cap-so-luong-form',false);
+  		}
+	});
+}
+function searchCtVt(){
+	var vtTen = '';
+	var vtMa = '';
+	var check = $('#checkTen:checked').val();
+	if (check != null)
+		vtTen = $('#yc-table input[name=search]').val();
+	else 
+		vtMa = $('#yc-table input[name=search]').val();
+	$.ajax({
+		url: "/QLVatTuYeuCau/searchCtvtYc.html",	
+	  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "vtMa": vtMa, "vtTen": vtTen},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
+	  	
+		  	success: function(ctvtList){
+//		  		var size = objectList[1];
+//		  		var ctvtList = objectList[0];
+		  		var length = ctvtList.length;
+		  		if(size > 0){
+		  			$('#view-search table .rowContent').remove();
+					for(i = 0;i < length; i++ ) {
+						ctVatTu = ctvtList[i];
+						alert(ctVatTu.dinhMuc);
+						//alert(vtList[i].vtMa);
+				  		/*
+				  				$('#view-table-vat-tu table tr:first').after('<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vattu.vtMa 
+								+ '\"</td><td class=\"col\">'+ vattu.vtMa +'</td><td class=\"col\">' + vattu.vtTen
+								+'</td><td class=\"col\" style=\"text-align: center;\">' + vattu.dvt
+								+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
+								+vattu.vtMa+'\');\">Xem</button></td></tr>');
+								*/
+			  		}
+		  		} else {
+	  				alert("Không tìm thấy vật tư!");
+	  			}
+		  	}
+	});
+}
+/*
+ * keypress event 
+ */
+$(document).ready(function(){
+	$('#add-so-luong-form').keypress(function(e) {
+	var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+		addSoLuong();
+	    return false;  
+	  }
+	}); 
+});
+//$(document).ready(function(){
+//	$('#add-so-luong-form').keypress(function(e) {
+//	var key = e.which;
+//	 if(key == 13)  // the enter key code
+//	  {
+//		addSoLuong();
+//	    return false;  
+//	  }
+//	}); 
+//});
+$(document).ready(function(){
+	$('#update-so-luong-form').keypress(function(e) {
+	var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+		updateYc();
+	    return false;  
+	  }
+	}); 
+});
+$(document).ready(function(){
+	$('#cap-so-luong-form').keypress(function(e) {
+	var key = e.which;
+	 if(key == 13)  // the enter key code
+	  {
+		capVatTu();
+	    return false;  
+	  }
+	}); 
+});
+/*
+ * click event
+ */
+$(document).ready(function(){
+	$('#pre-update-yc').click(function(){
+		preUpdateYc();
+		//showForm('update-yc-vat-tu','add-yeu-cau-form', true);
+		return false;
+	});
+});	
+$(document).ready(function(){
+	$('#updateYc').click(function(){
+		updateYc();
+	});
+});
+// cap vap tu
+$(document).ready(function(){
+	$('#preCapVatTu').click(function(){
+		preCapVatTu();
+	});
+});
+$(document).ready(function(){
+	$('#capVatTu').click(function(){
+		capVatTu();
+	});
+});
+$(document).ready(function(){
+	$('#yc-table #search').click(function(){
+		searchCtVt();
+	});
+});

@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import util.JSonUtil;
 import dao.ChatLuongDAO;
+import dao.DonViDAO;
 import dao.NoiSanXuatDAO;
 import dao.VatTuDAO;
 import dao.CTVatTuDAO;
@@ -35,7 +36,10 @@ import dao.DonViTinhDAO;
 public class VattuController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	int page = 1;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 43267cbf6f27da96e2d9807b21f922f7cdfed45f
    @RequestMapping("/manageVattu")
 	protected ModelAndView manageCtvt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VatTuDAO vatTuDAO = new VatTuDAO();
@@ -142,10 +146,14 @@ public class VattuController extends HttpServlet {
 	}
 	@RequestMapping(value="/deleteVattu", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String deleteVattu(@RequestParam("vtMa") String vtMa) {
-		VatTu vt = new VatTu(vtMa);
-		new VatTuDAO().deleteVatTu(vtMa);
-		return JSonUtil.toJson(vtMa);
+	 public @ResponseBody String deleteVattu(@RequestParam("vtList") String vtList) {
+		String[] str = vtList.split("\\, ");
+		
+		VatTuDAO vtDAO =  new VatTuDAO();
+		for(String vtMa : str) {
+			vtDAO.deleteVatTu(vtMa);
+		}
+		return JSonUtil.toJson(vtList);
 	}
 	
 	@RequestMapping(value="/loadPageVatTu", method=RequestMethod.GET, 

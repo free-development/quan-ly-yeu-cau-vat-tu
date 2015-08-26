@@ -135,6 +135,7 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return ctVatTu;
 	}
+	
 	public int getLastInsert() {
 		session.beginTransaction();
 		Criteria cr =  session.createCriteria(CTVatTu.class).setProjection(Projections.max("ctvtId"));// max("ctvtId"));
@@ -238,7 +239,52 @@ public ArrayList<CTVatTu> searchVtTen(String i) {
 	public void updateCTVatTuRoll(CTVatTu ctVatTu){
 		session.update(ctVatTu);
 	}
-	
+	public long sizeOfSearchCtvtMa(final String vtMa) {
+		session.beginTransaction();
+
+		String sql = "select count(a.vatTu.vtMa) from CTVatTu a join a.vatTu b  where a.vatTu.vtMa LIKE :vtMa and a.vatTu.vtMa = b.vtMa";
+		Query query = session.createQuery(sql);
+		query.setParameter("vtMa", vtMa+"%");
+		long size = (long) query.list().get(0);
+		session.getTransaction().commit();
+		return size;
+	}
+	public ArrayList<CTVatTu> searchByCtvtMaLimit(String vtMa, int first, int limit) {
+		session.beginTransaction();
+
+		String sql = "select a from CTVatTu a join a.vatTu b  where a.vatTu.vtMa LIKE :vtMa and a.vatTu.vtMa = b.vtMa";
+		Query query = session.createQuery(sql);
+		query.setParameter("vtMa", vtMa+"%");
+		query.setFirstResult(first);
+		query.setMaxResults(limit);
+		ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) query.list();
+		
+		session.getTransaction().commit();
+		return list;
+	}
+	public long sizeOfSearchCtvtTen(String vtTen) {
+		session.beginTransaction();
+
+		String sql = "select count(b.vtTen) from CTVatTu a join a.vatTu b  where a.vatTu.vtTen LIKE :vtTen and a.vatTu.vtTen = b.vtTen";
+		Query query = session.createQuery(sql);
+		query.setParameter("vtTen", vtTen+"%");
+		long size = (long) query.list().get(0);
+		session.getTransaction().commit();
+		return size;
+	}
+	public ArrayList<CTVatTu> searchByCtvtTenLimit(String vtTen, int first, int limit) {
+		session.beginTransaction();
+
+		String sql = "select a from CTVatTu a join a.vatTu b  where a.vatTu.vtTen LIKE :vtMa and a.vatTu.vtTen = b.vtTen";
+		Query query = session.createQuery(sql);
+		query.setParameter("vtMa", vtTen+"%");
+		query.setFirstResult(first);
+		query.setMaxResults(limit);
+		ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) query.list();
+		
+		session.getTransaction().commit();
+		return list;
+	}
 	public static void main(String[] args) {
 		//CTVatTuDAO ct = new CTVatTuDAO();//.getCTVatTu("VT5", "NB", "CL0");
 //		System.out.pritnln(ct.getCtvtId());
@@ -250,10 +296,13 @@ public ArrayList<CTVatTu> searchVtTen(String i) {
 		//for (CTVatTu vatTu : l) {
 		//	System.out.println(l.getVatTu().getVtMa());
 		//}
-			CTVatTu ctvt = new CTVatTuDAO().getCTVatTu("12122001", "VN", "000");
-			if (ctvt == null)
-				System.out.println("OK");
-			else 
-				System.out.println(ctvt.getCtvtId() + "fail");
+//			CTVatTu ctvt = new CTVatTuDAO().getCTVatTu("12122001", "VN", "000");
+//			if (ctvt == null)
+//				System.out.println("OK");
+//			else 
+//				System.out.println(ctvt.getCtvtId() + "fail");
+		System.out.println(new CTVatTuDAO().searchByCtvtTenLimit("T",0,5).size());
+		System.out.println(new CTVatTuDAO().sizeOfSearchCtvtTen("T"));
+		System.out.println(new CTVatTuDAO().searchByCtvtTenLimit("T", 0, 5).get(0).getVatTu().getVtTen());
 	}
 }

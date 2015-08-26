@@ -38,7 +38,7 @@
 <body>
 	<%
     		ArrayList<MucDich> listMucDich = (ArrayList<MucDich>) request.getAttribute("mucDichList");
-	Long pageNum = (Long) request.getAttribute("page");
+			long pageNum = (Long) request.getAttribute("page");
     	%>
 	<div class="wrapper">
 		<div class="header">
@@ -147,15 +147,15 @@
 						<div id = "paging" >
 							<table style ="border-style: none;">
 								<tr>
-									<td><a href=""> Previous<< </a></td>
+									<td><a href=""> << Previous </a></td>
 									<td>
 										<%
-// 											long pageNum = size / 10;
+ 											//long pageNum = size / 10;
 											for(int i = 0; i <= pageNum; i++) { %>
 												<input type="button" value="<%=i+1%>" class="page">
 										<%} %>
 									</td>
-									<td><a href="">>>Next </a> </td>
+									<td><a href=""> Next>> </a> </td>
 								</tr>
 							</table>
 						</div>
@@ -170,7 +170,7 @@
 								onclick="preUpdateMd('update-form', true)">
 								<i class="fa fa-pencil fa-fw"></i>&nbsp;Thay đổi
 							</button>
-							<button class="button" onclick="confirmDeleteMd();">
+							<button class="button" type="button" onclick="confirmDeleteMd();">
 								<i class="fa fa-trash-o"></i>&nbsp;&nbsp;Xóa
 							</button>
 							&nbsp;

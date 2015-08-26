@@ -214,7 +214,7 @@
 				  	
 				  	success: function(ctvt) {
 				  		$('table tr').has('input[name="ctvtId"]:checked').remove();
-				  		$('#view-table-chi-tiet table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"ctvtId\" value=\"' 
+				  		$('#view-table-chi-tiet table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"ctvtId\" value=\"' 
 				  				+ctvt.ctvtId + '\"</td><td class=\"col\">'
 				  				+ vtMaUpdate +'</td><td class=\"col\">'
 				  				+ vtTenUpdate +'</td><td class=\"col\">'
@@ -245,26 +245,25 @@
 		$.each($("input[name='ctvtId']:checked"), function(){            
 			ctvtMaList.push($(this).val());
 	    });
+		var str = ctvtMaList.join(", ");
 		if (ctvtMaList.length == 0)
 			alert('Bạn phải chọn 1 hoặc nhiều chi tiết vật tư để xóa!!');
-		else if (confirm('Bạn có chắc xóa chi tiết vật tư có mã ' + ctvtMaList.join(", ")))
-			deleteCTVatTu(ctvtId);
+		else if (confirm('Bạn có chắc xóa chi tiết vật tư có mã ' + str))
+			deleteCTVattu(str);
  	}
 	
-  	 function deleteCTVattu(ctvtId) {
-//  		alert(cvvtId); 
+  	 function deleteCTVattu(str) {
+  	///	alert(str); 
  		$.ajax({
  			url: "/QLVatTuYeuCau/deleteCTVattu.html",	
  		  	type: "GET",
  		  	dateType: "JSON",
- 		  	data: { "ctvtId": ctvtId},
- 		  	contentType: 'application/json',
- 		    mimeType: 'application/json',
- 		    
- 		    
+ 		  	data: { "ctvtList": str},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json',
  		  	success: function() {
  		  		$('#view-table-chi-tiet table tr').has('input[name="ctvtId"]:checked').remove();
- 		  		alert("Đã xóa thành công!");
+ 		  		alert('Chi tiết vật tư có mã ' + str + " đã bị xóa");	
 				
  		    } 
  		});  

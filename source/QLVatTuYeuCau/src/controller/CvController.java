@@ -49,8 +49,8 @@ import util.StringUtil;
 public class CvController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	int page = 1;
-	private final String tempPath = "D:/Goc Hoc Tap/free-deverlop/Temp/"; 
-    private final String pathFile = "D:/Goc Hoc Tap/free-deverlop/File/";
+	private final String tempPath = "./"; 
+    private final String pathFile = "./";
     public ModelAndView getCongvan(TrangThaiDAO trangThaiDAO, CongVanDAO congVanDAO, MucDichDAO mucDichDAO, FileDAO fileDAO, DonViDAO donViDAO, HttpServletRequest request) {
     	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) congVanDAO.getAllCongVan();
 		HashMap<Integer, File> fileHash = new HashMap<Integer, File>();
@@ -78,12 +78,10 @@ public class CvController extends HttpServlet {
     	TrangThaiDAO trangThaiDAO =  new TrangThaiDAO();
 		String action = request.getParameter("action");
 		if("manageCv".equalsIgnoreCase(action)) {
-			System.out.println("OK");
 			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) congVanDAO.getAllCongVan();
 			HashMap<Integer, File> fileHash = new HashMap<Integer, File>();
 			ArrayList<DonVi> donViList = (ArrayList<DonVi>) donViDAO.getAllDonVi();
 			ArrayList<MucDich> mucDichList = (ArrayList<MucDich>) mucDichDAO.getAllMucDich();
-			System.out.println("OK1");
 			for(CongVan congVan : congVanList) {
 				int cvId = congVan.getCvId();
 				File file = fileDAO.getByCongVanId(cvId);

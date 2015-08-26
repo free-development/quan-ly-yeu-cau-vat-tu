@@ -62,7 +62,7 @@ public class VatTuDAO {
 	}
 	public long size() {
 		session.beginTransaction();
-		String sql = "select count(vtMa) from VatTu";
+		String sql = "select count(vtMa) from VatTu where daXoa = 0";
 		Query query =  session.createQuery(sql);
 		long size = (long) query.list().get(0);
 		session.getTransaction().commit();
@@ -103,10 +103,32 @@ public ArrayList<String> startWith(String i) {
 		session.getTransaction().commit();
 		return list;
 	}
+<<<<<<< HEAD
 public void close() {
 	HibernateUtil.shutdown();
 }
 public ArrayList<VatTu> searchVtTen(String i) {
+=======
+
+public ArrayList<VatTu> searchVtTen(String i) {
+	session.beginTransaction();
+
+	String sql = "from VatTu where vtTen LIKE :vtTen";
+	Query query = session.createQuery(sql);
+	query.setParameter("vtTen", i+"%");
+	ArrayList<VatTu> list = (ArrayList<VatTu>) query.list();
+	
+	session.getTransaction().commit();
+	return list;
+}
+
+public void close() {
+	HibernateUtil.shutdown();
+}
+
+
+public ArrayList<VatTu> startWithTK(String i) {
+>>>>>>> 43267cbf6f27da96e2d9807b21f922f7cdfed45f
 	session.beginTransaction();
 	String sql = "from VatTu where vtTen LIKE :vtTen";
 	Query query = session.createQuery(sql);
