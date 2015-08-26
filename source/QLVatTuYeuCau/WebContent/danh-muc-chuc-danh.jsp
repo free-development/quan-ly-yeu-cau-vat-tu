@@ -112,7 +112,7 @@
 		<div id="main-content">
 
 			<form id="main-form">
-				<div id="view-table" class="scroll">
+				<div id="view-table">
 					<table>
 						<tr style="background-color: #199e5e;">
 							<td class="left-column"><input type="checkbox" name=""
@@ -139,7 +139,7 @@
 				<div id = "paging" >
 							<table style ="border-style: none;">
 								<tr>
-									<td><a href=""> Previous<< </a></td>
+									<td><input type="button" value="<<Previous"></td>
 									<td>
 										<%
 											long pageNum = size / 10;
@@ -147,7 +147,7 @@
 												<input type="button" value="<%=i+1%>" class="page">
 										<%} %>
 									</td>
-									<td><a href="">>>Next </a> </td>
+									<td><input type="button" value="Next>>"></td>
 								</tr>
 							</table>
 						</div>

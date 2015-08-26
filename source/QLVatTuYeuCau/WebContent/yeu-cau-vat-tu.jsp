@@ -85,32 +85,49 @@
 			<ul>
 				<li><a href="">Trang chủ</a></li>
 				<li><a href="">Danh mục</a>
+							<ul>
+								<li><a href="<%=siteMap.nsxManage + "?action=manageNsx"%>">Danh
+										mục nơi sản xuất</a></li>
+								<li><a href="<%=siteMap.clManage + "?action=manageCl"%>">Danh
+										mục chất lượng</a></li>
+								<li><a href="<%=siteMap.vattuManage + "?action=manageVattu"%>">Danh
+										mục vật tư</a></li>
+								<li><a href="<%=siteMap.ctvtManage + "?action=manageCtvt"%>">Danh
+										mục chi tiết vật tư</a></li>
+								<li><a href="<%=siteMap.bpsdManage +  "?action=manageBpsd"%>">Danh
+										mục bộ phận sử dụng</a></li>
+								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
+										mục mục đích</a></li>
+								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
+										mục chức danh</a></li>
+								
+							</ul>
+				</li>
+				<li><a href="<%=siteMap.cvManage+ "?action=manageCv" %>">Công văn</a></li>
+				<li><a href="<%=siteMap.bcManage +  "?action=manageBc"%>">Báo cáo</a>
 					<ul>
-						<li><a href="danh-muc-noi-san-xuat.html">Danh mục nơi sản
-								xuất
-								</p>
-						</a></li>
-						<li><a href="danh-muc-chat-luong.html">Danh mục chất
-								lượng</a></li>
-						<li><a href="danh-muc-vat-tu.html">Danh mục vật tư</a></li>
-						<li><a href="danh-muc-bo-phan.html">Danh mục bộ phận sử
-								dụng</a></li>
-						<li><a href="danh-muc-muc-dich.html">Danh mục mục đích</a></li>
-					</ul></li>
-				<li><a href="danh-muc-cong-van.html">Công văn</a></li>
-				<li><a href="bao-cao.html">Báo cáo</a></li>
-				<!--						<li><a href="danh-muc-chia-se-cong-van.html">Chia sẽ</a></li>-->
-				<li><a href="bao-cao.html">Quản lý người dùng</a></li>
-				<li><a href="login.html">Đăng xuất</a></li>
+						<li><a href="<%=siteMap.bcvttManage+ "?action=manageBcvtt" %>"/>Báo cáo vật tư thiếu</li>
+						<li><a href="<%=siteMap.bcbdnManage+ "?action=manageBcbdn" %>"/>Báo cáo bảng đề nghị cấp vật tư</li>
+					</ul>
+				</li>
+				<li><a href="">Quản lý người dùng</a>
+					<ul>
+						<li><a href="<%=siteMap.ndManage + "?action=manageNd"%>">Thêm người dùng</li>
+						<li><a href=""/>Khôi phục mật khẩu</li>
+					</ul>
+				</li>
+				<li><a href="<%=siteMap.changePass + "?action=changePassWord"%>">Đổi mật khẩu</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
 		<div id="greeting">Chào Nguyễn Văn An</div>
 
 		<div id="main-content">
-			<div class="form-title">Cập nhật yêu cầu vật tư</div>
+			
 			
 			<form id="add-yeu-cau-form">
+			<div class="form-title">Cập nhật yêu cầu vật tư</div>
 <!-- 			<fieldset style="width: 70%;margin:0 auto;"> -->
 <!-- 				<legend style="padding-left: 20px; ">Tìm kiếm</legend> -->
 				<div id="yc-table">
@@ -118,14 +135,13 @@
 					<tr>
 						<td><label for="vtMa">Mã vật tư: </label></td>
 						<td class="column-mavt" colspan=3><input type="search" maxlength="16" size="19px" name="search" id="searchName" class="text" autocomplete="off">
-						&nbsp;&nbsp;&nbsp;<input type="checkbox" value="check" class="checkbox" style="text-align: center;" id="checkTen"/>
-						Theo tên
+						&nbsp;&nbsp;&nbsp;<input type="checkbox" value="check" class="checkbox" style="text-align: center;" id="checkTen"/>Theo tên
 						<script>
 														$("#searchName").autocomplete("getdataMa.jsp");
 														$("#searchName").autocomplete("getdata.jsp");
 						</script>
 						</td>
-						<td><button class="button" type="button" id="search";">Tìm kiếm</button></td>
+						<td><button class="button" type="button" id="search">Tìm kiếm</button></td>
 <!-- 						<td><label for="vtTen">Tên vật tư: </label></td> -->
 <!-- 						<td class="column-tenvt"><input type="text" maxlength="3" size="3px" name="vtTen" id="vtMa" class="text"></td> -->
 					</tr>
@@ -151,6 +167,7 @@
 <!-- 					</tr> -->
 					
 				</table>
+				</div>
 <!-- 				<div class="group-button"> -->
 <!-- 					<button class="button" type="button" onclick="searchCtvt();">Tìm kiếm</button> -->
 <!-- 				</div> -->
@@ -159,10 +176,13 @@
 			</form>
 			<br>
 			<br>
-			<div id="view-search">
-				<table>
+			<form id="danh-sach-vat-tu">
+			<div class="form-title">Danh sách vật tư</div>
+				<div id="view-search">
+				<div id="view-table-ds">
+				<table style="width:960px;margin:0 auto;">
 <!-- 					<tr><th >Ma vat tu</th><th >Ten vat tu</th><th >Noi san xuat</th><th >Chat luong</th><th >Don vi tinh</th><th ></th></tr> -->
-					<tr style="background-color: #199e5e"><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th >Thêm</th></tr>
+					<tr style="background-color: #199e5e"><th style="text-align: center;" >Mã vật tư</th><th style="text-align: center;" >Tên vật tư</th><th style="text-align: center;">Nơi sản xuất</th><th style="text-align: center;" >Chất lượng</th><th style="text-align: center;" >Đơn vị tính</th><th style="text-align: center;">Thêm</th></tr>
 					<tr></tr>
 					<%
 						int countCtvt = 0;
@@ -173,24 +193,26 @@
 							ChatLuong chatLuong = ctVatTu.getChatLuong();
 						%>
 						<tr id="row" class = "rowContent" <%if (countCtvt % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%>>
-							<td><%=vatTu.getVtMa() %></td>
+							<td style="text-align: center;"><%=vatTu.getVtMa() %></td>
 							<td><%=vatTu.getVtTen() %></td>
-							<td><%=nsx.getNsxTen() %></td>
-							<td><%=chatLuong.getClTen() %></td>
-							<td><%=vatTu.getDvt() %></td>
-							<td><input class="radio"  type="radio" id="a" name="ctvtId" value="<%=ctVatTu.getCtvtId() %>" onchange="preAddSoLuong();"> </td>
+							<td style="text-align: center;"><%=nsx.getNsxTen() %></td>
+							<td style="text-align: center;"><%=chatLuong.getClTen() %></td>
+							<td style="text-align: center;"><%=vatTu.getDvt() %></td>
+							<td style="text-align: center;"><input class="radio"  type="radio" id="a" name="ctvtId" value="<%=ctVatTu.getCtvtId() %>" onchange="preAddSoLuong();"> </td>
 							
 						</tr>
 					<%}%>
 				</table>	
-			</div>	
-			<br><br>
+				</div>
+				</div>
+			</form>
+			<br><br><br><br>
 			<form id="main-form">
+			<div class="form-title">Yêu cầu vật tư đã cập nhật</div> 
 					<div id="view-table-yc" class="scroll-vat-tu">
-<!-- 							<div class="form-title">Cập nhật yêu cầu vật tư</div> -->
-							<table >
+							<table style= "width:900px; margin: 0 auto;s" >
 								<tr>
-									<th class="a-column"><input type="checkbox" name="checkAll" class="checkAll"></th>
+									<th class="a-column"style= "text-align: center;"><input type="checkbox" name="checkAll" class="checkAll"></th>
 									<th class="b-column">Mã vật tư</th>
 									<th class="c-column">Tên vật tư</th>
 									<th class="e-column">Nơi sản xuất</th>
@@ -220,10 +242,6 @@
 							</table>
 							</div>
 							<div class="group-button">
-<!-- 								<button type="button" class="button" -->
-<!-- 									onclick="showForm('yc-vat-tu', 'add-form-ycvt', true)"> -->
-<!-- 									<i class="fa fa-plus-circle"></i>&nbsp;Thêm mới -->
-<!-- 								</button> -->
 								<button type="button" class="button" id="pre-update-yc">
 									<i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa
 								</button>
@@ -240,9 +258,14 @@
 								</button>
 							</div>
 				</form>
+			<br>
+			<br>
+			<br>
+			<br>
 			<form id="add-so-luong-form" onsubmit="return false">
-			<div class="form-title">Thêm yêu cầu vật tư</div>
-			<table>
+			<div class="form-title" style="margin-top: 10px;">Thêm yêu cầu vật tư</div>
+			<div id="view-table-them">
+			<table style= "width:900px; margin: 0 auto;margin-top: 20px;"  >
 				<tr><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th >Số lượng</th></tr>
 				<tr>
 					<td><div id="vtMaAdd"></div></td>
@@ -255,15 +278,18 @@
 					<td><input type="number" min=0 autofocus  name="soLuongAdd" title="So luong phai la so!!!"  class="text" style="width: 80px;"></td>
 					<td><button class="button" type="button" onclick="addSoLuong();">Thêm</button></td>
 				</tr>
-<!-- 				<t	r> -->
-					
-<!-- 				</tr> -->
 			</table>
-			</form>
+			</div>
 			
+			</form>
+			<br>
+			<br>
+			<br>
+			<br>
 			<form id="update-so-luong-form" onsubmit="return false">
-			<div class = "form-title">Thay đổi số lượng yêu cầu</div>
-			<table>
+			<div class = "form-title" style="margin-top: 10px;">Thay đổi số lượng yêu cầu</div>
+			<div id="view-table-doi" class="scroll-vat-tu">
+			<table style= "width:900px; margin: 0 auto;" >
 				<tr><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th >Số lượng</th></tr>
 				<tr>
 					<td><div id="vtMaUpdate"></div></td>
@@ -275,11 +301,16 @@
 					<td><button class="button" type="button" id="updateYc">Lưu lại</button></td>
 				</tr>
 			</table>
+			</div>
 			</form>
-			
+			<br>
+			<br>
+			<br>
+			<br>
 			<form id="cap-so-luong-form" onsubmit="return false">
-			<div class = "form-title">Cấp phát vật tư</div>
-			<table>
+			<div class = "form-title"style="margin-top: 10px;">Cấp phát vật tư</div>
+			<div id="view-table-cap" class="scroll-vat-tu">
+			<table style= "width:900px; margin: 0 auto;" >
 				<tr><th >Mã vật tư</th><th >Tên vật tư</th><th >Nơi sản xuất</th><th >Chất lượng</th><th >Đơn vị tính</th><th >Số lượng</th></tr>
 				<tr>
 					<td><div id="vtMaCap"></div></td>
@@ -291,6 +322,7 @@
 					<td><button class="button" type="button" id="capVatTu">Lưu lại</button></td>
 				</tr>
 			</table>
+			</div>
 			</form>
 			
 

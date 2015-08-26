@@ -376,22 +376,23 @@
 					</tr>
 					<%} }%>
 				</table>	
-				<div id = "paging" >
+					
+			</div>
+			<div id = "paging" >
 							<table style ="border-style: none;">
 								<tr>
 									<td><a href=""> Previous<< </a></td>
 									<td>
 										<%
-											 pageNum = size / 10;
-											for(int i = 0; i <= pageNum; i++) { %>
+											long  pagenum = size / 10;
+											for(int i = 0; i <= pagenum; i++) { %>
 												<input type="button" value="<%=i+1%>" class="page">
 										<%} %>
 									</td>
 									<td><a href="">>>Next </a> </td>
 								</tr>
 							</table>
-						</div>			
-			</div>
+						</div>		
 					<div class="group-button">
 				<input type="hidden" name="action" value="deleteVatTu">
 				<button type="button" class="button"

@@ -9,6 +9,8 @@ function showForm(formId1, formId2, check){
     s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
     s.filter = 'alpha(opacity='+opacity+')';
     for(var i=0; i<f.length; i++) f[i].disabled = check;
+    document.getElementById('danh-sach-vat-tu').style.display="none";
+    
 };
 
 function searchCtvt() {
@@ -60,7 +62,8 @@ function preAddSoLuong(){
 			  	}
 			});
 				
-			showForm('search-form','add-so-luong-form',true);
+			showForm('add-yeu-cau-form','add-so-luong-form',true);
+			$('#danh-sach-vat-tu').hide();
 //		});
 //	});	
 };
@@ -96,7 +99,8 @@ function addSoLuong(){
 	  			else {
 	  				$('#view-table-yc table #' + yeuCau.ycId).html(cells);
 	  			}
-	  			showForm('search-form','add-so-luong-form',false);
+	  			showForm('add-yeu-cau-form','add-so-luong-form',false);
+	  			$('#danh-sach-vat-tu').show();
 	  	}
 	});
 	
@@ -114,7 +118,7 @@ function confirmDelete() {
 	else if(confirm('Ban co chac xoa yeu cau?'));
 		deleteYc(str);
 };
-function deleteYc(ycList) {
+function deleteYc(ycList) {	
 	$.ajax({
 		url: "/QLVatTuYeuCau/deleteYc.html",	
 	  	type: "GET",
@@ -130,7 +134,7 @@ function deleteYc(ycList) {
 };
 function preUpdateYc() {
 	var ycList = [];
-	$.each($('#view-table-yc input:checkbox[name=yeuCau]:checked'), function(){
+	$.each($('input:checkbox[name=yeuCau]:checked'), function(){
 		ycList.push($(this).val());
 	})
 	var str = ycList.join(', ');
@@ -158,6 +162,7 @@ function preUpdateYc() {
 		    } 
 		});  
 		showForm('search-form','update-so-luong-form',true);
+		$('#danh-sach-vat-tu').hide();
 	}
 }
 function updateYc() {
@@ -182,12 +187,13 @@ function updateYc() {
 				$('#view-table-yc table tr #soLuong' + ycId).html(soLuong);
 	  		}
 	  		showForm('search-form','update-so-luong-form',false);
+	  		$('#danh-sach-vat-tu').show();
   		}
 	});
 }
 function preCapVatTu() {
 	var ycList = [];
-	$.each($('#view-table-yc input:checkbox[name=yeuCau]:checked'), function(){
+	$.each($('input:checkbox[name=yeuCau]:checked'), function(){
 		ycList.push($(this).val());
 	})
 	var str = ycList.join(', ');
@@ -214,7 +220,8 @@ function preCapVatTu() {
 			  	$('#Cap-so-luong-form input[name=soLuongCap]').val(yeuCau.capSoLuong);
 		    } 
 		});  
-		showForm('search-form','cap-so-luong-form',true)
+		showForm('search-form','cap-so-luong-form',true);
+		$('#danh-sach-vat-tu').hide();
 	}
 }
 function capVatTu() {
@@ -237,6 +244,7 @@ function capVatTu() {
 				$('#view-table-yc table tr #soLuongCap' + ycVatTu.ycId).html(ycVatTu.capSoLuong);
 	  		}
 	  		showForm('search-form','cap-so-luong-form',false);
+	  		$('#danh-sach-vat-tu').show();
   		}
 	});
 }
