@@ -130,11 +130,11 @@ public class ReadExcelCtvt {
 				NoiSanXuat nsx = nsxList.get(i);
 				ChatLuong chatLuong = chatLuongList.get(i);
 				DonViTinh dvt = dvtList.get(i);
-				DonViTinh temp = dvtDAO.getDonViTinhByTen(dvt.getdvtTen());
+				DonViTinh temp = dvtDAO.getDonViTinhByTen(dvt.getDvtTen());
 				if (temp ==  null) {
 					dvtDAO.addDonViTinh(dvt);
 				} else {
-					temp.setdvtTen(dvt.getdvtTen());
+					temp.setDvtTen(dvt.getDvtTen());
 					temp.setDaXoa(0);
 					new DonViTinhDAO().updateDonViTinh(temp);
 				}
@@ -259,12 +259,12 @@ public class ReadExcelCtvt {
 				NoiSanXuat nsx = nsxList.get(i);
 				ChatLuong chatLuong = chatLuongList.get(i);
 				DonViTinh dvt = dvtList.get(i);
-				DonViTinh temp = dvtDAO.getDonViTinhByTen(dvt.getdvtTen());
+				DonViTinh temp = dvtDAO.getDonViTinhByTen(dvt.getDvtTen());
 				if (temp ==  null) {
 					dvtDAO.addDonViTinh(dvt);
 					dvt.setDvtId(new DonViTinhDAO().lastInsertId());
 				} else {
-					temp.setdvtTen(dvt.getdvtTen());
+					temp.setDvtTen(dvt.getDvtTen());
 					temp.setDaXoa(0);
 					dvt.setDvtId(temp.getDvtId());
 					new DonViTinhDAO().updateDonViTinh(temp);

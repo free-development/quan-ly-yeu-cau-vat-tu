@@ -36,10 +36,7 @@ import dao.DonViTinhDAO;
 public class VattuController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	int page = 1;
-<<<<<<< HEAD
 
-=======
->>>>>>> 43267cbf6f27da96e2d9807b21f922f7cdfed45f
    @RequestMapping("/manageVattu")
 	protected ModelAndView manageCtvt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		VatTuDAO vatTuDAO = new VatTuDAO();

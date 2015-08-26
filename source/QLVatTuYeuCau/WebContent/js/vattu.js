@@ -40,7 +40,7 @@
 		 			  		
 					  				$('#view-table-vat-tu table tr:first').after('<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vattu.vtMa 
 									+ '\"</td><td class=\"col\">'+ vattu.vtMa +'</td><td class=\"col\">' + vattu.vtTen
-									+'</td><td class=\"col\" style=\"text-align: center;\">' + vattu.donViTinh.dvtTen
+									+'</td><td class=\"col\" style=\"text-align: center;\">' + vattu.dvt.dvtTen
 									+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
 									+vattu.vtMa+'\');\">Xem</button></td></tr>');
 						}
@@ -183,7 +183,6 @@
 			$('#update-form select[name=dvtUpdate]').val('');
  		}
  	function confirmDeleteVT(){
-<<<<<<< HEAD
  		vtMa = $('input:checkbox[name=vtMa]:checked').val();	
  		$.ajax({
  			url: "/QLVatTuYeuCau/comfirmdeleteVattu.html",	
@@ -206,8 +205,6 @@
  		  			}
  		    } 
  		});  
-=======
->>>>>>> 43267cbf6f27da96e2d9807b21f922f7cdfed45f
  		
  		var vtMa = $('input:checkbox[name=vtMa]:checked').val();
 		var vtMaList = [];
@@ -368,7 +365,7 @@
  								+ vt.vtMa +'\" class=\"checkbox\"></td>'
  								+ '<td class=\"col\">' + vt.vtMa + '</td>'
  								+ '<td class=\"col\">' + vt.vtTen + '</td>'
- 								+ '<td class=\"col\">' + vt.dvt + '</td>'
+ 								+ '<td class=\"col\">' + vt.dvt.dvtTen + '</td>'
  								+ '<td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
 								+vt.vtMa+'\');\">Xem</button></td></tr>';
  							$('#view-table-vat-tu table tr:first').after(str);

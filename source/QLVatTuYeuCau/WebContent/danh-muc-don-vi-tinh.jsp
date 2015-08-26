@@ -137,9 +137,9 @@
 							<tr class="rowContent"
 								<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
 								<td class="left-column"><input type="checkbox" name="vtId"
-									value="<%=donViTinh.getdvtId() %>" class="checkbox"></td>
-								<td class="col"><%=donViTinh.getdvtId() %></td>
-								<td class="col"><%=donViTinh.getdvtTen() %></td>
+									value="<%=donViTinh.getDvtId() %>" class="checkbox"></td>
+								<td class="col"><%=donViTinh.getDvtId() %></td>
+								<td class="col"><%=donViTinh.getDvtTen() %></td>
 							</tr>
 							<%} }%>
 						</table>

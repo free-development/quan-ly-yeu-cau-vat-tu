@@ -93,6 +93,7 @@
 								<li><a href="<%=siteMap.mdManage + "?action=manageMd"%>">Danh
 										mục mục đích</a></li>
 								<li><a href="<%=siteMap.vtManage + "?action=manageVt"%>">Danh mục vai trò</a></li>
+								<li><a href="<%=siteMap.dvtManage + "?action=manageDvt"%>">Danh mục đơn vị tính</a></li>
 								<li><a href="<%=siteMap.cdManage + "?action=manageCd"%>">Danh
 										mục chức danh</a></li>
 								

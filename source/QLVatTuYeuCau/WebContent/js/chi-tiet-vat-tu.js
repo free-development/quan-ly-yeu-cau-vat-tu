@@ -9,17 +9,7 @@
 			s.filter = 'alpha(opacity='+opacity+')';
 			for(var i=0; i<f.length; i++) f[i].disabled = check;
 		}	
-		function showFormCT(formId, check){
-			if (check)
-				document.getElementById(formId).style.display="block";
-			else document.getElementById(formId).style.display="none";
-			var f = document.getElementById('view-table-chi-tiet'), s, opacity;
-			s = f.style;
-			opacity = check? '10' : '100';
-			s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
-			s.filter = 'alpha(opacity='+opacity+')';
-			for(var i=0; i<f.length; i++) f[i].disabled = check;
-		}	
+	
 		function timKiemCTVatTu(){
 			
 			var vtTen = '';
@@ -56,7 +46,7 @@
 									+ vtTen +'</td><td class=\"col\">'
 									+ ctvattu.noiSanXuat.nsxTen +'</td><td class=\"col\">' 				
 									+ ctvattu.chatLuong.clTen +'</td><td class=\"col\">'
-									+ ctvattu.vatTu.dvt +'</td><td class=\"col\">'
+									+ ctvattu.vatTu.dvt.dvtTen +'</td><td class=\"col\">'
 									+ ctvattu.dinhMuc +'</td><td class=\"col\">'
 									+ ctvattu.soLuongTon +'</td></tr>');
 						}
@@ -170,7 +160,7 @@
 					  	$('#update-chitiet input:text[name=vtTenUpdate]').val(vt.vatTu.vtTen);
 					  	$('#noisanxuatUp option[value='+vt.noiSanXuat.nsxMa+']').prop('selected',true);
 					  	$('#chatluongUp option[value='+vt.chatLuong.clMa+']').prop('selected',true);
-						$('#update-chitiet input:text[name=dvtUpdate]').val(vt.vatTu.dvt);
+						$('#update-chitiet input:text[name=dvtUpdate]').val(vt.vatTu.dvt.dvtTen);
 						$('#update-chitiet input[name=dinhMucUpdate]').val(vt.dinhMuc);
 						$('#update-chitiet input[name=soLuongTonUpdate]').val(vt.soLuongTon);
 					  	

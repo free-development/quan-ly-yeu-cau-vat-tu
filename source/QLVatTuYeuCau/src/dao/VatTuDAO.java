@@ -103,12 +103,11 @@ public ArrayList<String> startWith(String i) {
 		session.getTransaction().commit();
 		return list;
 	}
-<<<<<<< HEAD
+
 public void close() {
 	HibernateUtil.shutdown();
 }
-public ArrayList<VatTu> searchVtTen(String i) {
-=======
+
 
 public ArrayList<VatTu> searchVtTen(String i) {
 	session.beginTransaction();
@@ -122,13 +121,9 @@ public ArrayList<VatTu> searchVtTen(String i) {
 	return list;
 }
 
-public void close() {
-	HibernateUtil.shutdown();
-}
 
 
 public ArrayList<VatTu> startWithTK(String i) {
->>>>>>> 43267cbf6f27da96e2d9807b21f922f7cdfed45f
 	session.beginTransaction();
 	String sql = "from VatTu where vtTen LIKE :vtTen";
 	Query query = session.createQuery(sql);

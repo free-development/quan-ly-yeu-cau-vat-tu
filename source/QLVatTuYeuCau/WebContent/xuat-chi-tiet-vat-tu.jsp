@@ -75,9 +75,9 @@
 					<thead>
 						<tr bgcolor="#199e5e"  style= "border-style: solid;border-color:black;">
 						<th class="four-column">Mã vật tư</th>
-						<th class="a-column">Tên vật tư</th>
+						<th class="six-column">Tên vật tư</th>
 						<th class="three-column">Nơi sản xuất</th>
-						<th class="six-column">Chất lượng</th>
+						<th class="a-column">Chất lượng</th>
 						<th class="four-column">Đơn vị tính</th>
 						<th class="five-column">Định mức</th>
 						<th class="seven-column">Số lượng tồn</th>
@@ -96,7 +96,7 @@
 											<td class="col"><%=ctVatTu.getVatTu().getVtTen() %></td>
 											<td class="col"><%=ctVatTu.getNoiSanXuat().getNsxTen() %></td>
 											<td class="col"><%=ctVatTu.getChatLuong().getClTen() %></td>
-											<td class="col"><%=ctVatTu.getVatTu().getDvt() %></td>
+											<td class="col"><%=ctVatTu.getVatTu().getDvt().getDvtTen() %></td>
 											<td class="col"><%=ctVatTu.getDinhMuc() %></td>
 											<td class="col"><%=ctVatTu.getSoLuongTon() %></td>
 					
