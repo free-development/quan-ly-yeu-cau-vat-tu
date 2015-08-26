@@ -27,6 +27,7 @@ import com.sun.org.apache.xerces.internal.impl.dv.DVFactoryException;
 
 import dao.ChatLuongDAO;
 import dao.DonViDAO;
+import dao.NoiSanXuatDAO;
 import dao.VaiTroDAO;
 
 @Controller
@@ -43,11 +44,7 @@ public class BpsdController extends HttpServlet {
 			String dvTen = request.getParameter("dvTen");
 			String sdt = request.getParameter("sdt");
 			String diaChi = request.getParameter("diaChi");
-			String email = request.getParameter("email");
-
-			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email,0 ));
-
-			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email,0 ));			
+			String email = request.getParameter("email");		
 
 			donViDAO.addDonVi(new DonVi(dvMa, dvTen, sdt, diaChi, email, 0 ));
 
@@ -115,9 +112,14 @@ public class BpsdController extends HttpServlet {
 	}
 	@RequestMapping(value="/deleteBp", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String deleteBp(@RequestParam("dvMa") String dvMa) {
-		new DonViDAO().deleteDonVi(dvMa);
-		return JSonUtil.toJson(dvMa);
+	 public @ResponseBody String deleteBp(@RequestParam("dvList") String dvList) {
+		String[] str = dvList.split("\\, ");
+		
+		DonViDAO dvDAO =  new DonViDAO();
+		for(String dvMa : str) {
+			dvDAO.deleteDonVi(dvMa);
+		}
+		return JSonUtil.toJson(dvList);
 	}
 	
 	@RequestMapping(value="/loadPageDv", method=RequestMethod.GET, 

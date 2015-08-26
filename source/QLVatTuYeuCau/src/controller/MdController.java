@@ -76,9 +76,14 @@ public class MdController extends HttpServlet {
 	}
 	@RequestMapping(value="/deleteMd", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String deleteMd(@RequestParam("mdMa") String mdMa) {
-		new MucDichDAO().deleteMucDich(mdMa);
-		return JSonUtil.toJson(mdMa);
+	 public @ResponseBody String deleteMd(@RequestParam("mdList") String mdList) {
+		String[] str = mdList.split("\\, ");
+		
+		MucDichDAO mdDAO =  new MucDichDAO();
+		for(String mdMa : str) {
+			mdDAO.deleteMucDich(mdMa);
+		}
+		return JSonUtil.toJson(mdList);
 	}
 	
 	

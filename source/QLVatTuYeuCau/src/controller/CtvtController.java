@@ -160,10 +160,14 @@ public class CtvtController extends HttpServlet {
 	}
 
 	@RequestMapping(value = "/deleteCTVattu", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String deleteVattu(@RequestParam("ctvtId") String ctvtId) {
-		CTVatTu vt = new CTVatTu(Integer.parseInt(ctvtId));
-		new CTVatTuDAO().deleteCTVatTu(ctvtId);
-		return JSonUtil.toJson(ctvtId);
+	 public @ResponseBody String deleteVattu(@RequestParam("ctvtList") String ctvtList) {
+		String[] str = ctvtList.split("\\, ");
+		
+		CTVatTuDAO ctvtDAO =  new CTVatTuDAO();
+		for(String ctvtId : str) {
+			ctvtDAO.deleteCTVatTu(ctvtId);
+		}
+		return JSonUtil.toJson(ctvtList);
 	}
 	
 	@RequestMapping(value="/loadPageCtvt", method=RequestMethod.GET, 

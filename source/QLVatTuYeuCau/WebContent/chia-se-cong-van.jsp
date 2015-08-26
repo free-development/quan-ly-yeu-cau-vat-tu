@@ -257,7 +257,9 @@ $(document).ready(function() {
 						</button>
 					</div>
 				</div>
+				<div style="color:red; text-align: center;s">
 				<%} else out.println("Chưa chia sẻ công văn");%>
+				</div>
 <!-- 				</div> -->
 				</form>
 			</div>

@@ -43,24 +43,25 @@
 		$.each($("input[name='clMa']:checked"), function(){            
 			clMaList.push($(this).val());
 	    });
+		var str = clMaList.join(", ");
 		if (clMaList.length == 0)
 			alert('Bạn phải chọn 1 hoặc nhiều chất lượng để xóa!!');
-		else if (confirm('Bạn có chắc xóa chất lượng có mã ' + clMaList.join(", ")))
-			deleteCl(clMa);
+		else if (confirm('Bạn có chắc xóa chất lượng có mã ' + str))
+			deleteCl(str);
 	}
 		
- 	 function deleteCl(clMa) {
+ 	 function deleteCl(str) {
 		$.ajax({
 			url: "/QLVatTuYeuCau/deleteCl.html",	
 		  	type: "GET",
 		  	dateType: "JSON",
-		  	data: { "clMa": clMa},
+		  	data: { "clList": str},
 		  	contentType: 'application/json',
 		    mimeType: 'application/json',
-		  	success: function() {		  	
-			  	$('table tr').has('input[name="clMa"]:checked').remove();
-			  	alert(clMa + " da bi xoa.");
-		  	}
+		  	success: function() {
+						$('table tr').has('input[name="clMa"]:checked').remove();
+						alert('Chất lượng có mã ' + str + " đã bị xóa");
+		    } 
 		});  
 	}
  	function addCl() {
@@ -87,7 +88,7 @@
 	 				{
  			  		 	$('input:text[name=clMa]').val(clMa);
  					  	$('input:text[name=clTen]').val(clTen);
- 				  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +clMa + '\"</td><td class=\"col\">'+ clMa +'</td><td class=\"col\">' + clTen+'</td></tr>');
+ 				  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +clMa + '\"</td><td class=\"col\">'+ clMa +'</td><td class=\"col\">' + clTen+'</td></tr>');
  				  		$('#add-form input:text[name=clMa]').val('');
  						$('#add-form input:text[name=clTen]').val('');
  				  		showForm("add-form", false);
@@ -140,7 +141,7 @@
 		  	
 		  	success: function(cl) {
 		  		$('table tr').has('input[name="clMa"]:checked').remove();
-		  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +clMaUpdate + '\"</td><td class=\"col\">'+ clMaUpdate +'</td><td class=\"col\">' + clTenUpdate+'</td></tr>');
+		  		$('#view-table table tr:first').after('<tr class="rowContent"><td class=\"left-column\"><input type=\"checkbox\" name=\"clMa\" value=\"' +clMaUpdate + '\"</td><td class=\"col\">'+ clMaUpdate +'</td><td class=\"col\">' + clTenUpdate+'</td></tr>');
 		  		$('input:text[name=clMaUpdate]').val('');
 				clTenUpdate = $('input:text[name=clTenUpdate]').val('');
 		  		showForm("update-form", false);	
