@@ -63,13 +63,13 @@ public class TestYeuCAU {
 //		NoiSanXuat nsx0 = new NoiSanXuat("Tl1", "Thái Lan",0);
 		
 		
-		VatTu vatTu = new VatTu("VT2", "Thép", "cuộn",0);
+		//VatTu vatTu = new VatTu("VT2", "Thép", "cuộn",0);
 //		VatTu vatTu5 = new VatTu("VT5", "Trụ điện", "cái",0);
 //		VatTu vatTu9 = new VatTu("VT9", "Sắc", "cuộn",0);
 //		VatTu vatTu0 = new VatTu("VT0", "Xăng", "lít",0);
 
 		
-		CTVatTu ctVatTu = new CTVatTu(vatTu, nsx, chatLuong,9, 8,0);
+		//CTVatTu ctVatTu = new CTVatTu(vatTu, nsx, chatLuong,9, 8,0);
 //		id = ctVatTuDAO.getLastInsert(); 
 //		CTVatTu ctVatTu5 = new CTVatTu(vatTu9, nsx5, chatLuong5,6, 2,0);
 //		id = ctVatTuDAO.getLastInsert(); 
@@ -91,12 +91,12 @@ public class TestYeuCAU {
 //		noiSanXuatDAO.addNoiSanXuat(nsx9);
 //		noiSanXuatDAO.addNoiSanXuat(nsx0);
 		
-		vatTuDAO.addVatTu(vatTu);
+		//vatTuDAO.addVatTu(vatTu);
 //		vatTuDAO.addVatTu(vatTu5);
 //		vatTuDAO.addVatTu(vatTu9);
 //		vatTuDAO.addVatTu(vatTu0);
 		
-		ctVatTuDAO.addCTVatTu(ctVatTu);
+		//ctVatTuDAO.addCTVatTu(ctVatTu);
 //		ctVatTuDAO.addCTVatTu(ctVatTu5);
 //		ctVatTuDAO.addCTVatTu(ctVatTu9);
 //		ctVatTuDAO.addCTVatTu(ctVatTu3);
@@ -144,14 +144,14 @@ public class TestYeuCAU {
 		
 		
 
-		YeuCau yeuCau = new YeuCau(id, ctVatTu, 50, 50, 0);
+		//YeuCau yeuCau = new YeuCau(id, ctVatTu, 50, 50, 0);
 //		YeuCau yeuCau2 = new YeuCau(id, ctVatTu,80, 40, 0);
 //		YeuCau yeuCau3 = new YeuCau(id, ctVatTu9, 70, 40, 0);
 //		YeuCau yeuCau4 = new YeuCau(id, ctVatTu3, 30, 20, 0);
 		
 
 
-		new YeuCauDAO().addYeuCau(yeuCau);
+		//new YeuCauDAO().addYeuCau(yeuCau);
 //		new YeuCauDAO().addYeuCau(yeuCau2);
 //		new YeuCauDAO().addYeuCau(yeuCau3);
 //		new YeuCauDAO().addYeuCau(yeuCau4);
