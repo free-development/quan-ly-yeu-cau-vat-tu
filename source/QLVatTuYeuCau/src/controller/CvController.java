@@ -52,6 +52,7 @@ public class CvController extends HttpServlet {
 	private final String tempPath = "./"; 
     private final String pathFile = "./";
     public ModelAndView getCongvan(TrangThaiDAO trangThaiDAO, CongVanDAO congVanDAO, MucDichDAO mucDichDAO, FileDAO fileDAO, DonViDAO donViDAO, HttpServletRequest request) {
+    	
     	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) congVanDAO.getAllCongVan();
 		HashMap<Integer, File> fileHash = new HashMap<Integer, File>();
 		ArrayList<DonVi> donViList = (ArrayList<DonVi>) donViDAO.getAllDonVi();
@@ -71,6 +72,10 @@ public class CvController extends HttpServlet {
     
     @RequestMapping("/cvManage")
 	public ModelAndView manageCV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	request.getCharacterEncoding();
+		response.getCharacterEncoding();
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
     	FileDAO fileDAO = new FileDAO();
     	CongVanDAO congVanDAO = new CongVanDAO();
     	MucDichDAO mucDichDAO =  new MucDichDAO();
@@ -119,6 +124,10 @@ public class CvController extends HttpServlet {
     @RequestMapping("addCongVan")
     public ModelAndView addCV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //    	request.ge
+    	request.getCharacterEncoding();
+		response.getCharacterEncoding();
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
     	CongVanDAO congVanDAO = new CongVanDAO();
     	FileDAO fileDAO = new FileDAO();
     	int cvId = congVanDAO.getLastInsert();

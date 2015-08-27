@@ -192,7 +192,7 @@
 										<td class="b-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
 										<td class="c-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
 										<td class="d-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
-										<td class="e-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
+										<td class="e-column"style="text-align: center;"><%=yeuCau.getCtVatTu().getVatTu().getDvt().getDvtTen() %></td>
 										<td class="e-column"style="text-align: center;"><%=yeuCau.getYcSoLuong() %></td>
 										<td style="text-align: center;"><a style="color: blue;" href="<%=siteMap.cvManage + "?action=download&file=" + congVan.getCvId()%>">Xem</td>
 									</tr>	

@@ -301,25 +301,16 @@
 	/*==============================================================*/
 	/* Table: YEUCAU                                                */
 	/*==============================================================*/
-	create table YEUCAU
-	(
-	--   NSXMA                char(3) not null,
-	--   CLMA                 char(3) not null,
-	--   VTMA                 char(16) not null,
-		YCID int primary key auto_increment,
-		CTVTID int not null,
-	   CVID                 int not null,
-	   DAXOA                int,
-	   YCSOLUONG            int,
-	   CAPSOLUONG int,
-	   CONSTRAINT UNIQUE NONCLUSTERED
-	(
-		CVID, CTVTID
-	)
-
-	--   primary key (CTVTID, CVID)
-	) ENGINE = InnoDB
-	DEFAULT CHARACTER SET = utf8;
+create table YEUCAU(
+	YCID int primary key auto_increment,
+	CTVTID int not null,
+	CVID int not null,
+	DAXOA int(2),
+	YCSOLUONG int,
+	CAPSOLUONG int,
+	CONSTRAINT UNIQUE NONCLUSTERED(CVID, CTVTID)
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 	alter table CONGVAN add constraint FK_DONVI_CONGVAN2 foreign key (DVMA)
 		  references DONVI (DVMA) on delete restrict on update restrict;
 
@@ -757,24 +748,24 @@ alter table YEUCAU add constraint FK_RELATIONSHIP_13 foreign key (CVID)
 alter table YEUCAU add constraint FK_RELATIONSHIP_7 foreign key (CTVTID)
     references CTVATTU (CTVTID) on delete restrict on update restrict;
 insert into TRANGTHAI values('DGQ','Dang giai quyet');
+insert into TRANGTHAI values('DaGQ','Da giai quyet');
+insert into TRANGTHAI values('CGQ','Chua giai quyet');
 
-insert into VAITRO values(1,'Lap phieu nhap');
-insert into VAITRO values(2,'Mua vat tu');
-insert into VAITRO values(3,'Cap vat tu');
-insert into VAITRO values(4,'Mua Lap phieu xuat');
-insert into VAITRO values(5,'Mua Lap phieu xuat');
-insert into VAITRO values(6,'Mua Lap phieu xuat');
-insert into VAITRO values(7,'Mua Lap phieu xuat');
-insert into VAITRO values(8,'Mua Lap phieu xuat');
+insert into VAITRO values(1,'Lap phieu nhap', 0);
+insert into VAITRO values(2,'Mua vat tu', 0);
+insert into VAITRO values(3,'Cap vat tu', 0);
+insert into VAITRO values(4,'Lap phieu xuat', 0);
+insert into VAITRO values(5,'Nhap vat tu', 0);
 
-insert into CHUCDANH values ('GD', 'Giam doc');
-insert into CHUCDANH values ('GD1', 'Giam doc');
-insert into CHUCDANH values ('GD2', 'Giam doc');
-insert into CHUCDANH values ('GD3', 'Giam doc');
-insert into CHUCDANH values ('TP', 'Truong phong');
-insert into CHUCDANH values ('NV', 'Nhan vien');
-insert into CHUCDANH values ('TK', 'Thu ky');
-insert into CHUCDANH values ('VT', 'Van thu');
+
+insert into CHUCDANH values ('GD', 'Giam doc', 0);
+insert into CHUCDANH values ('GD1', 'Giam doc', 0);
+insert into CHUCDANH values ('GD2', 'Giam doc', 0);
+insert into CHUCDANH values ('GD3', 'Giam doc', 0);
+insert into CHUCDANH values ('TP', 'Truong phong', 0);
+insert into CHUCDANH values ('NV', 'Nhan vien', 0);
+insert into CHUCDANH values ('TK', 'Thu ky', 0);
+insert into CHUCDANH values ('VT', 'Van thu', 0);
 
 
 insert into NGUOIDUNG values ('b1203959', 'GD', 'Vo Phu Quoi', 'An giang', 'quoipro94@gmail.com', '0979921380');
@@ -784,7 +775,7 @@ insert into NGUOIDUNG values ('b1203955', 'VT', 'Truong Trung Hieu', 'An giang',
 insert into NGUOIDUNG values ('b1203954', 'NV', 'Truong Quoc huy', 'An giang', 'quoipro94@gmail.com', '0979921380');
 
 
-insert into CHUCDANH value('AD','Admin');
+insert into CHUCDANH value('AD','Admin', 0);
 insert into NGUOIDUNG values ('admin123','Ad','Vo Phu Quoi','An Giang','quoipro94@gmail.com','0979921380');
 insert into CTNGUOIDUNG values ('admin123' ,md5('123456789'));
 
@@ -813,19 +804,19 @@ INSERT INTO TRANGTHAI VALUES('CGQ','Chưa giải quyết');
 INSERT INTO TRANGTHAI VALUES('DGQ','Dang giải quyết');
 INSERT INTO TRANGTHAI VALUES('DaGQ','Đã giải quyết');
 -- ---------------------------
-INSERT INTO DONVI VALUES('F02F09','Công ty Điện lực Cần Thơ');
-INSERT INTO DONVI VALUES('F09A01','Ban QLDA lưới điện');
-INSERT INTO DONVI VALUES('F09D01','Phòng tổ chức và nhân sự');
-INSERT INTO DONVI VALUES('F02D08','Phòng Kế Hoạch(Cty)');
-INSERT INTO DONVI VALUES('F09D02','Phòng Thanh tra bảo vệ-Pháp');
-INSERT INTO DONVI VALUES('F09D03','Phòng Kỹ thuật Sản xuất(Cty)');
-INSERT INTO DONVI VALUES('F09D04','Phòng Vật tư(Cty)');
+INSERT INTO DONVI VALUES('F02F09','Công ty Điện lực Cần Thơ', '0979921380' , 'vpdtevn@gmail.com', 'Can Tho', 0);
+INSERT INTO DONVI VALUES('F09A01','Ban QLDA lưới điện', '0979921380' , 'vpdtevn@gmail.com', 'Can Tho', 0);
+INSERT INTO DONVI VALUES('F09D01','Phòng tổ chức và nhân sự', '0979921380' , 'vpdtevn@gmail.com', 'Can Tho', 0);
+INSERT INTO DONVI VALUES('F02D08','Phòng Kế Hoạch(Cty)', '0979921380' , 'vpdtevn@gmail.com', 'Can Tho', 0);
+INSERT INTO DONVI VALUES('F09D02','Phòng Thanh tra bảo vệ-Pháp', '0979921380' , 'vpdtevn@gmail.com', 'Can Tho', 0);
+INSERT INTO DONVI VALUES('F09D03','Phòng Kỹ thuật Sản xuất(Cty)', '0979921380' , 'vpdtevn@gmail.com', 'Can Tho', 0);
+INSERT INTO DONVI VALUES('F09D04','Phòng Vật tư(Cty)', '0979921380' , 'vpdtevn@gmail.com', 'Can Tho', 0);
 -----------------------------
-INSERT INTO MUCDICH VALUES('MD1','Mục đích 1');
-INSERT INTO MUCDICH VALUES('MD2','Mục đích 2');
-INSERT INTO MUCDICH VALUES('MD3','Mục đích 3');
-INSERT INTO MUCDICH VALUES('MD4','Mục đích 4');
-INSERT INTO MUCDICH VALUES('MD5','Mục đích 5');
-INSERT INTO MUCDICH VALUES('MD6','Mục đích 6');
+INSERT INTO MUCDICH VALUES('MD1','Mục đích 1', 0);
+INSERT INTO MUCDICH VALUES('MD2','Mục đích 2', 0);
+INSERT INTO MUCDICH VALUES('MD3','Mục đích 3', 0);
+INSERT INTO MUCDICH VALUES('MD4','Mục đích 4', 0);
+INSERT INTO MUCDICH VALUES('MD5','Mục đích 5', 0);
+INSERT INTO MUCDICH VALUES('MD6','Mục đích 6', 0);
 -- ---------------------------
 

@@ -29,6 +29,10 @@
 </head>
 <body>
 	<%
+		request.getCharacterEncoding();
+		response.getCharacterEncoding();
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
     	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
     	HashMap<Integer, File> fileHash = (HashMap<Integer, File>) request.getAttribute("fileHash");
     	ArrayList<DonVi> donViList = (ArrayList<DonVi>) request.getAttribute("donViList");

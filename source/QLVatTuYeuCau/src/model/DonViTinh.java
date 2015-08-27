@@ -2,7 +2,9 @@ package model;
 
 import java.io.Serializable;
 
-public class DonViTinh implements Serializable{
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+@JsonSerialize
+	public class DonViTinh implements Serializable{
 	private int dvtId;	
 	private String dvtTen;
 	private int daXoa;

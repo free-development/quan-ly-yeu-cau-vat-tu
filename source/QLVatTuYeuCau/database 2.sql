@@ -68,6 +68,7 @@ create table CHUCDANH
 (
    CDMA                 varchar(10) not null,
    CDTEN                varchar(30),
+   DAXOA int(2),
    primary key (CDMA)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -114,6 +115,7 @@ create table CTVATTU
    VTMA                 char(16) not null,
    DINHMUC              int,
    SOLUONGTON           int,
+   DAXOA int(2),
 CONSTRAINT UNIQUE NONCLUSTERED
 (
 	NSXMA, CLMA, VTMA
@@ -132,6 +134,7 @@ create table DONVI
    SDT                  varchar(12),
    EMAIL                varchar(50),
    DIACHI               varchar(100),
+   DAXOA int(2),
    primary key (DVMA)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -163,6 +166,7 @@ create table MUCDICH
 (
    MDMA                 char(3) not null,
    MDTEN                varchar(50),
+   DAXOA int(2),
    primary key (MDMA)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -189,6 +193,7 @@ create table NOISANXUAT
 (
    NSXMA                char(3) not null,
    NSXTEN               varchar(20),
+   DAXOA int(2),
    primary key (NSXMA)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -203,6 +208,7 @@ create table PHIEUNHAP
    MSNV                 varchar(10) not null,
    VTID                 int not null,
    PNNGAY               date not null,
+   DAXOA int(2),
    primary key (PNID)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -217,6 +223,7 @@ create table PHIEUXUAT
    MSNV                 varchar(10) not null,
    VTID                 int not null,
    PXNGAY               date,
+   DAXOA int(2),
    primary key (PXID)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -239,6 +246,7 @@ create table VAITRO
 (
    VTID                 int not null,
    VTTEN                varchar(50),
+   DAXOA int(2),
    primary key (VTID)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -250,7 +258,8 @@ create table VATTU
 (
    VTMA                 char(16) not null,
    VTTEN                varchar(50),
-   DVTID int(2),
+   DVTID int,
+   DAXOA int(2),
    primary key (VTMA),
    constraint fk_DVT foreign key(DVTID) references DONVITINH(DVTID)
 ) ENGINE = InnoDB
@@ -266,6 +275,7 @@ create table VATTUNHAP
    VTMA                 char(16) not null,
    PNID                 int not null,
    SOLUONG              int,
+   DAXOA int(2),
    primary key (NSXMA, CLMA, VTMA, PNID)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -279,6 +289,7 @@ create table VATTUXUAT
    CVID                 int not null,
    PXID                 int not null,
    SOLUONG              int,
+   DAXOA int(2),
    primary key (CTVTID, CVID, PXID)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -291,6 +302,7 @@ create table VTCONGVAN
    CVID                 int not null,
    MSNV                 varchar(10) not null,
    VTID                 int not null,
+   DAXOA int(2),
    primary key (CVID, MSNV, VTID)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -298,24 +310,14 @@ DEFAULT CHARACTER SET = utf8;
 /*==============================================================*/
 /* Table: YEUCAU                                                */
 /*==============================================================*/
-create table YEUCAU
-(
--- IDYEUCAU int primary key,
---   NSXMA                char(3) not null,
---   CLMA                 char(3) not null,
---   VTMA                 char(16) not null,
+create table YEUCAU(
 	YCID int primary key auto_increment,
 	CTVTID int not null,
-   CVID                 int not null,
-   DAXOA                int,
-   YCSOLUONG            int,
-   CAPSOLUONG int,
-   CONSTRAINT UNIQUE NONCLUSTERED
-(
-	CVID, CTVTID
-)
-
---   primary key (CTVTID, CVID)
+	CVID int not null,
+	DAXOA int(2),
+	YCSOLUONG int,
+	CAPSOLUONG int,
+	CONSTRAINT UNIQUE NONCLUSTERED(CVID, CTVTID)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

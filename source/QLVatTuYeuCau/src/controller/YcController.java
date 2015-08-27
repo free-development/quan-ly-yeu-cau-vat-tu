@@ -37,7 +37,7 @@ import util.JSonUtil;
 public class YcController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HttpSession session;   
-	private int page = 1;
+	private int pageCtvt = 1;
 	@RequestMapping("ycvtManage")
     public ModelAndView updateYeuCau(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //	    	congVan
@@ -53,11 +53,13 @@ public class YcController extends HttpServlet {
     	NoiSanXuatDAO nsxDAO = new NoiSanXuatDAO();
     	ChatLuongDAO chatLuongDAO = new ChatLuongDAO();
     	
-    	ArrayList<CTVatTu> ctVatTuList = (ArrayList<CTVatTu>) ctvtDAO.getAllCTVatTu();
+    	ArrayList<CTVatTu> ctVatTuList = (ArrayList<CTVatTu>) ctvtDAO.limit((pageCtvt - 1)*10, 10);
+    	
     	ArrayList<YeuCau> yeuCauList = (ArrayList<YeuCau>) yeuCauDAO.getByCvId(cvId);
     	ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) nsxDAO.getAllNoiSanXuat();
     	ArrayList<ChatLuong> chatLuongList = (ArrayList<ChatLuong>) chatLuongDAO.getAllChatLuong();
-    	
+    	long sizeCtvt = ctvtDAO.size();
+    	request.setAttribute("page", sizeCtvt / 10);
     	request.setAttribute("ctVatTuList", ctVatTuList);
     	request.setAttribute("yeuCauList", yeuCauList);
     	request.setAttribute("nsxList", nsxList);
@@ -89,8 +91,19 @@ public class YcController extends HttpServlet {
 		int ctvtId = (Integer) session.getAttribute("ctvtId");
 		int sl = Integer.parseInt(soLuong);
 		YeuCau yeuCau = ycDAO.addSoLuong(cvId, ctvtId, sl);
-//		JOptionPane.showMessageDialog(null,yeuCau.getCtVatTu().getVatTu().getVtMa());
 		return JSonUtil.toJson(yeuCau);
+	}
+	@RequestMapping(value="/loadPageCtvtYc", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String loadPageCtvtYc(@RequestParam("pageNumber") String pageNumber) {
+		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+		long sizeCtvt = ctvtDAO.size();
+		ArrayList<Object> objectList = new ArrayList<Object>();
+		int page = Integer.parseInt(pageNumber);
+		ArrayList<CTVatTu> ctVatTuList = (ArrayList<CTVatTu>) ctvtDAO.limit((page - 1) * 10, 10);
+		objectList.add(ctVatTuList);
+		objectList.add(sizeCtvt);
+		return JSonUtil.toJson(objectList);
 	}
 	@RequestMapping(value="/deleteYc", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -148,30 +161,14 @@ public class YcController extends HttpServlet {
 		ycDAO.capVatTu(yeuCau, sl);
 		return JSonUtil.toJson(yeuCau);
 	}
-	@RequestMapping(value="/loadPageCtvtYc", method=RequestMethod.GET, 
-			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String loadPageCtvt(@RequestParam("pageNumber") String pageNumber) {
-		String result = "";
-		System.out.println("MA: " + pageNumber);
-		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
-		int page = Integer.parseInt(pageNumber);
-		ArrayList<CTVatTu> ctvtList = (ArrayList<CTVatTu>) ctvtDAO.limit((page -1 ) * 10, 10);
-		
-		/*
-		if(new NoiSanXuatDAO().getNoiSanXuat(nsxMa)==null)
-		{
-			new NoiSanXuatDAO().addNoiSanXuat(new NoiSanXuat(nsxMa, nsxTen,0));
-			System.out.println("success");
-			result = "success";	
-		}
-		else
-		{
-			System.out.println("fail");
-			result = "fail";
-		}
-		*/
-			return JSonUtil.toJson(ctvtList);
-	}
+//	@RequestMapping(value="/loadPageCtvtYc", method=RequestMethod.GET, 
+//			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//	 public @ResponseBody String loadPageCtvt(@RequestParam("pageNumber") String pageNumber) {
+//		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+//		int page = Integer.parseInt(pageNumber);
+//		ArrayList<CTVatTu> ctvtList = (ArrayList<CTVatTu>) ctvtDAO.limit((page -1 ) * 10, 10);
+//			return JSonUtil.toJson(ctvtList);
+//	}
 	@RequestMapping(value="/searchCtvtYc", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String searchCtvtYc(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen) {
@@ -179,15 +176,15 @@ public class YcController extends HttpServlet {
 		ArrayList<Object> objectList = new ArrayList<Object>();
 		if(vtMa != ""){
 			long size = ctvtDAO.sizeOfSearchCtvtMa(vtMa); 
-			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtMaLimit(vtMa, page - 1, 5);
+			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtMaLimit(vtMa, pageCtvt - 1, 10);
 			objectList.add(ctvtList);
 			objectList.add(size);
-			return JSonUtil.toJson(ctvtList);
+			return JSonUtil.toJson(objectList);
 		}
 		else
 		{
 			long size = ctvtDAO.sizeOfSearchCtvtTen(vtTen); 
-			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtTenLimit(vtTen, page - 1, 5);
+			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtTenLimit(vtTen, pageCtvt - 1, 5);
 			objectList.add(ctvtList);
 			objectList.add(size);
 			return JSonUtil.toJson(objectList);

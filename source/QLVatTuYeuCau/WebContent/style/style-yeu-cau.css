@@ -637,12 +637,9 @@
 }
 #add-yeu-cau-form {
  /* display: none; */
-	width: 700px;
-	height:100px;
 	/* position: absolute;  */
 	margin: 0 auto;
 	top: 35%;
-	background-color: #dceaf5;
 	border-radius: 10px;
 	padding-left: 20px;
 	padding-right: 20px;
@@ -669,17 +666,17 @@
 	width: 960px;
 	margin: 0 auto;
 }
-#add-so-luong-form {
-	width:950px;
-	height: 210px;
+#add-so-luong-form,#update-so-luong-form,#cap-so-luong-form  {
+	width:70%;
+	height: 22%;
 	border-radius: 10px;
 	background-color: #dceaf5;
 	display: none;
-	top: 200px;
+	top: 39%;
 	left: 15%;
 	position: absolute;
 	margin: 0 auto;
-}
+}/*
 #update-so-luong-form {
 	width:950px;
 	height: 210px;
@@ -703,7 +700,7 @@
 	margin: 0 auto;
 }
 
-
+*/
 #main-content {
 	height: 2000px;
 	background-color: while;
