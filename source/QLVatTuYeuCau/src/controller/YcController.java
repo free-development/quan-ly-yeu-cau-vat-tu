@@ -166,15 +166,17 @@ public class YcController extends HttpServlet {
 		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
 		int page = Integer.parseInt(pageNumber);
 		ArrayList<Object> objectList = new ArrayList<Object>();
-		if(searchMa != ""){
+		if(!searchMa .equals("")){
+			JOptionPane.showMessageDialog(null, "SEARCH TEN");
 			long size = ctvtDAO.sizeOfSearchCtvtMa(searchMa); 
 			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtMaLimit(searchMa, (page - 1) * 10, 10);
 			objectList.add(ctvtList);
 			objectList.add((size - 1) / 10);
 			return JSonUtil.toJson(objectList);
 		}
-		else if (searchTen != "")
+		else if (!searchTen.equals(""))
 		{
+			JOptionPane.showMessageDialog(null, "search ten");
 			long size = ctvtDAO.sizeOfSearchCtvtTen(searchTen); 
 			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtTenLimit(searchTen, (page - 1) *10, 10);
 			objectList.add(ctvtList);
@@ -182,6 +184,7 @@ public class YcController extends HttpServlet {
 			return JSonUtil.toJson(objectList);
 		}
 		else {
+			JOptionPane.showMessageDialog(null, "phan trang");
 			long sizeCtvt = ctvtDAO.size();
 			ArrayList<CTVatTu> ctVatTuList = (ArrayList<CTVatTu>) ctvtDAO.limit((page - 1) * 10, 10);
 			objectList.add(ctVatTuList);
