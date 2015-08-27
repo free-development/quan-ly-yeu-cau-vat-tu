@@ -182,6 +182,11 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return list;
 	}
+<<<<<<< HEAD
+public void close() {
+	HibernateUtil.shutdown();
+}
+=======
 	
 	public void close() {
 		HibernateUtil.shutdown();
@@ -213,6 +218,7 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return list;
 	}
+>>>>>>> e0abe376de28b5ffd1b0577a294d9994bc1ffe19
 	public void begin(){
 		session.beginTransaction();
 	}

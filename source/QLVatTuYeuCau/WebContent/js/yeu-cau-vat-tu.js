@@ -9,7 +9,7 @@ function showForm(formId1, formId2, check){
     s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
     s.filter = 'alpha(opacity='+opacity+')';
     for(var i=0; i<f.length; i++) f[i].disabled = check;
-    document.getElementById('danh-sach-vat-tu').style.display="none";
+    //document.getElementById('danh-sach-vat-tu').style.display="none";
     
 };
 /*
@@ -187,7 +187,7 @@ function updateYc() {
 	  			$('input[name=soLuongUpdate]').val('0');	
 				$('#view-table-yc table tr #soLuong' + ycId).html(soLuong);
 	  		}
-	  		showForm('search-form','update-so-luong-form',false);
+	  		showForm('add-yeu-cau-form','update-so-luong-form',false);
 	  		$('#danh-sach-vat-tu').show();
   		}
 	});
@@ -244,7 +244,7 @@ function capVatTu() {
 	  			$('input[name=soLuongCap]').val('0');	
 				$('#view-table-yc table tr #soLuongCap' + ycVatTu.ycId).html(ycVatTu.capSoLuong);
 	  		}
-	  		showForm('search-form','cap-so-luong-form',false);
+	  		showForm('add-yeu-cau-form','cap-so-luong-form',false);
 	  		$('#danh-sach-vat-tu').show();
   		}
 	});

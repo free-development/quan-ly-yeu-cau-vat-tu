@@ -8,12 +8,15 @@ import model.ChucDanh;
 import model.VatTu;
 
 
-import org.hibernate.Criteria;
 
+
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import util.HibernateUtil;
@@ -111,27 +114,14 @@ public void close() {
 
 public ArrayList<VatTu> searchVtTen(String i) {
 	session.beginTransaction();
-
-	String sql = "from VatTu where vtTen LIKE :vtTen";
-	Query query = session.createQuery(sql);
-	query.setParameter("vtTen", i+"%");
-	ArrayList<VatTu> list = (ArrayList<VatTu>) query.list();
-	
+	Criteria cr = session.createCriteria(VatTu.class);
+	cr.add(Restrictions.like("vtTen", i+"%"));
+	ArrayList<VatTu> list = (ArrayList<VatTu>) cr.list();
 	session.getTransaction().commit();
 	return list;
 }
 
 
-
-public ArrayList<VatTu> startWithTK(String i) {
-	session.beginTransaction();
-	String sql = "from VatTu where vtTen LIKE :vtTen";
-	Query query = session.createQuery(sql);
-	query.setParameter("vtTen", i+"%");
-	ArrayList<VatTu> list = (ArrayList<VatTu>) query.list();
-	session.getTransaction().commit();
-	return list;
-}
  public ArrayList<String> startWithMa(String i) {
 	session.beginTransaction();
 	String sql = "select vtMa from VatTu where vtMa LIKE :vtMa";
@@ -143,10 +133,15 @@ public ArrayList<VatTu> startWithTK(String i) {
 }
  public ArrayList<VatTu> searchVtMa(String i) {
 	session.beginTransaction();
-	String sql = "from VatTu where vtMa LIKE :vtMa";
-	Query query = session.createQuery(sql);
-	query.setParameter("vtMa", i+"%");
-	ArrayList<VatTu> list = (ArrayList<VatTu>) query.list();
+//	String sql = "select E.vtMa, E.vtTen, E.dvt, E.daXoa from VatTu E where E.vtMa LIKE :vtMa";
+	Criteria cr = session.createCriteria(VatTu.class);
+	cr.add(Restrictions.like("vtMa", i+"%"));
+//	Restrictions.
+//	Query query = session.createQuery(sql);
+	
+//	query.setParameter("vtMa", i+"%");
+//	ArrayList<VatTu> list = (ArrayList<VatTu>) query.list();
+	ArrayList<VatTu> list = (ArrayList<VatTu>) cr.list();
 	session.getTransaction().commit();
 	return list;
 }

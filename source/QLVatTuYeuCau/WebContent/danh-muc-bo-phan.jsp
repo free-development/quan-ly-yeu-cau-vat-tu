@@ -10,8 +10,9 @@
 	type="text/css">
 <link rel="stylesheet" href="style/style.css" type="text/css">
 <link href="style/style-bo-phan.css" type="text/css" rel="stylesheet">
-<link rel="stylesheet" href="style/style-noi-san-xuat.css"
+<link rel="stylesheet" href="style/style-bo-phan.css"
 	type="text/css">
+
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">

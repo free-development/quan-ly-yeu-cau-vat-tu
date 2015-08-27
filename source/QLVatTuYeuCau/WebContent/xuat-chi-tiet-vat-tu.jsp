@@ -117,7 +117,7 @@
 						<i class="fa fa-print"></i>&nbsp;&nbsp;Tải file
 					</button>
 					&nbsp;&nbsp;
-					<button type="button" class="button"  onclick="location.href='<%=siteMap.ctVatu+".jsp" %>'">
+					<button type="button" class="button"  onclick="location.href='<%=siteMap.ctvtManage + "?action=manageCtvt"%>'">
 						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 					</button>
 					<% } %>

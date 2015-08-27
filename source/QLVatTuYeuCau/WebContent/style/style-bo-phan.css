@@ -81,12 +81,13 @@
 
 #add-form {
 	display: none;
-	width: 26%;;
+	width: 40%;;
 	left: 35%;
 	/*right: 35%;*/
 	/*top: 20%;*/
 /*	bottom: 40%;*/
-	height: 35%;
+	height: 45%;
+	top: 45%;
 	position: absolute;
 	background-color: #DCEAF5;
 	border-radius: 10px;
@@ -99,11 +100,11 @@
 
 #update-form {
 	display: none;
-	width: 30%;
-	height: 40%;
+	width: 40%;
+	height: 45%;
 	left: 35%;
 	right: 35%;
-	top: 65%;
+	top: 45%;
 	bottom: 65%;
 	position: absolute;
 	background-color: #DCEAF5;
@@ -120,6 +121,19 @@
 	font-weight: bold;
 	padding-top: 20px;
 	padding-bottom: 20px;
+}
+
+#paging table {
+	margin: 0 auto;
+	margin-top: 20px;
+	border-style: none;
+}
+#paging table tr td{
+	border-style: none;
+}
+#paging table tr td a {
+	color: blue;
+	font-size: 15px;
 }
 
 .scroll-bp {

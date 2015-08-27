@@ -176,9 +176,9 @@
 						<i class="fa fa-refresh"></i>&nbsp;Nhập lại
 					</button>
 					&nbsp;
-					<button class="button" type="button">
-						<i class="fa fa-sign-out"></i>&nbsp;Thoát
-					</button>
+					<button type="button" class="button" onclick="location.href='<%=siteMap.home%>'">
+							<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
+						</button>
 				</div>
 			</form>
 		</div>

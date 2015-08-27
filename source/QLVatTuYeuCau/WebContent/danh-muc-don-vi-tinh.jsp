@@ -8,12 +8,19 @@
 <title>Văn phòng điện tử công ty điện lực Cần Thơ</title>
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
-<link rel="stylesheet" href="style/style-noi-vai-tro.css"
+<<<<<<< HEAD
+<!-- <link rel="stylesheet" href="style/style-noi-vai-tro.css" -->
+<!-- 	type="text/css"> -->
+<!-- <link rel="stylesheet" href="style/style-noi-san-xuat.css" -->
+<!-- 	type="text/css"> -->
+=======
+<link rel="stylesheet" href="style/style-vai-tro.css"
 	type="text/css">
 <link rel="stylesheet" href="style/style-noi-san-xuat.css"
 	type="text/css">
+>>>>>>> e0abe376de28b5ffd1b0577a294d9994bc1ffe19
 <link rel="stylesheet" href="style/style.css" type="text/css">
-<link href="style/style-muc-dich.css" type="text/css" rel="stylesheet">
+<link href="style/don-vi-tinh.css" type="text/css" rel="stylesheet">
 
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
@@ -127,7 +134,7 @@
 							<tr style="background: #199e5e">
 								<th class="left-column"><input type="checkbox"
 									class="checkAll"></th>
-								<th class="mid-column">ID</th>
+<!-- 								<th class="mid-column">ID</th> -->
 								<th class="right-column">Tên đơn vị tính</th>
 							</tr>
 							<%
@@ -136,9 +143,9 @@
 							for(DonViTinh donViTinh : listDonViTinh) {count++ ;%>
 							<tr class="rowContent"
 								<%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
-								<td class="left-column"><input type="checkbox" name="vtId"
-									value="<%=donViTinh.getDvtId() %>" class="checkbox"></td>
-								<td class="col"><%=donViTinh.getDvtId() %></td>
+								<td class="left-column"><input type="checkbox" name="dvtId"
+									value="<%=donViTinh.getDvtTen() %>" class="checkbox"></td>
+<%-- 								<td class="col"><%=donViTinh.getDvtId() %></td> --%>
 								<td class="col"><%=donViTinh.getDvtTen() %></td>
 							</tr>
 							<%} }%>
@@ -190,12 +197,6 @@
 						<table >
 							<div class="form-title">Thêm đơn vị tính</div>
 							<tr>
-								<th><label for="id">ID</label></th>
-								<td><input name="dvtId" type="number" class="text" required
-									autofocus size="3" maxlength="3" onkeypress="changedvtId();"
-									title="Mã nơi sản xuất không được trống"><div id="requiredvtId" style="color: red"></div></td>
-							</tr>
-							<tr>
 								<th class="label"><label for="tenvaitro">Tên đơn vị tính</label></th>
 								<td><input name="dvtTen" size="30px" type="text" onkeypress="changedvtTen();"
 									class="text" required title="Tên đơn vị tính không được để trống"><div id="requiredvtTen" style="color: red"></div></td>
@@ -221,11 +222,11 @@
 					<div class="input-table">
 						<table>
 							<div class="form-title">Cập nhật đơn vị tính</div>
-							<tr>
-								<th><label for="id">ID</label></th>
-								<td><input name="dvtIdUpdate" type="number" class="text" 
-									required title="ID đơn vị tính không để trống" readonly style="background-color: #D1D1E0;"><div id="requiredvtID" style="color: red"></div></td>
-							</tr>
+<!-- 							<tr> -->
+<!-- 								<th><label for="id">ID</label></th> -->
+<!-- 								<td><input name="dvtIdUpdate" type="number" class="text"  -->
+<!-- 									required title="ID đơn vị tính không để trống" readonly style="background-color: #D1D1E0;"><div id="requiredvtID" style="color: red"></div></td> -->
+<!-- 							</tr> -->
 							<tr>
 								<th><label for="tenvaitro">Tên đơn vị tính</label></th>
 								<td><input name="dvtTenUpdate" size="30px" type="text" onkeypress="changedvtTenUp();"
