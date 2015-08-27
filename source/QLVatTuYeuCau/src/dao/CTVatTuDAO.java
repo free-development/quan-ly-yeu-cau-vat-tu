@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -315,5 +316,9 @@ public class CTVatTuDAO {
 		System.out.println(new CTVatTuDAO().searchByCtvtTenLimit("T",0,5).size());
 		System.out.println(new CTVatTuDAO().sizeOfSearchCtvtTen("T"));
 		System.out.println(new CTVatTuDAO().searchByCtvtTenLimit("T", 0, 5).get(0).getVatTu().getVtTen());
+		ArrayList<CTVatTu> ctvtList = new CTVatTuDAO().searchByCtvtMaLimit("121",0,30);
+		for (CTVatTu ctvt : ctvtList) {
+			System.out.println(ctvt.getVatTu().getVtMa());
+		}
 	}
 }

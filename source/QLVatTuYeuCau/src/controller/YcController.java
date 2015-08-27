@@ -166,15 +166,15 @@ public class YcController extends HttpServlet {
 		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
 		int page = Integer.parseInt(pageNumber);
 		ArrayList<Object> objectList = new ArrayList<Object>();
-		if(!searchMa .equals("")){
-			JOptionPane.showMessageDialog(null, "SEARCH TEN");
+		if(searchMa.length() != 0){
+			JOptionPane.showMessageDialog(null, "SEARCH MA");
 			long size = ctvtDAO.sizeOfSearchCtvtMa(searchMa); 
 			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtMaLimit(searchMa, (page - 1) * 10, 10);
 			objectList.add(ctvtList);
 			objectList.add((size - 1) / 10);
 			return JSonUtil.toJson(objectList);
 		}
-		else if (!searchTen.equals(""))
+		else if (searchTen.length() != 0)
 		{
 			JOptionPane.showMessageDialog(null, "search ten");
 			long size = ctvtDAO.sizeOfSearchCtvtTen(searchTen); 
@@ -191,14 +191,15 @@ public class YcController extends HttpServlet {
 			objectList.add((sizeCtvt - 1)/10);
 			return JSonUtil.toJson(objectList);
 		}
-	}
+	}						
 	@RequestMapping(value="/searchCtvtYc", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String searchCtvtYc(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen) {
 		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
 		ArrayList<Object> objectList = new ArrayList<Object>();
 		JOptionPane.showMessageDialog(null, vtMa + "***"+vtTen + "***");
-		if(vtMa != ""){
+		if(vtMa.length() != 0){
+			JOptionPane.showMessageDialog(null, "search by ma");
 			searchMa = vtMa;
 			searchTen = "";
 			long size = ctvtDAO.sizeOfSearchCtvtMa(vtMa); 
@@ -206,7 +207,8 @@ public class YcController extends HttpServlet {
 			objectList.add(ctvtList);
 			objectList.add((size -1) / 	10);
 			return JSonUtil.toJson(objectList);
-		} else if(vtTen != ""){
+		} else if(vtTen.length() != 0){
+			JOptionPane.showMessageDialog(null, "search by ten");
 			searchTen = vtTen;
 			searchMa = "";
 			long size = ctvtDAO.sizeOfSearchCtvtTen(vtTen); 
@@ -215,6 +217,7 @@ public class YcController extends HttpServlet {
 			objectList.add(size/10);
 			return JSonUtil.toJson(objectList);
 		} else {
+			JOptionPane.showMessageDialog(null, "no search");
 			searchTen = "";
 			searchMa = "";
 			long sizeCtvt = ctvtDAO.size();
