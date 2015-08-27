@@ -268,7 +268,6 @@ function searchCtVt(){
 		  	success: function(objectList){
 		  		
 		  		var size = objectList[1];
-		  		alert(size);	
 		  		var ctvtList = objectList[0];
 		  		var length = ctvtList.length;
 		  		if(length > 0){
@@ -288,7 +287,16 @@ function searchCtVt(){
 									+ '<td><input class=\"radio\"  type=\"radio\" id="a" name=\"ctvtId\" value=\"' + ctVatTu.ctvtId + '\" onchange=\"preAddSoLuong();\"> </td>';
 						var row = '<tr ' +style + ' class=\"rowContent\">' + cells + '</tr>';
 						$('#view-table-ds table tr:first').after(row);
-			  		}
+					}
+						var strPage = '';
+						for (i = 0; i <= size; i++) {
+							strPage += '<input type=\"button\" name="\page\" class=\"page\" value=\"' + (i + 1) + '\">';
+							if (i == 10)
+								break;
+						}
+						if (size > 10)
+							strPage = '<input type=\"button\" name="\page\" class=\"page\" value=\"<< privious\"> ' +strPage + ' <input type=\"button\" name="\page\" class=\"page\" value=\">> next\">'
+						$('.paging').html(strPage);
 		  		} else {
 	  				alert("Không tìm thấy vật tư!");
 	  			}

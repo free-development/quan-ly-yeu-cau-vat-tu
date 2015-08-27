@@ -38,6 +38,8 @@ public class YcController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HttpSession session;   
 	private int pageCtvt = 1;
+	private String searchTen = "";
+	private String searchMa = "";
 	@RequestMapping("ycvtManage")
     public ModelAndView updateYeuCau(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //	    	congVan
@@ -93,18 +95,7 @@ public class YcController extends HttpServlet {
 		YeuCau yeuCau = ycDAO.addSoLuong(cvId, ctvtId, sl);
 		return JSonUtil.toJson(yeuCau);
 	}
-	@RequestMapping(value="/loadPageCtvtYc", method=RequestMethod.GET, 
-			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String loadPageCtvtYc(@RequestParam("pageNumber") String pageNumber) {
-		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
-		long sizeCtvt = ctvtDAO.size();
-		ArrayList<Object> objectList = new ArrayList<Object>();
-		int page = Integer.parseInt(pageNumber);
-		ArrayList<CTVatTu> ctVatTuList = (ArrayList<CTVatTu>) ctvtDAO.limit((page - 1) * 10, 10);
-		objectList.add(ctVatTuList);
-		objectList.add(sizeCtvt);
-		return JSonUtil.toJson(objectList);
-	}
+	
 	@RequestMapping(value="/deleteYc", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteYc(@RequestParam("ycList") String ycList) {
@@ -169,24 +160,64 @@ public class YcController extends HttpServlet {
 //		ArrayList<CTVatTu> ctvtList = (ArrayList<CTVatTu>) ctvtDAO.limit((page -1 ) * 10, 10);
 //			return JSonUtil.toJson(ctvtList);
 //	}
+	@RequestMapping(value="/loadPageCtvtYc", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String loadPageCtvtYc(@RequestParam("pageNumber") String pageNumber) {
+		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
+		int page = Integer.parseInt(pageNumber);
+		ArrayList<Object> objectList = new ArrayList<Object>();
+		if(searchMa != ""){
+			long size = ctvtDAO.sizeOfSearchCtvtMa(searchMa); 
+			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtMaLimit(searchMa, (page - 1) * 10, 10);
+			objectList.add(ctvtList);
+			objectList.add((size - 1) / 10);
+			return JSonUtil.toJson(objectList);
+		}
+		else if (searchTen != "")
+		{
+			long size = ctvtDAO.sizeOfSearchCtvtTen(searchTen); 
+			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtTenLimit(searchTen, (page - 1) *10, 10);
+			objectList.add(ctvtList);
+			objectList.add((size - 1) / 10);
+			return JSonUtil.toJson(objectList);
+		}
+		else {
+			long sizeCtvt = ctvtDAO.size();
+			ArrayList<CTVatTu> ctVatTuList = (ArrayList<CTVatTu>) ctvtDAO.limit((page - 1) * 10, 10);
+			objectList.add(ctVatTuList);
+			objectList.add((sizeCtvt - 1)/10);
+			return JSonUtil.toJson(objectList);
+		}
+	}
 	@RequestMapping(value="/searchCtvtYc", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String searchCtvtYc(@RequestParam("vtMa") String vtMa, @RequestParam("vtTen") String vtTen) {
 		CTVatTuDAO ctvtDAO = new CTVatTuDAO();
 		ArrayList<Object> objectList = new ArrayList<Object>();
+		JOptionPane.showMessageDialog(null, vtMa + "***"+vtTen + "***");
 		if(vtMa != ""){
+			searchMa = vtMa;
+			searchTen = "";
 			long size = ctvtDAO.sizeOfSearchCtvtMa(vtMa); 
-			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtMaLimit(vtMa, pageCtvt - 1, 10);
+			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtMaLimit(searchMa, pageCtvt - 1, 10);
 			objectList.add(ctvtList);
-			objectList.add(size);
+			objectList.add((size -1) / 	10);
 			return JSonUtil.toJson(objectList);
-		}
-		else
-		{
+		} else if(vtTen != ""){
+			searchTen = vtTen;
+			searchMa = "";
 			long size = ctvtDAO.sizeOfSearchCtvtTen(vtTen); 
-			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtTenLimit(vtTen, pageCtvt - 1, 5);
+			ArrayList<CTVatTu> ctvtList = ctvtDAO.searchByCtvtTenLimit(searchTen, pageCtvt - 1, 10);
 			objectList.add(ctvtList);
-			objectList.add(size);
+			objectList.add(size/10);
+			return JSonUtil.toJson(objectList);
+		} else {
+			searchTen = "";
+			searchMa = "";
+			long sizeCtvt = ctvtDAO.size();
+			ArrayList<CTVatTu> ctVatTuList = (ArrayList<CTVatTu>) ctvtDAO.limit((pageCtvt - 1) * 10, 10);
+			objectList.add(ctVatTuList);
+			objectList.add(sizeCtvt/10);
 			return JSonUtil.toJson(objectList);
 		}
 		

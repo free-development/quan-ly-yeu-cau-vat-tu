@@ -202,7 +202,7 @@
 						</tr>
 					<%}%>
 				</table>
-				<div class = "button-group">	
+				<div class = "paging">	
 				<%
  					if(pageNum > 10)
 						out.println("<input type=\"button\" class = \"page\" name = \"page\" value = \"<< next\"");
