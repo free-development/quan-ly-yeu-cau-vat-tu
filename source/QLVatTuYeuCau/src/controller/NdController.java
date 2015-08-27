@@ -79,7 +79,7 @@ public class NdController extends HttpServlet {
 			return new ModelAndView("them-nguoi-dung", "nguoiDungList", nguoiDungList);
 		}
 		
-		return new ModelAndView(siteMap.login);
+		//return new ModelAndView(siteMap.login);
 	}
 	
 	@RequestMapping(value="/addNd", method=RequestMethod.GET, 
