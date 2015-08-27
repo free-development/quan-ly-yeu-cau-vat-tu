@@ -8,7 +8,7 @@
 <title>Văn phòng điện tử công ty điện lực Cần Thơ</title>
 <link rel="stylesheet" href="style/style-giao-dien-chinh.css"
 	type="text/css">
-<link rel="stylesheet" href="style/style-noi-vai-tro.css"
+<link rel="stylesheet" href="style/style-vai-tro.css"
 	type="text/css">
 <link rel="stylesheet" href="style/style-noi-san-xuat.css"
 	type="text/css">
