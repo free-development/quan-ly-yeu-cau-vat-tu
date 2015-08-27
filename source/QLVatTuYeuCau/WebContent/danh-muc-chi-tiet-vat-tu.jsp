@@ -119,46 +119,6 @@
 		<div id="main-content">
 			<div id="title-content">Danh mục chi tiết vật tư</div>
 			<form id="main-form">
-					<div class="lbltk">
-									<table>		
-					<tr>		
-					<th  style="text-align: left; color: black; font-size: 19px;">* Tìm kiếm mã</th>
-								<td>
-									<div class="search_form1" id="search">		
-										<form>	
-<!-- 											<span class="search-text"> &nbsp; <input type="search" class="text" name="search_box" name="search" placeholder="Tìm kiếm" /> 												 -->
-<!-- 												<td><input type="checkbox" class="checkbox" style="text-align: center;"/></td> -->
-<!-- 												<td  style="text-align: center; color: black; font-size: 19px;">Theo tên</td>&nbsp;&nbsp;&nbsp; -->
-<!-- 											</span> -->
-											
-											<span class="search-text"> &nbsp; <input type="search" id="searchName" class="text" name="vattu"/>						
-														<script>
-														$("#searchName").autocomplete("getdataMa.jsp");
-														$("#searchName").autocomplete("getdata.jsp");
-// 														i = 0;
-// 															$('#checkTen').check(function() {
-// 																var check = $(this).val();
-// 																alert(check);
-// 																if(i % 2 == 0)
-// 																	$("#searchName").autocomplete("getdata.jsp");
-// 																else 
-// 																	$("#searchName").autocomplete("getdataMa.jsp");
-															//});
-// 															$('#checkTen').uncheck(function() {
-// 																	$("#searchName").autocomplete("getdataMa.jsp");
-// 															});
-															
-														</script> 												
-												<td><input type="checkbox" value="check" class="checkbox" style="text-align: center;" id="checkTen"/></td>
-												<td  style="text-align: center; color: black; font-size: 19px;">Theo tên</td>&nbsp;&nbsp;&nbsp;
-											</span>
-												<td> <span class="search-button"> &nbsp; <button type="button" class="btn-search" style="background-color: #00A69B;" onclick="timKiemCTVatTu();"><i class="fa fa-search"></i></button></span></td>						
-										</form>
-									</div>
-					</tr>					
-				</table>
-					</div>
-		<!-- 			<div id="view-table-vat-tu"> -->
 					<div id="view-table-chi-tiet">
 						<table>
 							<tr style="background: #199e5e">

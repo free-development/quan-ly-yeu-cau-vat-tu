@@ -288,15 +288,17 @@ function searchCtVt(){
 						var row = '<tr ' +style + ' class=\"rowContent\">' + cells + '</tr>';
 						$('#view-table-ds table tr:first').after(row);
 					}
+					
 						var strPage = '';
 						for (i = 0; i <= size; i++) {
-							strPage += '<input type=\"button\" name="\page\" class=\"page\" value=\"' + (i + 1) + '\">';
+							strPage += '<input type=\"button\" class=\"page\" name="\page\" value=\"' + (i + 1) + '\">  ';
 							if (i == 10)
 								break;
 						}
 						if (size > 10)
 							strPage = '<input type=\"button\" name="\page\" class=\"page\" value=\"<< privious\"> ' +strPage + ' <input type=\"button\" name="\page\" class=\"page\" value=\">> next\">'
-						$('.paging').html(strPage);
+						//$('#paging').html(strPage);
+						
 		  		} else {
 	  				alert("Không tìm thấy vật tư!");
 	  			}

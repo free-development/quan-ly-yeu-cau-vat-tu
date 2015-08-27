@@ -21,6 +21,7 @@ function showForm(formId, check){
 			else if (dvtMaList.length > 1)
 				alert('Bạn chỉ được chọn 1 đơn vị tính để thay đổi!!');
 			else {
+				
 				$.ajax({
 					url: "/QLVatTuYeuCau/preEditdvt.html",
 					type: "GET",
@@ -29,15 +30,16 @@ function showForm(formId, check){
 					contentType: "application/json",
 					mimeType: "application/json",
 					
-					success: function(dvt){
+					success: function(dvt){		
 						
-						$('input[name=dvtIdUpdate]').val(dvt.dvtId);
-					  	$('input:text[name=dvtTenUpdate]').val(dvt.dvtTen);
+						$('input:text[name=dvtTenUpdate]').val(dvtId);
 					  	
 					  	showForm(formId, check);
 					}
 					
 				});
+				
+				
 			}
 		}
 		function confirmDelete(){
@@ -69,12 +71,12 @@ function showForm(formId, check){
 			});  
 		} 
  	 	function adddvt() {
- 			dvtId = $('#add-form input[name=dvtId]').val();
+// 			dvtId = $('#add-form input[name=dvtId]').val();
  			dvtTen = $('#add-form input:text[name=dvtTen]').val();
- 			if(dvtId == '') {
- 				$('#requiredvtId').html('Vui lòng nhập mã đơn vị tính');
- 			}
- 			else if (dvtTen == '')
+// 			if(dvtId == '') {
+// 				$('#requiredvtId').html('Vui lòng nhập mã đơn vị tính');
+// 			}
+ 			 if (dvtTen == '')
 	 			{
 	 				$('#requiredvtTen').html('Vui lòng nhập tên đơn vị tính');
 	 			}
@@ -84,21 +86,21 @@ function showForm(formId, check){
 		 				url: "/QLVatTuYeuCau/adddvt.html",	
 					  	type: "GET",
 		 			  	dateType: "JSON",
-		 			  	data: { "dvtId": dvtId, "dvtTen": dvtTen},
+		 			  	data: {"dvtTen": dvtTen},
 		 			  	contentType: 'application/json',
 		 			    mimeType: 'application/json',
 					  	
 		 			  	success: function(result) {
 					  		if(result == "success")
 			 				{
-							$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvtId\" value=\"' +dvtId + '\"</td><td class=\"col\">'+ dvtId +'</td><td class=\"col\">' + dvtTen+'</td></tr>');
-					  		$('#add-form input[name=dvtId]').val('');
+							$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvtId\" value=\"' + dvtTen+'\"</td><td class=\"col\">' + dvtTen+'</td></tr>');
+//					  		$('#add-form input[name=dvtId]').val('');
 							$('#add-form input:text[name=dvtTen]').val('');
 					  		showForm("add-form", false);	
-					  		alert("đơn vị tính "+dvtId + " đã được thêm ");	
+					  		alert("Đơn vị tính "+dvtTen + " đã được thêm ");	
 						}
 				  		else{
-				  			alert("đơn vị tính "+dvtId + " đã tồn tại ");
+				  			alert("Đơn vị tính "+dvtTen + " đã tồn tại ");
 				  		}
 					  	
 		 			  	}
@@ -106,12 +108,12 @@ function showForm(formId, check){
  			}
  		}
  	 	function confirmUpdatedvt(){
-			var dvtIdUpdate = $('input[name=dvtIdUpdate]').val();
+//			var dvtIdUpdate = $('input[name=dvtIdUpdate]').val();
 			var dvtTenUpdate = $('input:text[name=dvtTenUpdate]').val();
-			if (confirm('Bạn có chắc thay đổi đơn vị tính có mã ' + dvtIdUpdate))
-				updatedvt(dvtIdUpdate, dvtTenUpdate);
+			if (confirm('Bạn có chắc thay đổi đơn vị tính: ' + dvtTenUpdate))
+				updatedvt(dvtTenUpdate);
 		}
- 	 	function updatedvt(dvtIdUpdate, dvtTenUpdate) {
+ 	 	function updatedvt(dvtTenUpdate) {
  	 		if (dvtTenUpdate == '')
 	 			{
 	 				$('#requiredvtTenUp').html('Vui lòng nhập tên đơn vị tính');
@@ -123,17 +125,16 @@ function showForm(formId, check){
 						url: "/QLVatTuYeuCau/updatedvt.html",	
 					  	type: "GET",
 					  	dateType: "JSON",
-					  	data: { "dvtIdUpdate": dvtIdUpdate, "dvtTenUpdate": dvtTenUpdate},
+					  	data: {"dvtTenUpdate": dvtTenUpdate},
 					  	contentType: 'application/json',
 					    mimeType: 'application/json',
 					  	
 					  	success: function(dvt) {
 					  		$('table tr').has('input[name="dvtId"]:checked').remove();
-					  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvtId\" value=\"' +dvtIdUpdate + '\"</td><td class=\"col\">'+ dvtIdUpdate +'</td><td class=\"col\">' + dvtTenUpdate+'</td></tr>');
-					  		$('input[name=dvtIdUpdate]').val('');
+					  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"dvtId\" value=\"' +dvtTenUpdate + '\"</td><td class=\"col\">' + dvtTenUpdate+'</td></tr>');
 							dvtTenUpdate = $('input:text[name=dvtTenUpdate]').val('');
 					  		showForm("update-form", false);	
-					  		alert("Thay đổi thành công đơn vị tính có mã "+ dvtIdUpdate);
+					  		alert("Thay đổi thành công đơn vị tính có mã "+ dvtTenUpdate);
 					  	}
 					});
  			}
@@ -141,10 +142,10 @@ function showForm(formId, check){
  	 	function resetUpdatedvt(){
  	 		$('#update-form input:text[name=dvtTenUpdate]').val('');
  	 	}
- 	 	function changedvtId(){
- 	  		$('#requiredvtId').html('');
- 	  		$('#add-form input[name=dvtId]').focus();
- 	 	} 	
+// 	 	function changedvtId(){
+// 	  		$('#requiredvtId').html('');
+// 	  		$('#add-form input[name=dvtId]').focus();
+// 	 	} 	
  	  	
  	  	function changedvtTen(){
  	  		$('#requiredvtTen').html('');
@@ -180,8 +181,8 @@ function showForm(formId, check){
  								var str = '';
  								str = '<tr class=\"rowContent\" ' + style + '>'
  									+ '<td class=\"left-column\"><input type=\"checkbox\" name=\"dvtId\" value=\"' 
- 									+ dvt.dvtId +'\" class=\"checkbox\"></td>'
- 									+ '<td class=\"col\">' + dvt.dvtId + '</td>'
+ 									+ dvt.dvtTen +'\" class=\"checkbox\"></td>'
+// 									+ '<td class=\"col\">' + dvt.dvtId + '</td>'
  									+ '<td class=\"col\">' + dvt.dvtTen + '</td>'
  									+ '</tr>';
  								$('#view-table table tr:first').after(str);

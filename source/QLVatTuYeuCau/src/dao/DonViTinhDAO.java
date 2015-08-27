@@ -120,7 +120,9 @@ public class DonViTinhDAO {
 		session.getTransaction().commit();
 		return l;
 	}
-	
+	public void close() {
+		HibernateUtil.shutdown();
+	}
 	public static void main(String[] args) {
 //		new DonViTinhDAO().deleteDonViTinh(1);
 //		System.out.println(new DonViTinhDAO().getDonViTinhByTen("cai").getdvtTen());

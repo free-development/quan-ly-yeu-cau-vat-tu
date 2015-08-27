@@ -31,7 +31,7 @@
 	type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/check.js"></script>
-<script src="http://www.google.com/jsapi"></script>  
+<script src="js/jsapi.js"></script>  
 	<script>  
 		google.load("jquery", "1");
 	</script>
@@ -202,9 +202,28 @@
 						</tr>
 					<%}%>
 				</table>
+<<<<<<< HEAD
 				
 				
 				
+=======
+				<div id = "paging">	
+				<%
+ 					if(pageNum > 10)
+						out.println("<input type=\"button\" class = \"page\" name = \"page\" value = \"<< next\"");
+				%>
+				<%
+// 				out.println("<script>alert(" + pageNum + ")</script>");
+				for (int i = 0; i <= pageNum; i++) {
+					%>
+						<input type="button" class="page" name = "page" value = "<%=i+1 %>">
+						<%} %>	
+					<%
+ 					if(pageNum > 10)
+						out.println("<input type=\"button\" class = \"page\" name = \"page\" value = \"previous >>\"");
+				%>	
+				</div>		
+>>>>>>> origin/master
 				</div>
 				</div>
 				<br>

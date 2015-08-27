@@ -718,7 +718,7 @@
 	height: 2000px;
 	background-color: while;
 }
-.paging {
+#paging {
 	text-align: center;
 	padding-top: 20px;
 	padding-bottom: 20px;

@@ -184,7 +184,7 @@
 	   primary key (NSXMA)
 	) ENGINE = InnoDB
 	DEFAULT CHARACTER SET = utf8;
-
+	
 	/*==============================================================*/
 	/* Table: PHIEUNHAP                                             */
 	/*==============================================================*/
@@ -376,6 +376,26 @@ DEFAULT CHARACTER SET = utf8;
 	alter table YEUCAU add constraint FK_RELATIONSHIP_7 foreign key (CTVTID)
 		references CTVATTU (CTVTID) on delete restrict on update restrict;
 	insert into TRANGTHAI values('DGQ','Dang giai quyet');
+<<<<<<< HEAD
+
+insert into VAITRO values(1,'Lap phieu nhap');
+insert into VAITRO values(2,'Mua vat tu');
+insert into VAITRO values(3,'Cap vat tu');
+insert into VAITRO values(4,'Mua Lap phieu xuat');
+insert into VAITRO values(5,'Mua Lap phieu xuat');
+insert into VAITRO values(6,'Mua Lap phieu xuat');
+insert into VAITRO values(7,'Mua Lap phieu xuat');
+insert into VAITRO values(8,'Mua Lap phieu xuat');
+
+insert into CHUCDANH values ('GD', 'Giam doc');
+insert into CHUCDANH values ('GD1', 'Giam doc');
+insert into CHUCDANH values ('GD2', 'Giam doc');
+insert into CHUCDANH values ('GD3', 'Giam doc');
+insert into CHUCDANH values ('TP', 'Truong phong');
+insert into CHUCDANH values ('NV', 'Nhan vien');
+insert into CHUCDANH values ('TK', 'Thu ky');
+insert into CHUCDANH values ('VT', 'Van thu');
+=======
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
 /* Created on:     02/08/2015 8:03:04 CH                        */
@@ -766,6 +786,7 @@ insert into CHUCDANH values ('TP', 'Truong phong', 0);
 insert into CHUCDANH values ('NV', 'Nhan vien', 0);
 insert into CHUCDANH values ('TK', 'Thu ky', 0);
 insert into CHUCDANH values ('VT', 'Van thu', 0);
+>>>>>>> e0abe376de28b5ffd1b0577a294d9994bc1ffe19
 
 
 insert into NGUOIDUNG values ('b1203959', 'GD', 'Vo Phu Quoi', 'An giang', 'quoipro94@gmail.com', '0979921380');
@@ -787,10 +808,11 @@ alter table VATTU add DAXOA int(2) not null;
 alter table CTVATTU add DAXOA int(2) not null;
 alter table CHATLUONG add DAXOA int(2) not null;
 alter table DONVITINH add DAXOA int(2) not null;
+<<<<<<< HEAD
+=======
 alter table DONVI add DAXOA int(2) not null;
+>>>>>>> e0abe376de28b5ffd1b0577a294d9994bc1ffe19
 
-update DONVI set DAXOA = 0;
-update CHATLUONG set DAXOA = 0;
 update VAITRO set DAXOA = 0;
 update CHUCDANH set DAXOA = 0;
 update NOISANXUAT set DAXOA = 0;
@@ -800,6 +822,8 @@ update CTVATTU set DAXOA = 0;
 update CHATLUONG set DAXOA = 0;
 update DONVITINH set DAXOA = 0;
 
+<<<<<<< HEAD
+=======
 INSERT INTO TRANGTHAI VALUES('CGQ','Chưa giải quyết');
 INSERT INTO TRANGTHAI VALUES('DGQ','Dang giải quyết');
 INSERT INTO TRANGTHAI VALUES('DaGQ','Đã giải quyết');
@@ -819,4 +843,5 @@ INSERT INTO MUCDICH VALUES('MD4','Mục đích 4', 0);
 INSERT INTO MUCDICH VALUES('MD5','Mục đích 5', 0);
 INSERT INTO MUCDICH VALUES('MD6','Mục đích 6', 0);
 -- ---------------------------
+>>>>>>> e0abe376de28b5ffd1b0577a294d9994bc1ffe19
 
