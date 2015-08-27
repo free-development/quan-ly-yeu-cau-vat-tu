@@ -418,10 +418,6 @@
 					<i class="fa fa-spinner"></i>&nbsp;&nbsp;Bỏ qua
 				</button>
 				&nbsp;
-				<button class="button" type="button">
-					<i class="fa fa-print"></i>&nbsp;&nbsp;In
-				</button>
-				&nbsp;
 				<button type="button" class="button" onclick="showForm('chitiet', false)">
 					<i class="fa fa-sign-out"></i>&nbsp;&nbsp;Thoát
 				</button>
@@ -529,34 +525,14 @@
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="MVT">Nơi sản xuất</label></th>
-							<td><select 
-							title="" class="select" id="noisanxuatUp" name="nsxUpdate" readonly style="background-color: #D1D1E0;margin-top: 10px;">
-								<option disabled selected value="">-- Chọn nơi sản xuất --</option>
-								<%						  
- 								
- 								for (NoiSanXuat noiSanXuat : listNoiSanXuat)
- 								{%>  
- 								<option value=<%=noiSanXuat.getNsxMa()%>><%=noiSanXuat.getNsxTen()%></option> 
- 								<%}  
-  								%>  
-						</select></div></td>
+							<td><input name="nsxUpdate" size="15px" type="text" readonly style="background-color: #D1D1E0;"
+								class="text"></td>
 						</tr>
 						
 						<tr>
 							<th style="text-align: left"><label for="DVT">Chất lượng</label></th>
-								<td>
-									<select 
-											title="" class="select" id="chatluongUp" name="clUpdate" readonly style="background-color: #D1D1E0;margin-top: 10px;">
-												<option disabled selected value="">-- Chọn chất lượng --</option>
-												<%						  
-				 								
-				 								for (ChatLuong chatLuong : listChatLuong)
-				 								{%>  
-				 								<option value=<%=chatLuong.getClMa()%>><%=chatLuong.getClTen()%></option> 
-				 								<%}  
-				  								%>  
-									</select>
-								</td>
+								<td><input name="clUpdate" size="15px" type="text" readonly style="background-color: #D1D1E0;"
+								class="text"></td>
 						</tr>
 						<tr>
 							<th style="text-align: left"><label for="DM">Định mức</label></th>

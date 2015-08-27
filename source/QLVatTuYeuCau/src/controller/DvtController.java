@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import model.DonViTinh;
 
@@ -26,11 +27,12 @@ import dao.DonViTinhDAO;
 @Controller
 public class DvtController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	int page = 1;
+	private int page = 1;
+	private String dvtOld = "";
 	@RequestMapping("/manageDvt")
 	public ModelAndView manageDvt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DonViTinhDAO donViTinhDAO = new DonViTinhDAO();
-		
+//		String dvtTen_cu = request.getParameter("dvtId");
 		String action = request.getParameter("action");
 		if("AddDonViTinh".equalsIgnoreCase(action)) {
 			int dvtId = Integer.parseInt(request.getParameter("dvtId"));
@@ -60,24 +62,26 @@ public class DvtController extends HttpServlet {
 	}
 	@RequestMapping(value="/preEditdvt", method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String preEditdvt(@RequestParam("dvt") String dvt) {
+	 public @ResponseBody String preEditdvt(@RequestParam("dvtId") String dvt) {
 			System.out.println("****" + dvt + "****");
-			int dvtId = Integer.parseInt(dvt);
-			DonViTinhDAO donViTinhDAO = new DonViTinhDAO();
-			DonViTinh donViTinh = donViTinhDAO.getDonViTinh(dvtId);
+			JOptionPane.showMessageDialog(null, dvt);
+			dvtOld = dvt;
+			//int dvtId = Integer.parseInt(dvt);
+//			DonViTinhDAO donViTinhDAO = new DonViTinhDAO();
+//			DonViTinh donViTinh = donViTinhDAO.getDonViTinhByTen(dvt);
 			return JSonUtil.toJson(dvt);
 		}
 	@RequestMapping(value="/adddvt", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String adddvt(@RequestParam("dvt") String dvt) {
+	 public @ResponseBody String adddvt(@RequestParam("dvtTen") String dvt) {
 		String result = "";
-		System.out.println("MA: "+dvt);
+		System.out.println("Ten: "+dvt);
 //		int dvtId = Integer.parseInt(dvt);
 		if(new DonViTinhDAO().getDonViTinhByTen(dvt)==null)
 		{
 			new DonViTinhDAO().addOrUpdateDonViTinh(new DonViTinh(dvt,0));
 			System.out.println("success");
-			result = "success";		
+			result = "success";
 		}
 		else
 		{
@@ -88,18 +92,22 @@ public class DvtController extends HttpServlet {
 	}
 	@RequestMapping(value="/updatedvt", method=RequestMethod.GET, 
 		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String updatedvt(@RequestParam("dvtIdUpdate") String dvtIdUpdate, @RequestParam("dvtTenUpdate") String dvtTenUpdate) {
-
-		DonViTinh dvt = new DonViTinh(dvtTenUpdate,0);
+	 public @ResponseBody String updatedvt(@RequestParam("dvtTenUpdate") String dvtTenUpdate) {
+		JOptionPane.showMessageDialog(null, dvtOld);
+		DonViTinh dvt = new DonViTinhDAO().getDonViTinhByTen(dvtOld);
+		JOptionPane.showMessageDialog(null, dvt.getDvtTen() + dvt.getDvtId());
+		dvt.setDvtTen(dvtTenUpdate);
+		dvt.setDaXoa(0);
 		new DonViTinhDAO().updateDonViTinh(dvt);
 		return JSonUtil.toJson(dvt);
 	}
 	@RequestMapping(value="/deletedvt", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String deleteDvt(@RequestParam("dvt") String dvt) {
-		int dvtId = Integer.parseInt(dvt);
-		new DonViTinhDAO().deleteDonViTinh(dvtId);
-		return JSonUtil.toJson(dvt);
+	 public @ResponseBody String deleteDvt(@RequestParam("dvtId") String dvtTen) {
+		DonViTinhDAO donViTinhDAO = new DonViTinhDAO();
+		DonViTinh donViTinh = donViTinhDAO.getDonViTinhByTen(dvtTen);
+		new DonViTinhDAO().deleteDonViTinh(donViTinh.getDvtId());
+		return JSonUtil.toJson(dvtTen);
 	}
 	@RequestMapping(value="/loadPagedvt", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
