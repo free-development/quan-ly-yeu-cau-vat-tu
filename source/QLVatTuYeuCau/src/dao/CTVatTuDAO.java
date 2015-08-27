@@ -50,19 +50,7 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return CTVatTuList;
 	}
-	
-	public List<CTVatTu> limit(int first, int limit) {
-		session.beginTransaction();
-		Criteria cr = session.createCriteria(CTVatTu.class);
-		Criterion xoaCd = Restrictions.eq("daXoa", 0);
-//		Criterion limitRow = Restrictions.
-		cr.add(xoaCd);
-		cr.setFirstResult(first);
-		cr.setMaxResults(limit);
-		ArrayList<CTVatTu> ctVatTuList = (ArrayList<CTVatTu>) cr.list(); 
-		session.getTransaction().commit();
-		return ctVatTuList;
-	}
+
 	public long size() {
 		session.beginTransaction();
 		String sql = "select count(ctvtId) from CTVatTu";
@@ -167,7 +155,7 @@ public class CTVatTuDAO {
 		*/
 		if (vtMa != "")
 		{	
-			Criterion expVatTu = Restrictions.eq("vatTu", new VatTu(vtMa, vtTen));
+			Criterion expVatTu = Restrictions.eq("vatTu", new VatTu(vtMa));
 			cr.add(expVatTu);
 		}
 		if (nsx != "") {
@@ -193,36 +181,37 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return list;
 	}
-public void close() {
-	HibernateUtil.shutdown();
-}
-public ArrayList<CTVatTu> searchVtTen(String i) {
-	session.beginTransaction();
-	String sql = "from CTVatTu where vtMa in (select * from VatTu where vtTen LIKE :vtTen)";
-	Query query = session.createQuery(sql);
-	query.setParameter("vtTen", i+"%");
-	ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) query.list();
-	session.getTransaction().commit();
-	return list;
-}
- public ArrayList<String> startWithMa(String i) {
-	session.beginTransaction();
-	String sql = "select distinct vtMa from VatTu where vtMa LIKE :vtMa";
-	Query query = session.createQuery(sql);
-	query.setParameter("vtMa", i+"%");
-	ArrayList<String> list = (ArrayList<String>) query.list();
-	session.getTransaction().commit();
-	return list;
-}
- public ArrayList<CTVatTu> searchVtMa(String i) {
-	session.beginTransaction();
-	String sql = "from CTVatTu where vtMa LIKE :vtTen";
-	Query query = session.createQuery(sql);
-	query.setParameter("vtMa", i+"%");
-	ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) query.list();
-	session.getTransaction().commit();
-	return list;
-}
+	
+	public void close() {
+		HibernateUtil.shutdown();
+	}
+	public ArrayList<CTVatTu> searchVtTen(String i) {
+		session.beginTransaction();
+		String sql = "from CTVatTu where vtMa in (select * from VatTu where vtTen LIKE :vtTen)";
+		Query query = session.createQuery(sql);
+		query.setParameter("vtTen", i+"%");
+		ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) query.list();
+		session.getTransaction().commit();
+		return list;
+	}
+	 public ArrayList<String> startWithMa(String i) {
+		session.beginTransaction();
+		String sql = "select distinct vtMa from VatTu where vtMa LIKE :vtMa";
+		Query query = session.createQuery(sql);
+		query.setParameter("vtMa", i+"%");
+		ArrayList<String> list = (ArrayList<String>) query.list();
+		session.getTransaction().commit();
+		return list;
+	}
+	 public ArrayList<CTVatTu> searchVtMa(String i) {
+		session.beginTransaction();
+		String sql = "from CTVatTu where vtMa LIKE :vtTen";
+		Query query = session.createQuery(sql);
+		query.setParameter("vtMa", i+"%");
+		ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) query.list();
+		session.getTransaction().commit();
+		return list;
+	}
 	public void begin(){
 		session.beginTransaction();
 	}
@@ -252,12 +241,18 @@ public ArrayList<CTVatTu> searchVtTen(String i) {
 	public ArrayList<CTVatTu> searchByCtvtMaLimit(String vtMa, int first, int limit) {
 		session.beginTransaction();
 
-		String sql = "select a.ctvtId, a.vatTu, a.noiSanXuat, a.chatLuong, a.dinhMuc, a.soLuongTon, a.daXoa from CTVatTu a join a.vatTu b  where a.vatTu.vtMa LIKE :vtMa and a.vatTu.vtMa = b.vtMa";
-		Query query = session.createQuery(sql);
-		query.setParameter("vtMa", vtMa+"%");
-		query.setFirstResult(first);
-		query.setMaxResults(limit);
-		ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) query.list();
+		//String sql = "select a.ctvtId, a.vatTu, a.noiSanXuat, a.chatLuong, a.dinhMuc, a.soLuongTon, a.daXoa from CTVatTu a join a.vatTu b  where a.vatTu.vtMa LIKE :vtMa and a.vatTu.vtMa = b.vtMa";
+//		Query query = session.createQuery(sql);
+//		query.setParameter("vtMa", vtMa+"%");
+		Criteria cr = session.createCriteria(CTVatTu.class, "ctVatTu");
+		cr.createAlias("ctVatTu.noiSanXuat", "noiSanXuat");
+		cr.createAlias("ctVatTu.chatLuong", "chatLuong");
+		cr.createAlias("ctVatTu.vatTu", "vatTu");
+		cr.createAlias("vatTu.dvt", "dvt");
+		cr.add(Restrictions.like("vatTu.vtMa", vtMa+"%"));
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) cr.list();
 		
 		session.getTransaction().commit();
 		return list;
@@ -274,13 +269,29 @@ public ArrayList<CTVatTu> searchVtTen(String i) {
 	}
 	public ArrayList<CTVatTu> searchByCtvtTenLimit(String vtTen, int first, int limit) {
 		session.beginTransaction();
-
-		String sql = "select a.ctvtId, a.vatTu, a.noiSanXuat, a.chatLuong, a.dinhMuc, a.soLuongTon, a.daXoa from CTVatTu a join a.vatTu b  where a.vatTu.vtTen LIKE :vtMa and a.vatTu.vtTen = b.vtTen";
-		Query query = session.createQuery(sql);
-		query.setParameter("vtMa", vtTen+"%");
-		query.setFirstResult(first);
-		query.setMaxResults(limit);
-		ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) query.list();
+		Criteria cr = session.createCriteria(CTVatTu.class, "ctVatTu");
+		cr.createAlias("ctVatTu.noiSanXuat", "noiSanXuat");
+		cr.createAlias("ctVatTu.chatLuong", "chatLuong");
+		cr.createAlias("ctVatTu.vatTu", "vatTu");
+		cr.createAlias("vatTu.dvt", "dvt");
+		cr.add(Restrictions.like("vatTu.vtTen", vtTen+"%"));
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) cr.list();
+		
+		session.getTransaction().commit();
+		return list;
+	}
+	public ArrayList<CTVatTu> limit(int first, int limit) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(CTVatTu.class, "ctVatTu");
+		cr.createAlias("ctVatTu.noiSanXuat", "noiSanXuat");
+		cr.createAlias("ctVatTu.chatLuong", "chatLuong");
+		cr.createAlias("ctVatTu.vatTu", "vatTu");
+		cr.createAlias("vatTu.dvt", "dvt");
+		cr.setFirstResult(first);
+		cr.setMaxResults(limit);
+		ArrayList<CTVatTu> list = (ArrayList<CTVatTu>) cr.list();
 		
 		session.getTransaction().commit();
 		return list;

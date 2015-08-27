@@ -170,5 +170,5 @@ public class CTVatTu implements Serializable {
 	public void setChatLuong(ChatLuong chatLuong) {
 		this.chatLuong = chatLuong;
 	}
-
+	
 }

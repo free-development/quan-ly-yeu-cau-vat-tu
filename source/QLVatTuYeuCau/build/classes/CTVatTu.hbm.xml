@@ -24,7 +24,7 @@
 		<many-to-one name="noiSanXuat" class="model.NoiSanXuat" fetch="join">
 			<column name="NSXMA" />
 		</many-to-one>
-		<many-to-one  name="vatTu" class="model.VatTu" fetch="join">
+		<many-to-one  name="vatTu" class="model.VatTu" fetch="join" outer-join="true">
 			<column name="VTMA" />
 		</many-to-one>
 	</class>
