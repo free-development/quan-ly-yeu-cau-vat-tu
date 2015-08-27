@@ -118,7 +118,7 @@
 									<td class="c-column"><%=yeuCau.getCtVatTu().getVatTu().getVtMa() %></td>
 									<td class="d-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
 									<td class="e-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
-									<td class="f-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
+									<td class="f-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt().getDvtTen() %></td>
 									<td class="g-column"><%=congVan.getTrangThai() %></td>
 									<td class="h-column"><%=congVan.getDonVi()%></td>
 									<td class="k-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>

@@ -47,6 +47,7 @@
 		ArrayList<YeuCau> yeuCauList = (ArrayList<YeuCau>) request.getAttribute("yeuCauList");
 		ArrayList<NoiSanXuat> nsxList = (ArrayList<NoiSanXuat>) request.getAttribute("nsxList");
 		ArrayList<ChatLuong> chatLuongList = (ArrayList<ChatLuong>) request.getAttribute("chatLuongList");
+		Long pageNum = (Long) request.getAttribute("page");
 		Integer cvId = (Integer) session.getAttribute("cvId");
 		if (cvId == null)
 			response.sendRedirect(siteMap.congVan);
@@ -127,7 +128,7 @@
 			
 			
 			<form id="add-yeu-cau-form">
-			<div class="form-title">Cập nhật yêu cầu vật tư</div>
+<!-- 			<div class="form-title">Cập nhật yêu cầu vật tư</div> -->
 <!-- 			<fieldset style="width: 70%;margin:0 auto;"> -->
 <!-- 				<legend style="padding-left: 20px; ">Tìm kiếm</legend> -->
 				<div id="yc-table">
@@ -174,8 +175,6 @@
 <!-- 				</div> -->
 <!-- 			</fieldset> -->
 			</form>
-			<br>
-			<br>
 			<form id="danh-sach-vat-tu">
 			<div class="form-title">Danh sách vật tư</div>
 				<div id="view-search">
@@ -197,12 +196,28 @@
 							<td><%=vatTu.getVtTen() %></td>
 							<td style="text-align: center;"><%=nsx.getNsxTen() %></td>
 							<td style="text-align: center;"><%=chatLuong.getClTen() %></td>
-							<td style="text-align: center;"><%=vatTu.getDvt() %></td>
+							<td style="text-align: center;"><%=vatTu.getDvt().getDvtTen() %></td>
 							<td style="text-align: center;"><input class="radio"  type="radio" id="a" name="ctvtId" value="<%=ctVatTu.getCtvtId() %>" onchange="preAddSoLuong();"> </td>
 							
 						</tr>
 					<%}%>
-				</table>	
+				</table>
+				<div class = "paging">	
+				<%
+ 					if(pageNum > 10)
+						out.println("<input type=\"button\" class = \"page\" name = \"page\" value = \"<< next\"");
+				%>
+				<%
+// 				out.println("<script>alert(" + pageNum + ")</script>");
+				for (int i = 0; i <= pageNum; i++) {
+					%>
+						<input type="button" class="page" name = "page" value = "<%=i+1 %>">
+						<%} %>	
+					<%
+ 					if(pageNum > 10)
+						out.println("<input type=\"button\" class = \"page\" name = \"page\" value = \"previous >>\"");
+				%>	
+				</div>		
 				</div>
 				</div>
 			</form>
@@ -235,7 +250,7 @@
 									<td><%=vatTu.getVtTen()%></td>
 									<td><%=nsx.getNsxTen()%></td>
 									<td><%=chatLuong.getClTen()%></td>
-									<td><%=vatTu.getDvt()%></td>
+									<td><%=vatTu.getDvt().getDvtTen()%></td>
 									<td id="soLuong<%=yeuCau.getYcId()%>"><%=yeuCau.getYcSoLuong()%></td>
 									<td id="soLuongCap<%=yeuCau.getYcId()%>"><%=yeuCau.getCapSoLuong()%></td>
 								<%} %>

@@ -216,7 +216,7 @@
 			<form id="update-form">
 				<div class="input-table">
 					<table>
-						<div class="form-title">Cập nhật chất lượng</div>
+						<div class="form-title">Cập nhật chức danh</div>
 						<tr>
 							<td class="input"><label for="MCD">Mã chức danh</label></td>
 							<td><input name="cdMaUpdate" type="text" class="text"

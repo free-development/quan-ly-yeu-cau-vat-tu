@@ -112,7 +112,7 @@
 										<td class="b-column"><%=yeuCau.getCtVatTu().getVatTu().getVtTen() %></td>
 										<td class="c-column"><%=yeuCau.getCtVatTu().getNoiSanXuat().getNsxTen() %></td>
 										<td class="d-column"><%=yeuCau.getCtVatTu().getChatLuong().getClTen() %></td>
-										<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt() %></td>
+										<td class="e-column"><%=yeuCau.getCtVatTu().getVatTu().getDvt().getDvtTen() %></td>
 										<td class="e-column"><%=yeuCau.getYcSoLuong() %></td>
 									</tr>	
 								<%}} %>

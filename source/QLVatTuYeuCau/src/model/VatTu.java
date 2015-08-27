@@ -2,7 +2,14 @@ package model;
 
 import java.io.Serializable;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
 public class VatTu implements Serializable{
 
 	/**
@@ -105,5 +112,4 @@ public class VatTu implements Serializable{
 	public void setDvt(DonViTinh dvt) {
 		this.dvt = dvt;
 	}
-
 }

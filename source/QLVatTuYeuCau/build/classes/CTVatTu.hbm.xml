@@ -24,7 +24,11 @@
 		<many-to-one name="noiSanXuat" class="model.NoiSanXuat" fetch="join">
 			<column name="NSXMA" />
 		</many-to-one>
+<<<<<<< HEAD
 		<many-to-one  name="vatTu" class="model.VatTu" fetch="join">
+=======
+		<many-to-one  name="vatTu" class="model.VatTu" fetch="join" outer-join="true">
+>>>>>>> e0abe376de28b5ffd1b0577a294d9994bc1ffe19
 			<column name="VTMA" />
 		</many-to-one>
 	</class>

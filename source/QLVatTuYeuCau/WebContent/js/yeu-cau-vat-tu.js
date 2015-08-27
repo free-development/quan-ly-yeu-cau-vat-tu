@@ -9,10 +9,10 @@ function showForm(formId1, formId2, check){
     s.opacity = s.MozOpacity = s.KhtmlOpacity = opacity/100;
     s.filter = 'alpha(opacity='+opacity+')';
     for(var i=0; i<f.length; i++) f[i].disabled = check;
-    document.getElementById('danh-sach-vat-tu').style.display="none";
+    //document.getElementById('danh-sach-vat-tu').style.display="none";
     
 };
-
+/*
 function searchCtvt() {
 	var vtMa = $('input:text[name=vtMa]').val();
 	var vtTen = $('input:text[name=vtTen]').val();
@@ -40,6 +40,7 @@ function searchCtvt() {
 	  	}
 	});
 };
+*/
 function preAddSoLuong(){
 //	$(document).ready(function() {
 //		$('#view-search input:checkbox[name=ctvtId]').clicked(function() {
@@ -58,7 +59,7 @@ function preAddSoLuong(){
 			  		$('#vtTenAdd').html(ctvt.vatTu.vtTen);
 			  		$('#nsxTenAdd').html(ctvt.noiSanXuat.nsxTen);
 			  		$('#clTenAdd').html(ctvt.chatLuong.clTen);
-			  		$('#dvtAdd').html(ctvt.vatTu.dvt);
+			  		$('#dvtAdd').html(ctvt.vatTu.dvt.dvtTen);
 			  	}
 			});
 				
@@ -89,7 +90,7 @@ function addSoLuong(){
 					+ '<td>' + ctVatTu.vatTu.vtTen + '</td>'
 					+ '<td>' + ctVatTu.noiSanXuat.nsxTen + '</td>'
 					+ '<td>' + ctVatTu.chatLuong.clTen + '</td>'
-					+ '<td>' + ctVatTu.vatTu.dvt + '</td>'
+					+ '<td>' + ctVatTu.vatTu.dvt.dvtTen + '</td>'
 					+ '<td>' + yeuCau.ycSoLuong + '</td>';
 					
 	  			var row = '<tr id=\"' + yeuCau.ycId +'\"> ' + cells + + '</tr>';
@@ -115,7 +116,7 @@ function confirmDelete() {
 		alert('Bạn phải chọn 1 yêu cầu để sửa đổi!');
 	else if (ycList.length > 1)
 		alert('Bạn phải chọn 1 yêu cầu để sửa đổi!');
-	else if(confirm('Ban co chac xoa yeu cau?'));
+	else if(confirm('Ban co chac xoa yeu cau?'))
 		deleteYc(str);
 };
 function deleteYc(ycList) {	
@@ -157,11 +158,11 @@ function preUpdateYc() {
 		  		$('#vtTenUpdate').html(ctVatTu.vatTu.vtTen);
 		  		$('#nsxTenUpdate').html(ctVatTu.noiSanXuat.nsxTen);
 		  		$('#clTenUpdate').html(ctVatTu.chatLuong.clTen);
-		  		$('#dvtUpdate').html(ctVatTu.vatTu.dvt);	
+		  		$('#dvtUpdate').html(ctVatTu.vatTu.dvt.dvtTen);	
 			  	$('#update-so-luong-form input[name=soLuongUpdate]').val(yeuCau.ycSoLuong);
 		    } 
 		});  
-		showForm('search-form','update-so-luong-form',true);
+		showForm('add-yeu-cau-form','update-so-luong-form',true);
 		$('#danh-sach-vat-tu').hide();
 	}
 }
@@ -186,7 +187,7 @@ function updateYc() {
 	  			$('input[name=soLuongUpdate]').val('0');	
 				$('#view-table-yc table tr #soLuong' + ycId).html(soLuong);
 	  		}
-	  		showForm('search-form','update-so-luong-form',false);
+	  		showForm('add-yeu-cau-form','update-so-luong-form',false);
 	  		$('#danh-sach-vat-tu').show();
   		}
 	});
@@ -216,11 +217,11 @@ function preCapVatTu() {
 		  		$('#vtTenCap').html(ctVatTu.vatTu.vtTen);
 		  		$('#nsxTenCap').html(ctVatTu.noiSanXuat.nsxTen);
 		  		$('#clTenCap').html(ctVatTu.chatLuong.clTen);
-		  		$('#dvtCap').html(ctVatTu.vatTu.dvt);	
+		  		$('#dvtCap').html(ctVatTu.vatTu.dvt.dvtTen);	
 			  	$('#Cap-so-luong-form input[name=soLuongCap]').val(yeuCau.capSoLuong);
 		    } 
 		});  
-		showForm('search-form','cap-so-luong-form',true);
+		showForm('add-yeu-cau-form','cap-so-luong-form',true);
 		$('#danh-sach-vat-tu').hide();
 	}
 }
@@ -243,7 +244,7 @@ function capVatTu() {
 	  			$('input[name=soLuongCap]').val('0');	
 				$('#view-table-yc table tr #soLuongCap' + ycVatTu.ycId).html(ycVatTu.capSoLuong);
 	  		}
-	  		showForm('search-form','cap-so-luong-form',false);
+	  		showForm('add-yeu-cau-form','cap-so-luong-form',false);
 	  		$('#danh-sach-vat-tu').show();
   		}
 	});
@@ -264,28 +265,76 @@ function searchCtVt(){
 		  	contentType: 'application/json',
 		    mimeType: 'application/json',
 	  	
-		  	success: function(ctvtList){
-//		  		var size = objectList[1];
-//		  		var ctvtList = objectList[0];
+		  	success: function(objectList){
+		  		
+		  		var size = objectList[1];
+		  		var ctvtList = objectList[0];
 		  		var length = ctvtList.length;
-		  		if(size > 0){
-		  			$('#view-search table .rowContent').remove();
-					for(i = 0;i < length; i++ ) {
-						ctVatTu = ctvtList[i];
-						alert(ctVatTu.dinhMuc);
-						//alert(vtList[i].vtMa);
-				  		/*
-				  				$('#view-table-vat-tu table tr:first').after('<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"vtMa\" value=\"' +vattu.vtMa 
-								+ '\"</td><td class=\"col\">'+ vattu.vtMa +'</td><td class=\"col\">' + vattu.vtTen
-								+'</td><td class=\"col\" style=\"text-align: center;\">' + vattu.dvt
-								+'</td><td style=\"text-align: center;\"><button type=\"button\" class=\"button-xem\" value=\"Xem\" onclick=\"showCTVatTu(\'chitiet\',true,\''
-								+vattu.vtMa+'\');\">Xem</button></td></tr>');
-								*/
-			  		}
+		  		if(length > 0){
+		  			
+		  			$('#view-table-ds table .rowContent').remove();
+					for(i = 0; i < length; i++ ) {
+						var ctVatTu = ctvtList[i];
+//						alert(ctVatTu.vatTu.vtTen);
+						var style = '';
+						if (i % 2 == 1)
+							style = 'style=\"background : #CCFFFF;\"';
+						var cells =   '<td>' + ctVatTu.vatTu.vtMa + '</td>'
+									+ '<td>' + ctVatTu.vatTu.vtTen + '</td>'
+									+ '<td>' + ctVatTu.noiSanXuat.nsxTen + '</td>'
+									+ '<td>' + ctVatTu.chatLuong.clTen + '</td>'
+									+ '<td>' + ctVatTu.vatTu.dvt.dvtTen + '</td>'
+									+ '<td><input class=\"radio\"  type=\"radio\" id="a" name=\"ctvtId\" value=\"' + ctVatTu.ctvtId + '\" onchange=\"preAddSoLuong();\"> </td>';
+						var row = '<tr ' +style + ' class=\"rowContent\">' + cells + '</tr>';
+						$('#view-table-ds table tr:first').after(row);
+					}
+						var strPage = '';
+						for (i = 0; i <= size; i++) {
+							strPage += '<input type=\"button\" name="\page\" class=\"page\" value=\"' + (i + 1) + '\">';
+							if (i == 10)
+								break;
+						}
+						if (size > 10)
+							strPage = '<input type=\"button\" name="\page\" class=\"page\" value=\"<< privious\"> ' +strPage + ' <input type=\"button\" name="\page\" class=\"page\" value=\">> next\">'
+						$('.paging').html(strPage);
 		  		} else {
 	  				alert("Không tìm thấy vật tư!");
 	  			}
+	  			
 		  	}
+		  	
+	});
+};
+function loadPageCtvtYc(pageNumber) {
+	$.ajax({
+		url: "/QLVatTuYeuCau/loadPageCtvtYc.html",	
+	  	type: "GET",
+	  	dateType: "JSON",
+	  	data: { "pageNumber": pageNumber},
+	  	contentType: 'application/json',
+	    mimeType: 'application/json',
+	  	
+	  	success: function(objectList) {
+	  		var size = objectList[1];
+	  		var ctvtList = objectList[0];
+	  		var length = ctvtList.length;
+	  			$('#view-table-ds table .rowContent').remove();
+				for(i = 0; i < length; i++ ) {
+					var ctVatTu = ctvtList[i];
+//					alert(ctVatTu.vatTu.vtTen);
+					var style = '';
+					if (i % 2 == 0)
+						style = 'style=\"background : #CCFFFF;\"';
+					var cells =   '<td>' + ctVatTu.vatTu.vtMa + '</td>'
+								+ '<td>' + ctVatTu.vatTu.vtTen + '</td>'
+								+ '<td>' + ctVatTu.noiSanXuat.nsxTen + '</td>'
+								+ '<td>' + ctVatTu.chatLuong.clTen + '</td>'
+								+ '<td>' + ctVatTu.vatTu.dvt.dvtTen + '</td>'
+								+ '<td><input class=\"radio\"  type=\"radio\" id="a" name=\"ctvtId\" value=\"' + ctVatTu.ctvtId + '\" onchange=\"preAddSoLuong();\"> </td>';
+					var row = '<tr ' +style + 'class = \"rowContent\">' + cells + '</tr>';
+					$('#view-table-ds table tr:first').after(row);
+		  		}
+	  	}
 	});
 }
 /*
@@ -360,5 +409,10 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$('#yc-table #search').click(function(){
 		searchCtVt();
+	});
+});
+$(document).ready(function(){
+	$('.page').click(function(){
+		loadPageCtvtYc($(this).val());
 	});
 });
