@@ -183,5 +183,9 @@ public class CongVanDAO {
 	public void close() {
 		session.close();
 	}
+	public void disconnect() {
+		if (session.isConnected())
+		session.disconnect();
+	}
 	
 }

@@ -90,13 +90,24 @@ $(document).ready(function() {
 			    mimeType: 'application/json',
 			  	success: function(objectList) {
 //			  		alert('OK');
-			  		content = objectList[0];
-			  		msnv = objectList[1];
-			  		if (content == "delete") {
+			  		var vaiTroList = objectList[0];
+			  		var msnv = objectList[1];
+			  		
+			  		var length = vaiTroList.length;
+			  		if (vaiTroList.length==0) {
 			  			$('#view-chia-se table tr').has('input[name="msnv"]:checked').remove();
 //			  			alert('Ban da d')
 			  		}
 			  		else {
+			  			
+			  			var content = '';
+			  			alert('#' + msnv + ' input:checkbox[name=vaiTro]');
+			  			$('#' + msnv +' input:checkbox').prop('checked',false);
+				  		for (var i = 0; i < vaiTroList.length; i++) {
+				  			content += vaiTroList[i].vtTen + '<br>';
+//				  			$('#view-table input[name=' +   + ']')
+				  			$('#view-table input:checkbox[name=vaiTro][value='+ (msnv + '#' + vaiTroList[i].vtId ) + ']').prop('checked',true);
+				  		}
 			  			$('#vaiTro' + msnv).html(content);
 			  		}
 			  	}

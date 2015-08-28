@@ -9,7 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;import org.hibernate.type.descriptor.sql.VarbinaryTypeDescriptor;
+import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
+
+import org.hibernate.type.descriptor.sql.VarbinaryTypeDescriptor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,11 +40,13 @@ public class ChiaSeCvController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 //	HttpSession session = null;
 	HttpSession session;
+	HttpServletResponse res = null;
    @RequestMapping("/cscvManage")
 	protected ModelAndView cscvManage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		if ("chiaSeCv".equalsIgnoreCase(action)) {
 			session = request.getSession(false);
+			res = response;
 			String id = request.getParameter("congVan");	
 			int cvId = Integer.parseInt(id);
 			CongVanDAO congVanDAO =  new CongVanDAO(); 
@@ -136,7 +141,7 @@ public class ChiaSeCvController extends HttpServlet {
    
    @RequestMapping(value="/updateYeuCau", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String updateYeuCau(@RequestParam("vaiTroList") String vaiTroList) {
+	 public @ResponseBody String updateYeuCau(@RequestParam("vaiTroList") String vaiTroList) throws IOException {
 	   NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
 	   VTCongVanDAO vtCongVanDAO = new VTCongVanDAO();
 	   VaiTroDAO vaiTroDAO = new VaiTroDAO();
@@ -145,21 +150,31 @@ public class ChiaSeCvController extends HttpServlet {
 	   String msnvUpdate = (String) session.getAttribute("msnvUpdate");
 	   int cvId = congVan.getCvId();
 	   vtCongVanDAO.delete(cvId, msnvUpdate);
-	   if (vaiTroList.length() == 0)
-		   return JSonUtil.toJson("delete");
+	   System.out.println(msnvUpdate);
+	   if (msnvUpdate == null || congVan == null)
+	   res.sendRedirect(siteMap.cvManage + "?action=manageCv");
+//		   return JSonUtil.toJson("delete");
 	   String[] vtList = vaiTroList.split("\\, ");
-	   StringBuilder str = new StringBuilder("");
-	   for (String s : vtList) {
-		   int vtId = Integer.parseInt(s);
-		   vtCongVanDAO.addVTCongVan(new VTCongVan(cvId, vtId, msnvUpdate));
-		   String vt = vtCongVanDAO.getVaiTro(vtId);
-		   str.append(vt + "<br>");
-	   }
-//	   str.delete(str.length()-4, 4);
+//	   StringBuilder str = new StringBuilder("");
 	   ArrayList<Object> objectList = new ArrayList<Object>();
-	   objectList.add(str.toString());
+	   ArrayList<VaiTro> list = new ArrayList<VaiTro>();
+	   if (vaiTroList.length() != 0) {
+		   for (String s : vtList) {
+			   int vtId = Integer.parseInt(s);
+			   vtCongVanDAO.addVTCongVan(new VTCongVan(cvId, vtId, msnvUpdate));
+			   //String vt = vtCongVanDAO.getVaiTro(vtId);
+			   //str.append(vt + "<br>");
+			   VaiTro vt = vaiTroDAO.getVaiTro(vtId);
+//			   JOptionPane.showMessageDialog(null, vt.getVtTen());
+			   list.add(vt);
+		   }
+	//	   str.delete(str.length()-4, 4);
+	   }
+	   objectList.add(list);
 	   objectList.add(msnvUpdate);
-	   
+//	   vtCongVanDAO.close();
+	   nguoiDungDAO.close();
+	   vaiTroDAO.close();
 		return JSonUtil.toJson(objectList);
 	}
 }

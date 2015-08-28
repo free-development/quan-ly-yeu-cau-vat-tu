@@ -142,7 +142,7 @@
 								count ++;
 								String msnv = nguoiDung.getMsnv();
 							%>
-							<tr <% if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%>>
+							<tr <% if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%> id="<%=nguoiDung.getMsnv() %>">
 								<td class="tbody-nguoidung"><%=nguoiDung.getMsnv() %></td>
 								<td class="tbody-nguoidung"><%=nguoiDung.getHoTen() %></td>
 								<% for(VaiTro vaiTro : vaiTroList) {

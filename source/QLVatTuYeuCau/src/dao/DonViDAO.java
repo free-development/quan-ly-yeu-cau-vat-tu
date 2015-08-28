@@ -82,6 +82,10 @@ public class DonViDAO {
 	public void close() {
 		session.close();
 	}
+	public void disconnect() {
+		if (session.isConnected())
+		session.disconnect();
+	}
 	public static void main(String[] args) {
 		new DonViDAO().deleteDonVi("SX4");
 	}

@@ -26,7 +26,7 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/cong-van.js"></script>
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
 <body>
@@ -321,7 +321,7 @@
 
 				<!--    		</form>  -->
 				<!--                add-form-->
-				<form id="add-form" name="add-form" action="/QLVatTuYeuCau/addCongVan.html" enctype="multipart/form-data" method="post">
+				<form id="add-form" name="add-form" action="<%=siteMap.addCv %>" enctype="multipart/form-data" method="post">
 
 					<div class="form-title">Thêm công văn</div>
 					<div class="input-table">
@@ -395,7 +395,7 @@
 
 				</form>
 				<!--            update-form-->
-				<form id="update-form">
+				<form id="update-form" method="post" action="<%=siteMap.updateCv %>" enctype="multipart/form-data">
 					<div class="input-table">
 						<div class="input-table">
 						<table>
