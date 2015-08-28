@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import model.NguoiDung;
+import model.VTCongVan;
+import model.VaiTro;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,10 +18,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-import model.NguoiDung;
-import model.VTCongVan;
-import model.VaiTro;
 import util.HibernateUtil;
+
+
 
 /**
  * @author quoioln

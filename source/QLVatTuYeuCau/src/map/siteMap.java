@@ -89,7 +89,7 @@ public class siteMap {
 	//map home
 		
 	//map readExel
-	public static final String readExcel = home + "ReadExcelCtvt.html";
+	public static final String readExcel = home + "readExcel.html";
 	//xuat chi tiet vat tu
 	public static final String  xuatCTVatTu = "xuat-chi-tiet-vat-tu";
 }
