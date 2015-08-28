@@ -74,7 +74,7 @@ public class VattuController extends HttpServlet {
 //		}
 		if("manageVattu".equalsIgnoreCase(action)) {
 			long size = vatTuDAO.size();
-			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.limit(page - 1, 10);
+			ArrayList<VatTu> vatTuList =  (ArrayList<VatTu>) vatTuDAO.limit(page-1, 10);
 			request.setAttribute("size", size);
 			ArrayList<NoiSanXuat> noiSanXuatList =  (ArrayList<NoiSanXuat>) noiSanXuatDAO.getAllNoiSanXuat();
 			ArrayList<ChatLuong> chatLuongList =  (ArrayList<ChatLuong>) chatLuongDAO.getAllChatLuong();
