@@ -64,7 +64,7 @@ public class DvtController extends HttpServlet {
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String preEditdvt(@RequestParam("dvtId") String dvt) {
 			System.out.println("****" + dvt + "****");
-			JOptionPane.showMessageDialog(null, dvt);
+			//JOptionPane.showMessageDialog(null, dvt);
 			dvtOld = dvt;
 			//int dvtId = Integer.parseInt(dvt);
 //			DonViTinhDAO donViTinhDAO = new DonViTinhDAO();
@@ -93,9 +93,9 @@ public class DvtController extends HttpServlet {
 	@RequestMapping(value="/updatedvt", method=RequestMethod.GET, 
 		produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String updatedvt(@RequestParam("dvtTenUpdate") String dvtTenUpdate) {
-		JOptionPane.showMessageDialog(null, dvtOld);
+		//JOptionPane.showMessageDialog(null, dvtOld);
 		DonViTinh dvt = new DonViTinhDAO().getDonViTinhByTen(dvtOld);
-		JOptionPane.showMessageDialog(null, dvt.getDvtTen() + dvt.getDvtId());
+		//JOptionPane.showMessageDialog(null, dvt.getDvtTen() + dvt.getDvtId());
 		dvt.setDvtTen(dvtTenUpdate);
 		dvt.setDaXoa(0);
 		new DonViTinhDAO().updateDonViTinh(dvt);
