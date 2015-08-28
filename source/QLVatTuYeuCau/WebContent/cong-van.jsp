@@ -213,7 +213,7 @@
 					</form>	
                      <form name="main-form" method="get" action="<%=siteMap.ycvtManage%>">
                      <div class="scroll_content">
-							<%
+						<%
                      	int count = 0;
                      	for(CongVan congVan : congVanList) {
                      		count ++;
