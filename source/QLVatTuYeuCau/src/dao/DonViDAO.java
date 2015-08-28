@@ -79,6 +79,9 @@ public class DonViDAO {
 		query.executeUpdate();
 		session.getTransaction().commit();
 	}
+	public void close() {
+		session.close();
+	}
 	public static void main(String[] args) {
 		new DonViDAO().deleteDonVi("SX4");
 	}

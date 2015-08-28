@@ -29,6 +29,9 @@ public class VatTuDAO {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
+	public VatTuDAO(Session session) {
+		this.session = session;
+	}
 	public VatTu getVatTu(final String vtMa) {
 		session.beginTransaction();
 		VatTu vatTu = (VatTu) session.get(VatTu.class, vtMa);
@@ -108,7 +111,8 @@ public ArrayList<String> startWith(String i) {
 	}
 
 public void close() {
-	HibernateUtil.shutdown();
+//	HibernateUtil.shutdown();
+	session.close();
 }
 
 

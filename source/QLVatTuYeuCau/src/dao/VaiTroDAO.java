@@ -94,7 +94,9 @@ public class VaiTroDAO {
 		session.getTransaction().commit();
 		return l;
 	}
-	
+	public void close() {
+		session.close();
+	}
 	public static void main(String[] args) {
 		new VaiTroDAO().deleteVaiTro("2");
 	}

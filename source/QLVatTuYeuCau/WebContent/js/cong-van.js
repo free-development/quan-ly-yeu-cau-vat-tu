@@ -11,18 +11,76 @@ function showForm(formId1, formId2, check){
     for(var i=0; i<f.length; i++) f[i].disabled = check;
 }
 function checkCongVan() {
-	var cvId = $('input:checkbox[name=cvId]:checked').val();
-	if(cvId == '')
+	var congVanList = [];
+	$.each($("input[name='cvId']:checked"), function(){            
+		congVanList.push($(this).val());
+    });
+	if (congVanList.length == 1)
+		return true;
+	if (congVanList.length == 0)
+		alert('Bạn phải chọn 1 công văn để cập nhật yêu cầu!!');
+	else if (congVanList.length > 1)
+		alert('Bạn chỉ được chọn 1 công văn để  cập nhật yêu cầu!!');
 		return false;
 }
+
 function confirmDelete(){
 	var cvId = $('input:checkbox[name=cvId]:checked').val();
+	var congVanList = [];
+	$.each($("input[name='cvId']:checked"), function(){            
+		congVanList.push($(this).val());
+    });
+	var str = congVanList.join(', ');
 //	alert('1');
 //	confirm('Bạn có chắc xóa' + cvId);
-	if (confirm('Bạn có chắc xóa cong van co id = ' + cvId))
-		deleteCv(cvId);
+	if (confirm('Bạn có chắc xóa cong van?'))
+		deleteCv(str);
 }
+function checkUpdate() {
+	var congVanList = [];
+	$.each($("input[name='cvId']:checked"), function(){            
+		congVanList.push($(this).val());
+    });
 	
+	if (congVanList.length == 0)
+		alert('Bạn phải chọn 1 công văn để sửa đổi!!');
+	else if (congVanList.length > 1)
+		alert('Bạn chỉ được chọn 1 công văn để  sửa đổi!!');
+	else if (congVanList.length == 1)
+		preUpdateCv(congVanList[0]);
+}
+function preUpdateCv(congVan) {
+	$.ajax({
+		url: "/QLVatTuYeuCau/preUpdateCv.html",	
+	  	type: "GET",
+	  	dateType: "JSON",
+	  	data: { "congVan": congVan},
+	  	contentType: 'application/json',
+	    mimeType: 'application/json',
+	  	success: function(congVan) {
+//			$('table').has('input[name="cvId"]:checked').remove();
+//			alert("Cong van da bi xoa");
+	  		alert('OK');
+	  		$('#update-form input:text[name=soDen]').val(congVan.soDen);
+	  		$('#update-form input:text[name=cvSo]').val(congVan.cvSo);
+	  		$('#update-form input:text[name=ngayGoiUpdate]').val(congVan.cvNgayGoi);
+	  		$('#update-form input:text[name=ngayNhanUpdate]').val(congVan.cvNgayNhan);
+	  		$('#update-form select[name=donViUpdate] option[value=' + congVan.dvMa+']').prop('selected',true);
+//	  		$('#dvtUp option[value='+vt.dvt.dvtTen+']').prop('selected',true);
+	  		$('#update-form select[name=mucDich] option[value=' + congVan.mdMa+']').prop('selected',true);
+//	  		donViUpdate
+//	  		donViUpdate
+	  		$('#update-form textarea[name=trichYeuUpdate]').val(congVan.trichYeu);
+	  		$('#update-form textarea[name=butPheUpdate]').val(congVan.butPhe);
+//	  		trichYeuUpdate
+//	  		butPheUpdate
+//	  		file
+//	  		$('#update-form input:radio[name=ttMaUpdate]').prop('selected',true);
+//	  		ttMaUpdate
+	  		showForm('main-form','update-form', true);
+	    }
+	});  
+}
 function deleteCv(cvId) {
 	$.ajax({
 		url: "/QLVatTuYeuCau/deleteCv.html",	
@@ -32,8 +90,8 @@ function deleteCv(cvId) {
 	  	contentType: 'application/json',
 	    mimeType: 'application/json',
 	  	success: function() {
-		  	alert("Cong van co ma " + cvId + "da bi xoa");
-					$('table').has('input[name="cvId"]:checked').remove();
+			$('table').has('input[name="cvId"]:checked').remove();
+			alert("Cong van da bi xoa");
 	    } 
 	});  
 }
@@ -41,15 +99,16 @@ function loadDataCv() {
 	showForm('main-form', 'add-form', true);
 }
 function chiaSeCv() {
-	var cvId = $('input:checkbox[name=cvId]:checked').val();
-	$.ajax({
-		url: "/QLVatTuYeuCau/chiaSeCv.html",	
-	  	type: "GET",
-	  	dateType: "JSON",
-	  	data: { "cvId": cvId},
-	  	contentType: 'application/json',
-	    mimeType: 'application/json'
-	});  
+//	var cvId = $('input:checkbox[name=cvId]:checked').val();
+	
+		$.ajax({
+			url: "/QLVatTuYeuCau/chiaSeCv.html",	
+		  	type: "GET",
+		  	dateType: "JSON",
+		  	data: { "cvId": cvId},
+		  	contentType: 'application/json',
+		    mimeType: 'application/json'
+		});  
 }
 
 $(document).ready(function() {

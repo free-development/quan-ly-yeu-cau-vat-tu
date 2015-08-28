@@ -19,46 +19,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 		type="text/css" rel="stylesheet">
-<script type="text/javascript" src="js/chia-se-cong-van.js"></script>
-<script type="text/javascript" src="js/check.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/check.js"></script>
+<script type="text/javascript" src="js/chia-se-cong-van.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 <script type="text/javascript">
-$(document).ready(function() {
-	$('#update').click(function() {
-		var msnv = $('#view-table-chia-se input:checkbox[name=msnv]:checked').val();
-		alert(msnv);
-		var msnvList = [];
-		$.each($('#view-table-chia-se input:checkbox[name=msnv]:checked'), function(){            
-			msnvList.push($(this).val());
-		});
-		var str = '';
-		for (i = 0; i < msnvList.length; i++) {
-			str += msnvList[i];
-		}
-		if (msnvList.length == 0)
-			alert('Bạn phải chọn 1 nhân viên để thay đổi!!');
-		else if (msnvList.length > 1)
-			alert('Bạn chỉ được chọn 1 nhân viên để thay đổi!!');
-		else {
-			$.ajax({
-				url: "/QLVatTuYeuCau/updateYeuCau.html",	
-			  	type: "GET",
-			  	dateType: "JSON",
-			  	data: { "msnvList": str},
-			  	contentType: 'application/json',
-			    mimeType: 'application/json',
-			  	success: function(nsx) {
-// 				  	$('input:text[name=nsxMaUpdate]').val(nsx.nsxMa);
-// 				  	$('input:text[name=nsxTenUpdate]').val(nsx.nsxTen);
-// 			  		showForm(formId, check);	
-					alert('OK');
-			  	}
-			});
-		}	
-	});   
-});  
+
 
 </script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -214,6 +181,7 @@ $(document).ready(function() {
 				%>
 				<div id="title-content">Công việc đã chia sẽ</div>
 				<div id="view-table-chia-se">
+				<form>
 					<table >
 						<tr bgcolor= "#199e5e">
 						<th style="text-align: center;"><input type = "checkbox" class="checkAll" name=""></th>
@@ -227,11 +195,11 @@ $(document).ready(function() {
 								String hoTen = nguoiDung.getHoTen();
 								i++;
 						%>
-						<tr  <% if (i % 2 ==0) out.println("style=\"background : #CCFFFF;\"");%>>
+						<tr  <% if (i % 2 ==0) out.println("style=\"background : #CCFFFF;\"");%> >
 							<td style="text-align: center;"><input type = "checkbox" class="checkbox" name = "msnv" value="<%=msnv%>"></td>
 							<td><%=msnv %></td>
 							<td><%=hoTen %></td>
-							<td>
+							<td id="vaiTro<%=msnv%>">
 								<%
 									StringBuilder str = new StringBuilder("");
 									for(Integer vtId : vtHash.keySet()) {
@@ -256,12 +224,21 @@ $(document).ready(function() {
 							<i class="fa fa-trash-o"></i>&nbsp;&nbsp;xóa
 						</button>
 					</div>
+					</form>
 				</div>
 				<div style="color:red; text-align: center;s">
 				<%} else out.println("Chưa chia sẻ công văn");%>
 				</div>
 <!-- 				</div> -->
 				</form>
+			</div>
+			<div id="update-form">
+				<table>
+				
+				</table>	
+				<div class="group-button" id="updateButton">
+				<button type="button" class="button" id="updateCs">Luu lai</button> 
+				</div>		
 			</div>
 		</div>
 	</div>

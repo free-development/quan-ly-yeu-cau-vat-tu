@@ -155,7 +155,11 @@ public class ReadExcelCtvt {
 					ctvt.setSoLuongTon(ctvtTemp.getSoLuongTon());
 					ctvtDAO.updateCTVatTu(ctvt);
 				}
-
+				vtDAO.close();
+				nsxDAO.close();
+				clDAO.close();
+				ctvtDAO.close();
+				dvtDAO.close();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -288,7 +292,11 @@ public class ReadExcelCtvt {
 					ctvt.setSoLuongTon(ctvtTemp.getSoLuongTon());
 					ctvtDAO.updateCTVatTu(ctvt);
 				}
-				
+				vtDAO.close();
+				nsxDAO.close();
+				clDAO.close();
+				ctvtDAO.close();
+				dvtDAO.close();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -36,12 +36,12 @@ import util.JSonUtil;
 public class ChiaSeCvController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 //	HttpSession session = null;
-       
+	HttpSession session;
    @RequestMapping("/cscvManage")
 	protected ModelAndView cscvManage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		if ("chiaSeCv".equalsIgnoreCase(action)) {
-			HttpSession session = request.getSession(false);
+			session = request.getSession(false);
 			String id = request.getParameter("congVan");	
 			int cvId = Integer.parseInt(id);
 			CongVanDAO congVanDAO =  new CongVanDAO(); 
@@ -79,7 +79,7 @@ public class ChiaSeCvController extends HttpServlet {
 		String action = request.getParameter("action");
 		if ("save".equalsIgnoreCase(action)) {
 //			session = request.getSession(false);
-			HttpSession session = request.getSession(false);
+			session = request.getSession(false);
 			CongVan congVan = (CongVan) session.getAttribute("congVan");
 			String[] vaiTro = request.getParameterValues("vaiTro");
 			System.out.println(vaiTro.length);
@@ -89,7 +89,7 @@ public class ChiaSeCvController extends HttpServlet {
 			
 			//String[] msnv = new String[vaiTro.length];
 			int cvId = congVan.getCvId();			
-			
+			vtCongVanDAO.deleteByCvId(cvId);
 			for (String vtMa : vaiTro) {
 				String[] str = vtMa.split("\\#");
 				NguoiDung nguoiDung = nguoiDungDAO.getNguoiDung(str[0]);
@@ -115,11 +115,51 @@ public class ChiaSeCvController extends HttpServlet {
 		}
 		return new ModelAndView("login");
 	}
-   @RequestMapping(value="/updateYeuCau", method=RequestMethod.GET, 
+   @RequestMapping(value="/preUpdateYeuCau", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody String updateYeuCau(@RequestParam("msnvList") String msnvList) {
-		System.out.println(msnvList);
-			return JSonUtil.toJson(msnvList);
+	 public @ResponseBody String preUpdateYeuCau(@RequestParam("msnv") String msnv) {
+	   NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
+	   VTCongVanDAO vtCongVanDAO = new VTCongVanDAO();
+	   VaiTroDAO vaiTroDAO = new VaiTroDAO();
+
+	   CongVan congVan = (CongVan) session.getAttribute("congVan");
+	   session.setAttribute("msnvUpdate", msnv);
+	   //NguoiDung nguoiDung = nguoiDungDAO.getNguoiDung(msnv);
+	   ArrayList<VaiTro> vaiTroList = (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
+	   ArrayList<VTCongVan> vtCongVanList = vtCongVanDAO.getVTCongVan(congVan.getCvId(), msnv);
+	   ArrayList<Object> objectList = new ArrayList<Object>(); 
+	   objectList.add(msnv);
+	   objectList.add(vaiTroList);
+	   objectList.add(vtCongVanList);
+			return JSonUtil.toJson(objectList);
 	}
    
+   @RequestMapping(value="/updateYeuCau", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String updateYeuCau(@RequestParam("vaiTroList") String vaiTroList) {
+	   NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
+	   VTCongVanDAO vtCongVanDAO = new VTCongVanDAO();
+	   VaiTroDAO vaiTroDAO = new VaiTroDAO();
+	   
+	   CongVan congVan = (CongVan) session.getAttribute("congVan");
+	   String msnvUpdate = (String) session.getAttribute("msnvUpdate");
+	   int cvId = congVan.getCvId();
+	   vtCongVanDAO.delete(cvId, msnvUpdate);
+	   if (vaiTroList.length() == 0)
+		   return JSonUtil.toJson("delete");
+	   String[] vtList = vaiTroList.split("\\, ");
+	   StringBuilder str = new StringBuilder("");
+	   for (String s : vtList) {
+		   int vtId = Integer.parseInt(s);
+		   vtCongVanDAO.addVTCongVan(new VTCongVan(cvId, vtId, msnvUpdate));
+		   String vt = vtCongVanDAO.getVaiTro(vtId);
+		   str.append(vt + "<br>");
+	   }
+//	   str.delete(str.length()-4, 4);
+	   ArrayList<Object> objectList = new ArrayList<Object>();
+	   objectList.add(str.toString());
+	   objectList.add(msnvUpdate);
+	   
+		return JSonUtil.toJson(objectList);
+	}
 }

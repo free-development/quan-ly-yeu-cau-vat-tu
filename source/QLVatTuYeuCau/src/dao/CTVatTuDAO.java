@@ -35,6 +35,9 @@ public class CTVatTuDAO {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
+	public CTVatTuDAO(Session session) {
+		this.session = session;
+	}
 	public CTVatTu getCTVatTu(final String ctVatTu) {
 		session.beginTransaction();
 		
@@ -182,14 +185,10 @@ public class CTVatTuDAO {
 		session.getTransaction().commit();
 		return list;
 	}
-<<<<<<< HEAD
-public void close() {
-	HibernateUtil.shutdown();
-}
-=======
-	
+
 	public void close() {
-		HibernateUtil.shutdown();
+//		HibernateUtil.shutdown();
+		session.close();
 	}
 	public ArrayList<CTVatTu> searchVtTen(String i) {
 		session.beginTransaction();
@@ -218,7 +217,7 @@ public void close() {
 		session.getTransaction().commit();
 		return list;
 	}
->>>>>>> e0abe376de28b5ffd1b0577a294d9994bc1ffe19
+	 
 	public void begin(){
 		session.beginTransaction();
 	}

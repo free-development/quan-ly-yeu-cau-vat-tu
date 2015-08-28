@@ -169,5 +169,19 @@ public class CongVanDAO {
 		session.getTransaction().commit();
 		return congVanList;
 	}
+	public CongVan getByCvSo(String cvSo){
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(CongVan.class);
+		cr.add(Restrictions.eq("cvSo", cvSo));
+		ArrayList<CongVan> congVanList = (ArrayList<CongVan>) cr.list();
+		CongVan congVan = null;
+		if (congVanList.size() > 0)
+			congVan = congVanList.get(0);
+		session.getTransaction().commit();
+		return congVan;
+	}
+	public void close() {
+		session.close();
+	}
 	
 }

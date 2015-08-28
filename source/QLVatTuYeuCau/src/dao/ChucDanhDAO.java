@@ -80,6 +80,9 @@ public class ChucDanhDAO {
 		query.executeUpdate();
 		session.getTransaction().commit();
 	}
+	public void close() {
+		session.close();
+	}
 	public static void main(String[] args) {
 		new ChucDanhDAO().deleteChucDanh("cd1");
 	}
