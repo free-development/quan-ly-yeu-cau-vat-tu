@@ -159,8 +159,6 @@
 .column-color {
 	color:#3399CC;
 	font-weight: bold;
-	width: 200px;
-	max-width: 200px;
 }
 
 .column-ngden {
@@ -196,13 +194,11 @@
 }
 
 .column-check{
-	width: 30px;
-	padding-left: 10px;
-	padding-right: 10px;
-	/*text-align: right;
+	width: 20px;
+	text-align: right;
 	margin-right: 20px;
 	margin-left: 20px;
-	padding: 30px;*/
+	padding: 30px;
 }
 
 .form-title {

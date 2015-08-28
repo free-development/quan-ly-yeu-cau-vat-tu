@@ -109,7 +109,7 @@
 		</div>
 		<div id="main-content">
 			<div id="title-content">Chia sẻ công văn</div>
-				<form id="main-form" action="<%=siteMap.updateChiaSeCv%>" method="get">
+				<form id="main-form" action="<%=siteMap.updateChiaSeCv%>" method="post">
 					<div id="input-table" style="width: 75%; margin-left: 25px;">
 						<table>
 							<tr>
@@ -161,8 +161,9 @@
 						</table>
 					</div>
 					<div class="group-button">
+					<input type="hidden" value="no" name="change" id="change">
 					<input type="hidden" value="save" name="action">
-						<button class="btn">
+						<button class="btn" id="chiaSe">
 							<i class="fa fa-floppy-o"></i>&nbsp;Lưu lại
 						</button>
 						<button type="reset" class="btn">
@@ -237,7 +238,7 @@
 				
 				</table>	
 				<div class="group-button" id="updateButton">
-				<button type="button" class="button" id="updateCs">Lưu lại</button> 
+				<button type="button" class="button" id="updateCs">Luu lai</button> 
 				</div>		
 			</div>
 		</div>

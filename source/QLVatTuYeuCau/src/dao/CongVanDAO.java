@@ -187,5 +187,18 @@ public class CongVanDAO {
 		if (session.isConnected())
 		session.disconnect();
 	}
-	
+	public ArrayList<Integer> groupByYear(){
+		session.beginTransaction();
+		String sql = "select distinct year(cvNgayNhan) from CongVan";
+		Query query = session.createQuery(sql);
+		ArrayList<Integer> listDate = (ArrayList<Integer>) query.list();
+		session.getTransaction().commit();
+		return listDate;
+	}
+	public static void main(String[] args) {
+		ArrayList<Integer> list = new CongVanDAO().groupByYear();
+		for (Integer date : list) {
+			System.out.println(date);
+		}
+	}
 }

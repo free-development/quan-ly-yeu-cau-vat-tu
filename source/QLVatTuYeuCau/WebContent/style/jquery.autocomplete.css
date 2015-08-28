@@ -6,32 +6,47 @@ body {
 	padding: 0px;
 	border: 1px solid WindowFrame;
 	background-color: Window;
+<<<<<<< HEAD
 	overflow: hidden;
+<<<<<<< HEAD
 	overflow: scroll;
 	overflow-y: scroll;
 	height: 300px;
 	width: 500px;
+=======
+	overflow: scroll;
+	height: 200px;
+	width: 300px;
+>>>>>>> 42ee225be3dcff0b2b0662909df14b92ebc49c43
+=======
+>>>>>>> parent of 75b3fac... update
 }
 
 .ac_results ul {
-	width: 500px;
+	width: 100%;
 	list-style-position: outside;
 	list-style: none;
 	padding: 0;
 	margin: 0;
+<<<<<<< HEAD
+<<<<<<< HEAD
 	
+=======
+	width: 300px;
+>>>>>>> 42ee225be3dcff0b2b0662909df14b92ebc49c43
+=======
+>>>>>>> parent of 75b3fac... update
 }
 
 .ac_results iframe {
 	display:none;/*sorry for IE5*/
 	display/**/:block;/*sorry for IE5*/
 	position:absolute;
+	width: 300px;
 	top:0;
 	left:0;
 	z-index:-1;
 	filter:mask();
-	width:3000px;
-	height:3000px;
 }
 
 .ac_results li {
@@ -42,7 +57,7 @@ body {
 	width: 100%;
 	font: menu;
 	font-size: 120%;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 .ac_loading {

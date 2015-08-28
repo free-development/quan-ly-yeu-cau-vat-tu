@@ -324,7 +324,7 @@
 							<th style="text-align: left"><label for="MVT">Đơn vị tính</label></th>
 								<td>
 									<select onkeypress="changedvtUp();"
-									title="" class="select" id="dvtUp" name="dvtUpdate" style="margin-top: 10px;">
+									title="" class="select" id="donvitinh" name="dvtUpdate" style="margin-top: 10px;">
 										<option disabled selected value="">-- Chọn đơn vị tính --</option>
 										<%						  
 		 								
@@ -348,8 +348,7 @@
 			
 	<form id="chitiet">
 				<div id="view-table-chi-tiet">
-				<hr>
-<div id="title-content">Danh mục chi tiết vật tư</div>
+
 				<table>
 					<tr style="background: #199e5e">
 						<th class="left-column"><input type="checkbox" class="checkAll"></th>
@@ -386,21 +385,21 @@
 				</table>	
 					
 			</div>
-<!-- 			<div id = "paging" > -->
-<!-- 							<table style ="border-style: none;"> -->
-<!-- 								<tr> -->
-<!-- 									<td><a href=""> Previous<< </a></td> -->
-<!-- 									<td> -->
-<%-- 										<% --%>
-<!-- // 											long  pagenum = size / 10; -->
-<%-- 											for(int i = 0; i <= pagenum; i++) { %> --%>
-<%-- 												<input type="button" value="<%=i+1%>" class="page"> --%>
-<%-- 										<%} %> --%>
-<!-- 									</td> -->
-<!-- 									<td><a href="">>>Next </a> </td> -->
-<!-- 								</tr> -->
-<!-- 							</table> -->
-<!-- 						</div>		 -->
+			<div id = "paging" >
+							<table style ="border-style: none;">
+								<tr>
+									<td><a href=""> Previous<< </a></td>
+									<td>
+										<%
+											long  pagenum = size / 10;
+											for(int i = 0; i <= pagenum; i++) { %>
+												<input type="button" value="<%=i+1%>" class="page">
+										<%} %>
+									</td>
+									<td><a href="">>>Next </a> </td>
+								</tr>
+							</table>
+						</div>		
 					<div class="group-button">
 				<input type="hidden" name="action" value="deleteVatTu">
 				<button type="button" class="button"

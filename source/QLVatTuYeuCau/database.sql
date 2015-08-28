@@ -808,9 +808,10 @@ alter table VATTU add DAXOA int(2) not null;
 alter table CTVATTU add DAXOA int(2) not null;
 alter table CHATLUONG add DAXOA int(2) not null;
 alter table DONVITINH add DAXOA int(2) not null;
-
+<<<<<<< HEAD
+=======
 alter table DONVI add DAXOA int(2) not null;
-
+>>>>>>> e0abe376de28b5ffd1b0577a294d9994bc1ffe19
 
 update VAITRO set DAXOA = 0;
 update CHUCDANH set DAXOA = 0;
@@ -821,7 +822,8 @@ update CTVATTU set DAXOA = 0;
 update CHATLUONG set DAXOA = 0;
 update DONVITINH set DAXOA = 0;
 
-
+<<<<<<< HEAD
+=======
 INSERT INTO TRANGTHAI VALUES('CGQ','Chưa giải quyết');
 INSERT INTO TRANGTHAI VALUES('DGQ','Dang giải quyết');
 INSERT INTO TRANGTHAI VALUES('DaGQ','Đã giải quyết');
@@ -841,5 +843,5 @@ INSERT INTO MUCDICH VALUES('MD4','Mục đích 4', 0);
 INSERT INTO MUCDICH VALUES('MD5','Mục đích 5', 0);
 INSERT INTO MUCDICH VALUES('MD6','Mục đích 6', 0);
 -- ---------------------------
-
+>>>>>>> e0abe376de28b5ffd1b0577a294d9994bc1ffe19
 
