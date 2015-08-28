@@ -67,5 +67,8 @@ public class FileDAO {
 		session.getTransaction().commit();
 		return id;
 	}
+	public void close() {
+		session.close();
+	}
 	
 }

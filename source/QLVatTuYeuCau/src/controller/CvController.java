@@ -51,8 +51,12 @@ public class CvController extends HttpServlet {
 	int page = 1;
 	private final String tempPath = "./"; 
     private final String pathFile = "./";
-    public ModelAndView getCongvan(TrangThaiDAO trangThaiDAO, CongVanDAO congVanDAO, MucDichDAO mucDichDAO, FileDAO fileDAO, DonViDAO donViDAO, HttpServletRequest request) {
-    	
+    public ModelAndView getCongvan( HttpServletRequest request) {
+    	MucDichDAO mucDichDAO =  new MucDichDAO();
+    	DonViDAO donViDAO =  new DonViDAO();
+    	TrangThaiDAO trangThaiDAO =  new TrangThaiDAO();
+    	CongVanDAO congVanDAO =  new CongVanDAO();
+    	FileDAO fileDAO =  new FileDAO();
     	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) congVanDAO.getAllCongVan();
 		HashMap<Integer, File> fileHash = new HashMap<Integer, File>();
 		ArrayList<DonVi> donViList = (ArrayList<DonVi>) donViDAO.getAllDonVi();
@@ -67,6 +71,11 @@ public class CvController extends HttpServlet {
 		request.setAttribute("mucDichList", mucDichList);
 		request.setAttribute("donViList", donViList);
 		request.setAttribute("trangThaiList", trangThaiList);
+		congVanDAO.close();
+		donViDAO.close();
+		trangThaiDAO.close();
+		mucDichDAO.close();
+		fileDAO.close();
 		return new ModelAndView(siteMap.congVan);
     }
     
@@ -76,13 +85,15 @@ public class CvController extends HttpServlet {
 		response.getCharacterEncoding();
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-    	FileDAO fileDAO = new FileDAO();
-    	CongVanDAO congVanDAO = new CongVanDAO();
-    	MucDichDAO mucDichDAO =  new MucDichDAO();
-    	DonViDAO donViDAO =  new DonViDAO();
-    	TrangThaiDAO trangThaiDAO =  new TrangThaiDAO();
+    	
 		String action = request.getParameter("action");
 		if("manageCv".equalsIgnoreCase(action)) {
+			FileDAO fileDAO = new FileDAO();
+	    	CongVanDAO congVanDAO = new CongVanDAO();
+	    	MucDichDAO mucDichDAO =  new MucDichDAO();
+	    	DonViDAO donViDAO =  new DonViDAO();
+	    	TrangThaiDAO trangThaiDAO =  new TrangThaiDAO();
+	    	
 			ArrayList<CongVan> congVanList = (ArrayList<CongVan>) congVanDAO.getAllCongVan();
 			HashMap<Integer, File> fileHash = new HashMap<Integer, File>();
 			ArrayList<DonVi> donViList = (ArrayList<DonVi>) donViDAO.getAllDonVi();
@@ -98,19 +109,28 @@ public class CvController extends HttpServlet {
 //			request.setAttribute("mucDichList", mucDichList);
 //			request.setAttribute("donViList", donViList);
 //			return new ModelAndView(siteMap.congVan);
-			return getCongvan(trangThaiDAO, congVanDAO, mucDichDAO, fileDAO, donViDAO, request);
+			congVanDAO.close();
+			fileDAO.close();
+			mucDichDAO.close();
+			donViDAO.close();
+			trangThaiDAO.close();
+			return getCongvan(request);
 		}
+		/*
 		if("manageCv".equalsIgnoreCase(action)) {
 			long size = congVanDAO.size();
 			ArrayList<CongVan> congVanList =  (ArrayList<CongVan>) congVanDAO.limit(page, 10);
 			request.setAttribute("size", size);
 			return new ModelAndView("cong-van", "congVanList", congVanList);
 		}
+		*/
 		if("download".equals(action)) {
 			try {
+				FileDAO fileDAO = new FileDAO();
 				int cvId = Integer.parseInt(request.getParameter("file"));
 				model.File f = fileDAO.getByCongVanId(cvId);
 				java.io.File file = new java.io.File(f.getDiaChi());
+				fileDAO.close();
 				return new ModelAndView(siteMap.fileDownload, "file", file);
 				
 			} catch (NumberFormatException e){
@@ -136,6 +156,10 @@ public class CvController extends HttpServlet {
 		String action = multipartRequest.getParameter("action");
 //		int soDen = Integer.parseInt(multipartRequest.getParameter("soDen"));
 		String cvSo = multipartRequest.getParameter("cvSo");
+		if (congVanDAO.getByCvSo(cvSo) != null) {
+			request.setAttribute("error", "error");
+			return getCongvan(request);
+		}
 		Date cvNgayGoi = DateUtil.parseDate(multipartRequest.getParameter("ngayGoi"));
 		Date cvNgayNhan = DateUtil.parseDate(multipartRequest.getParameter("ngayNhan"));
 		String mdMa = multipartRequest.getParameter("mucDich");
@@ -170,10 +194,10 @@ public class CvController extends HttpServlet {
 //		java.util.Date.
 		congVanDAO.addCongVan(new CongVan (cvId, soDen, cvSo, cvNgayNhan, cvNgayGoi, trichYeu, butPhe, new MucDich(mdMa), new TrangThai("DGQ",""), new DonVi(dvMa),0));
 		fileDAO.addFile(new File(pathFile + fileName, moTa, cvId));
-    	MucDichDAO mucDichDAO =  new MucDichDAO();
-    	DonViDAO donViDAO =  new DonViDAO();
-    	TrangThaiDAO trangThaiDAO =  new TrangThaiDAO();
-    	return getCongvan(trangThaiDAO, congVanDAO, mucDichDAO, fileDAO, donViDAO, request);
+//    	
+		congVanDAO.close();
+		fileDAO.close();
+		return getCongvan(request);
 //    	return new ModelAndView("login");
     }
     @RequestMapping(value="/preEditCongVan", method=RequestMethod.POST, 
@@ -188,8 +212,12 @@ public class CvController extends HttpServlet {
 	@RequestMapping(value="/deleteCv", method=RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	 public @ResponseBody String deleteNsx(@RequestParam("cvId") String cvId) {
-		int id = Integer.parseInt(cvId);
-		new CongVanDAO().deleteCongVan(id);
+		String[] congVanList = cvId.split("\\, ");
+		for (String s : congVanList) {
+			int id = Integer.parseInt(s);
+			new CongVanDAO().deleteCongVan(id);
+		}
+		
 	//	return toJson(nsxList);
 		return JSonUtil.toJson(cvId);
 	}
@@ -217,5 +245,14 @@ public class CvController extends HttpServlet {
 		}
 		*/
 			return JSonUtil.toJson(cvList);
+	}
+	@RequestMapping(value="/preUpdateCv", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody String preUpdateCv(@RequestParam("congVan") String congVan) {
+		CongVanDAO congVanDAO = new CongVanDAO();
+		int id = Integer.parseInt(congVan);
+		CongVan cv = congVanDAO.getCongVan(id);
+		congVanDAO.close();
+		return JSonUtil.toJson(congVan);
 	}
 }

@@ -74,39 +74,6 @@ function addNsx() {
 	var nsxMa = $('#add-form input:text[name=nsxMa]').val();
 	var nsxTen = $('#add-form input:text[name=nsxTen]').val();
 	if(nsxMa == '') 
-		$('#requirensxMa').html('Vui lòng nhập mã nơi sản xuất');
-	else if (nsxTen == '')
-<<<<<<< HEAD
-		{
-			$('#requirensxTen').html('Vui lòng nhập tên nơi sản xuất');
-	 			}
- 
- 			else {
-				$.ajax({
-					url: "/QLVatTuYeuCau/addNsx.html",	
-				  	type: "GET",
-				  	dateType: "JSON",
-				  	data: { "nsxMa": nsxMa, "nsxTen": nsxTen},
-				  	contentType: 'application/json',
-				    mimeType: 'application/json',
-				  	
-				  	success: function(result) {
-	//			  		alert(result);
-				  		if (result == "success")
-					  	{
-					  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
-					  		$('#add-form input:text[name=nsxMa]').val('');
-							$('#add-form input:text[name=nsxTen]').val('');
-					  		showForm("add-form", false);	
-					  		alert("Nơi sản xuất "+ nsxMa + " đã được thêm ");	
-						}
-				  		else{
-				  			alert("Nơi sản xuất "+nsxMa + " đã tồn tại ");
-				  		}
-				  	
-	 			  	}
-				});
-=======
 		$('#requirensxTen').html('Vui lòng nhập tên nơi sản xuất');
 	else {
 		$.ajax({
@@ -121,7 +88,7 @@ function addNsx() {
 		//			  		alert(result);
 		  		if (result == "success")
 			  	{
-			  		$('#view-table table tr:first').after('<tr><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
+			  		$('#view-table table tr:first').after('<tr class=\"rowContent\"><td class=\"left-column\"><input type=\"checkbox\" name=\"nsxMa\" value=\"' +nsxMa + '\"</td><td class=\"col\">'+ nsxMa +'</td><td class=\"col\">' + nsxTen+'</td></tr>');
 			  		$('#add-form input:text[name=nsxMa]').val('');
 					$('#add-form input:text[name=nsxTen]').val('');
 			  		showForm("add-form", false);	
@@ -131,7 +98,6 @@ function addNsx() {
 		  		}
 		  	}	
 		});
->>>>>>> e0abe376de28b5ffd1b0577a294d9994bc1ffe19
 	}
 }
 

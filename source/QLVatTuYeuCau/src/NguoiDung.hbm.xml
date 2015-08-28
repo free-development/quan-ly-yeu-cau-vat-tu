@@ -19,7 +19,7 @@
 		<property name="sdt" type="java.lang.String" access="field">
 			<column name="SDT" />
 		</property>
-		<many-to-one name="chucDanh" class="model.ChucDanh" fetch="select">
+		<many-to-one name="chucDanh" class="model.ChucDanh" fetch="join">
 			<column name="CDMA" />
 		</many-to-one>
 	</class>

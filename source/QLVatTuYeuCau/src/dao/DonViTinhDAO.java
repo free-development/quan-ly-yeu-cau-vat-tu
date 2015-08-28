@@ -121,7 +121,8 @@ public class DonViTinhDAO {
 		return l;
 	}
 	public void close() {
-		HibernateUtil.shutdown();
+//		HibernateUtil.shutdown();
+		session.close();
 	}
 	public static void main(String[] args) {
 //		new DonViTinhDAO().deleteDonViTinh(1);

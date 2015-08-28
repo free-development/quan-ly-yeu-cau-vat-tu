@@ -25,7 +25,14 @@ public class NguoiDungDAO {
 	
 	public NguoiDung getNguoiDung(final String msnv) {
 		session.beginTransaction();
-		NguoiDung nguoiDung = (NguoiDung) session.get(NguoiDung.class, msnv);
+		Criteria cr = session.createCriteria(NguoiDung.class, "nguoiDung");
+		cr.createAlias("nguoiDung.chucDanh", "chucDanh");
+		cr.add(Restrictions.eq("nguoiDung.msnv", msnv));
+		NguoiDung nguoiDung = null;
+		
+		ArrayList<NguoiDung> nguoiDungList = (ArrayList<NguoiDung>) cr.list();
+		if (nguoiDungList.size() > 0) 
+			nguoiDung = nguoiDungList.get(0);
 		session.getTransaction().commit();
 		return nguoiDung;
 	}
@@ -67,5 +74,8 @@ public class NguoiDungDAO {
 			for(String hoTen : list)
 				System.out.println(hoTen);
 		}
+	}
+	public void close() {
+		session.close();
 	}
 }

@@ -24,6 +24,9 @@ public class ChatLuongDAO {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
+	public ChatLuongDAO(Session session) {
+		this.session = session;
+	}
 	public ChatLuong getChatLuong(final String clMa) {
 		session.beginTransaction();
 		
@@ -97,8 +100,9 @@ public class ChatLuongDAO {
 		
 	}
 	public void close() {
-		HibernateUtil.shutdown();
+		session.close();
 	}
+	
 	public static void main(String[] args) {
 		new ChatLuongDAO().deleteChatLuong("cl5");
 	}
