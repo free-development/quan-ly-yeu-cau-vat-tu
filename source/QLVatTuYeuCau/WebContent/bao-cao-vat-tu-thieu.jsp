@@ -160,7 +160,7 @@
 			
 				
 					<div style="text-align: center;font-size: 20px;color:firebrick;font-weight: bold;margin-top:10px;">Chi tiết vật tư thiếu</div>
-					<div id="view-table-bao-cao" style="max-height: 420px;width: 1000px;display: auto;border: 1px dotted #CCCCCC;margin: 0 auto;overflow: scroll;">
+					<div id="view-table-bao-cao" style="max-height: 520px;width: 1000px;display: auto;border: 1px dotted #CCCCCC;margin: 0 auto;overflow: scroll;">
 					<table style="margin: 0 auto;width:1000px;border: 1px dotted black;">
 							<tr bgcolor="#199e5e"style="border: 1px dotted black;">
 								<th style="border: 1px dotted black;" class="one-column">Số đến</th>
