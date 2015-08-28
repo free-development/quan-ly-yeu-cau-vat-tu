@@ -74,6 +74,9 @@ public class ChiaSeCvController extends HttpServlet {
 			session.setAttribute("nguoiDungList", nguoiDungList);
 			session.setAttribute("congVan", congVan);
 			
+			congVanDAO.close();
+			vaiTroDAO.close();
+			nguoiDungDAO.close();
 			
 			return new ModelAndView(siteMap.chiaSeCv);
 		}
@@ -82,7 +85,8 @@ public class ChiaSeCvController extends HttpServlet {
    @RequestMapping("/chiaSeCv")
 	protected ModelAndView chiaSeCv(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-		if ("save".equalsIgnoreCase(action)) {
+		String change = request.getParameter("change");
+		if ("yes".equalsIgnoreCase(change)) {
 //			session = request.getSession(false);
 			session = request.getSession(false);
 			CongVan congVan = (CongVan) session.getAttribute("congVan");
@@ -116,6 +120,8 @@ public class ChiaSeCvController extends HttpServlet {
 			
 			request.setAttribute("vaiTroHash", vaiTroHash);
 			request.setAttribute("vtNguoiDungHash", vtNguoiDungHash);
+			vaiTroDAO.close();
+			nguoiDungDAO.close();
 			return new ModelAndView(siteMap.chiaSeCv);
 		}
 		return new ModelAndView("login");
@@ -132,11 +138,13 @@ public class ChiaSeCvController extends HttpServlet {
 	   //NguoiDung nguoiDung = nguoiDungDAO.getNguoiDung(msnv);
 	   ArrayList<VaiTro> vaiTroList = (ArrayList<VaiTro>) vaiTroDAO.getAllVaiTro();
 	   ArrayList<VTCongVan> vtCongVanList = vtCongVanDAO.getVTCongVan(congVan.getCvId(), msnv);
-	   ArrayList<Object> objectList = new ArrayList<Object>(); 
+	   ArrayList<Object> objectList = new ArrayList<Object>();
+	   vaiTroDAO.close();
+	   nguoiDungDAO.close();
 	   objectList.add(msnv);
 	   objectList.add(vaiTroList);
 	   objectList.add(vtCongVanList);
-			return JSonUtil.toJson(objectList);
+	   return JSonUtil.toJson(objectList);
 	}
    
    @RequestMapping(value="/updateYeuCau", method=RequestMethod.GET, 

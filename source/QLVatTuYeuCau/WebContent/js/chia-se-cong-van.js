@@ -117,3 +117,9 @@ $(document).ready(function() {
 			
 	});   
 });
+$(document).ready(function(){
+	$('#chiaSe').click(function(){
+		$('#change').val('yes');
+		return true;
+	});
+});

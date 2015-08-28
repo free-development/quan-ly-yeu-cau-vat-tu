@@ -56,7 +56,7 @@ drop table if exists YEUCAU;
 create table CHATLUONG
 (
    CLMA                 char(3) not null,
-   CLTEN                varchar(20),
+   CLTEN                varchar(100),
    primary key (CLMA)
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
