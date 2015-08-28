@@ -6,7 +6,9 @@ body {
 	padding: 0px;
 	border: 1px solid WindowFrame;
 	background-color: Window;
-	overflow: hidden;
+	overflow: scroll;
+	height: 200px;
+	width: 300px;
 }
 
 .ac_results ul {
@@ -15,18 +17,18 @@ body {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	width: 300px;
 }
 
 .ac_results iframe {
 	display:none;/*sorry for IE5*/
 	display/**/:block;/*sorry for IE5*/
 	position:absolute;
+	width: 300px;
 	top:0;
 	left:0;
 	z-index:-1;
 	filter:mask();
-	width:3000px;
-	height:3000px;
 }
 
 .ac_results li {
@@ -37,7 +39,7 @@ body {
 	width: 100%;
 	font: menu;
 	font-size: 120%;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 .ac_loading {
