@@ -202,32 +202,10 @@
 						</tr>
 					<%}%>
 				</table>
-<<<<<<< HEAD
-				
-				
-				
-=======
-				<div id = "paging">	
-				<%
- 					if(pageNum > 10)
-						out.println("<input type=\"button\" class = \"page\" name = \"page\" value = \"<< next\"");
-				%>
-				<%
-// 				out.println("<script>alert(" + pageNum + ")</script>");
-				for (int i = 0; i <= pageNum; i++) {
-					%>
-						<input type="button" class="page" name = "page" value = "<%=i+1 %>">
-						<%} %>	
-					<%
- 					if(pageNum > 10)
-						out.println("<input type=\"button\" class = \"page\" name = \"page\" value = \"previous >>\"");
-				%>	
-				</div>		
->>>>>>> origin/master
 				</div>
 				</div>
-				<br>
-				<div id = "paging" >
+			</form>
+			<div id = "paging" >
 							<table style ="border-style: none;">
 								<tr>
 									<td><input type="button" value="<<Previous"></td>
@@ -240,8 +218,7 @@
 									<td><input type="button" value="Next>>"></td>
 								</tr>
 							</table>
-						</div>
-			</form>
+			</div>
 			<form id="main-form">
 			<div class="form-title">Yêu cầu vật tư đã cập nhật</div> 
 					<div id="view-table-yc" class="scroll-vat-tu">

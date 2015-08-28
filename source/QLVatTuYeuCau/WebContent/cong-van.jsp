@@ -213,7 +213,7 @@
 					</form>	
                      <form name="main-form" method="get" action="<%=siteMap.ycvtManage%>">
                      <div class="scroll_content">
-							<%
+						<%
                      	int count = 0;
                      	for(CongVan congVan : congVanList) {
                      		count ++;
@@ -267,7 +267,7 @@
 
 									<td class="column-color"colspan="3"><%=congVan.getDonVi().getDvTen() %></td>
 									<td colspan=3 style="float: right;"><button  class="button" type="button" onclick="location.href='<%=siteMap.cscvManage + "?action=chiaSeCv&congVan=" + congVan.getCvId()%>'">
-								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Chia se cong van
+								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Chia sẻ công văn
 							</button></td>
 								</tr>
 								

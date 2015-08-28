@@ -15,6 +15,7 @@
 		</property>
 		<many-to-one name="dvt"  class="model.DonViTinh" fetch="join" >
 			<column name="DVTID"></column>
+
 		</many-to-one>
 	</class>
 </hibernate-mapping>
