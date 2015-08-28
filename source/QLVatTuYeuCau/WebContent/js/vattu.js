@@ -129,7 +129,7 @@
 						
 						$('input:text[name=vtMaUpdate]').val(vt.vtMa);
 					  	$('input:text[name=vtTenUpdate]').val(vt.vtTen);
-						$('#dvtUp option[value='+vt.dvt.dvtTen+']').prop('selected',true);
+						$('#dvtUp option[value='+vt.dvt.dvtId+']').prop('selected',true);
 						$('#aa').focus();
 					  	showForm(formId, check);
 					}

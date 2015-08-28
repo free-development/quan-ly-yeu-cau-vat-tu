@@ -294,10 +294,6 @@
 			</div>
 			
 			</form>
-			<br>
-			<br>
-			<br>
-			<br>
 			<form id="update-so-luong-form" onsubmit="return false">
 			<div class = "form-title" style="margin-top: 10px;">Thay đổi số lượng yêu cầu</div>
 			<div id="view-table-doi" class="scroll-vat-tu">
