@@ -44,5 +44,11 @@ public class TrangThaiDAO {
 		session.delete(trangThai);
 		session.getTransaction().commit();
 	}
-	
+	public void close() {
+		session.close();
+	}
+	public void disconnect() {
+		if (session.isConnected())
+		session.disconnect();
+	}
 }

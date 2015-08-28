@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <%@page import="model.TrangThai"%>
 <%@page import="model.MucDich"%>
 <%@page import="model.DonVi"%>
@@ -22,9 +23,10 @@
 <link
 	href="style/font-awesome-4.3.0/font-awesome-4.3.0/css/font-awesome.min.css"
 	type="text/css" rel="stylesheet">
-<script type="text/javascript" src="js/cong-van.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="js/cong-van.js"></script>
+
+<meta charset="utf-8">
 <link rel="Shortcut Icon" href="img/logo16.png" type="image/x-icon" />
 </head>
 <body>
@@ -33,6 +35,9 @@
 		response.getCharacterEncoding();
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		String error = (String) request.getAttribute("error");
+		if(error != null)
+			out.println("<script>alert('Số công văn đã tồn tại. Vui lòng nhập lại!!!')</script>");
     	ArrayList<CongVan> congVanList = (ArrayList<CongVan>) request.getAttribute("congVanList");
     	HashMap<Integer, File> fileHash = (HashMap<Integer, File>) request.getAttribute("fileHash");
     	ArrayList<DonVi> donViList = (ArrayList<DonVi>) request.getAttribute("donViList");
@@ -208,7 +213,7 @@
 					</form>	
                      <form name="main-form" method="get" action="<%=siteMap.ycvtManage%>">
                      <div class="scroll_content">
-							<%
+						<%
                      	int count = 0;
                      	for(CongVan congVan : congVanList) {
                      		count ++;
@@ -233,7 +238,7 @@
 
 									<td class="left-column-first">Mục đích: &nbsp;&nbsp;</td>
 
-									<td class="column-color" colspan="3" style="text-align: left"><%=congVan.getMucDich() %></td>
+									<td class="column-color" colspan="3" style="text-align: left"><%=congVan.getMucDich().getMdTen() %></td>
 
 									<td class="left-column-ngdi">Ngày công văn đi:&nbsp;&nbsp;</td>
 									<td class="column-date" style="text-align: left"><%=congVan.getCvNgayDi()%></td>
@@ -260,12 +265,13 @@
 
 									<td class="left-column-first">Nơi GQ chính</td>
 
-									<td class="column-color"colspan="6"><%=congVan.getDonVi().getDvTen() %></td>
+									<td class="column-color"colspan="3"><%=congVan.getDonVi().getDvTen() %></td>
+									<td colspan=3 style="float: right;"><button  class="button" type="button" onclick="location.href='<%=siteMap.cscvManage + "?action=chiaSeCv&congVan=" + congVan.getCvId()%>'">
+								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Chia se cong van
+							</button></td>
 								</tr>
 								
-								<button  class="button" type="button" onclick="location.href='<%=siteMap.cscvManage + "?action=chiaSeCv&congVan=" + congVan.getCvId()%>'">
-								<i class="fa fa-spinner"></i>&nbsp;&nbsp;Chia se cong van
-							</button>
+								
 								<tr>
 								<td class="left-column-first">Link file công văn: </td>
 								<td colspan="6"><a
@@ -290,7 +296,7 @@
 								<i class="fa fa-plus-circle"></i>&nbsp;Thêm mới
 							</button>
 							<button type="button" class="button"title="Chỉ chọn một công văn để sửa"
-								onclick="preUpdateCv('main-form','update-form', true)">
+								onclick="checkUpdate()">
 								<i class="fa fa-pencil fa-fw"></i>&nbsp;Sửa
 							</button>
 							<button class="button" type="button" onclick="confirmDelete();">
@@ -315,7 +321,7 @@
 
 				<!--    		</form>  -->
 				<!--                add-form-->
-				<form id="add-form" name="add-form" action="/QLVatTuYeuCau/addCongVan.html" enctype="multipart/form-data" method="post">
+				<form id="add-form" name="add-form" action="<%=siteMap.addCv %>" enctype="multipart/form-data" method="post">
 
 					<div class="form-title">Thêm công văn</div>
 					<div class="input-table">
@@ -389,7 +395,7 @@
 
 				</form>
 				<!--            update-form-->
-				<form id="update-form">
+				<form id="update-form" method="post" action="<%=siteMap.updateCv %>" enctype="multipart/form-data">
 					<div class="input-table">
 						<div class="input-table">
 						<table>

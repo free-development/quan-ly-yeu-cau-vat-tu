@@ -52,5 +52,8 @@ public class CTNguoiDungDAO {
 		session.delete(ctNguoiDung);
 		session.getTransaction().commit();
 	}
+	public void close() {
+		session.close();
+	}
 	
 }

@@ -120,6 +120,7 @@ public class ReadExcelCtvt {
 				dvtList.add(donViTinh);
 			}
 			int lenght = vatTuList.size();
+			
 			for (int i = 0; i< lenght; i++) {
 				VatTuDAO vtDAO = new VatTuDAO();
 				NoiSanXuatDAO nsxDAO = new NoiSanXuatDAO();
@@ -136,7 +137,8 @@ public class ReadExcelCtvt {
 				} else {
 					temp.setDvtTen(dvt.getDvtTen());
 					temp.setDaXoa(0);
-					new DonViTinhDAO().updateDonViTinh(temp);
+//					new DonViTinhDAO().updateDonViTinh(temp);
+					dvtDAO.updateDonViTinh(temp);
 				}
 //				dvtDAO.addOrUpdateDonViTinh(dvt);
 				
@@ -153,6 +155,11 @@ public class ReadExcelCtvt {
 					ctvt.setSoLuongTon(ctvtTemp.getSoLuongTon());
 					ctvtDAO.updateCTVatTu(ctvt);
 				}
+				vtDAO.close();
+				nsxDAO.close();
+				clDAO.close();
+				ctvtDAO.close();
+				dvtDAO.close();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -249,6 +256,7 @@ public class ReadExcelCtvt {
 //				dvtList.add(donViTinh);
 			}
 			int lenght = vatTuList.size();
+			
 			for (int i = 0; i< lenght; i++) {
 				VatTuDAO vtDAO = new VatTuDAO();
 				NoiSanXuatDAO nsxDAO = new NoiSanXuatDAO();
@@ -267,7 +275,7 @@ public class ReadExcelCtvt {
 					temp.setDvtTen(dvt.getDvtTen());
 					temp.setDaXoa(0);
 					dvt.setDvtId(temp.getDvtId());
-					new DonViTinhDAO().updateDonViTinh(temp);
+					dvtDAO.updateDonViTinh(temp);
 				}
 //				dvtDAO.addOrUpdateDonViTinh(dvt);
 				
@@ -284,6 +292,11 @@ public class ReadExcelCtvt {
 					ctvt.setSoLuongTon(ctvtTemp.getSoLuongTon());
 					ctvtDAO.updateCTVatTu(ctvt);
 				}
+				vtDAO.close();
+				nsxDAO.close();
+				clDAO.close();
+				ctvtDAO.close();
+				dvtDAO.close();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

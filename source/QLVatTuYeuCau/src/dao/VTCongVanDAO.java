@@ -73,8 +73,34 @@ public class VTCongVanDAO {
 		session.getTransaction().commit();
 		return vtCongVanList;
 	}
-	
-	
+	public int deleteByCvId(int cvId) {
+		session.beginTransaction();
+		String sql = "delete from VTCongVan where cvId = :cvId";
+		Query query = session.createQuery(sql);
+		query.setParameter("cvId", cvId);
+		int result = query.executeUpdate();
+		session.getTransaction().commit();
+		return result;
+	}
+	public int delete(int cvId, String msnv) {
+		session.beginTransaction();
+		String sql = "delete from VTCongVan where cvId = :cvId and msnv = :msnv";
+		Query query = session.createQuery(sql);
+		query.setParameter("cvId", cvId);
+		query.setParameter("msnv", msnv);
+		int result = query.executeUpdate();
+		session.getTransaction().commit();
+		return result;
+	}
+	public String getVaiTro(int vtId) {
+		session.beginTransaction();
+		String sql = "select vtTen from VaiTro where vtId = :vtId";
+		Query query = session.createQuery(sql);
+		query.setParameter("vtId", vtId);
+		String vaiTro = (String) query.list().get(0);
+		session.getTransaction().commit();
+		return vaiTro;
+	}
 	public HashMap<String, NguoiDung> getNguoiXuLy(int cvId) {
 		session.beginTransaction();
 //		Criteria cr = session.createCriteria(VTCongVan.class);
@@ -103,9 +129,20 @@ public class VTCongVanDAO {
 		}
 		return vaiTroHash;
 	}
+	
+	public ArrayList<VTCongVan> getByMsnv(String msnv) {
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(VTCongVan.class);
+		cr.add(Restrictions.eq("msnv", msnv));
+		ArrayList<VTCongVan> vtCongVanList = (ArrayList<VTCongVan>) cr.list();
+		session.getTransaction().commit();
+		return vtCongVanList;
+	}
+	public void close() {
+		session.close();
+	}
 	public static void main(String[] args) {
-		ArrayList<VTCongVan> l = new VTCongVanDAO().getVTCongVan(1, "b1203954");
-		for(VTCongVan i : l)
-			System.out.println(i.getCvId());
+		VTCongVanDAO l = new VTCongVanDAO();
+		System.out.println(l.getVaiTro(1));
 	}
 }

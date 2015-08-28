@@ -13,6 +13,19 @@
 	width: 100px;
 	text-align: left;
 }
+#paging table {
+	margin: 0 auto;
+	margin-top: 20px;
+	border-style: none;
+}
+#paging table tr td{
+	border-style: none;
+}
+#paging table tr td a {
+	color: blue;
+	font-size: 15px;
+}
+
 .column-noisx{
 	margin-right: 20px;
 }
@@ -433,8 +446,8 @@
 }
 */
 .scroll-vat-tu {
-	height: 100px;
-	width: 900px;
+	max-height: 420px;
+	width: 960px;
 	display: auto;
 	border: 1px solid #CCCCCC;
 	margin: 0 auto;
@@ -705,7 +718,7 @@
 	height: 2000px;
 	background-color: while;
 }
-.paging {
+#paging {
 	text-align: center;
 	padding-top: 20px;
 	padding-bottom: 20px;

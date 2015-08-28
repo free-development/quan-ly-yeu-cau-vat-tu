@@ -31,7 +31,7 @@
 	type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/check.js"></script>
-<script src="http://www.google.com/jsapi"></script>  
+<script src="js/jsapi.js"></script>  
 	<script>  
 		google.load("jquery", "1");
 	</script>
@@ -142,7 +142,7 @@
 														$("#searchName").autocomplete("getdata.jsp");
 						</script>
 						</td>
-						<td><button class="button" type="button" id="search">Tìm kiếm</button></td>
+						<td style="text-align: left;"><button class="button" type="button" id="search">Tìm kiếm</button></td>
 <!-- 						<td><label for="vtTen">Tên vật tư: </label></td> -->
 <!-- 						<td class="column-tenvt"><input type="text" maxlength="3" size="3px" name="vtTen" id="vtMa" class="text"></td> -->
 					</tr>
@@ -202,7 +202,12 @@
 						</tr>
 					<%}%>
 				</table>
-				<div class = "paging">	
+<<<<<<< HEAD
+				
+				
+				
+=======
+				<div id = "paging">	
 				<%
  					if(pageNum > 10)
 						out.println("<input type=\"button\" class = \"page\" name = \"page\" value = \"<< next\"");
@@ -218,33 +223,48 @@
 						out.println("<input type=\"button\" class = \"page\" name = \"page\" value = \"previous >>\"");
 				%>	
 				</div>		
+>>>>>>> origin/master
 				</div>
 				</div>
+				<br>
+				<div id = "paging" >
+							<table style ="border-style: none;">
+								<tr>
+									<td><input type="button" value="<<Previous"></td>
+									<td>
+										<%
+									for(int i = 0; i <= pageNum; i++) { %>
+										<input type="button" value="<%=i+1%>" class="page">
+								<%} %>
+									</td>
+									<td><input type="button" value="Next>>"></td>
+								</tr>
+							</table>
+						</div>
 			</form>
-			<br><br><br><br>
 			<form id="main-form">
 			<div class="form-title">Yêu cầu vật tư đã cập nhật</div> 
 					<div id="view-table-yc" class="scroll-vat-tu">
-							<table style= "width:900px; margin: 0 auto;s" >
+							<table style= "width:960px; margin: 0 auto;s" >
 								<tr>
 									<th class="a-column"style= "text-align: center;"><input type="checkbox" name="checkAll" class="checkAll"></th>
-									<th class="b-column">Mã vật tư</th>
-									<th class="c-column">Tên vật tư</th>
-									<th class="e-column">Nơi sản xuất</th>
-									<th class="f-column">Chất lượng</th>
-									<th class="g-column">Đvt</th>
-									<th class="d-column">Số lượng yêu cầu</th>
+									<th class="b-column" style="text-align: center;">Mã vật tư</th>
+									<th class="c-column"style="text-align: center;">Tên vật tư</th>
+									<th class="e-column"style="text-align: center;">Nơi sản xuất</th>
+									<th class="f-column"style="text-align: center;">Chất lượng</th>
+									<th class="g-column"style="text-align: center;">Đơn vị tính</th>
+									<th class="d-column"style="text-align: center;">Số lượng yêu cầu</th>
 									<th >Đã cấp</th>
 								</tr>
 								<%
 									int count = 0;
-									for(YeuCau yeuCau : yeuCauList) {
+									for(YeuCau yeuCau : yeuCauList) {count++;
 									CTVatTu ctVatTu = yeuCau.getCtVatTu();
 									NoiSanXuat nsx = ctVatTu.getNoiSanXuat();
 									VatTu vatTu = ctVatTu.getVatTu();
 									ChatLuong chatLuong = ctVatTu.getChatLuong();
 								%>
-								<tr <%if (count % 2 == 1) out.println("style=\"background : #CCFFFF;\"");%> id="<%=yeuCau.getYcId()	%>">
+								<tr <%if (count % 2 == 0) out.println("style=\"background : #CCFFFF;\"");%> id="<%=yeuCau.getYcId()	%>">
 									<td><input id="<%=yeuCau.getYcId() %>" type="checkbox" class="checkbox" name = "yeuCau" value=<%=yeuCau.getYcId()%>> </td>
 									<td><%=vatTu.getVtMa()%></td>
 									<td><%=vatTu.getVtTen()%></td>

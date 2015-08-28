@@ -67,5 +67,11 @@ public class FileDAO {
 		session.getTransaction().commit();
 		return id;
 	}
-	
+	public void close() {
+		session.close();
+	}
+	public void disconnect() {
+		if (session.isConnected())
+		session.disconnect();
+	}
 }

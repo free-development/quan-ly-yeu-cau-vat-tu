@@ -23,6 +23,9 @@ public class NoiSanXuatDAO {
 		template = HibernateUtil.getSessionFactory();
 		session = template.openSession();
 	}
+	public NoiSanXuatDAO(Session session) {
+		this.session = session;
+	}
 	public NoiSanXuat getNoiSanXuat(final String nsxMa) {
 		session.beginTransaction();
 		
@@ -86,7 +89,8 @@ public class NoiSanXuatDAO {
 		
 	}
 	public void close() {
-		HibernateUtil.shutdown();
+//		HibernateUtil.shutdown();
+		session.close();
 	}
 	public static void main(String[] args) {
 //		new NoiSanXuatDAO().deleteNoiSanXuat("Vn5");
@@ -97,5 +101,6 @@ public class NoiSanXuatDAO {
 			count++;
 			System.out.println(count + nsx.getNsxTen()); }
 	}
+	
 	
 }

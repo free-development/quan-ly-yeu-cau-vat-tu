@@ -89,4 +89,11 @@ public class MucDichDAO {
 		return size;
 		
 	}
+	public void close() {
+		session.close();
+	}
+	public void disconnect() {
+		if (session.isConnected())
+		session.disconnect();
+	}
 }
